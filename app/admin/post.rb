@@ -3,6 +3,7 @@ ActiveAdmin.register Post do
   index do
     column :title
     column :description
+    column :tag_list
     column :created_at
     default_actions
   end
@@ -44,6 +45,9 @@ ActiveAdmin.register Post do
       else
         render 'edit'
       end
+    end
+    def tag_cloud
+      @tags = Post.tag_counts_on(:tags)
     end
     private
     def post_params

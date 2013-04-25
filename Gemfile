@@ -45,6 +45,11 @@ group :development, :test do
 end
 
 gem 'devise', github: 'idl3/devise', branch: 'rails4'
+gem 'ransack', github: 'avit/ransack', branch: 'rails4-dependencies'
+gem 'activeadmin', github: 'akashkamboj/active_admin', branch: 'rails4'
+gem 'responders', github: 'plataformatec/responders'
+gem 'inherited_resources', github: 'josevalim/inherited_resources'
+gem 'acts-as-taggable-on', github: 'arabonradar/acts-as-taggable-on', branch: 'rails4'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

@@ -1,9 +1,13 @@
 ActiveAdmin.register Post do
+
   # Customize columns displayed on the index screen in the table
   index do
     column :title
     column :description
     column :tag_list
+    column "Author" do |post|
+      post.admin.email
+    end
     column :created_at
     default_actions
   end

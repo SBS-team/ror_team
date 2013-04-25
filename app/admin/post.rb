@@ -30,8 +30,7 @@ ActiveAdmin.register Post do
   controller do
     def create
       begin
-        @post = Post.new(post_params)
-        @post.save!
+        @post = current_admin_user.posts.create!(post_params)
         redirect_to admin_post_url(@post)
       rescue Exception => e
         logger.error(e.message)

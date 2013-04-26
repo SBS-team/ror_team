@@ -4,4 +4,6 @@ class Post < ActiveRecord::Base
 
   has_many :comments, as: :commentable, dependent: :destroy
   belongs_to :admin, :class_name => "AdminUser", :foreign_key => "admin_id"
+
+  validates :title, :description, presence: true
 end

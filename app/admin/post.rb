@@ -3,8 +3,7 @@ ActiveAdmin.register Post do
   # Customize columns displayed on the index screen in the table
   index do
     column :title
-    column :description
-    column :tag_list
+    column :tag_list, sortable: false
     column "Author" do |post|
       post.admin.email
     end
@@ -25,7 +24,7 @@ ActiveAdmin.register Post do
     f.semantic_errors :base
     f.inputs "Post Details" do
       f.input :title
-      f.input :description
+      f.input :description, as: :html_editor
       f.input :tag_list, :hint => 'Comma separated'
     end
     f.buttons
@@ -34,7 +33,8 @@ ActiveAdmin.register Post do
   controller do
     def create
       begin
-        @post = current_admin_user.posts.create!(post_params)
+        @post = current_admin_user.posts.build(post_params)
+        @post.save!
         redirect_to admin_post_url(@post)
       rescue Exception => e
         logger.error(e.message)

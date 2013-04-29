@@ -2,6 +2,7 @@ ActiveAdmin.register Post do
 
   # Customize columns displayed on the index screen in the table
   index do
+    column :id
     column :title
     column :tag_list, sortable: false
     column "Author" do |post|

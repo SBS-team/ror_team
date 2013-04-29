@@ -55,14 +55,14 @@ GIT
 
 GIT
   remote: git://github.com/plataformatec/responders.git
-  revision: eefe1b480aca070db9e8a8e7e97167adf3ae0139
+  revision: ebc053be7e682b1d0054c10a0f418ae15396e5a7
   specs:
     responders (0.9.3)
       railties (>= 3.1)
 
 GIT
   remote: git://github.com/rails/arel.git
-  revision: 3ef63ac5366000b232ca5fe0848de9db9a3c1f9a
+  revision: 68a95542e1a7a79d9777223fbffd2b982fed0268
   specs:
     arel (4.0.0.20130418133826)
 
@@ -76,7 +76,7 @@ GIT
 
 GIT
   remote: git://github.com/rails/rails.git
-  revision: 756cba02c1c06c1bce899633c7b87099ea4afce7
+  revision: a91bde349f736477e3ed44845655e377edaf44bb
   specs:
     actionmailer (4.0.0.beta1)
       actionpack (= 4.0.0.beta1)
@@ -150,7 +150,7 @@ GEM
       erubis (>= 2.6.6)
     binding_of_caller (0.7.1)
       debug_inspector (>= 0.0.1)
-    bourbon (3.1.4)
+    bourbon (3.1.5)
       sass (>= 3.2.0)
       thor
     builder (3.1.4)
@@ -200,7 +200,7 @@ GEM
     multi_json (1.7.2)
     orm_adapter (0.4.0)
     pg (0.15.1)
-    polyamorous (0.6.1)
+    polyamorous (0.6.2)
       activerecord (>= 3.0)
     polyglot (0.3.3)
     pry (0.9.12.1)

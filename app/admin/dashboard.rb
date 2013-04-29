@@ -12,11 +12,23 @@ ActiveAdmin.register_page "Dashboard" do
         end
       end
     end
-    # div :class => "blank_slate_container", :id => "dashboard_default_message" do
-    #   span :class => "blank_slate" do
-    #     span I18n.t("active_admin.dashboard_welcome.welcome")
-    #     small I18n.t("active_admin.dashboard_welcome.call_to_action")
-    #   end
-    # end
-  end # content
+    columns do
+      column do
+        panel "Back-end Recent Coments" do
+          table_for ActiveAdmin::Comment.order('created_at desc').limit(5) do
+            column("Author")   { |com| com.author.email }
+            column("Permalink"){ |com| link_to 'Here she is', polymorphic_path([:admin, com.resource])}
+          end
+        end
+      end
+      column do
+        panel "Recent Tecnologies" do
+          table_for Technology.order('created_at desc').limit(2) do
+            column("Name")    { |tech| tech.name }
+            column("Category"){ |tech| tech.technology_category.name}
+          end
+        end
+      end
+    end
+  end
 end

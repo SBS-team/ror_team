@@ -36,7 +36,7 @@ ActiveAdmin.register Post do
       begin
         @post = current_admin_user.posts.build(post_params)
         @post.save!
-        redirect_to admin_post_url(@post)
+        redirect_to admin_post_url(@post), notice: 'Post was successfully created.'
       rescue Exception => e
         logger.error(e.message)
         render 'new'

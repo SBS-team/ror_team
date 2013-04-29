@@ -20,11 +20,9 @@ ActiveAdmin.register Technology do
   controller do
     def create
       begin
-        @tech = Technology.new(safe_params)
         tech_cat = TechnologyCategory.find(params[:technology][:technology_category_id])
-        tech_cat.technologies << @tech
-        @tech.save!
-        redirect_to edit_admin_technology_url(@tech)
+        @tech = tech_cat.technologies.create!(safe_params)
+        redirect_to edit_admin_technology_url(@tech), notice: 'Technology was successfully created.'
       rescue Exception => e
         logger.error(e.message)
         render 'new'

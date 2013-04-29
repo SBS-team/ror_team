@@ -18,7 +18,7 @@ ActiveAdmin.register TechnologyCategory do
       begin
         @tech_cat = TechnologyCategory.new(safe_params)
         @tech_cat.save!
-        redirect_to edit_admin_technology_category_url(@tech_cat)
+        redirect_to edit_admin_technology_category_url(@tech_cat), notice: 'Project Category was successfully created.'
       rescue Exception => e
         logger.error(e.message)
         render 'new'

@@ -24,7 +24,7 @@ ActiveAdmin.register Project do
       begin
         @project = Project.new(project_params)
         @project.save!
-        redirect_to admin_project_url(@project)
+        redirect_to admin_project_url(@project), notice: 'Project was successfully created.'
       rescue Exception => e
         logger.error(e.message)
         render 'new'

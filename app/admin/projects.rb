@@ -15,7 +15,13 @@ ActiveAdmin.register Project do
       f.input :description, as: :html_editor
       f.input :since
       f.input :team_size
+      f.input :technologies, :as => :check_boxes
     end
+    # f.inputs "Technologies" do
+    #   f.semantic_fields_for :project_technology_technologies do |ptt|
+    #     ptt.input :id, :as => :check_boxes, :collection => Technology.all
+    #   end
+    # end
     f.buttons
   end
 
@@ -24,6 +30,8 @@ ActiveAdmin.register Project do
       begin
         @project = Project.new(project_params)
         @project.save!
+        technologies = Technology.find(params[:project][:technology_ids].reject { |i| i.to_i <= 0 })
+        technologies.each { |i| i.projects << @project }
         redirect_to admin_project_url(@project), notice: 'Project was successfully created.'
       rescue Exception => e
         logger.error(e.message)

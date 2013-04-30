@@ -30,6 +30,7 @@ ActiveAdmin.register Project do
       begin
         @project = Project.new(project_params)
         @project.save!
+        # TODO make this with nested attributes
         technologies = Technology.find(params[:project][:technology_ids].reject { |i| i.to_i <= 0 })
         technologies.each { |i| i.projects << @project }
         redirect_to admin_project_url(@project), notice: 'Project was successfully created.'
@@ -41,6 +42,10 @@ ActiveAdmin.register Project do
     def update
       @project = Project.find(params[:id])
       if @project.update(project_params)
+        # TODO make this with nested attributes
+        ProjectTechnologyCategory.where(project_id: @project.id).delete_all
+        technologies = Technology.find(params[:project][:technology_ids].reject { |i| i.to_i <= 0 })
+        technologies.each { |i| i.projects << @project }
         redirect_to edit_admin_project_url(@project), notice: 'Project was successfully updated.'
       else
         render 'edit'

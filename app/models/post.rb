@@ -1,7 +1,9 @@
 class Post < ActiveRecord::Base
 
-  has_many :comments, as: :commentable, dependent: :destroy
+  acts_as_taggable
 
-  has_many :post_tags
-  has_many :tags, through: :post_tags
+  has_many :comments, as: :commentable, dependent: :destroy
+  belongs_to :admin, :class_name => "AdminUser", :foreign_key => "admin_id"
+
+  validates :title, :description, presence: true
 end

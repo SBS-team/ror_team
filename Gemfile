@@ -1,13 +1,11 @@
 source 'https://rubygems.org'
 
-gem 'rails',     github: 'rails/rails'
-gem 'arel',      github: 'rails/arel'
+gem 'puma'
+gem 'rails', '>= 4.0.0.rc1'
 
 # Use postgresql as the database for Active Record
 gem 'pg'
 
-# Use edge version of sprockets-rails
-gem 'sprockets-rails', github: 'rails/sprockets-rails'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', github: 'rails/sass-rails'
@@ -44,7 +42,7 @@ group :development, :test do
   gem 'pry-debugger'
 end
 
-gem 'devise', github: 'idl3/devise', branch: 'rails4'
+gem 'devise', '>= 3.0.0.rc'
 gem 'ransack', github: 'avit/ransack', branch: 'rails4-dependencies'
 gem 'activeadmin', github: 'akashkamboj/active_admin', branch: 'rails4'
 gem 'responders', github: 'plataformatec/responders'
@@ -58,14 +56,4 @@ group :doc do
   gem 'sdoc', require: false
 end
 
-# Use ActiveModel has_secure_password
-# gem 'bcrypt-ruby', '~> 3.0.0'
 
-# Use unicorn as the app server
-# gem 'unicorn'
-
-# Use Capistrano for deployment
-# gem 'capistrano', group: :development
-
-# Use debugger
-# gem 'debugger', group: [:development, :test]

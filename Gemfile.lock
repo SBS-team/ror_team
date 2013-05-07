@@ -25,11 +25,11 @@ GIT
       rails (>= 3, < 5)
 
 GIT
-  remote: git://github.com/avit/ransack.git
-  revision: c76dee3a16e257be3ee7d316148512aab1b5b0a0
-  branch: rails4-dependencies
+  remote: git://github.com/ernie/ransack.git
+  revision: 9b9fd09915ec8db31ac2fdc57e81d69c47b0e047
+  branch: rails-4
   specs:
-    ransack (0.7.3)
+    ransack (0.7.2)
       actionpack
       activerecord
       polyamorous

@@ -43,7 +43,7 @@ group :development, :test do
 end
 
 gem 'devise', '>= 3.0.0.rc'
-gem 'ransack', github: 'avit/ransack', branch: 'rails4-dependencies'
+gem 'ransack', github: 'ernie/ransack', branch: 'rails-4'
 gem 'activeadmin', github: 'akashkamboj/active_admin', branch: 'rails4'
 gem 'responders', github: 'plataformatec/responders'
 gem 'inherited_resources', github: 'josevalim/inherited_resources'

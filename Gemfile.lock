@@ -1,4 +1,40 @@
 GIT
+  remote: git://github.com/akashkamboj/active_admin.git
+  revision: d9c593b13a6fadcf0eb8d5bcd14fc1a157954e93
+  branch: rails4
+  specs:
+    activeadmin (0.6.0)
+      arbre (>= 1.0.1)
+      bourbon (>= 1.0.0)
+      devise (>= 1.1.2)
+      fastercsv
+      formtastic (>= 2.0.0)
+      inherited_resources (>= 1.3.1)
+      jquery-rails (>= 1.0.0)
+      kaminari (>= 0.13.0)
+      rails (>= 3.1.0)
+      ransack (>= 0.7.0)
+      sass (>= 3.1.0)
+
+GIT
+  remote: git://github.com/arabonradar/acts-as-taggable-on.git
+  revision: 853b30869996863dd747cf23494fc60e810178e3
+  branch: rails4
+  specs:
+    acts-as-taggable-on (2.4.1.pre)
+      rails (>= 3, < 5)
+
+GIT
+  remote: git://github.com/avit/ransack.git
+  revision: c76dee3a16e257be3ee7d316148512aab1b5b0a0
+  branch: rails4-dependencies
+  specs:
+    ransack (0.7.3)
+      actionpack
+      activerecord
+      polyamorous
+
+GIT
   remote: git://github.com/idl3/devise.git
   revision: 5a96778c678f2bce91bcdd63b16206a516002649
   branch: rails4
@@ -10,8 +46,23 @@ GIT
       warden (~> 1.2.1)
 
 GIT
+  remote: git://github.com/josevalim/inherited_resources.git
+  revision: 0ac04d631ad3ce1e151e6ebfbbc1c2657f9e2e3b
+  specs:
+    inherited_resources (1.4.0)
+      has_scope (~> 0.5.0)
+      responders (~> 0.9)
+
+GIT
+  remote: git://github.com/plataformatec/responders.git
+  revision: ebc053be7e682b1d0054c10a0f418ae15396e5a7
+  specs:
+    responders (0.9.3)
+      railties (>= 3.1)
+
+GIT
   remote: git://github.com/rails/arel.git
-  revision: 3ef63ac5366000b232ca5fe0848de9db9a3c1f9a
+  revision: 68a95542e1a7a79d9777223fbffd2b982fed0268
   specs:
     arel (4.0.0.20130418133826)
 
@@ -25,7 +76,7 @@ GIT
 
 GIT
   remote: git://github.com/rails/rails.git
-  revision: 756cba02c1c06c1bce899633c7b87099ea4afce7
+  revision: a91bde349f736477e3ed44845655e377edaf44bb
   specs:
     actionmailer (4.0.0.beta1)
       actionpack (= 4.0.0.beta1)
@@ -85,7 +136,13 @@ GIT
 GEM
   remote: https://rubygems.org/
   specs:
+    active_admin_editor (1.1.0)
+      activeadmin (>= 0.4.0)
+      ejs
+      rails (>= 3.0.0)
     activerecord-deprecated_finders (1.0.1)
+    arbre (1.0.1)
+      activesupport (>= 3.0.0)
     atomic (1.1.8)
     bcrypt-ruby (3.0.1)
     better_errors (0.8.0)
@@ -93,6 +150,9 @@ GEM
       erubis (>= 2.6.6)
     binding_of_caller (0.7.1)
       debug_inspector (>= 0.0.1)
+    bourbon (3.1.5)
+      sass (>= 3.2.0)
+      thor
     builder (3.1.4)
     coderay (1.0.9)
     coffee-script (2.2.0)
@@ -107,9 +167,14 @@ GEM
       debugger-ruby_core_source (~> 1.2.0)
     debugger-linecache (1.2.0)
     debugger-ruby_core_source (1.2.0)
+    ejs (1.1.1)
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
+    fastercsv (1.5.5)
+    formtastic (2.2.1)
+      actionpack (>= 3.0)
+    has_scope (0.5.1)
     hike (1.2.2)
     i18n (0.6.4)
     jbuilder (1.0.2)
@@ -118,6 +183,10 @@ GEM
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
     json (1.7.7)
+    kaminari (0.14.1)
+      actionpack (>= 3.0.0)
+      activesupport (>= 3.0.0)
+    libv8 (3.11.8.17)
     mail (2.5.3)
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
@@ -131,6 +200,8 @@ GEM
     multi_json (1.7.2)
     orm_adapter (0.4.0)
     pg (0.15.1)
+    polyamorous (0.6.2)
+      activerecord (>= 3.0)
     polyglot (0.3.3)
     pry (0.9.12.1)
       coderay (~> 1.0.5)
@@ -155,6 +226,7 @@ GEM
     rake (10.0.4)
     rdoc (3.12.2)
       json (~> 1.4)
+    ref (1.0.4)
     sass (3.2.8)
     sdoc (0.3.20)
       json (>= 1.1.3)
@@ -165,6 +237,9 @@ GEM
       multi_json (~> 1.0)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
+    therubyracer (0.11.4)
+      libv8 (~> 3.11.8.12)
+      ref
     thor (0.18.1)
     thread_safe (0.1.0)
       atomic
@@ -185,11 +260,15 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  active_admin_editor
+  activeadmin!
+  acts-as-taggable-on!
   arel!
   better_errors
   binding_of_caller
   coffee-rails!
   devise!
+  inherited_resources!
   jbuilder (~> 1.0.1)
   jquery-rails
   meta_request
@@ -200,8 +279,11 @@ DEPENDENCIES
   pry-remote
   pry-stack_explorer
   rails!
+  ransack!
+  responders!
   sass-rails!
   sdoc
   sprockets-rails!
+  therubyracer
   turbolinks
   uglifier (>= 1.3.0)

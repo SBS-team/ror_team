@@ -1,4 +1,4 @@
 class ProjectTechnologyCategory < ActiveRecord::Base
   belongs_to :project
-  has_many :technologies
+  belongs_to :technology
 end

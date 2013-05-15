@@ -28,6 +28,8 @@ gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.0.1'
 
+gem 'haml'
+
 group :development do
   gem 'binding_of_caller'
   gem 'better_errors'
@@ -48,7 +50,6 @@ gem 'activeadmin', github: 'akashkamboj/active_admin', branch: 'rails4'
 gem 'responders', github: 'plataformatec/responders'
 gem 'inherited_resources', github: 'josevalim/inherited_resources'
 gem 'acts-as-taggable-on', github: 'arabonradar/acts-as-taggable-on', branch: 'rails4'
-gem 'anjlab-bootstrap-rails', '>= 2.3', :require => 'bootstrap-rails'
 gem 'active_admin_editor'
 
 group :doc do

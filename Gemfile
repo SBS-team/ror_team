@@ -29,6 +29,9 @@ gem 'turbolinks'
 gem 'jbuilder', '~> 1.0.1'
 
 gem 'haml'
+gem 'rails_config'
+gem 'pusher', '~> 0.9.4'
+gem 'gon'
 
 group :development do
   gem 'binding_of_caller'

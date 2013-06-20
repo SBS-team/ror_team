@@ -40,7 +40,6 @@ group :development do
 end
 
 group :development, :test do
-  gem 'minitest-rails'
   gem 'pry'
   gem 'pry-rails'
   gem 'pry-remote'
@@ -51,6 +50,7 @@ group :development, :test do
 end
 
 group :test do
+  gem 'minitest'
   gem 'database_cleaner'
   gem 'faker'
   gem 'capybara', '~> 1.1.2'

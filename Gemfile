@@ -45,6 +45,18 @@ group :development, :test do
   gem 'pry-remote'
   gem 'pry-stack_explorer'
   gem 'pry-debugger'
+  gem 'rspec-rails'
+  gem 'factory_girl_rails'
+  gem 'shoulda-matchers'
+end
+
+group :test do
+  gem 'database_cleaner'
+  gem 'faker'
+  gem 'capybara', '~> 1.1.2'
+  gem 'selenium-webdriver', '~> 2.33.0'
+  gem 'guard-rspec'
+  gem 'launchy'
 end
 
 gem 'devise', '>= 3.0.0.rc'

@@ -19,4 +19,4 @@
 /tmp
 /config/environments/*.yml
 
-.idea/
+.idea

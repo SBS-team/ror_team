@@ -50,7 +50,6 @@ group :development, :test do
 end
 
 group :test do
-  gem 'minitest'
   gem 'database_cleaner'
   gem 'faker'
   gem 'capybara', '~> 1.1.2'

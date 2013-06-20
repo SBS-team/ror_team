@@ -1,2 +1,83 @@
 //= require bootstrap.min
 //= require bootstrap-responsive.min
+
+.clear {
+  clear: both;
+}
+#content:after {
+  content: "";
+  display: block;
+}
+#footer, #content:after {
+  height: 142px;
+}
+
+.logo {
+  float: left;
+}
+.main-menu {
+  margin: 20px auto;
+  width: 600px;
+  text-align: center;
+  border: 1px solid #000000;
+  color: black;
+  padding: 20px 0;
+}
+.main-menu li {
+  padding: 0 5px;
+  display: inline-block;
+  list-style-type: none;
+}
+.main-menu li a {
+  text-decoration: none;
+  color: black;
+}
+.main-menu li a.active {
+  font-weight: 600;
+}
+#footer .contact-us {
+  border-top: 1px solid #000000;
+  border-bottom: 1px solid #000000;
+}
+#footer .contact-link {
+  border-bottom: 1px solid #000000;
+}
+#footer .contact-link li {
+  display: inline-block;
+  list-style: none;
+  font-size: 20px;
+  padding: 10px 20px 10px 0px;
+}
+#footer .fallow-soc {
+  padding: 0;
+  margin: 0;
+}
+#footer .soc-menu {
+  margin-top: 40px;
+}
+#footer .soc-menu li {
+  margin-right: 20px;
+  list-style: none;
+  display: inline-block;
+  padding: 2px 10px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 5px;
+  border: 1px solid #000000;
+}
+#footer .soc-menu li a {
+  color: #000000;
+  text-decoration: none;
+}
+#footer .contact-link .span4 a {
+  color: #000000;
+  text-decoration: none;
+  background-image: url('../icon-info.png');
+  background-position: 0,0;
+  background-repeat: no-repeat;
+  height: 30px;
+  padding: 20px 0 10px 60px;
+  display: block;
+  font-weight: 600px;
+  font-size: 22px;
+}

@@ -18,3 +18,5 @@
 /log/*.log
 /tmp
 /config/environments/*.yml
+
+.idea/

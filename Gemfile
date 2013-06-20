@@ -40,6 +40,7 @@ group :development do
 end
 
 group :development, :test do
+  gem 'minitest-rails'
   gem 'pry'
   gem 'pry-rails'
   gem 'pry-remote'

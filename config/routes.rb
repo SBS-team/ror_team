@@ -1,6 +1,4 @@
 RorTeam::Application.routes.draw do
-  get "community/index"
-  get "community/show"
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
 

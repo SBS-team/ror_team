@@ -3,7 +3,7 @@ RorTeam::Application.routes.draw do
   ActiveAdmin.routes(self)
 
   devise_for :users
-
+  resources :posts
   resources :home
   resources :community
   root :to => "home#index"

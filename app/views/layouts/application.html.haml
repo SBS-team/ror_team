@@ -12,22 +12,22 @@
         %div.logo
           %h1
             Ror-team
-        %div.offset2
-        %ul.main-menu
-          %li
-            =link_to "Home", '#', :class => 'active'
-          %li
-            =link_to "Blog", '#'
-          %li
-            =link_to "Community", '#'
-          %li
-            =link_to "Team", '#'
-          %li
-            =link_to "Products", '#'
-          %li
-            =link_to "Services", '#'
-          %li
-            =link_to "About", '#'
+        %div.offset2.navbar
+          %ul.nav.nav-pills.text-center
+            %li.active
+              =link_to "Home", '#'
+            %li
+              =link_to "Blog", '#'
+            %li
+              =link_to "Community", '#'
+            %li
+              =link_to "Team", '#'
+            %li
+              =link_to "Products", '#'
+            %li
+              =link_to "Services", '#'
+            %li
+              =link_to "About", '#'
         %div.clear
 
       %div#content.offset2
@@ -37,6 +37,8 @@
           %div.span6
             %h2 Need to contact us?
             %h3 You can join us in our social media space.
+        %div.contact-link.row
+          %div.span4
           %div.span6
             %ul.soc-menu
               %li
@@ -46,9 +48,7 @@
               %li
                 =link_to "Twitter", '#'
           %div.clear
-        %div.contact-link.row
-          %div.span4
-            =link_to "Fallow us on facebook", '#'
+            =link_to "Fallow us on facebook", '#', :class => 'btn-google-plus'
           %div.span4
             =link_to "Fallow us on twitter", '#'
           %div.span4

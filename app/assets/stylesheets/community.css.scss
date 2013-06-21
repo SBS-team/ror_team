@@ -1,0 +1,49 @@
+//// Place all the styles related to the community controller here.
+//// They will automatically be included in application.css.
+//// You can use Sass (SCSS) here: http://sass-lang.com/
+//
+
+.community_h3 {
+  padding: 0;
+  margin: 0;
+}
+hr {
+  //border:1px solid #040404;
+}
+
+.main_container {
+  border: 1px solid #000000;
+  border-radius: 3px;
+  height: auto;
+  width: 70%;
+}
+
+.view {
+  margin-right: 10px;
+  float: right;
+}
+
+#on_a_top {
+  padding: 20px;
+  background-color: #999999;
+  border-bottom: 1px solid #000000;
+}
+
+#content_head {
+  margin: 20px 0 0 15px;
+  display: block;
+}
+
+li {
+  padding-right: 15px;
+  list-style: none;
+}
+
+.content_icon {
+  display: inline-block;
+  background-image: url('glyphicons-halflings.png');
+  background-position: 0px 40px;
+  width: 15px;
+  height: 14px;
+}
+//

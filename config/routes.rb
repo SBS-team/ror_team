@@ -5,6 +5,7 @@ RorTeam::Application.routes.draw do
   devise_for :users
   resources :posts
   resources :home
+  resources :community
   root :to => "home#index"
 
 end

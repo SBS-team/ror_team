@@ -1,0 +1,15 @@
+%div.row
+  %div.span6.posts
+    - @posts.each do |post|
+      %div.post
+        %div.post-title
+          = post.title
+        %div.post-content
+          = post.description
+  %div.span3.sidebar
+    %h3
+    Popular:
+    - @posts.each do |post|
+      %div.popular-post
+        = post.description
+

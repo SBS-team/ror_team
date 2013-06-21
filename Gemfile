@@ -46,7 +46,7 @@ group :development, :test do
   gem 'pry-stack_explorer'
   gem 'pry-debugger'
   gem 'factory_girl_rails'
-  gem 'shoulda-matchers'
+  gem 'minitest-rails-shoulda'
 end
 
 group :test do

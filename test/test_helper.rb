@@ -4,7 +4,7 @@ require File.expand_path('../../config/environment', __FILE__)
 require 'minitest/autorun'
 require 'minitest/rails/shoulda'
 
-<<<<<<< HEAD
+#<<<<<<< HEAD
 #class ActiveSupport::TestCase
 #  ActiveRecord::Migration.check_pending!
 #
@@ -16,7 +16,7 @@ require 'minitest/rails/shoulda'
 #
 #  # Add more helper methods to be used by all tests here...
 #end
-=======
+#=======
 =begin
 class ActiveSupport::TestCase
   ActiveRecord::Migration.check_pending!
@@ -30,4 +30,4 @@ class ActiveSupport::TestCase
   # Add more helper methods to be used by all tests here...
 end
 =end
->>>>>>> dev
+#>>>>>>> dev

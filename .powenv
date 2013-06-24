@@ -1,0 +1,12 @@
+export PATH ; PATH="/home/user9/.rvm/gems/ruby-2.0.0-p0@ror_site/bin:/home/user9/.rvm/gems/ruby-2.0.0-p0@global/bin:/home/user9/.rvm/rubies/ruby-2.0.0-p0/bin:/home/user9/.rvm/bin:$PATH"
+export rvm_env_string ; rvm_env_string='ruby-2.0.0-p0@ror_site'
+export rvm_path ; rvm_path='/home/user9/.rvm'
+export rvm_ruby_string ; rvm_ruby_string='ruby-2.0.0-p0'
+export rvm_gemset_name ; rvm_gemset_name='ror_site'
+export RUBY_VERSION ; RUBY_VERSION='ruby-2.0.0-p0'
+export GEM_HOME ; GEM_HOME='/home/user9/.rvm/gems/ruby-2.0.0-p0@ror_site'
+export GEM_PATH ; GEM_PATH='/home/user9/.rvm/gems/ruby-2.0.0-p0@ror_site:/home/user9/.rvm/gems/ruby-2.0.0-p0@global'
+export MY_RUBY_HOME ; MY_RUBY_HOME='/home/user9/.rvm/rubies/ruby-2.0.0-p0'
+export IRBRC ; IRBRC='/home/user9/.rvm/rubies/ruby-2.0.0-p0/.irbrc'
+unset MAGLEV_HOME
+unset RBXOPT

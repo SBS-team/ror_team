@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
 
   def index
-    @post = Post.all
+    @post = Post.limit(4)
   end
 
   #def show

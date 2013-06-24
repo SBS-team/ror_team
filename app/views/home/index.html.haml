@@ -35,7 +35,7 @@
     %div.bl_content.row
       %div.portfolio_item.span3.text-center
         %div.pic
-          = link_to 'BLA'#, post_path
+          = link_to '#'#, post_path
         %div.portf_title
           = link_to 'Имя проэкта', '#'
 
@@ -90,30 +90,14 @@
       %h2
         Новые посты в блоге
       %div.bl_content
-        %div.post
-          %img{:src => '/icon-info.png'}
-          %div.title
-            = link_to 'Post link', post_path(params[:id])
-          %div.cont
-            Post text about post post
-        %div.post
-          %img{:src => '/icon-info.png'}
-          %div.title
-            = link_to 'Post link 1', post_path(params[:id])
-          %div.cont
-            Post text about post post 1
-        %div.post
-          %img{:src => '/icon-info.png'}
-          %div.title
-            = link_to 'Post link 2', post_path(params[:id])
-          %div.cont
-            Post text about post post 2
-        %div.post
-          %img{:src => '/icon-info.png'}
-          %div.title
-            = link_to 'Post link', post_path(params[:id])
-          %div.cont
-            Post text about post post
+        - @post.each do |post|
+          %div.post
+            %img{:src => '/icon-info.png'}
+            %div.title
+              = link_to post.title, post_path(post.id)
+            %div.cont
+              = post.description
+
     %div.span6.jobs
       %h2
         Вакансии:

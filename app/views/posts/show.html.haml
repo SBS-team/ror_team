@@ -1,16 +1,77 @@
 %div.row
-  %div.span6.posts
+  %div.span8.posts.main_cont
     %div.post
-      %div.post-title
-        = @post.title
+      %div.post_top
+        %div.post_img
+          %img{:src => "/icon-info.png"}
+        %div.post-title
+          = @post.title
+        %div.post_date
+          = @post.created_at
+          %span
+            = link_to "#{@post.comments_count} Comments", post_path(@post)
       %div.post-content
         = @post.description
+      %div.categories
+        Category:
+        %span
+          =link_to 'Category 1', '#'
+        %span
+          =link_to 'Category 2', '#'
+        %span
+          =link_to 'Category 3', '#'
+      %div.tags
+        Tags:
+        %span.btn
+          = link_to 'Tag1', '#'
+        %span.btn
+          = link_to 'Tag2', '#'
     %comments
       - @post.comments.each do |comment|
         = comment.description
     %h2
       New Comment
-      = form_for [@post, Comment.new], :html => {:class => "form-inline"} do |f|
+      = form_for [@post, Comment.new], :html => {:class => 'form-inline'} do |f|
         .input-append
-          = f.text_area :description, style: "height:39px;width:680px", :placeholder => "Write your comment here"
-          = f.submit "Add comment", class: "btn", style: " height:50px;"
+          = f.text_area :description, style: 'height:39px; width:650px', :placeholder => 'Write your comment here'
+          = f.submit 'Add comment', class: 'btn', style: 'height:50px;'
+    %div.span4
+      %div.recent_posts
+        %h3
+          Most recent posts
+        %ul.unstyled
+          %li
+            = link_to 'first recent post', '#'
+          %li
+            = link_to 'second recent post', '#'
+          %li
+            = link_to 'third recent post', '#'
+          %li
+            = link_to 'fourth recent post', '#'
+          %li
+            = link_to 'fifth recent post', '#'
+        %h5
+          Want to get more of ror-team
+        %div.btn.large
+          = link_to 'RSS Feed', '#'
+    %div.span3
+      %div.popular_posts
+        %h3
+          Most popular posts
+        %ul.unstyled
+          %li
+            = link_to 'first popular post', '#'
+          %li
+            = link_to 'second popular post', '#'
+          %li
+            = link_to 'third popular post', '#'
+          %li
+            = link_to 'fourth popular post', '#'
+          %li
+            = link_to 'fifth popular post', '#'
+        %h5
+          we're always ready to help
+        %div.btn.large
+          = link_to 'Contact Us', '#'
+  %div.span4.sidebar
+    = render :partial => 'sidebar'

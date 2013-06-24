@@ -7,7 +7,7 @@ FactoryGirl.define do
       "Description_#{n}"
     end
     rand_obj = Random.new
-    date 1.month.ago
+    since 1.month.ago
     team_size rand_obj.rand(2..6)
   end
 end

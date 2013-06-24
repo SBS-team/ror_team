@@ -3,5 +3,6 @@ FactoryGirl.define do
     sequence :name do |n|
       "Technology_#{n}"
     end
+    technology_category_id 2
   end
 end

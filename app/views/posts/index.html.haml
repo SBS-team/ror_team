@@ -5,11 +5,18 @@
         %div.post-title
           = post.title
         %div.post-content
+
           = post.description
+          Comments:
+          = post.comments_count
+          = link_to('Read more', post_path(post.id))
   %div.span3.sidebar
+    - @tags.each do |tag|
+      = tag.name
     %h3
     Popular:
     - @posts.each do |post|
       %div.popular-post
         = post.description
+
 

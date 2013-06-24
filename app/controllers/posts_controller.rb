@@ -4,10 +4,13 @@ class PostsController < ApplicationController
   # GET /posts
   def index
     @posts = Post.all
+    @tags = Post.tag_counts_on(:tags)
   end
 
   # GET /posts/1
   def show
+    @comments = @post.comments.order("id").page(params[:page]).per(5)
+    @post = Post.find(params[:id])
   end
 
 

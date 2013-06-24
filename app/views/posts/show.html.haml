@@ -1,0 +1,16 @@
+%div.row
+  %div.span6.posts
+    %div.post
+      %div.post-title
+        = @post.title
+      %div.post-content
+        = @post.description
+    %comments
+      - @post.comments.each do |comment|
+        = comment.description
+    %h2
+      New Comment
+      = form_for [@post, Comment.new], :html => {:class => "form-inline"} do |f|
+        .input-append
+          = f.text_area :description, style: "height:39px;width:680px", :placeholder => "Write your comment here"
+          = f.submit "Add comment", class: "btn", style: " height:50px;"

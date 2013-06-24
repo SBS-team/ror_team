@@ -8,6 +8,12 @@ gem 'pg'
 
 #Use pagination
 gem 'kaminari'
+#attr_accessible- now strong_params
+
+
+
+# Use SCSS for stylesheets
+gem 'carrierwave'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', github: 'rails/sass-rails'
@@ -48,8 +54,8 @@ group :development, :test do
   gem 'pry-stack_explorer'
   gem 'pry-debugger'
   gem 'factory_girl_rails'
-  gem 'minitest-rails-shoulda'
-  gem 'annotate', '>=2.5.0'
+  gem 'shoulda-matchers'
+
 end
 
 group :test do
@@ -71,6 +77,7 @@ gem 'responders', github: 'plataformatec/responders'
 gem 'inherited_resources', github: 'josevalim/inherited_resources'
 gem 'acts-as-taggable-on', github: 'arabonradar/acts-as-taggable-on', branch: 'rails4'
 gem 'active_admin_editor'
+gem 'gmaps4rails'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

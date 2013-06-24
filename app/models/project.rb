@@ -7,7 +7,7 @@ class Project < ActiveRecord::Base
 
   # accepts_nested_attributes_for :project_technology_categories, allow_destroy: true
 
-  attr_accessible :name, :description, :since, :team_size
+#  attr_accessible :name, :description, :since, :team_size
 
   validates :name,
             :presence => true,
@@ -20,6 +20,8 @@ class Project < ActiveRecord::Base
   validates :since,
             :presence => true
   validates :team_size,
-            :presence => true
+            :presence => true,
+            :numericality => {  :only_integer => true,
+                                :greater_than => 0 }
 
 end

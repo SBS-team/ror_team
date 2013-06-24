@@ -12,6 +12,7 @@ RorTeam::Application.routes.draw do
     resources :comments
   end
   resources :home
+  resources :team
   root :to => "home#index"
 
 end

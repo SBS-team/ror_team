@@ -1,0 +1,25 @@
+.container_left {
+  width: 40%;
+  float: left;
+  border-bottom: 1px solid red;
+}
+
+.container_right {
+  width: 40%;
+  float: right;
+  border-bottom: 1px solid blue;
+}
+
+.content_container {
+  border: 1px solid green;
+}
+
+.member_photo {
+  border: 1px solid #000000;
+  width: 125px;
+  height: 125px;
+}
+
+.member_photo, .member_name, .member_position, .member_info {
+  display: inline-block;
+}

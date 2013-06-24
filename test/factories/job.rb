@@ -3,6 +3,6 @@
 FactoryGirl.define do
   factory :job do |p|
     p.sequence(:title) { |n| "Job title #{n}" }
-    p.description "Description text"
+    p.description 'Description text'
   end
 end

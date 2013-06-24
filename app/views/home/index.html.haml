@@ -5,22 +5,134 @@
         О нас и нашей компании
       %p
         "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor  in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,    sunt in culpa qui officia deserunt mollit anim id est laborum."
-    %div.span6
-      %h2
+    %div.span6.text-right
+      %h2.bl_title
         наши скиллы и опыт работы
+      %div.skills
+        %div.skill
+          = link_to 'Ruby', '#'
+        %div.skill
+          = link_to 'Rails', '#'
+        %div.skill
+          = link_to 'HTML', '#'
+        %div.skill
+          = link_to 'CSS', '#'
+        %div.skill
+          = link_to 'jQuery', '#'
+        %div.skill
+          = link_to 'AJAX', '#'
+        %div.skill
+          = link_to 'Coffescript', '#'
+        %div.skill
+          = link_to 'Bookbone.js', '#'
+      %div.more.text-right
+        = link_to 'узнать больше о наших скилах'
 %div.even
   %div.row
     %div.bl_title.span12
       %h2
-        our blog
-    %div.bl_content
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut    enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor      in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,    sunt in culpa qui officia deserunt mollit anim id est laborum."
+        Проэкты над которыми работали\Портфолио
+    %div.bl_content.row
+      %div.portfolio_item.span3.text-center
+        %div.pic
+          = link_to '', '#'
+        %div.portf_title
+          = link_to 'Имя проэкта', '#'
+      %div.portfolio_item.span3.text-center
+        %div.pic
+          = link_to '', '#'
+        %div.portf_title
+          = link_to 'Имя проэкта', '#'
+      %div.portfolio_item.span3.text-center
+        %div.pic
+          = link_to '', '#'
+        %div.portf_title
+          = link_to 'Имя проэкта', '#'
+      %div.portfolio_item.span3.text-center
+        %div.pic
+          = link_to '', '#'
+        %div.portf_title
+          = link_to 'Имя проэкта', '#'
+      %div.portfolio_item.span3.text-center
+        %div.pic
+          = link_to '', '#'
+        %div.portf_title
+          = link_to 'Имя проэкта', '#'
+      %div.portfolio_item.span3.text-center
+        %div.pic
+          = link_to '', '#'
+        %div.portf_title
+          = link_to 'Имя проэкта', '#'
+      %div.portfolio_item.span3.text-center
+        %div.pic
+          = link_to '', '#'
+        %div.portf_title
+          = link_to 'Имя проэкта', '#'
+      %div.portfolio_item.span3.text-center
+        %div.pic
+          = link_to '', '#'
+        %div.portf_title
+          = link_to 'Имя проэкта', '#'
+    %div.row.text-right
+      = link_to 'узнать больше о наших проэктах'
+
 %div.odd
   %div.row
-    %div.bl_title
+    %div.span6.posts
       %h2
-        products
-    %div.bl_content
-      "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut    enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor      in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,    sunt in culpa qui officia deserunt mollit anim id est laborum."
+        Новые посты в блоге
+      %div.bl_content
+        %div.post
+          %img{:src => '/icon-info.png'}
+          %div.title
+            = link_to 'Post link', '#'
+          %div.cont
+            Post text about post post
+        %div.post
+          %img{:src => '/icon-info.png'}
+          %div.title
+            = link_to 'Post link 1', '#'
+          %div.cont
+            Post text about post post 1
+        %div.post
+          %img{:src => '/icon-info.png'}
+          %div.title
+            = link_to 'Post link 2', '#'
+          %div.cont
+            Post text about post post 2
+        %div.post
+          %img{:src => '/icon-info.png'}
+          %div.title
+            = link_to 'Post link', '#'
+          %div.cont
+            Post text about post post
+    %div.span6.jobs
+      %h2
+        Вакансии:
+      %div.bl_content
+        %div.job
+          %img{:src => '/icon-info.png'}
+          %div.title
+            = link_to 'link to some job very very long text about job', '#'
+          %div.resume.text-right
+            %a.btn{:href => "#"} Отправить резюме
+        %div.job
+          %img{:src => '/icon-info.png'}
+          %div.title
+            = link_to 'link to some job very very long text about job 2', '#'
+          %div.resume.text-right
+            %a.btn{:href => "#"} Отправить резюме
+        %div.job
+          %img{:src => '/icon-info.png'}
+          %div.title
+            = link_to 'link to some job very very long text about job', '#'
+          %div.resume.text-right
+            %a.btn{:href => "#"} Отправить резюме
+        %div.job
+          %img{:src => '/icon-info.png'}
+          %div.title
+            = link_to 'link to some job very very long text about job', '#'
+          %div.resume.text-right
+            %a.btn{:href => "#"} Отправить резюме
 
 

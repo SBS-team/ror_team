@@ -1,3 +1,60 @@
 // Place all the styles related to the home controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.odd {
+  background-color: #fff;
+  overflow: hidden;
+}
+
+.even {
+  background-color: #e6e6e6;
+  overflow: hidden;
+}
+
+.skills {
+  overflow: hidden;
+  padding: 0 0 0 80px;
+}
+
+.skill {
+  float: left;
+  width: 70px;
+  height: 70px;
+  border: 1px solid #e6e6e6;
+  text-align: center;
+  overflow: hidden;
+  margin: 0 0 10px 50px;
+}
+
+.skill a {
+  display: block;
+  height: 100%;
+}
+
+.portfolio_item .pic {
+  height: 200px;
+  width: 200px;
+  border: 1px solid #000000;
+  margin: 0 4px 0 64px;
+}
+
+.portfolio_item .pic a {
+  display: block;
+  height: 100%;
+}
+
+.bl_content img {
+  float: left;
+  margin: 0 10px 10px 0;
+}
+
+.posts .bl_content .post {
+  margin: 0 0 20px 0;
+  overflow: hidden;
+}
+
+.jobs .bl_content .job {
+  margin: 0 0 20px 0;
+  overflow: hidden;
+}

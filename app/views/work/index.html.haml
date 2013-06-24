@@ -1,0 +1,8 @@
+%h1 Work#index
+%p Find me in app/views/work/index.html
+- @projects.each do |pr|
+  = pr.name
+  = pr.technologies.name
+- @post.each do |p|
+  %br
+  = p.created_at

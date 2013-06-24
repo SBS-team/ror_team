@@ -13,7 +13,7 @@
           %div.span2
             %div.logo
               =link_to 'RoR-Team', '#'
-          %nav.span9.text-right
+          %nav
             %ul.inline
               %li
                 =link_to 'Home', '#', :class => 'active'
@@ -46,16 +46,21 @@
           %div.span6.text-right
             %small
               Или связаться с нами через email или skype
-        %div.row
+        %div.row.soc_net
           %div.span4
             %p.lead
-              Follow us on twitter
+              %i.icon-th-large
+              = link_to 'Follow us on twitter', '#'
           %div.span4
             %p.lead
-              Follow us on Facebook
+              %i.icon-th
+              = link_to 'Follow us on Facebook', '#'
           %div.span4
             %p.lead
-              Contact us by email
+              %i.icon-envelope
+              = link_to 'Contact us by email', '#'
+              %br
+                = link_to 'email ror_team@gmail.com', 'mailto:ror_team@gmail.com'
         %div.row.text-center
           © 2012-2013 RoR-Team
         %div.row.bottom

@@ -12,5 +12,5 @@
 #
 
 class Comment < ActiveRecord::Base
-  belongs_to :commentable
+  belongs_to :commentable, :polymorphic => true
 end

@@ -17,5 +17,7 @@ describe ProjectService do
     it { must belong_to(:service) }
   end
 
+ # it { must_be_kind_of ProjectService }
+
 
 end

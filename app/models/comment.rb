@@ -12,7 +12,8 @@
 #
 
 class Comment < ActiveRecord::Base
-  belongs_to :commentable
+
+  belongs_to :commentable, :polymorphic => true
 
   validates :description,
             :presence => true,
@@ -26,5 +27,4 @@ class Comment < ActiveRecord::Base
   validates :commentable_type,
             :presence => true,
             :length => { :maximum => 255 }
-
 end

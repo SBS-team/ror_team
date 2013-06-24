@@ -3,6 +3,7 @@
 //= require home
 
 
+<<<<<<< HEAD
 
 header {
   height: 80px;
@@ -10,6 +11,14 @@ header {
   padding: 20px 0 0 0;
   width: 1170px;
   position: relative;
+=======
+.clear {
+  clear: both;
+}
+#content:after {
+  content: "";
+  display: block;
+>>>>>>> dev
 }
 
 header nav {
@@ -24,6 +33,7 @@ header nav {
 header nav ul {
   margin: 5px 5px 5px 5px;
 }
+<<<<<<< HEAD
 
 
 header .chat {
@@ -49,6 +59,11 @@ header .logo a {
 #content:after {
   content: "";
   display: block;
+=======
+#footer .contact-us {
+  border-top: 1px solid #000000;
+  border-bottom: 1px solid #000000;
+>>>>>>> dev
 }
 
 #footer, #content:after {

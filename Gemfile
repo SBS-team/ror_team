@@ -46,7 +46,8 @@ group :development, :test do
   gem 'pry-stack_explorer'
   gem 'pry-debugger'
   gem 'factory_girl_rails'
-  gem 'shoulda-matchers'
+  gem 'minitest-rails-shoulda'
+  gem 'annotate', '>=2.5.0'
 end
 
 group :test do

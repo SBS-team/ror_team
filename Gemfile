@@ -6,6 +6,12 @@ gem 'rails', '>= 4.0.0.rc1'
 # Use postgresql as the database for Active Record
 gem 'pg'
 
+#attr_accessible- now strong_params
+
+
+
+# Use SCSS for stylesheets
+gem 'carrierwave'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', github: 'rails/sass-rails'
@@ -46,8 +52,8 @@ group :development, :test do
   gem 'pry-stack_explorer'
   gem 'pry-debugger'
   gem 'factory_girl_rails'
-  gem 'minitest-rails-shoulda'
-  gem 'annotate', '>=2.5.0'
+  gem 'shoulda-matchers'
+
 end
 
 group :test do
@@ -60,16 +66,17 @@ group :test do
 end
 
 gem 'devise', '>= 3.0.0.rc'
-gem 'ransack', github: 'ernie/ransack', branch: 'rails-4'
-gem 'activeadmin', github: 'akashkamboj/active_admin', branch: 'rails4'
+gem 'ransack', github: 'jonatack/ransack', ref: '0703144bb0ce2ea1884ef02b52bc51157152b566'
+gem 'formtastic', github: 'justinfrench/formtastic'
+gem 'polyamorous', github: 'jonatack/polyamorous', ref: '062c78be2edadfe5fbb104fe68d213fcbeae478d'
+gem 'activeadmin', github: 'gregbell/active_admin', branch: 'rails4'
 gem 'responders', github: 'plataformatec/responders'
 gem 'inherited_resources', github: 'josevalim/inherited_resources'
 gem 'acts-as-taggable-on', github: 'arabonradar/acts-as-taggable-on', branch: 'rails4'
 gem 'active_admin_editor'
+gem 'gmaps4rails'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
 end
-
-

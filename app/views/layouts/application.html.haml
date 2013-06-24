@@ -9,6 +9,30 @@
   %body
     %div.container
       %header
+<<<<<<< HEAD
+        %div.logo
+          %h1
+            Ror-team
+        %div.offset2.navbar
+          %ul.nav.nav-pills.text-center
+            %li.active
+              =link_to "Home", '#'
+            %li
+              =link_to "Blog", '#'
+            %li
+              =link_to "Community", '#'
+            %li
+              =link_to "Team", '#'
+            %li
+              =link_to "Products", '#'
+            %li
+              =link_to "Services", '#'
+            %li
+              =link_to "About", '#'
+        %div.clear
+
+      %div#content.offset2
+=======
         %div.row
           %div.span2
             %div.logo
@@ -33,6 +57,7 @@
             %div.btn
               =link_to 'Live Chat', '#'
       %div#content
+>>>>>>> 619_home_page
         = yield
       %footer#footer
         %div.contact-us.row
@@ -41,6 +66,22 @@
               Необходимо связаться с нами?
         %div.row
           %div.span6
+<<<<<<< HEAD
+            %h2 Need to contact us?
+            %h3 You can join us in our social media space.
+        %div.contact-link.row
+          %div.span4
+          %div.span6
+            %ul.soc-menu
+              %li
+                =link_to "Google+", '#', :class => 'active'
+              %li
+                =link_to "Fecebook", '#'
+              %li
+                =link_to "Twitter", '#'
+          %div.clear
+            =link_to "Fallow us on facebook", '#', :class => 'btn-google-plus'
+=======
             %small
               вы можете присоединиться к нашей медиа соц. сети
           %div.span6.text-right
@@ -51,6 +92,7 @@
             %p.lead
               %i.icon-th-large
               = link_to 'Follow us on twitter', '#'
+>>>>>>> 619_home_page
           %div.span4
             %p.lead
               %i.icon-th

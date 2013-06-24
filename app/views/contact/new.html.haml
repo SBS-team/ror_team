@@ -1,0 +1,53 @@
+.row
+  .span5
+    %form#contact_form
+      %fieldset
+        %legend#contact_us
+          Contact us:
+        %label
+          Your name:
+        %input{:id=>"user_name", :class => "input-xlarge", :type => "text", :placeholder => "your name"}
+        %br
+        %label
+          Your email:
+        %input{:id=>"user_email", :class => "input-xlarge", :type => "email", :placeholder => "your email"}
+        %br
+        %label
+          Your phone:
+        %input{:id=>"user_phone", :class => "input-xlarge", :type => "tel", :placeholder => "your phone"}
+        %label
+          Your message:
+        %textarea{:id=>"user_msg", :class => "input-xlarge", :rows => 5}
+
+    %form#service_form
+      %fieldset
+        %legend#what_sevice_you_need
+          What service you need?
+        %br
+        %ul{:class=>"thumbnails"}
+          %li.span1
+            %a{:href=>"#", :class=>"thumbnail"}
+              %img{:src=>"#", :alt=>""}
+          %li.span1
+            %a{:href=>"#", :class=>"thumbnail"}
+              %img{:src=>"#", :alt=>""}
+          %li.span1
+            %a{:href=>"#", :class=>"thumbnail"}
+              %img{:src=>"#", :alt=>""}
+        %p
+          I need:
+        %label.radio
+          %input{:type=>"radio", :name=>"services", :id=>"optionsRadios1", :value=>"v1"}
+            service1
+        %label.radio
+          %input{:type=>"radio", :name=>"services", :id=>"optionsRadios2", :value=>"v2"}
+            service2
+        %label.radio
+          %input{:type=>"radio", :name=>"services", :id=>"optionsRadios3", :value=>"v3"}
+            service3
+
+    %input{:type=>"submit", :value=>"Send Message"}
+
+  .span4
+    %h1
+      TEXT

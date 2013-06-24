@@ -18,8 +18,13 @@ describe Post do
   end
 
   context 'Post validation' do
-    it {must validate_presence_of(:title)}
-    it {must validate_presence_of(:description)}
+    it { must validate_presence_of(:title)}
+    it { must ensure_length_of(:title).is_at_least(3).is_at_most(255) }
+    it { must validate_presence_of(:description) }
+    it { must ensure_length_of(:description).is_at_least(10) }
+    it { must validate_presence_of(:admin_id) }
+    it { must validate_numericality_of(:admin_id).only_integer }
+    it { must ensure_length_of(:admin_id).is_at_least(0) }
   end
 
 end

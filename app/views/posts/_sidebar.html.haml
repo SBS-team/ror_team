@@ -1,0 +1,43 @@
+%div.block.text-center.rss
+  = link_to 'RSS Feed',  '#', :class => 'btn'
+%div.block.search.text-center
+  %form.form-search
+    %input.input-large.search-query{:type => 'text', placeholder: 'search'}
+%div.block.categories
+  %h3
+    Categories:
+  %ul.unstyled
+    %li
+      = link_to 'Category name', '#'
+    %li
+      = link_to 'Category name', '#'
+    %li
+      = link_to 'Category name', '#'
+    %li
+      = link_to 'Category name', '#'
+    %li
+      = link_to 'Category name', '#'
+%div.block.contact_us
+  %p
+    RoR-Team это лучшее, что было в вашей жизни! Мы можем испортить любой ваш заказ, будь то починка кастрюли или движение отвертки.
+    = link_to 'Убежать быстрее'
+  %h4
+    Мы усегда рады помось вам
+  %div.btn.text-center
+    = link_to 'Связаться с нами'
+%div.block.tags
+  %h3
+    Tags:
+  %div.cloud
+    %span.size1
+      css
+    %span.size2
+      cat
+    %span.size3
+      doggy
+    %span.size4
+      html
+    %span.size5
+      jQuery
+    %span.size2
+      piggy

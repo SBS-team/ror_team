@@ -80,51 +80,11 @@
           = link_to '', '#'
         %div.portf_title
           = link_to 'Имя проэкта', '#'
-
     %div.row.text-right
-      = link_to 'узнать больше о наших проэктах', '/work/index'
-
+      = link_to 'узнать больше о наших проэктах'
 %div.odd
   %div.row
-    %div.span6.posts
-      %h2
-        Новые посты в блоге
-      %div.bl_content
-        - @post.each do |post|
-          %div.post
-            %img{:src => '/icon-info.png'}
-            %div.title
-              = link_to post.title, post_path(post.id)
-            %div.cont
-              = post.description
+    = render :partial => 'shared/post_jobs'
 
-    %div.span6.jobs
-      %h2
-        Вакансии:
-      %div.bl_content
-        %div.job
-          %img{:src => '/icon-info.png'}
-          %div.title
-            = link_to 'link to some job very very long text about job'#, job_path(params[:id])
-          %div.resume.text-right
-            %a.btn{:href => "#"} Отправить резюме
-        %div.job
-          %img{:src => '/icon-info.png'}
-          %div.title
-            = link_to 'link to some job very very long text about job 2'#, job_path(params[:id])
-          %div.resume.text-right
-            %a.btn{:href => "#"} Отправить резюме
-        %div.job
-          %img{:src => '/icon-info.png'}
-          %div.title
-            = link_to 'link to some job very very long text about job'#, job_path(params[:id])
-          %div.resume.text-right
-            %a.btn{:href => "#"} Отправить резюме
-        %div.job
-          %img{:src => '/icon-info.png'}
-          %div.title
-            = link_to 'link to some job very very long text about job'#, job_path(params[:id])
-          %div.resume.text-right
-            %a.btn{:href => "#"} Отправить резюме
 
 

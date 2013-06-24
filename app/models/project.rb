@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: projects
+#
+#  id          :integer          not null, primary key
+#  name        :string(255)
+#  description :text
+#  since       :date
+#  team_size   :integer
+#  created_at  :datetime
+#  updated_at  :datetime
+#
+
 class Project < ActiveRecord::Base
   has_many :project_services, dependent: :destroy
   has_many :services, through: :project_services
@@ -25,3 +38,4 @@ class Project < ActiveRecord::Base
                                 :greater_than => 0 }
 
 end
+

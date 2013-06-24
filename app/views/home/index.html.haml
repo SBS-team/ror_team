@@ -35,46 +35,54 @@
     %div.bl_content.row
       %div.portfolio_item.span3.text-center
         %div.pic
-          = link_to '', '#'
+          = link_to 'BLA'#, post_path
         %div.portf_title
           = link_to 'Имя проэкта', '#'
+
       %div.portfolio_item.span3.text-center
         %div.pic
           = link_to '', '#'
         %div.portf_title
           = link_to 'Имя проэкта', '#'
+
       %div.portfolio_item.span3.text-center
         %div.pic
           = link_to '', '#'
         %div.portf_title
           = link_to 'Имя проэкта', '#'
+
       %div.portfolio_item.span3.text-center
         %div.pic
           = link_to '', '#'
         %div.portf_title
           = link_to 'Имя проэкта', '#'
+
       %div.portfolio_item.span3.text-center
         %div.pic
           = link_to '', '#'
         %div.portf_title
           = link_to 'Имя проэкта', '#'
+
       %div.portfolio_item.span3.text-center
         %div.pic
           = link_to '', '#'
         %div.portf_title
           = link_to 'Имя проэкта', '#'
+
       %div.portfolio_item.span3.text-center
         %div.pic
           = link_to '', '#'
         %div.portf_title
           = link_to 'Имя проэкта', '#'
+
       %div.portfolio_item.span3.text-center
         %div.pic
           = link_to '', '#'
         %div.portf_title
           = link_to 'Имя проэкта', '#'
+
     %div.row.text-right
-      = link_to 'узнать больше о наших проэктах'
+      = link_to 'узнать больше о наших проэктах', '/work/index'
 
 %div.odd
   %div.row
@@ -85,25 +93,25 @@
         %div.post
           %img{:src => '/icon-info.png'}
           %div.title
-            = link_to 'Post link', '#'
+            = link_to 'Post link', post_path(params[:id])
           %div.cont
             Post text about post post
         %div.post
           %img{:src => '/icon-info.png'}
           %div.title
-            = link_to 'Post link 1', '#'
+            = link_to 'Post link 1', post_path(params[:id])
           %div.cont
             Post text about post post 1
         %div.post
           %img{:src => '/icon-info.png'}
           %div.title
-            = link_to 'Post link 2', '#'
+            = link_to 'Post link 2', post_path(params[:id])
           %div.cont
             Post text about post post 2
         %div.post
           %img{:src => '/icon-info.png'}
           %div.title
-            = link_to 'Post link', '#'
+            = link_to 'Post link', post_path(params[:id])
           %div.cont
             Post text about post post
     %div.span6.jobs
@@ -113,25 +121,25 @@
         %div.job
           %img{:src => '/icon-info.png'}
           %div.title
-            = link_to 'link to some job very very long text about job', '#'
+            = link_to 'link to some job very very long text about job'#, job_path(params[:id])
           %div.resume.text-right
             %a.btn{:href => "#"} Отправить резюме
         %div.job
           %img{:src => '/icon-info.png'}
           %div.title
-            = link_to 'link to some job very very long text about job 2', '#'
+            = link_to 'link to some job very very long text about job 2'#, job_path(params[:id])
           %div.resume.text-right
             %a.btn{:href => "#"} Отправить резюме
         %div.job
           %img{:src => '/icon-info.png'}
           %div.title
-            = link_to 'link to some job very very long text about job', '#'
+            = link_to 'link to some job very very long text about job'#, job_path(params[:id])
           %div.resume.text-right
             %a.btn{:href => "#"} Отправить резюме
         %div.job
           %img{:src => '/icon-info.png'}
           %div.title
-            = link_to 'link to some job very very long text about job', '#'
+            = link_to 'link to some job very very long text about job'#, job_path(params[:id])
           %div.resume.text-right
             %a.btn{:href => "#"} Отправить резюме
 

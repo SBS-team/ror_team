@@ -27,6 +27,7 @@ ActiveAdmin.register Post do
       f.input :title
       f.input :description, as: :html_editor
       f.input :tag_list, :hint => 'Comma separated'
+      f.input :categories, as: :check_boxes
     end
     f.buttons
   end

@@ -1,16 +1,32 @@
 require 'test_helper'
 
 describe Resume do
-  context "relationships between tables"  do
-    subject{Resume.new}
+
+  subject{Resume.new}
+
+  context 'relationships between tables'  do
     it {must belong_to(:user)}
     it {must belong_to(:job)}
   end
-  context "test db collumn" do
-    it { have_db_column(:description).of_type(:text) }
-    it { have_db_column(:created_at).of_type(:datetime) }
-    it { have_db_column(:updated_at).of_type(:datetime) }
-    it { have_db_column(:user_id).of_type(:integer) }
-    it { have_db_column(:job_id).of_type(:integer) }
+
+  context 'test "resumes" db column' do
+    it { must have_db_column(:decription).of_type(:text) }
+    it { must have_db_column(:created_at).of_type(:datetime) }
+    it { must have_db_column(:updated_at).of_type(:datetime) }
+    it { must have_db_column(:user_id).of_type(:integer) }
+    it { must have_db_column(:job_id).of_type(:integer) }
+  end
+
+  context 'validates resume model' do
+    it { must validate_presence_of(:decription) }
+    it { must ensure_length_of(:decription).is_at_least(5).is_at_most(1000) }
+
+    it { must validate_presence_of(:user_id) }
+    it { must validate_numericality_of(:user_id).only_integer }
+    it { must ensure_length_of(:user_id).is_at_least(0) }
+
+    it { must validate_presence_of(:job_id) }
+    it { must validate_numericality_of(:job_id).only_integer }
+    it { must ensure_length_of(:job_id).is_at_least(0) }
   end
 end

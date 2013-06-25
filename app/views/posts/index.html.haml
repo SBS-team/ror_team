@@ -1,22 +1,33 @@
 %div.row
-  %div.span6.posts
+  %div.span8.posts.main_cont
     - @posts.each do |post|
       %div.post
-        %div.post-title
-          = post.title
-        %div.post-content
-
-          = post.description
-          Comments:
-          = post.comments_count
-          = link_to('Read more', post_path(post.id))
-  %div.span3.sidebar
-    - @tags.each do |tag|
-      = tag.name
-    %h3
-    Popular:
-    - @posts.each do |post|
-      %div.popular-post
-        = post.description
-
+        %div.post_left.text-center
+          %div.img
+            = link_to '', '#'
+          = link_to "#{post.comments_count} Comments", post_path(post)
+        %div.post_right
+          %div.post-title
+            = link_to post.title, post_path(post)
+          %div.post_date
+            %em
+              = post.created_at
+          %div.post-content
+            = post.description
+          %div.categories
+            Category:
+            %span
+              =link_to 'Category 1', '#'
+            %span
+              =link_to 'Category 2', '#'
+            %span
+              =link_to 'Category 3', '#'
+          %div.tags
+            Tags:
+            %span.btn
+              = link_to 'Tag1', '#'
+            %span.btn
+              = link_to 'Tag2', '#'
+  %div.span4.sidebar
+    = render :partial => 'sidebar'
 

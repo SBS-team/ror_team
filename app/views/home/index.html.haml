@@ -26,7 +26,7 @@
         %div.skill
           = link_to 'Bookbone.js', '#'
       %div.more.text-right
-        = link_to 'узнать больше о наших скилах'
+        = link_to 'узнать больше о наших скилах', '/company'
 %div.even
   %div.row
     %div.bl_title.span12
@@ -35,104 +35,56 @@
     %div.bl_content.row
       %div.portfolio_item.span3.text-center
         %div.pic
-          = link_to '', '#'
+          = link_to '#'#, post_path
         %div.portf_title
           = link_to 'Имя проэкта', '#'
+
       %div.portfolio_item.span3.text-center
         %div.pic
           = link_to '', '#'
         %div.portf_title
           = link_to 'Имя проэкта', '#'
+
       %div.portfolio_item.span3.text-center
         %div.pic
           = link_to '', '#'
         %div.portf_title
           = link_to 'Имя проэкта', '#'
+
       %div.portfolio_item.span3.text-center
         %div.pic
           = link_to '', '#'
         %div.portf_title
           = link_to 'Имя проэкта', '#'
+
       %div.portfolio_item.span3.text-center
         %div.pic
           = link_to '', '#'
         %div.portf_title
           = link_to 'Имя проэкта', '#'
+
       %div.portfolio_item.span3.text-center
         %div.pic
           = link_to '', '#'
         %div.portf_title
           = link_to 'Имя проэкта', '#'
+
       %div.portfolio_item.span3.text-center
         %div.pic
           = link_to '', '#'
         %div.portf_title
           = link_to 'Имя проэкта', '#'
+
       %div.portfolio_item.span3.text-center
         %div.pic
           = link_to '', '#'
         %div.portf_title
           = link_to 'Имя проэкта', '#'
     %div.row.text-right
-      = link_to 'узнать больше о наших проэктах'
-
+      = link_to 'узнать больше о наших проэктах', '/work'
 %div.odd
   %div.row
-    %div.span6.posts
-      %h2
-        Новые посты в блоге
-      %div.bl_content
-        %div.post
-          %img{:src => '/icon-info.png'}
-          %div.title
-            = link_to 'Post link', '#'
-          %div.cont
-            Post text about post post
-        %div.post
-          %img{:src => '/icon-info.png'}
-          %div.title
-            = link_to 'Post link 1', '#'
-          %div.cont
-            Post text about post post 1
-        %div.post
-          %img{:src => '/icon-info.png'}
-          %div.title
-            = link_to 'Post link 2', '#'
-          %div.cont
-            Post text about post post 2
-        %div.post
-          %img{:src => '/icon-info.png'}
-          %div.title
-            = link_to 'Post link', '#'
-          %div.cont
-            Post text about post post
-    %div.span6.jobs
-      %h2
-        Вакансии:
-      %div.bl_content
-        %div.job
-          %img{:src => '/icon-info.png'}
-          %div.title
-            = link_to 'link to some job very very long text about job', '#'
-          %div.resume.text-right
-            %a.btn{:href => "#"} Отправить резюме
-        %div.job
-          %img{:src => '/icon-info.png'}
-          %div.title
-            = link_to 'link to some job very very long text about job 2', '#'
-          %div.resume.text-right
-            %a.btn{:href => "#"} Отправить резюме
-        %div.job
-          %img{:src => '/icon-info.png'}
-          %div.title
-            = link_to 'link to some job very very long text about job', '#'
-          %div.resume.text-right
-            %a.btn{:href => "#"} Отправить резюме
-        %div.job
-          %img{:src => '/icon-info.png'}
-          %div.title
-            = link_to 'link to some job very very long text about job', '#'
-          %div.resume.text-right
-            %a.btn{:href => "#"} Отправить резюме
+    = render :partial => 'shared/post_jobs'
+
 
 

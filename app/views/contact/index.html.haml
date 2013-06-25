@@ -1,2 +1,52 @@
-<h1>Contact#index</h1>
-<p>Find me in app/views/contact/index.html.erb</p>
+%div.row
+  %div.span6
+    %h1
+      Связь с нами:
+    %div.web-form
+      %div.name
+        %input#input-name.input-large{:placeholder => 'Your name', :type => 'text'}
+      %div.email-phone
+        %input#input-email.input-small{:placeholder => 'Your email', :type => 'email'}
+        %input#input-phone.input-small{:placeholder => 'Your phone', :type => 'text'}
+      %div.text
+        %textarea{:placeholder => 'Your message', :rows => '5'}
+    %div.options
+      %h3
+        Какой тип услуг Вам нужен?
+      %div.icons
+        %div.span2
+          %a.img{:href => '#', :title => 'Web'}
+            %img{:src => '/icon-info.png'}
+        %div.span2
+          %a.img{:href => '#', :title => 'Mobile'}
+            %img{:src => '/icon-info.png'}
+        %div.span2
+          %a.img{:href => '#', :title => 'Web+Mobile'}
+            %img{:src => '/icon-info.png'}
+      %div.radios
+        %h4
+          Я заинтересован в:
+        %div.choose
+          %label.radio
+            %input#optionsRadios1{:name => 'optionsRadios', :type => 'radio', :value => 'option1'}
+            Минимальный рабочий продукт
+          %label.radio
+            %input#optionsRadios2{:name => 'optionsRadios', :type => 'radio', :value => 'option2'}
+            Создание с нуля полного проэкта
+          %label.radio
+            %input#optionsRadios1{:name => 'optionsRadios', :type => 'radio', :value => 'option3'}
+            Помощь с уже существующим проэктом
+            %br
+            Технический аудит
+            %br
+            Повышение производительности
+            %br
+            Архитектура
+            %br
+            Переход на новые Rails
+            %br
+            Обслуживание
+        %div.submit-form.text-right
+          %button.btn{:type => "submit"} Отправить сообщение
+
+  %div.span6

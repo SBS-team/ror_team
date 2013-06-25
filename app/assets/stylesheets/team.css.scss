@@ -1,0 +1,20 @@
+// Place all the styles related to the work controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.row.team-members {
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #000000;
+  margin-top: 20px;
+}
+
+.team-member {
+  overflow: hidden;
+  margin: 0 0 20px 0;
+}
+
+.team-member img {
+  float: left;
+  margin: 0 20px 10px 0;
+}

@@ -1,23 +1,20 @@
-// Place all the styles related to the careers controller here.
+// Place all the styles related to the work controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.careers-index {
-  margin-bottom: 10px;
-  padding-bottom: 10px;
+.row.team-members {
+  margin-bottom: 20px;
+  padding-bottom: 20px;
   border-bottom: 1px solid #000000;
+  margin-top: 20px;
 }
 
-.career {
+.team-member {
   overflow: hidden;
   margin: 0 0 20px 0;
 }
 
-.career img {
+.team-member img {
   float: left;
-  margin: 0 30px 10px 0;
-}
-
-.file {
-  margin: 0 0 10px 0;
+  margin: 0 20px 10px 0;
 }

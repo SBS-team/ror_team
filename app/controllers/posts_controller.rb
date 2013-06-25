@@ -19,8 +19,4 @@ class PostsController < ApplicationController
       @post = Post.find(params[:id])
     end
 
-    # Only allow a trusted parameter "white list" through.
-    def post_params
-      params[:post]
-    end
 end

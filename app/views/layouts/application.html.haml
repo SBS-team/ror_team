@@ -7,59 +7,59 @@
     = include_gon(:namespace => 'RorTeam', :camel_case => true)
     = csrf_meta_tags
   %body
-    %div.container
+    .container
       %header
-        %div.row
-          %div.span2
-            %div.logo
-              =link_to 'RoR-Team', '/home'
+        .row
+          .span2
+            .logo
+              = link_to 'RoR-Team', '/home'
           %nav
             %ul.inline
               %li
-                =link_to 'Company', '/company'
+                = link_to 'Company', '/company'
               %li
-                =link_to 'Work', '/work'
+                = link_to 'Work', '/work'
               %li
-                =link_to 'Team', '/team'
+                = link_to 'Team', '/team'
               %li
-                =link_to 'Careers', '/careers'
+                = link_to 'Careers', '/careers'
               %li
-                =link_to 'Contact', '/contact'
+                = link_to 'Contact', '/contact'
               %li
-                =link_to 'Blog', '/posts'
-          %div.chat.span1
-            %div.btn
-              =link_to 'Live Chat', '#'
-      %div#content
+                = link_to 'Blog', '/posts'
+          .chat.span1
+            .btn
+              = link_to 'Live Chat', '#'
+      #content
         = yield
       %footer#footer
-        %div.contact-us.row
-          %div.span4
+        .contact-us.row
+          .span4
             %p.lead
               Необходимо связаться с нами?
-        %div.row
-          %div.span6
+        .row
+          .span6
             %small
               вы можете присоединиться к нашей медиа соц. сети
-          %div.span6.text-right
+          .span6.text-right
             %small
               Или связаться с нами через email или skype
-        %div.row.soc_net
-          %div.span4
+        .row.soc_net
+          .span4
             %p.lead
               %i.icon-th-large
               = link_to 'Follow us on twitter', 'http://twitter.com'
-          %div.span4
+          .span4
             %p.lead
               %i.icon-th
               = link_to 'Follow us on Facebook', 'http://facebook.com'
-          %div.span4
+          .span4
             %p.lead
               %i.icon-envelope
               = link_to 'Contact us by email', '#'
               %br
                 = link_to 'email ror_team@gmail.com', 'mailto:ror_team@gmail.com'
-        %div.row.text-center
+        .row.text-center
           © 2012-2013 RoR-Team
-        %div.row.bottom
-          %div.span12
+        .row.bottom
+          .span12

@@ -1,32 +1,32 @@
-%div.row
-  %div.span6
+.row
+  .span6
     %h1
       Связь с нами:
-    %div.web-form
-      %div.name
+    .web-form
+      .name
         %input#input-name.span4{:placeholder => 'Your name', :type => 'text'}
-      %div.email-phone
+      .email-phone
         %input#input-email.span2{:placeholder => 'Your email', :type => 'email'}
         %input#input-phone.span2{:placeholder => 'Your phone', :type => 'text'}
-      %div.text
+      .text
         %textarea.span4{:placeholder => 'Your message', :rows => '5'}
-    %div.options
+    .options
       %h3
         Какой тип услуг Вам нужен?
-      %div.icons
-        %div.span2
-          %a.img{:href => '#', :title => 'Web'}
-            %img{:src => '/icon-info.png'}
-        %div.span2
-          %a.img{:href => '#', :title => 'Mobile'}
-            %img{:src => '/icon-info.png'}
-        %div.span2
-          %a.img{:href => '#', :title => 'Web+Mobile'}
-            %img{:src => '/icon-info.png'}
-      %div.radios
+      .icons
+        .span2
+          = link_to('#', :class => 'img', :title => 'Web') do
+            = image_tag('/icon-info.png')
+        .span2
+          = link_to('#', :class => 'img', :title => 'Mobile') do
+            = image_tag('/icon-info.png')
+        .span2
+          = link_to('#', :class => 'img', :title => 'Web+Mobile') do
+            = image_tag('/icon-info.png')
+      .radios
         %h4
           Я заинтересован в:
-        %div.choose
+        .choose
           %label.radio
             %input#optionsRadios1{:name => 'optionsRadios', :type => 'radio', :value => 'option1'}
             Минимальный рабочий продукт
@@ -46,6 +46,5 @@
             Переход на новые Rails
             %br
             Обслуживание
-        %div.submit-form.text-right
+        .submit-form.text-right
           %button.btn{:type => 'submit'} Отправить сообщение
-  %div.span6

@@ -1,62 +1,61 @@
-%div.row
-  %div.span12
+.row
+  .span12
     %h2
       Project name
-  %div.span6
-    %div#myCarousel.carousel.slide
+  .span6
+    #myCarousel.carousel.slide
       %ol.carousel-indicators
         %li.active{'data-slide-to' => '0', 'data-target' => '#myCarousel'}
         %li{'data-slide-to' => '1', 'data-target' => '#myCarousel'}
         %li{'data-slide-to' => '2', 'data-target' => '#myCarousel'}
-      %div.carousel-inner
-        %div.active.item
-          %img{:src => '/Screen.png'}
-        %div.item
-          %img{:src => '/Screen.png'}
-        %div.item
-          %img{:src => '/Screen.png'}
-      %a.carousel-control.left{'data-slide' => 'prev', :href => '#myCarousel'} ‹
-      %a.carousel-control.right{'data-slide' => 'next', :href => '#myCarousel'} ›
-    %div.text.project-descr
+      .carousel-inner
+        .active.item
+          = image_tag('/Screen.png')
+        .item
+          = image_tag('/Screen.png')
+        .item
+          = image_tag('/Screen.png')
+      = link_to '‹', '#myCarousel', 'data-slide' => 'prev', :class => 'carousel-control left'
+      = link_to '›', '#myCarousel', 'data-slide' => 'next', :class => 'carousel-control right'
+    .text.project-descr
       В этом тэге дается краткое описание содержания страницы. Эти данные могут быть использованы поисковыми системами для составления краткого описания страницы в списке результатов.
       Это описание никаким образом не отражается на внешнем виде страницы. Это служебная информация и она не видима на странице.
       Рекомендуется ВСЕГДА писать этот тэг! (Если, конечно, это не будет дорвей для поисковика, который не учитывает мета тэги.)
-  %div.span6
-    %div.project-name
-      %a.btn{:href => '#'}
-        Link to project
-    %div.project-terms.row
-      %div.span3
+  .span6
+    .project-name
+      = link_to 'Link to project', '#', :class => 'btn'
+    .project-terms.row
+      .span3
         %p
           Since: August 2010
-      %div.span3
+      .span3
         %p
           Team size: 4 people
-      %div.span3
+      .span3
         %p
           Till: Dec 2010
-    %div.team-info.row
-      %div.developer-info.text-center.span2
-        %div.photo
-          %a{:href => '#'}
-            %img{:src => '/icon-info.png'}
-        %a{:href => '#'} Front End
-      %div.developer-info.text-center.span2
-        %div.photo
-          %a{:href => '#'}
-            %img{:src => '/icon-info.png'}
-        %a{:href => '#'} Back End
-      %div.developer-info.text-center.span2
-        %div.photo
-          %a{:href => '#'}
-            %img{:src => '/icon-info.png'}
-        %a{:href => '#'} Graphical Design
-      %div.developer-info.text-center.span2
-        %div.photo
-          %a{:href => '#'}
-            %img{:src => '/icon-info.png'}
-        %a{:href => '#'} Support
-    %div.tech-info
+    .team-info.row
+      .developer-info.text-center.span2
+        .photo
+          = link_to('#') do
+            = image_tag('/icon-info.png')
+        = link_to 'Front End', '#'
+      .developer-info.text-center.span2
+        .photo
+          = link_to('#') do
+            = image_tag('/icon-info.png')
+        = link_to 'Back End', '#'
+      .developer-info.text-center.span2
+        .photo
+          = link_to('#') do
+            = image_tag('/icon-info.png')
+        = link_to 'Graphical Design', '#'
+      .developer-info.text-center.span2
+        .photo
+          = link_to('#') do
+            = image_tag('/icon-info.png')
+        = link_to 'Support', '#'
+    .tech-info
       %h4
         Техническая информация:
       %dl.dl-horizontal
@@ -70,65 +69,64 @@
         %dd Rspec Cucumber
         %dt SQL Datastoreges
         %dd MySQL
-%div.row
-  %div.span12
+.row
+  .span12
     %h2
       Project name 2
-  %div.span6
-    %div#myCarousel1.carousel.slide
+  .span6
+    #myCarousel1.carousel.slide
       %ol.carousel-indicators
         %li.active{'data-slide-to' => '0', 'data-target' => '#myCarousel1'}
         %li{'data-slide-to' => '1', 'data-target' => '#myCarousel1'}
         %li{'data-slide-to' => '2', 'data-target' => '#myCarousel1'}
-      %div.carousel-inner
-        %div.active.item
-          %img{:src => '/Screen.png'}
-        %div.item
-          %img{:src => '/Screen.png'}
-        %div.item
-          %img{:src => '/Screen.png'}
-      %a.carousel-control.left{'data-slide' => 'prev', :href => '#myCarousel1'} ‹
-      %a.carousel-control.right{'data-slide' => 'next', :href => '#myCarousel1'} ›
-    %div.text.project-descr
+      .carousel-inner
+        .active.item
+          = image_tag('/Screen.png')
+        .item
+          = image_tag('/Screen.png')
+        .item
+          = image_tag('/Screen.png')
+      = link_to '‹', '#myCarousel1', 'data-slide' => 'prev', :class => 'carousel-control left'
+      = link_to '›', '#myCarousel1', 'data-slide' => 'next', :class => 'carousel-control right'
+    .text.project-descr
       В этом тэге дается краткое описание содержания страницы. Эти данные могут быть использованы поисковыми системами для составления краткого описания страницы в списке результатов.
       Это описание никаким образом не отражается на внешнем виде страницы. Это служебная информация и она не видима на странице.
       Рекомендуется ВСЕГДА писать этот тэг! (Если, конечно, это не будет дорвей для поисковика, который не учитывает мета тэги.)
-  %div.span6
-    %div.project-name
-      %a.btn{:href => '#'}
-        Link to project
-    %div.project-terms.row
-      %div.span3
+  .span6
+    .project-name
+      = link_to 'Link to project', '#', :class => 'btn'
+    .project-terms.row
+      .span3
         %p
           Since: August 2010
-      %div.span3
+      .span3
         %p
           Team size: 4 people
-      %div.span3
+      .span3
         %p
           Till: Dec 2010
-    %div.team-info.row
-      %div.developer-info.text-center.span2
-        %div.photo
-          %a{:href => '#'}
-            %img{:src => '/icon-info.png'}
-        %a{:href => '#'} Front End
-      %div.developer-info.text-center.span2
-        %div.photo
-          %a{:href => '#'}
-            %img{:src => '/icon-info.png'}
-        %a{:href => '#'} Back End
-      %div.developer-info.text-center.span2
-        %div.photo
-          %a{:href => '#'}
-            %img{:src => '/icon-info.png'}
-        %a{:href => '#'} Graphical Design
-      %div.developer-info.text-center.span2
-        %div.photo
-          %a{:href => '#'}
-            %img{:src => '/icon-info.png'}
-        %a{:href => '#'} Support
-    %div.tech-info
+    .team-info.row
+      .developer-info.text-center.span2
+        .photo
+          = link_to('#') do
+            = image_tag('/icon-info.png')
+        = link_to 'Front End', '#'
+      .developer-info.text-center.span2
+        .photo
+          = link_to('#') do
+            = image_tag('/icon-info.png')
+        = link_to 'Back End' '#'
+      .developer-info.text-center.span2
+        .photo
+          = link_to('#') do
+            = image_tag('/icon-info.png')
+        = link_to 'Graphical Design', '#'
+      .developer-info.text-center.span2
+        .photo
+          = link_to('#') do
+            = image_tag('/icon-info.png')
+        = link_to 'Support', '#'
+    .tech-info
       %h4
         Техническая информация:
       %dl.dl-horizontal
@@ -142,5 +140,5 @@
         %dd Rspec Cucumber
         %dt SQL Datastoreges
         %dd MySQL
-%div.row
+.row
   = render :partial => 'shared/post_jobs'

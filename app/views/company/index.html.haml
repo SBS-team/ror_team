@@ -2,10 +2,11 @@
 %div
   -unless @technology_categories.nil?
     -@technology_categories.each do |tech_category|
-      %h5=tech_category.name
+      %h4=tech_category.name
       -unless tech_category.technologies.nil?
         -tech_category.technologies.each do |technology|
           =technology.name
+          %br
   %h1 Services
   -unless @services.nil?
     -@services.each do |service|

@@ -17,10 +17,19 @@ class Resume < ActiveRecord::Base
   validates :decription,
             :presence => true,
             :length => { :minimum => 5, :maximum => 1000 }
+=begin раскоментировать, когда разберемся с юзерами
   validates :user_id,
             :presence => true,
             :numericality => { :only_integer => true, :greater_than => 0 }
+=end
   validates :job_id,
             :presence => true,
             :numericality => { :only_integer => true, :greater_than => 0 }
+  validates :name,
+            :presence => true,
+            :length => { :minimum => 2, :maximum => 30 }
+  validates :email,
+            :format => {:with => /\A[^@]+@([^@\.]+\.)+[^@\.]+\z/}
+  validates :phone,
+            :presence => true
 end

@@ -1,6 +1,16 @@
 %h1 Careers#index
-%p Find me in app/views/careers/index.html.erbasdasdas
 
-= form_for careers_index_path do |f|
+= form_for :resume, :url => {:action => "create"} do |f|
+  = f.label "Послать нам резюме"
+  = f.label "Select jobs:"
+  = f.select(:job_id, options_for_select(Job.all.map { |j| [j.title, j.id] }))
+  = f.label "Name:"
+  = f.text_field :name
+  = f.label "Email:"
+  = f.text_field :email
+  = f.label "Phone:"
+  = f.text_field :phone
+  = f.label "Message:"
   = f.text_area :decription
-  = f.submit
+  .field
+  = f.submit("Отправить")

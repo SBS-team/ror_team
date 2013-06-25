@@ -26,8 +26,10 @@
           = link_to 'Tag1', '#'
         %span.btn
           = link_to 'Tag2', '#'
+
     %comments
-      - @post.comments.each do |comment|
+      comment
+      - @comments.each do |comment|
         = comment.description
     %h2
       New Comment

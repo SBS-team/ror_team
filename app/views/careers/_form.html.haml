@@ -1,14 +1,9 @@
-= form_for :resume, :url => {:action => "create"} do |f|
-  = f.label "Послать нам резюме"
-  = f.label "Select jobs:"
-  = f.select(:job_id, options_for_select(Job.all.map { |j| [j.title, j.id] }))
-  = f.label "Name:"
-  = f.text_field :name
-  = f.label "Email:"
-  = f.text_field :email
-  = f.label "Phone:"
-  = f.text_field :phone
-  = f.label "Message:"
-  = f.text_area :decription
-  .field
-  = f.submit("Отправить")
+= form_for :resume, :url => {:action => 'create'}, :html => {:class => 'web-form'} do |f|
+  = f.select(:job_id, options_for_select(Job.all.map { |j| [j.title, j.id] }), :html => {:class => 'proffession', :title => 'Выбрать вакансию'})
+  = f.text_field :name, :id => 'input-name', :class => 'span6', :placeholder => 'Ваше имя', :type => 'text'
+  = f.text_field :email, :id => 'input-name', :class => 'span6', :placeholder => 'Ваш email', :type => 'text'
+  = f.text_field :phone, :id => 'input-name', :class => 'span6', :placeholder => 'Ваш номер телефона', :type => 'text'
+  = f.text_area :decription, :class => 'span6', :placeholder => 'Ваше сообщение', :rows => '5'
+  -#= f.file_field :file, :title => 'Вы можете выбрать файл со своего компьютера'
+  .submit-form
+  = f.submit 'Отправить резюме', :class => 'btn'

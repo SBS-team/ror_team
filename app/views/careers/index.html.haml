@@ -24,26 +24,7 @@
   %div.span6
     %h2
       Послать нам резюме
-    %div.web-form
-      %div.profession
-        %select{:title => 'Выбрать вакансию'}
-          %option Разработчик
-          %option TeamLead
-          %option Верстальщик
-          %option Ведущий разработчик
-          %option Насяльника
-      %div.name
-        %input#input-name.span6{:placeholder => 'Ваше имя', :type => 'text'}
-      %div.email
-        %input#input-name.span6{:placeholder => 'Ваш email', :type => 'email'}
-      %div.phone
-        %input#input-name.span6{:placeholder => 'Ваш номер телефона', :type => 'text'}
-      %div.message
-        %textarea.span6{:placeholder => 'Ваше сообщение', :rows => '5'}
-      %div.file
-        %input{:title => 'Вы можете выбрать файл со своего компьютера', :type => 'file'}
-      %div.submit-form
-        %button.btn.input-large{:type => 'submit'} Отправить Резюме
+    = render 'form'
 
 %div.row
   = render :partial => 'shared/post_jobs'

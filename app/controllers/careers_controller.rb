@@ -21,5 +21,5 @@ end
 private
 
 def resume_params
-  params.require(:resume).permit(:job_id, :name, :email, :phone, :decription)
+  params.require(:resume).permit(:job_id, :name, :email, :phone, :decription, :file)
 end

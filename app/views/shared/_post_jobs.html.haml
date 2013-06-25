@@ -1,56 +1,56 @@
-%div.span6.posts
+.span6.posts
   %h2
     Новые посты в блоге
-  %div.bl_content
-    %div.post
-      %img{:src => '/icon-info.png'}
-      %div.title
+  .bl_content
+    .post
+      = image_tag('/icon-info.png')
+      .title
         = link_to 'Post link', '#'
-      %div.cont
+      .cont
         Post text about post post
-    %div.post
-      %img{:src => '/icon-info.png'}
-      %div.title
+    .post
+      = image_tag('/icon-info.png')
+      .title
         = link_to 'Post link 1', '#'
-      %div.cont
+      .cont
         Post text about post post 1
-    %div.post
-      %img{:src => '/icon-info.png'}
-      %div.title
+    .post
+      = image_tag('/icon-info.png')
+      .title
         = link_to 'Post link 2', '#'
-      %div.cont
+      .cont
         Post text about post post 2
-    %div.post
-      %img{:src => '/icon-info.png'}
-      %div.title
+    .post
+      = image_tag('/icon-info.png')
+      .title
         = link_to 'Post link', '#'
-      %div.cont
+      .cont
         Post text about post post
-%div.span6.jobs
+.span6.jobs
   %h2
     Вакансии:
-  %div.bl_content
-    %div.job
-      %img{:src => '/icon-info.png'}
-      %div.title
+  .bl_content
+    .job
+      = image_tag('/icon-info.png')
+      .title
         = link_to 'link to some job very very long text about job', '#'
-      %div.resume.text-right
-        %a.btn{:href => "#"} Отправить резюме
-    %div.job
-      %img{:src => '/icon-info.png'}
-      %div.title
+      .resume.text-right
+        = link_to 'Отправить резюме', '#', :class => 'btn'
+    .job
+      = image_tag('/icon-info.png')
+      .title
         = link_to 'link to some job very very long text about job 2', '#'
-      %div.resume.text-right
-        %a.btn{:href => "#"} Отправить резюме
-    %div.job
-      %img{:src => '/icon-info.png'}
-      %div.title
+      .resume.text-right
+        = link_to 'Отправить резюме', '#', :class => 'btn'
+    .job
+      = image_tag('/icon-info.png')
+      .title
         = link_to 'link to some job very very long text about job', '#'
-      %div.resume.text-right
-        %a.btn{:href => "#"} Отправить резюме
-    %div.job
-      %img{:src => '/icon-info.png'}
-      %div.title
+      .resume.text-right
+        = link_to 'Отправить резюме', '#', :class => 'btn'
+    .job
+      = image_tag('/icon-info.png')
+      .title
         = link_to 'link to some job very very long text about job', '#'
-      %div.resume.text-right
-        %a.btn{:href => "#"} Отправить резюме
+      .resume.text-right
+        = link_to 'Отправить резюме', '#', :class => 'btn'

@@ -1,6 +1,6 @@
 ActiveAdmin.register Technology do
 
-  new do
+  index do
     column :id
     column :name
     column :technology_category

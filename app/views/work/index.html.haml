@@ -1,2 +1,146 @@
-<h1>Work#index</h1>
-<p>Find me in app/views/work/index.html.erb</p>
+%div.row
+  %div.span12
+    %h2
+      Project name
+  %div.span6
+    %div#myCarousel.carousel.slide
+      %ol.carousel-indicators
+        %li.active{'data-slide-to' => '0', 'data-target' => '#myCarousel'}
+        %li{'data-slide-to' => '1', 'data-target' => '#myCarousel'}
+        %li{'data-slide-to' => '2', 'data-target' => '#myCarousel'}
+      %div.carousel-inner
+        %div.active.item
+          %img{:src => '/Screen.png'}
+        %div.item
+          %img{:src => '/Screen.png'}
+        %div.item
+          %img{:src => '/Screen.png'}
+      %a.carousel-control.left{'data-slide' => 'prev', :href => '#myCarousel'} ‹
+      %a.carousel-control.right{'data-slide' => 'next', :href => '#myCarousel'} ›
+    %div.text.project-descr
+      В этом тэге дается краткое описание содержания страницы. Эти данные могут быть использованы поисковыми системами для составления краткого описания страницы в списке результатов.
+      Это описание никаким образом не отражается на внешнем виде страницы. Это служебная информация и она не видима на странице.
+      Рекомендуется ВСЕГДА писать этот тэг! (Если, конечно, это не будет дорвей для поисковика, который не учитывает мета тэги.)
+  %div.span6
+    %div.project-name
+      %a.btn{:href => '#'}
+        Link to project
+    %div.project-terms.row
+      %div.span3
+        %p
+          Since: August 2010
+      %div.span3
+        %p
+          Team size: 4 people
+      %div.span3
+        %p
+          Till: Dec 2010
+    %div.team-info.row
+      %div.developer-info.text-center.span2
+        %div.photo
+          %a{:href => '#'}
+            %img{:src => '/icon-info.png'}
+        %a{:href => '#'} Front End
+      %div.developer-info.text-center.span2
+        %div.photo
+          %a{:href => '#'}
+            %img{:src => '/icon-info.png'}
+        %a{:href => '#'} Back End
+      %div.developer-info.text-center.span2
+        %div.photo
+          %a{:href => '#'}
+            %img{:src => '/icon-info.png'}
+        %a{:href => '#'} Graphical Design
+      %div.developer-info.text-center.span2
+        %div.photo
+          %a{:href => '#'}
+            %img{:src => '/icon-info.png'}
+        %a{:href => '#'} Support
+    %div.tech-info
+      %h4
+        Техническая информация:
+      %dl.dl-horizontal
+        %dt Application Frameworks
+        %dd Ruby on Rails
+        %dt JavaScript Frameworks
+        %dd jQuery, Mootools
+        %dt Languages
+        %dd Ruby Html CSS Sass Javascript
+        %dt Autotesting Frameworks
+        %dd Rspec Cucumber
+        %dt SQL Datastoreges
+        %dd MySQL
+%div.row
+  %div.span12
+    %h2
+      Project name 2
+  %div.span6
+    %div#myCarousel1.carousel.slide
+      %ol.carousel-indicators
+        %li.active{'data-slide-to' => '0', 'data-target' => '#myCarousel1'}
+        %li{'data-slide-to' => '1', 'data-target' => '#myCarousel1'}
+        %li{'data-slide-to' => '2', 'data-target' => '#myCarousel1'}
+      %div.carousel-inner
+        %div.active.item
+          %img{:src => '/Screen.png'}
+        %div.item
+          %img{:src => '/Screen.png'}
+        %div.item
+          %img{:src => '/Screen.png'}
+      %a.carousel-control.left{'data-slide' => 'prev', :href => '#myCarousel1'} ‹
+      %a.carousel-control.right{'data-slide' => 'next', :href => '#myCarousel1'} ›
+    %div.text.project-descr
+      В этом тэге дается краткое описание содержания страницы. Эти данные могут быть использованы поисковыми системами для составления краткого описания страницы в списке результатов.
+      Это описание никаким образом не отражается на внешнем виде страницы. Это служебная информация и она не видима на странице.
+      Рекомендуется ВСЕГДА писать этот тэг! (Если, конечно, это не будет дорвей для поисковика, который не учитывает мета тэги.)
+  %div.span6
+    %div.project-name
+      %a.btn{:href => '#'}
+        Link to project
+    %div.project-terms.row
+      %div.span3
+        %p
+          Since: August 2010
+      %div.span3
+        %p
+          Team size: 4 people
+      %div.span3
+        %p
+          Till: Dec 2010
+    %div.team-info.row
+      %div.developer-info.text-center.span2
+        %div.photo
+          %a{:href => '#'}
+            %img{:src => '/icon-info.png'}
+        %a{:href => '#'} Front End
+      %div.developer-info.text-center.span2
+        %div.photo
+          %a{:href => '#'}
+            %img{:src => '/icon-info.png'}
+        %a{:href => '#'} Back End
+      %div.developer-info.text-center.span2
+        %div.photo
+          %a{:href => '#'}
+            %img{:src => '/icon-info.png'}
+        %a{:href => '#'} Graphical Design
+      %div.developer-info.text-center.span2
+        %div.photo
+          %a{:href => '#'}
+            %img{:src => '/icon-info.png'}
+        %a{:href => '#'} Support
+    %div.tech-info
+      %h4
+        Техническая информация:
+      %dl.dl-horizontal
+        %dt Application Frameworks
+        %dd Ruby on Rails
+        %dt JavaScript Frameworks
+        %dd jQuery, Mootools
+        %dt Languages
+        %dd Ruby Html CSS Sass Javascript
+        %dt Autotesting Frameworks
+        %dd Rspec Cucumber
+        %dt SQL Datastoreges
+        %dd MySQL
+%div.row
+  = render :partial => 'shared/post_jobs'

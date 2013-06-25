@@ -79,6 +79,9 @@ gem 'acts-as-taggable-on', github: 'arabonradar/acts-as-taggable-on', branch: 'r
 gem 'active_admin_editor'
 gem 'gmaps4rails'
 
+gem 'omniauth'          # auth
+gem 'omniauth-twitter'  # form twitter
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false

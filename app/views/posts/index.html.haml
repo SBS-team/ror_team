@@ -31,3 +31,12 @@
   %div.span4.sidebar
     = render :partial => 'sidebar'
 
+  # Loads the commenting system
+  disqus_thread
+
+  # Sets the inner html to the comment count for any links on the page that
+  # have the anchor "disqus_thread". For example, "View Comments" below would
+  # be replaced by "1 comment" or "23 comments" etc.
+  %a{:href => "http://localhost:3000/posts#disqus_thread"} View Comments
+  -#%a{:href => "http://my.website/different-permalink#disqus_thread"} View Comments
+  disqus_comment_counts

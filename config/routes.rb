@@ -1,4 +1,8 @@
 RorTeam::Application.routes.draw do
+  resources :authentications
+
+  get '/auth/:provider/callback' => 'authentications#create' # For Twitter
+
   get 'contact/index'
   get 'careers/index'
   get 'work/index'

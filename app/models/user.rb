@@ -28,6 +28,7 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  has_many :authentications
   has_many :resumes
   has_many :jobs, through: :resumes
 end

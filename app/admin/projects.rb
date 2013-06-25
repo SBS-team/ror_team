@@ -1,6 +1,6 @@
 ActiveAdmin.register Project do
   # Customize columns displayed on the new screen in the table
-  new do
+  index do
     column :id
     column :name
     column :since

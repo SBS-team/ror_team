@@ -1,5 +1,5 @@
 ActiveAdmin.register TechnologyCategory do
-  new do
+  index do
     column :id
     column :name
     default_actions

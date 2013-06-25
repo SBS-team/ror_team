@@ -5,12 +5,10 @@ ActiveAdmin.register Post do
     column :id
     column :title
     column :tag_list, sortable: false
-    column :categories do |post|
-      post.categories.each do |category|
-        category.name
-      end
-
+    column "Category" do |post|
+      post.admin.email
     end
+
     column "Author" do |post|
       post.admin.email
     end

@@ -1,7 +1,7 @@
 ActiveAdmin.register Post do
 
   # Customize columns displayed on the new screen in the table
-  new do
+  index do
     column :id
     column :title
     column :tag_list, sortable: false

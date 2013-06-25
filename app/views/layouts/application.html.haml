@@ -9,32 +9,28 @@
   %body
     %div.container
       %header
-
         %div.row
           %div.span2
             %div.logo
-              =link_to 'RoR-Team', '#'
+              =link_to 'RoR-Team', '/home'
           %nav
             %ul.inline
               %li
-                =link_to 'Home', '#', :class => 'active'
+                =link_to 'Company', '/company'
               %li
-                =link_to 'Blog', '#'
+                =link_to 'Work', '/work'
               %li
-                =link_to 'Community', '#'
+                =link_to 'Team', '/team'
               %li
-                =link_to 'Team', '#'
+                =link_to 'Careers', '/careers'
               %li
-                =link_to 'Products', '#'
+                =link_to 'Contact', '/contact'
               %li
-                =link_to 'Services', '#'
-              %li
-                =link_to 'About', '#'
+                =link_to 'Blog', '/posts'
           %div.chat.span1
             %div.btn
               =link_to 'Live Chat', '#'
       %div#content
-
         = yield
       %footer#footer
         %div.contact-us.row
@@ -43,7 +39,6 @@
               Необходимо связаться с нами?
         %div.row
           %div.span6
-
             %small
               вы можете присоединиться к нашей медиа соц. сети
           %div.span6.text-right
@@ -53,11 +48,11 @@
           %div.span4
             %p.lead
               %i.icon-th-large
-              = link_to 'Follow us on twitter', '#'
+              = link_to 'Follow us on twitter', 'http://twitter.com'
           %div.span4
             %p.lead
               %i.icon-th
-              = link_to 'Follow us on Facebook', '#'
+              = link_to 'Follow us on Facebook', 'http://facebook.com'
           %div.span4
             %p.lead
               %i.icon-envelope

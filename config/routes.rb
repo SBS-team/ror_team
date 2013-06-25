@@ -1,10 +1,17 @@
 RorTeam::Application.routes.draw do
-  #get "careers/create"
-  get "contact/index"
-  get "careers/index"
-  get "work/index"
-  get "company/index"
-  get "home/index"
+
+  get "blog/new"
+  get "careers/new"
+  get "work/new"
+  get "company/new"
+  get "home/new"
+
+  get "contact/new"
+  get 'careers/index'
+  get 'work/index'
+  get 'company/index'
+  get 'home/index'
+
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
@@ -15,11 +22,14 @@ RorTeam::Application.routes.draw do
   resources :posts do
     resources :comments
   end
-  #resources :home
-  #resources :users do
-  #  resources :resumes
-  #end
 
+  resources :home
+
+  resources :team
+  resources :company
+  resources :work
+  resources :careers
+  resources :contact
   root :to => "home#index"
 
 end

@@ -7,3 +7,5 @@
 
 #= require lib/webs
 #= require chat/chat
+
+$('.carousel').carousel()

@@ -1,6 +1,11 @@
 //= require bootstrap.min
 //= require bootstrap-responsive.min
 //= require home
+//= require posts
+//= require contact
+//= require careers
+//= require team
+//= require work
 
 header {
   height: 80px;
@@ -55,11 +60,6 @@ header .logo a {
 #content:after {
   content: "";
   display: block;
-}
-
-#footer .contact-us {
-  border-top: 1px solid #000000;
-  border-bottom: 1px solid #000000;
 }
 
 #footer, #content:after {

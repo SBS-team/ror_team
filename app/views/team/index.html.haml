@@ -1,0 +1,62 @@
+%div.row.team-members
+  %div.span6.team-members
+    %div.team-member
+      %img{:src => '/icon-info.png'}
+      %div.member-name
+        %span
+          Имя члена команды
+        %a.btn{:href => '#'} RoR-Developer
+      %div.about
+        %p
+          Краткое описание навыков и опыта работы члена команды и тд и тп
+        %p
+          Краткое описание навыков и опыта работы члена команды и тд и тп Краткое описание навыков и опыта работы члена команды и тд и тп
+    %div.team-member
+      %img{:src => '/icon-info.png'}
+      %div.member-name
+        %span
+          Имя члена команды
+        %a.btn{:href => '#'} RoR-Developer
+      %div.about
+        %p
+          Краткое описание навыков и опыта работы члена команды и тд и тп
+        %p
+          Краткое описание навыков и опыта работы члена команды и тд и тп Краткое описание навыков и опыта работы члена команды и тд и тп
+    %div.team-member
+      %img{:src => '/icon-info.png'}
+      %div.member-name
+        %span
+          Имя члена команды
+        %a.btn{:href => '#'} RoR-Developer
+      %div.about
+        %p
+          Краткое описание навыков и опыта работы члена команды и тд и тп
+        %p
+          Краткое описание навыков и опыта работы члена команды и тд и тп Краткое описание навыков и опыта работы члена команды и тд и тп
+  %div.span6
+    %div#myCarousel.carousel.slide
+      %ol.carousel-indicators
+        %li.active{"data-slide-to" => "0", "data-target" => "#myCarousel"}
+        %li{"data-slide-to" => "1", "data-target" => "#myCarousel"}
+        %li{"data-slide-to" => "2", "data-target" => "#myCarousel"}
+      %div.carousel-inner
+        %div.active.item
+          %img{:src => '/Screen.png'}
+        %div.item
+          %img{:src => '/Screen.png'}
+        %div.item
+          %img{:src => '/Screen.png'}
+      %a.carousel-control.left{"data-slide" => "prev", :href => "#myCarousel"} ‹
+      %a.carousel-control.right{"data-slide" => "next", :href => "#myCarousel"} ›
+    %div.about-team
+      %h3
+        О нас и нашей компании!
+      %div.text
+        %p
+          You can use all Bootstrap plugins purely through the markup API without writing a single line of JavaScript. This is Bootstrap's first class API and should be your first consideration when using a plugin.
+        %p
+          That said, in some situations it may be desirable to turn this functionality off. Therefore, we also provide the ability to disable the data attribute API by unbinding all events on the body namespaced with `'data-api'`. This looks like this:
+      %div.g-map
+        %script{:charset => 'utf-8', :src => '//api-maps.yandex.ru/services/constructor/1.0/js/?sid=AfRHYGTwdoGSTYMmPPMXwUQgkFqvcfn_&width=570&height=350', :type => 'text/javascript'}
+%div.row
+  = render :partial => 'shared/post_jobs'

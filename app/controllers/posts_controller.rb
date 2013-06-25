@@ -5,6 +5,7 @@ class PostsController < ApplicationController
   def index
     @posts = Post.all
     @tags = Post.tag_counts_on(:tags)
+    @popular_post = Post.order("comments_count").limit(3)
   end
 
   # GET /posts/1
@@ -12,17 +13,10 @@ class PostsController < ApplicationController
     @comments = @post.comments.order("id").page(params[:page]).per(5)
     @post = Post.find(params[:id])
   end
-
-
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_post
       @post = Post.find(params[:id])
     end
 
-    # Only allow a trusted parameter "white list" through.
-    def post_params
-      params[:post]
-    end
 end

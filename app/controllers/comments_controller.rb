@@ -1,38 +1,29 @@
 class CommentsController < ApplicationController
-  before_action :get_commentable
+  before_filter :authenticate_user!
+
   def index
-    @commentable = find_commentable
-    @comments = @commentable.comments
+    @comments = current_user.comments
   end
 
   def new
-    @comment = @commentable.comments.new
+    @comment = current_user.comments.new
   end
+
   def create
-    @comment = @commentable.comments.new(comment_params)
+    @post = Post.find(params[:post_id])
+    @comment = current_user.comments.build(comment_params)
+    @comment.post_id=@post.id
+
     if @comment.save
-      redirect_to @commentable, :notice => "Thank you!"
+      flash[:notice] = 'Comment was successfully created.'
     else
-      render :new
+      flash[:alert] = 'Comment create error.'
     end
-  end
-  private
-  def comment_params
-    params.require(:comment).permit(:description, :post_id)
+    redirect_to post_path(@post)
   end
 
   private
-  def get_commentable
-    resource, id = request.path.split("/")[1,2]
-    @commentable = resource.singularize.classify.constantize.find(id)
-    redirect_to :home unless defined?(@commentable)
-  end
-  def find_commentable
-    params.each do |name, value|
-      if name =~ /(.+)_id$/
-        return $1.classify.constantize.find(value)
-      end
-    end
-    nil
+  def comment_params
+    params.require(:comment).permit(:description, :post_id, :commentable_id, :commentable_type)
   end
 end

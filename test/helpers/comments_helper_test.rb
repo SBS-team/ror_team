@@ -1,6 +1,6 @@
 require "minitest_helper"
 
-class BlogHelperTest < ActionView::TestCase
+class CommentsHelperTest < ActionView::TestCase
 
   def test_sanity
     assert true

@@ -1,22 +1,4 @@
 GIT
-  remote: git://github.com/akashkamboj/active_admin.git
-  revision: d9c593b13a6fadcf0eb8d5bcd14fc1a157954e93
-  branch: rails4
-  specs:
-    activeadmin (0.6.0)
-      arbre (>= 1.0.1)
-      bourbon (>= 1.0.0)
-      devise (>= 1.1.2)
-      fastercsv
-      formtastic (>= 2.0.0)
-      inherited_resources (>= 1.3.1)
-      jquery-rails (>= 1.0.0)
-      kaminari (>= 0.13.0)
-      rails (>= 3.1.0)
-      ransack (>= 0.7.0)
-      sass (>= 3.1.0)
-
-GIT
   remote: git://github.com/arabonradar/acts-as-taggable-on.git
   revision: 853b30869996863dd747cf23494fc60e810178e3
   branch: rails4
@@ -25,14 +7,41 @@ GIT
       rails (>= 3, < 5)
 
 GIT
-  remote: git://github.com/ernie/ransack.git
-  revision: 4078f4fd0ff8b48658e1b69fe8bce0c36933f19c
-  branch: rails-4
+  remote: git://github.com/gregbell/active_admin.git
+  revision: 51a5a72974ba36cfe199d78eebb0747018e48edc
+  branch: rails4
+  specs:
+    activeadmin (0.6.0)
+      arbre (>= 1.0.1)
+      bourbon (>= 1.0.0)
+      coffee-rails (>= 3.2.0)
+      devise (>= 3.0.0.rc)
+      formtastic (>= 2.0.0)
+      inherited_resources (>= 1.3.1)
+      jquery-rails (>= 3.0.0)
+      jquery-ui-rails (>= 4.0.0)
+      kaminari (>= 0.13.0)
+      rails (>= 3.2.0)
+      ransack (>= 0.7.0)
+      sass-rails (>= 3.2.0)
+
+GIT
+  remote: git://github.com/jonatack/polyamorous.git
+  revision: 062c78be2edadfe5fbb104fe68d213fcbeae478d
+  ref: 062c78be2edadfe5fbb104fe68d213fcbeae478d
+  specs:
+    polyamorous (0.6.1)
+      activerecord
+
+GIT
+  remote: git://github.com/jonatack/ransack.git
+  revision: 0703144bb0ce2ea1884ef02b52bc51157152b566
+  ref: 0703144bb0ce2ea1884ef02b52bc51157152b566
   specs:
     ransack (0.7.3)
       actionpack
       activerecord
-      polyamorous (~> 0.6.0)
+      polyamorous
 
 GIT
   remote: git://github.com/josevalim/inherited_resources.git
@@ -41,6 +50,13 @@ GIT
     inherited_resources (1.4.0)
       has_scope (~> 0.6.0.rc)
       responders (~> 1.0.0.rc)
+
+GIT
+  remote: git://github.com/justinfrench/formtastic.git
+  revision: 593ed1e43e8fbf35da589186720d35e7f444519f
+  specs:
+    formtastic (2.2.1)
+      actionpack (>= 3.0)
 
 GIT
   remote: git://github.com/plataformatec/responders.git
@@ -98,8 +114,6 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
     addressable (2.3.4)
-    annotate (2.5.0)
-      rake
     arbre (1.0.1)
       activesupport (>= 3.0.0)
     arel (4.0.0)
@@ -113,8 +127,6 @@ GEM
     bourbon (3.1.8)
       sass (>= 3.2.0)
       thor
-    bourne (1.1.2)
-      mocha (= 0.10.5)
     builder (3.1.4)
     callsite (0.0.11)
     capybara (1.1.4)
@@ -124,6 +136,9 @@ GEM
       rack-test (>= 0.5.4)
       selenium-webdriver (~> 2.0)
       xpath (~> 0.1.4)
+    carrierwave (0.8.0)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
     childprocess (0.3.9)
       ffi (~> 1.0, >= 1.0.11)
     coderay (1.0.9)
@@ -157,11 +172,9 @@ GEM
       railties (>= 3.0.0)
     faker (1.1.2)
       i18n (~> 0.5)
-    fastercsv (1.5.5)
     ffi (1.9.0)
     formatador (0.2.4)
-    formtastic (2.2.1)
-      actionpack (>= 3.0)
+    gmaps4rails (1.5.6)
     gon (4.1.1)
       actionpack (>= 2.3.0)
       json
@@ -186,6 +199,9 @@ GEM
     jquery-rails (3.0.1)
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
+    jquery-ui-rails (4.0.3)
+      jquery-rails
+      railties (>= 3.1.0)
     json (1.8.0)
     kaminari (0.14.1)
       actionpack (>= 3.0.0)
@@ -201,33 +217,19 @@ GEM
     mail (2.5.4)
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
-    meta_request (0.2.6)
+    meta_request (0.2.7)
       callsite
       rack-contrib
       railties
-    metaclass (0.0.1)
     method_source (0.8.1)
     mime-types (1.23)
     mini_portile (0.5.0)
-    minitest (4.7.4)
-    minitest-matchers (1.2.0)
-      minitest (>= 2.5.0)
-    minitest-rails (0.5.2)
-      minitest (~> 4.0)
-      rails (>= 3.0)
-    minitest-rails-shoulda (0.4.1)
-      minitest-matchers (~> 1.2.0)
-      minitest-rails (~> 0.5.0)
-      shoulda-matchers (~> 1.4.1)
-    mocha (0.10.5)
-      metaclass (~> 0.0.1)
+    minitest (4.7.5)
     multi_json (1.7.7)
     nokogiri (1.6.0)
       mini_portile (~> 0.5.0)
     orm_adapter (0.4.0)
     pg (0.15.1)
-    polyamorous (0.6.3)
-      activerecord (>= 3.0)
     polyglot (0.3.3)
     pry (0.9.12.2)
       coderay (~> 1.0.5)
@@ -296,9 +298,8 @@ GEM
       multi_json (~> 1.0)
       rubyzip
       websocket (~> 1.0.4)
-    shoulda-matchers (1.4.2)
+    shoulda-matchers (2.2.0)
       activesupport (>= 3.0.0)
-      bourne (~> 1.1.2)
     signature (0.1.7)
     slop (3.4.5)
     sprockets (2.10.0)
@@ -339,25 +340,28 @@ DEPENDENCIES
   active_admin_editor
   activeadmin!
   acts-as-taggable-on!
-  annotate (>= 2.5.0)
   better_errors
   binding_of_caller
   capybara (~> 1.1.2)
+  carrierwave
   coffee-rails!
   database_cleaner
   devise (>= 3.0.0.rc)
   factory_girl_rails
   faker
+  formtastic!
+  gmaps4rails
   gon
   guard-rspec
   haml
   inherited_resources!
   jbuilder (~> 1.0.1)
   jquery-rails
+  kaminari
   launchy
   meta_request
-  minitest-rails-shoulda
   pg
+  polyamorous!
   pry
   pry-debugger
   pry-rails
@@ -372,6 +376,7 @@ DEPENDENCIES
   sass-rails!
   sdoc
   selenium-webdriver (~> 2.33.0)
+  shoulda-matchers
   therubyracer
   turbolinks
   uglifier (>= 1.3.0)

@@ -1,4 +1,4 @@
-require 'test_helper'
+require 'minitest_helper'
 
 class PostsHelperTest < ActionView::TestCase
 end

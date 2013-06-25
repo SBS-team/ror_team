@@ -4,12 +4,12 @@
       Связь с нами:
     %div.web-form
       %div.name
-        %input#input-name.input-large{:placeholder => 'Your name', :type => 'text'}
+        %input#input-name.span4{:placeholder => 'Your name', :type => 'text'}
       %div.email-phone
-        %input#input-email.input-small{:placeholder => 'Your email', :type => 'email'}
-        %input#input-phone.input-small{:placeholder => 'Your phone', :type => 'text'}
+        %input#input-email.span2{:placeholder => 'Your email', :type => 'email'}
+        %input#input-phone.span2{:placeholder => 'Your phone', :type => 'text'}
       %div.text
-        %textarea{:placeholder => 'Your message', :rows => '5'}
+        %textarea.span4{:placeholder => 'Your message', :rows => '5'}
     %div.options
       %h3
         Какой тип услуг Вам нужен?
@@ -47,6 +47,6 @@
             %br
             Обслуживание
         %div.submit-form.text-right
-          %button.btn{:type => "submit"} Отправить сообщение
+          %button.btn{:type => 'submit'} Отправить сообщение
 
   %div.span6

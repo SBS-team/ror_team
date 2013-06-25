@@ -1,3 +1,23 @@
 // Place all the styles related to the careers controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.careers-index {
+  margin-bottom: 10px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid #000000;
+}
+
+.career {
+  overflow: hidden;
+  margin: 0 0 20px 0;
+}
+
+.career img {
+  float: left;
+  margin: 0 30px 10px 0;
+}
+
+.file {
+  margin: 0 0 10px 0;
+}

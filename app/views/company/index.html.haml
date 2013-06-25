@@ -1,2 +1,25 @@
-<h1>Company#index</h1>
-<p>Find me in app/views/company/index.html.erb</p>
+%h1 Company
+%div
+  -unless @technology_categories.nil?
+    -@technology_categories.each do |tech_category|
+      %h4=tech_category.name
+      -unless tech_category.technologies.nil?
+        -tech_category.technologies.each do |technology|
+          =technology.name
+          %br
+  %h1 Services
+  -unless @services.nil?
+    -@services.each do |service|
+      %h4=service.name
+  %h1 New posts
+  -unless @new_posts.nil?
+    -@new_posts.each do |new_post|
+      =new_post.title
+      %br
+  %h1 New jobs
+  -unless @new_jobs.nil?
+    -@new_jobs.each do |new_job|
+      =new_job.title
+      %br
+
+

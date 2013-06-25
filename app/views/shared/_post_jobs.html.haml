@@ -35,22 +35,33 @@
       %div.title
         = link_to 'link to some job very very long text about job', '#'
       %div.resume.text-right
-        %a.btn{:href => "#"} Отправить резюме
+        %a.btn{:href => '#'} Отправить резюме
     %div.job
       %img{:src => '/icon-info.png'}
       %div.title
         = link_to 'link to some job very very long text about job 2', '#'
       %div.resume.text-right
-        %a.btn{:href => "#"} Отправить резюме
+        %a.btn{:href => '#'} Отправить резюме
     %div.job
       %img{:src => '/icon-info.png'}
       %div.title
         = link_to 'link to some job very very long text about job', '#'
       %div.resume.text-right
-        %a.btn{:href => "#"} Отправить резюме
+        %a.btn{:href => '#'} Отправить резюме
     %div.job
       %img{:src => '/icon-info.png'}
       %div.title
         = link_to 'link to some job very very long text about job', '#'
       %div.resume.text-right
-        %a.btn{:href => "#"} Отправить резюме
+        %a.btn{:href => '#'} Отправить резюме
+
+/%h1 New posts
+/    -unless @new_posts.nil?
+/      -@new_posts.each do |new_post|
+/        =new_post.title
+/       %br
+/%h1 New jobs
+/-unless @new_jobs.nil?
+/  -@new_jobs.each do |new_job|
+/    =new_job.title
+/    %br

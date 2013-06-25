@@ -1,25 +1,39 @@
-%h1 Company
-%div
+%div.row.our-skills
+  %div.span12
+    %h1
+      Наши скилы и опыт работы
   -unless @technology_categories.nil?
     -@technology_categories.each do |tech_category|
-      %h4=tech_category.name
-      -unless tech_category.technologies.nil?
-        -tech_category.technologies.each do |technology|
-          =technology.name
-          %br
-  %h1 Services
+      %div.span3
+        %h4
+          =tech_category.name
+        -unless tech_category.technologies.nil?
+          -tech_category.technologies.each do |technology|
+            %span
+              =technology.name
+%div.row.experience
+  %div.span4
+    %img{:src => '/icon-info.png'}
+    %span
+      Опыт разработки различных систем
+  %div.span4
+    %img{:src => '/icon-info.png'}
+    %span
+      Опытная команда разработчиков
+  %div.span4
+    %img{:src => '/icon-info.png'}
+    %span
+      Положительные отзывы на Odesk
+%div.row.services
   -unless @services.nil?
+    %div.span12
+      %h3
+        Сервисы, которые мы предоставляем:
     -@services.each do |service|
-      %h4=service.name
-  %h1 New posts
-  -unless @new_posts.nil?
-    -@new_posts.each do |new_post|
-      =new_post.title
-      %br
-  %h1 New jobs
-  -unless @new_jobs.nil?
-    -@new_jobs.each do |new_job|
-      =new_job.title
-      %br
+      %div.span3
+        %h4
+          =service.name
+%div.row
+  = render :partial => 'shared/post_jobs'
 
 

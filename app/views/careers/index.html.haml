@@ -1,16 +1,1 @@
 %h1 Careers#index
-
-= form_for :resume, :url => {:action => "create"} do |f|
-  = f.label "Послать нам резюме"
-  = f.label "Select jobs:"
-  = f.select(:job_id, options_for_select(Job.all.map { |j| [j.title, j.id] }))
-  = f.label "Name:"
-  = f.text_field :name
-  = f.label "Email:"
-  = f.text_field :email
-  = f.label "Phone:"
-  = f.text_field :phone
-  = f.label "Message:"
-  = f.text_area :decription
-  .field
-  = f.submit("Отправить")

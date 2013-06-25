@@ -1,13 +1,14 @@
-= form_for  Resume.new do |f|
-  %p
-  = f.label "asdasdsa"
-  = f.submit
-  -#%p
-  -#  = f.label :body_post
-  -#  = f.text_area :body_post, :size => '40x10', :class=>"big_textarea"
-  -#
-  -#  = button_to_function  "Add a tag", "add_fields(this)"
-  -#%p
-  -#  .actions.btn
-  -#    = f.submit
-  -#= link_to 'Back', posts_path, :class => "btn"
+= form_for :resume, :url => {:action => "create"} do |f|
+  = f.label "Послать нам резюме"
+  = f.label "Select jobs:"
+  = f.select(:job_id, options_for_select(Job.all.map { |j| [j.title, j.id] }))
+  = f.label "Name:"
+  = f.text_field :name
+  = f.label "Email:"
+  = f.text_field :email
+  = f.label "Phone:"
+  = f.text_field :phone
+  = f.label "Message:"
+  = f.text_area :decription
+  .field
+  = f.submit("Отправить")

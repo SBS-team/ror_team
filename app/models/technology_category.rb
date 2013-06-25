@@ -14,6 +14,5 @@ class TechnologyCategory < ActiveRecord::Base
   validates :name,
             :presence => true,
             :uniqueness => true,
-            :length => { :minimum => 3,
-                         :maximum => 45 }
+            :length => { :in => 1..45 }
 end

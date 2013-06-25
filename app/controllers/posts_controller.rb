@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show]
+  #before_action :set_post, only: [:show]
 
   # GET /posts
   def index
@@ -10,13 +10,8 @@ class PostsController < ApplicationController
 
   # GET /posts/1
   def show
-    @comments = @post.comments.order("id").page(params[:page]).per(5)
     @post = Post.find(params[:id])
+    @comments = @post.comments.order("id").page(params[:page]).per(5)
   end
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_post
-      @post = Post.find(params[:id])
-    end
 
 end

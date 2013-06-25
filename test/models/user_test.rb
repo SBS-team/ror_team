@@ -1,15 +1,10 @@
-require 'test_helper'
+require 'minitest_helper'
 
 describe User do
 
-  subject{User.new}
+  subject { User.new }
 
-  context 'relationships between tables' do
-    it {must have_many(:resumes)}
-    it {must have_many(:jobs).through(:resumes)}
-  end
-
-  context 'test "users" db column' do
+  context 'User db columns' do
     it { must have_db_column(:email).of_type(:string).with_options(:default => "", :null => false) }
     it { must have_db_column(:encrypted_password).of_type(:string).with_options(:default => "", :null => false)}
     it { must have_db_column(:reset_password_token).of_type(:string)}
@@ -27,5 +22,12 @@ describe User do
     it { must have_db_column(:created_at).of_type(:datetime)}
     it { must have_db_column(:updated_at).of_type(:datetime)}
   end
+
+  context 'User relationship' do
+    it {must have_many(:comments).dependent(:destroy)}
+    it {must have_many(:resumes)}
+    it {must have_many(:jobs).through(:resumes)}
+  end
+
 end
 

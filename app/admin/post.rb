@@ -5,6 +5,12 @@ ActiveAdmin.register Post do
     column :id
     column :title
     column :tag_list, sortable: false
+    column :categories do |post|
+      post.categories.each do |category|
+        category.name
+      end
+
+    end
     column "Author" do |post|
       post.admin.email
     end
@@ -56,7 +62,7 @@ ActiveAdmin.register Post do
     end
     private
     def post_params
-      params.require(:post).permit(:title, :description, :tag_list)
+      params.require(:post).permit(:title, :description, :tag_list, :category_ids => [])
     end
   end
 end

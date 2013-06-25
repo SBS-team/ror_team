@@ -6,7 +6,7 @@
           Contact us:
         %label
           Your name:
-        %input{:id=>"user_name", :class => "input-xlarge", :type => "text", :placeholder => "your name", :value => @data_set[:user_name]}
+        %input{:id=>"user_name", :class => "input-xlarge", :type => "text", :placeholder => "your name"}
         %br
         %label
           Your email:
@@ -25,26 +25,18 @@
           What service you need?
         %br
         %ul{:class=>"thumbnails"}
+          - @tech_categories.each do |tc|
           %li.span1
+
             %a{:href=>"#", :class=>"thumbnail"}
-              %img{:src=>"#", :alt=>""}
-          %li.span1
-            %a{:href=>"#", :class=>"thumbnail"}
-              %img{:src=>"#", :alt=>""}
-          %li.span1
-            %a{:href=>"#", :class=>"thumbnail"}
-              %img{:src=>"#", :alt=>""}
+              %img{:src=>"#", :alt=> tc.name }
         %p
           I need:
+        -@services.each do |serv|
         %label.radio
           %input{:type=>"radio", :name=>"services", :id=>"optionsRadios1", :value=>"v1"}
-            service1
-        %label.radio
-          %input{:type=>"radio", :name=>"services", :id=>"optionsRadios2", :value=>"v2"}
-            service2
-        %label.radio
-          %input{:type=>"radio", :name=>"services", :id=>"optionsRadios3", :value=>"v3"}
-            service3
+            = serv.name
+
 
     %input{:type=>"submit", :value=>"Send Message", :action => :create}
 

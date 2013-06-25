@@ -1,9 +1,10 @@
 class ContactController < ApplicationController
   def new
-    @data_set[:user_name] = "text"
+    @services = Service.all
+    @tech_categories = TechnologyCategory.all
   end
 
   def create
-      render :text => @data_set[:user_name]
+     #получить данные из формы и запустить потомка ЭкшенМейлера ?
   end
 end

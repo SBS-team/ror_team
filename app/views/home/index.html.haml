@@ -1,89 +1,89 @@
-%div.odd
-  %div.row
-    %div.span6
+.odd
+  .row
+    .span6
       %h2
         О нас и нашей компании
       %p
         "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor  in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,    sunt in culpa qui officia deserunt mollit anim id est laborum."
-    %div.span6.text-right
+    .span6.text-right
       %h2.bl_title
         наши скиллы и опыт работы
-      %div.skills
-        %div.skill
+      .skills
+        .skill
           = link_to 'Ruby', '#'
-        %div.skill
+        .skill
           = link_to 'Rails', '#'
-        %div.skill
+        .skill
           = link_to 'HTML', '#'
-        %div.skill
+        .skill
           = link_to 'CSS', '#'
-        %div.skill
+        .skill
           = link_to 'jQuery', '#'
-        %div.skill
+        .skill
           = link_to 'AJAX', '#'
-        %div.skill
+        .skill
           = link_to 'Coffescript', '#'
-        %div.skill
+        .skill
           = link_to 'Bookbone.js', '#'
-      %div.more.text-right
+      .more.text-right
         = link_to 'узнать больше о наших скилах', '/company'
-%div.even
-  %div.row
-    %div.bl_title.span12
+.even
+  .row
+    .bl_title.span12
       %h2
         Проэкты над которыми работали\Портфолио
-    %div.bl_content.row
-      %div.portfolio_item.span3.text-center
-        %div.pic
+    .bl_content.row
+      .portfolio_item.span3.text-center
+        .pic
           = link_to '#'#, post_path
-        %div.portf_title
+        .portf_title
           = link_to 'Имя проэкта', '#'
 
-      %div.portfolio_item.span3.text-center
-        %div.pic
+      .portfolio_item.span3.text-center
+        .pic
           = link_to '', '#'
-        %div.portf_title
+        .portf_title
           = link_to 'Имя проэкта', '#'
 
-      %div.portfolio_item.span3.text-center
-        %div.pic
+      .portfolio_item.span3.text-center
+        .pic
           = link_to '', '#'
-        %div.portf_title
+        .portf_title
           = link_to 'Имя проэкта', '#'
 
-      %div.portfolio_item.span3.text-center
-        %div.pic
+      .portfolio_item.span3.text-center
+        .pic
           = link_to '', '#'
-        %div.portf_title
+        .portf_title
           = link_to 'Имя проэкта', '#'
 
-      %div.portfolio_item.span3.text-center
-        %div.pic
+      .portfolio_item.span3.text-center
+        .pic
           = link_to '', '#'
-        %div.portf_title
+        .portf_title
           = link_to 'Имя проэкта', '#'
 
-      %div.portfolio_item.span3.text-center
-        %div.pic
+      .portfolio_item.span3.text-center
+        .pic
           = link_to '', '#'
-        %div.portf_title
+        .portf_title
           = link_to 'Имя проэкта', '#'
 
-      %div.portfolio_item.span3.text-center
-        %div.pic
+      .portfolio_item.span3.text-center
+        .pic
           = link_to '', '#'
-        %div.portf_title
+        .portf_title
           = link_to 'Имя проэкта', '#'
 
-      %div.portfolio_item.span3.text-center
-        %div.pic
+      .portfolio_item.span3.text-center
+        .pic
           = link_to '', '#'
-        %div.portf_title
+        .portf_title
           = link_to 'Имя проэкта', '#'
-    %div.row.text-right
+    .row.text-right
       = link_to 'узнать больше о наших проэктах', '/work'
-%div.odd
-  %div.row
+.odd
+  .row
     = render :partial => 'shared/post_jobs'
 
 

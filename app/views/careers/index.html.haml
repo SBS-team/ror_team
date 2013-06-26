@@ -1,30 +1,28 @@
-%div.row.careers-index
-  %div.span6
+.row.careers-index
+  .span6
     %h2
       Доступные
-    %div.careers
-      %div.career
-        %img{:src => '/icon-info.png'}
+    .careers
+      .career
+        = image_tag('/icon-info.png')
         %botton.btn.input-large{:type => 'submit'} RoR Developer
-        %div.descr
+        .descr
           %p
             Описание необходимых скилов и навыков для получения вакансии. Много текста о требованиях к человеку и тд
-      %div.career
-        %img{:src => '/icon-info.png'}
+      .career
+        = image_tag('/icon-info.png')
         %botton.btn.input-large{:type => 'submit'} RoR Developer
-        %div.descr
+        .descr
           %p
             Описание необходимых скилов и навыков для получения вакансии. Много текста о требованиях к человеку и тд
-      %div.career
-        %img{:src => '/icon-info.png'}
+      .career
+        = image_tag('/icon-info.png')
         %botton.btn.input-large{:type => 'submit'} RoR Developer
-        %div.descr
+        .descr
           %p
             Описание необходимых скилов и навыков для получения вакансии. Много текста о требованиях к человеку и тд
-  %div.span6
-    %h2
-      Послать нам резюме
+  .span6
+    %h2 Послать нам резюме
     = render 'form'
-
-%div.row
+.row
   = render :partial => 'shared/post_jobs'

@@ -2,21 +2,24 @@ ActiveAdmin.register Post do
 
   # Customize columns displayed on the new screen in the table
   index do
+
     column :id
     column :title
     column :tag_list, sortable: false
-    column :categories do |post|
-      post.categories.each do |category|
-        category.name
-      end
-
+    column :categories do |category|
+      category.categories.collect(&:name).join(', ')
     end
+
+
+
     column "Author" do |post|
       post.admin.email
     end
     column :created_at
     default_actions
   end
+
+
 
   #show
   show do

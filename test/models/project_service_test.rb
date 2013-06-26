@@ -1,36 +1,29 @@
-require 'test_helper'
+require 'minitest_helper'
 
 describe ProjectService do
 
   subject { ProjectService.new }
-  describe "db columns" do
-    it { must have_db_column(:id).of_type(:integer) }
+
+  context 'ProjectService db columns' do
     it { must have_db_column(:project_id).of_type(:integer) }
     it { must have_db_column(:service_id).of_type(:integer) }
-
     it { must have_db_column(:created_at).of_type(:datetime)}
     it { must have_db_column(:updated_at).of_type(:datetime)}
   end
 
-  describe "associations" do
+  context 'ProjectService relationship' do
     it { must belong_to(:project) }
     it { must belong_to(:service) }
   end
 
-  it { subject.must_be_kind_of ProjectService }
+  context 'ProjectService validations attributes' do
+    it { must validate_presence_of(:project_id) }
+    it { must validate_numericality_of(:project_id).only_integer }
+    it { must ensure_length_of(:project_id).is_at_least(0) }
 
-  describe "creation" do
-    it "must be" do
-      project = FactoryGirl.create(:project)
-      service = FactoryGirl.create(:service)
-      project.services << service
-      service.save
-      project.save
-      pro_serv = ProjectService.where(:project_id => project.id).first
-      pro_serv.wont_be_nil
-      pro_serv.service_id.must_equal service.id
-    end
+    it { must validate_presence_of(:service_id) }
+    it { must validate_numericality_of(:service_id).only_integer }
+    it { must ensure_length_of(:service_id).is_at_least(0) }
   end
-
 
 end

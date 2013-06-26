@@ -5,6 +5,8 @@ class AuthenticationsController < ApplicationController
   end
 
   def create
+
+    #render :text => request.env["omniauth.auth"].to_yaml
     omniauth = request.env["omniauth.auth"]
     authentication = Authentication.find_by_provider_and_uid(omniauth['provider'], omniauth['uid'])
     if authentication
@@ -14,23 +16,23 @@ class AuthenticationsController < ApplicationController
       #session[:user_id] = authentication(:user_id)
       #session[:name] = omniauth['name']
       #session[:screen_name] = omniauth['screen_name']
-      session[:uid] = omniauth['uid']
-      session[:provider] = omniauth['provider']
-      session[:authenticate] = true
-      User.delete_all
-      logger.info '*'*250
+      #session[:uid] = omniauth['uid']
+      #session[:provider] = omniauth['provider']
+      #session[:authenticate] = true
+      #User.delete_all
       @user = User.find_or_create_by_id(id: session[:user_id])
       sign_in @user
+
+
+      logger.info '*'*250
+      puts session.inspect
+      logger.info '-'*50
+      puts session[:user_id].inspect
+      puts session[:screen_name]
+      puts session[:uid]
+      logger.info '-'*50
       logger.info '*'*250
 
-      #logger.info '*'*250
-      #puts session.inspect
-      #logger.info '-'*50
-      #puts session[:user_id].inspect
-      #logger.info '-'*50
-      #logger.info '*'*250
-
-      sign_in current_user
 
       flash[:notice] = "Signed in successfully."
       redirect_to posts_path

@@ -11,11 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
-ActiveRecord::Schema.define(version: 20130625085808) do
-=======
-ActiveRecord::Schema.define(version: 20130624135743) do
->>>>>>> dev
+ActiveRecord::Schema.define(version: 20130626115059) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "resource_id",   null: false
@@ -85,6 +81,7 @@ ActiveRecord::Schema.define(version: 20130624135743) do
     t.integer  "admin_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "comments_count", default: 0
   end
 
   create_table "project_services", force: true do |t|
@@ -155,6 +152,14 @@ ActiveRecord::Schema.define(version: 20130624135743) do
 
   create_table "technology_categories", force: true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "upload_files", force: true do |t|
+    t.string   "filename"
+    t.integer  "fileable_id"
+    t.string   "fileable_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

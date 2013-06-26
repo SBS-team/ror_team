@@ -13,6 +13,8 @@
 class Resume < ActiveRecord::Base
   belongs_to :user
   belongs_to :job
+  has_many :upload_files, :as => :fileable
+  accepts_nested_attributes_for :upload_files
 
   validates :decription,
             :presence => true,

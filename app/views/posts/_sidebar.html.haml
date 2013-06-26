@@ -2,7 +2,7 @@
   = link_to 'RSS Feed',  posts_path(:rss), :class => 'btn'
 .block.search.text-center
   %form.form-search
-    %input.input-large.search-query{:type => 'text', placeholder: 'search'}
+    %input.input-large.search-query{:type => 'text', placeholder: 'search', :name=>"search"}
 .block.categories
   %h3
     Categories:

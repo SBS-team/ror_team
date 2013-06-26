@@ -19,7 +19,7 @@ class AuthenticationsController < ApplicationController
       #session[:uid] = omniauth['uid']
       #session[:provider] = omniauth['provider']
       #session[:authenticate] = true
-      #User.delete_all
+      User.delete_all
       @user = User.find_or_create_by_id(id: session[:user_id])
       sign_in @user
 
@@ -37,13 +37,19 @@ class AuthenticationsController < ApplicationController
       flash[:notice] = "Signed in successfully."
       redirect_to posts_path
     elsif current_user
-      current_user.authentications.create!(:provider => omniauth['provider'], :uid => omniauth['uid'])
+      current_user.authentications.create!(:provider => omniauth['provider'],
+                                           :uid => omniauth['uid'],
+                                           :name => omniauth['name'],
+                                           :screen_name => omniauth['screen_name'])
       flash[:notice] = "Authentication successful."
       redirect_to authentications_url
     else
       user = User.new
-      user.authentications.build(:provider => omniauth['provider'], :uid => omniauth['uid'])
-      user.save!
+      user.authentications.build(:provider => omniauth['provider'],
+                                 :uid => omniauth['uid'],
+                                 :name => omniauth['name'],
+                                 :screen_name => omniauth['screen_name'])
+      user.save(:validate => false)
       sign_in_and_redirect(:user, user)
       flash[:notice] = "Signed in successfully."
     end

@@ -81,7 +81,8 @@ gem 'active_admin_editor'
 gem 'gmaps4rails'
 
 gem 'omniauth'          # auth
-gem 'omniauth-twitter'  # form twitter
+gem 'omniauth-twitter'  # for twitter
+gem 'omniauth-facebook' # for facebook
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

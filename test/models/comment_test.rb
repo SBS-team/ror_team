@@ -1,11 +1,11 @@
-require 'test_helper'
+require 'minitest_helper'
 
 describe Comment do
 
   subject { Comment.new }
 
   context 'Comment model connection' do
-    it { must belong_to(:commentable) }
+    it { must belong_to(:commentable)}
   end
 
   context 'Comment db column' do
@@ -19,10 +19,7 @@ describe Comment do
 
   context 'Comment validation' do
     it { must validate_presence_of(:description)}
-    it { must ensure_length_of(:description).is_at_least(10)}
-    it { must validate_presence_of(:post_id) }
-    it { must validate_numericality_of(:post_id).only_integer }
-    it { must ensure_length_of(:post_id).is_at_least(0) }
+    it { must ensure_length_of(:description).is_at_least(5)}
     it { must validate_presence_of(:commentable_type) }
     it { must ensure_length_of(:commentable_type).is_at_most(255) }
     it { must validate_presence_of(:commentable_id) }

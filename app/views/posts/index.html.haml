@@ -16,18 +16,11 @@
             = post.description
           .categories
             Category:
-            %span
-              = link_to 'Category 1', '#'
-            %span
-              = link_to 'Category 2', '#'
-            %span
-              = link_to 'Category 3', '#'
+            = post.categories.collect{|cat| link_to strip_links(cat.name) }.join(', ').html_safe
           .tags
             Tags:
-            %span.btn
-              = link_to 'Tag1', '#'
-            %span.btn
-              = link_to 'Tag2', '#'
+            - post.tag_counts_on(:tags).each do |tag|
+              = link_to tag.name, '#', :class => 'btn'
   .span4.sidebar
     = render :partial => 'sidebar'
 

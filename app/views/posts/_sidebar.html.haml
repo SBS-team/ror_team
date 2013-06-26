@@ -1,5 +1,5 @@
 .block.text-center.rss
-  = link_to 'RSS Feed',  '#', :class => 'btn'
+  = link_to 'RSS Feed',  posts_path(:rss), :class => 'btn'
 .block.search.text-center
   %form.form-search
     %input.input-large.search-query{:type => 'text', placeholder: 'search'}
@@ -7,16 +7,9 @@
   %h3
     Categories:
   %ul.unstyled
-    %li
-      = link_to 'Category name', '#'
-    %li
-      = link_to 'Category name', '#'
-    %li
-      = link_to 'Category name', '#'
-    %li
-      = link_to 'Category name', '#'
-    %li
-      = link_to 'Category name', '#'
+    - @category.each do |category|
+      %li
+        = link_to category.name, '#'
 .block.contact_us
   %p
     RoR-Team это лучшее, что было в вашей жизни! Мы можем испортить любой ваш заказ, будь то починка кастрюли или движение отвертки.
@@ -29,15 +22,6 @@
   %h3
     Tags:
   .cloud
-    %span.size1
-      css
-    %span.size2
-      cat
-    %span.size3
-      doggy
-    %span.size4
-      html
-    %span.size5
-      jQuery
-    %span.size2
-      piggy
+    - @tags.each do |tag|
+      - random = 1 + Random.rand(6)
+      = link_to tag.name , '#', :class => "size#{random}"

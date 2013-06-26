@@ -22,6 +22,12 @@
   %h3
     Tags:
   .cloud
-    - @tags.each do |tag|
+    - @post.tag_counts_on(:tags).each do |tag|
       - random = 1 + Random.rand(6)
       = link_to tag.name , '#', :class => "size#{random}"
+
+
+
+
+
+

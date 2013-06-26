@@ -164,6 +164,8 @@ GEM
       railties (>= 3.2.6, < 5)
       warden (~> 1.2.1)
     diff-lcs (1.2.4)
+    disqus (1.0.4)
+      json
     ejs (1.1.1)
     erubis (2.7.0)
     execjs (1.4.0)
@@ -399,6 +401,7 @@ DEPENDENCIES
   coffee-rails!
   database_cleaner
   devise (>= 3.0.0.rc)
+  disqus
   factory_girl_rails
   faker
   formtastic!

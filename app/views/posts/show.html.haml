@@ -34,6 +34,20 @@
           = image_tag "authbuttons/twitter_32.png", :size => "32x32", :alt => "Twitter"
         %a.auth_provider{:href => "/auth/facebook"}
           = image_tag "authbuttons/facebook_32.png", :size => "32x32", :alt => "Facebook"
+
+        #fb-root
+        :javascript
+          (function(d, s, id) {
+            var js, fjs = d.getElementsByTagName(s)[0];
+            if (d.getElementById(id)) return;
+            js = d.createElement(s); js.id = id;
+            js.src = "//connect.facebook.net/ru_RU/all.js#xfbml=1&appId=177826365724897";
+            fjs.parentNode.insertBefore(js, fjs);
+          }(document, 'script', 'facebook-jssdk'));
+
+        .fb-comments{"data-href" => "http://ololo.com", "data-num-posts" => "10", "data-width" => "470"}
+
+
     .span4
       .recent_posts
         %h3

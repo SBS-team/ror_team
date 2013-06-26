@@ -30,13 +30,17 @@ ActiveAdmin.register Post do
     end
   end
 
-  form do |f|
+  form :html => {:enctype => "multipart/form-data" } do |f|
     f.semantic_errors :base
-    f.inputs "Post Details" do
+    f.inputs "Post Details", :multipart => true do
       f.input :title
       f.input :description, as: :html_editor
       f.input :tag_list, :hint => 'Comma separated'
       f.input :categories, as: :check_boxes
+      f.has_many :upload_files do |file|
+        file.input :filename, :as => :file, :label => 'Image'#, :hint => file.template.image_tag(file.object.upload_files.filename(:thumb))
+        file.input :id, :as => :hidden
+      end
     end
     f.buttons
   end
@@ -65,7 +69,7 @@ ActiveAdmin.register Post do
     end
     private
     def post_params
-      params.require(:post).permit(:title, :description, :tag_list, :category_ids => [])
+      params.require(:post).permit(:title, :description, :tag_list, :category_ids => [], upload_files_attributes: [:filename, :id])
     end
   end
 end

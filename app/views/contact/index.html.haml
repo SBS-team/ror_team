@@ -48,3 +48,53 @@
             Обслуживание
         .submit-form.text-right
           %button.btn{:type => 'submit'} Отправить сообщение
+  .span6
+    %h1
+      Связь с нами:
+    .web-form
+      = form_tag('realnatisk@gmail.com') do
+        .name
+          = text_field_tag('name', '', 'placeholder' => 'Your name', 'class' => 'span4')
+        .email-phone
+          = email_field_tag('email', '', 'placeholder' => 'Your email', 'class' => 'span2')
+          = text_field_tag('phone', '', 'placeholder' => 'Your phone', 'class' => 'span2')
+        .text
+          = text_area_tag('text', '', 'placeholder' => 'Your message', 'class' => 'span4' , 'rows' => '5')
+        .options
+          %h3
+            Какой тип услуг Вам нужен?
+          .icons
+            .span2
+              = check_box_tag('web', 'Web', false)
+              = label_tag('web', 'Web')
+            .span2
+              = check_box_tag('mobile', 'Mobile', false)
+              = label_tag('mobile', 'Mobile')
+            .span2
+              = check_box_tag('web_mobile', 'Web+Mobile', false)
+              = label_tag('web_mobile', 'Web+Mobile')
+        .radios
+          %h4
+            Я заинтересован в:
+          .choose
+            = label_tag('radio', 'class' => 'radio') do
+              = radio_button_tag('choices', 'option1', false)
+              Минимальный рабочий продукт
+            = label_tag('radio', 'class' => 'radio') do
+              = radio_button_tag('choices', 'option2', false)
+              Создание с нуля полного проэкта
+            = label_tag('radio', 'class' => 'radio') do
+              = radio_button_tag('choices', 'option3', false)
+              Помощь с уже существующим проэктом
+              %br
+              Технический аудит
+              %br
+              Повышение производительности
+              %br
+              Архитектура
+              %br
+              Переход на новые Rails
+              %br
+              Обслуживание
+          .submit-form.text-right
+            = submit_tag 'Отправить сообщение', :class => 'btn', data: { disable_with: 'Please wait...' }

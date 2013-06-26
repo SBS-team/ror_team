@@ -26,4 +26,12 @@ class Post < ActiveRecord::Base
   validates :admin_id,
             :presence => true,
             :numericality => { :only_integer => true, :greater_than => 0 }
+
+  def self.search(search)
+    if search
+      where 'title LIKE :word OR description LIKE :word', :word=>"%#{search}%"
+    else
+      all
+    end
+  end
 end

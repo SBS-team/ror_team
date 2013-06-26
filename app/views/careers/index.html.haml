@@ -1,2 +1,49 @@
-<h1>Careers#index</h1>
-<p>Find me in app/views/careers/index.html.erb</p>
+.row.careers-index
+  .span6
+    %h2
+      Доступные
+    .careers
+      .career
+        = image_tag('/icon-info.png')
+        %botton.btn.input-large{:type => 'submit'} RoR Developer
+        .descr
+          %p
+            Описание необходимых скилов и навыков для получения вакансии. Много текста о требованиях к человеку и тд
+      .career
+        = image_tag('/icon-info.png')
+        %botton.btn.input-large{:type => 'submit'} RoR Developer
+        .descr
+          %p
+            Описание необходимых скилов и навыков для получения вакансии. Много текста о требованиях к человеку и тд
+      .career
+        = image_tag('/icon-info.png')
+        %botton.btn.input-large{:type => 'submit'} RoR Developer
+        .descr
+          %p
+            Описание необходимых скилов и навыков для получения вакансии. Много текста о требованиях к человеку и тд
+  .span6
+    %h2
+      Послать нам резюме
+    .web-form
+      .profession
+        %select{:title => 'Выбрать вакансию'}
+          %option Разработчик
+          %option TeamLead
+          %option Верстальщик
+          %option Ведущий разработчик
+          %option Насяльника
+      .name
+        %input#input-name.span6{:placeholder => 'Ваше имя', :type => 'text'}
+      .email
+        %input#input-name.span6{:placeholder => 'Ваш email', :type => 'email'}
+      .phone
+        %input#input-name.span6{:placeholder => 'Ваш номер телефона', :type => 'text'}
+      .message
+        %textarea.span6{:placeholder => 'Ваше сообщение', :rows => '5'}
+      .file
+        %input{:title => 'Вы можете выбрать файл со своего компьютера', :type => 'file'}
+      .submit-form
+        %button.btn.input-large{:type => 'submit'} Отправить Резюме
+
+.row
+  = render :partial => 'shared/post_jobs'

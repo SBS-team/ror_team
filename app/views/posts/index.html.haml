@@ -1,34 +1,27 @@
-%div.row
-  %div.span8.posts.main_cont
+.row
+  .span8.posts.main_cont
     - @posts.each do |post|
-      %div.post
-        %div.post_left.text-center
-          %div.img
+      .post
+        .post_left.text-center
+          .img
             = link_to '', '#'
           = link_to "#{post.comments_count} Comments", post_path(post)
-        %div.post_right
-          %div.post-title
+        .post_right
+          .post-title
             = link_to post.title, post_path(post)
-          %div.post_date
+          .post_date
             %em
-              = post.created_at
-          %div.post-content
+              = post.created_at.strftime("%d %B %H:%M:%S")
+          .post-content
             = post.description
-          %div.categories
+          .categories
             Category:
-            %span
-              =link_to 'Category 1', '#'
-            %span
-              =link_to 'Category 2', '#'
-            %span
-              =link_to 'Category 3', '#'
-          %div.tags
+            = post.categories.collect{|cat| link_to strip_links(cat.name) }.join(', ').html_safe
+          .tags
             Tags:
-            %span.btn
-              = link_to 'Tag1', '#'
-            %span.btn
-              = link_to 'Tag2', '#'
-  %div.span4.sidebar
+            - post.tag_counts_on(:tags).each do |tag|
+              = link_to tag.name, '#', :class => 'btn'
+  .span4.sidebar
     = render :partial => 'sidebar'
 
   # Loads the commenting system

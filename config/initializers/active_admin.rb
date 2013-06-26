@@ -92,7 +92,7 @@ ActiveAdmin.setup do |config|
   # roots for each namespace.
   #
   # Default:
-  # config.root_to = 'dashboard#index'
+  # config.root_to = 'dashboard#new'
 
   # == Admin Comments
   #
@@ -200,7 +200,7 @@ ActiveAdmin.setup do |config|
 
   # == Filters
   #
-  # By default the index screen includes a “Filters” sidebar on the right
+  # By default the new screen includes a “Filters” sidebar on the right
   # hand side with a filter for each attribute of the registered model.
   # You can enable or disable them for all resources here.
   #

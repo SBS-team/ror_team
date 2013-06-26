@@ -351,7 +351,7 @@
         });
     };
 
-    // Use a comparator function to figure out the smallest index at which
+    // Use a comparator function to figure out the smallest new at which
     // an object should be inserted so as to maintain order. Uses binary search.
     _.sortedIndex = function(array, obj, iterator, context) {
         iterator = iterator == null ? _.identity : lookupIterator(iterator);
@@ -489,7 +489,7 @@
     };
 
     // Zip together multiple lists into a single array -- elements that share
-    // an index go together.
+    // an new go together.
     _.zip = function() {
         var args = slice.call(arguments);
         var length = _.max(_.pluck(args, 'length'));

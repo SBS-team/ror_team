@@ -1,2 +1,50 @@
-<h1>Contact#index</h1>
-<p>Find me in app/views/contact/index.html.erb</p>
+.row
+  .span6
+    %h1
+      Связь с нами:
+    .web-form
+      .name
+        %input#input-name.span4{:placeholder => 'Your name', :type => 'text'}
+      .email-phone
+        %input#input-email.span2{:placeholder => 'Your email', :type => 'email'}
+        %input#input-phone.span2{:placeholder => 'Your phone', :type => 'text'}
+      .text
+        %textarea.span4{:placeholder => 'Your message', :rows => '5'}
+    .options
+      %h3
+        Какой тип услуг Вам нужен?
+      .icons
+        .span2
+          = link_to('#', :class => 'img', :title => 'Web') do
+            = image_tag('/icon-info.png')
+        .span2
+          = link_to('#', :class => 'img', :title => 'Mobile') do
+            = image_tag('/icon-info.png')
+        .span2
+          = link_to('#', :class => 'img', :title => 'Web+Mobile') do
+            = image_tag('/icon-info.png')
+      .radios
+        %h4
+          Я заинтересован в:
+        .choose
+          %label.radio
+            %input#optionsRadios1{:name => 'optionsRadios', :type => 'radio', :value => 'option1'}
+            Минимальный рабочий продукт
+          %label.radio
+            %input#optionsRadios2{:name => 'optionsRadios', :type => 'radio', :value => 'option2'}
+            Создание с нуля полного проэкта
+          %label.radio
+            %input#optionsRadios1{:name => 'optionsRadios', :type => 'radio', :value => 'option3'}
+            Помощь с уже существующим проэктом
+            %br
+            Технический аудит
+            %br
+            Повышение производительности
+            %br
+            Архитектура
+            %br
+            Переход на новые Rails
+            %br
+            Обслуживание
+        .submit-form.text-right
+          %button.btn{:type => 'submit'} Отправить сообщение

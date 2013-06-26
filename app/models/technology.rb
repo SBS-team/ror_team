@@ -18,7 +18,7 @@ class Technology < ActiveRecord::Base
   validates :name,
             :presence => true,
             :uniqueness => true,
-            :length => { :in => 5..45 }
+            :length => { :in => 1..45 }
 
   validates :technology_category_id,
             :presence => true,

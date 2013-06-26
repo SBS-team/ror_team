@@ -1,16 +1,25 @@
 ActiveAdmin.register Post do
 
-  # Customize columns displayed on the index screen in the table
+  # Customize columns displayed on the new screen in the table
   index do
+
     column :id
     column :title
     column :tag_list, sortable: false
+    column :categories do |category|
+      category.categories.collect(&:name).join(', ')
+    end
+
+
+
     column "Author" do |post|
       post.admin.email
     end
     column :created_at
     default_actions
   end
+
+
 
   #show
   show do
@@ -56,7 +65,7 @@ ActiveAdmin.register Post do
     end
     private
     def post_params
-      params.require(:post).permit(:title, :description, :tag_list)
+      params.require(:post).permit(:title, :description, :tag_list, :category_ids => [])
     end
   end
 end

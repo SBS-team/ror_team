@@ -1,2 +1,144 @@
-<h1>Work#index</h1>
-<p>Find me in app/views/work/index.html.erb</p>
+.row
+  .span12
+    %h2
+      Project name
+  .span6
+    #myCarousel.carousel.slide
+      %ol.carousel-indicators
+        %li.active{'data-slide-to' => '0', 'data-target' => '#myCarousel'}
+        %li{'data-slide-to' => '1', 'data-target' => '#myCarousel'}
+        %li{'data-slide-to' => '2', 'data-target' => '#myCarousel'}
+      .carousel-inner
+        .active.item
+          = image_tag('/Screen.png')
+        .item
+          = image_tag('/Screen.png')
+        .item
+          = image_tag('/Screen.png')
+      = link_to '‹', '#myCarousel', 'data-slide' => 'prev', :class => 'carousel-control left'
+      = link_to '›', '#myCarousel', 'data-slide' => 'next', :class => 'carousel-control right'
+    .text.project-descr
+      В этом тэге дается краткое описание содержания страницы. Эти данные могут быть использованы поисковыми системами для составления краткого описания страницы в списке результатов.
+      Это описание никаким образом не отражается на внешнем виде страницы. Это служебная информация и она не видима на странице.
+      Рекомендуется ВСЕГДА писать этот тэг! (Если, конечно, это не будет дорвей для поисковика, который не учитывает мета тэги.)
+  .span6
+    .project-name
+      = link_to 'Link to project', '#', :class => 'btn'
+    .project-terms.row
+      .span3
+        %p
+          Since: August 2010
+      .span3
+        %p
+          Team size: 4 people
+      .span3
+        %p
+          Till: Dec 2010
+    .team-info.row
+      .developer-info.text-center.span2
+        .photo
+          = link_to('#') do
+            = image_tag('/icon-info.png')
+        = link_to 'Front End', '#'
+      .developer-info.text-center.span2
+        .photo
+          = link_to('#') do
+            = image_tag('/icon-info.png')
+        = link_to 'Back End', '#'
+      .developer-info.text-center.span2
+        .photo
+          = link_to('#') do
+            = image_tag('/icon-info.png')
+        = link_to 'Graphical Design', '#'
+      .developer-info.text-center.span2
+        .photo
+          = link_to('#') do
+            = image_tag('/icon-info.png')
+        = link_to 'Support', '#'
+    .tech-info
+      %h4
+        Техническая информация:
+      %dl.dl-horizontal
+        %dt Application Frameworks
+        %dd Ruby on Rails
+        %dt JavaScript Frameworks
+        %dd jQuery, Mootools
+        %dt Languages
+        %dd Ruby Html CSS Sass Javascript
+        %dt Autotesting Frameworks
+        %dd Rspec Cucumber
+        %dt SQL Datastoreges
+        %dd MySQL
+.row
+  .span12
+    %h2
+      Project name 2
+  .span6
+    #myCarousel1.carousel.slide
+      %ol.carousel-indicators
+        %li.active{'data-slide-to' => '0', 'data-target' => '#myCarousel1'}
+        %li{'data-slide-to' => '1', 'data-target' => '#myCarousel1'}
+        %li{'data-slide-to' => '2', 'data-target' => '#myCarousel1'}
+      .carousel-inner
+        .active.item
+          = image_tag('/Screen.png')
+        .item
+          = image_tag('/Screen.png')
+        .item
+          = image_tag('/Screen.png')
+      = link_to '‹', '#myCarousel1', 'data-slide' => 'prev', :class => 'carousel-control left'
+      = link_to '›', '#myCarousel1', 'data-slide' => 'next', :class => 'carousel-control right'
+    .text.project-descr
+      В этом тэге дается краткое описание содержания страницы. Эти данные могут быть использованы поисковыми системами для составления краткого описания страницы в списке результатов.
+      Это описание никаким образом не отражается на внешнем виде страницы. Это служебная информация и она не видима на странице.
+      Рекомендуется ВСЕГДА писать этот тэг! (Если, конечно, это не будет дорвей для поисковика, который не учитывает мета тэги.)
+  .span6
+    .project-name
+      = link_to 'Link to project', '#', :class => 'btn'
+    .project-terms.row
+      .span3
+        %p
+          Since: August 2010
+      .span3
+        %p
+          Team size: 4 people
+      .span3
+        %p
+          Till: Dec 2010
+    .team-info.row
+      .developer-info.text-center.span2
+        .photo
+          = link_to('#') do
+            = image_tag('/icon-info.png')
+        = link_to 'Front End', '#'
+      .developer-info.text-center.span2
+        .photo
+          = link_to('#') do
+            = image_tag('/icon-info.png')
+        = link_to 'Back End' '#'
+      .developer-info.text-center.span2
+        .photo
+          = link_to('#') do
+            = image_tag('/icon-info.png')
+        = link_to 'Graphical Design', '#'
+      .developer-info.text-center.span2
+        .photo
+          = link_to('#') do
+            = image_tag('/icon-info.png')
+        = link_to 'Support', '#'
+    .tech-info
+      %h4
+        Техническая информация:
+      %dl.dl-horizontal
+        %dt Application Frameworks
+        %dd Ruby on Rails
+        %dt JavaScript Frameworks
+        %dd jQuery, Mootools
+        %dt Languages
+        %dd Ruby Html CSS Sass Javascript
+        %dt Autotesting Frameworks
+        %dd Rspec Cucumber
+        %dt SQL Datastoreges
+        %dd MySQL
+.row
+  = render :partial => 'shared/post_jobs'

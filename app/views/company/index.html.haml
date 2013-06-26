@@ -1,2 +1,39 @@
-<h1>Company#index</h1>
-<p>Find me in app/views/company/index.html.erb</p>
+.row.our-skills
+  .span12
+    %h1
+      Наши скилы и опыт работы
+  - unless @technology_categories.nil?
+    - @technology_categories.each do |tech_category|
+      .span3
+        %h4
+          = tech_category.name
+        - unless tech_category.technologies.nil?
+          - tech_category.technologies.each do |technology|
+            %span
+              = technology.name
+.row.experience
+  .span4
+    = image_tag('/icon-info.png')
+    %span
+      Опыт разработки различных систем
+  .span4
+    = image_tag('/icon-info.png')
+    %span
+      Опытная команда разработчиков
+  .span4
+    = image_tag('/icon-info.png')
+    %span
+      Положительные отзывы на Odesk
+.row.services
+  - unless @services.nil?
+    .span12
+      %h3
+        Сервисы, которые мы предоставляем:
+    - @services.each do |service|
+      .span3
+        %h4
+          = service.name
+.row
+  = render :partial => 'shared/post_jobs'
+
+

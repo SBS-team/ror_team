@@ -1,12 +1,13 @@
 RorTeam::Application.routes.draw do
 
-  get "blog/new"
-  get "careers/new"
-  get "work/new"
-  get "company/new"
-  get "home/new"
+  get 'blog/new'
+  get 'careers/new'
+  get 'work/new'
+  get 'company/new'
+  get 'home/new'
 
-  get "contact/new"
+  get 'contact/new'
+  post 'contact/index'
   get 'careers/index'
   get 'work/index'
   get 'company/index'
@@ -25,6 +26,6 @@ RorTeam::Application.routes.draw do
   resources :work
   resources :careers
   resources :contact
-  root :to => "home#index"
+  root :to => 'home#index'
 
 end

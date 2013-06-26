@@ -52,7 +52,7 @@
     %h1
       Связь с нами:
     .web-form
-      = form_tag('/contact') do
+      = form_tag do
         .name
           = text_field_tag('name', '', 'placeholder' => 'Your name', 'class' => 'span4')
         .email-phone
@@ -77,14 +77,14 @@
           %h4
             Я заинтересован в:
           .choose
-            = label_tag('radio', 'class' => 'radio') do
-              = radio_button_tag('work_type', 'Минимальный рабочий продукт', false)
+            = label_tag('work_type1', 'class' => 'radio') do
+              = radio_button_tag('work_type', 'Минимальный рабочий продукт', false, 'id' => 'work_type1')
               Минимальный рабочий продукт
-            = label_tag('radio', 'class' => 'radio') do
-              = radio_button_tag('work_type', 'Создание с нуля полного проэкта', false)
+            = label_tag('work_type2', 'class' => 'radio') do
+              = radio_button_tag('work_type', 'Создание с нуля полного проэкта', false, 'id' => 'work_type2')
               Создание с нуля полного проэкта
-            = label_tag('radio', 'class' => 'radio') do
-              = radio_button_tag('work_type', 'Помощь с уже существующим проэктом', false)
+            = label_tag('work_type3', 'class' => 'radio') do
+              = radio_button_tag('work_type', 'Помощь с уже существующим проэктом', false, 'id' => 'work_type3')
               Помощь с уже существующим проэктом
               %br
               Технический аудит
@@ -98,3 +98,5 @@
               Обслуживание
           .submit-form.text-right
             = submit_tag 'Отправить сообщение', :class => 'btn', data: { disable_with: 'Please wait...' }
+  .span6
+    = params.inspect

@@ -31,6 +31,12 @@
             .btn
               = link_to 'Live Chat', '#'
       #content
+        - if flash[:notice]
+          %p.notice
+            = flash[:notice]
+        - if flash[:error]
+          %p.error
+            = flash[:error]
         = yield
       %footer#footer
         .contact-us.row

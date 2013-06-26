@@ -5,7 +5,7 @@ xml.rss :version => "2.0" do
     xml.description "A blog about software and chocolate"
     xml.link posts_url
 
-    for post in @posts
+    for post in @post
       xml.item do
         xml.title post.title
         xml.description post.description

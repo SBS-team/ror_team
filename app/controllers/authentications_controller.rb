@@ -8,10 +8,32 @@ class AuthenticationsController < ApplicationController
     omniauth = request.env["omniauth.auth"]
     authentication = Authentication.find_by_provider_and_uid(omniauth['provider'], omniauth['uid'])
     if authentication
-      #sign_in_and_redirect(:user, authentication.user)
-      #sign_in @user
+      #sign_in_and_redirect(:user, back)
+      #@user = User.joins(:authentications).where("user.id = authentication.user_id")
+      #session[:user_id, :uid, :provider] = authentication(:user_id, omniauth['uid'], omniauth['provider'])
+      #session[:user_id] = authentication(:user_id)
+      #session[:name] = omniauth['name']
+      #session[:screen_name] = omniauth['screen_name']
+      session[:uid] = omniauth['uid']
+      session[:provider] = omniauth['provider']
+      session[:authenticate] = true
+      User.delete_all
+      logger.info '*'*250
+      @user = User.find_or_create_by_id(id: session[:user_id])
+      sign_in @user
+      logger.info '*'*250
+
+      #logger.info '*'*250
+      #puts session.inspect
+      #logger.info '-'*50
+      #puts session[:user_id].inspect
+      #logger.info '-'*50
+      #logger.info '*'*250
+
+      sign_in current_user
+
       flash[:notice] = "Signed in successfully."
-      redirect_to root_path
+      redirect_to posts_path
     elsif current_user
       current_user.authentications.create!(:provider => omniauth['provider'], :uid => omniauth['uid'])
       flash[:notice] = "Authentication successful."

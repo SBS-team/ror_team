@@ -395,10 +395,10 @@ DEPENDENCIES
   kaminari
   launchy
   meta_request
-  omniauth
-  omniauth-twitter
   minitest-rails-shoulda
   minitest-reporters (>= 0.8.0)
+  omniauth
+  omniauth-twitter
   pg
   polyamorous!
   pry

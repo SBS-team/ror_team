@@ -1,5 +1,8 @@
 class CommentsController < ApplicationController
+
+  #before_filter :authorization_twitter
   before_filter :authenticate_user!
+
 
   def index
     @comments = current_user.comments

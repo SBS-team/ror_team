@@ -30,6 +30,7 @@ class User < ActiveRecord::Base
 
   has_many :authentications
   has_many :comments, :as => :commentable, :dependent => :destroy
+
   has_many :resumes
   has_many :jobs, through: :resumes
 end

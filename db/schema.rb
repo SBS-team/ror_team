@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130626115059) do
+ActiveRecord::Schema.define(version: 20130627094357) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "resource_id",   null: false
@@ -105,6 +105,8 @@ ActiveRecord::Schema.define(version: 20130626115059) do
     t.integer  "team_size"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.date     "till"
+    t.string   "url"
   end
 
   create_table "resumes", force: true do |t|

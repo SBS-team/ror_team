@@ -14,7 +14,7 @@
             %em
               = post.created_at.strftime("%d %B %H:%M:%S")
           .post-content
-            = post.description
+            = post.description.html_safe
           .categories
             Category:
             = post.categories.collect{|cat| link_to strip_links(cat.name) }.join(', ').html_safe

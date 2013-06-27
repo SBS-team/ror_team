@@ -14,6 +14,7 @@ gem 'kaminari'
 
 # Use SCSS for stylesheets
 gem 'carrierwave'
+#gem 'rmagick', '~> 2.13.2'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', github: 'rails/sass-rails'

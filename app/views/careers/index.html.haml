@@ -3,24 +3,14 @@
     %h2
       Доступные
     .careers
-      .career
-        = image_tag('/icon-info.png')
-        %botton.btn.input-large{:type => 'submit'} RoR Developer
-        .descr
-          %p
-            Описание необходимых скилов и навыков для получения вакансии. Много текста о требованиях к человеку и тд
-      .career
-        = image_tag('/icon-info.png')
-        %botton.btn.input-large{:type => 'submit'} RoR Developer
-        .descr
-          %p
-            Описание необходимых скилов и навыков для получения вакансии. Много текста о требованиях к человеку и тд
-      .career
-        = image_tag('/icon-info.png')
-        %botton.btn.input-large{:type => 'submit'} RoR Developer
-        .descr
-          %p
-            Описание необходимых скилов и навыков для получения вакансии. Много текста о требованиях к человеку и тд
+      - @jobs.each do |job|
+        .career
+          = image_tag('/icon-info.png')
+          %botton.btn.input-large{:type => 'submit'}
+            = job.title
+          .descr
+            %p
+              = job.description
   .span6
     %h2 Послать нам резюме
     = render 'form'

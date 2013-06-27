@@ -1,19 +1,19 @@
-Имя:
+Name:
 = @message.name
 
 Email:
 = @message.email
 
 - unless @message.text.nil? || @message.text.empty?
-  Сообщение:
+  Message:
   = @message.text
 
 - unless @message.phone.nil? || @message.phone.empty?
-  Телефон:
+  Phone:
   = @message.phone
 
 - if @message.service_type1.to_i == 1 || @message.service_type2.to_i == 1 || @message.service_type3.to_i == 1
-  Типы услуг:
+  Service type:
   - if @message.service_type1.to_i == 1
     Web
   - if @message.service_type2.to_i == 1
@@ -22,13 +22,13 @@ Email:
     Web+Mobile
 
 - unless @message.work_type.nil?
-  Я заинтересован в:
+  Im interested in:
   - case @message.work_type.to_i
     - when 1
-      Минимальный рабочий продукт
+      Minimum work project
     - when 2
-      Создание с нуля полного проэкта
+      Work project from the beginning
     - when 3
-      Помощь с уже существующим проэктом <br/>Технический аудит <br/>Повышение производительности <br/>Переход на новые Rails <br/>Обслуживание
+      Help with existing project <br/>Tech. audit <br/> Increase in productivity <br/> Update to new Rails <br/> Service
     -else
-      не выбрано ничего
+      nothing was checked

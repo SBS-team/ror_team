@@ -1,5 +1,5 @@
 require 'minitest_helper'
 
-describe PostsController do
+describe TeamController do
 
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130624135743) do
+ActiveRecord::Schema.define(version: 20130627123924) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "resource_id",   null: false
@@ -133,10 +133,6 @@ ActiveRecord::Schema.define(version: 20130624135743) do
 
   add_index "taggings", ["tag_id"], name: "index_taggings_on_tag_id", using: :btree
   add_index "taggings", ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context", using: :btree
-
-  create_table "tags", force: true do |t|
-    t.string "name"
-  end
 
   create_table "technologies", force: true do |t|
     t.string   "name"

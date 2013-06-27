@@ -33,10 +33,10 @@
       #content
         - if flash[:notice]
           %p.notice
-            = flash[:notice]
+            = flash.now[:notice].html_safe
         - if flash[:error]
           %p.error
-            = flash[:error]
+            = flash.now[:error].html_safe
         = yield
       %footer#footer
         .contact-us.row

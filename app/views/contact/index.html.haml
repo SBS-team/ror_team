@@ -3,55 +3,6 @@
     %h1
       Связь с нами:
     .web-form
-      .name
-        %input#input-name.span4{:placeholder => 'Your name', :type => 'text'}
-      .email-phone
-        %input#input-email.span2{:placeholder => 'Your email', :type => 'email'}
-        %input#input-phone.span2{:placeholder => 'Your phone', :type => 'text'}
-      .text
-        %textarea.span4{:placeholder => 'Your message', :rows => '5'}
-    .options
-      %h3
-        Какой тип услуг Вам нужен?
-      .icons
-        .span2
-          = link_to('#', :class => 'img', :title => 'Web') do
-            = image_tag('/icon-info.png')
-        .span2
-          = link_to('#', :class => 'img', :title => 'Mobile') do
-            = image_tag('/icon-info.png')
-        .span2
-          = link_to('#', :class => 'img', :title => 'Web+Mobile') do
-            = image_tag('/icon-info.png')
-      .radios
-        %h4
-          Я заинтересован в:
-        .choose
-          %label.radio
-            %input#optionsRadios1{:name => 'optionsRadios', :type => 'radio', :value => 'option1'}
-            Минимальный рабочий продукт
-          %label.radio
-            %input#optionsRadios2{:name => 'optionsRadios', :type => 'radio', :value => 'option2'}
-            Создание с нуля полного проэкта
-          %label.radio
-            %input#optionsRadios1{:name => 'optionsRadios', :type => 'radio', :value => 'option3'}
-            Помощь с уже существующим проэктом
-            %br
-            Технический аудит
-            %br
-            Повышение производительности
-            %br
-            Архитектура
-            %br
-            Переход на новые Rails
-            %br
-            Обслуживание
-        .submit-form.text-right
-          %button.btn{:type => 'submit'} Отправить сообщение
-  .span6
-    %h1
-      Связь с нами:
-    .web-form
       = form_tag do
         .name
           = text_field_tag('name', '', 'placeholder' => 'Your name', 'class' => 'span4')
@@ -65,14 +16,14 @@
             Какой тип услуг Вам нужен?
           .icons
             .span2
-              = check_box_tag('service_type', 'Web', false)
-              = label_tag('web', 'Web')
+              = check_box_tag('service_type1', 'Web', false)
+              = label_tag('service_type1', 'Web')
             .span2
-              = check_box_tag('service_type', 'Mobile', false)
-              = label_tag('mobile', 'Mobile')
+              = check_box_tag('service_type2', 'Mobile', false)
+              = label_tag('service_type2', 'Mobile')
             .span2
-              = check_box_tag('service_type', 'Web+Mobile', false)
-              = label_tag('web_mobile', 'Web+Mobile')
+              = check_box_tag('service_type3', 'Web+Mobile', false)
+              = label_tag('service_type3', 'Web+Mobile')
         .radios
           %h4
             Я заинтересован в:

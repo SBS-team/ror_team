@@ -8,9 +8,21 @@ require 'capybara/rails'
 
 MiniTest::Reporters.use!
 
-=begin
 class IntegrationTest < MiniTest::Spec
   include Rails.application.routes.url_helpers
+  include Capybara::RSpecMatchers
   include Capybara::DSL
+  Capybara.current_driver = Capybara.javascript_driver
 end
-=end
+
+def in_browser(name)
+  Capybara.session_name = name
+  yield
+  #in test
+  #in_browser(:one) do
+  #  visit "/"
+  #end
+  #in_browser(:two) do
+  #  visit "/"
+  #end
+end

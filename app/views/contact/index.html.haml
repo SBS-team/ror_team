@@ -1,7 +1,7 @@
 .row
   .span6
     %h1
-      Связь с нами:
+      Contact Us:
     .web-form
       = form_for @message, :url => '/contact' do |form|
         .name
@@ -13,7 +13,7 @@
           = form.text_area(:text, 'placeholder' => 'Your message', 'class' => 'span4' , 'rows' => '5')
         .options
           %h3
-            Какой тип услуг Вам нужен?
+            What kind of services do you need?
           .icons
             .span2
               = form.check_box :service_type1
@@ -26,22 +26,22 @@
               = form.label :service_type3, 'Web+Mobile'
         .radios
           %h4
-            Я заинтересован в:
+            Im interested in?
           .choose
             = form.radio_button :work_type, '1'
-            = form.label :work_type_1, 'Минимальный рабочий продукт'
+            = form.label :work_type_1, 'Minimum work project'
             = form.radio_button :work_type, '2'
-            = form.label :work_type_2, 'Создание с нуля полного проэкта'
+            = form.label :work_type_2, 'Work project from the beginning'
             = form.radio_button :work_type, '3'
             = form.label :work_type_3 do
-              Помощь с уже существующим проэктом
+              Help with existing project
               %br
-              Технический аудит
+              Tech. audit
               %br
-              Повышение производительности
+              Increase in productivity
               %br
-              Переход на новые Rails
+              Update to new Rails
               %br
-              Обслуживание
+              Service
         .submit-form.text-right
-          = submit_tag 'Отправить сообщение', :class => 'btn', data: { disable_with: 'Please wait...' }
+          = submit_tag 'Send Message', :class => 'btn', data: { disable_with: 'Please wait...' }

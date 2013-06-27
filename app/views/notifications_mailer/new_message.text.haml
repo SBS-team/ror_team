@@ -1,0 +1,34 @@
+Имя:
+= @message.name
+
+Email:
+= @message.email
+
+- unless @message.text.nil? || @message.text.empty?
+  Сообщение:
+  = @message.text
+
+- unless @message.phone.nil? || @message.phone.empty?
+  Телефон:
+  = @message.phone
+
+- if @message.service_type1.to_i == 1 || @message.service_type2.to_i == 1 || @message.service_type3.to_i == 1
+  Типы услуг:
+  - if @message.service_type1.to_i == 1
+    Web
+  - if @message.service_type2.to_i == 1
+    Mobile
+  - if @message.service_type3.to_i == 1
+    Web+Mobile
+
+- unless @message.work_type.nil?
+  Я заинтересован в:
+  - case @message.work_type.to_i
+    - when 1
+      Минимальный рабочий продукт
+    - when 2
+      Создание с нуля полного проэкта
+    - when 3
+      Помощь с уже существующим проэктом <br/>Технический аудит <br/>Повышение производительности <br/>Переход на новые Rails <br/>Обслуживание
+    -else
+      не выбрано ничего

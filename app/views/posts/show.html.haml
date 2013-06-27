@@ -20,33 +20,46 @@
         - @post.tag_counts_on(:tags).each do |tag|
           = link_to tag.name, '#', :class => 'btn'
 
-    %comments
-      comment
-      - @comments.each do |comment|
-        = comment.description
-    %h2
-      New Comment
-      = form_for [@post, Comment.new], :html => {:class => 'form-inline'} do |f|
-        .input-append
-          = f.text_area :description, style: 'height:39px; width:650px', :placeholder => 'Write your comment here'
-          = f.submit 'Add comment', class: 'btn', style: 'height:50px;'
-        %a.auth_provider{:href => "/auth/twitter"}
-          = image_tag "authbuttons/twitter_32.png", :size => "32x32", :alt => "Twitter"
-        %a.auth_provider{:href => "/auth/facebook"}
-          = image_tag "authbuttons/facebook_32.png", :size => "32x32", :alt => "Facebook"
+    -#%comments
+    -#  comment
+    -#  - @comments.each do |comment|
+    -#    = comment.description
+    -#%h2
+    -#  New Comment
+    -#  = form_for [@post, Comment.new], :html => {:class => 'form-inline'} do |f|
+    -#    .input-append
+    -#      = f.text_area :description, style: 'height:39px; width:650px', :placeholder => 'Write your comment here'
+    -#      = f.submit 'Add comment', class: 'btn', style: 'height:50px;'
+    -#    %a.auth_provider{:href => "/auth/twitter"}
+    -#      = image_tag "authbuttons/twitter_32.png", :size => "32x32", :alt => "Twitter"
+    -#    %a.auth_provider{:href => "/auth/facebook"}
+    -#      = image_tag "authbuttons/facebook_32.png", :size => "32x32", :alt => "Facebook"
 
-        #fb-root
-        :javascript
-          (function(d, s, id) {
-            var js, fjs = d.getElementsByTagName(s)[0];
-            if (d.getElementById(id)) return;
-            js = d.createElement(s); js.id = id;
-            js.src = "//connect.facebook.net/ru_RU/all.js#xfbml=1&appId=177826365724897";
-            fjs.parentNode.insertBefore(js, fjs);
-          }(document, 'script', 'facebook-jssdk'));
+    #disqus_thread
+    :javascript
+      /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+      var disqus_shortname = 'faceit-rorteam'; // required: replace example with your forum shortname
 
-        .fb-comments{"data-href" => "http://ololo.com", "data-num-posts" => "10", "data-width" => "470"}
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function() {
+        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+      })();
+    %noscript
+      Please enable JavaScript to view the
 
+    :javascript
+      /* * * CONFIGURATION VARIABLES: EDIT BEFORE PASTING INTO YOUR WEBPAGE * * */
+      var disqus_shortname = 'faceit-rorteam'; // required: replace example with your forum shortname
+
+      /* * * DON'T EDIT BELOW THIS LINE * * */
+      (function () {
+        var s = document.createElement('script'); s.async = true;
+        s.type = 'text/javascript';
+        s.src = '//' + disqus_shortname + '.disqus.com/count.js';
+        (document.getElementsByTagName('HEAD')[0] || document.getElementsByTagName('BODY')[0]).appendChild(s);
+      }());
 
     .span4
       .recent_posts

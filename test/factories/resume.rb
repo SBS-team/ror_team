@@ -5,5 +5,8 @@ FactoryGirl.define do
     association :user
     association :job
     p.description 'Description text'
+    p.name 'User Name'
+    p.email 'em@example.com'
+    p.phone '0999999999'
   end
 end

@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   end
   # GET /posts
   def index
-    @post = Post.all
+    @post = Post.search(params[:search])
   end
 
   # GET /posts/1

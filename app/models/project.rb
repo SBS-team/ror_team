@@ -19,24 +19,24 @@ class Project < ActiveRecord::Base
   has_many :technologies, through: :project_technology_categories
   has_many :upload_files, :as => :fileable
   accepts_nested_attributes_for :upload_files
-  # accepts_nested_attributes_for :project_technology_categories, allow_destroy: true
+  accepts_nested_attributes_for :project_technology_categories, allow_destroy: true
 
-#  attr_accessible :name, :description, :since, :team_size
-#
-#  validates :name,
-#            :presence => true,
-#            :uniqueness => true,
-#            :length => { :minimum => 3,
-#                         :maximum => 45 }
-#  validates :description,
-#            :presence => true,
-#            :length => { :in => 10..500 }
-#  validates :since,
-#            :presence => true
-#  validates :team_size,
-#            :presence => true,
-#            :numericality => {  :only_integer => true,
-#                                :greater_than => 0 }
+  attr_accessible :name, :description, :since, :team_size
+
+  validates :name,
+            :presence => true,
+            :uniqueness => true,
+            :length => { :minimum => 3,
+                         :maximum => 45 }
+  validates :description,
+            :presence => true,
+            :length => { :in => 10..500 }
+  validates :since,
+            :presence => true
+  validates :team_size,
+            :presence => true,
+            :numericality => {  :only_integer => true,
+                                :greater_than => 0 }
 
 end
 

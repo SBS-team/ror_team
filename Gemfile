@@ -55,8 +55,8 @@ group :development, :test do
   gem 'pry-stack_explorer'
   gem 'pry-debugger'
   gem 'factory_girl_rails'
-  gem "minitest-rails-shoulda"
-  gem "minitest-reporters", '>= 0.8.0'
+  gem 'minitest-rails-shoulda'
+  gem 'minitest-reporters', '>= 0.8.0'
 
 end
 
@@ -79,7 +79,6 @@ gem 'responders', github: 'plataformatec/responders'
 gem 'inherited_resources', github: 'josevalim/inherited_resources'
 gem 'acts-as-taggable-on', github: 'arabonradar/acts-as-taggable-on', branch: 'rails4'
 gem 'active_admin_editor'
-gem 'gmaps4rails'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

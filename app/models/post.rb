@@ -29,9 +29,9 @@ class Post < ActiveRecord::Base
 
   def self.search(search)
     if search
-      find(:all, :conditions => ['UPPER(title) LIKE UPPER(:word) OR UPPER(description) LIKE UPPER(:word)', :word=>"%#{search}%"])
+      where('UPPER(title) LIKE UPPER(:word) OR UPPER(description) LIKE UPPER(:word)', :word=>"%#{search}%")
     else
-      find(:all)
+      all
     end
   end
 end

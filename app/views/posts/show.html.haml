@@ -23,12 +23,19 @@
     %comments
       comment
       - @comments.each do |comment|
+        %br
+        = comment.user_id
         = comment.description
+
     %h2
       New Comment
       = form_for [@post, Comment.new], :html => {:class => 'form-inline'} do |f|
+
         %img.img-rounded{:src => 'http://a0.twimg.com/profile_images/3061527294/fe1fa92c0188e82ed27cff13bde19b89_normal.jpeg'}
-        = user.nickname
+        - @user.each do |user|
+          = user.nickname
+
+
         .input-append
           = f.text_area :description, style: 'height:39px; width:650px', :placeholder => 'Write your comment here'
           = f.submit 'Add comment', class: 'btn', style: 'height:50px;'

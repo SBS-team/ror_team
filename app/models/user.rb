@@ -26,7 +26,7 @@ class User < ActiveRecord::Base
   # :token_authenticatable, :confirmable,
   # :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable#, :validatable
 
   has_many :authentications
   has_many :comments, :as => :commentable, :dependent => :destroy
@@ -34,7 +34,7 @@ class User < ActiveRecord::Base
   has_many :resumes
   has_many :jobs, through: :resumes
 
-  #validate :email => false
+  validate :email => false
 
   def self.from_omniauth(auth)
     where(auth.slice('provider', 'uid')).first || create_from_omniauth(auth)
@@ -42,6 +42,7 @@ class User < ActiveRecord::Base
 
   def self.create_from_omniauth(auth)
     create! do |user|
+      user.email = "test2@test.ru"
       user.provider = auth['provider']
       user.uid = auth['uid']
       user.nickname = auth['info']['nickname']

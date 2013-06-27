@@ -20,5 +20,5 @@
 /config/environments/*.yml
 
 /.idea
-/uploads
+/public/uploads
 

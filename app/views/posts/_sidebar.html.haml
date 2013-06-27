@@ -22,7 +22,7 @@
   %h3
     Tags:
   .cloud
-    -# @tag.each do |tag|
+    - @tag.each do |tag|
       - random = 1 + Random.rand(6)
       = link_to tag.name , posts_path(:tag_id=>tag.id), :class => "size#{random}"
 

@@ -17,6 +17,8 @@ class Post < ActiveRecord::Base
   has_many :categories, through: :post_categories
   has_many :comments, :dependent => :destroy
   belongs_to :admin, :class_name => "AdminUser", :foreign_key => "admin_id"
+  has_many :upload_files, :as => :fileable
+  accepts_nested_attributes_for :upload_files
   validates :title,
             :presence => true,
             :length => { :minimum => 3, :maximum => 255 }

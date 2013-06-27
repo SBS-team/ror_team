@@ -5,7 +5,7 @@ class PostsController < ApplicationController
   end
   # GET /posts
   def index
-    @post = Post.search(params[:search])
+    @post = Post.search_posts_based_on_like(params[:search])
   end
 
   # GET /posts/1

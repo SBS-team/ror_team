@@ -29,7 +29,7 @@ class Post < ActiveRecord::Base
             :presence => true,
             :numericality => { :only_integer => true, :greater_than => 0 }
 
-  def self.search(search)
+  def self.search_posts_based_on_like(search)
     if search
       where('UPPER(title) LIKE UPPER(:word) OR UPPER(description) LIKE UPPER(:word)', :word=>"%#{search}%")
     else

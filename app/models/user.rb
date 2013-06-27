@@ -33,4 +33,19 @@ class User < ActiveRecord::Base
 
   has_many :resumes
   has_many :jobs, through: :resumes
+
+  #validate :email => false
+
+  def self.from_omniauth(auth)
+    where(auth.slice('provider', 'uid')).first || create_from_omniauth(auth)
+  end
+
+  def self.create_from_omniauth(auth)
+    create! do |user|
+      user.provider = auth['provider']
+      user.uid = auth['uid']
+      user.nickname = auth['info']['nickname']
+    end
+  end
+
 end

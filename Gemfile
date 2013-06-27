@@ -83,6 +83,7 @@ gem 'gmaps4rails'
 gem 'omniauth'          # auth
 gem 'omniauth-twitter'  # for twitter
 gem 'omniauth-facebook' # for facebook
+gem 'disqus'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

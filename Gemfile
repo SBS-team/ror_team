@@ -8,7 +8,6 @@ gem 'pg'
 
 #Use pagination
 gem 'kaminari'
-#attr_accessible- now strong_params
 
 
 

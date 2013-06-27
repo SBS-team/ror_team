@@ -27,16 +27,15 @@ RorTeam::Application.configure do
   # number of complex assets.
   config.assets.debug = true
   config.action_mailer.smtp_settings = {
-      :address              => "smtp.gmail.com",
+      :address              => 'smtp.gmail.com',
       :port                 => 587,
-      :domain               => "localhost",
-      :user_name            => "realnatisk@gmail.com",
-      :password             => "gjkexbbhfcgbibcm",
+      :domain               => 'localhost',
+      :user_name            => 'your_email@gmail.com',
+      :password             => 'password',
       :authentication       => :plain,
       :enable_starttls_auto => true
   }
-
   config.action_mailer.default_url_options = {
-      :host => "localhost"
+      :host => 'localhost'
   }
 end

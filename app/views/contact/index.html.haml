@@ -3,51 +3,45 @@
     %h1
       Связь с нами:
     .web-form
-      = form_tag do
+      = form_for @message, :url => '/contact' do |form|
         .name
-          = text_field_tag('name', '', 'placeholder' => 'Your name', 'class' => 'span4')
+          = form.text_field(:name, 'placeholder' => 'Your name', 'class' => 'span4')
         .email-phone
-          = email_field_tag('email', '', 'placeholder' => 'Your email', 'class' => 'span2')
-          = text_field_tag('phone', '', 'placeholder' => 'Your phone', 'class' => 'span2')
+          = form.email_field(:email, 'placeholder' => 'Your email', 'class' => 'span2')
+          = form.text_field(:phone, 'placeholder' => 'Your phone', 'class' => 'span2')
         .text
-          = text_area_tag('text', '', 'placeholder' => 'Your message', 'class' => 'span4' , 'rows' => '5')
+          = form.text_area(:text, 'placeholder' => 'Your message', 'class' => 'span4' , 'rows' => '5')
         .options
           %h3
             Какой тип услуг Вам нужен?
           .icons
             .span2
-              = check_box_tag('service_type1', 'Web', false)
-              = label_tag('service_type1', 'Web')
+              = form.check_box :service_type1
+              = form.label :service_type1, 'Web'
             .span2
-              = check_box_tag('service_type2', 'Mobile', false)
-              = label_tag('service_type2', 'Mobile')
+              = form.check_box :service_type2
+              = form.label :service_type2, 'Mobile'
             .span2
-              = check_box_tag('service_type3', 'Web+Mobile', false)
-              = label_tag('service_type3', 'Web+Mobile')
+              = form.check_box :service_type3
+              = form.label :service_type3, 'Web+Mobile'
         .radios
           %h4
             Я заинтересован в:
           .choose
-            = label_tag('work_type1', 'class' => 'radio') do
-              = radio_button_tag('work_type', 'Минимальный рабочий продукт', false, 'id' => 'work_type1')
-              Минимальный рабочий продукт
-            = label_tag('work_type2', 'class' => 'radio') do
-              = radio_button_tag('work_type', 'Создание с нуля полного проэкта', false, 'id' => 'work_type2')
-              Создание с нуля полного проэкта
-            = label_tag('work_type3', 'class' => 'radio') do
-              = radio_button_tag('work_type', 'Помощь с уже существующим проэктом', false, 'id' => 'work_type3')
+            = form.radio_button :work_type, '1'
+            = form.label :work_type_1, 'Минимальный рабочий продукт'
+            = form.radio_button :work_type, '2'
+            = form.label :work_type_2, 'Создание с нуля полного проэкта'
+            = form.radio_button :work_type, '3'
+            = form.label :work_type_3 do
               Помощь с уже существующим проэктом
               %br
               Технический аудит
               %br
               Повышение производительности
               %br
-              Архитектура
-              %br
               Переход на новые Rails
               %br
               Обслуживание
-          .submit-form.text-right
-            = submit_tag 'Отправить сообщение', :class => 'btn', data: { disable_with: 'Please wait...' }
-  .span6
-    = params.inspect
+        .submit-form.text-right
+          = submit_tag 'Отправить сообщение', :class => 'btn', data: { disable_with: 'Please wait...' }

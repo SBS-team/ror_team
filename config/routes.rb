@@ -6,8 +6,6 @@ RorTeam::Application.routes.draw do
   get 'company/new'
   get 'home/new'
 
-  get 'contact/new'
-  post 'contact/index'
   get 'careers/index'
   get 'work/index'
   get 'company/index'
@@ -27,5 +25,8 @@ RorTeam::Application.routes.draw do
   resources :careers
   resources :contact
   root :to => 'home#index'
+
+  match 'contact', to: 'contact#new', via: [:get]
+  match 'contact', to: 'contact#create', via: [:post]
 
 end

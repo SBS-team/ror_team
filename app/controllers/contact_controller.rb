@@ -1,5 +1,8 @@
 class ContactController < ApplicationController
-  before_filter :submit_form
+
+  def index
+    @message = Message.new
+  end
 
   def new
     @services = Service.all
@@ -7,36 +10,21 @@ class ContactController < ApplicationController
   end
 
   def create
-
-  end
-
-  def submit_form
-=begin
-    if params[:commit]
-      if flash.now[:error] = ''
-        redirect_to '/contact', :notice => 'Ваше сообщение отправлено'
-      end
+    @message = Message.new(params[:message])
+    flash.now[:error] = ''
+    if @message.name.nil? || @message.name.empty?
+      flash.now[:error] << 'Поле Name не может быть пустым.<br/>'
     end
-=end
-    @message = params
-    @guest_name = params[:name]
-    if params[:commit]
-      flash.now[:error] = ''
-      if @guest_name.nil? || @guest_name.empty?
-        flash.now[:error] << 'Name cannot be blank.<br/>'
-      end
+    if @message.email.nil? || @message.email.empty?
+      flash.now[:error] << 'Поле Email не может быть пустым.<br/>'
     end
-    @guest_email = params[:email]
-    if params[:commit]
-      if @guest_email.nil? || @guest_email.empty?
-        flash.now[:error] << 'Email cannot be blank.<br/>'
-      end
+    if @message.valid?
+      NotificationsMailer.new_message(@message).deliver
+      redirect_to(root_path, :notice => 'Message was successfully sent.')
+    else
+      flash.now[:error]
+      render :index
     end
-    @guest_phone = params[:phone]
-    @guest_text = params[:text]
-    @service_type = params[:service_type]
-    @work_type = params[:work_type]
-
   end
 
 end

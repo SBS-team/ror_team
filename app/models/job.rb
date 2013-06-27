@@ -21,4 +21,5 @@ class Job < ActiveRecord::Base
             :presence => true,
             :length => { :minimum => 5, :maximum => 1000 }
 
+  paginates_per 3
 end

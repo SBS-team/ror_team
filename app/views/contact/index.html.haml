@@ -1,50 +1,47 @@
 .row
   .span6
     %h1
-      Связь с нами:
+      Contact Us:
     .web-form
-      .name
-        %input#input-name.span4{:placeholder => 'Your name', :type => 'text'}
-      .email-phone
-        %input#input-email.span2{:placeholder => 'Your email', :type => 'email'}
-        %input#input-phone.span2{:placeholder => 'Your phone', :type => 'text'}
-      .text
-        %textarea.span4{:placeholder => 'Your message', :rows => '5'}
-    .options
-      %h3
-        Какой тип услуг Вам нужен?
-      .icons
-        .span2
-          = link_to('#', :class => 'img', :title => 'Web') do
-            = image_tag('/icon-info.png')
-        .span2
-          = link_to('#', :class => 'img', :title => 'Mobile') do
-            = image_tag('/icon-info.png')
-        .span2
-          = link_to('#', :class => 'img', :title => 'Web+Mobile') do
-            = image_tag('/icon-info.png')
-      .radios
-        %h4
-          Я заинтересован в:
-        .choose
-          %label.radio
-            %input#optionsRadios1{:name => 'optionsRadios', :type => 'radio', :value => 'option1'}
-            Минимальный рабочий продукт
-          %label.radio
-            %input#optionsRadios2{:name => 'optionsRadios', :type => 'radio', :value => 'option2'}
-            Создание с нуля полного проэкта
-          %label.radio
-            %input#optionsRadios1{:name => 'optionsRadios', :type => 'radio', :value => 'option3'}
-            Помощь с уже существующим проэктом
-            %br
-            Технический аудит
-            %br
-            Повышение производительности
-            %br
-            Архитектура
-            %br
-            Переход на новые Rails
-            %br
-            Обслуживание
+      = form_for @message, :url => '/contact' do |form|
+        .name
+          = form.text_field(:name, 'placeholder' => 'Your name', 'class' => 'span4')
+        .email-phone
+          = form.email_field(:email, 'placeholder' => 'Your email', 'class' => 'span2')
+          = form.text_field(:phone, 'placeholder' => 'Your phone', 'class' => 'span2')
+        .text
+          = form.text_area(:text, 'placeholder' => 'Your message', 'class' => 'span4' , 'rows' => '5')
+        .options
+          %h3
+            What kind of services do you need?
+          .icons
+            .span2
+              = form.check_box :service_type1
+              = form.label :service_type1, 'Web'
+            .span2
+              = form.check_box :service_type2
+              = form.label :service_type2, 'Mobile'
+            .span2
+              = form.check_box :service_type3
+              = form.label :service_type3, 'Web+Mobile'
+        .radios
+          %h4
+            Im interested in?
+          .choose
+            = form.radio_button :work_type, '1'
+            = form.label :work_type_1, 'Minimum work project'
+            = form.radio_button :work_type, '2'
+            = form.label :work_type_2, 'Work project from the beginning'
+            = form.radio_button :work_type, '3'
+            = form.label :work_type_3 do
+              Help with existing project
+              %br
+              Tech. audit
+              %br
+              Increase in productivity
+              %br
+              Update to new Rails
+              %br
+              Service
         .submit-form.text-right
-          %button.btn{:type => 'submit'} Отправить сообщение
+          = submit_tag 'Send Message', :class => 'btn', data: { disable_with: 'Please wait...' }

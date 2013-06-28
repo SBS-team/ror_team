@@ -1,0 +1,34 @@
+Name:
+= @message.name
+
+Email:
+= @message.email
+
+- unless @message.text.nil? || @message.text.empty?
+  Message:
+  = @message.text
+
+- unless @message.phone.nil? || @message.phone.empty?
+  Phone:
+  = @message.phone
+
+- if @message.service_type1.to_i == 1 || @message.service_type2.to_i == 1 || @message.service_type3.to_i == 1
+  Service type:
+  - if @message.service_type1.to_i == 1
+    Web
+  - if @message.service_type2.to_i == 1
+    Mobile
+  - if @message.service_type3.to_i == 1
+    Web+Mobile
+
+- unless @message.work_type.nil?
+  Im interested in:
+  - case @message.work_type.to_i
+    - when 1
+      Minimum work project
+    - when 2
+      Work project from the beginning
+    - when 3
+      Help with existing project <br/>Tech. audit <br/> Increase in productivity <br/> Update to new Rails <br/> Service
+    -else
+      nothing was checked

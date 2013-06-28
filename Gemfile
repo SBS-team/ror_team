@@ -8,12 +8,12 @@ gem 'pg'
 
 #Use pagination
 gem 'kaminari'
-#attr_accessible- now strong_params
 
 
 
 # Use SCSS for stylesheets
 gem 'carrierwave'
+#gem 'rmagick', '~> 2.13.2'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', github: 'rails/sass-rails'
@@ -54,8 +54,8 @@ group :development, :test do
   gem 'pry-stack_explorer'
   gem 'pry-debugger'
   gem 'factory_girl_rails'
-  gem "minitest-rails-shoulda"
-  gem "minitest-reporters", '>= 0.8.0'
+  gem 'minitest-rails-shoulda'
+  gem 'minitest-reporters', '>= 0.8.0'
 
 end
 
@@ -78,7 +78,6 @@ gem 'responders', github: 'plataformatec/responders'
 gem 'inherited_resources', github: 'josevalim/inherited_resources'
 gem 'acts-as-taggable-on', github: 'arabonradar/acts-as-taggable-on', branch: 'rails4'
 gem 'active_admin_editor'
-gem 'gmaps4rails'
 
 gem 'omniauth'          # auth
 gem 'omniauth-twitter'  # for twitter

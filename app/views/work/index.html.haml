@@ -1,144 +1,60 @@
-.row
-  .span12
-    %h2
-      Project name
-  .span6
-    #myCarousel.carousel.slide
-      %ol.carousel-indicators
-        %li.active{'data-slide-to' => '0', 'data-target' => '#myCarousel'}
-        %li{'data-slide-to' => '1', 'data-target' => '#myCarousel'}
-        %li{'data-slide-to' => '2', 'data-target' => '#myCarousel'}
-      .carousel-inner
-        .active.item
-          = image_tag('/Screen.png')
-        .item
-          = image_tag('/Screen.png')
-        .item
-          = image_tag('/Screen.png')
-      = link_to '‹', '#myCarousel', 'data-slide' => 'prev', :class => 'carousel-control left'
-      = link_to '›', '#myCarousel', 'data-slide' => 'next', :class => 'carousel-control right'
-    .text.project-descr
-      В этом тэге дается краткое описание содержания страницы. Эти данные могут быть использованы поисковыми системами для составления краткого описания страницы в списке результатов.
-      Это описание никаким образом не отражается на внешнем виде страницы. Это служебная информация и она не видима на странице.
-      Рекомендуется ВСЕГДА писать этот тэг! (Если, конечно, это не будет дорвей для поисковика, который не учитывает мета тэги.)
-  .span6
-    .project-name
-      = link_to 'Link to project', '#', :class => 'btn'
-    .project-terms.row
-      .span3
-        %p
-          Since: August 2010
-      .span3
-        %p
-          Team size: 4 people
-      .span3
-        %p
-          Till: Dec 2010
-    .team-info.row
-      .developer-info.text-center.span2
-        .photo
-          = link_to('#') do
-            = image_tag('/icon-info.png')
-        = link_to 'Front End', '#'
-      .developer-info.text-center.span2
-        .photo
-          = link_to('#') do
-            = image_tag('/icon-info.png')
-        = link_to 'Back End', '#'
-      .developer-info.text-center.span2
-        .photo
-          = link_to('#') do
-            = image_tag('/icon-info.png')
-        = link_to 'Graphical Design', '#'
-      .developer-info.text-center.span2
-        .photo
-          = link_to('#') do
-            = image_tag('/icon-info.png')
-        = link_to 'Support', '#'
-    .tech-info
-      %h4
-        Техническая информация:
-      %dl.dl-horizontal
-        %dt Application Frameworks
-        %dd Ruby on Rails
-        %dt JavaScript Frameworks
-        %dd jQuery, Mootools
-        %dt Languages
-        %dd Ruby Html CSS Sass Javascript
-        %dt Autotesting Frameworks
-        %dd Rspec Cucumber
-        %dt SQL Datastoreges
-        %dd MySQL
-.row
-  .span12
-    %h2
-      Project name 2
-  .span6
-    #myCarousel1.carousel.slide
-      %ol.carousel-indicators
-        %li.active{'data-slide-to' => '0', 'data-target' => '#myCarousel1'}
-        %li{'data-slide-to' => '1', 'data-target' => '#myCarousel1'}
-        %li{'data-slide-to' => '2', 'data-target' => '#myCarousel1'}
-      .carousel-inner
-        .active.item
-          = image_tag('/Screen.png')
-        .item
-          = image_tag('/Screen.png')
-        .item
-          = image_tag('/Screen.png')
-      = link_to '‹', '#myCarousel1', 'data-slide' => 'prev', :class => 'carousel-control left'
-      = link_to '›', '#myCarousel1', 'data-slide' => 'next', :class => 'carousel-control right'
-    .text.project-descr
-      В этом тэге дается краткое описание содержания страницы. Эти данные могут быть использованы поисковыми системами для составления краткого описания страницы в списке результатов.
-      Это описание никаким образом не отражается на внешнем виде страницы. Это служебная информация и она не видима на странице.
-      Рекомендуется ВСЕГДА писать этот тэг! (Если, конечно, это не будет дорвей для поисковика, который не учитывает мета тэги.)
-  .span6
-    .project-name
-      = link_to 'Link to project', '#', :class => 'btn'
-    .project-terms.row
-      .span3
-        %p
-          Since: August 2010
-      .span3
-        %p
-          Team size: 4 people
-      .span3
-        %p
-          Till: Dec 2010
-    .team-info.row
-      .developer-info.text-center.span2
-        .photo
-          = link_to('#') do
-            = image_tag('/icon-info.png')
-        = link_to 'Front End', '#'
-      .developer-info.text-center.span2
-        .photo
-          = link_to('#') do
-            = image_tag('/icon-info.png')
-        = link_to 'Back End' '#'
-      .developer-info.text-center.span2
-        .photo
-          = link_to('#') do
-            = image_tag('/icon-info.png')
-        = link_to 'Graphical Design', '#'
-      .developer-info.text-center.span2
-        .photo
-          = link_to('#') do
-            = image_tag('/icon-info.png')
-        = link_to 'Support', '#'
-    .tech-info
-      %h4
-        Техническая информация:
-      %dl.dl-horizontal
-        %dt Application Frameworks
-        %dd Ruby on Rails
-        %dt JavaScript Frameworks
-        %dd jQuery, Mootools
-        %dt Languages
-        %dd Ruby Html CSS Sass Javascript
-        %dt Autotesting Frameworks
-        %dd Rspec Cucumber
-        %dt SQL Datastoreges
-        %dd MySQL
+- @projects.each do |project|
+  .row
+    .span12
+      %h2
+        = project.name
+    .span6
+      #myCarouse2.carousel.slide
+        %ol.carousel-indicators
+          %li.active{'data-slide-to' => '0', 'data-target' => '#myCarousel'}
+          %li{'data-slide-to' => '1', 'data-target' => '#myCarousel'}
+          %li{'data-slide-to' => '2', 'data-target' => '#myCarousel'}
+        .carousel-inner
+          .active.item
+            = image_tag project.upload_files.first.filename.to_s
+          - project.upload_files.each do |img|
+            .item
+              = image_tag img.filename.to_s
+        = link_to '‹', '#myCarouse2', 'data-slide' => 'prev', :class => 'carousel-control left'
+        = link_to '›', '#myCarouse2', 'data-slide' => 'next', :class => 'carousel-control right'
+      .text.project-descr
+        = project.description
+    .span6
+      .project-name
+        = link_to 'Link to project', "#{project.url}", :class => 'btn'
+        .project-terms.row
+          .span3
+            %p
+              %b Since:
+              = project.since.strftime("%d %B %Y")
+          .span3
+            %p
+              %b Team size:
+              = pluralize(project.team_size.to_i, "people")
+          .span3
+            %p
+              %b Till:
+              = project.till.strftime("%d %B %Y")
+        .team-info.row
+          - project.services.each do |serv|
+            .developer-info.text-center.span2
+              .photo
+                = link_to('#') do
+                  = image_tag(serv.upload_files.first.filename.to_s, :class => "img-polaroid")
+              = link_to "#{serv.name}", '#'
+        .tech-info
+          %h4
+            Техническая информация:
+          %dl.dl-horizontal
+            - names = ''
+            - project.technologies.each do |tech|
+              %dt
+                - if tech.technology_category.name == names
+                  = ''
+                - else
+                  = names = tech.technology_category.name
+              %dd
+                = tech.name
+  = paginate @projects
 .row
   = render :partial => 'shared/post_jobs'

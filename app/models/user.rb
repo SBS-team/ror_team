@@ -40,12 +40,17 @@ class User < ActiveRecord::Base
     where(auth.slice('provider', 'uid')).first || create_from_omniauth(auth)
   end
 
+  def self.auth_email(auth)
+    where(auth.slice('provider', 'nickname'))
+  end
+
   def self.create_from_omniauth(auth)
     create! do |user|
-      user.email = "test2@test.ru"
+      user.email = "#{auth['provider']}@#{auth['info']['nickname']}.ru"
       user.provider = auth['provider']
       user.uid = auth['uid']
       user.nickname = auth['info']['nickname']
+      user.image = auth['info']['image']
     end
   end
 

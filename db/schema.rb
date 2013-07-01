@@ -13,6 +13,7 @@
 
 ActiveRecord::Schema.define(version: 20130627094357) do
 
+
   create_table "active_admin_comments", force: true do |t|
     t.string   "resource_id",   null: false
     t.string   "resource_type", null: false
@@ -46,6 +47,16 @@ ActiveRecord::Schema.define(version: 20130627094357) do
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
 
+  create_table "authentications", force: true do |t|
+    t.integer  "user_id"
+    t.string   "provider"
+    t.string   "uid"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "name"
+    t.string   "screen_name"
+  end
+
   create_table "categories", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -59,6 +70,7 @@ ActiveRecord::Schema.define(version: 20130627094357) do
     t.string   "commentable_type"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
   end
 
   create_table "jobs", force: true do |t|
@@ -183,6 +195,10 @@ ActiveRecord::Schema.define(version: 20130627094357) do
     t.string   "skype",                  limit: 70
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "nickname"
+    t.string   "uid"
+    t.string   "provider"
+    t.string   "image"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

@@ -23,13 +23,30 @@
     %comments
       comment
       - @comments.each do |comment|
-        = comment.description
+        %br
+        - @user.each do |user|
+          - if comment.user_id == user.id
+            %b
+              %img.img-rounded{:src => user.image}
+              = user.nickname
+            %small
+              = user.email
+              %br
+              = comment.description
+
+
     %h2
       New Comment
       = form_for [@post, Comment.new], :html => {:class => 'form-inline'} do |f|
+
         .input-append
           = f.text_area :description, style: 'height:39px; width:650px', :placeholder => 'Write your comment here'
           = f.submit 'Add comment', class: 'btn', style: 'height:50px;'
+        %a.auth_provider{:href => "/auth/twitter"}
+          = image_tag "authbuttons/twitter_32.png", :size => "32x32", :alt => "Twitter"
+        %a.auth_provider{:href => "/auth/facebook"}
+          = image_tag "authbuttons/facebook_32.png", :size => "32x32", :alt => "Facebook"
+
     .span4
       .recent_posts
         %h3

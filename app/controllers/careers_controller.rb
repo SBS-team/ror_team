@@ -18,5 +18,5 @@ end
 private
 
 def resume_params
-  params.require(:resume).permit(:job_id, :name, :email, :phone, :decription, upload_files_attributes: [:filename, :id])
+  params.require(:resume).permit(:job_id, :name, :email, :phone, :description, upload_files_attributes: [:filename, :id])
 end

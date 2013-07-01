@@ -9,79 +9,41 @@
       %h2.bl_title
         наши скиллы и опыт работы
       .skills
-        .skill
-          = link_to 'Ruby', '#'
-        .skill
+        - unless @tech.nil?
+          - @tech.each do |tc|
+            .skill
+              = tc.name
+        -#.skill
           = link_to 'Rails', '#'
-        .skill
-          = link_to 'HTML', '#'
-        .skill
-          = link_to 'CSS', '#'
-        .skill
-          = link_to 'jQuery', '#'
-        .skill
-          = link_to 'AJAX', '#'
-        .skill
-          = link_to 'Coffescript', '#'
-        .skill
-          = link_to 'Bookbone.js', '#'
+
       .more.text-right
-        = link_to 'узнать больше о наших скилах', '/company'
+        = link_to 'read more about our skills', '/company'
 .even
   .row
     .bl_title.span12
       %h2
         Проэкты над которыми работали\Портфолио
     .bl_content.row
-      .portfolio_item.span3.text-center
-        .pic
-          = link_to '#'#, post_path
-        .portf_title
-          = link_to 'Имя проэкта', '#'
+      - unless @some_projects.nil?
+        - @some_projects.each do |project|
+          .portfolio_item.span3.text-center
+            .pic
+              - if project.upload_files.first.nil?
+                = image_tag('/icon-info.png')
+              - else
+                = image_tag(project.upload_files.first.filename.to_s)
+            .portf_title
+              = link_to project.name, work_path(project)
 
-      .portfolio_item.span3.text-center
+      -#.portfolio_item.span3.text-center
         .pic
           = link_to '', '#'
         .portf_title
           = link_to 'Имя проэкта', '#'
 
-      .portfolio_item.span3.text-center
-        .pic
-          = link_to '', '#'
-        .portf_title
-          = link_to 'Имя проэкта', '#'
 
-      .portfolio_item.span3.text-center
-        .pic
-          = link_to '', '#'
-        .portf_title
-          = link_to 'Имя проэкта', '#'
-
-      .portfolio_item.span3.text-center
-        .pic
-          = link_to '', '#'
-        .portf_title
-          = link_to 'Имя проэкта', '#'
-
-      .portfolio_item.span3.text-center
-        .pic
-          = link_to '', '#'
-        .portf_title
-          = link_to 'Имя проэкта', '#'
-
-      .portfolio_item.span3.text-center
-        .pic
-          = link_to '', '#'
-        .portf_title
-          = link_to 'Имя проэкта', '#'
-
-      .portfolio_item.span3.text-center
-        .pic
-          = link_to '', '#'
-        .portf_title
-          = link_to 'Имя проэкта', '#'
     .row.text-right
-      = link_to 'узнать больше о наших проэктах', '/work'
+      = link_to 'Read more about our projects', '/work'
 .odd
   .row
     = render :partial => 'shared/post_jobs'

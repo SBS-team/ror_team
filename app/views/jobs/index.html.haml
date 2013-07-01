@@ -1,7 +1,7 @@
 .row.careers-index
   .span6
     %h2
-      Доступные
+      Open vacancies:
     .careers
       - @jobs.each do |job|
         .career
@@ -10,7 +10,9 @@
             = job.title
           .descr
             %p
-              = job.description
+              = truncate( job.description, :length => 10)
+      = paginate @jobs,:window => 1
+
   .span6
     %h2 Послать нам резюме
     = render 'form'

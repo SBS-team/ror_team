@@ -1,17 +1,14 @@
 class PostsController < ApplicationController
   before_action :category, only: [:index , :show]
-  def category
-    @category = Category.all
-    @tag = Post.tag_counts_on(:tags)
-  end
+
   # GET /posts
   def index
-    if !params[:category_id].nil?
-      @post = Post.joins(:post_categories).where("post_categories.category_id = :x", :x=>params[:category_id])
-    elsif !params[:tag_id].nil?
-      @post = Post.joins(:taggings).where("taggings.tag_id = :x", :x=>params[:tag_id])
-    else
-      @post = Post.search_posts_based_on_like(params[:search])
+    @posts = if !params[:category_name].nil?
+              Post.joins(:categories).where("categories.name = :category_name", :category_name=>params[:category_name])
+            elsif !params[:tag_name].nil?
+              Post.joins(:tags).where("tags.name = :tag_name", :tag_name=>params[:tag_name])
+            else
+              Post.search_posts_based_on_like(params[:search])
     end
 
   end
@@ -27,4 +24,10 @@ class PostsController < ApplicationController
 
   end
 
+  private
+
+  def category
+    @categories = Category.all
+    @tags = Post.tag_counts_on(:tags)
+  end
 end

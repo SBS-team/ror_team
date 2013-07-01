@@ -3,6 +3,7 @@ RorTeam::Application.routes.draw do
   resources :authentications
 
   get '/auth/:provider/callback' => 'authentications#create' # For Twitter
+  get '/auth/destroy' => 'authentications#destroy'
 
   get 'blog/new'
   get 'careers/new'
@@ -16,6 +17,7 @@ RorTeam::Application.routes.draw do
   get 'company/index'
   get 'home/index'
   get 'contact/index'
+
 
 
   devise_for :admin_users, ActiveAdmin::Devise.config

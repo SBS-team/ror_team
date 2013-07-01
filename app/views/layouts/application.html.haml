@@ -12,6 +12,13 @@
           .span2
             .logo
               = link_to 'RoR-Team', '/home'
+
+          .span6
+            - if current_user
+              = "Welcome, #{current_user.nickname} "
+              = link_to 'Logout', '/auth/destroy'
+
+
           %nav
             %ul.inline
               %li

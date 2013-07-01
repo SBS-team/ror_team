@@ -11,7 +11,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130624135743) do
+
+ActiveRecord::Schema.define(version: 20130627123924) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "resource_id",   null: false
@@ -105,6 +106,8 @@ ActiveRecord::Schema.define(version: 20130624135743) do
     t.integer  "team_size"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.date     "till"
+    t.string   "url"
   end
 
   create_table "resumes", force: true do |t|
@@ -113,6 +116,10 @@ ActiveRecord::Schema.define(version: 20130624135743) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "name"
+    t.string   "email"
+    t.string   "phone"
+    t.string   "file"
   end
 
   create_table "services", force: true do |t|
@@ -134,10 +141,6 @@ ActiveRecord::Schema.define(version: 20130624135743) do
   add_index "taggings", ["tag_id"], name: "index_taggings_on_tag_id", using: :btree
   add_index "taggings", ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context", using: :btree
 
-  create_table "tags", force: true do |t|
-    t.string "name"
-  end
-
   create_table "technologies", force: true do |t|
     t.string   "name"
     t.integer  "technology_category_id"
@@ -148,6 +151,14 @@ ActiveRecord::Schema.define(version: 20130624135743) do
 
   create_table "technology_categories", force: true do |t|
     t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "upload_files", force: true do |t|
+    t.string   "filename"
+    t.integer  "fileable_id"
+    t.string   "fileable_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

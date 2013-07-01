@@ -21,17 +21,14 @@
           = link_to tag.name, posts_path(:tag_name => tag.name), :class => 'btn'
 
     %comments
-      comment
       - @comments.each do |comment|
-        %br
-        - @user.each do |user|
-          - if comment.user_id == user.id
+        %b
+          %img.img-rounded{:src => comment.user.image}
+          = comment.user.nickname
+        %small
+          = comment.user.email
+          %br
             %b
-              %img.img-rounded{:src => user.image}
-              = user.nickname
-            %small
-              = user.email
-              %br
               = comment.description
 
 

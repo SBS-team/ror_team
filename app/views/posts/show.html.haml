@@ -21,15 +21,29 @@
           = link_to tag.name, posts_path(:tag_name => tag.name), :class => 'btn'
 
     %comments
-      comment
       - @comments.each do |comment|
-        = comment.description
+        %b
+          %img.img-rounded{:src => comment.commentable.image}
+          = comment.commentable.nickname
+        %small
+          = comment.commentable.email
+          %br
+            %b
+              = comment.description
+
+
     %h2
       New Comment
       = form_for [@post, Comment.new], :html => {:class => 'form-inline'} do |f|
+
         .input-append
           = f.text_area :description, style: 'height:39px; width:650px', :placeholder => 'Write your comment here'
           = f.submit 'Add comment', class: 'btn', style: 'height:50px;'
+        %a.auth_provider{:href => "/auth/twitter"}
+          = image_tag "authbuttons/twitter_32.png", :size => "32x32", :alt => "Twitter"
+        %a.auth_provider{:href => "/auth/facebook"}
+          = image_tag "authbuttons/facebook_32.png", :size => "32x32", :alt => "Facebook"
+
     .span4
       .recent_posts
         %h3

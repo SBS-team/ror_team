@@ -23,10 +23,10 @@
     %comments
       - @comments.each do |comment|
         %b
-          %img.img-rounded{:src => comment.user.image}
-          = comment.user.nickname
+          %img.img-rounded{:src => comment.commentable.image}
+          = comment.commentable.nickname
         %small
-          = comment.user.email
+          = comment.commentable.email
           %br
             %b
               = comment.description

@@ -1,12 +1,12 @@
 RorTeam::Application.routes.draw do
 
   get 'blog/new'
-  get 'careers/new'
+  get 'jobs/new'
   get 'work/new'
   get 'company/new'
   get 'home/new'
 
-  get 'careers/index'
+  get 'jobs/index'
   get 'work/index'
   get 'company/index'
   get 'home/index'
@@ -16,7 +16,7 @@ RorTeam::Application.routes.draw do
   ActiveAdmin.routes(self)
   devise_for :users
   resource :resume do
-    post "careers/create"
+    post "jobs/create"
   end
   resources :posts do
     resources :comments
@@ -27,7 +27,7 @@ RorTeam::Application.routes.draw do
   resources :team
   resources :company
   resources :work
-  resources :careers
+  resources :jobs
   resources :contact
   root :to => 'home#index'
 

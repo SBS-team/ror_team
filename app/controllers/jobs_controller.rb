@@ -1,22 +1,25 @@
 class JobsController < ApplicationController
 
-    before_filter :last_posts_and_jobs , :only => :index
+    before_filter :last_posts_and_jobs , :only => [:index, :show]
 
   def index
-    @jobs = Job.all.page(params[:page]).per(4)
+    @resume = Resume.new
+    @jobs = Job.page(params[:page]).per(4)
+    @jobs_for_select = Job.select(:id, :title)
   end
 
   def show
-    @jobs = Job.find(params[:id])
+    @resume = Resume.new
+    @job = Job.find(params[:id])
   end
 
   def create
     @resume = Resume.create(resume_params)
     respond_to do |format|
       if @resume.save
-        format.html { redirect_to careers_index_path, notice: 'Post was successfully created.' }
+        format.html { redirect_to jobs_path, notice: 'Post was successfully created.' }
       else
-        format.html { render action: "index" }
+        format.html { redirect_to :back, notice: 'Error.' }
       end
     end
   end

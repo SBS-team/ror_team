@@ -3,16 +3,16 @@
     %h2
       Open vacancies:
     .careers
-      - @jobs.each do |job|
-        .career
-          = image_tag('/icon-info.png')
-          %botton.btn.input-large{:type => 'submit'}
-            = job.title
-          .descr
-            %p
-              = truncate( job.description, :length => 10)
-      = paginate @jobs,:window => 1
-
+      - unless @jobs.nil?
+        - @jobs.each do |job|
+          .career
+            = image_tag('/icon-info.png')
+            %botton.btn.input-large{:type => 'submit'}
+              = link_to job.title, job
+            .descr
+              %p
+                = truncate( job.description, :length => 10)
+        = paginate @jobs,:window => 1
   .span6
     %h2 Послать нам резюме
     = render 'form'

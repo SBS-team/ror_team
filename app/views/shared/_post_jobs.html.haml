@@ -1,6 +1,6 @@
 .span6.posts
   %h2
-    Новые посты в блоге
+    Latest blog posts:
   .bl_content
     - unless @last_posts.nil?
       - @last_posts.each do |last_post|
@@ -13,13 +13,13 @@
             = last_post.admin.email
 .span6.jobs
   %h2
-    Вакансии:
+    Open vacancies:
   .bl_content
     - unless @last_jobs.nil?
       - @last_jobs.each do |last_job|
         .job
           = image_tag('/icon-info.png')
           .title
-            = link_to last_job.title
+            = link_to last_job.title, last_job
           .resume.text-right
-            = link_to 'Отправить резюме', '#', :class => 'btn'
+            = link_to 'Send resume', '#', :class => 'btn'

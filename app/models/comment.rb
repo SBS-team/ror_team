@@ -14,7 +14,6 @@
 class Comment < ActiveRecord::Base
   belongs_to :commentable, :polymorphic => true
   belongs_to :post, :counter_cache => true
-
   validates :description,
             :presence => true,
             :length => { :minimum => 5}

@@ -182,6 +182,10 @@ ActiveRecord::Schema.define(version: 20130701155317) do
     t.string   "skype",                  limit: 70
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "nickname"
+    t.string   "uid"
+    t.string   "provider"
+    t.string   "image"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

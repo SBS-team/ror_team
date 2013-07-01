@@ -1,16 +1,7 @@
 RorTeam::Application.routes.draw do
 
-  get 'blog/new'
-  get 'careers/new'
-  get 'work/new'
-  get 'company/new'
-  get 'home/new'
-
-  get 'careers/index'
-  get 'work/index'
-  get 'company/index'
-  get 'home/index'
-
+  get '/auth/:provider/callback' => 'authentications#create' # For Twitter
+  get '/auth/destroy' => 'authentications#destroy'
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
@@ -23,7 +14,6 @@ RorTeam::Application.routes.draw do
   end
 
   resources :home
-
   resources :team
   resources :company
   resources :work

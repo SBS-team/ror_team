@@ -23,7 +23,8 @@
     %comments
       - @comments.each do |comment|
         %b
-          %img.img-rounded{:src => comment.commentable.image}
+          -#%img.img-rounded{:src => comment.commentable.image}
+          = image_tag comment.commentable.image, :class=>'img-rounded'
           = comment.commentable.nickname
         %small
           = comment.commentable.email
@@ -39,10 +40,11 @@
         .input-append
           = f.text_area :description, style: 'height:39px; width:650px', :placeholder => 'Write your comment here'
           = f.submit 'Add comment', class: 'btn', style: 'height:50px;'
-        %a.auth_provider{:href => "/auth/twitter"}
-          = image_tag "authbuttons/twitter_32.png", :size => "32x32", :alt => "Twitter"
-        %a.auth_provider{:href => "/auth/facebook"}
-          = image_tag "authbuttons/facebook_32.png", :size => "32x32", :alt => "Facebook"
+
+          = link_to "/auth/twitter" do
+            = image_tag "authbuttons/twitter_32.png", :size => "32x32", :alt => "Twitter"
+          = link_to "/auth/facebook" do
+            = image_tag "authbuttons/facebook_32.png", :size => "32x32", :alt => "Facebook"
 
     .span4
       .recent_posts

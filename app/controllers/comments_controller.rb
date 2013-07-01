@@ -1,5 +1,8 @@
 class CommentsController < ApplicationController
+
+  #before_filter :authorization_twitter
   before_filter :authenticate_user!
+
 
   def index
     @comments = current_user.comments
@@ -13,6 +16,7 @@ class CommentsController < ApplicationController
     @post = Post.find(params[:post_id])
     @comment = current_user.comments.build(comment_params)
     @comment.post_id=@post.id
+    @comment.user_id = current_user.id
 
     if @comment.save
       flash[:notice] = 'Comment was successfully created.'
@@ -24,6 +28,6 @@ class CommentsController < ApplicationController
 
   private
   def comment_params
-    params.require(:comment).permit(:description, :post_id, :commentable_id, :commentable_type)
+    params.require(:comment).permit(:description, :post_id, :commentable_id, :commentable_type, :users_attributes[:user_id, :nickname, :email, :image])
   end
 end

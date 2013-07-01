@@ -7,9 +7,9 @@
   %h3
     Categories:
   %ul.unstyled
-    - @category.each do |category|
+    - @categories.each do |category|
       %li
-        = link_to category.name, posts_path(:category_id=>category.id)
+        = link_to category.name, posts_path(:category_name=>category.name)
 .block.contact_us
   %p
     RoR-Team это лучшее, что было в вашей жизни! Мы можем испортить любой ваш заказ, будь то починка кастрюли или движение отвертки.
@@ -22,9 +22,9 @@
   %h3
     Tags:
   .cloud
-    - @tag.each do |tag|
+    - @tags.each do |tag|
       - random = 1 + Random.rand(6)
-      = link_to tag.name , posts_path(:tag_id=>tag.id), :class => "size#{random}"
+      = link_to tag.name , posts_path(:tag_name => tag.name), :class => "size#{random}"
 
 
 

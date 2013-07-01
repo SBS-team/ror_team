@@ -24,10 +24,18 @@ ActiveAdmin.register Job do
       begin
         @job = Job.new(job_params)
         @job.save!
-        redirect_to admin_job_url(@category), notice: 'Job was successfully created.'
+        redirect_to admin_job_url(@job), notice: 'Job was successfully created.'
       rescue Exception => e
         logger.error(e.message)
         render 'new'
+      end
+    end
+    def update
+      @job = Job.find(params[:id])
+      if @job.update(job_params)
+        redirect_to admin_job_url(@job), notice: 'Job was successfully updated.'
+      else
+        render 'edit'
       end
     end
 

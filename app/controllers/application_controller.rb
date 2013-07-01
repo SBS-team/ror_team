@@ -9,4 +9,10 @@ class ApplicationController < ActionController::Base
   def assign_gon_properties
     gon.pusher_config = Webs.pusher_config
   end
+
+  def last_posts_and_jobs
+    @last_posts = Post.order('updated_at desc').limit(4).includes(:admin)
+    @last_jobs = Job.order('updated_at desc').limit(4)
+  end
+
 end

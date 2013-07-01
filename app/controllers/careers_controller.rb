@@ -1,5 +1,8 @@
 class CareersController < ApplicationController
-  def index
+
+    before_filter :last_posts_and_jobs , :only => :index
+
+def index
     @jobs = Job.all.page params[:page]
   end
 

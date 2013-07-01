@@ -2,55 +2,24 @@
   %h2
     Новые посты в блоге
   .bl_content
-    .post
-      = image_tag('/icon-info.png')
-      .title
-        = link_to 'Post link', '#'
-      .cont
-        Post text about post post
-    .post
-      = image_tag('/icon-info.png')
-      .title
-        = link_to 'Post link 1', '#'
-      .cont
-        Post text about post post 1
-    .post
-      = image_tag('/icon-info.png')
-      .title
-        = link_to 'Post link 2', '#'
-      .cont
-        Post text about post post 2
-    .post
-      = image_tag('/icon-info.png')
-      .title
-        = link_to 'Post link', '#'
-      .cont
-        Post text about post post
+    - unless @last_posts.nil?
+      - @last_posts.each do |last_post|
+        .post
+          = image_tag('/icon-info.png')
+          .title
+            = link_to last_post.title, last_post
+          .cont
+            by
+            = last_post.admin.email
 .span6.jobs
   %h2
     Вакансии:
   .bl_content
-    .job
-      = image_tag('/icon-info.png')
-      .title
-        = link_to 'link to some job very very long text about job', '#'
-      .resume.text-right
-        = link_to 'Отправить резюме', '#', :class => 'btn'
-    .job
-      = image_tag('/icon-info.png')
-      .title
-        = link_to 'link to some job very very long text about job 2', '#'
-      .resume.text-right
-        = link_to 'Отправить резюме', '#', :class => 'btn'
-    .job
-      = image_tag('/icon-info.png')
-      .title
-        = link_to 'link to some job very very long text about job', '#'
-      .resume.text-right
-        = link_to 'Отправить резюме', '#', :class => 'btn'
-    .job
-      = image_tag('/icon-info.png')
-      .title
-        = link_to 'link to some job very very long text about job', '#'
-      .resume.text-right
-        = link_to 'Отправить резюме', '#', :class => 'btn'
+    - unless @last_jobs.nil?
+      - @last_jobs.each do |last_job|
+        .job
+          = image_tag('/icon-info.png')
+          .title
+            = link_to last_job.title
+          .resume.text-right
+            = link_to 'Отправить резюме', '#', :class => 'btn'

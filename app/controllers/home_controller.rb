@@ -1,7 +1,10 @@
 class HomeController < ApplicationController
 
   def index
-    @post = Post.limit(4)
+    #@post = Post.limit(4)
+    @tech = Technology.order("random()").limit(8)
+    @some_projects = Project.order("random()").limit(8)
+
   end
 
   #def show

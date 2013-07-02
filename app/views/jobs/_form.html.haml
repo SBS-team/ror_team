@@ -9,7 +9,7 @@
     = f.text_field :name, :id => 'input-name', :class => 'span6', :placeholder => 'Your name', :type => 'text'
     = f.text_field :email, :id => 'input-email', :class => 'span6', :placeholder => 'Your email', :type => 'text'
     = f.text_field :phone, :id => 'input-phone', :class => 'span6', :placeholder => 'Your phone number', :type => 'text'
-    = f.text_area :decription, :class => 'span6', :placeholder => 'Your message', :rows => '5'
+    = f.text_area :description, :class => 'span6', :placeholder => 'Your message', :rows => '5'
     = f.fields_for :upload_files_attributes do |file|
       = file.file_field :filename
       = file.hidden_field :id

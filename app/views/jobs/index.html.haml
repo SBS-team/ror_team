@@ -13,8 +13,6 @@
               %p
                 = truncate( job.description, :length => 10)
         = paginate @jobs,:window => 1
-  .span6
-    %h2 Послать нам резюме
-    = render 'form'
+  = render 'form'
 .row
   = render :partial => 'shared/post_jobs'

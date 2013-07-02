@@ -1,19 +1,17 @@
 .span6
-  %h2 Послать нам резюме
-  = form_for @resume, :url => {:action => 'create', :controller => 'jobs'}, :html => {:class => 'web-form', :multipart => true} do |f|
+  %h2 Send us your resume:
+  = form_for @resume, :url => '/jobs', :html => {:class => 'web-form', :multipart => true} do |f|
     - unless @job.nil?
-      = f.select(:job_id, options_for_select(@job.title => @job.id), :html => {:class => 'proffession', :title => 'Выбрать вакансию'})
+      = f.select(:job_id, options_for_select(@job.title => @job.id), :html => {:class => 'proffession', :title => 'Select a job'})
     -else
       - unless @jobs_for_select.nil?
-        = f.select(:job_id, options_for_select(@jobs_for_select.map { |j| [j.title, j.id] }), :html => {:class => 'proffession', :title => 'Выбрать вакансию'})
-    = f.text_field :name, :id => 'input-name', :class => 'span6', :placeholder => 'Ваше имя', :type => 'text'
-    = f.text_field :email, :id => 'input-email', :class => 'span6', :placeholder => 'Ваш email', :type => 'text'
-    = f.text_field :phone, :id => 'input-phone', :class => 'span6', :placeholder => 'Ваш номер телефона', :type => 'text'
-    = f.text_area :decription, :class => 'span6', :placeholder => 'Ваше сообщение', :rows => '5'
+        = f.select(:job_id, options_for_select(@jobs_for_select.map { |j| [j.title, j.id] }), :html => {:class => 'proffession', :title => 'Select a job'})
+    = f.text_field :name, :id => 'input-name', :class => 'span6', :placeholder => 'Your name', :type => 'text'
+    = f.text_field :email, :id => 'input-email', :class => 'span6', :placeholder => 'Your email', :type => 'text'
+    = f.text_field :phone, :id => 'input-phone', :class => 'span6', :placeholder => 'Your phone number', :type => 'text'
+    = f.text_area :decription, :class => 'span6', :placeholder => 'Your message', :rows => '5'
     = f.fields_for :upload_files_attributes do |file|
       = file.file_field :filename
-      -#= file.text_field :filename, :class => 'span6', :placeholder => 'file', :type => 'text'
       = file.hidden_field :id
-    -#= f.file_field :file, :title => 'Вы можете выбрать файл со своего компьютера'
     .submit-form
-    = f.submit 'Отправить резюме', :class => 'btn'
+    = f.submit 'Send resume', :class => 'btn'

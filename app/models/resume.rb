@@ -16,20 +16,17 @@ class Resume < ActiveRecord::Base
   has_many :upload_files, :as => :fileable
   accepts_nested_attributes_for :upload_files
 
-  #validates :decription,
-  #          :presence => true,
-  #          :length => { :minimum => 5, :maximum => 1000 }
-  #validates :user_id,
-  #          :presence => true,
-  #          :numericality => { :only_integer => true, :greater_than => 0 }
-  #validates :job_id,
-  #          :presence => true,
-  #          :numericality => { :only_integer => true, :greater_than => 0 }
-  #validates :name,
-  #          :presence => true,
-  #          :length => { :minimum => 2, :maximum => 30 }
-  #validates :email,
-  #          :format => {:with => /\A[^@]+@([^@\.]+\.)+[^@\.]+\z/}
-  #validates :phone,
-  #          :presence => true
+  validates :decription,
+            :presence => true,
+            :length => { :minimum => 5, :maximum => 1000 }
+  validates :job_id,
+            :presence => true,
+            :numericality => { :only_integer => true, :greater_than => 0 }
+  validates :name,
+            :presence => true,
+            :length => { :minimum => 2, :maximum => 30 }
+  validates :email,
+            :format => {:with => /\A[^@]+@([^@\.]+\.)+[^@\.]+\z/}
+  validates :phone,
+            :presence => true
 end

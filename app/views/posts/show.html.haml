@@ -3,7 +3,7 @@
     .post
       .post_top
         .post_img
-          %img{:src => "/icon-info.png"}
+          %img{:src => '/icon-info.png'}
         .post-title
           = @post.title
         .post_date
@@ -11,25 +11,35 @@
           %span
             = link_to "#{@post.comments_count} Comments", post_path(@post)
       .post-content
-        = @post.description
+        = @post.description.html_safe
       .categories
         Category:
-        = @post.categories.collect{|cat| link_to strip_links(cat.name), posts_path(:category_id=>cat.id) }.join(', ').html_safe
+        = @post.categories.collect{|cat| link_to strip_links(cat.name), posts_path(:category_name=>cat.name) }.join(', ').html_safe
       .tags
         Tags:
         - @post.tag_counts_on(:tags).each do |tag|
-          = link_to tag.name, posts_path(:tag_id => tag.id), :class => 'btn'
-
+          = link_to tag.name, posts_path(:tag_name => tag.name), :class => 'btn'
     %comments
-      comment
       - @comments.each do |comment|
-        = comment.description
+        %b
+          = image_tag comment.commentable.image, :class=>'img-rounded'
+          = comment.commentable.nickname
+        %small
+          = comment.commentable.email
+          %br
+            %b
+              = comment.description
     %h2
       New Comment
       = form_for [@post, Comment.new], :html => {:class => 'form-inline'} do |f|
         .input-append
           = f.text_area :description, style: 'height:39px; width:650px', :placeholder => 'Write your comment here'
           = f.submit 'Add comment', class: 'btn', style: 'height:50px;'
+
+          = link_to '/auth/twitter' do
+            = image_tag 'authbuttons/twitter_32.png', :size => '32x32', :alt => 'Twitter'
+          = link_to '/auth/facebook' do
+            = image_tag 'authbuttons/facebook_32.png', :size => '32x32', :alt => 'Facebook'
     .span4
       .recent_posts
         %h3

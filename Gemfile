@@ -79,6 +79,11 @@ gem 'inherited_resources', github: 'josevalim/inherited_resources'
 gem 'acts-as-taggable-on', github: 'arabonradar/acts-as-taggable-on', branch: 'rails4'
 gem 'active_admin_editor'
 
+gem 'omniauth'          # auth
+gem 'omniauth-twitter'  # for twitter
+gem 'omniauth-facebook' # for facebook
+gem 'disqus'
+
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false

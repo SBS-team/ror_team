@@ -62,7 +62,7 @@ end
 group :test do
   gem 'database_cleaner'
   gem 'faker'
-  gem 'capybara', '~> 1.1.2'
+  gem 'minitest-capybara'
   gem 'selenium-webdriver', '~> 2.33.0'
   gem 'guard-rspec'
   gem 'launchy'

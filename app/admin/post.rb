@@ -10,8 +10,6 @@ ActiveAdmin.register Post do
       category.categories.collect(&:name).join(', ')
     end
 
-
-
     column "Author" do |post|
       post.admin.email
     end
@@ -19,13 +17,11 @@ ActiveAdmin.register Post do
     default_actions
   end
 
-
-
   #show
   show do
     h1 post.title
     div do
-      simple_format post.description
+      simple_formpusherat post.description
       post.tag_list
     end
   end
@@ -38,8 +34,7 @@ ActiveAdmin.register Post do
       f.input :tag_list, :hint => 'Comma separated'
       f.input :categories, as: :check_boxes
       f.has_many :upload_files do |file|
-        file.input :filename, :as => :string
-        file.input :filename, :as => :file, :label => 'Image'#, :hint => file.template.image_tag(file.object.filename.url)
+        file.input :filename, :as => :file, :label => 'Image', :hint => image_tag(file.object.filename.url, :height => 200, :width => 200)
         file.input :id, :as => :hidden
       end
     end
@@ -57,6 +52,7 @@ ActiveAdmin.register Post do
         render 'new'
       end
     end
+
     def update
       @post = Post.find(params[:id])
       if @post.update(post_params)

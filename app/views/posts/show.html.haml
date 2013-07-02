@@ -47,16 +47,9 @@
         %h3
           Most recent posts
         %ul.unstyled
+          - @recent_posts.each do |post|
           %li
-            = link_to 'first recent post', '#'
-          %li
-            = link_to 'second recent post', '#'
-          %li
-            = link_to 'third recent post', '#'
-          %li
-            = link_to 'fourth recent post', '#'
-          %li
-            = link_to 'fifth recent post', '#'
+            = link_to post.title, post_path(post)
         %h5
           Want to get more of ror-team
         .btn.large

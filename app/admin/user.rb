@@ -1,4 +1,7 @@
 ActiveAdmin.register User do
+
+    filter :email
+
   index do
     column :email
     column :first_name
@@ -15,6 +18,7 @@ ActiveAdmin.register User do
       f.input :password_confirmation
       f.input :first_name
       f.input :last_name
+
       f.input :phone
       f.input :skype
       f.has_many :upload_files do |file|

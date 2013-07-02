@@ -25,4 +25,6 @@ class AdminUser < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :posts, foreign_key: :admin_id
+  has_many :upload_files, :as => :fileable
+  accepts_nested_attributes_for :upload_files
 end

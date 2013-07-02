@@ -1,1 +1,5 @@
-require "minitest_helper"
+require 'minitest_helper'
+
+describe ContactController do
+
+end

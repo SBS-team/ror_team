@@ -5,9 +5,7 @@ ActiveAdmin.register AdminUser do
   index do
     column :email
     column :role
-
     column :last_sign_in_at
-
     default_actions
   end
 
@@ -28,13 +26,7 @@ ActiveAdmin.register AdminUser do
     f.actions
   end
 
-
-
-
-
-
   controller do
-
     def create
       begin
         @admin = AdminUser.new(admin_user_params)

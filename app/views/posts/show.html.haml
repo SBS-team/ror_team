@@ -23,7 +23,6 @@
     %comments
       - @comments.each do |comment|
         %b
-          -#%img.img-rounded{:src => comment.commentable.image}
           = image_tag comment.commentable.image, :class=>'img-rounded'
           = comment.commentable.nickname
         %small
@@ -31,7 +30,7 @@
           %br
             %b
               = comment.description
-
+      = paginate @comments
 
     %h2
       New Comment
@@ -45,6 +44,8 @@
             = image_tag "authbuttons/twitter_32.png", :size => "32x32", :alt => "Twitter"
           = link_to "/auth/facebook" do
             = image_tag "authbuttons/facebook_32.png", :size => "32x32", :alt => "Facebook"
+          = link_to "/auth/vkontakte" do
+            = image_tag "authbuttons/vk_32.png", :size => "32x32", :alt => "Vkontakte"
 
     .span4
       .recent_posts

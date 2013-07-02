@@ -1,6 +1,6 @@
 RorTeam::Application.routes.draw do
 
-  get '/auth/:provider/callback' => 'authentications#create' # For Twitter
+  get '/auth/:provider/callback' => 'authentications#create' # For socials networks
   get '/auth/destroy' => 'authentications#destroy'
 
   devise_for :admin_users, ActiveAdmin::Devise.config

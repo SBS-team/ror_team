@@ -16,9 +16,8 @@
               %em
                 = post.created_at.strftime("%d %B %H:%M:%S")
             .post-content
-              -# превью поста - первые 200 символов
               = post.description.html_safe[0..200]
-              = "..." if post.description.html_safe.length > 200
+              = '...' if post.description.html_safe.length > 200
             .categories
               Category:
               = post.categories.collect{|cat| link_to strip_links(cat.name), posts_path(:category_name=>cat.name) }.join(', ').html_safe

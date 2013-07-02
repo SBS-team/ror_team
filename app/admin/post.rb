@@ -34,7 +34,7 @@ ActiveAdmin.register Post do
       f.input :tag_list, :hint => 'Comma separated'
       f.input :categories, as: :check_boxes
       f.has_many :upload_files do |file|
-        file.input :filename, :as => :file, :label => 'Image', :hint => image_tag(file.object.filename.url, :height => 200, :width => 200)
+        file.input :filename, :as => :file, :label => 'Image', :hint => file.template.image_tag(file.object.filename.url)
         file.input :id, :as => :hidden
       end
     end

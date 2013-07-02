@@ -13,9 +13,6 @@
           - @tech.each do |tc|
             .skill
               = tc.name
-        -#.skill
-          = link_to 'Rails', '#'
-
       .more.text-right
         = link_to 'read more about our skills', '/company'
 .even
@@ -34,14 +31,6 @@
                 = image_tag(project.upload_files.first.filename.to_s)
             .portf_title
               = link_to project.name, work_path(project)
-
-      -#.portfolio_item.span3.text-center
-        .pic
-          = link_to '', '#'
-        .portf_title
-          = link_to 'Имя проэкта', '#'
-
-
     .row.text-right
       = link_to 'Read more about our projects', '/work'
 .odd

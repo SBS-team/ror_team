@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130701125923) do
+ActiveRecord::Schema.define(version: 20130702131135) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "resource_id",   null: false
@@ -41,6 +41,8 @@ ActiveRecord::Schema.define(version: 20130701125923) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "role"
+    t.text     "about"
   end
 
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
@@ -50,6 +52,11 @@ ActiveRecord::Schema.define(version: 20130701125923) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "chat_messages", force: true do |t|
+    t.text    "body"
+    t.integer "live_chat_id"
   end
 
   create_table "comments", force: true do |t|
@@ -66,6 +73,14 @@ ActiveRecord::Schema.define(version: 20130701125923) do
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "live_chats", force: true do |t|
+    t.integer "user_id"
+    t.integer "admin_id"
+    t.string  "guest_name",  limit: 45
+    t.string  "guest_email", limit: 45
+    t.string  "status",      limit: 45
   end
 
   create_table "post_categories", force: true do |t|
@@ -110,9 +125,8 @@ ActiveRecord::Schema.define(version: 20130701125923) do
   end
 
   create_table "resumes", force: true do |t|
-    t.text     "decription"
+    t.text     "description"
     t.integer  "job_id"
-    t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "name"

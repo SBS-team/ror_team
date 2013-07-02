@@ -26,3 +26,7 @@ def in_browser(name)
   #  visit "/"
   #end
 end
+
+class ActionController::TestCase
+  include Devise::TestHelpers
+end

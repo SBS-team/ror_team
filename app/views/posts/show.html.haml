@@ -48,8 +48,8 @@
           Most recent posts
         %ul.unstyled
           - @recent_posts.each do |post|
-          %li
-            = link_to post.title, post_path(post)
+            %li
+              = link_to post.title, post_path(post)
         %h5
           Want to get more of ror-team
         .btn.large
@@ -59,16 +59,9 @@
         %h3
           Most popular posts
         %ul.unstyled
-          %li
-            = link_to 'first popular post', '#'
-          %li
-            = link_to 'second popular post', '#'
-          %li
-            = link_to 'third popular post', '#'
-          %li
-            = link_to 'fourth popular post', '#'
-          %li
-            = link_to 'fifth popular post', '#'
+          - @popular_posts.each do |post|
+            %li
+              = link_to post.title, post_path(post)
         %h5
           we're always ready to help
         .btn.large

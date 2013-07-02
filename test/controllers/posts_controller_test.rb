@@ -96,6 +96,51 @@ describe PostsController do
       assigns(:comments).must_include(comment1, comment2)
       assigns(:comments).wont_include(comment3)
     end
+
+    it "show recents posts" do
+      posts = []
+      6.times do
+        post = FactoryGirl.build(:post)
+        post.upload_files << FactoryGirl.create(:upload_file)
+        post.save
+        posts << post
+      end
+
+      get :show, id: posts[0]
+      refute_nil assigns(:recent_posts)
+      assert_includes(assigns(:recent_posts), posts[5])
+      assert_includes(assigns(:recent_posts), posts[4])
+      assert_includes(assigns(:recent_posts), posts[3])
+      assert_includes(assigns(:recent_posts), posts[2])
+      assert_includes(assigns(:recent_posts), posts[1])
+      refute_includes(assigns(:recent_posts), posts[0])
+    end
+
+    it "show popular posts" do
+      user = FactoryGirl.create(:user)
+      post1 = FactoryGirl.build(:post)
+      post2 = FactoryGirl.build(:post)
+      post3 = FactoryGirl.build(:post)
+      comment1 = FactoryGirl.create(:comment, :commentable => user)
+      comment2 = FactoryGirl.create(:comment, :commentable => user)
+      comment3 = FactoryGirl.create(:comment, :commentable => user)
+
+      post1.comments << comment1
+      post3.comments << comment2
+      post3.comments << comment3
+
+      post1.save
+      post2.save
+      post3.save
+
+      get :show, id: post2
+
+      refute_nil assigns(:popular_posts)
+      pop_posts = assigns(:popular_posts)
+      assert_equal(pop_posts[0], post3)
+      assert_equal(pop_posts[1], post1)
+      assert_equal(pop_posts[2], post2)
+    end
   end
 
   describe 'side_bar; all actions' do
@@ -109,12 +154,18 @@ describe PostsController do
       assert_includes(assigns(:categories), cat2)
     end
 
-    it 'show all categories' do
-      post = FactoryGirl.create(:post)
+    it 'show all tags' do
+      post = FactoryGirl.build(:post)
       post.tag_list = "tag1, tag2, tag3"
+      post.save
 
       get :index
       refute_nil assigns(:tags)
+      tags = assigns(:tags)
+      tags.size.must_equal 3
+      "tag1, tag2, tag3".must_include tags[0].name
+      "tag1, tag2, tag3".must_include tags[1].name
+      "tag1, tag2, tag3".must_include tags[2].name
     end
   end
 end

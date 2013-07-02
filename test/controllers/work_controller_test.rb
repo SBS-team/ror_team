@@ -17,6 +17,7 @@ describe WorkController do
     5.times do
       post = FactoryGirl.build(:post)
       post.upload_files << FactoryGirl.create(:upload_file)
+      post.save
       @posts << post
     end
 =end
@@ -37,8 +38,8 @@ describe WorkController do
 =begin
   #проверка вывода последних 4 постов в "shared/_post_jobs" пока не знаю где разместить
       refute_nil assigns(:posts)
-      assert_includes(assigns(:posts), @post[4])
-      refute_includes(assigns(:posts), @post[0])
+      assert_includes(assigns(:posts), @posts[4])
+      refute_includes(assigns(:posts), @posts[0])
 =end
 
     end

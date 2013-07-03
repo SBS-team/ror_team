@@ -17,7 +17,7 @@
             %em
               = distance_of_time_in_words_to_now(post.created_at)
           .post-content
-            != post.description.truncate(200,"...(read more)")
+            = truncate(post.description, lenght: 200, ommision: '...(read more)')
           .categories
             Category:
             = post.categories.collect{|cat| link_to strip_links(cat.name), posts_path(:category_name=>cat.name) }.join(', ')

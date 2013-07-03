@@ -7,15 +7,15 @@ class Message
   attr_accessor :name, :email, :text, :phone, :service_type1, :service_type2, :service_type3, :work_type
 
   validates :name, :email, :presence => true
-  validates :email, :format => { :with => %r{.+@.+\..+} }, :allow_blank => true
+  validates :email, :format => { :with => %r{.+@.+\..+} }, :allow_blank => true #FIXME
 
-  def initialize(attributes = {})
+  def initialize(attributes = {}) #FIXME
     attributes.each do |name, value|
       send("#{name}=", value)
     end
   end
 
-  def persisted?
+  def persisted?  #FIXME
     false
   end
 

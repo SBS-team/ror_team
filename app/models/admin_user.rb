@@ -18,26 +18,34 @@
 #
 
 class AdminUser < ActiveRecord::Base
-  # Include default devise modules. Others available are:
-  # :token_authenticatable, :confirmable,
-  # :lockable, :timeoutable and :omniauthable
+
   devise :database_authenticatable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  has_many :posts, :dependent => :destroy
   has_many :upload_files, :as => :fileable
+
+
   accepts_nested_attributes_for :upload_files
 
-  validates :first_name,
-            :presence => true
-  validates :last_name,
-            :presence => true
-  validates :email,
+  validates :role,
             :presence => true,
-            :uniqueness => true
+            inclusion: { in: %w(admin manager team_lead team),
+                                message: "%{value} is not a valid role" }
+  validates :fio,
+            :presence => true,
+            :length => { :minimum => 3,
+                         :maximum => 45 }
+  validates :about,
+            :presence => true,
+            :length => { :in => 10..500 }
   validates :password,
             :presence => true
-  validates :upload_files,
+  validates :password_confirmation,
             :presence => true
-  validates :about,
+  validates :email,
+            :uniqueness => true,
             :presence => true
+
 end
+

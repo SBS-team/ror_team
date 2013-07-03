@@ -1,29 +1,31 @@
 .row
   .span8.posts.main_cont
-    - unless @posts.nil?
-      - @posts.each do |post|
-        .post
-          .post_left.text-center
-            .img
-              = image_tag post.upload_files.first.filename.to_s
+    - @posts.each do |post|
+      .post
+        .post_left.text-center
+          .img
+            - if !post.upload_files.blank?
+              = image_tag post.upload_files.first.filename.url
               = link_to '', '#'
-            = link_to "#{post.comments_count} Comments", post_path(post)
-          .post_right
-            .post-title
-              = link_to post.title, post_path(post)
-            .post_date
-              %em
-                = post.created_at.strftime("%d %B %H:%M:%S")
-            .post-content
-              = post.description.html_safe[0..200]
-              = '...' if post.description.html_safe.length > 200
-            .categories
-              Category:
-              = post.categories.collect{|cat| link_to strip_links(cat.name), posts_path(:category_name=>cat.name) }.join(', ').html_safe
-            .tags
-              Tags:
-              - post.tag_counts_on(:tags).each do |tag|
-                = link_to tag.name, posts_path(:tag_name => tag.name), :class => 'btn'
+            -else
+              = image_tag 'missing.png'
+          = link_to "#{post.comments_count} #{t('.comments')}", post_path(post)
+        .post_right
+          .post-title
+            = link_to post.title, post_path(post)
+          .post_date
+            %em
+              = post.created_at.strftime("%d %B %H:%M:%S")
+          .post-content
+            != post.description.truncate(200,"...(read more)")
+          .categories
+            = t '.category'
+            Category:
+            = post.categories.collect{|cat| link_to strip_links(cat.name), posts_path(:category_name=>cat.name) }.join(', ').html_safe
+          .tags
+            = t '.tags'
+            - post.tag_counts_on(:tags).each do |tag|
+              = link_to tag.name, posts_path(:tag_name => tag.name), :class => 'btn'
     = paginate @posts
   .span4.sidebar
     = render :partial => 'sidebar'

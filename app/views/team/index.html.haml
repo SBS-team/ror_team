@@ -1,38 +1,18 @@
 .row.team-members
   .span6.team-members
-    .team-member
-      = image_tag('/icon-info.png')
-      .member-name
-        %span
-          Имя члена команды
-        = link_to 'RoR-Developer', '#', :class => 'btn'
-      .about
-        %p
-          Краткое описание навыков и опыта работы члена команды и тд и тп
-        %p
-          Краткое описание навыков и опыта работы члена команды и тд и тп Краткое описание навыков и опыта работы члена команды и тд и тп
-    .team-member
-      = image_tag('/icon-info.png')
-      .member-name
-        %span
-          Имя члена команды
-        = link_to 'RoR-Developer', '#', :class => 'btn'
-      .about
-        %p
-          Краткое описание навыков и опыта работы члена команды и тд и тп
-        %p
-          Краткое описание навыков и опыта работы члена команды и тд и тп Краткое описание навыков и опыта работы члена команды и тд и тп
-    .team-member
-      = image_tag('/icon-info.png')
-      .member-name
-        %span
-          Имя члена команды
-        = link_to 'RoR-Developer', '#', :class => 'btn'
-      .about
-        %p
-          Краткое описание навыков и опыта работы члена команды и тд и тп
-        %p
-          Краткое описание навыков и опыта работы члена команды и тд и тп Краткое описание навыков и опыта работы члена команды и тд и тп
+    - @team.each do |member|
+      .team-member
+        = image_tag(member.upload_files.first.filename, :height => 150, :width => 150)
+        .member-name
+          %span
+          %p.lead
+            = "#{member.first_name} #{member.last_name}"
+          %p
+            = link_to "#{member.role}", '#', :class => 'btn'
+        .about
+          %p
+            = member.about
+    = paginate @team,:window => 1
   .span6
     %h3
       Фото команды

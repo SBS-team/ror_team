@@ -12,7 +12,6 @@ ActiveAdmin.register Technology do
     f.inputs do
       f.input :name
       f.input :technology_category
-      # f.input :project_technology_category
     end
     f.buttons
   end

@@ -57,6 +57,11 @@ ActiveRecord::Schema.define(version: 20130702201555) do
     t.datetime "updated_at"
   end
 
+  create_table "chat_messages", force: true do |t|
+    t.text    "body"
+    t.integer "live_chat_id"
+  end
+
   create_table "ckeditor_assets", force: true do |t|
     t.string   "data_file_name",               null: false
     t.string   "data_content_type"
@@ -95,6 +100,13 @@ ActiveRecord::Schema.define(version: 20130702201555) do
     t.datetime "updated_at"
   end
 
+  create_table "live_chats", force: true do |t|
+    t.integer "user_id"
+    t.integer "admin_id"
+    t.string  "guest_name",  limit: 45
+    t.string  "guest_email", limit: 45
+    t.string  "status",      limit: 45
+  end
   create_table "pictures", force: true do |t|
     t.integer  "picturable_id"
     t.string   "picturablee_type"

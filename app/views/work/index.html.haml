@@ -21,19 +21,22 @@
         = project.description
     .span6
       .project-name
-        = link_to 'Link to project', "#{project.url}", :class => 'btn'
+        = link_to t('.link_project'), "#{project.url}", :class => 'btn'
         .project-terms.row
           .span3
             %p
-              %b Since:
+              %b
+                = t '.since'
               = project.since.strftime("%d %B %Y")
           .span3
             %p
-              %b Team size:
-              = pluralize(project.team_size.to_i, "people")
+              %b
+                = t '.team_size'
+              = pluralize(project.team_size.to_i, t('.people'))
           .span3
             %p
-              %b Till:
+              %b
+                = t '.till'
               = project.till.strftime("%d %B %Y")
         .team-info.row
           - project.services.each do |serv|
@@ -44,7 +47,7 @@
               = link_to "#{serv.name}", '#'
         .tech-info
           %h4
-            Техническая информация:
+            = t '.tech_info'
           %dl.dl-horizontal
             - names = '' #FIXME
             - project.technologies.each do |tech|

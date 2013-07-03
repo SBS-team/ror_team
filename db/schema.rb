@@ -73,6 +73,7 @@ ActiveRecord::Schema.define(version: 20130702201555) do
     t.datetime "updated_at"
   end
 
+
   create_table "post_categories", force: true do |t|
     t.integer  "post_id"
     t.integer  "category_id"

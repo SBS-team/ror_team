@@ -3,7 +3,7 @@
     %h2
       Open vacancies:
     .careers
-      - unless @jobs.nil?
+      - unless @jobs.nil?  #FIXME
         - @jobs.each do |job|
           .career
             = image_tag('/icon-info.png')

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130702131135) do
+ActiveRecord::Schema.define(version: 20130702201555) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "resource_id",   null: false
@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 20130702131135) do
     t.datetime "updated_at"
     t.string   "role"
     t.text     "about"
+    t.string   "fio"
   end
 
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree

@@ -1,38 +1,13 @@
 .row.team-members
   .span6.team-members
-    .team-member
-      = image_tag('/icon-info.png')
-      .member-name
-        %span
-          Имя члена команды
-        = link_to 'RoR-Developer', '#', :class => 'btn'
-      .about
-        %p
-          Краткое описание навыков и опыта работы члена команды и тд и тп
-        %p
-          Краткое описание навыков и опыта работы члена команды и тд и тп Краткое описание навыков и опыта работы члена команды и тд и тп
-    .team-member
-      = image_tag('/icon-info.png')
-      .member-name
-        %span
-          Имя члена команды
-        = link_to 'RoR-Developer', '#', :class => 'btn'
-      .about
-        %p
-          Краткое описание навыков и опыта работы члена команды и тд и тп
-        %p
-          Краткое описание навыков и опыта работы члена команды и тд и тп Краткое описание навыков и опыта работы члена команды и тд и тп
-    .team-member
-      = image_tag('/icon-info.png')
-      .member-name
-        %span
-          Имя члена команды
-        = link_to 'RoR-Developer', '#', :class => 'btn'
-      .about
-        %p
-          Краткое описание навыков и опыта работы члена команды и тд и тп
-        %p
-          Краткое описание навыков и опыта работы члена команды и тд и тп Краткое описание навыков и опыта работы члена команды и тд и тп
+    - @team_member.each do |user|
+      .team-member
+        = image_tag "#{user.upload_files.first.filename.url}"
+        .member-name
+          %span
+          = link_to "#{user.fio}", team_path(user), :class => 'btn'
+        .about
+          %p= "#{user.about}"
   .span6
     %h3
       Фото команды
@@ -58,7 +33,7 @@
           You can use all Bootstrap plugins purely through the markup API without writing a single line of JavaScript. This is Bootstrap's first class API and should be your first consideration when using a plugin.
         %p
           That said, in some situations it may be desirable to turn this functionality off. Therefore, we also provide the ability to disable the data attribute API by unbinding all events on the body namespaced with `'data-api'`. This looks like this:
-      .g-map
-        %script{:charset => 'utf-8', :src => '//api-maps.yandex.ru/services/constructor/1.0/js/?sid=AfRHYGTwdoGSTYMmPPMXwUQgkFqvcfn_&width=570&height=350', :type => 'text/javascript'}
+      .g-map   #FIXIT
+
 .row
   = render :partial => 'shared/post_jobs'

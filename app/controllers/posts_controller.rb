@@ -3,14 +3,17 @@ class PostsController < ApplicationController
 
   # GET /posts
   def index
-    @posts = if !params[:category_name].nil?
-              Post.joins(:categories).where("categories.name = :category_name", :category_name=>params[:category_name]).page(params[:page]).per(10)
-            elsif !params[:tag_name].nil?
+    @posts = if !params[:category_name].blank?
+             Post.joins(:categories).where("categories.name = :category_name", :category_name=>params[:category_name]).page(params[:page]).per(10)
+            elsif !params[:tag_name].blank?
               Post.joins(:tags).where("tags.name = :tag_name", :tag_name=>params[:tag_name]).page(params[:page]).per(10)
             else
               Post.search_posts_based_on_like(params[:search]).page(params[:page]).per(10)
             end
-
+    respond_to do |format|
+      format.html{render :index}
+      format.rss { render :index, :content_type => Mime::XML }
+    end
   end
 
   # GET /posts/1

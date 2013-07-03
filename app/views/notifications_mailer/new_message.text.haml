@@ -4,15 +4,15 @@ Name:
 Email:
 = @message.email
 
-- unless @message.text.nil? || @message.text.empty?
+- unless @message.text.nil? || @message.text.empty? #FIXME
   Message:
   = @message.text
 
-- unless @message.phone.nil? || @message.phone.empty?
+- unless @message.phone.nil? || @message.phone.empty?   #FIXME
   Phone:
   = @message.phone
 
-- if @message.service_type1.to_i == 1 || @message.service_type2.to_i == 1 || @message.service_type3.to_i == 1
+- if @message.service_type1.to_i == 1 || @message.service_type2.to_i == 1 || @message.service_type3.to_i == 1   #FIXME
   Service type:
   - if @message.service_type1.to_i == 1
     Web
@@ -21,7 +21,7 @@ Email:
   - if @message.service_type3.to_i == 1
     Web+Mobile
 
-- unless @message.work_type.nil?
+- unless @message.work_type.nil?   #FIXME
   Im interested in:
   - case @message.work_type.to_i
     - when 1

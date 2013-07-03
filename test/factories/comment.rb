@@ -1,6 +1,9 @@
 FactoryGirl.define do
-  factory :comment do  |com|
-    com.description 'This is my comment ?!'
+  factory :comment do
+    sequence :description do |n|
+      "comment_#{n}"
+    end
+
   end
 end
 #t.integer  "post_id"

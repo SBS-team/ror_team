@@ -7,7 +7,7 @@ class TeamController < ApplicationController
   end
 
   def show
-    @team_member = AdminUser.find(params[:id])
+    @team = AdminUser.find(params[:id])
   end
 
 

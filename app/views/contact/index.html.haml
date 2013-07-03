@@ -1,7 +1,7 @@
 .row
   .span6
     %h1
-      Contact Us:
+      = t '.contact_us'
     .web-form
       = form_for @message, :url => '/contact' do |form| #FIXME
         .name

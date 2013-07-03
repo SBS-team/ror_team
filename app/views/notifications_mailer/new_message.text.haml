@@ -1,34 +1,33 @@
-Name:
+= t '.name'
 = @message.name
-
-Email:
+= t '.email'
 = @message.email
 
-- unless @message.text.nil? || @message.text.empty? #FIXME
-  Message:
+- unless @message.text.nil? || @message.text.empty?
+  = t '.message'
   = @message.text
 
-- unless @message.phone.nil? || @message.phone.empty?   #FIXME
-  Phone:
+- unless @message.phone.nil? || @message.phone.empty?
+  = t '.phone'
   = @message.phone
 
-- if @message.service_type1.to_i == 1 || @message.service_type2.to_i == 1 || @message.service_type3.to_i == 1   #FIXME
-  Service type:
+- if @message.service_type1.to_i == 1 || @message.service_type2.to_i == 1 || @message.service_type3.to_i == 1
+  = t '.service_type'
   - if @message.service_type1.to_i == 1
-    Web
+    = t '.web'
   - if @message.service_type2.to_i == 1
-    Mobile
+    = t '.mobile'
   - if @message.service_type3.to_i == 1
-    Web+Mobile
+    = t '.web_mobile'
 
-- unless @message.work_type.nil?   #FIXME
-  Im interested in:
+- unless @message.work_type.nil?
+  = t '.im_interested'
   - case @message.work_type.to_i
     - when 1
-      Minimum work project
+      = t '.minimum_work'
     - when 2
-      Work project from the beginning
+      = t '.work_project_from'
     - when 3
-      Help with existing project <br/>Tech. audit <br/> Increase in productivity <br/> Update to new Rails <br/> Service
+      = t '.help_existing_project'
     -else
-      nothing was checked
+      = t '.nothing_checked'

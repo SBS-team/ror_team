@@ -1,6 +1,6 @@
 ActiveAdmin.register User do
 
-    filter :email
+  filter :email
 
   index do
     column :email
@@ -18,7 +18,6 @@ ActiveAdmin.register User do
       f.input :password_confirmation
       f.input :first_name
       f.input :last_name
-
       f.input :phone
       f.input :skype
       f.has_many :upload_files do |file|
@@ -26,18 +25,16 @@ ActiveAdmin.register User do
         file.input :id, :as => :hidden
       end
     end
-    f.buttons
+    f.actions
   end
 
   controller do
     def create
-      begin
         @user = User.new(user_params)
-        @user.save!
+       if @user.save
         redirect_to admin_user_url(@user), notice: 'User was successfully created.'
-      rescue Exception => e
-        logger.error(e.message)
-        render 'new'
+      else
+        render :new
       end
     end
     def update
@@ -45,9 +42,10 @@ ActiveAdmin.register User do
       if @user.update(user_params)
         redirect_to edit_admin_user_url(@user), notice: 'User was successfully updated.'
       else
-        render 'edit'
+        render :edit
       end
     end
+
     private
     def user_params
       params.require(:user).permit(:email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :phone, :skype, upload_files_attributes: [:filename, :id])

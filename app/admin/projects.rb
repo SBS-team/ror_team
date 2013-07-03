@@ -1,5 +1,5 @@
 ActiveAdmin.register Project do
-  # Customize columns displayed on the new screen in the table
+
   index do
     column :id
     column :name
@@ -26,18 +26,17 @@ ActiveAdmin.register Project do
         file.input :id, :as => :hidden
       end
     end
-    f.buttons
+    f.actions
+
   end
 
   controller do
     def create
-      begin
-        @project = Project.new(project_params)
-        @project.save!
+      @project = Project.new(project_params)
+       if @project.save
         redirect_to admin_project_url(@project), notice: 'Project was successfully created.'
-      rescue Exception => e
-        logger.error(e.message)
-        render 'new'
+       else
+        render :new
       end
     end
     def update
@@ -45,7 +44,7 @@ ActiveAdmin.register Project do
       if @project.update(project_params)
         redirect_to edit_admin_project_url(@project), notice: 'Project was successfully updated.'
       else
-        render 'edit'
+        render :edit
       end
     end
     private

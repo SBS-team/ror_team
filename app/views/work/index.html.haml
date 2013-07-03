@@ -46,11 +46,11 @@
           %h4
             Техническая информация:
           %dl.dl-horizontal
-            - names = ''
+            - names = '' #FIXME
             - project.technologies.each do |tech|
               %dt
                 - if tech.technology_category.name == names
-                  = ''
+                  = '' #FIXME
                 - else
                   = names = tech.technology_category.name
               %dd

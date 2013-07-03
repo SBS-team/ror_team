@@ -39,3 +39,4 @@ describe CompanyController do
   end
 
 end
+

@@ -12,18 +12,16 @@ ActiveAdmin.register Service do
         file.input :id, :as => :hidden
       end
     end
-    f.buttons
+    f.actions
   end
 
   controller do
     def create
-      begin
-        @service = Service.new(service_params)
-        @service.save!
+       @service = Service.new(service_params)
+       if @service.save
         redirect_to admin_service_url(@service), notice: 'Service was successfully created.'
-      rescue Exception => e
-        logger.error(e.message)
-        render 'new'
+       else
+        render :new
       end
     end
     def update
@@ -31,9 +29,10 @@ ActiveAdmin.register Service do
       if @service.update(service_params)
         redirect_to edit_admin_service_url(@service), notice: 'Service was successfully updated.'
       else
-        render 'edit'
+        render :edit
       end
     end
+
     private
     def service_params
       params.require(:service).permit(:name, upload_files_attributes: [:filename, :id])

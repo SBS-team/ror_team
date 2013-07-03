@@ -9,6 +9,8 @@
 #  team_size   :integer
 #  created_at  :datetime
 #  updated_at  :datetime
+#  till        :date
+#  url         :string(255)
 #
 
 class Project < ActiveRecord::Base

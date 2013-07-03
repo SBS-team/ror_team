@@ -15,6 +15,8 @@
 #  last_sign_in_ip        :string(255)
 #  created_at             :datetime
 #  updated_at             :datetime
+#  role                   :string(255)
+#  about                  :text
 #
 
 class AdminUser < ActiveRecord::Base

@@ -99,3 +99,24 @@ ru:
         sign_in: "Войти"
         forgot_your_password: "Забыли пароль?"
         sign_in_with_omniauth_provider: "Войти на приложения %{provider}"
+  home:
+
+  layout:
+    page:
+      company: "Компания"
+      work: "Работы"
+      team: "Команда"
+      careers: "Каръера"
+      contact: "Контакты"
+      blog: "Блог"
+    use_to_contact: "Необходимо связатся с нами?"
+    media_soc: "Вы можете присоединиться к нашей медиа соц. сети:"
+    mail_scype: "Или связаться с нами через email или skype:"
+  home:
+    our_command: "О нас, и нашей компании!"
+    our_description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor  in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+    our_skills: "Наши скиллы и опыт работы:"
+    read_about_skills: "Узнать больше о наших навыках"
+    project_work: "Проэкты над которыми работали/ Портфолио"
+    read_about_projects: "Узнайте больше о наших проектах"
+

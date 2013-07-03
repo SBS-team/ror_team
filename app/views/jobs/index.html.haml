@@ -1,7 +1,7 @@
 .row.careers-index
   .span6
     %h2
-      Open vacancies:
+      = t '.open_vacancies'
     .careers
       - unless @jobs.nil?
         - @jobs.each do |job|

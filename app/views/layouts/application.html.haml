@@ -11,7 +11,7 @@
         .row
           .span2
             .logo
-              = link_to 'RoR-Team', '/home'
+              = link_to(t('.ror_team'), '/home')
           .span6
             - if current_user
               = "Welcome, #{current_user.nickname} "
@@ -19,17 +19,17 @@
           %nav
             %ul.inline
               %li
-                = link_to 'Company', '/company'
+                = link_to(t('.company'), '/company')
               %li
-                = link_to 'Work', '/work'
+                = link_to(t('.work'), '/work')
               %li
-                = link_to 'Team', '/team'
+                = link_to(t('.team'), '/team')
               %li
-                = link_to 'Careers', '/jobs'
+                = link_to(t('.careers'), '/jobs')
               %li
-                = link_to 'Contact', '/contact'
+                = link_to(t('.contact'), '/contact')
               %li
-                = link_to 'Blog', '/posts'
+                = link_to(t('.blog'), '/posts')
           .chat.span1
             .btn
               = link_to 'Live Chat', '#'
@@ -45,29 +45,29 @@
         .contact-us.row
           .span4
             %p.lead
-              Необходимо связаться с нами?
+              = t '.use_to_contact'
         .row
           .span6
             %small
-              вы можете присоединиться к нашей медиа соц. сети
+              = t '.media_soc'
           .span6.text-right
             %small
-              Или связаться с нами через email или skype
+              = t '.mail_scype'
         .row.soc_net
           .span4
             %p.lead
               %i.icon-th-large
-              = link_to 'Follow us on twitter', 'http://twitter.com'
+              = link_to(t('.follow_twitter'), 'http://twitter.com')
           .span4
             %p.lead
               %i.icon-th
-              = link_to 'Follow us on Facebook', 'http://facebook.com'
+              = link_to(t('.follow_facebook'), 'http://facebook.com')
           .span4
             %p.lead
               %i.icon-envelope
-              = link_to 'Contact us by email', '#'
+              = link_to(t('.contact_email'), '#')
               %br
-                = link_to 'email ror_team@gmail.com', 'mailto:ror_team@gmail.com'
+                = link_to(t('.email'), 'mailto:ror_team@gmail.com')
         .row.text-center
           © 2012-2013 RoR-Team
         .row.bottom

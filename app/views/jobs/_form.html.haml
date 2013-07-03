@@ -1,17 +1,18 @@
 .span6
-  %h2 Send us your resume:
+  %h2
+    = t '.send_resume'
   = form_for @resume, :url => '/jobs', :html => {:class => 'web-form', :multipart => true} do |f|
     - unless @job.nil?
-      = f.select(:job_id, options_for_select(@job.title => @job.id), :html => {:class => 'proffession', :title => 'Select a job'})
+      = f.select(:job_id, options_for_select(@job.title => @job.id), :html => {:class => 'proffession', :title => t('.select_job')})
     -else
       - unless @jobs_for_select.nil?
-        = f.select(:job_id, options_for_select(@jobs_for_select.map { |j| [j.title, j.id] }), :html => {:class => 'proffession', :title => 'Select a job'})
-    = f.text_field :name, :id => 'input-name', :class => 'span6', :placeholder => 'Your name', :type => 'text'
-    = f.text_field :email, :id => 'input-email', :class => 'span6', :placeholder => 'Your email', :type => 'text'
-    = f.text_field :phone, :id => 'input-phone', :class => 'span6', :placeholder => 'Your phone number', :type => 'text'
-    = f.text_area :description, :class => 'span6', :placeholder => 'Your message', :rows => '5'
+        = f.select(:job_id, options_for_select(@jobs_for_select.map { |j| [j.title, j.id] }), :html => {:class => 'proffession', :title => t('.select_job')})
+    = f.text_field :name, :id => 'input-name', :class => 'span6', :placeholder => t('.your_name'), :type => 'text'
+    = f.text_field :email, :id => 'input-email', :class => 'span6', :placeholder => t('.your_email'), :type => 'text'
+    = f.text_field :phone, :id => 'input-phone', :class => 'span6', :placeholder => t('.your_phone'), :type => 'text'
+    = f.text_area :description, :class => 'span6', :placeholder =>  t('.your_message'), :rows => '5'
     = f.fields_for :upload_files_attributes do |file|
       = file.file_field :filename
       = file.hidden_field :id
     .submit-form
-    = f.submit 'Send resume', :class => 'btn'
+    = f.submit t('.send_resume'), :class => 'btn'

@@ -2,24 +2,24 @@
   .row
     .span6
       %h2
-        О нас и нашей компании
+        = t '.our_command'
       %p
-        "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor  in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,    sunt in culpa qui officia deserunt mollit anim id est laborum."
+        = t '.our_description'
     .span6.text-right
       %h2.bl_title
-        наши скиллы и опыт работы
+        = t '.our_skills'
       .skills
         - unless @tech.nil?
           - @tech.each do |tc|
             .skill
               = tc.name
       .more.text-right
-        = link_to 'read more about our skills', '/company'
+        = link_to(t('.read_about_skills'), '/company')
 .even
   .row
     .bl_title.span12
       %h2
-        Проэкты над которыми работали\Портфолио
+        = t '.project_work'
     .bl_content.row
       - unless @some_projects.nil?
         - @some_projects.each do |project|
@@ -32,7 +32,7 @@
             .portf_title
               = link_to project.name, work_path(project)
     .row.text-right
-      = link_to 'Read more about our projects', '/work'
+      = link_to(t('.read_about_projects'), '/work')
 .odd
   .row
     = render :partial => 'shared/post_jobs'

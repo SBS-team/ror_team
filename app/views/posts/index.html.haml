@@ -8,7 +8,7 @@
               - unless post.upload_files.first.nil?
                 = image_tag post.upload_files.first.filename.to_s
                 = link_to '', '#'
-            = link_to "#{post.comments_count} Comments", post_path(post)
+            = link_to "#{post.comments_count} #{t('.comments')}", post_path(post)
           .post_right
             .post-title
               = link_to post.title, post_path(post)
@@ -19,10 +19,11 @@
               = post.description.html_safe[0..200]
               = '...' if post.description.html_safe.length > 200
             .categories
+              = t '.category'
               Category:
               = post.categories.collect{|cat| link_to strip_links(cat.name), posts_path(:category_name=>cat.name) }.join(', ').html_safe
             .tags
-              Tags:
+              = t '.tags'
               - post.tag_counts_on(:tags).each do |tag|
                 = link_to tag.name, posts_path(:tag_name => tag.name), :class => 'btn'
     = paginate @posts

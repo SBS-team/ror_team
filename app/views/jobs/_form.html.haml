@@ -3,11 +3,13 @@
   %h2
     = t '.send_resume'
   = form_for @resume, :url => jobs_path, :html => {:class => 'web-form', :multipart => true} do |f|  #FIXME
+
     - unless @job.nil?
       = f.select(:job_id, options_for_select(@job.title => @job.id), :html => {:class => 'proffession', :title => t('.select_job')})
     -else
       - unless @jobs_for_select.nil?
         = f.select(:job_id, options_for_select(@jobs_for_select.map { |j| [j.title, j.id] }), :html => {:class => 'proffession', :title => t('.select_job')})
+
     = f.text_field :name, :id => 'input-name', :class => 'span6', :placeholder => t('.your_name'), :type => 'text'
     = f.text_field :email, :id => 'input-email', :class => 'span6', :placeholder => t('.your_email'), :type => 'text'
     = f.text_field :phone, :id => 'input-phone', :class => 'span6', :placeholder => t('.your_phone'), :type => 'text'

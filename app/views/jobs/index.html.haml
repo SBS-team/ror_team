@@ -6,12 +6,12 @@
       - @jobs.each do |job|
         .career
           = image_tag('/icon-info.png')
-          %botton.btn.input-large{:type => 'submit'}
-            = link_to job.title, job
+          -#%botton.btn.input-large{:type => 'submit'}
+          = link_to job.title, job
           .descr
             %p
-              = truncate( job.description, :length => 10)
-        = paginate @jobs,:window => 1
+              = truncate( job.description, :length => 100)
+      = paginate @jobs,:window => 1
   = render 'form'
 .row
   = render :partial => 'shared/post_jobs'

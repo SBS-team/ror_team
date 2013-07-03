@@ -2,12 +2,13 @@
 #
 # Table name: posts
 #
-#  id          :integer          not null, primary key
-#  title       :string(255)
-#  description :text
-#  admin_id    :integer
-#  created_at  :datetime
-#  updated_at  :datetime
+#  id             :integer          not null, primary key
+#  title          :string(255)
+#  description    :text
+#  admin_id       :integer
+#  created_at     :datetime
+#  updated_at     :datetime
+#  comments_count :integer          default(0)
 #
 
 class Post < ActiveRecord::Base

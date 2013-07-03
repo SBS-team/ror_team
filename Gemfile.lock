@@ -430,7 +430,7 @@ DEPENDENCIES
   pry-stack_explorer
   puma
   pusher (~> 0.9.4)
-  rails (>= 4.0.0.rc1)
+  rails (~> 4.0.0)
   rails_config
   ransack!
   responders!

@@ -30,6 +30,7 @@ describe WorkController do
       assert_template :index
       assert_template layout: "layouts/application"
       assert_template partial: "shared/_post_jobs"
+      assert_response :success
 
       refute_nil assigns(:projects)
       assert_includes(assigns(:projects), @project1)

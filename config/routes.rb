@@ -15,10 +15,7 @@ RorTeam::Application.routes.draw do
   resources :company #FIXME
   resources :work  #FIXME
   resources :jobs  #FIXME
-  resources :contact #FIXME
+  resources :contact, :only => [:new, :create]
   root :to => 'home#index'
-
-  match 'contact', to: 'contact#new', via: [:get]    #FIXME
-  match 'contact', to: 'contact#create', via: [:post]   #FIXME
 
 end

@@ -5,13 +5,13 @@ ApplicationController.skip_before_filter :assign_gon_properties
 describe ContactController do
 
   it 'should get index' do
-    get :index
+    get :new
     assert_response :success
   end
 
   it 'index should render correct template and layout' do
-    get :index
-    assert_template :index
+    get :new
+    assert_template :new
     assert_template layout: 'layouts/application'
   end
 
@@ -24,13 +24,13 @@ describe ContactController do
 
   it 'should flash error name' do
     post :create, message: {:email => 'asd@mail.ru'}
-    assert_template :index
+    assert_template :new
     assert_equal 'Name cannot be blank.<br/>', flash[:error]
   end
 
   it 'should flash error email' do
     post :create, message: {:name => 'Andrew'}
-    assert_template :index
+    assert_template :new
     assert_equal 'Email cannot be blank.<br/>', flash[:error]
   end
 

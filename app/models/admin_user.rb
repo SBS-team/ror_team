@@ -24,7 +24,20 @@ class AdminUser < ActiveRecord::Base
   devise :database_authenticatable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :posts, foreign_key: :admin_id
   has_many :upload_files, :as => :fileable
   accepts_nested_attributes_for :upload_files
+
+  validates :first_name,
+            :presence => true
+  validates :last_name,
+            :presence => true
+  validates :email,
+            :presence => true,
+            :uniqueness => true
+  validates :password,
+            :presence => true
+  validates :upload_files,
+            :presence => true
+  validates :about,
+            :presence => true
 end

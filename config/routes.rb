@@ -6,9 +6,6 @@ RorTeam::Application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   devise_for :users
-  resource :resume do
-    post "careers/create"
-  end
   resources :posts do
     resources :comments
   end
@@ -17,7 +14,7 @@ RorTeam::Application.routes.draw do
   resources :team
   resources :company
   resources :work
-  resources :careers
+  resources :jobs
   resources :contact
   root :to => 'home#index'
 

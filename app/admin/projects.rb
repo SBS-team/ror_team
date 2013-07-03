@@ -22,15 +22,10 @@ ActiveAdmin.register Project do
       f.input :technologies, :as => :check_boxes
       f.input :services, :as => :check_boxes
       f.has_many :upload_files do |file|
-        file.input :filename, :as => :file, :label => 'Image'#, :hint => file.template.image_tag(file.object.filename.url(:thumb))
+        file.input :filename, :as => :file, :label => 'Image', :hint => file.template.image_tag(file.object.filename.url, :height => 200, :width => 200)
         file.input :id, :as => :hidden
       end
     end
-    # f.inputs "Technologies" do
-    #   f.semantic_fields_for :project_technology_technologies do |ptt|
-    #     ptt.input :id, :as => :check_boxes, :collection => Technology.all
-    #   end
-    # end
     f.buttons
   end
 

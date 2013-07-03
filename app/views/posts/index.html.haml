@@ -9,22 +9,23 @@
               = link_to '', '#'
             -else
               = image_tag 'missing.png'
-          = link_to "#{post.comments_count} Comments", post_path(post)
+          = link_to "#{post.comments_count} #{t('.comments')}", post_path(post)
         .post_right
           .post-title
-            = link_to "#{post.title}", post_path(post)
+            = link_to post.title, post_path(post)
           .post_date
             %em
-              = distance_of_time_in_words_to_now(post.created_at)
+              = post.created_at.strftime("%d %B %H:%M:%S")
           .post-content
             != post.description.truncate(200,"...(read more)")
           .categories
+            = t '.category'
             Category:
-            = post.categories.collect{|cat| link_to strip_links(cat.name), posts_path(:category_name=>cat.name) }.join(', ')
+            = post.categories.collect{|cat| link_to strip_links(cat.name), posts_path(:category_name=>cat.name) }.join(', ').html_safe
           .tags
-            Tags:
+            = t '.tags'
             - post.tag_counts_on(:tags).each do |tag|
-              = link_to "#{tag.name}", posts_path(:tag_name => tag.name), :class => 'btn'
+              = link_to tag.name, posts_path(:tag_name => tag.name), :class => 'btn'
     = paginate @posts
   .span4.sidebar
     = render :partial => 'sidebar'

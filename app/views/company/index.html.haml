@@ -1,7 +1,7 @@
 .row.our-skills
   .span12
     %h1
-      Наши скилы и опыт работы
+      = t '.our_skills'
   - @technology_categories.each do |tech_category|
     .span3
       %h4
@@ -13,19 +13,19 @@
   .span4
     = image_tag('/icon-info.png')
     %span
-      Опыт разработки различных систем
+      = t '.development_system'
   .span4
     = image_tag('/icon-info.png')
     %span
-      Опытная команда разработчиков
+      = t '.command_development'
   .span4
     = image_tag('/icon-info.png')
     %span
-      Положительные отзывы на Odesk
+      = t '.feedback_odesk'
 .row.services
   .span12
     %h3
-      Сервисы, которые мы предоставляем:
+      = t '.service_prode'
   - @services.each do |service|
     .span3
       %h4

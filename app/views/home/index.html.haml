@@ -9,10 +9,9 @@
       %h2.bl_title
         = t '.our_skills'
       .skills
-        - unless @tech.nil?   #FIXME
-          - @tech.each do |tc|
-            .skill
-              = tc.name
+        - @tech.each do |tc|
+          .skill
+            = tc.name
       .more.text-right
         = link_to(t('.read_about_skills'), '/company')
 .even
@@ -21,16 +20,15 @@
       %h2
         = t '.project_work'
     .bl_content.row
-      - unless @some_projects.nil? #FIXME
-        - @some_projects.each do |project|
-          .portfolio_item.span3.text-center
-            .pic
-              - if project.upload_files.first.nil?
-                = image_tag('/icon-info.png')
-              - else
-                = image_tag(project.upload_files.first.filename.to_s)
-            .portf_title
-              = link_to project.name, work_path(project)
+      - @some_projects.each do |project|
+        .portfolio_item.span3.text-center
+          .pic
+            - if project.upload_files.first.nil?
+              = image_tag('/icon-info.png')
+            - else
+              = image_tag(project.upload_files.first.filename.to_s)
+          .portf_title
+            = link_to project.name, work_path(project)
     .row.text-right
       = link_to(t('.read_about_projects'), '/work')
 .odd

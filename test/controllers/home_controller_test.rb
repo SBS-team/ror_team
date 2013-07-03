@@ -34,7 +34,9 @@ describe HomeController do
     it 'show some projects' do
       projects = []
       10.times do |i|
-        projects[i]= FactoryGirl.create(:project)
+        projects[i]= FactoryGirl.build(:project)
+        projects[i].upload_files << FactoryGirl.create(:upload_file)
+        projects[i].save
       end
       get :index
       refute_nil assigns(:some_projects)

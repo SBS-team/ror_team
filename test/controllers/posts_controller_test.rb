@@ -74,14 +74,18 @@ describe PostsController do
   describe 'GET #show' do
 
     it 'rendering' do
-      post = FactoryGirl.create(:post)
+      post = FactoryGirl.build(:post)
+      post.upload_files << FactoryGirl.create(:upload_file)
+      post.save
       get :show, id: post
       assert_template :show
       assert_template layout: "layouts/application"
     end
 
     it "show post with comments" do
-      post = FactoryGirl.create(:post)
+      post = FactoryGirl.build(:post)
+      post.upload_files << FactoryGirl.create(:upload_file)
+      post.save
       user = FactoryGirl.create(:user)
       comment1 = FactoryGirl.create(:comment, :commentable => user)
       comment2 = FactoryGirl.create(:comment, :commentable => user)
@@ -121,6 +125,11 @@ describe PostsController do
       post1 = FactoryGirl.build(:post)
       post2 = FactoryGirl.build(:post)
       post3 = FactoryGirl.build(:post)
+
+      post1.upload_files << FactoryGirl.create(:upload_file)
+      post2.upload_files << FactoryGirl.create(:upload_file)
+      post3.upload_files << FactoryGirl.create(:upload_file)
+
       comment1 = FactoryGirl.create(:comment, :commentable => user)
       comment2 = FactoryGirl.create(:comment, :commentable => user)
       comment3 = FactoryGirl.create(:comment, :commentable => user)
@@ -156,6 +165,7 @@ describe PostsController do
 
     it 'show all tags' do
       post = FactoryGirl.build(:post)
+      post.upload_files << FactoryGirl.create(:upload_file)
       post.tag_list = "tag1, tag2, tag3"
       post.save
 

@@ -17,4 +17,6 @@ class Service < ActiveRecord::Base
             :presence => true,
             :uniqueness => true,
             :length => { :in => 5..45 }
+  validates :upload_files,
+            :presence => true
 end

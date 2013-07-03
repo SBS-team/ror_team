@@ -37,6 +37,8 @@ class Project < ActiveRecord::Base
             :presence => true,
             :numericality => {  :only_integer => true,
                                 :greater_than => 0 }
+  validates :upload_files,
+            :presence => true
 
 end
 

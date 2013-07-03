@@ -35,12 +35,11 @@ ActiveAdmin.register AdminUser do
         @admin.save!
         redirect_to admin_admin_user_path(@admin), notice: 'Admin was successfully created.'
       rescue Exception => e
-        logger.error(e.message)
-        render 'new'
+        redirect_to new_admin_admin_user_path, alert: e.to_s
       end
     end
     def edit
-      @admin =   AdminUser.find(params[:id])
+      @admin = AdminUser.find(params[:id])
     end
     def update
       @admin = AdminUser.find(params[:id])
@@ -53,7 +52,7 @@ ActiveAdmin.register AdminUser do
 
     private
     def admin_user_params
-      params.require(:admin_user).permit(:first_name, :last_name, :email,:role,:about,:password, :password_confirmation,:last_sign_in_at, upload_files_attributes: [:filename, :id])
+      params.require(:admin_user).permit(:id, :first_name, :last_name, :email,:role,:about,:password, :password_confirmation,:last_sign_in_at, upload_files_attributes: [:filename, :id])
     end
   end
 end

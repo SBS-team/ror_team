@@ -17,7 +17,7 @@
             %em
               = post.created_at.strftime("%d %B %H:%M:%S")
           .post-content
-            != post.description.truncate(200,"...(read more)")
+            = truncate(post.description, lenght: 200, ommision: '...(read more)')
           .categories
             = t '.category'
             Category:

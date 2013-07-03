@@ -12,7 +12,7 @@
         .about
           %p
             = member.about
-    = paginate @team,:window => 1
+    = paginate @team
   .span6
     %h3
       = t '.team_photo'
@@ -42,44 +42,3 @@
         %script{:charset => 'utf-8', :src => '//api-maps.yandex.ru/services/constructor/1.0/js/?sid=AfRHYGTwdoGSTYMmPPMXwUQgkFqvcfn_&width=570&height=350', :type => 'text/javascript'}
 .row
   = render :partial => 'shared/post_jobs'
-
-
--#.row.team-members
--#  - @team_member.each do |user|
--#    .team-member
--#      = image_tag(user.upload_files.first.filename.url)
--#      .member-name
--#        %span
--#        = link_to "#{user.fio}", team_path(user), :class => 'btn'
--#      .about
--#        %p= "#{user.about}"
--#  = paginate @team_member,:window => 1
--#  .span6
--#    %h3
--#      Фото команды
--#    #myCarousel.carousel.slide
--#      %ol.carousel-indicators
--#        %li.active{'data-slide-to' => '0', 'data-target' => '#myCarousel'}
--#        %li{'data-slide-to' => '1', 'data-target' => '#myCarousel'}
--#        %li{'data-slide-to' => '2', 'data-target' => '#myCarousel'}
--#      .carousel-inner
--#        .active.item
--#          = image_tag('/Screen.png')
--#        .item
--#          = image_tag('/Screen.png')
--#        .item
--#          = image_tag('/Screen.png')
--#      = link_to '‹', '#myCarousel', 'data-slide' => 'prev', :class => 'carousel-control left'
--#      = link_to '›', '#myCarousel', 'data-slide' => 'next', :class => 'carousel-control right'
--#    .about-team
--#      %h3
--#        О нас и нашей компании!
--#      .text
--#        %p
--#          You can use all Bootstrap plugins purely through the markup API without writing a single line of JavaScript. This is Bootstrap's first class API and should be your first consideration when using a plugin.
--#        %p
--#          That said, in some situations it may be desirable to turn this functionality off. Therefore, we also provide the ability to disable the data attribute API by unbinding all events on the body namespaced with `'data-api'`. This looks like this:
--#      .g-map   #FIXIT
--#
--#.row
--#  = render :partial => 'shared/post_jobs'

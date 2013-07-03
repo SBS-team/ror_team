@@ -18,13 +18,6 @@ end
 def in_browser(name)
   Capybara.session_name = name
   yield
-  #in test
-  #in_browser(:one) do
-  #  visit "/"
-  #end
-  #in_browser(:two) do
-  #  visit "/"
-  #end
 end
 
 class ActionController::TestCase

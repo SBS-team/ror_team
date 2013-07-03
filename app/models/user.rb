@@ -39,18 +39,10 @@ class User < ActiveRecord::Base
 
   def self.create_from_omniauth(auth)
     find_or_create_by(:uid => auth['uid']) do |user|
-      if auth['provider'] == 'vkontakte'
-        user.email = "#{auth['provider']}@#{auth['extra']['screen_name']}.ru"
-      else
-        user.email = "#{auth['provider']}@#{auth['info']['nickname']}.ru"
-      end
+      auth['provider'] == 'vkontakte' ? user.email = "#{auth['provider']}@#{auth['extra']['screen_name']}.ru" : user.email = "#{auth['provider']}@#{auth['info']['nickname']}.ru"
       user.provider = auth['provider']
       user.uid = auth['uid']
-      if auth['provider'] == 'vkontakte'
-        user.nickname = auth['info']['name']
-      else
-        user.nickname = auth['info']['nickname']
-      end
+      auth['provider'] == 'vkontakte' ? user.nickname = auth['info']['name'] : user.nickname = auth['info']['nickname']
       user.image = auth['info']['image']
     end
   end

@@ -10,9 +10,9 @@
         наши скиллы и опыт работы
       .skills
         - unless @tech.nil?
-          - @tech.each do |tc|
+          - @tech.each do |t|
             .skill
-              = tc.name
+              = t.name
       .more.text-right
         = link_to 'read more about our skills', '/company'
 .even

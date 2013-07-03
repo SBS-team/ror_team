@@ -30,22 +30,24 @@ ActiveAdmin.register AdminUser do
 
   controller do
     def create
-      @admin = AdminUser.create(admin_user_params)
-      if @admin.save
+      begin
+        @admin = AdminUser.new(admin_user_params)
+        @admin.save!
         redirect_to admin_admin_user_path(@admin), notice: 'Admin was successfully created.'
-      else
-       render :new
+      rescue Exception => e
+        redirect_to new_admin_admin_user_path, alert: e.to_s
       end
     end
+
     def edit
       @admin = AdminUser.find(params[:id])
     end
     def update
       @admin = AdminUser.find(params[:id])
-      if @admin.update_attributes(admin_user_params)
+      if @admin.update(admin_user_params)
         redirect_to admin_admin_user_path(@admin), notice: 'Admin was successfully updated.'
       else
-        render :edit
+        render 'edit'
       end
     end
 

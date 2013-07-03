@@ -9,9 +9,19 @@
       %h2.bl_title
         = t '.our_skills'
       .skills
+<<<<<<< HEAD
         - @tech.each do |tc|
           .skill
             = tc.name
+=======
+        - unless @tech.nil?   #FIXME
+          - @tech.each do |tc|
+            .skill
+              - unless tc.upload_files.first.nil?
+                = image_tag tc.upload_files.first.filename.to_s, title: tc.name, alt: tc.name, width: 50, height: 50
+              - else
+                = image_tag '/icon-info.png', width: 50, height: 50, alt: tc.name, title: tc.name
+>>>>>>> dev
       .more.text-right
         = link_to(t('.read_about_skills'), '/company')
 .even

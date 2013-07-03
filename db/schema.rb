@@ -57,11 +57,6 @@ ActiveRecord::Schema.define(version: 20130702201555) do
     t.datetime "updated_at"
   end
 
-  create_table "chat_messages", force: true do |t|
-    t.text    "body"
-    t.integer "live_chat_id"
-  end
-
   create_table "comments", force: true do |t|
     t.text     "description"
     t.integer  "post_id"
@@ -78,13 +73,6 @@ ActiveRecord::Schema.define(version: 20130702201555) do
     t.datetime "updated_at"
   end
 
-  create_table "live_chats", force: true do |t|
-    t.integer "user_id"
-    t.integer "admin_id"
-    t.string  "guest_name",  limit: 45
-    t.string  "guest_email", limit: 45
-    t.string  "status",      limit: 45
-  end
 
   create_table "post_categories", force: true do |t|
     t.integer  "post_id"

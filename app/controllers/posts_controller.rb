@@ -21,6 +21,9 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @comments = @post.comments.order("id").page(params[:page]).per(5)
+
+    @recent_posts = Post.order("created_at DESC").limit(5)
+    @popular_posts = Post.order("comments_count DESC").limit(5)
   end
 
   private

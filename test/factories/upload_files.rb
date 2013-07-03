@@ -2,7 +2,9 @@
 
 FactoryGirl.define do
   factory :upload_file do
-    filename "MyString"
+    sequence :filename do |n|
+      "Filename_#{n}"
+    end
     fileable_id ""
     fileable_type "MyString"
   end

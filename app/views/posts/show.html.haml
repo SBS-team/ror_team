@@ -22,8 +22,10 @@
     %comments
       - @comments.each do |comment|
         %b
-          = image_tag comment.commentable.image, :class=>'img-rounded'
-          = comment.commentable.nickname
+          - if comment.commentable.respond_to? :image
+            = image_tag comment.commentable.image, :class=>'img-rounded'
+          - if comment.commentable.respond_to? :nickname
+            = comment.commentable.nickname
         %small
           = comment.commentable.email
           %br

@@ -1,2 +1,6 @@
-require "minitest_helper"
-#FIXME
+require 'minitest_helper'
+
+describe CommentsController do
+
+end
+

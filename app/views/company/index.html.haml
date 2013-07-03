@@ -1,16 +1,19 @@
 .row.our-skills
   .span12
     %h1
-      Наши скилы и опыт работы
+      Our skills and experience
   - unless @technology_categories.nil?
     - @technology_categories.each do |tech_category|
-      .span3
+      .span2
         %h4
           = tech_category.name
         - unless tech_category.technologies.nil?
           - tech_category.technologies.each do |technology|
-            %span
-              = technology.name
+            .span0
+              - unless technology.upload_files.first.nil?
+                = image_tag technology.upload_files.first.filename.to_s, title: technology.name, alt: technology.name, width: 50, height: 50
+              - else
+                = image_tag '/icon-info.png', width: 50, height: 50, alt: technology.name, title: technology.name
 .row.experience
   .span4
     = image_tag('/icon-info.png')

@@ -5,3 +5,4 @@ class NotificationsMailerTest < ActionMailer::TestCase
   #   assert true
   # end
 end
+#FIXME

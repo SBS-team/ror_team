@@ -1,26 +1,26 @@
 .block.text-center.rss
-  = link_to 'RSS Feed',  posts_path(:rss), :class => 'btn'
+  = link_to t('.rss_feed'),  posts_path(:rss), :class => 'btn'
 .block.search.text-center
   %form.form-search
-    %input.input-large.search-query{:type => 'text', placeholder: 'search', :name=>"search"}
+    %input.input-large.search-query{:type => 'text', placeholder: t('.search'), :name=>"search"}
 .block.categories
   %h3
-    Categories:
+    = t '.categories'
   %ul.unstyled
     - @categories.each do |category|
       %li
         = link_to category.name, posts_path(:category_name=>category.name)
 .block.contact_us
   %p
-    RoR-Team это лучшее, что было в вашей жизни! Мы можем испортить любой ваш заказ, будь то починка кастрюли или движение отвертки.
-    = link_to 'Убежать быстрее'
+    = t '.ror_team_info'
+    = link_to t('.run_away')
   %h4
-    Мы усегда рады помось вам
+    = t '.help_you'
   .btn.text-center
-    = link_to 'Связаться с нами'
+    = link_to t('contact_us')
 .block.tags
   %h3
-    Tags:
+    = t '.tags'
   .cloud
     - @tags.each do |tag|
       - random = 1 + Random.rand(6)

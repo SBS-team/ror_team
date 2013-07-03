@@ -8,7 +8,7 @@ class WorkController < ApplicationController
 
   def show
     @projects = Project.where(:id=>params[:id]).preload(:technologies).page params[:page]
-    render "work/index"
+    render :index
   end
 
 end

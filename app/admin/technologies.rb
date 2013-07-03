@@ -16,20 +16,17 @@ ActiveAdmin.register Technology do
         file.input :filename, :as => :file, :label => 'Image', :hint => file.template.image_tag(file.object.filename.url)
         file.input :id, :as => :hidden
       end
-      #f.input :project_technology_category
     end
-    f.buttons
+    f.actions
   end
 
   controller do
     def create
-      begin
-        tech_cat = TechnologyCategory.find(params[:technology][:technology_category_id])
-        @tech = tech_cat.technologies.create!(safe_params)
+      tech_cat = TechnologyCategory.find(params[:technology][:technology_category_id])
+       if @tech = tech_cat.technologies.create(safe_params)
         redirect_to edit_admin_technology_url(@tech), notice: 'Technology was successfully created.'
-      rescue Exception => e
-        logger.error(e.message)
-        render 'new'
+      else
+        render :new
       end
     end
     def update
@@ -37,7 +34,7 @@ ActiveAdmin.register Technology do
       if @tech.update(safe_params)
         redirect_to edit_admin_technology_url(@tech), notice: 'Technology was successfully updated.'
       else
-        render 'edit'
+        render :edit
       end
     end
     private
@@ -46,15 +43,3 @@ ActiveAdmin.register Technology do
     end
   end
 end
-
-__END__
-
-{"utf8"=>"✓",
- "authenticity_token"=>"lAb52PYiOUzmWwl0DP9ShQ3jjB9ryUVJIC8RaQPDs5I=",
- "technology"=>
-  {"name"=>"name",
-   "technology_category_id"=>"8",
-   "project_technology_category_id"=>"8"},
- "commit"=>"Create Technology",
- "action"=>"create",
- "controller"=>"admin/technologies"}

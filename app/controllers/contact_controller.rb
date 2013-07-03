@@ -11,12 +11,8 @@ class ContactController < ApplicationController
 
   def create
     @message = Message.new(params[:message])
-    flash.now[:error] = ''
-    if @message.name.nil? || @message.name.empty?
+    if @message.name.blank? || @message.email.blank?
       flash.now[:error] << 'Name cannot be blank.<br/>'
-    end
-    if @message.email.nil? || @message.email.empty?
-      flash.now[:error] << 'Email cannot be blank.<br/>'
     end
     if @message.valid?
       NotificationsMailer.new_message(@message).deliver

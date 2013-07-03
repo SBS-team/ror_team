@@ -1,9 +1,9 @@
 .row
   .span6
     %h1
-      Contact Us:
+      = t '.contact_us'
     .web-form
-      = form_for @message, :url => '/contact' do |form|
+      = form_for @message, :url => '/contact' do |form| #FIXME
         .name
           = form.text_field(:name, 'placeholder' => 'Your name', 'class' => 'span4')
         .email-phone

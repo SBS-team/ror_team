@@ -21,3 +21,117 @@
 
 en:
   hello: "Hello world"
+
+  layouts:
+    application:
+      ror_team: "RoR-Team"
+      company: "Company"
+      work: "Work"
+      team: "Team"
+      careers: "Careers"
+      contact: "Contact"
+      blog: "Blog"
+      use_to_contact: "Need us to contact you?"
+      media_soc: "You can join our social media. network:"
+      mail_scype: "Or contact us via email or skype:"
+      follow_twitter: "Follow us on Twitter"
+      follow_facebook: "Follow us on Facebook"
+      contact_email: "Contact us by email"
+      email: "email ror_team@gmail.com"
+
+
+  home:
+    index:
+      our_command: "About us and our company!"
+      our_description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor  in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+      our_skills: "Our skills and experience:"
+      read_about_skills: "Read more about our skills"
+      project_work: "Projects on which work / Portfolio"
+      read_about_projects: "Read more about our projects"
+
+  company:
+    index:
+      our_skills: "Our skills and experience:"
+      service_prode: "Services we provide:"
+      development_system: "Experience in the development of various systems"
+      command_development: "An experienced team of developers"
+      feedback_odesk: "Positive feedback on Odesk"
+
+  shared:
+    post_jobs:
+      latest_posts: "Latest blog posts:"
+      by: "by"
+      vacancies: "Open vacancies:"
+      send_resume: "Send resume"
+
+  team:
+    index:
+      our_command: "About us and our company!"
+      team_photo: "Team photo"
+
+  work:
+    index:
+      link_project: "Link to  project"
+      since: "Since:"
+      team_size: "Team size:"
+      till: "Till:"
+      tech_info: "Technical information:"
+      people: "people"
+
+  contact:
+    index:
+      contact_us: "Contact us:"
+
+  notifications_mailer:
+    new_message:
+      name: "Name:"
+      email: "Email:"
+      message: "Message:"
+      phone: "Phone:"
+      service_type: "Service type:"
+      web: "Web"
+      mobile: "Mobile"
+      web_mobile: "Web + Mobile"
+      im_interested: "Im interested in:"
+      minimum_work: "Minimum work project"
+      work_project_from: "Work project from the beginning"
+      help_existing_project: "Help with existing project <br/>Tech. audit <br/> Increase in productivity <br/> Update to new Rails <br/> Service"
+      nothing_checked: "nothing was checked"
+
+  jobs:
+    open_vacancies: "Open vacancies:"
+    form:
+      send_resume: "Send us your resume:"
+      select_job: "Select a job"
+      your_name: "Your name"
+      your_email: "Your Email"
+      your_phone: "Your phone number"
+      your_message: "Your message"
+      send_resume: "Send resume"
+
+  posts:
+    sidebar:
+      rss_feed: "RSS Feed"
+      search: "search"
+      categories: "Categories:"
+      ror_team_info: "RoR-Team это лучшее, что было в вашей жизни! Мы можем испортить любой ваш заказ, будь то починка кастрюли или движение отвертки."
+      run_away: "Run away quickly"
+      help_you: "We are always happy to help you"
+      contact_us: "Contact us"
+      tags: "Tags:"
+    index:
+      category: "Category:"
+      tags: "Tags:"
+      comments: "Commets"
+    show:
+      comments: "Commets"
+      new_comment: "New Comment"
+      write_comment: "Write your comment here"
+      add_comment: "Add Comment"
+      most_recent_post: "Most recent posts"
+      get_more: "Want to get more of ror-team"
+      most_popular: "Most popular posts"
+      ready_help: "we're always ready to help"
+      contact_us: "Contact Us"
+      rss_feed: "RSS Feed"
+

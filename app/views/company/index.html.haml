@@ -2,15 +2,13 @@
   .span12
     %h1
       = t '.our_skills'
-  - unless @technology_categories.nil?
-    - @technology_categories.each do |tech_category|
-      .span3
-        %h4
-          = tech_category.name
-        - unless tech_category.technologies.nil?
-          - tech_category.technologies.each do |technology|
-            %span
-              = technology.name
+  - @technology_categories.each do |tech_category|
+    .span3
+      %h4
+        = tech_category.name
+        - tech_category.technologies.each do |technology|
+          %span
+            = technology.name
 .row.experience
   .span4
     = image_tag('/icon-info.png')
@@ -25,14 +23,13 @@
     %span
       = t '.feedback_odesk'
 .row.services
-  - unless @services.nil?
-    .span12
-      %h3
-        = t '.service_prode'
-    - @services.each do |service|
-      .span3
-        %h4
-          = service.name
+  .span12
+    %h3
+      = t '.service_prode'
+  - @services.each do |service|
+    .span3
+      %h4
+        = service.name
 .row
   = render :partial => 'shared/post_jobs'
 

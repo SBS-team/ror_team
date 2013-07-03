@@ -1,3 +1,4 @@
+!!!
 %html
   %head
     %title RorTeam
@@ -11,7 +12,7 @@
         .row
           .span2
             .logo
-              = link_to(t('.ror_team'), '/home')
+              = link_to(t('.ror_team'), '/home')  #FIXME
           .span6
             - if current_user
               = "Welcome, #{current_user.nickname} "
@@ -19,17 +20,17 @@
           %nav
             %ul.inline
               %li
-                = link_to(t('.company'), '/company')
+                = link_to(t('.company'), '/company')  #FIXME
               %li
-                = link_to(t('.work'), '/work')
+                = link_to(t('.work'), '/work')  #FIXME
               %li
-                = link_to(t('.team'), '/team')
+                = link_to(t('.team'), '/team')  #FIXME
               %li
-                = link_to(t('.careers'), '/jobs')
+                = link_to(t('.careers'), '/jobs')  #FIXME
               %li
-                = link_to(t('.contact'), '/contact')
+                = link_to(t('.contact'), '/contact') #FIXME
               %li
-                = link_to(t('.blog'), '/posts')
+                = link_to(t('.blog'), '/posts')  #FIXME
           .chat.span1
             .btn
               = link_to 'Live Chat', '#'

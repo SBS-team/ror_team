@@ -9,7 +9,7 @@
       %h2.bl_title
         = t '.our_skills'
       .skills
-        - unless @tech.nil?
+        - unless @tech.nil?   #FIXME
           - @tech.each do |tc|
             .skill
               = tc.name
@@ -21,7 +21,7 @@
       %h2
         = t '.project_work'
     .bl_content.row
-      - unless @some_projects.nil?
+      - unless @some_projects.nil? #FIXME
         - @some_projects.each do |project|
           .portfolio_item.span3.text-center
             .pic

@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 
 gem 'puma'
-gem 'rails', '>= 4.0.0.rc1'
+gem 'rails', '>= 4.0.0.rc1' #FIXME
 
 # Use postgresql as the database for Active Record
 gem 'pg'

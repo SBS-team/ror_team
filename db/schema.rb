@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130702142014) do
+ActiveRecord::Schema.define(version: 20130702201555) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "resource_id",   null: false
@@ -43,6 +43,7 @@ ActiveRecord::Schema.define(version: 20130702142014) do
     t.datetime "updated_at"
     t.string   "role"
     t.text     "about"
+    t.string   "fio"
     t.string   "first_name"
     t.string   "last_name"
   end
@@ -56,6 +57,22 @@ ActiveRecord::Schema.define(version: 20130702142014) do
     t.datetime "updated_at"
   end
 
+  create_table "ckeditor_assets", force: true do |t|
+    t.string   "data_file_name",               null: false
+    t.string   "data_content_type"
+    t.integer  "data_file_size"
+    t.integer  "assetable_id"
+    t.string   "assetable_type",    limit: 30
+    t.string   "type",              limit: 30
+    t.integer  "width"
+    t.integer  "height"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "ckeditor_assets", ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable", using: :btree
+  add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type", using: :btree
+
   create_table "comments", force: true do |t|
     t.text     "description"
     t.integer  "post_id"
@@ -65,11 +82,28 @@ ActiveRecord::Schema.define(version: 20130702142014) do
     t.datetime "updated_at"
   end
 
+  create_table "image_uploaders", force: true do |t|
+    t.string  "name"
+    t.integer "imagable_id"
+    t.string  "imagable_type"
+  end
+
   create_table "jobs", force: true do |t|
     t.string   "title"
     t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "pictures", force: true do |t|
+    t.integer  "picturable_id"
+    t.string   "picturablee_type"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "picture_file_name"
+    t.string   "picture_content_type"
+    t.integer  "picture_file_size"
+    t.datetime "picture_updated_at"
   end
 
   create_table "post_categories", force: true do |t|
@@ -124,6 +158,12 @@ ActiveRecord::Schema.define(version: 20130702142014) do
     t.string   "file"
   end
 
+  create_table "roles", force: true do |t|
+    t.string   "name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "services", force: true do |t|
     t.string   "name"
     t.datetime "created_at"
@@ -167,6 +207,11 @@ ActiveRecord::Schema.define(version: 20130702142014) do
     t.string   "fileable_type"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "user_roles", id: false, force: true do |t|
+    t.integer "role_id"
+    t.integer "user_id"
   end
 
   create_table "users", force: true do |t|

@@ -13,18 +13,16 @@ ActiveAdmin.register Technology do
       f.input :name
       f.input :technology_category
     end
-    f.buttons
+    f.actions
   end
 
   controller do
     def create
-      begin
-        tech_cat = TechnologyCategory.find(params[:technology][:technology_category_id])
-        @tech = tech_cat.technologies.create!(safe_params)
+      tech_cat = TechnologyCategory.find(params[:technology][:technology_category_id])
+       if @tech = tech_cat.technologies.create(safe_params)
         redirect_to edit_admin_technology_url(@tech), notice: 'Technology was successfully created.'
-      rescue Exception => e
-        logger.error(e.message)
-        render 'new'
+      else
+        render :new
       end
     end
     def update
@@ -32,7 +30,7 @@ ActiveAdmin.register Technology do
       if @tech.update(safe_params)
         redirect_to edit_admin_technology_url(@tech), notice: 'Technology was successfully updated.'
       else
-        render 'edit'
+        render :edit
       end
     end
     private

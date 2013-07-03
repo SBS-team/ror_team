@@ -21,13 +21,11 @@ ActiveAdmin.register Job do
 
   controller do
     def create
-      begin
-        @job = Job.new(job_params)
-        @job.save!
+       @job = Job.new(job_params)
+       if @job.save
         redirect_to admin_job_url(@job), notice: 'Job was successfully created.'
-      rescue Exception => e
-        logger.error(e.message)
-        render 'new'
+        else
+        render :new
       end
     end
     def update
@@ -35,7 +33,7 @@ ActiveAdmin.register Job do
       if @job.update(job_params)
         redirect_to admin_job_url(@job), notice: 'Job was successfully updated.'
       else
-        render 'edit'
+        render :edit
       end
     end
 

@@ -26,7 +26,6 @@ private
     if @resume.save
       redirect_to jobs_path, notice: 'Your resume is successfully sent.'
     else
-      errors = ''
       @resume.errors.full_messages.each do |msg|
         errors << msg.to_s + '</br>'
       end

@@ -2,7 +2,7 @@
   %h2
     Latest blog posts:
   .bl_content
-    - unless @last_posts.nil?
+    - unless @last_posts.nil?  #FIXME
       - @last_posts.each do |last_post|
         .post
           = image_tag('/icon-info.png')
@@ -15,7 +15,7 @@
   %h2
     Open vacancies:
   .bl_content
-    - unless @last_jobs.nil?
+    - unless @last_jobs.nil?    #FIXME
       - @last_jobs.each do |last_job|
         .job
           = image_tag('/icon-info.png')

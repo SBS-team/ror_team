@@ -39,7 +39,7 @@
           = f.text_area :description, style: 'height:39px; width:650px', :placeholder => 'Write your comment here'
           = f.submit 'Add comment', class: 'btn', style: 'height:50px;'
 
-          = link_to "/auth/twitter" do
+          = link_to "/auth/twitter", :class => 'twitter' do
             = image_tag "authbuttons/twitter_32.png", :size => "32x32", :alt => "Twitter"
           = link_to "/auth/facebook" do
             = image_tag "authbuttons/facebook_32.png", :size => "32x32", :alt => "Facebook"

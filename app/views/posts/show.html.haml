@@ -3,7 +3,7 @@
     .post
       .post_top
         .post_img
-          %img{:src => '/icon-info.png'} #FIXME
+          %img{:src => '/icon-info.png'}
         .post-title
           = @post.title
         .post_date
@@ -12,13 +12,15 @@
             = link_to "#{@post.comments_count} #{t('.comments')}", post_path(@post)
       .post-content
         = @post.description.html_safe
-      .categories
-        = t '.category'
-        = @post.categories.collect{|cat| link_to strip_links(cat.name), posts_path(:category_name=>cat.name) }.join(', ').html_safe
-      .tags
-        = t '.tags'
-        - @post.tag_counts_on(:tags).each do |tag|
-          = link_to tag.name, posts_path(:tag_name => tag.name), :class => 'btn'
+      - unless @post.categories.empty?
+        .categories
+          = t '.category'
+          = @post.categories.collect{|cat| link_to strip_links(cat.name), posts_path(:category_name=>cat.name) }.join(', ').html_safe
+      - unless @post.tag_counts_on(:tags).empty?
+        .tags
+          = t '.tags'
+          - @post.tag_counts_on(:tags).each do |tag|
+            = link_to tag.name, posts_path(:tag_name => tag.name), :class => 'btn'
     %comments
       - @comments.each do |comment|
         %b

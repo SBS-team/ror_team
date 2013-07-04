@@ -13,9 +13,9 @@
               - @message.errors.full_messages.each do |msg|
                 %li= msg
         .name
-          = form.text_field(:name, 'placeholder' => 'Your name', 'class' => 'span4')
+          = form.text_field(:name, 'placeholder' => 'Your name*', 'class' => 'span4')
         .email-phone
-          = form.email_field(:email, 'placeholder' => 'Your email', 'class' => 'span2')
+          = form.email_field(:email, 'placeholder' => 'Your email*', 'class' => 'span2')
           = form.text_field(:phone, 'placeholder' => 'Your phone', 'class' => 'span2')
         .text
           = form.text_area(:text, 'placeholder' => 'Your message', 'class' => 'span4' , 'rows' => '5')

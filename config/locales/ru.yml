@@ -213,3 +213,8 @@ ru:
       ready_help: "мы всегда рады помочь Вам"
       contact_us: "Связаться с нами"
       rss_feed: "RSS Feed"
+
+  contact:
+    create:
+      contact_sent_msg: "Ваше сообщение отправлено."
+      contact_error_msg: "Ошибка. Заполните необходимые поля"

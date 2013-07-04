@@ -36,7 +36,7 @@
       = form_for [@post, Comment.new], :html => {:class => 'form-inline'} do |f|
         .input-append
           = f.text_area :description, style: 'height:39px; width:650px', :placeholder => t('.write_comment')
-          = f.submit t ('.add_comment'), class: 'btn', style: 'height:50px;'
+          = f.submit t('.add_comment'), class: 'btn', style: 'height:50px;'
 
           = link_to '/auth/twitter' do
             = image_tag 'authbuttons/twitter_32.png', :size => '32x32', :alt => 'Twitter'
@@ -47,16 +47,9 @@
         %h3
           = t ('.most_recent_post')
         %ul.unstyled
-          %li
-            = link_to 'first recent post', '#'
-          %li
-            = link_to 'second recent post', '#'
-          %li
-            = link_to 'third recent post', '#'
-          %li
-            = link_to 'fourth recent post', '#'
-          %li
-            = link_to 'fifth recent post', '#'
+          - @recent_posts.each do |post|
+            %li
+              = link_to post.title, post_path(post)
         %h5
           = t ('.get_more')
         .btn.large
@@ -66,16 +59,9 @@
         %h3
           = t '.most_popular'
         %ul.unstyled
-          %li
-            = link_to 'first popular post', '#'
-          %li
-            = link_to 'second popular post', '#'
-          %li
-            = link_to 'third popular post', '#'
-          %li
-            = link_to 'fourth popular post', '#'
-          %li
-            = link_to 'fifth popular post', '#'
+          - @popular_posts.each do |post|
+            %li
+              = link_to post.title, post_path(post)
         %h5
           = t '.ready_help'
         .btn.large

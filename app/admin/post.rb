@@ -17,14 +17,6 @@ ActiveAdmin.register Post do
     default_actions
   end
 
-  show do
-    h1 post.title
-    div do
-
-      post.tag_list
-    end
-  end
-
   form :html => {:enctype => "multipart/form-data" } do |f|
     f.semantic_errors :base
     f.inputs "Post Details", :multipart => true do

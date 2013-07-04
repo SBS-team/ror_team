@@ -3,7 +3,7 @@
     %h1
       = t '.contact_us'
     .web-form
-      = form_for @message, :url => contact_new_path do |form|
+      = form_for @message, :url => contact_index_path do |form|
         - if @message.errors.any?
           #error_explanation
             %h5

@@ -14,7 +14,7 @@ RorTeam::Application.routes.draw do
   resources :company, only: [:index]
   resources :work, only: [:index, :show]
   resources :jobs, only: [:index, :show, :create]
-  resources :contact, only: [:index, :new, :create]
+  resources :contact, only: [:index, :create]
 
   root :to => 'home#index'
 end

@@ -1,6 +1,6 @@
 class ContactController < ApplicationController
 
-  def new
+  def index
     @message = Message.new
   end
 
@@ -11,7 +11,7 @@ class ContactController < ApplicationController
       redirect_to(root_path, :notice => 'Message was successfully sent.')
     else
       flash.now[:error] = 'Form invalid. Please check errors bellow'
-      render :new
+      render :index
     end
   end
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130702201555) do
+ActiveRecord::Schema.define(version: 20130704081218) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "resource_id",   null: false
@@ -72,7 +72,6 @@ ActiveRecord::Schema.define(version: 20130702201555) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
-
 
   create_table "post_categories", force: true do |t|
     t.integer  "post_id"
@@ -152,7 +151,6 @@ ActiveRecord::Schema.define(version: 20130702201555) do
   create_table "technologies", force: true do |t|
     t.string   "name"
     t.integer  "technology_category_id"
-    t.integer  "project_technology_category_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

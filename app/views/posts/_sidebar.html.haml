@@ -13,11 +13,11 @@
 .block.contact_us
   %p
     = t '.ror_team_info'
-    = link_to t('.run_away')
+    = link_to t('.see_our_projects'), work_index_path
   %h4
     = t '.help_you'
   .btn.text-center
-    = link_to t('.contact_us'), '/contact'  #FIXME?
+    = link_to t('.contact_us'), contact_index_path  #FIXME?
 .block.tags
   %h3
     = t '.tags'

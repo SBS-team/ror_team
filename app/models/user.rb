@@ -19,6 +19,10 @@
 #  skype                  :string(70)
 #  created_at             :datetime
 #  updated_at             :datetime
+#  nickname               :string(255)
+#  uid                    :string(255)
+#  provider               :string(255)
+#  image                  :string(255)
 #
 
 class User < ActiveRecord::Base

@@ -31,21 +31,21 @@ ActiveAdmin.register AdminUser do
   controller do
     def create
       begin
-        @admin = AdminUser.new(admin_user_params)
-        @admin.save!
-        redirect_to admin_admin_user_path(@admin), notice: 'Admin was successfully created.'
+        @admin_user = AdminUser.new(admin_user_params)
+        @admin_user.save!
+        redirect_to admin_admin_user_path(@admin_user), notice: 'Admin was successfully created.'
       rescue Exception => e
         redirect_to new_admin_admin_user_path, alert: e.to_s
       end
     end
 
     def edit
-      @admin = AdminUser.find(params[:id])
+      @admin_user = AdminUser.find(params[:id])
     end
     def update
-      @admin = AdminUser.find(params[:id])
-      if @admin.update(admin_user_params)
-        redirect_to admin_admin_user_path(@admin), notice: 'Admin was successfully updated.'
+      @admin_user = AdminUser.find(params[:id])
+      if @admin_user.update(admin_user_params)
+        redirect_to admin_admin_user_path(@admin_user), notice: 'Admin was successfully updated.'
       else
         render 'edit'
       end

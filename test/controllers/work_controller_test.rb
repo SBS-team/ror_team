@@ -4,13 +4,13 @@ describe WorkController do
   ApplicationController.skip_before_filter :assign_gon_properties
 
   before do
-    @project1 = FactoryGirl.build(:project)
-    @project1.upload_files << FactoryGirl.create(:upload_file)
+    @project1 = FactoryGirl.create(:project)
+    #@project1.upload_files << FactoryGirl.create(:upload_file)
     @project1.save
 
-    @project2 = FactoryGirl.build(:project)
-    @project2.upload_files << FactoryGirl.create(:upload_file)
-    @project2.save
+    #@project2 = FactoryGirl.build(:project)
+    ##@project2.upload_files << FactoryGirl.create(:upload_file)
+    #@project2.save
 
 =begin
     @posts = []

@@ -11,7 +11,7 @@
 
 class Job < ActiveRecord::Base
 
-  has_many :resumes
+  has_many :resumes ,:dependent => :destroy
   has_many :users, through: :resumes
 
   validates :title,

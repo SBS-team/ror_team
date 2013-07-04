@@ -10,8 +10,6 @@ ActiveAdmin.register Post do
       category.categories.collect(&:name).join(', ')
     end
 
-
-
     column "Author" do |post|
       post.admin.email
     end
@@ -19,13 +17,10 @@ ActiveAdmin.register Post do
     default_actions
   end
 
-
-
-  #show
   show do
     h1 post.title
     div do
-      simple_format post.description
+      simple_formpusherat post.description
       post.tag_list
     end
   end
@@ -38,35 +33,32 @@ ActiveAdmin.register Post do
       f.input :tag_list, :hint => 'Comma separated'
       f.input :categories, as: :check_boxes
       f.has_many :upload_files do |file|
-        file.input :filename, :as => :file, :label => 'Image', :hint => file.template.image_tag(file.object.filename.url(:thumb))
+        file.input :filename, :as => :file, :label => 'Image', :hint => file.template.image_tag(file.object.filename.url, :width => 200, :height => 200)
         file.input :id, :as => :hidden
       end
     end
-    f.buttons
+    f.actions
   end
 
   controller do
     def create
-      begin
-        @post = current_admin_user.posts.build(post_params)
-        @post.save!
+      @post = current_admin_user.posts.build(post_params)
+      if @post.save
         redirect_to admin_post_url(@post), notice: 'Post was successfully created.'
-      rescue Exception => e
-        logger.error(e.message)
-        render 'new'
+      else
+        render :new
       end
     end
+
     def update
       @post = Post.find(params[:id])
       if @post.update(post_params)
-        redirect_to edit_admin_post_url(@post), notice: 'Post was successfully updated.'
+        redirect_to admin_post_url(@post), notice: 'Post was successfully updated.'
       else
-        render 'edit'
+        render :edit, notice: 'Error has occurred while updating.'
       end
     end
-    def tag_cloud
-      @tags = Post.tag_counts_on(:tags)
-    end
+
     private
     def post_params
       params.require(:post).permit(:title, :description, :tag_list, :category_ids => [], upload_files_attributes: [:filename, :id])

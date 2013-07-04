@@ -10,5 +10,6 @@ FactoryGirl.define do
     since 1.month.ago
     till Time.now
     team_size rand_obj.rand(2..6)
+    url "http://#{:name}.com"
   end
 end

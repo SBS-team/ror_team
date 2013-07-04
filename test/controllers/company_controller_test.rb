@@ -5,11 +5,13 @@ describe CompanyController do
   ApplicationController.skip_before_filter :assign_gon_properties
 
   before :each do
-    3.times do
-      FactoryGirl.create(:service)
-      FactoryGirl.create(:technology_category)
-      FactoryGirl.create(:post)
-      FactoryGirl.create(:job)
+    @services = Array.new
+    @tech_cats = Array.new
+    3.times do |i|
+      @services[i] = FactoryGirl.build(:service)
+      @services[i].upload_files << FactoryGirl.create(:upload_file)
+      @services[i].save
+      @tech_cats[i] = FactoryGirl.create(:technology_category)
     end
   end
 
@@ -17,25 +19,37 @@ describe CompanyController do
 
     it 'render #index' do
       get :index
-      response.must render_template(:index)
+      assert_template :index
+      assert_template layout: "layouts/application"
+      assert_template partial: "shared/_post_jobs"
+      assert_response :success
     end
 
     it 'assigns service to @services' do
       get :index
-      assigns(:services).count.must_be :==, 3
+      refute_nil assigns(:services)
+      refute_empty assigns(:services)
+      services = assigns(:services)
+      services.length.must_equal 3
+      services.length.times do |i|
+        services[i].must_be_kind_of Service
+        @services.must_include(services[i])
+      end
     end
 
     it 'assigns technology_category to @technology_categories' do
       get :index
-      assigns(:technology_categories).count.must_be :==, 3
-    end
-
-    it 'before_filter :new_posts_and_jobs' do
-      get :index
-      assigns(:new_posts).count.must_be :==, 3
-      assigns(:new_jobs).count.must_be :==, 3
+      refute_nil assigns(:technology_categories)
+      refute_empty assigns(:technology_categories)
+      tech_cats = assigns(:technology_categories)
+      tech_cats.length.must_equal 3
+      tech_cats.length.times do |i|
+        tech_cats[i].must_be_kind_of TechnologyCategory
+        @tech_cats.must_include(tech_cats[i])
+      end
     end
 
   end
 
 end
+

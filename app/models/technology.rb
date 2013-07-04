@@ -14,6 +14,8 @@ class Technology < ActiveRecord::Base
   belongs_to :technology_category
   has_many :project_technology_categories, dependent: :destroy
   has_many :projects, through: :project_technology_categories
+  has_many :upload_files, :as => :fileable
+  accepts_nested_attributes_for :upload_files
 
   validates :name,
             :presence => true,

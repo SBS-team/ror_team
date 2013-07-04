@@ -1,41 +1,21 @@
 .row.team-members
   .span6.team-members
-    .team-member
-      = image_tag('/icon-info.png')
-      .member-name
-        %span
-          Имя члена команды
-        = link_to 'RoR-Developer', '#', :class => 'btn'
-      .about
-        %p
-          Краткое описание навыков и опыта работы члена команды и тд и тп
-        %p
-          Краткое описание навыков и опыта работы члена команды и тд и тп Краткое описание навыков и опыта работы члена команды и тд и тп
-    .team-member
-      = image_tag('/icon-info.png')
-      .member-name
-        %span
-          Имя члена команды
-        = link_to 'RoR-Developer', '#', :class => 'btn'
-      .about
-        %p
-          Краткое описание навыков и опыта работы члена команды и тд и тп
-        %p
-          Краткое описание навыков и опыта работы члена команды и тд и тп Краткое описание навыков и опыта работы члена команды и тд и тп
-    .team-member
-      = image_tag('/icon-info.png')
-      .member-name
-        %span
-          Имя члена команды
-        = link_to 'RoR-Developer', '#', :class => 'btn'
-      .about
-        %p
-          Краткое описание навыков и опыта работы члена команды и тд и тп
-        %p
-          Краткое описание навыков и опыта работы члена команды и тд и тп Краткое описание навыков и опыта работы члена команды и тд и тп
+    - @team.each do |member|
+      .team-member
+        = image_tag(member.upload_files.first.filename, :height => 150, :width => 150)
+        .member-name
+          %span
+          %p.lead
+            = "#{member.first_name} #{member.last_name}"
+          %p
+            = link_to "#{member.role}", team_path(member), :class => 'btn'
+        .about
+          %p
+            = member.about
+    = paginate @team
   .span6
     %h3
-      Фото команды
+      = t '.team_photo'
     #myCarousel.carousel.slide
       %ol.carousel-indicators
         %li.active{'data-slide-to' => '0', 'data-target' => '#myCarousel'}
@@ -52,7 +32,7 @@
       = link_to '›', '#myCarousel', 'data-slide' => 'next', :class => 'carousel-control right'
     .about-team
       %h3
-        О нас и нашей компании!
+        = t '.our_command'
       .text
         %p
           You can use all Bootstrap plugins purely through the markup API without writing a single line of JavaScript. This is Bootstrap's first class API and should be your first consideration when using a plugin.

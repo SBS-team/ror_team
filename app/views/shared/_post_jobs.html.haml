@@ -1,25 +1,24 @@
 .span6.posts
   %h2
-    Latest blog posts:
+    = t '.latest_posts'
   .bl_content
-    - unless @last_posts.nil?
+    - unless @last_posts.nil?  #FIXME
       - @last_posts.each do |last_post|
         .post
           = image_tag('/icon-info.png')
           .title
             = link_to last_post.title, last_post
           .cont
-            by
-            -#= last_post.admin.email
+            = last_post.admin.email
 .span6.jobs
   %h2
-    Open vacancies:
+    = t '.vacancies'
   .bl_content
-    - unless @last_jobs.nil?
+    - unless @last_jobs.nil?    #FIXME
       - @last_jobs.each do |last_job|
         .job
           = image_tag('/icon-info.png')
           .title
             = link_to last_job.title, last_job
           .resume.text-right
-            = link_to 'Send resume', last_job, :class => 'btn'
+            = link_to(t('.send_resume'), last_job, :class => 'btn')

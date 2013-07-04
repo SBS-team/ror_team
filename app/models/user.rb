@@ -32,10 +32,10 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :authentications
+  has_many :authentications  ,:dependent => :destroy
   has_many :comments, :as => :commentable, :dependent => :destroy
 
-  has_many :resumes
+  has_many :resumes ,:dependent => :destroy
   has_many :jobs, through: :resumes
 
   has_many :upload_files, :as => :fileable

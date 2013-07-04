@@ -23,7 +23,7 @@ class Project < ActiveRecord::Base
   accepts_nested_attributes_for :upload_files
   accepts_nested_attributes_for :project_technology_categories, allow_destroy: true
 
-  #attr_accessible :name, :description, :since, :team_size
+
 
   validates :name,
             :presence => true,
@@ -39,6 +39,8 @@ class Project < ActiveRecord::Base
             :presence => true,
             :numericality => {  :only_integer => true,
                                 :greater_than => 0 }
+  validates :upload_files,
+            :presence => true
 
 end
 

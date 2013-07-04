@@ -1,17 +1,16 @@
 .row.careers-index
   .span6
     %h2
-      Open vacancies:
+      = t '.open_vacancies'
     .careers
-      - unless @jobs.nil?
-        - @jobs.each do |job|
-          .career
-            = image_tag('/icon-info.png')
-            %botton.btn.input-large{:type => 'submit'}
-              = link_to job.title, job
-            .descr
-              %p
-                = truncate( job.description, :length => 10)
+      - @jobs.each do |job|
+        .career
+          = image_tag('/icon-info.png')
+          %botton.btn.input-large{:type => 'submit'}
+            = link_to job.title, job
+          .descr
+            %p
+              = truncate( job.description, :length => 10)
         = paginate @jobs,:window => 1
   = render 'form'
 .row

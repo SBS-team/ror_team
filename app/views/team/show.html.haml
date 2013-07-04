@@ -8,12 +8,10 @@
       = @team.role
   .about
     %p
-      = @team.about
+      %i
+        = @team.about
 
 .fullteam
   - @fullteam.each do |team_member|
     = link_to team_path(team_member) do
       = image_tag(team_member.upload_files.first.filename, :class => 'img-rounded', :height => 75, :width => 75)
-
-
-      -#= link_to "#{member.role}", team_path(member), :class => 'btn'

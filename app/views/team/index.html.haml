@@ -6,12 +6,14 @@
         .member-name
           %span
           %p.lead
-            = "#{member.first_name} #{member.last_name}"
+            = link_to "#{member.first_name} #{member.last_name}", team_path(member)
           %p
-            = link_to "#{member.role}", team_path(member), :class => 'btn'
+            %span.btn
+              = member.role
         .about
           %p
-            = member.about
+            = truncate(member.about.capitalize, :length => 50)
+      %hr
     = paginate @team
   .span6
     %h3
@@ -35,9 +37,7 @@
         = t '.our_command'
       .text
         %p
-          You can use all Bootstrap plugins purely through the markup API without writing a single line of JavaScript. This is Bootstrap's first class API and should be your first consideration when using a plugin.
-        %p
-          That said, in some situations it may be desirable to turn this functionality off. Therefore, we also provide the ability to disable the data attribute API by unbinding all events on the body namespaced with `'data-api'`. This looks like this:
+          = t '.about'
       .g-map
         %script{:charset => 'utf-8', :src => '//api-maps.yandex.ru/services/constructor/1.0/js/?sid=AfRHYGTwdoGSTYMmPPMXwUQgkFqvcfn_&width=570&height=350', :type => 'text/javascript'}
 .row

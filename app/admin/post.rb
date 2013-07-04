@@ -20,7 +20,7 @@ ActiveAdmin.register Post do
   show do
     h1 post.title
     div do
-      simple_formpusherat post.description
+
       post.tag_list
     end
   end

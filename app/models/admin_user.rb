@@ -36,7 +36,11 @@ class AdminUser < ActiveRecord::Base
             :presence => true,
             inclusion: { in: %w(admin manager team_lead team),
                                 message: "%{value} is not a valid role" }
-  validates :fio,
+  validates :first_name,
+            :presence => true,
+            :length => { :minimum => 3,
+                         :maximum => 45 }
+  validates :last_name,
             :presence => true,
             :length => { :minimum => 3,
                          :maximum => 45 }

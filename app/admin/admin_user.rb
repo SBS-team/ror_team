@@ -5,7 +5,6 @@ ActiveAdmin.register AdminUser do
   index do
     column :email
     column :role
-    column :fio
     column :last_sign_in_at
     default_actions
   end
@@ -17,7 +16,6 @@ ActiveAdmin.register AdminUser do
       f.input :email
       f.input :password
       f.input :password_confirmation
-      f.input :fio,:label=>'Full name'
       f.input :role ,:as => :select, :collection =>{'Admin'=>:admin,'Manager'=>:manager,'Team lead'=>:team_lead,'Team'=>:team } ,:selected=>f.object.role,:include_blank=>false
       f.input :about ,:as=>:text
       f.has_many :upload_files do |file|
@@ -53,7 +51,7 @@ ActiveAdmin.register AdminUser do
 
     private
     def admin_user_params
-      params.require(:admin_user).permit(:first_name, :last_name, :fio, :email,:role,:about,:password, :password_confirmation,:last_sign_in_at, upload_files_attributes: [:filename, :id])
+      params.require(:admin_user).permit(:first_name, :last_name, :email,:role,:about,:password, :password_confirmation,:last_sign_in_at, upload_files_attributes: [:filename, :id])
     end
   end
   end

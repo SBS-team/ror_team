@@ -5,7 +5,5 @@ FactoryGirl.define do
     sequence :filename do |n|
       "Filename_#{n}"
     end
-    fileable_id ""
-    fileable_type "MyString"
   end
 end

@@ -21,6 +21,10 @@ describe AdminUser do
     it { must have_db_column(:last_sign_in_ip).of_type(:string) }
     it { must have_db_column(:created_at).of_type(:datetime) }
     it { must have_db_column(:updated_at).of_type(:datetime) }
+    it { must have_db_column(:role).of_type(:string) }
+    it { must have_db_column(:about).of_type(:text) }
+    it { must have_db_column(:first_name).of_type(:string) }
+    it { must have_db_column(:last_name).of_type(:string) }
   end
 
 end

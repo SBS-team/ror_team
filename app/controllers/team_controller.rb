@@ -8,6 +8,7 @@ class TeamController < ApplicationController
 
   def show
     @team = AdminUser.find(params[:id])
+    @fullteam = AdminUser.where.not(:role => 'admin')
   end
 
 

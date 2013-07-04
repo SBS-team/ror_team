@@ -3,7 +3,6 @@ class PostsController < ApplicationController
 
   # GET /posts
   def index
-
     @posts = if !params[:category_name].blank?
               Post.joins(:categories).where("categories.name = :category_name", :category_name=>params[:category_name]).order('created_at DESC').page(params[:page]).per(10)
             elsif !params[:tag_name].blank?
@@ -19,6 +18,7 @@ class PostsController < ApplicationController
 
   # GET /posts/1
   def show
+    session[:return_to] = request.fullpath
     @post = Post.find(params[:id])
     @comments = @post.comments.order("id").page(params[:page]).per(5)
 

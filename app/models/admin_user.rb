@@ -47,10 +47,13 @@ class AdminUser < ActiveRecord::Base
   validates :about,
             :presence => true,
             :length => { :in => 10..500 }
+
   validates :password,
             :presence => true
+
   validates :password_confirmation,
             :presence => true
+
   validates :email,
             :uniqueness => true,
             :presence => true

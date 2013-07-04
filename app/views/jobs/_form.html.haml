@@ -2,7 +2,7 @@
 
   %h2
     = t '.send_resume'
-  = form_for @resume, :url => '/jobs', :html => {:class => 'web-form', :multipart => true} do |f|  #FIXME
+  = form_for @resume, :url => jobs_path, :html => {:class => 'web-form', :multipart => true} do |f|  #FIXME
     - unless @job.nil?
       = f.select(:job_id, options_for_select(@job.title => @job.id), :html => {:class => 'proffession', :title => t('.select_job')})
     -else

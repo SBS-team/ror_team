@@ -135,3 +135,7 @@ en:
       contact_us: "Contact Us"
       rss_feed: "RSS Feed"
 
+  contact:
+    create:
+      contact_sent_msg: "Message was successfully sent."
+      contact_error_msg: "Form invalid. Please check errors bellow"

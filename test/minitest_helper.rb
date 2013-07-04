@@ -10,7 +10,6 @@ MiniTest::Reporters.use!
 
 class IntegrationTest < MiniTest::Spec
   include Rails.application.routes.url_helpers
-  include Capybara::RSpecMatchers
   include Capybara::DSL
   Capybara.current_driver = Capybara.javascript_driver
 end

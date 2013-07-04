@@ -12,7 +12,7 @@
         .row
           .span2
             .logo
-              = link_to(t('.ror_team'), '/home')  #FIXME
+              = link_to(t('.ror_team'), root_path)
           .span6
             - if current_user
               = "Welcome, #{current_user.nickname} "
@@ -20,20 +20,20 @@
           %nav
             %ul.inline
               %li
-                = link_to(t('.company'), '#')  #FIXME
+                = link_to(t('.company'), company_index_path)
               %li
-                = link_to(t('.work'), '#')  #FIXME
+                = link_to(t('.work'), work_index_path)
               %li
-                = link_to(t('.team'), '/team')  #FIXME
+                = link_to(t('.team'), team_index_path)
               %li
-                = link_to(t('.careers'), '/jobs')  #FIXME
+                = link_to(t('.careers'), jobs_path)
               %li
-                = link_to(t('.contact'), '/contact') #FIXME
+                = link_to(t('.contact'), contact_index_path)
               %li
-                = link_to(t('.blog'), '/posts')  #FIXME
+                = link_to(t('.blog'), posts_path)
           .chat.span1
             .btn
-              = link_to 'Live Chat', '#'
+              = link_to t('.live_chat')
       #content
         - if flash[:notice]
           %p.notice

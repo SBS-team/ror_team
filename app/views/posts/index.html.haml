@@ -6,7 +6,6 @@
           .img
             - if !post.upload_files.blank?
               = image_tag post.upload_files.first.filename.url
-              = link_to '', '#'
             -else
               = image_tag 'missing.png'
           = link_to "#{post.comments_count} #{t('.comments')}", post_path(post)

@@ -242,6 +242,11 @@ GEM
     minitest-rails (0.5.2)
       minitest (~> 4.0)
       rails (>= 3.0)
+    minitest-rails-capybara (0.5.1)
+      capybara (~> 2.0)
+      minitest-capybara (~> 0.1)
+      minitest-matchers (>= 1.2)
+      minitest-rails (~> 0.5)
     minitest-rails-shoulda (0.4.1)
       minitest-matchers (~> 1.2.0)
       minitest-rails (~> 0.5.0)
@@ -416,7 +421,7 @@ DEPENDENCIES
   kaminari
   launchy
   meta_request
-  minitest-capybara
+  minitest-rails-capybara
   minitest-rails-shoulda
   minitest-reporters (>= 0.8.0)
   omniauth

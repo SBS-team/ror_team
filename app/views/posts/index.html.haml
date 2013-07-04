@@ -20,8 +20,9 @@
             = truncate(post.description, lenght: 200, ommision: '...(read more)')
           - unless post.categories.empty?
             .categories
-              = t '.category'
+              = t '.categories'
               = post.categories.collect{|cat| link_to strip_links(cat.name), posts_path(:category_name=>cat.name) }.join(', ').html_safe
+
           - unless post.tag_counts_on(:tags).empty?
             .tags
               = t '.tags'

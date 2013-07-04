@@ -14,7 +14,7 @@
         = @post.description.html_safe
       - unless @post.categories.empty?
         .categories
-          = t '.category'
+          = t '.categories'
           = @post.categories.collect{|cat| link_to strip_links(cat.name), posts_path(:category_name=>cat.name) }.join(', ').html_safe
       - unless @post.tag_counts_on(:tags).empty?
         .tags
@@ -37,7 +37,7 @@
       = t '.new_comment'
       = form_for [@post, Comment.new], :html => {:class => 'form-inline'} do |f|
         .input-append
-          = f.text_area :description, style: 'height:39px; width:650px', :placeholder => t('.write_comment')
+          = f.text_area :description, style: 'height:39px; width:580px', :placeholder => t('.write_comment')
           = f.submit t('.add_comment'), class: 'btn', style: 'height:50px;'
 
           = link_to '/auth/twitter' do
@@ -55,7 +55,7 @@
         %h5
           = t ('.get_more')
         .btn.large
-          = link_to t('.rss_feed'), '#'
+          = link_to t('.rss_feed'), posts_path(:rss)
     .span3
       .popular_posts
         %h3
@@ -67,6 +67,6 @@
         %h5
           = t '.ready_help'
         .btn.large
-          = link_to t('.contact_us'), '#'
+          = link_to t('.contact_us'), '/contact'  #FIXME?
   .span4.sidebar
     = render :partial => 'sidebar'

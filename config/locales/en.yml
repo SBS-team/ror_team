@@ -120,11 +120,11 @@ en:
       contact_us: "Contact us"
       tags: "Tags:"
     index:
-      category: "Category:"
+      categories: "Categories:"
       tags: "Tags:"
-      comments: "Commets"
+      comments: "Comments"
     show:
-      comments: "Commets"
+      comments: "Comments"
       new_comment: "New Comment"
       write_comment: "Write your comment here"
       add_comment: "Add Comment"
@@ -134,4 +134,5 @@ en:
       ready_help: "we're always ready to help"
       contact_us: "Contact Us"
       rss_feed: "RSS Feed"
-
+      categories: "Categories:"
+      tags: "Tags:"

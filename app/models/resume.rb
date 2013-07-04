@@ -16,7 +16,8 @@
 class Resume < ActiveRecord::Base
 
   belongs_to :job
-  has_many :upload_files, :as => :fileable
+  has_many :upload_files, :as => :fileable, :dependent => :destroy
+  accepts_nested_attributes_for :upload_files
 
   validates :description,
             :length => {:maximum => 3000}
@@ -32,4 +33,20 @@ class Resume < ActiveRecord::Base
   validates :phone,
             :presence => true,
             :length => {:maximum => 50}
+  validate :validate_data
+
+  private
+
+  def validate_data
+    if (self.upload_files.blank?)
+      errors.add(:description, "can't be blank and file is not attached") if self.description.blank?
+    else
+      self.upload_files.each do |file|
+        if (/\.jpg|\.jpeg/ =~ file.filename.to_s).nil?
+          errors.add(:upload_files, "not doc, pdf types") if self.description.blank?
+        end
+      end
+    end
+  end
+
 end

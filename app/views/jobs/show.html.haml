@@ -4,12 +4,13 @@
       = t '.open_vacancies'
     .careers
       .career
-        = image_tag('/icon-info.png')
-        %botton.btn.input-large{:type => 'submit'}
+      .title
+        %h3
+          %i{:class=>'icon-star'}
           = @job.title
         .descr
           %p
-            = @job.description
+            = @job.description.html_safe
   = render 'form'
 .row
   = render :partial => 'shared/post_jobs'

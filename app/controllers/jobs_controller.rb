@@ -5,7 +5,7 @@ class JobsController < ApplicationController
   def index
     @resume = Resume.new
     @jobs = Job.page(params[:page]).per(3)
-    @jobs_for_select = Job.select(:id, :title)
+    @all_jobs_for_select = Job.select(:id, :title)
   end
 
   def show
@@ -16,21 +16,19 @@ class JobsController < ApplicationController
   def create
     create_resume
   end
+  def new
+
+  end
+
 
 private
-
   def create_resume
     @resume = Resume.new(resume_params)
     @job = Job.find(@resume.job_id)
-
     if @resume.save
       redirect_to jobs_path, notice: 'Your resume is successfully sent.'
     else
-      @resume.errors.full_messages.each do |msg|
-        errors << msg.to_s + '</br>'
-      end
-      flash.now[:error] = errors
-      render :show
+      render 'show'
     end
   end
 

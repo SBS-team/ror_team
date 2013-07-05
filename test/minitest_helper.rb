@@ -16,8 +16,6 @@ class ViewTest < MiniTest::Spec
   end
   after(:all) do
     DatabaseCleaner.clean
-    Capybara.reset_sessions!
-    Capybara.use_default_driver
   end
 
   include Rails.application.routes.url_helpers

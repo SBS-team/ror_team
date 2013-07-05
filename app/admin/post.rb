@@ -21,8 +21,7 @@ ActiveAdmin.register Post do
     f.semantic_errors :base
     f.inputs "Post Details", :multipart => true do
       f.input :title
-      f.input :description ,:as=>:text
-
+      f.input :description, as: :html_editor
       f.input :tag_list, :hint => 'Comma separated'
       f.input :categories, as: :check_boxes
       f.has_many :upload_files do |file|

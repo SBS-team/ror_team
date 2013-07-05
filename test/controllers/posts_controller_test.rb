@@ -8,9 +8,7 @@ describe PostsController do
     before do
       @posts = []
       5.times do
-        post = FactoryGirl.build(:post)
-        post.upload_files << FactoryGirl.create(:upload_file)
-        post.save
+        post = FactoryGirl.create(:post, :upload_files =>[UploadFile.create(:filename => File.open(Rails.root.join('1.jpg')))])
         @posts << post
       end
     end
@@ -24,9 +22,7 @@ describe PostsController do
 
     it 'show posts' do
       6.times do
-        post = FactoryGirl.build(:post)
-        post.upload_files << FactoryGirl.create(:upload_file)
-        post.save
+        post = FactoryGirl.create(:post, :upload_files =>[UploadFile.create(:filename => File.open(Rails.root.join('1.jpg')))])
         @posts << post
       end
       get :index
@@ -74,18 +70,14 @@ describe PostsController do
   describe 'GET #show' do
 
     it 'rendering' do
-      post = FactoryGirl.build(:post)
-      post.upload_files << FactoryGirl.create(:upload_file)
-      post.save
+      post = FactoryGirl.create(:post, :upload_files =>[UploadFile.create(:filename => File.open(Rails.root.join('1.jpg')))])
       get :show, id: post
       assert_template :show
       assert_template layout: "layouts/application"
     end
 
     it "show post with comments" do
-      post = FactoryGirl.build(:post)
-      post.upload_files << FactoryGirl.create(:upload_file)
-      post.save
+      post = FactoryGirl.create(:post, :upload_files =>[UploadFile.create(:filename => File.open(Rails.root.join('1.jpg')))])
       user = FactoryGirl.create(:user)
       comment1 = FactoryGirl.create(:comment, :commentable => user)
       comment2 = FactoryGirl.create(:comment, :commentable => user)
@@ -104,9 +96,7 @@ describe PostsController do
     it "show recents posts" do
       posts = []
       6.times do
-        post = FactoryGirl.build(:post)
-        post.upload_files << FactoryGirl.create(:upload_file)
-        post.save
+        post = FactoryGirl.create(:post, :upload_files =>[UploadFile.create(:filename => File.open(Rails.root.join('1.jpg')))])
         posts << post
       end
 
@@ -122,13 +112,9 @@ describe PostsController do
 
     it "show popular posts" do
       user = FactoryGirl.create(:user)
-      post1 = FactoryGirl.build(:post)
-      post2 = FactoryGirl.build(:post)
-      post3 = FactoryGirl.build(:post)
-
-      post1.upload_files << FactoryGirl.create(:upload_file)
-      post2.upload_files << FactoryGirl.create(:upload_file)
-      post3.upload_files << FactoryGirl.create(:upload_file)
+      post1 = FactoryGirl.create(:post, :upload_files =>[UploadFile.create(:filename => File.open(Rails.root.join('1.jpg')))])
+      post2 = FactoryGirl.create(:post, :upload_files =>[UploadFile.create(:filename => File.open(Rails.root.join('1.jpg')))])
+      post3 = FactoryGirl.create(:post, :upload_files =>[UploadFile.create(:filename => File.open(Rails.root.join('1.jpg')))])
 
       comment1 = FactoryGirl.create(:comment, :commentable => user)
       comment2 = FactoryGirl.create(:comment, :commentable => user)
@@ -164,8 +150,7 @@ describe PostsController do
     end
 
     it 'show all tags' do
-      post = FactoryGirl.build(:post)
-      post.upload_files << FactoryGirl.create(:upload_file)
+      post = FactoryGirl.create(:post, :upload_files =>[UploadFile.create(:filename => File.open(Rails.root.join('1.jpg')))])
       post.tag_list = "tag1, tag2, tag3"
       post.save
 

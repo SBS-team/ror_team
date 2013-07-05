@@ -1,5 +1,4 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
-
 FactoryGirl.define do
   factory :admin_user do  |p|
     p.sequence(:first_name) { |j| "first_name#{j}" }
@@ -8,6 +7,6 @@ FactoryGirl.define do
     p.password 'password'
     p.password_confirmation { password }
     p.role 'team'
-    p.about 'aboutaboutabout'
+    p.about 'I am admin'
   end
 end

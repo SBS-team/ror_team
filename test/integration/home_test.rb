@@ -2,20 +2,23 @@ require 'minitest_helper'
 
 ApplicationController.skip_before_filter :assign_gon_properties
 
-class HomeTest < IntegrationTest
-  it "home with ajax" do
-    visit '/'
-    click_link 'Company'
-    sleep(5)
-    click_link 'Work'
-    sleep(5)
-    click_link 'Team'
-    sleep(5)
-    click_link 'Careers'
-    sleep(5)
-    click_link 'Contact'
-    sleep(5)
-    click_link 'Blog'
-    sleep(5)
+describe ViewTest do
+
+  it 'home' do
+    visit root_path
+    page.has_content?(I18n.t 'layouts.application.ror_team')
+    click_link I18n.t('layouts.application.company')
+    page.has_content?(I18n.t 'layouts.application.ror_team')
+    click_link I18n.t('layouts.application.work')
+    page.has_content?(I18n.t 'layouts.application.ror_team')
+    click_link I18n.t('layouts.application.team')
+    page.has_content?(I18n.t 'layouts.application.ror_team')
+    click_link I18n.t('layouts.application.careers')
+    page.has_content?(I18n.t 'layouts.application.ror_team')
+    click_link I18n.t('layouts.application.contact')
+    page.has_content?(I18n.t 'layouts.application.ror_team')
+    click_link I18n.t('layouts.application.blog')
+    page.has_content?(I18n.t 'layouts.application.ror_team')
   end
+
 end

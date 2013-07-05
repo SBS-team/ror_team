@@ -19,19 +19,18 @@ describe ContactController do
     post :create, message: {:name => 'Hilli', :email => 'asd@mail.ru'}
     assert_redirected_to root_path
     assert_equal 'Message was successfully sent.', flash[:notice]
-    assert_equal '', flash[:error]
   end
 
   it 'should flash error name' do
     post :create, message: {:email => 'asd@mail.ru'}
     assert_template :index
-    assert_equal 'Name cannot be blank.<br/>', flash[:error]
+    assert_equal 'Form invalid. Please check errors bellow', flash[:error]
   end
 
   it 'should flash error email' do
     post :create, message: {:name => 'Andrew'}
     assert_template :index
-    assert_equal 'Email cannot be blank.<br/>', flash[:error]
+    assert_equal 'Form invalid. Please check errors bellow', flash[:error]
   end
 
 end

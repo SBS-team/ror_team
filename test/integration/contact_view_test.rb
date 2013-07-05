@@ -2,7 +2,7 @@ require 'minitest_helper'
 
 ApplicationController.skip_before_filter :assign_gon_properties
 
-class ContactTest < IntegrationTest
+describe ViewTest do
 
   before do
     visit contact_index_path

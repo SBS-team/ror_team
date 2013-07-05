@@ -4,12 +4,10 @@
     %span
     %p.lead
       = "#{@team.first_name} #{@team.last_name}"
-    %i
       = @team.role
   .about
     %p
-      %i
-        = @team.about
+      = @team.about
 
 .fullteam
   - @fullteam.each do |team_member|

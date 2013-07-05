@@ -5,7 +5,7 @@ describe AdminUser do
   subject { AdminUser.new }
 
   context 'AdminUser model connection' do
-    it { must have_many(:posts).class_name('Person') }
+    it { must have_many(:posts).class_name('Post') }
   end
 
   context 'AdminUser db column' do

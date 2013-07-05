@@ -46,7 +46,7 @@ class AdminUser < ActiveRecord::Base
                          :maximum => 45 }
   validates :about,
             :presence => true,
-            :length => { :in => 10..500 }
+            :length => { :minimum => 10 }
 
   validates :password,
             :presence => true

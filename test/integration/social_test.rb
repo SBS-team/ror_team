@@ -5,17 +5,11 @@ ApplicationController.skip_before_filter :assign_gon_properties
 class SocialTest < IntegrationTest
 
   before do
-    #@user = FactoryGirl.create(:user)
-    #sign_in user
+
     FactoryGirl.create(:post)
     FactoryGirl.create(:category)
     @user = FactoryGirl.create(:user, :uid => '12345', :provider => 'twitter')
 
-
-    #OmniAuth.config.mock_auth[:twitter] = {
-    #    :provider => 'twitter',
-    #    :uid => '123545'
-    #}
   end
 
   it "check twitter" do

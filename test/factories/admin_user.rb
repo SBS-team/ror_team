@@ -10,6 +10,5 @@ FactoryGirl.define do
     p.role 'team'
     p.about 'aboutaboutabout'
     p.upload_files [UploadFile.create(:filename => File.open(Rails.root.join('1.jpg')))]
-    #FactoryGirl.create(:resume, :upload_files =>[UploadFile.create(:filename => File.open(Rails.root.join('1.jpg')))])
   end
 end

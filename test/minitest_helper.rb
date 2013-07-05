@@ -8,10 +8,22 @@ require 'capybara/rails'
 
 MiniTest::Reporters.use!
 
-class IntegrationTest < MiniTest::Spec
-  include Rails.application.routes.url_helpers
+class ViewTest < MiniTest::Spec
   include Capybara::DSL
+
+  before(:all) do
+    DatabaseCleaner.strategy = :truncation
+  end
+  after(:all) do
+    DatabaseCleaner.clean
+    Capybara.reset_sessions!
+    Capybara.use_default_driver
+  end
+
+  include Rails.application.routes.url_helpers
   Capybara.current_driver = Capybara.javascript_driver
+
+  MiniTest::Spec.register_spec_type /ViewTest/, self
 end
 
 def in_browser(name)

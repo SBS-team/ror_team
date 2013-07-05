@@ -17,7 +17,7 @@ class Project < ActiveRecord::Base
 
   has_many :project_technology_categories, dependent: :destroy
   has_many :technologies, through: :project_technology_categories
-  has_many :upload_files, :as => :fileable
+  has_many :upload_files, :as => :fileable, dependent: :destroy
   accepts_nested_attributes_for :upload_files
   accepts_nested_attributes_for :project_technology_categories, allow_destroy: true
 

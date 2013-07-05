@@ -3,9 +3,9 @@
 FactoryGirl.define do
   factory :upload_file do
     sequence :filename do |n|
-      "Filename_#{n}"
+      "filename#{n}"
     end
-    fileable_id ""
-    fileable_type "MyString"
   end
+
+
 end

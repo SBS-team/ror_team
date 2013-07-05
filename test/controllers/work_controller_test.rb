@@ -5,7 +5,6 @@ describe WorkController do
   include CarrierWave::Test::Matchers
   before do
     @project = FactoryGirl.create(:project, :upload_files =>[UploadFile.create(:filename => File.open(Rails.root.join('1.jpg')))])
-    @project.save
   end
 
   describe 'GET #index' do

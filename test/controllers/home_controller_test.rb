@@ -12,9 +12,11 @@ describe HomeController do
         FactoryGirl.create(:project, :upload_files => [FactoryGirl.create(:upload_file)])
       end
 
+      admin = FactoryGirl.create(:admin_user)
+
       4.times do
         FactoryGirl.create(:job)
-        FactoryGirl.create(:post, :upload_files => [FactoryGirl.create(:upload_file)])
+        FactoryGirl.create(:post, admin_id: admin.id, :upload_files => [FactoryGirl.create(:upload_file)])
       end
 
     end

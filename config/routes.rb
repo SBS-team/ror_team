@@ -17,6 +17,4 @@ RorTeam::Application.routes.draw do
   resources :contact, only: [:index, :create]
 
   root :to => 'home#index'
-
-
 end

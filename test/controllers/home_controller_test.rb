@@ -6,46 +6,49 @@ describe HomeController do
 
   describe 'GET #index' do
 
+    before do
+      8.times do
+        FactoryGirl.create(:technology)
+        FactoryGirl.create(:project, :upload_files => [FactoryGirl.create(:upload_file)])
+      end
+
+      4.times do
+        FactoryGirl.create(:job)
+        FactoryGirl.create(:post, :upload_files => [FactoryGirl.create(:upload_file)])
+      end
+
+    end
+
     it 'rendering' do
       get :index
       assert_template :index
-      assert_template layout: "layouts/application"
-      assert_template partial: "shared/_post_jobs"
+      assert_template layout: 'layouts/application'
+      assert_template partial: 'shared/_post_jobs'
       assert_response :success
     end
 
-    it 'show some technologies' do
-      tech_cat = FactoryGirl.create(:technology_category)
-      techs = []
-      10.times do |i|
-        techs[i]= FactoryGirl.create(:technology, technology_category_id: tech_cat.id)
-      end
-
+    it '@technologies assigns technology' do
       get :index
-      refute_nil assigns(:tech)
-      some_techs = assigns(:tech)
-      some_techs.length.must_equal 8
-
-      some_techs.length.times do |i|
-        techs.must_include(some_techs[i])
-      end
+      refute_nil assigns(:technologies)
+      assigns(:technologies).length.must_equal 8
+      assigns(:technologies).must_include Technology.first
     end
 
-    it 'show some projects' do
-      projects = []
-      10.times do |i|
-        projects[i]= FactoryGirl.build(:project)
-        projects[i].upload_files << FactoryGirl.create(:upload_file)
-        projects[i].save
-      end
+    it '@projects assigns project' do
       get :index
-      refute_nil assigns(:some_projects)
-      some_projects = assigns(:some_projects)
-      some_projects.length.must_equal 8
+      refute_nil assigns(:projects)
+      assigns(:projects).length.must_equal 8
+      assigns(:projects).must_include Project.first
+    end
 
-      some_projects.length.times do |i|
-        projects.must_include(some_projects[i])
-      end
+    it 'before action -> last_posts_and_jobs' do
+      get :index
+      refute_nil assigns(:last_jobs)
+      assigns(:last_jobs).length.must_equal 4
+      assigns(:last_jobs).must_include Job.first
+      refute_nil assigns(:last_posts)
+      assigns(:last_posts).length.must_equal 4
+      assigns(:last_posts).must_include Post.first
     end
 
   end

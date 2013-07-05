@@ -1,7 +1,7 @@
 FactoryGirl.define do
-  factory :post do  |p|
-    p.title 'my post'
-    p.description 'Text for post -> my post'
-    p.admin_id 2
+  factory :post do
+    title 'my post'
+    description 'Text for post -> my post'
+    association :admin_user, :factory => :admin_user
   end
 end

@@ -2,9 +2,7 @@
 
 FactoryGirl.define do
   factory :upload_file do
-    sequence :filename do |n|
-      "filename#{n}"
-    end
+    filename { Rack::Test::UploadedFile.new(File.join(Rails.root, 'test', 'factories', 'files', 'image.png')) }
   end
 
 

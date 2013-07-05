@@ -4,21 +4,13 @@ class ContactController < ApplicationController
     @message = Message.new
   end
 
-  def new
-    @services = Service.all
-    @tech_categories = TechnologyCategory.all
-  end
-
   def create
     @message = Message.new(params[:message])
-    if @message.name.blank? || @message.email.blank?
-      flash.now[:error] << 'Name cannot be blank.<br/>'
-    end
     if @message.valid?
       NotificationsMailer.new_message(@message).deliver
-      redirect_to(root_path, :notice => 'Message was successfully sent.')
+      redirect_to(root_path, :notice => t('.contact_sent_msg'))
     else
-      flash.now[:error]
+      flash.now[:error] = t('.contact_error_msg')
       render :index
     end
   end

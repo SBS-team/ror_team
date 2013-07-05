@@ -18,7 +18,7 @@ describe TeamController do
 
     it 'render #show' do
       5.times do
-        @admin_user = FactoryGirl.create(:admin_user)
+        @admin_user = FactoryGirl.create(:admin_user, :upload_files => [FactoryGirl.create(:upload_file)])
       end
 
       get :show, id: @admin_user

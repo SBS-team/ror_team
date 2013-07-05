@@ -13,3 +13,5 @@
   - @fullteam.each do |team_member|
     = link_to team_path(team_member), :id => "pic#{team_member.id}" do
       = image_tag(team_member.upload_files.first.filename, :class => 'img-rounded', :height => 75, :width => 75)
+.row
+  = render :partial => 'shared/post_jobs'

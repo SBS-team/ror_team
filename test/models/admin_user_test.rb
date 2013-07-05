@@ -5,7 +5,8 @@ describe AdminUser do
   subject { AdminUser.new }
 
   context 'AdminUser model connection' do
-    it { must have_many(:posts).class_name('Post') }
+    it { must have_many(:posts).dependent(:destroy)}
+    it {must have_many(:upload_files)}
   end
 
   context 'AdminUser db column' do

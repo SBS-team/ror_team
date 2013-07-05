@@ -6,8 +6,8 @@ class TeamTest < IntegrationTest
 
   before do
       FactoryGirl.create(:admin_user)
-      FactoryGirl.create(:admin_user, :upload_files =>[UploadFile.create(:filename => File.open(Rails.root.join('2.jpg')))])
-      FactoryGirl.create(:admin_user, :upload_files =>[UploadFile.create(:filename => File.open(Rails.root.join('3.jpg')))])
+      FactoryGirl.create(:admin_user, :upload_files =>[FactoryGirl.create(:upload_file)])
+      FactoryGirl.create(:admin_user, :upload_files =>[FactoryGirl.create(:upload_file)])
   end
 
 

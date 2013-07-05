@@ -14,15 +14,6 @@ class JobsController < ApplicationController
   end
 
   def create
-    create_resume
-  end
-  def new
-
-  end
-
-
-private
-  def create_resume
     @resume = Resume.new(resume_params)
     @job = Job.find(@resume.job_id)
     if @resume.save
@@ -31,6 +22,8 @@ private
       render 'show'
     end
   end
+
+private
 
   def resume_params
     params.require(:resume).permit(:job_id, :name, :email, :phone, :description, upload_files_attributes: [:filename, :id])

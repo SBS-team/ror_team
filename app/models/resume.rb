@@ -41,11 +41,11 @@ class Resume < ActiveRecord::Base
       errors.add(:description, "can't be blank and file is not attached") if self.description.blank?
     else
       self.upload_files.each do |file|
-        if (/\.jpg|\.jpeg/ =~ file.filename.to_s).nil?
-          errors.add(:upload_files, "not doc, pdf types") if self.description.blank?
+        if (/\.doc|\.pdf/ =~ file.filename.to_s).nil?
+          errors.add(:upload_files, "not doc, pdf types")
         end
       end
+
     end
   end
-
 end

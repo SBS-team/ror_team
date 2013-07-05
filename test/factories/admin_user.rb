@@ -2,13 +2,14 @@
 
 FactoryGirl.define do
   factory :admin_user do  |p|
-    p.first_name 'first_name'
+    p.sequence(:first_name) { |j| "first_name#{j}" }
     p.last_name 'last_name'
     p.sequence(:email) { |i| "user_#{i}@mail.com" }
     p.password 'password'
     p.password_confirmation { password }
     p.role 'team'
     p.about 'aboutaboutabout'
-    p.sequence(:upload_files) { |i| "#{i}.jpeg" }
+    p.upload_files [UploadFile.create(:filename => File.open(Rails.root.join('1.jpg')))]
+    #FactoryGirl.create(:resume, :upload_files =>[UploadFile.create(:filename => File.open(Rails.root.join('1.jpg')))])
   end
 end

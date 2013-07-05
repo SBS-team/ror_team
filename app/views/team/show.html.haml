@@ -13,5 +13,5 @@
 
 .fullteam
   - @fullteam.each do |team_member|
-    = link_to team_path(team_member) do
+    = link_to team_path(team_member), :id => team_member.id do
       = image_tag(team_member.upload_files.first.filename, :class => 'img-rounded', :height => 75, :width => 75)

@@ -8,9 +8,7 @@ describe CompanyController do
     @services = Array.new
     @tech_cats = Array.new
     3.times do |i|
-      @services[i] = FactoryGirl.build(:service)
-      @services[i].upload_files << FactoryGirl.create(:upload_file)
-      @services[i].save
+      @services[i] = FactoryGirl.create(:service, :upload_files =>[UploadFile.create(:filename => File.open(Rails.root.join('1.jpg')))])
       @tech_cats[i] = FactoryGirl.create(:technology_category)
     end
   end

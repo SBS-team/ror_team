@@ -115,16 +115,16 @@ en:
       search: "search"
       categories: "Categories:"
       ror_team_info: "RoR-Team это лучшее, что было в вашей жизни! Мы можем испортить любой ваш заказ, будь то починка кастрюли или движение отвертки."
-      run_away: "Run away quickly"
+      see_our_projects: "See our projects"
       help_you: "We are always happy to help you"
       contact_us: "Contact us"
       tags: "Tags:"
     index:
-      category: "Category:"
+      categories: "Categories:"
       tags: "Tags:"
-      comments: "Commets"
+      comments: "Comments"
     show:
-      comments: "Commets"
+      comments: "Comments"
       new_comment: "New Comment"
       write_comment: "Write your comment here"
       add_comment: "Add Comment"
@@ -134,8 +134,11 @@ en:
       ready_help: "we're always ready to help"
       contact_us: "Contact Us"
       rss_feed: "RSS Feed"
+      categories: "Categories:"
+      tags: "Tags:"
 
   contact:
     create:
       contact_sent_msg: "Message was successfully sent."
       contact_error_msg: "Form invalid. Please check errors bellow"
+

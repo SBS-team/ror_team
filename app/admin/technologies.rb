@@ -24,7 +24,7 @@ ActiveAdmin.register Technology do
     def create
       tech_cat = TechnologyCategory.find(params[:technology][:technology_category_id])
        if @tech = tech_cat.technologies.create(safe_params)
-        redirect_to edit_admin_technology_url(@tech), notice: 'Technology was successfully created.'
+        redirect_to admin_technology_url(@tech), notice: 'Technology was successfully created.'
       else
         render :new
       end
@@ -32,7 +32,7 @@ ActiveAdmin.register Technology do
     def update
       @tech = Technology.find(params[:id])
       if @tech.update(safe_params)
-        redirect_to edit_admin_technology_url(@tech), notice: 'Technology was successfully updated.'
+        redirect_to admin_technology_url(@tech), notice: 'Technology was successfully updated.'
       else
         render :edit
       end

@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   before_action :category, only: [:index , :show]
+  before_action :recent_and_popular_posts, only: :show
 
   # GET /posts
   def index
@@ -21,14 +22,16 @@ class PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @comments = @post.comments.order("id").page(params[:page]).per(5)
-
-    @recent_posts = Post.order("created_at DESC").limit(5)
-    @popular_posts = Post.order("comments_count DESC").limit(5)
   end
 
   private
   def category
     @categories = Category.all
     @tags = Post.tag_counts_on(:tags)
+  end
+
+  def recent_and_popular_posts
+    @recent_posts = Post.order("created_at DESC").limit(5)
+    @popular_posts = Post.order("comments_count DESC").limit(5)
   end
 end

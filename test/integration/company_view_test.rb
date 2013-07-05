@@ -2,11 +2,11 @@ require 'minitest_helper'
 
 ApplicationController.skip_before_filter :assign_gon_properties
 
-class CompanyTest < IntegrationTest
+describe ViewTest do
 
   describe "#index" do
 
-    it 'page must has next content' do
+    it 'page must have next content' do
       visit company_index_path
       current_path.must_equal company_index_path
       assert page.has_content?(I18n.t 'company.index.our_skills')
@@ -35,16 +35,24 @@ class CompanyTest < IntegrationTest
       job = FactoryGirl.create(:job)
       visit company_index_path
       assert page.has_content?(job.title)
-      assert page.has_content?(I18n.t 'shared.post_jobs.send_resume')
       click_link job.title
       sleep(3)
       current_path.must_equal job_path(job)
       sleep(3)
     end
 
-=begin
+    it "if click button Resume then redirect to jobs(carrier)" do
+      job = FactoryGirl.create(:job)
+      visit company_index_path
+      assert page.has_content?(I18n.t 'shared.post_jobs.send_resume')
+      click_on I18n.t 'shared.post_jobs.send_resume'
+      sleep(3)
+      current_path.must_equal job_path(job)
+      sleep(3)
+    end
+
     it "if click on post then redirect to posts(blog)" do
-      post = FactoryGirl.create(:post, :upload_files =>[UploadFile.create(:filename => File.open(Rails.root.join('1.jpg')))])
+      post = FactoryGirl.create(:post, admin_id: FactoryGirl.create(:admin_user).id, :upload_files => [FactoryGirl.create(:upload_file)])
       visit company_index_path
       assert page.has_content?(post.title)
       click_link post.title
@@ -52,13 +60,21 @@ class CompanyTest < IntegrationTest
       current_path.must_equal post_path(post)
       sleep(3)
     end
-=end
 
-    it "if click on service then redirect to posts(blog)" do
-      service = FactoryGirl.create(:service, :upload_files =>[UploadFile.create(:filename => File.open(Rails.root.join('1.jpg')))])
+    it "if service exists then must show" do
+      service = FactoryGirl.create(:service, :upload_files => [FactoryGirl.create(:upload_file)])
       visit company_index_path
       assert page.has_content?(service.name)
     end
+
+    it "if technology_categories exist, they must be visible" do
+      tc1 = FactoryGirl.create(:technology_category)
+      tc2 = FactoryGirl.create(:technology_category)
+      visit company_index_path
+      assert page.has_content?(tc1.name)
+      assert page.has_content?(tc2.name)
+    end
+
   end
 end
 

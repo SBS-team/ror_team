@@ -10,7 +10,7 @@
           = @job.title
         .descr
           %p
-            = @job.description.html_safe
+            != @job.description
   = render 'form'
 .row
   = render :partial => 'shared/post_jobs'

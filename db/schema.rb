@@ -57,11 +57,6 @@ ActiveRecord::Schema.define(version: 20130704133859) do
     t.datetime "updated_at"
   end
 
-  create_table "chat_messages", force: true do |t|
-    t.text    "body"
-    t.integer "live_chat_id"
-  end
-
   create_table "comments", force: true do |t|
     t.text     "description"
     t.integer  "post_id"

@@ -8,7 +8,7 @@
     = t '.categories'
   %ul.unstyled
     - @categories.each do |category|
-      - unless category.posts.empty?
+      - unless category.posts.blank?
         %li
           = link_to category.name, posts_path(:category_name=>category.name)
 .block.contact_us

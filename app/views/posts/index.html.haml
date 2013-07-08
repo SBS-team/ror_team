@@ -6,9 +6,9 @@
           .img
             - if !post.upload_files.blank?
               = image_tag post.upload_files.first.filename.url
-            -else
+            - else
               = image_tag 'missing.png'
-          = "#{post.comments_count} #{t('.comments')}"
+          = link_to "#{post.comments_count} #{t('.comments')}", post_path(post)
         .post_right
           .post-title
             = link_to post.title, post_path(post)
@@ -22,7 +22,7 @@
               = t '.categories'
               = post.categories.collect{|cat| link_to strip_links(cat.name), posts_path(:category_name=>cat.name) }.join(', ').html_safe
 
-          - unless post.tag_counts_on(:tags).empty?
+          - unless post.tag_counts_on(:tags).blank?
             .tags
               = t '.tags'
               - post.tag_counts_on(:tags).each do |tag|

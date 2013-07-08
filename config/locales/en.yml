@@ -126,6 +126,7 @@ en:
       comments: "Comments"
     show:
       comments: "Comments"
+      post_hasnt_comments: "This post hasn't any comments"
       new_comment: "New Comment"
       write_comment: "Write your comment here"
       add_comment: "Add Comment"

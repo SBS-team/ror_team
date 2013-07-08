@@ -3,19 +3,27 @@
     .post
       .post_top
         .post_img
-          %img{:src => '/icon-info.png'}
+          -#%img{:src => '/icon-info.png'}
+          .img
+            - if !@post.upload_files.blank?
+              = image_tag @post.upload_files.first.filename.url
+            - else
+              = image_tag 'missing.png'
         .post-title
           = @post.title
         .post_date
-          = @post.created_at
-          %span
-            = link_to "#{@post.comments_count} #{t('.comments')}", post_path(@post)
+          = @post.created_at.strftime("%d %B %H:%M:%S")
+        %span
+          - if @post.comments_count==0
+            = t('.post_hasnt_comments')
+          - else
+            = "#{@post.comments_count} #{t('.comments')}"
       .post-content
-        = @post.description.html_safe
+        != @post.description
       - unless @post.categories.empty?
         .categories
           = t '.categories'
-          = @post.categories.collect{|cat| link_to strip_links(cat.name), posts_path(:category_name=>cat.name) }.join(', ').html_safe
+          != @post.categories.collect{|cat| link_to strip_links(cat.name), posts_path(:category_name=>cat.name) }.join(', ')
       - unless @post.tag_counts_on(:tags).empty?
         .tags
           = t '.tags'

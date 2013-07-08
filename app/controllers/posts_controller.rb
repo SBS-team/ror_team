@@ -27,7 +27,7 @@ class PostsController < ApplicationController
   private
   def category
     @categories = Category.all
-    @tags = Post.tag_counts_on(:tags)
+    @tags = Post.tag_counts_on(:tags).order("random()")
   end
 
   def recent_and_popular_posts

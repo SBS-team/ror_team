@@ -24,9 +24,8 @@
     = t '.tags'
   .cloud
     - @tags.each do |tag|
-      - random = 1 + Random.rand(6)
-      = link_to tag.name , posts_path(:tag_name => tag.name), :class => "size#{random}"
-
+      - tag_size = 4 * tag.count / relev_tags + 1
+      = link_to tag.name , posts_path(:tag_name => tag.name), :class => "size#{tag_size}"
 
 
 

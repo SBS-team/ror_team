@@ -37,8 +37,8 @@
       = t '.new_comment'
       = form_for [@post, Comment.new], :html => {:class => 'form-inline'} do |f|
         .input-append
-          = f.text_area :description, style: 'height:39px; width:580px', :placeholder => t('.write_comment')
-          = f.submit t('.add_comment'), class: 'btn', style: 'height:50px;'
+          = f.text_area :description, :placeholder => t('.write_comment')
+          = f.submit t('.add_comment'), class: 'btn'
 
           = link_to '/auth/twitter' do
             = image_tag 'authbuttons/twitter_32.png', :size => '32x32', :alt => 'Twitter'

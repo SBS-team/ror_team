@@ -45,19 +45,16 @@
                 = link_to('#') do
                   = image_tag(serv.upload_files.first.filename.to_s, :class => "img-polaroid")
               = link_to "#{serv.name}", '#'
-        .tech-info
-          %h4
-            = t '.tech_info'
-          %dl.dl-horizontal
-            - names = '' #FIXME
-            - project.technologies.each do |tech|
-              %dt
-                - if tech.technology_category.name == names
-                  = '' #FIXME
-                - else
-                  = names = tech.technology_category.name
-              %dd
-                = tech.name
+        - if project.technologies
+          .tech-info
+            %h4
+              = t '.tech_info'
+            %dl.dl-horizontal
+              - project.technologies.each do |tech|
+                %dt
+                  = tech.technology_category.name
+                %dd
+                  = tech.name
   = paginate @projects
 .row
   = render :partial => 'shared/post_jobs'

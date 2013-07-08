@@ -16,7 +16,7 @@ ActiveAdmin.register Project do
     default_actions
   end
 
-  form do |f|
+  form :html => {:enctype => "multipart/form-data" } do |f|
     f.semantic_errors :base
     f.inputs "Project Details" do
       f.input :name
@@ -50,12 +50,12 @@ ActiveAdmin.register Project do
       if @project.update(project_params)
         redirect_to admin_project_url(@project), notice: 'Project was successfully updated.'
       else
-        render :edit
+        render :edit, notice: 'Error has occurred while updating.'
       end
     end
     private
     def project_params
-      params.require(:project).permit(:name, :description, :since, :till, :team_size, :url, upload_files_attributes: [:filename, :id])
+      params.require(:project).permit(:name, :description, :since, :till, :team_size, :url, upload_files_attributes: [:filename, :id], :service_ids => [], :technology_ids => [])
     end
   end
 end

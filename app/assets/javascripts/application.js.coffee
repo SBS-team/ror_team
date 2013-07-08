@@ -4,8 +4,6 @@
 #= require bootstrap.min
 #= require pusher
 #= require underscore
-
-#= require lib/webs
-#= require chat/chat
+#= require jobs
 
 $('.carousel').carousel()

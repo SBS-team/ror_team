@@ -19,6 +19,10 @@
 #  skype                  :string(70)
 #  created_at             :datetime
 #  updated_at             :datetime
+#  nickname               :string(255)
+#  uid                    :string(255)
+#  provider               :string(255)
+#  image                  :string(255)
 #
 
 class User < ActiveRecord::Base
@@ -30,9 +34,6 @@ class User < ActiveRecord::Base
 
   has_many :authentications  ,:dependent => :destroy
   has_many :comments, :as => :commentable, :dependent => :destroy
-
-  has_many :resumes ,:dependent => :destroy
-  has_many :jobs, through: :resumes
 
   has_many :upload_files, :as => :fileable
   accepts_nested_attributes_for :upload_files

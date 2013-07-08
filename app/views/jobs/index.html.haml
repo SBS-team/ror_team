@@ -11,7 +11,7 @@
         .descr
           %p
             = job.description.truncate(500).html_safe
-            = link_to 'learn more', job
+            = link_to 'learn more', job, :id => "job#{job.id}"
       = paginate @jobs,:window => 1
   = render 'form'
 .row

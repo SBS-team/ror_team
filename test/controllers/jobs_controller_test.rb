@@ -62,6 +62,5 @@ describe JobsController do
       post :create, :resume => FactoryGirl.attributes_for(:resume, :job_id => Job.first.id, :description => '')
       must_render_template :show
     end
-    #дотестить!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
   end
 end

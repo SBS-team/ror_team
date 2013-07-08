@@ -1,13 +1,15 @@
-addField = ->
+root = exports ? this
+root.addField = () ->
   if maxFieldLimit is 0
     div = document.createElement("div")
     div.innerHTML = "<input name=\"resume[upload_files_attributes][filename]\" type=\"file\" id=\"fileinput\"> <a onclick=\"return deleteField(this)\" href=\"#\">[X]</a> <br> <input name=\"resume[upload_files_attributes][id]\" type=\"hidden\" />"
     document.getElementById("file").appendChild div
     maxFieldLimit++
   else
-    alert "NoOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOO"
+    alert "You can only finish one file"
   false
-deleteField = (a) ->
+
+root.deleteField = (a) ->
 
   # Получаем доступ к ДИВу, содержащему поле
   contDiv = a.parentNode

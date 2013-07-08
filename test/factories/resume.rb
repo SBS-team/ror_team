@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :resume do |p|
-    association :job, :factories => :job
+    association :job
     p.description 'Description text'
     p.name 'User Name'
     p.email 'em@example.com'

@@ -31,7 +31,8 @@ class Resume < ActiveRecord::Base
             :format => {:with => /\A[^@]+@([^@\.]+\.)+[^@\.]+\z/}
   validates :phone,
             :presence => true,
-            :length => {:maximum => 50}
+            :length => {:maximum => 50},
+            :format => {:with => /\A[+]?\d+\Z/}
   validate :validate_data
 
   private

@@ -35,6 +35,7 @@ describe Resume do
 
     it { must validate_presence_of(:phone) }
     it { must ensure_length_of(:phone).is_at_most(50) }
+    it { must allow_value("0999673061").for(:phone) }
     it "validate can't upload_file and description is empty" do
       resume = FactoryGirl.build(:resume)
       resume.description = ''
@@ -42,7 +43,7 @@ describe Resume do
       resume.errors[:description].must_include "can't be blank and file is not attached"
     end
     it "validate upload_file can't pdf or doc" do
-      resume = FactoryGirl.build(:resumes)
+      resume = FactoryGirl.build(:resume)
       resume.description = ''
       resume.upload_files = [FactoryGirl.create(:upload_file)]
       resume.valid?

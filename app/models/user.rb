@@ -41,14 +41,4 @@ class User < ActiveRecord::Base
   has_many :upload_files, :as => :fileable
   accepts_nested_attributes_for :upload_files
 
-  def self.create_from_omniauth(auth)
-    find_or_create_by_uid(:uid => auth['uid']) do |user|
-      auth['provider'] == 'vkontakte' ? user.email = "#{auth['provider']}@#{auth['extra']['screen_name']}.ru" : user.email = "#{auth['provider']}@#{auth['info']['nickname']}.ru"
-      user.provider = auth['provider']
-      user.uid = auth['uid']
-      auth['provider'] == 'vkontakte' ? user.nickname = auth['info']['name'] : user.nickname = auth['info']['nickname']
-      user.image = auth['info']['image']
-    end
-  end
-
 end

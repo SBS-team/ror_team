@@ -46,6 +46,12 @@ ActiveAdmin.register User do
       end
     end
 
+    def destroy
+      @user = User.find(params[:id])
+      @user.delete
+      redirect_to admin_users_path, notice: 'User was successfully deleted.'
+    end
+
     private
     def user_params
       params.require(:user).permit(:email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :phone, :skype, upload_files_attributes: [:filename, :id])

@@ -38,13 +38,14 @@
         .input-append
           = f.text_area :description, style: 'height:39px; width:650px', :placeholder => t('.write_comment')
           = f.submit t('.add_comment'), class: 'btn', style: 'height:50px;'
+          %br
+          = link_to '/auth/twitter', :class => 'twitter' do
+            = image_tag 'authbuttons/twitter_32.png', :size => '32x32', :alt => 'Twitter'
+          = link_to '/auth/facebook', :class => 'facebook' do
+            = image_tag 'authbuttons/facebook_32.png', :size => '32x32', :alt => 'Facebook'
+          = link_to '/auth/vkontakte', :class => 'vkontakte' do
+            = image_tag 'authbuttons/vk_32.png', :size => '32x32', :alt => 'Vkontakte'
 
-          = link_to auth_path(:provider => :twitter), :class => 'twitter' do
-            = image_tag "authbuttons/twitter_32.png", :size => "32x32", :alt => "Twitter"
-          = link_to auth_path(:provider => :facebook), :class => 'facebook' do
-            = image_tag "authbuttons/facebook_32.png", :size => "32x32", :alt => "Facebook"
-          = link_to auth_path(:provider => :vkontakte), :class => 'vkontakte' do
-            = image_tag "authbuttons/vk_32.png", :size => "32x32", :alt => "Vkontakte"
     .span4
       .recent_posts
         %h3

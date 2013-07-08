@@ -11,13 +11,13 @@ ActiveAdmin.register AdminUser do
 
   form do |f|
     f.inputs "Admin Details" do
-      f.input :first_name
+      f.input :first_name, :placeholder => "Email"
       f.input :last_name
-      f.input :email
+      f.input :email, :placeholder => "Email"
       f.input :password
       f.input :password_confirmation
       f.input :role ,:as => :select, :collection =>{'Admin'=>:admin,'Manager'=>:manager,'Team lead'=>:team_lead,'Team'=>:team } ,:selected=>f.object.role,:include_blank=>false
-      f.input :about ,:as=>:text
+      f.input :about ,:as => :text
       f.has_many :upload_files do |file|
         file.input :filename,:class=>'test', :as => :file, :label => 'Image', :hint => file.template.image_tag(file.object.filename.url, :width => 200, :height => 200)
         file.input :id, :as => :hidden
@@ -36,6 +36,10 @@ ActiveAdmin.register AdminUser do
         redirect_to new_admin_admin_user_path, alert: e.to_s
       end
     end
+
+    #def new
+    #  @admin_user = AdminUser.new
+    #end
 
     def edit
       @admin_user = AdminUser.find(params[:id])

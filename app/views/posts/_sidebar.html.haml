@@ -8,8 +8,9 @@
     = t '.categories'
   %ul.unstyled
     - @categories.each do |category|
-      %li
-        = link_to category.name, posts_path(:category_name=>category.name)
+      - unless category.posts.empty?
+        %li
+          = link_to category.name, posts_path(:category_name=>category.name)
 .block.contact_us
   %p
     = t '.ror_team_info'

@@ -27,7 +27,7 @@ class AdminUser < ActiveRecord::Base
   devise :database_authenticatable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :posts, :dependent => :destroy
+  has_many :posts, :dependent => :destroy, :foreign_key => :admin_id
   has_many :upload_files, :as => :fileable
 
 

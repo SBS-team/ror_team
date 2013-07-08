@@ -31,6 +31,7 @@ en:
       careers: "Careers"
       contact: "Contact"
       blog: "Blog"
+      live_chat: "Live Chat"
       use_to_contact: "Need us to contact you?"
       media_soc: "You can join our social media. network:"
       mail_scype: "Or contact us via email or skype:"
@@ -135,3 +136,7 @@ en:
       contact_us: "Contact Us"
       rss_feed: "RSS Feed"
 
+  contact:
+    create:
+      contact_sent_msg: "Message was successfully sent."
+      contact_error_msg: "Form invalid. Please check errors bellow"

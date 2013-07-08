@@ -11,9 +11,9 @@ ActiveAdmin.register AdminUser do
 
   form do |f|
     f.inputs "Admin Details" do
-      f.input :first_name, :placeholder => "Email"
+      f.input :first_name
       f.input :last_name
-      f.input :email, :placeholder => "Email"
+      f.input :email
       f.input :password
       f.input :password_confirmation
       f.input :role ,:as => :select, :collection =>{'Admin'=>:admin,'Manager'=>:manager,'Team lead'=>:team_lead,'Team'=>:team } ,:selected=>f.object.role,:include_blank=>false

@@ -48,7 +48,7 @@ ActiveAdmin.register User do
 
     def destroy
       @user = User.find(params[:id])
-      @user.delete
+      @user._destroy
       redirect_to admin_users_path, notice: 'User was successfully deleted.'
     end
 

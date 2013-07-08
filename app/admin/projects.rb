@@ -7,6 +7,12 @@ ActiveAdmin.register Project do
     column :till
     column :team_size
     column :url
+    column :technologies do |technology|
+      technology.technologies.collect(&:name).join(', ')
+    end
+    column :services do |service|
+      service.services.collect(&:name).join(', ')
+    end
     default_actions
   end
 
@@ -42,7 +48,7 @@ ActiveAdmin.register Project do
     def update
       @project = Project.find(params[:id])
       if @project.update(project_params)
-        redirect_to edit_admin_project_url(@project), notice: 'Project was successfully updated.'
+        redirect_to admin_project_url(@project), notice: 'Project was successfully updated.'
       else
         render :edit
       end

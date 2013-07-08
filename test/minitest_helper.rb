@@ -6,6 +6,7 @@ require 'minitest/reporters'
 require 'minitest/rails/shoulda'
 require 'capybara/rails'
 
+
 MiniTest::Reporters.use!
 
 class ViewTest < MiniTest::Spec

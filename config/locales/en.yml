@@ -115,6 +115,7 @@ en:
       rss_feed: "RSS Feed"
       search: "search"
       categories: "Categories:"
+      any_category_not_exists_yet: "Any category not exists yet"
       ror_team_info: "RoR-Team это лучшее, что было в вашей жизни! Мы можем испортить любой ваш заказ, будь то починка кастрюли или движение отвертки."
       see_our_projects: "See our projects"
       help_you: "We are always happy to help you"

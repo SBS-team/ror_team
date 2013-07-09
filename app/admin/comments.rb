@@ -31,7 +31,14 @@ ActiveAdmin.register Comment do
       end
       redirect_to admin_comments_path
     end
-
+    def update
+      @comment = Comment.find(params[:id])
+      if @comment.update(comment_params)
+        redirect_to admin_comment_url(@comment), notice: 'Comment was successfully updated.'
+      else
+        render :edit, notice: 'Error has occurred while updating.'
+      end
+    end
     private
     def comment_params
       params.require(:comment).permit(:description, :post_id, :commentable_id, :commentable_type)

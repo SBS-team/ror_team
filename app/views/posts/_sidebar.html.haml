@@ -4,16 +4,17 @@
   %form.form-search{action: posts_path}
     %input.input-large.search-query{type: 'text', placeholder: t('.search'), name: "search"}
 .block.categories
-  %h3
-    - unless show_categories?
+  - unless show_categories?
+    %h3
       = t '.any_category_not_exists_yet'
-    - else
+  - else
+    %h3
       = t '.categories'
-      %ul.unstyled
-        - @categories.each do |category|
-          - unless category.posts.blank?
-            %li
-              = link_to category.name, posts_path(:category_name=>category.name)
+    %ul.unstyled
+      - @categories.each do |category|
+        - unless category.posts.blank?
+          %li
+            = link_to category.name, posts_path(:category_name=>category.name)
 .block.contact_us
   %p
     = t '.ror_team_info'

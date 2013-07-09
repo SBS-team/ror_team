@@ -35,9 +35,6 @@ class User < ActiveRecord::Base
   has_many :authentications  ,:dependent => :destroy
   has_many :comments, :as => :commentable, :dependent => :destroy
 
-  has_many :resumes ,:dependent => :destroy
-  has_many :jobs, through: :resumes
-
   has_many :upload_files, :as => :fileable
   accepts_nested_attributes_for :upload_files
 

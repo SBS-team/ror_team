@@ -14,7 +14,7 @@ ActiveAdmin.register Job do
   form do |f|
     f.inputs 'Job Details' do
       f.input :title
-      f.input :description
+      f.input :description, :as => :html_editor
     end
     f.actions
   end

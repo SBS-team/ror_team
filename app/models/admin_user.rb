@@ -19,6 +19,7 @@
 #  about                  :text
 #  first_name             :string(255)
 #  last_name              :string(255)
+#  fio                    :string(255)
 #
 
 class AdminUser < ActiveRecord::Base

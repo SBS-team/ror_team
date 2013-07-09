@@ -14,22 +14,40 @@
 #
 
 class Resume < ActiveRecord::Base
-  belongs_to :user
+
   belongs_to :job
-  has_many :upload_files, :as => :fileable
+  has_many :upload_files, :as => :fileable, :dependent => :destroy
   accepts_nested_attributes_for :upload_files
 
   validates :description,
-            :presence => true,
-            :length => { :minimum => 5, :maximum => 1000 }
+            :length => {:maximum => 3000}
   validates :job_id,
             :presence => true,
             :numericality => { :only_integer => true, :greater_than => 0 }
   validates :name,
             :presence => true,
-            :length => { :minimum => 2, :maximum => 30 }
+            :length => { :minimum => 2, :maximum => 40 }
   validates :email,
+            :presence => true,
             :format => {:with => /\A[^@]+@([^@\.]+\.)+[^@\.]+\z/}
   validates :phone,
-            :presence => true
+            :presence => true,
+            :length => {:maximum => 50},
+            :format => {:with => /\A[+]?\d+\Z/}
+  validate :validate_data
+
+  private
+
+  def validate_data
+    if (self.upload_files.blank?)
+      errors.add(:description, "can't be blank and file is not attached") if self.description.blank?
+    else
+      self.upload_files.each do |file|
+        if (/\.doc|\.pdf/ =~ file.filename.to_s).nil?
+          errors.add(:upload_files, "not doc, pdf types")
+        end
+      end
+
+    end
+  end
 end

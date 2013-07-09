@@ -4,14 +4,15 @@
       = t '.open_vacancies'
     .careers
       - @jobs.each do |job|
-        .career
-          = image_tag('/icon-info.png')
-          %botton.btn.input-large{:type => 'submit'}
-            = link_to job.title, job
-          .descr
-            %p
-              = truncate( job.description, :length => 10)
-        = paginate @jobs,:window => 1
+        .title
+          %h3
+            %i{:class=>'icon-star'}
+            = job.title
+        .descr
+          %p
+            != job.description.truncate(500)
+            = link_to 'learn more', job, :id => "job#{job.id}"
+      = paginate @jobs,:window => 1
   = render 'form'
 .row
   = render :partial => 'shared/post_jobs'

@@ -12,14 +12,9 @@
 class Job < ActiveRecord::Base
 
   has_many :resumes ,:dependent => :destroy
-  has_many :users, through: :resumes
 
   validates :title,
-            :presence => true,
-            :length => { :minimum => 3, :maximum => 45 }
+            :presence => true
   validates :description,
-            :presence => true,
-            :length => { :minimum => 5, :maximum => 1000 }
-
-  paginates_per 4
+            :presence => true
 end

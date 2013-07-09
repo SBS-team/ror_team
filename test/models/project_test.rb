@@ -18,6 +18,9 @@ describe Project do
     it { must have_many(:services).through(:project_services) }
     it { must have_many(:project_technology_categories).dependent(:destroy) }
     it { must have_many(:technologies).through(:project_technology_categories) }
+    it { must have_many(:upload_files).dependent(:destroy)}
+
+
   end
 
   context 'Project validations attributes' do

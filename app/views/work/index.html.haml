@@ -37,7 +37,7 @@
             %p
               %b
                 = t '.till'
-              = project.till.strftime("%d %B %Y")
+              = project.till ? project.till.strftime("%d %B %Y") : t('.in_work')
         .team-info.row
           - project.services.each do |serv|
             .developer-info.text-center.span2

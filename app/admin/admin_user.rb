@@ -5,7 +5,6 @@ ActiveAdmin.register AdminUser do
   index do
     column :email
     column :role
-    column :fio
     column :last_sign_in_at
     default_actions
   end
@@ -17,11 +16,10 @@ ActiveAdmin.register AdminUser do
       f.input :email
       f.input :password
       f.input :password_confirmation
-      f.input :fio,:label=>'Full name'
       f.input :role ,:as => :select, :collection =>{'Admin'=>:admin,'Manager'=>:manager,'Team lead'=>:team_lead,'Team'=>:team } ,:selected=>f.object.role,:include_blank=>false
-      f.input :about ,:as=>:text
+      f.input :about ,:as => :text
       f.has_many :upload_files do |file|
-        file.input :filename,:class=>'test', :as => :file, :label => 'Image', :hint => file.template.image_tag(file.object.filename.url, :width => 200, :height => 200)
+        file.input :filename, :class=> 'test', :as => :file, :label => 'Image', :hint => file.template.image_tag(file.object.filename.url, :width => 200, :height => 200)
         file.input :id, :as => :hidden
       end
     end
@@ -37,12 +35,13 @@ ActiveAdmin.register AdminUser do
        render :new
       end
     end
+
     def edit
       @admin_user = AdminUser.find(params[:id])
     end
     def update
       @admin_user = AdminUser.find(params[:id])
-      if @admin.update_attributes(admin_user_params)
+      if @admin_user.update(admin_user_params)
         redirect_to admin_admin_user_path(@admin_user), notice: 'Admin was successfully updated.'
       else
         render :edit
@@ -51,7 +50,7 @@ ActiveAdmin.register AdminUser do
 
     private
     def admin_user_params
-      params.require(:admin_user).permit(:fio, :email,:role,:about,:password, :password_confirmation,:last_sign_in_at, upload_files_attributes: [:filename, :id])
+      params.require(:admin_user).permit(:first_name, :last_name, :email,:role,:about,:password, :password_confirmation,:last_sign_in_at, upload_files_attributes: [:filename, :id])
     end
   end
   end

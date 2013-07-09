@@ -6,6 +6,9 @@ ActiveAdmin.register Comment do
     column "Email" do |comment|
       comment.commentable.email
     end
+    column "Post" do |comment|
+      comment.post.title
+    end
     default_actions
   end
 

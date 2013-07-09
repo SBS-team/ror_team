@@ -36,6 +36,6 @@ class User < ActiveRecord::Base
   has_many :comments, :as => :commentable, :dependent => :destroy
 
   has_many :upload_files, :as => :fileable
-  accepts_nested_attributes_for :upload_files
+  accepts_nested_attributes_for :upload_files, :comments
 
 end

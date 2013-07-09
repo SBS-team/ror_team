@@ -25,16 +25,15 @@ describe PostsController do
     end
 
     it 'show posts' do
-      6.times do
+      2.times do
         post = FactoryGirl.create(:post, :admin_id => @admin.id, :upload_files => [FactoryGirl.create(:upload_file)])
         @posts << post
       end
       get :index
       refute_nil assigns(:posts)
-      assert_includes(assigns(:posts), @posts[10])
-      assert_includes(assigns(:posts), @posts[4])
-      assert_includes(assigns(:posts), @posts[1])
-      #т.к. пагинация по 10 страниц, то остальные не выводятся на страницу
+      assert_includes(assigns(:posts), @posts[6])
+      assert_includes(assigns(:posts), @posts[2])
+      refute_includes(assigns(:posts), @posts[1])
       refute_includes(assigns(:posts), @posts[0])
     end
 

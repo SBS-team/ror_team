@@ -4,7 +4,7 @@
   %form.form-search{action: posts_path}
     %input.input-large.search-query{type: 'text', placeholder: t('.search'), name: "search"}
 .block.categories
-  - unless show_categories?
+  - if @categories.blank?
     %h3
       = t '.any_category_not_exists_yet'
   - else

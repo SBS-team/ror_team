@@ -9,12 +9,4 @@ module PostsHelper
     end
     max_freq
   end
-
-  def show_categories?
-    count_posts_with_category = 0
-    @categories.each do |category|
-      count_posts_with_category += category.posts.count
-    end
-    count_posts_with_category > 0 ? true : false
-  end
 end

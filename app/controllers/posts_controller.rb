@@ -27,7 +27,7 @@ class PostsController < ApplicationController
 
   private
   def category
-    @categories = Category.all
+    @categories = Category.joins(:posts).group('categories.id')
     @tags = Post.tag_counts_on(:tags).order("random()")
   end
 

@@ -1,6 +1,5 @@
 require 'minitest_helper'
 
-#class AuthenticationsHelperTest < ActionView::TestCase
 describe PostsHelper do
 
   before do

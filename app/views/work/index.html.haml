@@ -4,19 +4,21 @@
       %h2
         = project.name
     .span6
-      #myCarouse2.carousel.slide
+      .carousel.slide{:id => "myCarousel#{project.id}"}
         %ol.carousel-indicators
-          %li.active{'data-slide-to' => '0', 'data-target' => '#myCarousel'}
-          %li{'data-slide-to' => '1', 'data-target' => '#myCarousel'}
-          %li{'data-slide-to' => '2', 'data-target' => '#myCarousel'}
+          %li.active{'data-slide-to' => '0', 'data-target' => "#myCarousel#{project.id}"}
+          %li{'data-slide-to' => '1', 'data-target' => "#myCarousel#{project.id}"}
+          %li{'data-slide-to' => '2', 'data-target' => "#myCarousel#{project.id}"}
         .carousel-inner
-          .active.item
+          .item.active
+            = image_tag project.upload_files.first.filename.to_s
+          .item
             = image_tag project.upload_files.first.filename.to_s
           - project.upload_files.each do |img|
             .item
               = image_tag img.filename.to_s
-        = link_to '‹', '#myCarouse2', 'data-slide' => 'prev', :class => 'carousel-control left'
-        = link_to '›', '#myCarouse2', 'data-slide' => 'next', :class => 'carousel-control right'
+        = link_to '‹', "#myCarousel#{project.id}", 'data-slide' => 'prev', :class => 'carousel-control left'
+        = link_to '›', "#myCarousel#{project.id}", 'data-slide' => 'next', :class => 'carousel-control right'
       .text.project-descr
         = project.description
     .span6
@@ -39,22 +41,24 @@
                 = t '.till'
               = project.till.strftime("%d %B %Y")
         .team-info.row
-          - project.services.each do |serv|
+          - project.services.each do |service|
             .developer-info.text-center.span2
               .photo
-                = link_to('#') do
-                  = image_tag(serv.upload_files.first.filename.to_s, :class => "img-polaroid")
-              = link_to "#{serv.name}", '#'
-        - if project.technologies
+                = link_to(company_index_path) do
+                  = image_tag(service.upload_files.first.filename.to_s, :class => "img-polaroid")
+              = link_to "#{service.name}", company_index_path
+        - unless project.technologies.blank?
           .tech-info
             %h4
               = t '.tech_info'
             %dl.dl-horizontal
-              - project.technologies.each do |tech|
+              - grouped_categories = project.technologies.inject({}) { |res, elem| res[elem.technology_category.name] ||= []; res[elem.technology_category.name].push(elem.name); res  }
+              - grouped_categories.each do |category, technologies|
                 %dt
-                  = tech.technology_category.name
-                %dd
-                  = tech.name
+                  = category
+                - technologies.each do |technology|
+                  %dd
+                    = technology
   = paginate @projects
 .row
   = render :partial => 'shared/post_jobs'

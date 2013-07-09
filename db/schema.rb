@@ -45,7 +45,6 @@ ActiveRecord::Schema.define(version: 20130704133859) do
     t.text     "about"
     t.string   "first_name"
     t.string   "last_name"
-    t.string   "fio"
   end
 
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
@@ -150,7 +149,6 @@ ActiveRecord::Schema.define(version: 20130704133859) do
   create_table "technologies", force: true do |t|
     t.string   "name"
     t.integer  "technology_category_id"
-    t.integer  "project_technology_category_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

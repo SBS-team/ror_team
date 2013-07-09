@@ -1,4 +1,7 @@
+require 'yaml'
 Rails.application.config.middleware.use OmniAuth::Builder do
-  provider :twitter, 'WKEMaXYkT7prX2kdCYKyuw', 'GYreNZWU9fNcDWTEE1oWZRPwhVxS5C2UV5wWrm3HQc'
-  provider :facebook, '177826365724897', '42fd4861cb678f4de5e1ed1a8d7153e7'
+  API_KEYS = YAML.load_file('config/environments/development.yml')
+  provider :twitter, API_KEYS['API_KEYS']['twitter']['key'], API_KEYS['API_KEYS']['twitter']['secret']
+  provider :facebook, API_KEYS['API_KEYS']['facebook']['key'], API_KEYS['API_KEYS']['facebook']['secret']
+  provider :vkontakte, API_KEYS['API_KEYS']['vkontakte']['key'], API_KEYS['API_KEYS']['vkontakte']['secret']
 end

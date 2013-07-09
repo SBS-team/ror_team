@@ -69,6 +69,9 @@ en:
     index:
       our_command: "About us and our company!"
       team_photo: "Team photo"
+      about: "You can use all Bootstrap plugins purely through the markup API without writing a single line of JavaScript. This is Bootstrap's first class API and should be your first consideration when using a plugin.
+              That said, in some situations it may be desirable to turn this functionality off. Therefore, we also provide the ability to disable the data attribute API by unbinding all events on the body namespaced with `'data-api'`. This looks like this:"
+
 
   work:
     index:
@@ -78,6 +81,7 @@ en:
       till: "Till:"
       tech_info: "Technical information:"
       people: "people"
+      in_work: "in work"
 
   contact:
     index:
@@ -115,17 +119,22 @@ en:
       rss_feed: "RSS Feed"
       search: "search"
       categories: "Categories:"
+      any_category_not_exists_yet: "Any category not exists yet"
       ror_team_info: "RoR-Team это лучшее, что было в вашей жизни! Мы можем испортить любой ваш заказ, будь то починка кастрюли или движение отвертки."
-      run_away: "Run away quickly"
+      see_our_projects: "See our projects"
       help_you: "We are always happy to help you"
       contact_us: "Contact us"
       tags: "Tags:"
+      tags_are_not_added: "Tags are not added yet"
     index:
-      category: "Category:"
+      categories: "Categories:"
       tags: "Tags:"
-      comments: "Commets"
+      comment: "comment"
+      your_search_for: "Your search for"
+      returned_no_hits: "returned no hits."
     show:
-      comments: "Commets"
+      comment: "comment"
+      post_hasnt_comments: "This post hasn't any comments"
       new_comment: "New Comment"
       write_comment: "Write your comment here"
       add_comment: "Add Comment"
@@ -135,6 +144,8 @@ en:
       ready_help: "we're always ready to help"
       contact_us: "Contact Us"
       rss_feed: "RSS Feed"
+      categories: "Categories:"
+      tags: "Tags:"
 
   contact:
     create:

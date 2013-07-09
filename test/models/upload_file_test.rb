@@ -1,8 +1,6 @@
-require 'test_helper'
+require 'minitest_helper'
 
 class UploadFileTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  subject { UploadFile.new }
+  it { must belong_to(:fileable) }
 end
-#FIXME

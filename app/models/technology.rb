@@ -14,7 +14,7 @@ class Technology < ActiveRecord::Base
   belongs_to :technology_category
   has_many :project_technology_categories, dependent: :destroy
   has_many :projects, through: :project_technology_categories
-  has_many :upload_files, :as => :fileable
+  has_many :upload_files, :as => :fileable, dependent: :destroy
   accepts_nested_attributes_for :upload_files
 
   validates :name,
@@ -25,5 +25,5 @@ class Technology < ActiveRecord::Base
   validates :technology_category_id,
             :presence => true,
             :numericality => {  :only_integer => true,
-                                :greater_then => 0 }
+                                :greater_then => 0     }
 end

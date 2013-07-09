@@ -3,14 +3,16 @@ require 'minitest_helper'
 describe PostsController do
   ApplicationController.skip_before_filter :assign_gon_properties
 
+  before do
+    @admin = FactoryGirl.create(:admin_user)
+  end
+
   describe 'GET #index' do
 
     before do
       @posts = []
       5.times do
-        post = FactoryGirl.build(:post)
-        post.upload_files << FactoryGirl.create(:upload_file)
-        post.save
+        post = FactoryGirl.create(:post, :admin_id => @admin.id, :upload_files => [FactoryGirl.create(:upload_file)])
         @posts << post
       end
     end
@@ -23,18 +25,15 @@ describe PostsController do
     end
 
     it 'show posts' do
-      6.times do
-        post = FactoryGirl.build(:post)
-        post.upload_files << FactoryGirl.create(:upload_file)
-        post.save
+      2.times do
+        post = FactoryGirl.create(:post, :admin_id => @admin.id, :upload_files => [FactoryGirl.create(:upload_file)])
         @posts << post
       end
       get :index
       refute_nil assigns(:posts)
-      assert_includes(assigns(:posts), @posts[10])
-      assert_includes(assigns(:posts), @posts[4])
-      assert_includes(assigns(:posts), @posts[1])
-      #т.к. пагинация по 10 страниц, то остальные не выводятся на страницу
+      assert_includes(assigns(:posts), @posts[6])
+      assert_includes(assigns(:posts), @posts[2])
+      refute_includes(assigns(:posts), @posts[1])
       refute_includes(assigns(:posts), @posts[0])
     end
 
@@ -74,18 +73,14 @@ describe PostsController do
   describe 'GET #show' do
 
     it 'rendering' do
-      post = FactoryGirl.build(:post)
-      post.upload_files << FactoryGirl.create(:upload_file)
-      post.save
+      post = FactoryGirl.create(:post, :admin_id => @admin.id, :upload_files => [FactoryGirl.create(:upload_file)])
       get :show, id: post
       assert_template :show
       assert_template layout: "layouts/application"
     end
 
     it "show post with comments" do
-      post = FactoryGirl.build(:post)
-      post.upload_files << FactoryGirl.create(:upload_file)
-      post.save
+      post = FactoryGirl.create(:post, :admin_id => @admin.id, :upload_files => [FactoryGirl.create(:upload_file)])
       user = FactoryGirl.create(:user)
       comment1 = FactoryGirl.create(:comment, :commentable => user)
       comment2 = FactoryGirl.create(:comment, :commentable => user)
@@ -104,9 +99,7 @@ describe PostsController do
     it "show recents posts" do
       posts = []
       6.times do
-        post = FactoryGirl.build(:post)
-        post.upload_files << FactoryGirl.create(:upload_file)
-        post.save
+        post = FactoryGirl.create(:post, :admin_id => @admin.id, :upload_files => [FactoryGirl.create(:upload_file)])
         posts << post
       end
 
@@ -122,13 +115,9 @@ describe PostsController do
 
     it "show popular posts" do
       user = FactoryGirl.create(:user)
-      post1 = FactoryGirl.build(:post)
-      post2 = FactoryGirl.build(:post)
-      post3 = FactoryGirl.build(:post)
-
-      post1.upload_files << FactoryGirl.create(:upload_file)
-      post2.upload_files << FactoryGirl.create(:upload_file)
-      post3.upload_files << FactoryGirl.create(:upload_file)
+      post1 = FactoryGirl.create(:post, :admin_id => @admin.id, :upload_files => [FactoryGirl.create(:upload_file)])
+      post2 = FactoryGirl.create(:post, :admin_id => @admin.id, :upload_files => [FactoryGirl.create(:upload_file)])
+      post3 = FactoryGirl.create(:post, :admin_id => @admin.id, :upload_files => [FactoryGirl.create(:upload_file)])
 
       comment1 = FactoryGirl.create(:comment, :commentable => user)
       comment2 = FactoryGirl.create(:comment, :commentable => user)
@@ -164,8 +153,7 @@ describe PostsController do
     end
 
     it 'show all tags' do
-      post = FactoryGirl.build(:post)
-      post.upload_files << FactoryGirl.create(:upload_file)
+      post = FactoryGirl.create(:post, :admin_id => @admin.id, :upload_files => [FactoryGirl.create(:upload_file)])
       post.tag_list = "tag1, tag2, tag3"
       post.save
 

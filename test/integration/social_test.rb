@@ -21,8 +21,8 @@ describe ViewTest do
     sleep(2)
     find('.twitter').click
     sleep(2)
-    fill_in 'username_or_email', :with => '@PairDro'
-    fill_in 'session[password]', :with => 'ghbdtnrfrltkf'
+    fill_in 'username_or_email', :with => 'HERE YOU NEED TO WRITE YOUR LOGIN FOR TWITTER'
+    fill_in 'session[password]', :with => 'HERE YOU NEED TO WRITE YOUR PASSWORD FOR TWITTER'
     click_button 'Авторизовать'
     sleep(2)
     fill_in 'comment_description', :with => 'Sample comment'

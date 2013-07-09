@@ -3,7 +3,7 @@ class WorkController < ApplicationController
   before_filter :last_posts_and_jobs , :only => [:index, :show]
 
   def index
-    @projects = Project.all.preload(:technologies).page params[:page]
+    @projects = Project.preload(:technologies => :technology_category).page params[:page]
   end
 
   def show

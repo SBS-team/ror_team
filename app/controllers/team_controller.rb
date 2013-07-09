@@ -3,7 +3,11 @@ class TeamController < ApplicationController
   before_filter :last_posts_and_jobs , only: [:index , :show]
 
   def index
-    @team = AdminUser.where.not(:role => 'admin').page(params[:page]).per(5)
+    if !params[:role].blank?
+      @team = AdminUser.where("role = :role", :role => params[:role]).page(params[:page]).per(5)
+    else
+      @team = AdminUser.where.not(:role => 'admin').page(params[:page]).per(5)
+    end
   end
 
   def show
@@ -14,6 +18,6 @@ class TeamController < ApplicationController
 
   private
   def admin_user_params
-    params.require(:admin_user).permit(:email,:role,:fio,:about, upload_files_attributes: [:filename, :id])
+    params.require(:admin_user).permit(:first_name, :last_name, :email, :role, :about, upload_files_attributes: [:filename, :id])
   end
 end

@@ -11,7 +11,6 @@ class AuthenticationsController < ApplicationController
       user.image = auth['info']['image']
     end
     sign_in @user
-    session[:user_id] = @user.id
     redirect_to session[:return_to]
 
   end

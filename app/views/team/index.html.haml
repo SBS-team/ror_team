@@ -8,8 +8,8 @@
           %p.lead
             = link_to "#{member.first_name} #{member.last_name}", team_path(member)
           %p
-            %span.btn
-              = member.role
+            %span
+              = link_to "#{member.role}", team_index_path(:role => member.role), :class => 'btn'
         .about
           %p
             = truncate(member.about.capitalize, :length => 50)

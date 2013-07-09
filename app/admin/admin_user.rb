@@ -37,10 +37,6 @@ ActiveAdmin.register AdminUser do
       end
     end
 
-    #def new
-    #  @admin_user = AdminUser.new
-    #end
-
     def edit
       @admin_user = AdminUser.find(params[:id])
     end

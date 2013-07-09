@@ -121,6 +121,7 @@ en:
       help_you: "We are always happy to help you"
       contact_us: "Contact us"
       tags: "Tags:"
+      tags_are_not_added: "Tags are not added yet"
     index:
       categories: "Categories:"
       tags: "Tags:"

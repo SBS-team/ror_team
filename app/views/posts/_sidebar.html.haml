@@ -25,7 +25,10 @@
     = link_to t('.contact_us'), contact_index_path
 .block.tags
   %h3
-    = t '.tags'
+    - if @tags.blank?
+      = t '.tags_are_not_added'
+    - else
+      = t '.tags'
   .cloud
     - @tags.each do |tag|
       - tag_size = 4 * tag.count / relev_tags + 1

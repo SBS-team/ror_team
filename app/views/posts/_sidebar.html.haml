@@ -1,8 +1,8 @@
 .block.text-center.rss
   = link_to t('.rss_feed'),  posts_path(:rss), :class => 'btn'
 .block.search.text-center
-  %form.form-search
-    %input.input-large.search-query{:type => 'text', placeholder: t('.search'), :name=>"search"}
+  %form.form-search{action: posts_path}
+    %input.input-large.search-query{type: 'text', placeholder: t('.search'), name: "search"}
 .block.categories
   %h3
     = t '.categories'

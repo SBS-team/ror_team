@@ -12,4 +12,5 @@ FactoryGirl.define do
     team_size rand_obj.rand(2..6)
     url "http://#{:name}.com"
   end
+
 end

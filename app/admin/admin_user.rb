@@ -28,12 +28,11 @@ ActiveAdmin.register AdminUser do
 
   controller do
     def create
-      begin
-        @admin_user = AdminUser.new(admin_user_params)
-        @admin_user.save!
+      @admin_user = AdminUser.create(admin_user_params)
+      if @admin_user.save
         redirect_to admin_admin_user_path(@admin_user), notice: 'Admin was successfully created.'
-      rescue Exception => e
-        redirect_to new_admin_admin_user_path, alert: e.to_s
+      else
+       render :new
       end
     end
 

@@ -14,11 +14,11 @@
 class Post < ActiveRecord::Base
 
   acts_as_taggable
-  has_many :post_categories, :dependent => :delete_all
+  has_many :post_categories, :dependent => :destroy
   has_many :categories, through: :post_categories
   has_many :comments, :dependent => :destroy
   belongs_to :admin, :class_name => "AdminUser", :foreign_key => "admin_id"
-  has_many :upload_files, :as => :fileable
+  has_many :upload_files, :as => :fileable, :dependent => :destroy
   accepts_nested_attributes_for :upload_files
   validates :title,
             :presence => true,
@@ -34,7 +34,7 @@ class Post < ActiveRecord::Base
 
   def self.search_posts_based_on_like(search)
     if search
-      where('UPPER(title) LIKE UPPER(:word) OR UPPER(description) LIKE UPPER(:word)', :word=>"%#{search}%")
+      where('LOWER(title) LIKE LOWER(:word) OR LOWER(description) LIKE LOWER(:word)', :word=>"%#{search}%")
     else
       all
     end

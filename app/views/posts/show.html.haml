@@ -3,22 +3,32 @@
     .post
       .post_top
         .post_img
-          %img{:src => '/icon-info.png'} #FIXME
+          -#%img{:src => '/icon-info.png'}
+          .img
+            - if !@post.upload_files.blank?
+              = image_tag @post.upload_files.first.filename.url
+            - else
+              = image_tag 'missing.png'
         .post-title
           = @post.title
         .post_date
-          = @post.created_at
-          %span
-            = link_to "#{@post.comments_count} #{t('.comments')}", post_path(@post)
+          = @post.created_at.strftime("%d %B %H:%M:%S")
+        %span
+          - if @post.comments_count==0
+            = t('.post_hasnt_comments')
+          - else
+            = pluralize(@post.comments_count, t('.comment'))
       .post-content
-        = @post.description.html_safe
-      .categories
-        = t '.category'
-        = @post.categories.collect{|cat| link_to strip_links(cat.name), posts_path(:category_name=>cat.name) }.join(', ').html_safe
-      .tags
-        = t '.tags'
-        - @post.tag_counts_on(:tags).each do |tag|
-          = link_to tag.name, posts_path(:tag_name => tag.name), :class => 'btn'
+        != @post.description
+      - unless @post.categories.empty?
+        .categories
+          = t '.categories'
+          != @post.categories.collect{|cat| link_to strip_links(cat.name), posts_path(:category_name=>cat.name) }.join(', ')
+      - unless @post.tag_counts_on(:tags).empty?
+        .tags
+          = t '.tags'
+          - @post.tag_counts_on(:tags).each do |tag|
+            = link_to tag.name, posts_path(:tag_name => tag.name), :class => 'btn'
     %comments
       - @comments.each do |comment|
         %b
@@ -57,7 +67,7 @@
         %h5
           = t ('.get_more')
         .btn.large
-          = link_to t('.rss_feed'), '#'
+          = link_to t('.rss_feed'), posts_path(:rss)
     .span3
       .popular_posts
         %h3
@@ -69,6 +79,6 @@
         %h5
           = t '.ready_help'
         .btn.large
-          = link_to t('.contact_us'), '#'
+          = link_to t('.contact_us'), contact_index_path
   .span4.sidebar
     = render :partial => 'sidebar'

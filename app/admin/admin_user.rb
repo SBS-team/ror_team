@@ -45,7 +45,7 @@ ActiveAdmin.register AdminUser do
       if @admin_user.update(admin_user_params)
         redirect_to admin_admin_user_path(@admin_user), notice: 'Admin was successfully updated.'
       else
-        render 'edit'
+        render :edit
       end
     end
 

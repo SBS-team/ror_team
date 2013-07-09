@@ -124,9 +124,9 @@ en:
     index:
       categories: "Categories:"
       tags: "Tags:"
-      comments: "Comments"
+      comment: "comment"
     show:
-      comments: "Comments"
+      comment: "comment"
       post_hasnt_comments: "This post hasn't any comments"
       new_comment: "New Comment"
       write_comment: "Write your comment here"

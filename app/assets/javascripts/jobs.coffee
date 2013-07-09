@@ -23,4 +23,21 @@ root.deleteField = (a) ->
   # Возвращаем false, чтобы не было перехода по сслыке
   false
 maxFieldLimit = 0
-div = undefined
+
+$(document).ready ->
+  $("#new_resume").validate
+    rules:
+      "resume[email]":
+        required: true,
+        email_tip: true,
+        email: true
+      "resume[name]":
+        required: true,
+        maxlength: 40,
+        minlength: 2
+      "resume[description]":
+        required:
+          depends: ->
+            $.isEmptyObject $("[name='resume[upload_files_attributes][filename]']").val()
+        maxlength: 40
+        minlength: 2

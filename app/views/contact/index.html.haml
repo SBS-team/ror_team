@@ -3,7 +3,7 @@
     %h1
       = t '.contact_us'
     .web-form
-      = form_for @message, :url => contact_index_path do |form|
+      = form_for @message, :url => contact_index_path, :html => {:class => 'web-form', :multipart => true} do |form|
         - if @message.errors.any?
           #error_explanation
             %h5
@@ -16,7 +16,7 @@
           = form.text_field(:name, 'placeholder' => 'Your name*', 'class' => 'span4')
         .email-phone
           = form.email_field(:email, 'placeholder' => 'Your email*', 'class' => 'span2')
-          = form.text_field(:phone, 'placeholder' => 'Your phone', 'class' => 'span2')
+          = form.telephone_field(:phone, 'placeholder' => 'Your phone', 'class' => 'span2')
         .text
           = form.text_area(:text, 'placeholder' => 'Your message', 'class' => 'span4' , 'rows' => '5')
         .options

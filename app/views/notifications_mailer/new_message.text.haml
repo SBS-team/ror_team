@@ -11,7 +11,7 @@
   = t '.phone'
   = @message.phone
 
-- if @message.service_type1.to_i == 1 || @message.service_type2.to_i == 1 || @message.service_type3.to_i == 1
+-# if @message.service_type1.to_i == 1 || @message.service_type2.to_i == 1 || @message.service_type3.to_i == 1
   = t '.service_type'
   - if @message.service_type1.to_i == 1
     = t '.web'
@@ -20,9 +20,16 @@
   - if @message.service_type3.to_i == 1
     = t '.web_mobile'
 
+- unless @message.service_type.nil?
+  = "Service:"
+  = @message.service_type
+
 - unless @message.work_type.nil?
   = t '.im_interested'
-  - case @message.work_type.to_i
+  -###
+  = @message.work_type
+  -###
+  -# case @message.work_type.to_i
     - when 1
       = t '.minimum_work'
     - when 2

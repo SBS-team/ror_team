@@ -52,7 +52,7 @@
             %h4
               = t '.tech_info'
             %dl.dl-horizontal
-              - grouped_categories = project.technologies.inject({}) { |res, elem| res[elem.technology_category.name] ||= []; res[elem.technology_category.name].push(elem.name); res  }
+              - grouped_categories = technologies_inject(project)
               - grouped_categories.each do |category, technologies|
                 %dt
                   = category

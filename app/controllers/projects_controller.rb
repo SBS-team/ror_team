@@ -1,4 +1,4 @@
-class WorkController < ApplicationController
+class ProjectsController < ApplicationController
 
   before_filter :last_posts_and_jobs , :only => [:index, :show]
 

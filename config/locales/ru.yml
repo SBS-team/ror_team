@@ -148,7 +148,7 @@ ru:
       our_command: "О нас и нашей компании!"
       team_photo: "Фото команды"
 
-  work:
+  projects:
     index:
       link_project: "Ссылка на проэкт"
       since: "Начало:"

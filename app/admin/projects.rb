@@ -40,7 +40,7 @@ ActiveAdmin.register Project do
     def create
       @project = Project.new(project_params)
        if @project.save
-        redirect_to admin_project_url(@project), notice: 'Project was successfully created.'
+        redirect_to admin_project_url(@project), notice: t('.proj_create')
        else
         render :new
       end
@@ -48,9 +48,9 @@ ActiveAdmin.register Project do
     def update
       @project = Project.find(params[:id])
       if @project.update(project_params)
-        redirect_to admin_project_url(@project), notice: 'Project was successfully updated.'
+        redirect_to admin_project_url(@project), notice: t('.proj_update')
       else
-        render :edit, notice: 'Error has occurred while updating.'
+        render :edit, notice: t('.proj_error')
       end
     end
     private

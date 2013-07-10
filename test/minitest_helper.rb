@@ -20,8 +20,18 @@ class ViewTest < MiniTest::Spec
   end
 
   include Rails.application.routes.url_helpers
-  Capybara.current_driver = Capybara.javascript_driver
 
+  #чтобы после Капибира-тестов чистилась БД
+  before(:all) do
+    DatabaseCleaner.strategy = :truncation
+  end
+  after(:all) do
+    DatabaseCleaner.clean
+    Capybara.reset_sessions!
+    Capybara.use_default_driver
+  end
+
+  Capybara.current_driver = Capybara.javascript_driver
   MiniTest::Spec.register_spec_type /ViewTest/, self
 end
 

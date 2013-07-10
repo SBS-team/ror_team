@@ -19,7 +19,6 @@
 #  about                  :text
 #  first_name             :string(255)
 #  last_name              :string(255)
-#  fio                    :string(255)
 #
 
 class AdminUser < ActiveRecord::Base
@@ -27,9 +26,9 @@ class AdminUser < ActiveRecord::Base
   devise :database_authenticatable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  has_many :comments, :as => :commentable, :dependent => :destroy
   has_many :posts, :dependent => :destroy, :foreign_key => :admin_id
   has_many :upload_files, :as => :fileable
-
 
   accepts_nested_attributes_for :upload_files
 
@@ -37,20 +36,26 @@ class AdminUser < ActiveRecord::Base
             :presence => true,
             inclusion: { in: %w(admin manager team_lead team),
                                 message: "%{value} is not a valid role" }
-  validates :fio,
+  validates :first_name,
+            :presence => true,
+            :length => { :minimum => 3,
+                         :maximum => 45 }
+  validates :last_name,
             :presence => true,
             :length => { :minimum => 3,
                          :maximum => 45 }
   validates :about,
             :presence => true,
-            :length => { :in => 10..500 }
+            :length => { :minimum => 10 }
+
   validates :password,
             :presence => true
+
   validates :password_confirmation,
             :presence => true
+
   validates :email,
             :uniqueness => true,
             :presence => true
 
 end
-

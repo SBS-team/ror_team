@@ -5,7 +5,8 @@ describe AdminUser do
   subject { AdminUser.new }
 
   context 'AdminUser model connection' do
-    it { must have_many(:posts) }
+    it { must have_many(:posts).dependent(:destroy)}
+    it { must have_many(:upload_files)}
   end
 
   context 'AdminUser db column' do
@@ -21,6 +22,10 @@ describe AdminUser do
     it { must have_db_column(:last_sign_in_ip).of_type(:string) }
     it { must have_db_column(:created_at).of_type(:datetime) }
     it { must have_db_column(:updated_at).of_type(:datetime) }
+    it { must have_db_column(:role).of_type(:string) }
+    it { must have_db_column(:about).of_type(:text) }
+    it { must have_db_column(:first_name).of_type(:string) }
+    it { must have_db_column(:last_name).of_type(:string) }
   end
 
 end

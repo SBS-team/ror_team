@@ -11,7 +11,7 @@
 class Service < ActiveRecord::Base
   has_many :project_services, dependent: :destroy
   has_many :projects, through: :project_services
-  has_many :upload_files, :as => :fileable
+  has_many :upload_files, :as => :fileable, dependent: :destroy
   accepts_nested_attributes_for :upload_files
   validates :name,
             :presence => true,

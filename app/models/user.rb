@@ -32,24 +32,9 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :authentications  ,:dependent => :destroy
   has_many :comments, :as => :commentable, :dependent => :destroy
 
   has_many :upload_files, :as => :fileable
-  accepts_nested_attributes_for :upload_files
-
-  def self.from_omniauth(auth)
-    where(auth.slice('provider', 'uid')).first || create_from_omniauth(auth)
-  end
-
-  def self.create_from_omniauth(auth)
-    create! do |user|
-      user.email = "#{auth['provider']}@#{auth['info']['nickname']}.ru"
-      user.provider = auth['provider']
-      user.uid = auth['uid']
-      user.nickname = auth['info']['nickname']
-      user.image = auth['info']['image']
-    end
-  end
+  accepts_nested_attributes_for :upload_files, :comments
 
 end

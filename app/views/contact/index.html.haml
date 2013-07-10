@@ -35,25 +35,25 @@
             Im interested in?
           .choose
             = form.label :work_type_1 do
-              = form.radio_button :work_type, '1'
+              = form.radio_button :work_type, 'Minimum work project'
               = 'Minimum work project'
             = form.label :work_type_2 do
-              = form.radio_button :work_type, '2'
+              = form.radio_button :work_type, 'Work project from the beginning'
               = 'Work project from the beginning'
             = form.label :work_type_3 do
-              = form.radio_button :work_type, '3'
+              = form.radio_button :work_type, 'Help with existing project'
               = 'Help with existing project'
             = form.label :work_type_4 do
-              = form.radio_button :work_type, '4'
+              = form.radio_button :work_type, 'Technical audit'
               = 'Technical audit'
             = form.label :work_type_5 do
-              = form.radio_button :work_type, '5'
+              = form.radio_button :work_type, 'Increase in productivity'
               = 'Increase in productivity'
             = form.label :work_type_6 do
-              = form.radio_button :work_type, '6'
+              = form.radio_button :work_type, 'Update to new Rails'
               = 'Update to new Rails'
             = form.label :work_type_7 do
-              = form.radio_button :work_type, '7'
+              = form.radio_button :work_type, 'Service'
               = 'Service'
         .submit-form.text-right
           = submit_tag 'Send Message', :class => 'btn', data: { disable_with: 'Please wait...' }

@@ -1,6 +1,6 @@
 require 'minitest_helper'
 
-describe WorkController do
+describe ProjectsController do
   ApplicationController.skip_before_filter :assign_gon_properties
   include CarrierWave::Test::Matchers
   before do
@@ -15,7 +15,6 @@ describe WorkController do
       assert_template layout: "layouts/application"
       assert_template partial: "shared/_post_jobs"
       assert_response :success
-
       refute_nil assigns(:projects)
       assert_includes(assigns(:projects), @project)
     end

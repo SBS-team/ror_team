@@ -23,4 +23,24 @@ root.deleteField = (a) ->
   # Возвращаем false, чтобы не было перехода по сслыке
   false
 maxFieldLimit = 0
-div = undefined
+
+$(document).ready ->
+  $("#new_resume").validate
+    rules:
+      "resume[email]":
+        required: true,
+        email_tip: true,
+        email: true
+      "resume[name]":
+        required: true,
+        maxlength: 40,
+        minlength: 2
+      "resume[description]":
+        required:
+          depends: ->
+            $.isEmptyObject $("[name='resume[upload_files_attributes][filename]']").val()
+        maxlength: 40
+        minlength: 2
+      "resume[phone]":
+        maxlength: 31                   #http://ru.wikipedia.org/wiki/E.164  ::  15 digits, 1 plus, and <= 15 delimiters "()-"
+        phone_validation_allow_empty_number: true

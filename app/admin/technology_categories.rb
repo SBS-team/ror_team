@@ -1,4 +1,8 @@
 ActiveAdmin.register TechnologyCategory do
+
+  filter :name
+  filter :technologies
+
   index do
     column :id
     column :name

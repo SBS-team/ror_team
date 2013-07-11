@@ -1,4 +1,8 @@
 ActiveAdmin.register Service do
+
+  filter :projects
+  filter :name
+
   index do
     column :name
   end

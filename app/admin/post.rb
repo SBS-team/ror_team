@@ -1,5 +1,7 @@
 ActiveAdmin.register Post do
 
+  filter :categories
+
   # Customize columns displayed on the new screen in the table
   index do
 

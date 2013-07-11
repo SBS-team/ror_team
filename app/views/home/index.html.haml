@@ -31,9 +31,9 @@
             - else
               = image_tag('missing.png')
           .portf_title
-            = link_to project.name, work_path(project)
+            = link_to project.name, project_path(project)
     .row.text-right
-      = link_to(t('.read_about_projects'), work_index_path)
+      = link_to(t('.read_about_projects'), projects_path)
 .odd
   .row
     = render :partial => 'shared/post_jobs'

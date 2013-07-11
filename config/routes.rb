@@ -12,7 +12,7 @@ RorTeam::Application.routes.draw do
   resources :home, only: [:index]
   resources :team, only: [:index, :show]
   resources :company, only: [:index]
-  resources :work, only: [:index, :show]
+  resources :projects, only: [:index, :show]
   resources :jobs, only: [:index, :show, :create]
   resources :contact, only: [:index, :create]
 

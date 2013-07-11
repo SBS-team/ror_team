@@ -1,5 +1,9 @@
 ActiveAdmin.register Technology do
 
+  filter :name
+  filter :technology_category, :as => :check_boxes
+  filter :projects
+
   index do
     column :id
     column :name

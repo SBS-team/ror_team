@@ -1,5 +1,9 @@
 ActiveAdmin.register Project do
 
+  filter :name
+  filter :services
+  filter :technologies
+
   index do
     column :id
     column :name

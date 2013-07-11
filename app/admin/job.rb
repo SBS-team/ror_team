@@ -1,5 +1,7 @@
 ActiveAdmin.register Job do
 
+  filter :title
+
   index do
     column :id
     column :title

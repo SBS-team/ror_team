@@ -41,3 +41,6 @@ $(document).ready ->
             $.isEmptyObject $("[name='resume[upload_files_attributes][filename]']").val()
         maxlength: 40
         minlength: 2
+      "resume[phone]":
+        maxlength: 31                   #http://ru.wikipedia.org/wiki/E.164  ::  15 digits, 1 plus, and <= 15 delimiters "()-"
+        phone_validation_allow_empty_number: true

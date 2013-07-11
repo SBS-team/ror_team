@@ -11,23 +11,10 @@
   = t '.phone'
   = @message.phone
 
-- if @message.service_type1.to_i == 1 || @message.service_type2.to_i == 1 || @message.service_type3.to_i == 1
+- unless @message.service_type.nil?
   = t '.service_type'
-  - if @message.service_type1.to_i == 1
-    = t '.web'
-  - if @message.service_type2.to_i == 1
-    = t '.mobile'
-  - if @message.service_type3.to_i == 1
-    = t '.web_mobile'
+  = @message.service_type
 
 - unless @message.work_type.nil?
   = t '.im_interested'
-  - case @message.work_type.to_i
-    - when 1
-      = t '.minimum_work'
-    - when 2
-      = t '.work_project_from'
-    - when 3
-      = t '.help_existing_project'
-    -else
-      = t '.nothing_checked'
+  = @message.work_type

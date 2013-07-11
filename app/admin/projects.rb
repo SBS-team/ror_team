@@ -46,7 +46,7 @@ ActiveAdmin.register Project do
         technologies.each { |i| i.projects << @project }
         services = Service.find(params[:project][:service_ids].reject { |i| i.to_i <= 0 })
         services.each { |i| i.projects << @project }
-        redirect_to admin_project_url(@project), notice: 'Project was successfully created.'
+        redirect_to admin_project_url(@project), notice: t('.proj_create')
       rescue Exception => e
         logger.error(e.message)
         render 'new'

@@ -7,10 +7,16 @@ ActiveAdmin.register Project do
     column :till
     column :team_size
     column :url
+    column :technologies do |technology|
+      technology.technologies.collect(&:name).join(', ')
+    end
+    column :services do |service|
+      service.services.collect(&:name).join(', ')
+    end
     default_actions
   end
 
-  form do |f|
+  form :html => {:enctype => "multipart/form-data" } do |f|
     f.semantic_errors :base
     f.inputs "Project Details" do
       f.input :name
@@ -34,7 +40,7 @@ ActiveAdmin.register Project do
     def create
       @project = Project.new(project_params)
        if @project.save
-        redirect_to admin_project_url(@project), notice: 'Project was successfully created.'
+        redirect_to admin_project_url(@project), notice: t('.proj_create')
        else
         render :new
       end
@@ -42,14 +48,14 @@ ActiveAdmin.register Project do
     def update
       @project = Project.find(params[:id])
       if @project.update(project_params)
-        redirect_to edit_admin_project_url(@project), notice: 'Project was successfully updated.'
+        redirect_to admin_project_url(@project), notice: t('.proj_update')
       else
-        render :edit
+        render :edit, notice: t('.proj_error')
       end
     end
     private
     def project_params
-      params.require(:project).permit(:name, :description, :since, :till, :team_size, :url, upload_files_attributes: [:filename, :id])
+      params.require(:project).permit(:name, :description, :since, :till, :team_size, :url, upload_files_attributes: [:filename, :id], :service_ids => [], :technology_ids => [])
     end
   end
 end

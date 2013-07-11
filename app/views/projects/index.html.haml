@@ -4,21 +4,22 @@
       %h2
         = project.name
     .span6
-      .carousel.slide{:id => "myCarousel#{project.id}"}
-        %ol.carousel-indicators
-          %li.active{'data-slide-to' => '0', 'data-target' => "#myCarousel#{project.id}"}
-          %li{'data-slide-to' => '1', 'data-target' => "#myCarousel#{project.id}"}
-          %li{'data-slide-to' => '2', 'data-target' => "#myCarousel#{project.id}"}
-        .carousel-inner
-          .item.active
-            = image_tag project.upload_files.first.filename.to_s
-          .item
-            = image_tag project.upload_files.first.filename.to_s
-          - project.upload_files.each do |img|
+      - unless project.upload_files.blank?
+        .carousel.slide{:id => "myCarousel#{project.id}"}
+          %ol.carousel-indicators
+            %li.active{'data-slide-to' => '0', 'data-target' => "#myCarousel#{project.id}"}
+            %li{'data-slide-to' => '1', 'data-target' => "#myCarousel#{project.id}"}
+            %li{'data-slide-to' => '2', 'data-target' => "#myCarousel#{project.id}"}
+          .carousel-inner
+            .item.active
+              = image_tag project.upload_files.first.filename.url
             .item
-              = image_tag img.filename.to_s
-        = link_to '‹', "#myCarousel#{project.id}", 'data-slide' => 'prev', :class => 'carousel-control left'
-        = link_to '›', "#myCarousel#{project.id}", 'data-slide' => 'next', :class => 'carousel-control right'
+              = image_tag project.upload_files.first.filename.url
+            - project.upload_files.each do |img|
+              .item
+                = image_tag img.filename.url
+          = link_to '‹', "#myCarousel#{project.id}", 'data-slide' => 'prev', :class => 'carousel-control left'
+          = link_to '›', "#myCarousel#{project.id}", 'data-slide' => 'next', :class => 'carousel-control right'
       .text.project-descr
         = project.description
     .span6

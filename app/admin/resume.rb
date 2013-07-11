@@ -1,5 +1,9 @@
 ActiveAdmin.register Resume do
 
+  filter :name
+  filter :job, :as => :check_boxes
+  filter :created_at
+
   index do
     column :name
     column :email

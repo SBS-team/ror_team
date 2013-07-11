@@ -23,43 +23,47 @@
       .text.project-descr
         = project.description
     .span6
-      .project-name
-        = link_to project.name, project_path(project), :class => 'btn'
-        .project-terms.row
-          .span3
-            %p
-              %b
-                = t '.since'
-              = project.since
-          .span3
-            %p
-              %b
-                = t '.team_size'
-              = pluralize(project.team_size.to_i, t('.people'))
-          .span3
-            %p
-              %b
-                = t '.till'
-              = project.till ? project.till.strftime("%d %B %Y") : t('.in_work')
-        .team-info.row
-          - project.services.each do |service|
-            .developer-info.text-center.span2
-              .photo
-                = link_to(company_index_path) do
-                  = image_tag(service.upload_files.first.filename.to_s, :class => "img-polaroid")
-              = link_to "#{service.name}", company_index_path
-        - unless project.technologies.blank?
-          .tech-info
-            %h4
-              = t '.tech_info'
-            %dl.dl-horizontal
-              - grouped_categories = technologies_inject(project)
-              - grouped_categories.each do |category, technologies|
-                %dt
-                  = category
-                - technologies.each do |technology|
-                  %dd
-                    = technology
-  = paginate @projects
+      .project-name-url.row
+        .project-name.span3
+          = link_to project.name, project_path(project), :class => 'btn'
+        - unless project.url.blank?
+          .project-url.span3
+            = link_to project.url, "#{project.url}", :class => 'btn', :target => '_blank'
+      .project-terms.row
+        .span3
+          %p
+            %b
+              = t '.since'
+            = project.since
+        .span3
+          %p
+            %b
+              = t '.team_size'
+            = pluralize(project.team_size.to_i, t('.people'))
+        .span3
+          %p
+            %b
+              = t '.till'
+            = project.till ? project.till.strftime("%d %B %Y") : t('.in_work')
+      .team-info.row
+        - project.services.each do |service|
+          .developer-info.text-center.span2
+            .photo
+              = link_to(company_index_path) do
+                = image_tag(service.upload_files.first.filename.to_s, :class => "img-polaroid")
+            = link_to "#{service.name}", company_index_path
+      - unless project.technologies.blank?
+        .tech-info
+          %h4
+            = t '.tech_info'
+          %dl.dl-horizontal
+            - grouped_categories = technologies_inject(project)
+            - grouped_categories.each do |category, technologies|
+              %dt
+                = category
+              - technologies.each do |technology|
+                %dd
+                  = technology
+= paginate @projects
 .row
   = render :partial => 'shared/post_jobs'

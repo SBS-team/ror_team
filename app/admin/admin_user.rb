@@ -19,7 +19,7 @@ ActiveAdmin.register AdminUser do
       f.input :role ,:as => :select, :collection =>{'Admin'=>:admin,'Manager'=>:manager,'Team lead'=>:team_lead,'Team'=>:team } ,:selected=>f.object.role,:include_blank=>false
       f.input :about ,:as => :text
       f.has_many :upload_files do |file|
-        file.input :filename, :class=> 'test', :as => :file, :label => 'Image', :hint => file.template.image_tag(file.object.filename.url, :width => 200, :height => 200)
+        file.input :img_name, :class=> 'test', :as => :file, :label => 'Image', :hint => file.template.image_tag(file.object.filename.url, :width => 200, :height => 200)
         file.input :id, :as => :hidden
       end
     end
@@ -50,7 +50,7 @@ ActiveAdmin.register AdminUser do
 
     private
     def admin_user_params
-      params.require(:admin_user).permit(:first_name, :last_name, :email,:role,:about,:password, :password_confirmation,:last_sign_in_at, upload_files_attributes: [:filename, :id])
+      params.require(:admin_user).permit(:first_name, :last_name, :email,:role,:about,:password, :password_confirmation,:last_sign_in_at, upload_files_attributes: [:img_name, :id])
     end
   end
   end

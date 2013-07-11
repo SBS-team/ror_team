@@ -1,5 +1,5 @@
 .team-member
-  = image_tag(@team.upload_files.first.filename, :class => 'img-polaroid')
+  = image_tag(@team.upload_files.first.img_name, :class => 'img-polaroid')
   .member-name
     %span
     %p.lead
@@ -12,7 +12,7 @@
 .fullteam
   - @fullteam.each do |team_member|
     = link_to team_path(team_member), :id => "pic#{team_member.id}" do
-      = image_tag(team_member.upload_files.first.filename, :class => 'img-rounded', :height => 75, :width => 75)
+      = image_tag(team_member.upload_files.first.img_name, :class => 'img-rounded', :height => 75, :width => 75)
 
 .span6
   = link_to 'Back', team_index_path

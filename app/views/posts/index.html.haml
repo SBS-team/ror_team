@@ -8,7 +8,7 @@
               = image_tag post.upload_files.first.filename.url
             - else
               = image_tag 'missing.png'
-          = link_to "#{pluralize(post.comments_count, t('.comment'))}", post_path(post)
+          = link_to "#{pluralize(post.comments_count, t('.comment'))}", "#{post_path(post)}#comments"
         .post_right
           .post-title
             = link_to post.title, post_path(post)

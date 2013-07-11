@@ -2,7 +2,7 @@
 
   %h2
     = t '.send_resume'
-  = form_for @resume, :url => jobs_path, :html => {:class => 'web-form', :multipart => true} do |f|  #FIXME
+  = form_for @resume, :url => jobs_path, :html => {:class => 'web-form', :multipart => true} do |f|
     - if @resume.errors.any?
       .error
         = pluralize(@resume.errors.count, "error")
@@ -16,8 +16,8 @@
     - else
       = f.select(:job_id, options_for_select(@job.title => @job.id))
     = f.text_field :name, :id => 'name', :class => 'span6', :placeholder => t('.your_name'), :type => 'text', :minlength => '2'
-    = f.text_field :email, :id => 'email', :class => 'span6', :placeholder => t('.your_email'), :type => 'email'
-    = f.text_field :phone, :id => 'input-phone', :class => 'span6', :placeholder => t('.your_phone'), :type => 'text'
+    = f.email_field :email, :id => 'email', :class => 'span6', :placeholder => t('.your_email'), :type => 'email'
+    = f.telephone_field :phone, :id => 'input-phone', :class => 'span6', :placeholder => t('.your_phone'), :type => 'text'
     = f.text_area :description, :class => 'span6', :placeholder =>  t('.your_message'), :rows => '5'
     #file
       %a{:onclick=>'addField()', :id => 'linkfile', :class => 'btn btn-success'} Add file

@@ -73,7 +73,7 @@ en:
               That said, in some situations it may be desirable to turn this functionality off. Therefore, we also provide the ability to disable the data attribute API by unbinding all events on the body namespaced with `'data-api'`. This looks like this:"
 
 
-  work:
+  projects:
     index:
       link_project: "Link to  project"
       since: "Since:"
@@ -144,3 +144,11 @@ en:
     create:
       contact_sent_msg: "Message was successfully sent."
       contact_error_msg: "Form invalid. Please check errors bellow"
+
+  admin:
+    projects:
+      create:
+        proj_create: "Project was successfully created."
+      update:
+        proj_update: "Project was successfully updated."
+        proj_error: "Error has occurred while updating."

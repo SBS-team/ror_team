@@ -148,7 +148,7 @@ ru:
       our_command: "О нас и нашей компании!"
       team_photo: "Фото команды"
 
-  work:
+  projects:
     index:
       link_project: "Ссылка на проэкт"
       since: "Начало:"
@@ -218,3 +218,11 @@ ru:
     create:
       contact_sent_msg: "Ваше сообщение отправлено."
       contact_error_msg: "Ошибка. Заполните необходимые поля"
+
+  admin:
+    projects:
+      create:
+        proj_create: "Проэкт успешно создан."
+      update:
+        proj_update: "Проэкт успешно изменен."
+        proj_error: "Невозможно обновить проэкт."

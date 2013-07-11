@@ -95,13 +95,6 @@ en:
       phone: "Phone:"
       service_type: "Service type:"
       web: "Web"
-      mobile: "Mobile"
-      web_mobile: "Web + Mobile"
-      im_interested: "Im interested in:"
-      minimum_work: "Minimum work project"
-      work_project_from: "Work project from the beginning"
-      help_existing_project: "Help with existing project <br/>Tech. audit <br/> Increase in productivity <br/> Update to new Rails <br/> Service"
-      nothing_checked: "nothing was checked"
 
   jobs:
     open_vacancies: "Open vacancies:"

@@ -1,6 +1,7 @@
 # encoding: utf-8
 
 class ImageUploader < CarrierWave::Uploader::Base
+  include CarrierWave::RMagick
 
   # Include RMagick or MiniMagick support:
   # include CarrierWave::RMagick
@@ -36,9 +37,17 @@ class ImageUploader < CarrierWave::Uploader::Base
   # end
 
   # Create different versions of your uploaded files:
-  # version :thumb do
-  #   process :scale => [50, 50]
-  # end
+
+  # For AdminUsers.
+  process :resize_to_fit => [800, 800]          #image will upload not bigger than 800x800
+
+  version :thumb_sm  do
+    process :resize_to_fit => [100, 100]
+  end
+
+  # Here will be all
+  # standarts for
+  # other models
 
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:

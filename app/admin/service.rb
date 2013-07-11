@@ -8,7 +8,7 @@ ActiveAdmin.register Service do
     f.inputs "Service Details", :multipart => true do
       f.input :name
       f.has_many :upload_files do |file|
-        file.input :filename, :as => :file, :label => 'Image'
+        file.input :img_name, :as => :file, :label => 'Image'
         file.input :id, :as => :hidden
       end
     end
@@ -35,7 +35,7 @@ ActiveAdmin.register Service do
 
     private
     def service_params
-      params.require(:service).permit(:name, upload_files_attributes: [:filename, :id])
+      params.require(:service).permit(:name, upload_files_attributes: [:img_name, :id])
     end
   end
 end

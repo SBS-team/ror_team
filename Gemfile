@@ -13,7 +13,7 @@ gem 'kaminari'
 
 # Use for upload files
 gem 'carrierwave'
-#gem 'rmagick', '~> 2.13.2' ################## что за закоментированный гем?
+gem 'rmagick', '~>2.13.2', :require => 'RMagick'
 
 # Use SCSS for stylesheets
 gem 'sass-rails', github: 'rails/sass-rails'

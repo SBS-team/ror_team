@@ -11,10 +11,10 @@
           %li{'data-slide-to' => '2', 'data-target' => '#myCarousel'}
         .carousel-inner
           .active.item
-            = image_tag project.upload_files.first.filename.to_s
+            = image_tag project.upload_files.first.img_name.to_s
           - project.upload_files.each do |img|
             .item
-              = image_tag img.filename.to_s
+              = image_tag img.img_name.to_s
         = link_to '‹', '#myCarouse2', 'data-slide' => 'prev', :class => 'carousel-control left'
         = link_to '›', '#myCarouse2', 'data-slide' => 'next', :class => 'carousel-control right'
       .text.project-descr
@@ -43,7 +43,7 @@
             .developer-info.text-center.span2
               .photo
                 = link_to('#') do
-                  = image_tag(serv.upload_files.first.filename.to_s, :class => "img-polaroid")
+                  = image_tag(serv.upload_files.first.img_name.to_s, :class => "img-polaroid")
               = link_to "#{serv.name}", '#'
         .tech-info
           %h4

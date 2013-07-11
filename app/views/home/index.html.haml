@@ -12,7 +12,7 @@
         - @technologies.each do |technology|
           .skill
             - unless technology.upload_files.blank?
-              = image_tag technology.upload_files.sample.filename.url, title: technology.name, alt: technology.name, width: 50, height: 50
+              = image_tag technology.upload_files.sample.img_name.url, title: technology.name, alt: technology.name, width: 50, height: 50
             - else
               = image_tag 'missing.png', width: 50, height: 50, alt: technology.name, title: technology.name
       .more.text-right
@@ -27,7 +27,7 @@
         .portfolio_item.span3.text-center
           .pic
             - unless project.upload_files.blank?
-              = image_tag(project.upload_files.sample.filename.url)
+              = image_tag(project.upload_files.sample.img_name.url(:thumb_sm))
             - else
               = image_tag('missing.png')
           .portf_title

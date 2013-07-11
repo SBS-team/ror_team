@@ -1,5 +1,7 @@
 ActiveAdmin.register Comment do
 
+  filter :post
+
   index do
     column :id
     column :description

@@ -38,16 +38,23 @@ ActiveAdmin.register Project do
 
   controller do
     def create
-      @project = Project.new(project_params)
-       if @project.save
-        redirect_to admin_project_url(@project), notice: t('.proj_create')
-       else
-        render :new
+      begin
+        @project = Project.new(project_params)
+        @project.save!
+        # TODO make this with nested attributes
+        technologies = Technology.find(params[:project][:technology_ids].reject { |i| i.to_i <= 0 })
+        technologies.each { |i| i.projects << @project }
+        services = Service.find(params[:project][:service_ids].reject { |i| i.to_i <= 0 })
+        services.each { |i| i.projects << @project }
+        redirect_to admin_project_url(@project), notice: 'Project was successfully created.'
+      rescue Exception => e
+        logger.error(e.message)
+        render 'new'
       end
     end
     def update
       @project = Project.find(params[:id])
-      if @project.update(project_params)
+      if @project.update(project_update_params)
         redirect_to admin_project_url(@project), notice: t('.proj_update')
       else
         render :edit, notice: t('.proj_error')
@@ -55,6 +62,9 @@ ActiveAdmin.register Project do
     end
     private
     def project_params
+      params.require(:project).permit(:name, :description, :since, :till, :team_size, :url, upload_files_attributes: [:filename, :id])
+    end
+    def project_update_params
       params.require(:project).permit(:name, :description, :since, :till, :team_size, :url, upload_files_attributes: [:filename, :id], :service_ids => [], :technology_ids => [])
     end
   end

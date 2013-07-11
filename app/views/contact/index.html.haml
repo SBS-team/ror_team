@@ -3,7 +3,7 @@
     %h1
       = t '.contact_us'
     .web-form
-      = form_for @message, :url => contact_index_path do |form|
+      = form_for @message, :url => contact_index_path, :html => {:class => 'web-form', :multipart => true} do |form|
         - if @message.errors.any?
           #error_explanation
             %h5
@@ -16,40 +16,44 @@
           = form.text_field(:name, 'placeholder' => 'Your name*', 'class' => 'span4')
         .email-phone
           = form.email_field(:email, 'placeholder' => 'Your email*', 'class' => 'span2')
-          = form.text_field(:phone, 'placeholder' => 'Your phone', 'class' => 'span2')
+          = form.telephone_field(:phone, 'placeholder' => 'Your phone', 'class' => 'span2')
         .text
           = form.text_area(:text, 'placeholder' => 'Your message', 'class' => 'span4' , 'rows' => '5')
         .options
           %h3
             What kind of services do you need?
           .icons
-            .span2
-              = form.check_box :service_type1
-              = form.label :service_type1, 'Web'
-            .span2
-              = form.check_box :service_type2
-              = form.label :service_type2, 'Mobile'
-            .span2
-              = form.check_box :service_type3
-              = form.label :service_type3, 'Web+Mobile'
+            - @services.each do |service|
+              .span2.text-center
+                = image_tag service.upload_files.sample.filename.url, title: service.name, alt: service.name, width: 100, height: 100
+                %h4
+                  = form.label :service_type do
+                    = form.radio_button :service_type, service.name
+                    = service.name
         .radios
           %h4
             Im interested in?
           .choose
-            = form.radio_button :work_type, '1'
-            = form.label :work_type_1, 'Minimum work project'
-            = form.radio_button :work_type, '2'
-            = form.label :work_type_2, 'Work project from the beginning'
-            = form.radio_button :work_type, '3'
+            = form.label :work_type_1 do
+              = form.radio_button :work_type, 'Minimum work project'
+              = 'Minimum work project'
+            = form.label :work_type_2 do
+              = form.radio_button :work_type, 'Work project from the beginning'
+              = 'Work project from the beginning'
             = form.label :work_type_3 do
-              Help with existing project
-              %br
-              Tech. audit
-              %br
-              Increase in productivity
-              %br
-              Update to new Rails
-              %br
-              Service
+              = form.radio_button :work_type, 'Help with existing project'
+              = 'Help with existing project'
+            = form.label :work_type_4 do
+              = form.radio_button :work_type, 'Technical audit'
+              = 'Technical audit'
+            = form.label :work_type_5 do
+              = form.radio_button :work_type, 'Increase in productivity'
+              = 'Increase in productivity'
+            = form.label :work_type_6 do
+              = form.radio_button :work_type, 'Update to new Rails'
+              = 'Update to new Rails'
+            = form.label :work_type_7 do
+              = form.radio_button :work_type, 'Service'
+              = 'Service'
         .submit-form.text-right
           = submit_tag 'Send Message', :class => 'btn', data: { disable_with: 'Please wait...' }

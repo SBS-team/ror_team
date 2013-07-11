@@ -3,7 +3,6 @@
     .post
       .post_top
         .post_img
-          -#%img{:src => '/icon-info.png'}
           .img
             - if !@post.upload_files.blank?
               = image_tag @post.upload_files.first.filename.url
@@ -29,7 +28,8 @@
           = t '.tags'
           - @post.tag_counts_on(:tags).each do |tag|
             = link_to tag.name, posts_path(:tag_name => tag.name), :class => 'btn'
-    %comments
+    .comments
+      %a{name: 'comments'}
       - @comments.each do |comment|
         %b
           - if comment.commentable.respond_to? :image

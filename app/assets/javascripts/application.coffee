@@ -9,5 +9,6 @@
 #= require jquery.validate
 #= require additional-methods
 #= require extra_validations
+#= require messages
 
 $('.carousel').carousel()

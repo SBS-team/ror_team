@@ -45,6 +45,7 @@ ActiveAdmin.register AdminUser do
     def edit
       @admin_user = AdminUser.find(params[:id])
     end
+
     def update
       @admin_user = AdminUser.find(params[:id])
       if @admin_user.update(admin_user_params)

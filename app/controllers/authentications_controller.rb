@@ -11,7 +11,7 @@ class AuthenticationsController < ApplicationController
       user.image = auth['info']['image']
     end
     sign_in @user
-    redirect_to session[:return_to]
+    redirect_to session[:return_to], :notice => 'Loggined successfully!'
 
   end
 

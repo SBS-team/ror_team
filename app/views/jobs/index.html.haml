@@ -1,4 +1,9 @@
 .row.careers-index
+  -if !notice.blank?
+    .success.message
+      %h3
+        = notice
+
   .span6
     %h2
       = t '.open_vacancies'

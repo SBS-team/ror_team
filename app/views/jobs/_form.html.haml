@@ -1,15 +1,21 @@
 .span6
-
   %h2
     = t '.send_resume'
   = form_for @resume, :url => jobs_path, :html => {:class => 'web-form', :multipart => true} do |f|
     - if @resume.errors.any?
-      .error
-        = pluralize(@resume.errors.count, "error")
-        prohibited this resume from being sending:
-      %ul
-        - @resume.errors.full_messages.each do |msg|
-          %li= msg
+      .error.message
+        %h3 Ой, произошла ошибка!
+        %p
+          = pluralize(@resume.errors.count, "error")
+          prohibited this resume from being sending
+          - @resume.errors.full_messages.each do |msg|
+            %br
+            = msg
+          %br
+          %i
+            -#Можно будет заменить или переработать механизм, допустим там что бы сам закрывался :)
+            Click to close
+
 
     - if @job.nil?
       = f.select(:job_id, options_for_select(@all_jobs_for_select.map { |j| [j.title, j.id] }))
@@ -22,4 +28,4 @@
     #file
       %a{:onclick=>'addField()', :id => 'linkfile', :class => 'btn btn-success'} Add file
     .submit-form
-      = f.submit t('.send_resume'), :class => 'btn pull-right btn-primary'
+      = f.submit t('.send_resume'), :class => 'btn pull-right btn-primary check_errors'

@@ -17,7 +17,7 @@ class JobsController < ApplicationController
     @resume = Resume.new(resume_params)
     @job = Job.find(@resume.job_id)
     if @resume.save
-      redirect_to jobs_path, notice: 'Your resume is successfully sent.'
+      redirect_to jobs_path, :notice => 'Your resume is successfully sent.'
     else
       render 'show'
     end

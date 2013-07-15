@@ -11,7 +11,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130710155259) do
+
+ActiveRecord::Schema.define(version: 20130715121713) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "resource_id",   null: false
@@ -65,6 +66,19 @@ ActiveRecord::Schema.define(version: 20130710155259) do
     t.datetime "updated_at"
   end
 
+  create_table "friendly_id_slugs", force: true do |t|
+    t.string   "slug",                      null: false
+    t.integer  "sluggable_id",              null: false
+    t.string   "sluggable_type", limit: 40
+    t.string   "scope"
+    t.datetime "created_at"
+  end
+
+  add_index "friendly_id_slugs", ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true, using: :btree
+  add_index "friendly_id_slugs", ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type", using: :btree
+  add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
+  add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
+
   create_table "jobs", force: true do |t|
     t.string   "title"
     t.text     "description"
@@ -86,7 +100,11 @@ ActiveRecord::Schema.define(version: 20130710155259) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "comments_count", default: 0
+    t.string   "url"
+    t.string   "slug"
   end
+
+  add_index "posts", ["slug"], name: "index_posts_on_slug", using: :btree
 
   create_table "project_services", force: true do |t|
     t.integer  "project_id"

@@ -34,15 +34,16 @@ $(document).ready(function () {
         showMessage(myMessages[i]);
     }
 
-    // Когда пользователь нажимает на сообщение, скрываем его
-    $('.message').click(function(){
+   // Когда пользователь нажимает на сообщение, скрываем его
+    $('.message').click(function(event){
+
         $(this).animate({top: -$(this).outerHeight()}, 500);
     });
 
-    // Скрываем сообщение SUCCESS после 5 секунд
-    if ( $('.success.message h3').text() !==''){
-        setTimeout('$(".success.message").animate({top: -$(this).outerHeight()}, 500)', 5000)
-
+    // Скрываем сообщение SUCCESS после 3.5 секунд
+    if ( $('.message h3').text() !==''){
+        setTimeout('$(".success.message").animate({top: -$(this).outerHeight()}, 500)', 3500)
+        setTimeout('$(".info.message").animate({top: -$(this).outerHeight()}, 500)', 3500)
     }
 
 });

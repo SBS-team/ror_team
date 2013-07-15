@@ -44,10 +44,11 @@
   border-color: #55a12c;
 }
 
-.error, .success {
+.error, .success, .info {
   position: absolute;
   width: 100%;
   left: 0;
+  top: 0;
 }
 
 .message h3 {

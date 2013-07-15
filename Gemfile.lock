@@ -349,6 +349,7 @@ GEM
     rdoc (3.12.2)
       json (~> 1.4)
     ref (1.0.5)
+    rmagick (2.13.2)
     rspec (2.13.0)
       rspec-core (~> 2.13.0)
       rspec-expectations (~> 2.13.0)
@@ -449,6 +450,7 @@ DEPENDENCIES
   rails_config
   ransack!
   responders!
+  rmagick (~> 2.13.2)
   sass-rails!
   sdoc
   selenium-webdriver (~> 2.33.0)

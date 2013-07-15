@@ -11,6 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 20130715121713) do
 
   create_table "active_admin_comments", force: true do |t|
@@ -182,6 +183,7 @@ ActiveRecord::Schema.define(version: 20130715121713) do
     t.string   "fileable_type"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "img_name"
   end
 
   create_table "users", force: true do |t|

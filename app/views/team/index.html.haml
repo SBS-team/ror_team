@@ -2,7 +2,7 @@
   .span6.team-members
     - @team.each do |member|
       .team-member
-        = image_tag(member.upload_files.first.filename, :class => 'img-circle', :height => 150, :width => 150)
+        = image_tag(member.upload_files.first.img_name, :class => 'img-circle', :height => 150, :width => 150)
         .member-name
           %span
           %p.lead

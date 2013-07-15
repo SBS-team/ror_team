@@ -99,7 +99,6 @@ ActiveRecord::Schema.define(version: 20130715121713) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "comments_count", default: 0
-    t.string   "url"
     t.string   "slug"
   end
 

@@ -1,3 +1,9 @@
+-if user_signed_in? && !alert.blank?
+  .info.message
+    %h3 Вы уже вошли!
+    %p
+      = alert
+
 .row
   .span8.posts.main_cont
     .post

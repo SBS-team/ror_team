@@ -9,11 +9,11 @@ gem 'pg'
 #Use pagination
 gem 'kaminari'
 
-
-
 # Use for upload files
 gem 'carrierwave'
 gem 'rmagick', '~>2.13.2', :require => 'RMagick'
+#sudo apt-get install libmagickwand-dev                                   # Setup this libs
+#sudo apt-get install graphicsmagick-libmagick-dev-compat                 # For install Rmagick
 
 # Use SCSS for stylesheets
 gem 'sass-rails', github: 'rails/sass-rails'
@@ -29,9 +29,6 @@ gem 'therubyracer', platforms: :ruby
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
-
-# Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
-gem 'turbolinks'
 
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
 gem 'jbuilder', '~> 1.0.1'

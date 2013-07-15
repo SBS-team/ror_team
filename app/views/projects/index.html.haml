@@ -12,12 +12,12 @@
             %li{'data-slide-to' => '2', 'data-target' => "#myCarousel#{project.id}"}
           .carousel-inner
             .item.active
-              = image_tag project.upload_files.first.filename.url
+              = image_tag project.upload_files.first.img_name.url
             .item
-              = image_tag project.upload_files.first.filename.url
+              = image_tag project.upload_files.first.img_name.url
             - project.upload_files.each do |img|
               .item
-                = image_tag img.filename.url
+                = image_tag img.img_name.url
           = link_to '‹', "#myCarousel#{project.id}", 'data-slide' => 'prev', :class => 'carousel-control left'
           = link_to '›', "#myCarousel#{project.id}", 'data-slide' => 'next', :class => 'carousel-control right'
       .text.project-descr
@@ -50,7 +50,7 @@
           .developer-info.text-center.span2
             .photo
               = link_to(company_index_path) do
-                = image_tag(service.upload_files.first.filename.to_s, :class => "img-polaroid")
+                = image_tag(service.upload_files.first.img_name.to_s, :class => "img-polaroid")
             = link_to "#{service.name}", company_index_path
       - unless project.technologies.blank?
         .tech-info

@@ -9,11 +9,11 @@ gem 'pg'
 #Use pagination
 gem 'kaminari'
 
-
-
 # Use for upload files
 gem 'carrierwave'
 gem 'rmagick', '~>2.13.2', :require => 'RMagick'
+#sudo apt-get install libmagickwand-dev                                   # Setup this libs
+#sudo apt-get install graphicsmagick-libmagick-dev-compat                 # For install Rmagick
 
 # Use SCSS for stylesheets
 gem 'sass-rails', github: 'rails/sass-rails'

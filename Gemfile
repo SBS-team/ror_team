@@ -68,8 +68,8 @@ group :test do
   gem 'launchy'
 end
 
-
-gem 'devise', '>= 3.0.0.rc'
+gem 'friendly_id', github: 'FriendlyId/friendly_id', branch: 'master'
+gem 'devise', '~> 3.0.0'
 gem 'ransack', github: 'jonatack/ransack', ref: '0703144bb0ce2ea1884ef02b52bc51157152b566'
 gem 'formtastic', github: 'justinfrench/formtastic'
 gem 'polyamorous', github: 'jonatack/polyamorous', ref: '062c78be2edadfe5fbb104fe68d213fcbeae478d'

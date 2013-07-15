@@ -35,6 +35,8 @@ ActiveAdmin.register Post do
   end
 
   controller do
+    defaults :finder => :find_by_slug
+
     def create
       @post = current_admin_user.posts.build(post_params)
       if @post.save
@@ -45,7 +47,7 @@ ActiveAdmin.register Post do
     end
 
     def update
-      @post = Post.find(params[:id])
+      @post = Post.find_by_slug(params[:id])
       if @post.update(post_params)
         redirect_to admin_post_url(@post), notice: 'Post was successfully updated.'
       else

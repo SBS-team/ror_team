@@ -21,7 +21,7 @@ class PostsController < ApplicationController
   # GET /posts/1
   def show
     session[:return_to] = request.fullpath
-    @post = Post.find(params[:id])
+    @post = Post.find_by_url(params[:url])
     @comments = @post.comments.order("id").page(params[:page]).per(5)
   end
 

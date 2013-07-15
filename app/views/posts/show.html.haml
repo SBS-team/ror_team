@@ -64,11 +64,11 @@
         %ul.unstyled
           - @recent_posts.each do |post|
             %li
-              = link_to post.title, post_path(post)
+              =# link_to post.title, post_path(post)
         %h5
           = t ('.get_more')
         .btn.large
-          = link_to t('.rss_feed'), posts_path(:rss)
+          =# link_to t('.rss_feed'), posts_path(:rss)
     .span3
       .popular_posts
         %h3
@@ -76,7 +76,7 @@
         %ul.unstyled
           - @popular_posts.each do |post|
             %li
-              = link_to post.title, post_path(post)
+              =# link_to post.title, post_path(post)
         %h5
           = t '.ready_help'
         .btn.large

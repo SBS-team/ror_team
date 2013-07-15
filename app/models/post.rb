@@ -13,6 +13,8 @@
 
 class Post < ActiveRecord::Base
 
+  before_create :make_url
+  before_update :make_url
   acts_as_taggable
   has_many :post_categories, :dependent => :destroy
   has_many :categories, through: :post_categories
@@ -20,6 +22,7 @@ class Post < ActiveRecord::Base
   belongs_to :admin, :class_name => "AdminUser", :foreign_key => "admin_id"
   has_many :upload_files, :as => :fileable, :dependent => :destroy
   accepts_nested_attributes_for :upload_files
+
   validates :title,
             :presence => true,
             :length => { :minimum => 3, :maximum => 255 }
@@ -32,6 +35,7 @@ class Post < ActiveRecord::Base
   validates :upload_files,
             :presence => true
 
+  protected
   def self.search_posts_based_on_like(search)
     if search
       where('LOWER(title) LIKE LOWER(:word) OR LOWER(description) LIKE LOWER(:word)', :word=>"%#{search}%")
@@ -39,4 +43,14 @@ class Post < ActiveRecord::Base
       all
     end
   end
+
+  def make_url
+    count = Post.select(:id).where(" url LIKE '#{self.title.parameterize}%' ").count
+    if count == 0
+      self.url = "#{self.title.parameterize}"
+    else
+      self.url = "#{self.title.parameterize}_#{count+1}"
+    end
+  end
+
 end

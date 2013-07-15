@@ -55,6 +55,10 @@ class ImageUploader < CarrierWave::Uploader::Base
      %w(jpg jpeg gif png)
   end
 
+  # the method called at the start
+  # it checks for <model>::IMAGE_SIZES hash and define a custom method "has_VERSION_size?"
+  # (more on this later in the article)
+
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
   # def filename

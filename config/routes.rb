@@ -6,7 +6,7 @@ RorTeam::Application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   devise_for :users
-  resources :posts, only: [:index, :show] do
+  resources :posts, :path => 'blog', only: [:index, :show] do
     resources :comments, only: [:new, :create]
   end
   resources :home, only: [:index]

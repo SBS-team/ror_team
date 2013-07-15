@@ -13,6 +13,9 @@
 
 class Post < ActiveRecord::Base
 
+  extend FriendlyId
+  friendly_id :title, use: [:slugged, :history]
+
   acts_as_taggable
   has_many :post_categories, :dependent => :destroy
   has_many :categories, through: :post_categories
@@ -39,4 +42,9 @@ class Post < ActiveRecord::Base
       all
     end
   end
+
+  #def to_param
+  #  [created_at.strftime('%d_%m_%Y').parameterize, slug].join('/')
+  #end
+
 end

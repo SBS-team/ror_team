@@ -21,7 +21,10 @@ class PostsController < ApplicationController
   # GET /posts/1
   def show
     session[:return_to] = request.fullpath
-    @post = Post.find(params[:id])
+    @post = Post.find_by_slug(params[:id])
+    if request.path != post_path(@post)
+      redirect_to @post, status: :moved_permanently
+    end
     @comments = @post.comments.order("id").page(params[:page]).per(5)
   end
 

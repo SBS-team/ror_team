@@ -21,7 +21,6 @@
             .categories
               = t '.categories'
               != post.categories.collect{|cat| link_to strip_links(cat.name), posts_path(:category_name=>cat.name) }.join(', ')
-
           - unless post.tag_counts_on(:tags).blank?
             .tags
               = t '.tags'

@@ -9,7 +9,7 @@
         - else
           = image_tag 'missing.png', width: 50, height: 50, alt: last_post.title
         .title
-          = link_to last_post.title, last_post
+          = link_to last_post.title, special_post_path(last_post.created_at.strftime('%d_%m_%Y'), last_post)
         .cont
           = t '.by'
           = last_post.admin.email

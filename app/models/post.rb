@@ -43,8 +43,4 @@ class Post < ActiveRecord::Base
     end
   end
 
-  #def to_param
-  #  [created_at.strftime('%d_%m_%Y').parameterize, slug].join('/')
-  #end
-
 end

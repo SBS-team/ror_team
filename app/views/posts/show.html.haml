@@ -3,7 +3,6 @@
     %h3 Вы уже вошли!
     %p
       = alert
-
 .row
   .span8.posts.main_cont
     .post
@@ -62,7 +61,6 @@
             = image_tag 'authbuttons/facebook_32.png', :size => '32x32', :alt => 'Facebook'
           = link_to '/auth/vkontakte', :class => 'vkontakte' do
             = image_tag 'authbuttons/vk_32.png', :size => '32x32', :alt => 'Vkontakte'
-
     .span4
       .recent_posts
         %h3
@@ -70,7 +68,7 @@
         %ul.unstyled
           - @recent_posts.each do |post|
             %li
-              = link_to post.title, post_path(post)
+              = link_to post.title, special_post_path(post.created_at.strftime('%d_%m_%Y'), post)
         %h5
           = t ('.get_more')
         .btn.large
@@ -82,7 +80,7 @@
         %ul.unstyled
           - @popular_posts.each do |post|
             %li
-              = link_to post.title, post_path(post)
+              = link_to post.title, special_post_path(post.created_at.strftime('%d_%m_%Y'), post)
         %h5
           = t '.ready_help'
         .btn.large

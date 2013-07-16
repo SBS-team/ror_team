@@ -4,8 +4,8 @@
       .post
         .post_left.text-center
           .img
-            - if !post.upload_files.blank?
-              = image_tag(post.upload_files.first.img_name)
+            - if !post.upload_file.blank?
+              = image_tag(post.upload_file.img_name.url)
 
             - else
               = image_tag 'missing.png'

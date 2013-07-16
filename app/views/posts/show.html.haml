@@ -10,7 +10,8 @@
         .post_img
           .img
             - if !@post.upload_files.blank?
-              = image_tag @post.upload_files.first.img_name.url(:thumb) # по-моему 100х100 слишком мало
+              = image_tag @post.upload_files.first.img_name.url(:thumb)
+
             - else
               = image_tag 'missing.png'
         .post-title

@@ -4,6 +4,7 @@ ActiveAdmin.register TechnologyCategory do
   filter :technologies
 
   index do
+    selectable_column
     column :id
     column :name
     default_actions

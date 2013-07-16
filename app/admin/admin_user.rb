@@ -3,6 +3,7 @@ ActiveAdmin.register AdminUser do
   filter :role
 
   index do
+    selectable_column
     column :email
     column :role
     column :last_sign_in_at

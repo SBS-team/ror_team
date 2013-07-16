@@ -4,6 +4,7 @@ ActiveAdmin.register Post do
 
   # Customize columns displayed on the new screen in the table
   index do
+    selectable_column
     column :image do |post|
       image_tag(post.upload_file.img_name.url, width: 50, height: 50 )
     end

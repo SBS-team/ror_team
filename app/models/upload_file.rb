@@ -13,6 +13,8 @@
 class UploadFile < ActiveRecord::Base
   belongs_to :fileable, :polymorphic => true
 
+  before_update :check_if_not_exist
+
   mount_uploader :filename, FileUploader
   mount_uploader :img_name, ImageUploader
 

@@ -23,12 +23,6 @@
 
 class AdminUser < ActiveRecord::Base
 
-  IMAGE_SIZES = {
-      :default => [1280, 1280],
-      :mini => [300,900],
-      :thumb => [100, 300]
-  }
-
   devise :database_authenticatable,
          :recoverable, :rememberable, :trackable, :validatable
 

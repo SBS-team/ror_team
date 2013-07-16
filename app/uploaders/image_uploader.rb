@@ -41,32 +41,8 @@ class ImageUploader < CarrierWave::Uploader::Base
   # For AdminUsers.
   process :resize_to_fit => [800, 800]          #image will upload not bigger than 800x800
 
-  def dynamic_resize_to_fit(size)
-    resize_to_fit *(model.class::IMAGE_SIZES[size])
-  end
-
-  def setup_available_sizes(file)
-    model.class::IMAGE_SIZES.keys.each do |key|
-      self.class_eval do
-        define_method("has_#{key}_size?".to_sym) { true }
-      end
-    end
-  end
-
-  version :thumb_200  do
-    process :resize_to_fit => [200, 200]
-  end
-
-  version :thumb_150  do
-    process :resize_to_fit => [150, 150]
-  end
-
-  version :thumb_100  do
-    process :resize_to_fit => [100, 100]
-  end
-
-  version :thumb_50  do
-    process :resize_to_fit => [50, 50]
+  version :thumb  do
+    process :resize_to_fit => [250, 250]
   end
 
   # Add a white list of extensions which are allowed to be uploaded.

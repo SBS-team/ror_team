@@ -41,13 +41,9 @@ class ImageUploader < CarrierWave::Uploader::Base
   # For AdminUsers.
   process :resize_to_fit => [800, 800]          #image will upload not bigger than 800x800
 
-  version :thumb_sm  do
-    process :resize_to_fit => [100, 100]
+  version :thumb  do
+    process :resize_to_fit => [250, 250]
   end
-
-  # Here will be all
-  # standarts for
-  # other models
 
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:

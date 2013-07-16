@@ -7,7 +7,7 @@ class CommentsController < ApplicationController
   end
 
   def create
-    @post = Post.find(params[:post_id])
+    @post = Post.find_by_slug(params[:post_id])
     @comment = current_user.comments.build(comment_params)
     @comment.post_id=@post.id
 
@@ -16,7 +16,7 @@ class CommentsController < ApplicationController
     else
       flash[:alert] = 'Comment create error.'
     end
-    redirect_to post_path(@post)
+    redirect_to special_post_path(@post.created_at.strftime('%d_%m_%Y'), @post)
   end
   private
   def comment_params

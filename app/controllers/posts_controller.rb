@@ -28,7 +28,7 @@ class PostsController < ApplicationController
   def show
     session[:return_to] = request.fullpath
     @post = Post.find_by_slug(params[:id])
-    if request.path != post_path(@post)
+    if request.path != special_post_path(@post.created_at.strftime('%d_%m_%Y'), @post)
       redirect_to @post, status: :moved_permanently
     end
     @comments = @post.comments.order("id").page(params[:page]).per(5)

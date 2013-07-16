@@ -9,10 +9,10 @@
 
             - else
               = image_tag 'missing.png'
-          = link_to "#{pluralize(post.comments_count, t('.comment'))}", "#{post_path(post)}#comments"
+          = link_to "#{pluralize(post.comments_count, t('.comment'))}", "#{special_post_path(post.created_at.strftime('%d_%m_%Y'), post)}#comments"
         .post_right
           .post-title
-            = link_to post.title, post_path(post)
+            = link_to post.title, special_post_path(post.created_at.strftime('%d_%m_%Y'), post)
           .post_date
             %em
               = post.created_at.strftime("%d %B %H:%M:%S")

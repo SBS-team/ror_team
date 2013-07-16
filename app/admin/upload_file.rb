@@ -64,7 +64,7 @@ ActiveAdmin.register UploadFile do
 
     private
     def file_params
-      params.require(:upload_file).permit(:fileable_type, :remote_img_name_url, :img_name,:filename, :id)
+      params.require(:upload_file).permit(:fileable_type, :remote_img_name_url, :img_name, :filename, :id)
     end
   end
 end

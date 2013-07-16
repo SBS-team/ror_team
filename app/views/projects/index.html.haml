@@ -49,8 +49,9 @@
         - project.services.each do |service|
           .developer-info.text-center.span2
             .photo
-              = link_to(company_index_path) do
-                = image_tag(service.upload_files.first.img_name.to_s, :class => "img-polaroid")
+              - unless service.upload_files.blank?
+                = link_to(company_index_path) do
+                  = image_tag(service.upload_files.first.img_name.to_s, :class => "img-polaroid")
             = link_to "#{service.name}", company_index_path
       - unless project.technologies.blank?
         .tech-info

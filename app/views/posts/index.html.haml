@@ -4,9 +4,8 @@
       .post
         .post_left.text-center
           .img
-            - if !post.upload_file.blank?
+            - unless post.upload_file.blank?
               = image_tag(post.upload_file.img_name.url)
-
             - else
               = image_tag 'missing.png'
           = link_to "#{pluralize(post.comments_count, t('.comment'))}", "#{special_post_path(post.created_at.strftime('%d_%m_%Y'), post)}#comments"
@@ -17,7 +16,8 @@
             %em
               = post.created_at.strftime("%d %B %H:%M:%S")
           .post-content
-            = truncate(post.description, lenght: 200, ommision: '...(read more)')
+            != post.description.truncate(200)
+            = link_to 'learn more', special_post_path(post.created_at.strftime('%d_%m_%Y'), post)
           - unless post.categories.empty?
             .categories
               = t '.categories'

@@ -32,7 +32,8 @@
       = t '.service_prode'
   - @services.each do |service|
     .span3.text-center
-      = image_tag service.upload_files.sample.img_name.url(:thumb), title: service.name, alt: service.name, width: 150, height: 150
+      - unless service.upload_files.blank?
+        = image_tag service.upload_files.sample.img_name.url(:thumb), title: service.name, alt: service.name, width: 150, height: 150
       %h4
         = service.name
 .row

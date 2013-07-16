@@ -26,7 +26,7 @@ ActiveAdmin.register Post do
     panel 'Post Details' do
       attributes_table_for post do
         row :image do |post|
-          image_tag(post.upload_file.img_name.url(:thumb_sm))
+          image_tag(post.upload_file.img_name.url(:thumb))
         end
         row :title
         row :description
@@ -57,26 +57,6 @@ ActiveAdmin.register Post do
       end
     end
     f.actions
-  end
-
-  show do
-    panel 'Post Details' do
-      attributes_table_for post do
-        row :image do |post|
-          image_tag(post.upload_files.first.img_name.url(:thumb_sm))
-        end
-        row :title
-        row :description
-        row :tag_list, sortable: false
-        row :categories do |category|
-          category.categories.collect(&:name).join(', ')
-        end
-        row :author do |post|
-          link_to post.admin.email, post.admin
-        end
-        row :created_at
-      end
-    end
   end
 
   controller do

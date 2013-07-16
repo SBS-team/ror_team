@@ -70,6 +70,11 @@ ActiveAdmin.register Post do
       end
     end
 
+    def new
+      @post = Post.new
+      @post.upload_file = UploadFile.new
+    end
+
     def update
       @post = Post.find_by_slug(params[:id])
       if @post.update(post_params)

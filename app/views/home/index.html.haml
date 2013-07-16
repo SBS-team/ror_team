@@ -27,7 +27,7 @@
         .portfolio_item.span3.text-center
           .pic
             - unless project.upload_files.blank?
-              = image_tag(project.upload_files.sample.img_name.url(:thumb_sm))
+              = image_tag(project.upload_files.sample.img_name.url(:thumb))
             - else
               = image_tag('missing.png')
           .portf_title

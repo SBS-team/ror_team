@@ -7,10 +7,17 @@
     = include_gon(:namespace => 'RorTeam', :camel_case => true)
     = csrf_meta_tags
   %body
+
     -if !notice.blank?
       .success.message
         %h3
           = notice
+
+    -if !alert.blank?
+      .info.message
+        %h3
+          = alert
+
     .container
       %header
         .row

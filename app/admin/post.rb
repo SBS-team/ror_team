@@ -6,7 +6,7 @@ ActiveAdmin.register Post do
   index do
     selectable_column
     column :image do |post|
-      image_tag(post.upload_file.img_name.url, width: 50, height: 50 )
+      image_tag(post.upload_file.img_name.url(:thumb), width: 50, height: 50 )
     end
     column :title do |post|
       link_to post.title, admin_post_path(post)
@@ -16,7 +16,7 @@ ActiveAdmin.register Post do
       category.categories.collect(&:name).join(', ')
     end
     column 'Author' do |post|
-      link_to post.admin.email, post.admin
+      link_to post.admin.email, admin_admin_user_path(post.admin)
     end
     column :created_at
     default_actions
@@ -26,7 +26,7 @@ ActiveAdmin.register Post do
     panel 'Post Details' do
       attributes_table_for post do
         row :image do |post|
-          image_tag(post.upload_file.img_name.url(:thumb_sm))
+          image_tag(post.upload_file.img_name.url(:thumb))
         end
         row :title
         row :description
@@ -35,13 +35,12 @@ ActiveAdmin.register Post do
           category.categories.collect(&:name).join(', ')
         end
         row :author do |post|
-          link_to post.admin.email, post.admin
+          link_to post.admin.email, admin_admin_user_path(post.admin)
         end
         row :slug
         row :created_at
       end
     end
-    active_admin_comments
   end
 
   form :html => {:enctype => "multipart/form-data" } do |f|
@@ -57,26 +56,6 @@ ActiveAdmin.register Post do
       end
     end
     f.actions
-  end
-
-  show do
-    panel 'Post Details' do
-      attributes_table_for post do
-        row :image do |post|
-          image_tag(post.upload_files.first.img_name.url(:thumb_sm))
-        end
-        row :title
-        row :description
-        row :tag_list, sortable: false
-        row :categories do |category|
-          category.categories.collect(&:name).join(', ')
-        end
-        row :author do |post|
-          link_to post.admin.email, post.admin
-        end
-        row :created_at
-      end
-    end
   end
 
   controller do

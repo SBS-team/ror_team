@@ -5,6 +5,7 @@ ActiveAdmin.register Project do
   filter :technologies
 
   index do
+    selectable_column
     column :id
     column :name
     column :since

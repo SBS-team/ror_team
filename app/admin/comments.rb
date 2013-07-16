@@ -3,6 +3,7 @@ ActiveAdmin.register Comment do
   filter :post
 
   index do
+    selectable_column
     column :id
     column :description
     column "Email" do |comment|

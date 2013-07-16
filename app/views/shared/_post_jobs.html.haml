@@ -4,10 +4,10 @@
   .bl_content
     - @last_posts.each do |last_post|
       .post
-        - unless last_post.upload_files.blank?
-          = image_tag last_post.upload_files.first.filename.url, width: 50, height: 50, alt: last_post.title
+        - unless last_post.upload_file.blank?
+          = image_tag last_post.upload_file.img_name.url, width: 50, height: 50, alt: 'image'
         - else
-          = image_tag 'missing.png', width: 50, height: 50, alt: last_post.title
+          = image_tag 'missing.png', width: 50, height: 50, alt: last_post.upload_file.img_name
         .title
           = link_to last_post.title, special_post_path(last_post.created_at.strftime('%d_%m_%Y'), last_post)
         .cont

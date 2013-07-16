@@ -21,8 +21,8 @@ class Post < ActiveRecord::Base
   has_many :categories, through: :post_categories
   has_many :comments, :dependent => :destroy
   belongs_to :admin, :class_name => "AdminUser", :foreign_key => "admin_id"
-  has_many :upload_files, :as => :fileable, :dependent => :destroy
-  accepts_nested_attributes_for :upload_files
+  has_one :upload_file, :as => :fileable, :dependent => :destroy
+  accepts_nested_attributes_for :upload_file
   validates :title,
             :presence => true,
             :length => { :minimum => 3, :maximum => 255 }
@@ -32,7 +32,7 @@ class Post < ActiveRecord::Base
   validates :admin_id,
             :presence => true,
             :numericality => { :only_integer => true, :greater_than => 0 }
-  validates :upload_files,
+  validates :upload_file,
             :presence => true
 
   def self.search_posts_based_on_like(search)

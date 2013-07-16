@@ -11,9 +11,9 @@ class PostsController < ApplicationController
             else
               Post.search_posts_based_on_like(params[:search]).order('created_at DESC').page(params[:page]).per(5)
             end
-    flash[:notice] = "#{t('.your_search_for')} #{params[:search]} #{t('.returned_no_hits')}" if (!params[:search].nil?) && (@posts.empty?)
+    flash[:alert] = "#{t('.your_search_for')} '#{params[:search]}' #{t('.returned_no_hits')}" if (!params[:search].nil?) && (@posts.empty?)
     respond_to do |format|
-      format.html{render :index}
+      format.html { render :index }
       format.rss { render :index, :content_type => Mime::XML }
     end
   end

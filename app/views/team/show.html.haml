@@ -12,7 +12,7 @@
 .fullteam
   - @fullteam.each do |team_member|
     = link_to team_path(team_member), :id => "pic#{team_member.id}" do
-      = image_tag(team_member.upload_files.first.img_name.url(:thumb_sm), :class => 'img-rounded', :width => 100)
+      = image_tag(team_member.upload_files.first.img_name.url(:thumb_100), :class => 'img-rounded', :width => 100)
 
 .span6
   = link_to 'Back', team_index_path

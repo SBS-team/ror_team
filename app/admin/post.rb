@@ -6,7 +6,9 @@ ActiveAdmin.register Post do
   index do
     selectable_column
     column :image do |post|
-      image_tag(post.upload_file.img_name.url(:thumb), width: 50, height: 50 )
+      unless post.upload_file.blank?
+        image_tag(post.upload_file.img_name.url(:thumb), width: 50, height: 50 )
+      end
     end
     column :title do |post|
       link_to post.title, admin_post_path(post)
@@ -89,4 +91,5 @@ ActiveAdmin.register Post do
       params.require(:post).permit(:title, :description, :tag_list, :category_ids => [], upload_file_attributes: [:img_name, :remote_img_name_url])
     end
   end
+
 end

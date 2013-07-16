@@ -1,16 +1,3 @@
--#- if @resume.errors.any?
--#  .error.message
--#    %h3 Ой, произошла ошибка!
--#    %p
--#      = pluralize(@resume.errors.count, "error")
--#      prohibited this resume from being sending
--#      - @resume.errors.full_messages.each do |msg|
--#        %br
--#        = msg
--#      %br
--#      %i
--#        -#Можно будет заменить или переработать механизм, допустим там что бы сам закрывался :)
--#        Click to close
 .row
   .span6
     %h1
@@ -28,7 +15,6 @@
             %br
             %i
               = 'Click to close'
-
         .name
           = form.text_field(:name, 'placeholder' => 'Your name*', 'class' => 'span4')
         .email-phone
@@ -42,7 +28,8 @@
           .icons
             - @services.each do |service|
               .span2.text-center
-                = image_tag service.upload_files.sample.filename.url, title: service.name, alt: service.name, width: 100, height: 100
+                - unless service.upload_files.blank?
+                  = image_tag service.upload_files.sample.filename.url, title: service.name, alt: service.name, width: 100, height: 100
                 %h4
                   = form.label :service_type do
                     = form.radio_button :service_type, service.name

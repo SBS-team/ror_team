@@ -4,7 +4,7 @@
   = form_for @resume, :url => jobs_path, :html => {:class => 'web-form', :multipart => true} do |f|
     - if @resume.errors.any?
       .error.message
-        %h3 Ой, произошла ошибка!
+        %h3 Oops, an error was occurred!
         %p
           = pluralize(@resume.errors.count, "error")
           prohibited this resume from being sending
@@ -13,10 +13,7 @@
             = msg
           %br
           %i
-            -#Можно будет заменить или переработать механизм, допустим там что бы сам закрывался :)
             Click to close
-
-
     - if @job.nil?
       = f.select(:job_id, options_for_select(@all_jobs_for_select.map { |j| [j.title, j.id] }))
     - else

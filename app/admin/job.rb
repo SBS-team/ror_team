@@ -3,6 +3,7 @@ ActiveAdmin.register Job do
   filter :title
 
   index do
+    selectable_column
     column :id
     column :title
     column :description

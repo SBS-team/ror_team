@@ -5,6 +5,7 @@ ActiveAdmin.register Technology do
   filter :projects
 
   index do
+    selectable_column
     column :id
     column :name
     column :technology_category

@@ -24,9 +24,8 @@ function showMessage(type) {
 
     }
 }
-
-$(document).ready(function () {
-
+$(document).on("page:change", function() {
+    alert('NIENE');
     hideAllMessages();  // Изначально скрываем все
 
     for(var i = 0; i < myMessages.length; i++)

@@ -32,8 +32,6 @@ class PostsController < ApplicationController
       redirect_to @post, status: :moved_permanently
     end
     @comments = @post.comments.page(params[:page]).per(5)
-    logger.info "*"*100
-    logger.info @comments.inspect
   end
 
   private

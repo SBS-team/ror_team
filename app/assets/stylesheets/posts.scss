@@ -96,3 +96,19 @@
   height:50px;
   width:15%
 }
+
+.comment_nick, .comment_img {
+  float: left;
+}
+
+.comment_nick {
+  margin-left: 10px;
+}
+
+.comment_time {
+  float:right;
+}
+
+.comment_email {
+  margin-left: 50px;
+}

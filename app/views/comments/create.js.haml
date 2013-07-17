@@ -1,1 +1,16 @@
-$('.comments').append("#{escape_javascript @comment.description}");
+$('.comments').append("<blockquote><b><img src = '#{escape_javascript @comment.commentable.image}' class = 'img-rounded'><span>#{escape_javascript @comment.commentable.nickname}</span></b><br><small>#{escape_javascript @comment.commentable.email}<br></small><b>#{escape_javascript @comment.description}</b></blockquote>");
+-#$("#commentBlock").append("<div class='comment'>Автор: <strong>"+author+"</strong><br>"+message+"</div>");
+
+-#%blockquote
+-#  %b
+-#    - if comment.commentable.respond_to? :image
+-#      = image_tag comment.commentable.image, :class=>'img-rounded'
+-#    - if comment.commentable.respond_to? :nickname
+-#      = comment.commentable.nickname
+-#
+-#  %small
+-#    = comment.commentable.email
+-#  %br
+-#    %b
+-#      = comment.description.capitalize
+-#  %hr

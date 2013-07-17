@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :upload_file do
-    filename { Rack::Test::UploadedFile.new(File.join(Rails.root, 'test', 'factories', 'files', 'image.png')) }
+    img_name { File.open(File.join(Rails.root, 'test', 'factories', 'files', 'image.png')) }
   end
 
 

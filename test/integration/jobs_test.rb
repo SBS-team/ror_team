@@ -1,7 +1,5 @@
 require 'minitest_helper'
 
-ApplicationController.skip_before_filter :assign_gon_properties
-
 describe ViewTest do
   before :each do
     5.times {FactoryGirl.create(:job)}

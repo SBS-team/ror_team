@@ -32,8 +32,7 @@ class Post < ActiveRecord::Base
   validates :admin_id,
             :presence => true,
             :numericality => { :only_integer => true, :greater_than => 0 }
-  validates :upload_file,
-            :presence => true
+
 
   def self.search_posts_based_on_like(search)
     if search

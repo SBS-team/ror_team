@@ -4,7 +4,7 @@
   .bl_content
     - @last_posts.each do |last_post|
       .post
-        - unless last_post.upload_file.blank?
+        - unless last_post.upload_file.blank? || last_post.upload_file.img_name.blank?
           = image_tag last_post.upload_file.img_name.url, width: 50, height: 50, alt: 'image'
         - else
           = image_tag 'missing.png', width: 50, height: 50

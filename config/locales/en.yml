@@ -94,7 +94,7 @@ en:
       message: "Message:"
       phone: "Phone:"
       service_type: "Service type:"
-      web: "Web"
+      im_interested: "Im interested in"
 
   jobs:
     open_vacancies: "Open vacancies:"

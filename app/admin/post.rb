@@ -7,7 +7,7 @@ ActiveAdmin.register Post do
     selectable_column
     column :image do |post|
       unless post.upload_file.blank?
-        image_tag(post.upload_file.img_name.url(:thumb), width: 50, height: 50 )
+        image_tag(post.upload_file.img_name.url, width: 50, height: 50)
       end
     end
     column :title do |post|
@@ -54,8 +54,8 @@ ActiveAdmin.register Post do
       f.input :description, as: :html_editor
       f.input :tag_list, :hint => 'Comma separated'
       f.input :categories, as: :check_boxes
-      f.inputs :for => :upload_file, name: :upload_file do |file|
-        file.input :img_name, :as => :file, :label => 'Image', :hint => file.template.image_tag(file.object.img_name.url, :width => 70, :height => 70)
+      f.inputs :for => :upload_file do |file|
+        file.input :img_name, :as => :file, :hint => file.object.img_name.nil? ? f.template.content_tag(:span, "no map yet") : file.template.image_tag(file.object.img_name.url(:thumb))
         file.input :remote_img_name_url, :as => :url
       end
     end
@@ -70,7 +70,7 @@ ActiveAdmin.register Post do
       if @post.save
         redirect_to admin_post_url(@post), notice: 'Post was successfully created.'
       else
-        render :new
+        render :new, notice: 'Error has occurred while creating.'
       end
     end
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130715121713) do
+ActiveRecord::Schema.define(version: 20130717112043) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "resource_id",   null: false
@@ -56,6 +56,13 @@ ActiveRecord::Schema.define(version: 20130715121713) do
     t.datetime "updated_at"
   end
 
+  create_table "chat_messages", force: true do |t|
+    t.string   "body"
+    t.integer  "live_chat_id"
+    t.boolean  "is_admin"
+    t.datetime "created_at"
+  end
+
   create_table "comments", force: true do |t|
     t.text     "description"
     t.integer  "post_id"
@@ -81,6 +88,14 @@ ActiveRecord::Schema.define(version: 20130715121713) do
   create_table "jobs", force: true do |t|
     t.string   "title"
     t.text     "description"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "live_chats", force: true do |t|
+    t.string   "guest_name"
+    t.string   "guest_email"
+    t.integer  "admin_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -137,6 +152,19 @@ ActiveRecord::Schema.define(version: 20130715121713) do
     t.string   "name"
     t.string   "email"
     t.string   "phone"
+  end
+
+  create_table "rich_rich_files", force: true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.string   "rich_file_file_name"
+    t.string   "rich_file_content_type"
+    t.integer  "rich_file_file_size"
+    t.datetime "rich_file_updated_at"
+    t.string   "owner_type"
+    t.integer  "owner_id"
+    t.text     "uri_cache"
+    t.string   "simplified_type",        default: "file"
   end
 
   create_table "services", force: true do |t|

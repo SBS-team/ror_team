@@ -11,24 +11,13 @@ MiniTest::Reporters.use!
 
 class ViewTest < MiniTest::Spec
   include Capybara::DSL
-
-  before(:all) do
-    DatabaseCleaner.strategy = :truncation
-  end
-  after(:all) do
-    DatabaseCleaner.clean
-  end
-
   include Rails.application.routes.url_helpers
 
-  #чтобы после Капибира-тестов чистилась БД
   before(:all) do
     DatabaseCleaner.strategy = :truncation
   end
   after(:all) do
     DatabaseCleaner.clean
-    Capybara.reset_sessions!
-    Capybara.use_default_driver
   end
 
   Capybara.current_driver = Capybara.javascript_driver

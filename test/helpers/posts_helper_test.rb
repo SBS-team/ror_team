@@ -6,7 +6,7 @@ describe PostsHelper do
     admin = FactoryGirl.create(:admin_user)
     @posts = Array.new
     3.times do |i|
-     @posts[i] = FactoryGirl.create(:post, :admin_id => admin.id, :upload_files => [FactoryGirl.create(:upload_file)])
+     @posts[i] = FactoryGirl.create(:post, :admin_id => admin.id, :upload_file => FactoryGirl.create(:upload_file))
     end
   end
   it "test f(x) relev_tags" do

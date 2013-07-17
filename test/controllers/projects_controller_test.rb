@@ -1,8 +1,9 @@
 require 'minitest_helper'
 
 describe ProjectsController do
-  ApplicationController.skip_before_filter :assign_gon_properties
+
   include CarrierWave::Test::Matchers
+
   before do
     @project = FactoryGirl.create(:project, :upload_files => [FactoryGirl.create(:upload_file)])
   end

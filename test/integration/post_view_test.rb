@@ -1,13 +1,11 @@
 require 'minitest_helper'
 
-ApplicationController.skip_before_filter :assign_gon_properties
-
 describe ViewTest do
 
   before do
-    post = FactoryGirl.create(:post, :title => 'the real power', :description => 'very very long and useful post', :admin_id => FactoryGirl.create(:admin_user).id, :upload_files => [FactoryGirl.create(:upload_file)])
+    post = FactoryGirl.create(:post, :title => 'the real power', :description => 'very very long and useful post', :admin_id => FactoryGirl.create(:admin_user).id, :upload_file => FactoryGirl.create(:upload_file))
     3.times do
-      FactoryGirl.create(:post, :upload_files => [FactoryGirl.create(:upload_file)], :admin_id => FactoryGirl.create(:admin_user).id)
+      FactoryGirl.create(:post, :upload_file => FactoryGirl.create(:upload_file), :admin_id => FactoryGirl.create(:admin_user).id)
     end
     post.categories.create(:name => 'special')
     4.times do

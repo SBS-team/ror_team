@@ -70,7 +70,7 @@ ActiveAdmin.register Project do
       params.require(:project).permit(:name, :description, :since, :till, :team_size, :url, upload_files_attributes: [:img_name, :id])
     end
     def project_update_params
-      params.require(:project).permit(:name, :description, :since, :till, :team_size, :url, upload_files_attributes: [:filename, :id], :service_ids => [], :technology_ids => [])
+      params.require(:project).permit(:name, :description, :since, :till, :team_size, :url, upload_files_attributes: [:img_name, :id], :service_ids => [], :technology_ids => [])
     end
   end
 end

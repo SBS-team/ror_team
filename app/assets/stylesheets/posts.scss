@@ -112,3 +112,16 @@
 .comment_email {
   margin-left: 50px;
 }
+
+blockquote:nth-child(odd) {
+  background-color: rgba(216, 216, 216, 0.16);
+}
+
+blockquote {
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  padding: 10px;
+}
+
+hr {
+  margin-bottom: 0;
+}

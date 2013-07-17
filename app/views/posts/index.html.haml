@@ -4,7 +4,7 @@
       .post
         .post_left.text-center
           .img
-            - unless post.upload_file.blank?
+            - unless post.upload_file.blank? || post.upload_file.img_name.blank?
               = image_tag(post.upload_file.img_name.url)
             - else
               = image_tag 'missing.png'

@@ -28,7 +28,9 @@ ActiveAdmin.register Post do
     panel 'Post Details' do
       attributes_table_for post do
         row :image do |post|
-          image_tag(post.upload_file.img_name.url(:thumb))
+          unless post.upload_file.blank?
+            image_tag(post.upload_file.img_name.url(:thumb))
+          end
         end
         row :title
         row :description

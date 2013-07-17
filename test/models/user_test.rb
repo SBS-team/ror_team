@@ -25,8 +25,7 @@ describe User do
 
   context 'User relationship' do
     it {must have_many(:comments).dependent(:destroy)}
-    it {must have_many(:resumes)}
-    it {must have_many(:jobs).through(:resumes)}
+    it {must have_many(:upload_files)}
   end
 
 end

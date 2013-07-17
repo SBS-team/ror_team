@@ -24,8 +24,7 @@ function showMessage(type) {
 
     }
 }
-$(document).on("page:change", function() {
-    alert('NIENE');
+ready = function () {
     hideAllMessages();  // Изначально скрываем все
 
     for(var i = 0; i < myMessages.length; i++)
@@ -33,9 +32,8 @@ $(document).on("page:change", function() {
         showMessage(myMessages[i]);
     }
 
-   // Когда пользователь нажимает на сообщение, скрываем его
+    // Когда пользователь нажимает на сообщение, скрываем его
     $('.message').click(function(event){
-
         $(this).animate({top: -$(this).outerHeight()}, 500);
     });
 
@@ -45,5 +43,8 @@ $(document).on("page:change", function() {
         setTimeout('$(".info.message").animate({top: -$(this).outerHeight()}, 500)', 3500)
     }
 
-});
+}
+
+$(document).ready(ready)
+$(document).on('page:load', ready);
 

@@ -6,6 +6,8 @@ ActiveAdmin.register Service do
   index do
     selectable_column
     column :name
+
+    default_actions
   end
 
   form :html => {:enctype => "multipart/form-data" } do |f|

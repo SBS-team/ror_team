@@ -26,7 +26,7 @@ class JobsController < ApplicationController
 private
 
   def resume_params
-    params.require(:resume).permit(:job_id, :name, :email, :phone, :description, upload_files_attributes: [:filename, :id])
+    params.require(:resume).permit(:job_id, :name, :email, :phone, :description, upload_file_attributes: [:filename, :id])
   end
 
 end

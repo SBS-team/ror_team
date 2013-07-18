@@ -31,7 +31,7 @@ class PostsController < ApplicationController
     if request.path != special_post_path(@post.created_at.strftime('%d_%m_%Y'), @post)
       redirect_to @post, status: :moved_permanently
     end
-    @comments = @post.comments.order("id").page(params[:page]).per(5)
+    @comments = @post.comments.page(params[:page]).per(5)
   end
 
   private

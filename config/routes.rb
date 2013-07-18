@@ -1,5 +1,7 @@
 RorTeam::Application.routes.draw do
 
+  get "live_chat/new"
+  get "live_chat/show"
   get '/auth/:provider/callback' => 'authentications#create' # For socials networks
   get '/auth/destroy' => 'authentications#destroy'
 
@@ -16,6 +18,7 @@ RorTeam::Application.routes.draw do
   resources :projects, only: [:index, :show]
   resources :jobs, only: [:index, :show, :create]
   resources :contact, only: [:index, :create]
+  resources :live_chat, only: [:new, :create, :show]
 
   root :to => 'home#index'
 end

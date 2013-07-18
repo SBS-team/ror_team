@@ -41,7 +41,7 @@
                 = link_to(t('.blog'), posts_path)
           .chat.span1
             .btn
-              = link_to t('.live_chat')
+              = link_to t('.live_chat'), new_live_chat_path, :onclick=>"window.open(this.href,'RoR-Team Live Chat', 'height=500, width=400');return false;"
       #content
         - if flash[:error]
           %p.error

@@ -61,11 +61,16 @@
 
     %h4
       = t '.new_comment'
-      = form_for [@post, Comment.new], :html => {:class => 'form-inline'}, :remote => true do |f|
+      = form_for [@post, Comment.new ], :html => {:class => 'form-inline'}, :remote => true do |f|
         .input-append
 
           -if user_signed_in?                                       #  display user image
             = image_tag current_user.image, :class=>'img-rounded'   #  near the add comment input
+          -else
+            %p
+              = f.fields_for :user, (User.new) do |user|
+                = user.text_field :first_name, :placeholder => 'Your name'
+                = user.text_field :email, :placeholder => 'Your email'
 
           = f.text_area :description, style: 'height:39px; width:600px', :placeholder => t('.write_comment')
           = f.submit t('.add_comment'), class: 'btn', style: 'height:50px;', :id => 'go_comment'

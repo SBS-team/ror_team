@@ -4,7 +4,7 @@
       %h2
         = project.name
     .span6
-      - unless project.upload_files.blank?
+      - unless project.upload_files.blank? || project.upload_files.first.img_name.blank?
         .carousel.slide{:id => "myCarousel#{project.id}"}
           %ol.carousel-indicators
             - (project.upload_files.count).times do |i|

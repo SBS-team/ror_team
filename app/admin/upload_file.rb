@@ -59,15 +59,6 @@ ActiveAdmin.register UploadFile do
       @upload_file = UploadFile.new(:fileable_type => 'UploadFile')
     end
 
-    #def update
-    #  @upload_file = UploadFile.find(params[:id])
-    #  if @upload_file.update(file_params)
-    #    redirect_to admin_upload_file_url(@post), notice: 'Post was successfully updated.'
-    #  else
-    #    render :edit, notice: 'Error has occurred while updating.'
-    #  end
-    #end
-
     private
     def file_params
       params.require(:upload_file).permit(:fileable_type, :remote_img_name_url, :img_name, :filename, :id)

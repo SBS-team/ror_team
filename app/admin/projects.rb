@@ -33,8 +33,8 @@ ActiveAdmin.register Project do
       f.input :technologies, :as => :check_boxes
       f.input :services, :as => :check_boxes
       f.has_many :upload_files do |file|
-        file.input :img_name, :as => :file, :label => 'Image', :hint => file.template.image_tag(file.object.img_name.url, :height => 200, :width => 200)
-        file.input :id, :as => :hidden
+        file.input :img_name, :as => :file, :hint => file.object.img_name.nil? ? f.template.content_tag(:span, "no map yet") : file.template.image_tag(file.object.img_name.url(:thumb))
+        file.input :remote_img_name_url, :as => :url
       end
     end
     f.actions

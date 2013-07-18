@@ -34,7 +34,7 @@ ActiveAdmin.register Service do
     def update
       @service = Service.find(params[:id])
       if @service.update(service_params)
-        redirect_to edit_admin_service_url(@service), notice: 'Service was successfully updated.'
+        redirect_to admin_service_url(@service), notice: 'Service was successfully updated.'
       else
         render :edit
       end

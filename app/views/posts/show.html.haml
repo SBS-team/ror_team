@@ -9,13 +9,9 @@
       .post_top
         .post_img
           .img
-<<<<<<< HEAD
-            - if !@post.upload_file.blank?
-              = image_tag @post.upload_file.img_name.url(:thumb)#, :name => @post.id, :id => 'identificator'
-=======
+
             - unless @post.upload_file.blank? || @post.upload_file.img_name.blank?
               = image_tag @post.upload_file.img_name.url(:thumb)
->>>>>>> dev
             - else
               = image_tag 'missing.png'
         .post-title

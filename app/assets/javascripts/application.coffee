@@ -1,7 +1,6 @@
 #= require jquery
 #= require jquery_ujs
 #= require bootstrap.min
-
 #= require pusher
 #= require underscore
 #= require jobs

@@ -1,5 +1,6 @@
 class LiveChat < ActiveRecord::Base
-  belongs_to :admin_user
+  belongs_to :admin_user,
+             foreign_key: "admin_id"
   has_many :chat_messages
 
   validates :guest_name,

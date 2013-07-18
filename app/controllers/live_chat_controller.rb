@@ -1,6 +1,6 @@
 class LiveChatController < ApplicationController
   def new
-    @admins = AdminUser.select(:email).where(role: 'admin').order('random()')                 #add  .select(status)   .where(status: 'online')
+    @admins = AdminUser.select(:id, :email).where(role: 'admin').order('random()')                 #add  .select(status)   .where(status: 'online')
     #@admins = {}
     if @admins.blank?
       render 'live_chat/sorry', layout: false
@@ -11,10 +11,21 @@ class LiveChatController < ApplicationController
   end
 
   def create
-    render action: :show
+#    render text: params
+    @live_chat = LiveChat.new(live_chat_params)
+    if @live_chat.save
+      redirect_to live_chat_path(@live_chat)
+    else
+      render text: "error!"
+    end
   end
 
   def show
-    render text: "showww", layout: false
+    @live_chat = LiveChat.find(params[:id])
+    render 'live_chat/show', layout: 'chat_layout'
+  end
+
+  def live_chat_params
+    params.require(:live_chat).permit(:guest_name, :guest_email, :admin_id)
   end
 end

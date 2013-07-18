@@ -1,2 +1,11 @@
-<h1>LiveChat#show</h1>
-<p>Find me in app/views/live_chat/show.html.erb</p>
+%h1
+  LiveChat
+%div
+  = label_tag
+    "Manager: #{@live_chat.admin_user.email}"
+  .chat-history
+    -# @messages
+  .chat-msg
+    = label_tag  'Your message*:'
+    = text_area_tag :message
+  = submit_tag 'Send Message'

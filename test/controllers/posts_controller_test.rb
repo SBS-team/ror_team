@@ -1,7 +1,6 @@
 require 'minitest_helper'
 
 describe PostsController do
-  ApplicationController.skip_before_filter :assign_gon_properties
 
   before do
     @admin = FactoryGirl.create(:admin_user)
@@ -12,7 +11,7 @@ describe PostsController do
     before do
       @posts = []
       5.times do
-        post = FactoryGirl.create(:post, :admin_id => @admin.id, :upload_files => [FactoryGirl.create(:upload_file)])
+        post = FactoryGirl.create(:post, :admin_id => @admin.id, :upload_file => FactoryGirl.create(:upload_file))
         @posts << post
       end
     end
@@ -26,7 +25,7 @@ describe PostsController do
 
     it 'show posts' do
       2.times do
-        post = FactoryGirl.create(:post, :admin_id => @admin.id, :upload_files => [FactoryGirl.create(:upload_file)])
+        post = FactoryGirl.create(:post, :admin_id => @admin.id, :upload_file => FactoryGirl.create(:upload_file))
         @posts << post
       end
       get :index
@@ -73,14 +72,14 @@ describe PostsController do
   describe 'GET #show' do
 
     it 'rendering' do
-      post = FactoryGirl.create(:post, :admin_id => @admin.id, :upload_files => [FactoryGirl.create(:upload_file)])
+      post = FactoryGirl.create(:post, :admin_id => @admin.id, :upload_file => FactoryGirl.create(:upload_file))
       get :show, id: post
       assert_template :show
       assert_template layout: "layouts/application"
     end
 
     it "show post with comments" do
-      post = FactoryGirl.create(:post, :admin_id => @admin.id, :upload_files => [FactoryGirl.create(:upload_file)])
+      post = FactoryGirl.create(:post, :admin_id => @admin.id, :upload_file => FactoryGirl.create(:upload_file))
       user = FactoryGirl.create(:user)
       comment1 = FactoryGirl.create(:comment, :commentable => user)
       comment2 = FactoryGirl.create(:comment, :commentable => user)
@@ -99,7 +98,7 @@ describe PostsController do
     it "show recents posts" do
       posts = []
       6.times do
-        post = FactoryGirl.create(:post, :admin_id => @admin.id, :upload_files => [FactoryGirl.create(:upload_file)])
+        post = FactoryGirl.create(:post, :admin_id => @admin.id, :upload_file => FactoryGirl.create(:upload_file))
         posts << post
       end
 
@@ -115,9 +114,9 @@ describe PostsController do
 
     it "show popular posts" do
       user = FactoryGirl.create(:user)
-      post1 = FactoryGirl.create(:post, :admin_id => @admin.id, :upload_files => [FactoryGirl.create(:upload_file)])
-      post2 = FactoryGirl.create(:post, :admin_id => @admin.id, :upload_files => [FactoryGirl.create(:upload_file)])
-      post3 = FactoryGirl.create(:post, :admin_id => @admin.id, :upload_files => [FactoryGirl.create(:upload_file)])
+      post1 = FactoryGirl.create(:post, :admin_id => @admin.id, :upload_file => FactoryGirl.create(:upload_file))
+      post2 = FactoryGirl.create(:post, :admin_id => @admin.id, :upload_file => FactoryGirl.create(:upload_file))
+      post3 = FactoryGirl.create(:post, :admin_id => @admin.id, :upload_file => FactoryGirl.create(:upload_file))
 
       comment1 = FactoryGirl.create(:comment, :commentable => user)
       comment2 = FactoryGirl.create(:comment, :commentable => user)
@@ -153,7 +152,7 @@ describe PostsController do
     end
 
     it 'show all tags' do
-      post = FactoryGirl.create(:post, :admin_id => @admin.id, :upload_files => [FactoryGirl.create(:upload_file)])
+      post = FactoryGirl.create(:post, :admin_id => @admin.id, :upload_file => FactoryGirl.create(:upload_file))
       post.tag_list = "tag1, tag2, tag3"
       post.save
 

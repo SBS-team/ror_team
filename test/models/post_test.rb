@@ -15,7 +15,7 @@ describe Post do
 
   context 'Post relationship' do
     it { must belong_to(:admin).class_name('AdminUser') }
-    it { must have_many(:post_categories).dependent(:delete_all) }
+    it { must have_many(:post_categories).dependent(:destroy) }
     it { must have_many(:categories).through(:post_categories) }
     it { must have_many(:comments).dependent(:destroy) }
   end

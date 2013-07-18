@@ -19,14 +19,11 @@ class CommentsController < ApplicationController
           format.json { render json: @comment.errors, status: :unprocessable_entity }
         end
       end
-
   end
 
   private
   def comment_params
     params.require(:comment).permit(:description, :post_id, :commentable_id, :commentable_type)
   end
-
-
 
 end

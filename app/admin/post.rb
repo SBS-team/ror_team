@@ -6,7 +6,9 @@ ActiveAdmin.register Post do
   index do
     selectable_column
     column :image do |post|
-      image_tag(post.upload_file.img_name.url, width: 50, height: 50 )
+      unless post.upload_file.blank?
+        image_tag(post.upload_file.img_name.url, width: 50, height: 50)
+      end
     end
     column :title do |post|
       link_to post.title, admin_post_path(post)
@@ -16,7 +18,7 @@ ActiveAdmin.register Post do
       category.categories.collect(&:name).join(', ')
     end
     column 'Author' do |post|
-      link_to post.admin.email, post.admin
+      link_to post.admin.email, admin_admin_user_path(post.admin)
     end
     column :created_at
     default_actions
@@ -26,7 +28,9 @@ ActiveAdmin.register Post do
     panel 'Post Details' do
       attributes_table_for post do
         row :image do |post|
-          image_tag(post.upload_file.img_name.url(:thumb))
+          unless post.upload_file.blank?
+            image_tag(post.upload_file.img_name.url(:thumb))
+          end
         end
         row :title
         row :description
@@ -35,13 +39,12 @@ ActiveAdmin.register Post do
           category.categories.collect(&:name).join(', ')
         end
         row :author do |post|
-          link_to post.admin.email, post.admin
+          link_to post.admin.email, admin_admin_user_path(post.admin)
         end
         row :slug
         row :created_at
       end
     end
-    active_admin_comments
   end
 
   form :html => {:enctype => "multipart/form-data" } do |f|
@@ -52,7 +55,7 @@ ActiveAdmin.register Post do
       f.input :tag_list, :hint => 'Comma separated'
       f.input :categories, as: :check_boxes
       f.inputs :for => :upload_file do |file|
-        file.input :img_name, :as => :file, :label => 'Image', :hint => file.template.image_tag(file.object.img_name.url, :width => 70, :height => 70)
+        file.input :img_name, :as => :file, :hint => file.object.img_name.nil? ? f.template.content_tag(:span, "no map yet") : file.template.image_tag(file.object.img_name.url(:thumb))
         file.input :remote_img_name_url, :as => :url
       end
     end
@@ -67,7 +70,7 @@ ActiveAdmin.register Post do
       if @post.save
         redirect_to admin_post_url(@post), notice: 'Post was successfully created.'
       else
-        render :new
+        render :new, notice: 'Error has occurred while creating.'
       end
     end
 
@@ -87,7 +90,8 @@ ActiveAdmin.register Post do
 
     private
     def post_params
-      params.require(:post).permit(:title, :description, :tag_list, :category_ids => [], upload_file_attributes: [:img_name, :remote_img_name_url])
+      params.require(:post).permit(:title, :description, :tag_list, :category_ids => [], upload_file_attributes: [:img_name, :remote_img_name_url, :id])
     end
   end
+
 end

@@ -49,7 +49,7 @@ ActiveAdmin.register User do
 
     private
     def user_params
-      params.require(:user).permit(:email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :phone, :skype, upload_files_attributes: [:filename, :id])
+      params.require(:user).permit(:email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :phone, :skype, upload_files_attributes: [:img_name, :id])
     end
   end
 end

@@ -2,8 +2,6 @@ require 'minitest_helper'
 
 describe HomeController do
 
-  ApplicationController.skip_before_filter :assign_gon_properties
-
   describe 'GET #index' do
 
     before do
@@ -14,7 +12,7 @@ describe HomeController do
 
       4.times do
         FactoryGirl.create(:job)
-        FactoryGirl.create(:post, admin_id: FactoryGirl.create(:admin_user).id, :upload_files => [FactoryGirl.create(:upload_file)])
+        FactoryGirl.create(:post, admin_id: FactoryGirl.create(:admin_user).id, :upload_file => FactoryGirl.create(:upload_file))
       end
 
     end

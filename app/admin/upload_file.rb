@@ -14,19 +14,24 @@ ActiveAdmin.register UploadFile do
       upload_file.img_name.to_s.rpartition('/')[2]
     end
     column :fileable_type
-    column :name do |upload_file|
+    column :link do |upload_file|
       case upload_file.fileable_type.to_s
         when Post.to_s
           link_to upload_file.fileable.title, admin_post_path(upload_file.fileable)
         when Project.to_s
-          link_to upload_file.fileable.name , admin_project_path(upload_file.fileable)
+          link_to upload_file.fileable.name, admin_project_path(upload_file.fileable)
         when Service.to_s
-          link_to upload_file.fileable.name , admin_project_path(upload_file.fileable)
+          link_to upload_file.fileable.name, admin_service_path(upload_file.fileable)
+        when Technology.to_s
+          link_to upload_file.fileable.name, admin_technology_path(upload_file.fileable)
+        when AdminUser.to_s
+          link_to upload_file.fileable.email, admin_admin_user_path(upload_file.fileable)
+        when User.to_s
+          link_to upload_file.fileable.email, admin_user_path(upload_file.fileable)
         else
           'File is not assigned to any model'
       end
     end
-    default_actions
   end
 
   form :html => {:enctype => 'multipart/form-data' } do |f|
@@ -40,6 +45,7 @@ ActiveAdmin.register UploadFile do
   end
 
   controller do
+
     def create
       @upload_file = UploadFile.new(file_params)
       if @upload_file.save
@@ -53,18 +59,19 @@ ActiveAdmin.register UploadFile do
       @upload_file = UploadFile.new(:fileable_type => 'UploadFile')
     end
 
-    def update
-      @upload_file = UploadFile.find(params[:id])
-      if @upload_file.update(file_params)
-        redirect_to admin_upload_file_url(@post), notice: 'Post was successfully updated.'
-      else
-        render :edit, notice: 'Error has occurred while updating.'
-      end
-    end
+    #def update
+    #  @upload_file = UploadFile.find(params[:id])
+    #  if @upload_file.update(file_params)
+    #    redirect_to admin_upload_file_url(@post), notice: 'Post was successfully updated.'
+    #  else
+    #    render :edit, notice: 'Error has occurred while updating.'
+    #  end
+    #end
 
     private
     def file_params
-      params.require(:upload_file).permit(:fileable_type, :remote_img_name_url, :img_name,:filename, :id)
+      params.require(:upload_file).permit(:fileable_type, :remote_img_name_url, :img_name, :filename, :id)
     end
   end
+
 end

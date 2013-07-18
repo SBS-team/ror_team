@@ -9,5 +9,6 @@
 #= require additional-methods
 #= require extra_validations
 #= require messages
+#= require turbolinks
 
 $('.carousel').carousel()

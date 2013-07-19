@@ -24,7 +24,30 @@ function showMessage(type) {
 
     }
 }
+
 ready = function () {
+
+    $(document).ajaxSuccess(function(event, response, settings)  {                             // Вывод
+        if (response.responseText.comment_error) {
+            $('.error.message').css('top', '0px')                                                  // ошибок
+            console.log(response.responseJSON.comment_error)                                       // в
+            error = (response.responseJSON.comment_error)                                          // попап
+            $('.error.message').append('<h3>You comment cant be saved</h3>');                      // трэй
+                                                                                                   //
+            $.each( error, function( key, value ) {                                                //
+                $('.error.message').append( key + ": " + value + "<br>");                          //
+            });
+        }
+        if (response.responseJSON.comment_error) {
+            error = (response.responseJSON.comment_error)                                          // попап
+            $('.error.message').append('<h3>You comment cant be saved</h3>');                      // трэй
+            //
+            $.each( error, function( key, value ) {                                                //
+                $('.error.message').append( key + ": " + value + "<br>");                          //
+            });
+        }
+    });                                                                                        //
+
     hideAllMessages();  // Изначально скрываем все
 
     for(var i = 0; i < myMessages.length; i++)
@@ -45,6 +68,6 @@ ready = function () {
 
 }
 
-$(document).ready(ready)
+//$(document).ready(ready)
 $(document).on('page:load', ready);
 

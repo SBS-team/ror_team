@@ -11,9 +11,11 @@
 #= require messages
 
 $(document).on 'page:fetch', ->
-  $('.container').fadeOut 'slow'
+  $('body').fadeOut 'slow'
+  $('body').css('cursor','progress')
 
-$(document).on 'page:restore', ->
-  $('.container').fadeIn 'slow'
+$(document).on 'page:receive', ->
+  $('body').fadeIn 'slow'
+  $('body').css('cursor','default')
 
 $('.carousel').carousel()

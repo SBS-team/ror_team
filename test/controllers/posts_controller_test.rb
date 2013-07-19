@@ -73,7 +73,7 @@ describe PostsController do
 
     it 'rendering' do
       post = FactoryGirl.create(:post, :admin_id => @admin.id, :upload_file => FactoryGirl.create(:upload_file))
-      get :show, id: post
+      get :show, created: post.created_at.strftime('%d_%m_%Y') , id: post
       assert_template :show
       assert_template layout: "layouts/application"
     end
@@ -87,7 +87,7 @@ describe PostsController do
       post.comments << comment1
       post.comments << comment2
 
-      get :show, id: post
+      get :show, created: post.created_at.strftime('%d_%m_%Y') , id: post
       refute_nil assigns(:post)
       refute_nil assigns(:comments)
 
@@ -102,7 +102,7 @@ describe PostsController do
         posts << post
       end
 
-      get :show, id: posts[0]
+      get :show, created: posts[0].created_at.strftime('%d_%m_%Y') , id: posts[0]
       refute_nil assigns(:recent_posts)
       assert_includes(assigns(:recent_posts), posts[5])
       assert_includes(assigns(:recent_posts), posts[4])
@@ -130,7 +130,7 @@ describe PostsController do
       post2.save
       post3.save
 
-      get :show, id: post2
+      get :show, created: post2.created_at.strftime('%d_%m_%Y') , id: post2
 
       refute_nil assigns(:popular_posts)
       pop_posts = assigns(:popular_posts)
@@ -142,8 +142,11 @@ describe PostsController do
 
   describe 'side_bar; all actions' do
     it 'show all categories' do
+      post = FactoryGirl.create(:post, :admin_id => @admin.id, :upload_file => FactoryGirl.create(:upload_file))
       cat1 = FactoryGirl.create(:category)
       cat2 = FactoryGirl.create(:category)
+      post.categories << cat1 << cat2
+      post.save
 
       get :index
       refute_nil assigns(:categories)

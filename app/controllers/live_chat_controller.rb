@@ -15,22 +15,16 @@ class LiveChatController < ApplicationController
 
     unless params[:message].blank?
       message = ChatMessage.new
-      message.body="qwqw"
-      message.is_admin=false
-      message.live_chat_id=20
-      message.save
-      render text: "XX: #{message}"
-      #@live_chat = LiveChat.new(live_chat_params)
-      #if @live_chat.save
-      #  message.live_chat = @live_chat
-      #  message.is_admin = false
-      #  render text: message
-      #  message.save
-      #
-      #  #redirect_to live_chat_path(@live_chat)
-      #else
-      #  render text: "error!"
-      #end
+      message.body = params[:message]
+      message.is_admin = false
+      @live_chat = LiveChat.new(live_chat_params)
+      if @live_chat.save
+        message.live_chat = @live_chat
+        message.save
+        redirect_to live_chat_path(@live_chat)
+      else
+        render text: "error!"
+      end
     else
       render text:"Invalid Message"
     end

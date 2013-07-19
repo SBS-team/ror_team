@@ -45,14 +45,13 @@ describe Resume do
     it "validate upload_file can't pdf or doc" do
       resume = FactoryGirl.build(:resume)
       resume.description = ''
-      resume.upload_files = [FactoryGirl.create(:upload_file)]
-      resume.valid?
-      resume.errors[:upload_files].must_include "not doc, pdf types"
+      resume.upload_files = [FactoryGirl.build(:upload_file, :filename => File.open(File.join(Rails.root, 'test', 'factories', 'files', 'image.png')))]
+      resume.valid?.must_equal false
     end
     it "validate upload_file can't pdf or doc" do
       resume = FactoryGirl.build(:resume)
       resume.description = ''
-      resume.upload_files = [FactoryGirl.create(:upload_file, :filename => Rack::Test::UploadedFile.new(File.join(Rails.root, 'test', 'factories', 'files', '1.doc')))]
+      resume.upload_files = [FactoryGirl.create(:upload_file)]
       resume.valid?.must_equal true
     end
   end

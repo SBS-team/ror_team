@@ -4,7 +4,7 @@
   .bl_content
     - @last_posts.each do |last_post|
       .post
-        - unless last_post.upload_file.blank?
+        - unless last_post.upload_file.blank? || last_post.upload_file.img_name.blank?
           = image_tag last_post.upload_file.img_name.url, width: 50, height: 50, alt: 'image'
         - else
           = image_tag 'missing.png', width: 50, height: 50
@@ -19,7 +19,10 @@
   .bl_content
     - @last_jobs.each do |last_job|
       .job
-        = image_tag 'missing.png', width: 50, height: 50
+        - unless last_job.upload_file.blank? || last_job.upload_file.img_name.blank?
+          = image_tag last_job.upload_file.img_name.url, width: 50, height: 50, alt: 'image'
+        - else
+          = image_tag 'missing.png', width: 50, height: 50
         .title
           = link_to last_job.title, last_job
         .resume.text-right

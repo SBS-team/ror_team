@@ -95,3 +95,33 @@
   height:50px;
   width:15%
 }
+
+.comment_nick, .comment_img {
+  float: left;
+}
+
+.comment_nick {
+  margin-left: 10px;
+}
+
+.comment_time {
+  float:right;
+}
+
+.comment_email {
+  margin-left: 50px;
+}
+
+blockquote:nth-child(odd) {
+  border-radius: 0 7px 7px 0;
+  background-color: rgba(216, 216, 216, 0.16);
+}
+
+blockquote {
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  padding: 10px;
+}
+
+hr {
+  margin-bottom: 0;
+}

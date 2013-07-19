@@ -6,10 +6,29 @@ ActiveAdmin.register Technology do
 
   index do
     selectable_column
+    column :image do |technology|
+      unless technology.upload_file.blank?
+        image_tag(technology.upload_file.img_name.url(:thumb), width: 50, height: 50 )
+      end
+    end
     column :id
     column :name
     column :technology_category
     default_actions
+  end
+
+  show do
+    panel 'Post Details' do
+      attributes_table_for technology do
+        row :image do |technology|
+          unless technology.upload_file.blank?
+            image_tag(technology.upload_file.img_name.url(:thumb))
+          end
+        end
+        row :name
+        row :technology_category
+      end
+    end
   end
 
   form :html => {:enctype => "multipart/form-data" } do |f|
@@ -17,15 +36,20 @@ ActiveAdmin.register Technology do
     f.inputs 'Technology', :multipart => true do
       f.input :name
       f.input :technology_category
-      f.has_many :upload_files do |file|
-        file.input :img_name, :as => :file, :label => 'Image', :hint => file.template.image_tag(file.object.img_name.url(:thumb))
-        file.input :id, :as => :hidden
+      f.inputs :for => :upload_file do |file|
+        file.input :img_name, :as => :file, :hint => file.object.img_name.nil? ? f.template.content_tag(:span, "no map yet") : file.template.image_tag(file.object.img_name.url(:thumb))
+        file.input :remote_img_name_url, :as => :url
       end
     end
     f.actions
   end
 
   controller do
+
+    def new
+      @technology = Technology.new
+      @technology.upload_file = UploadFile.new
+    end
 
     def create
       tech_cat = TechnologyCategory.find(params[:technology][:technology_category_id])
@@ -47,7 +71,7 @@ ActiveAdmin.register Technology do
 
     private
     def safe_params
-      params.require(:technology).permit(:name, :technology_category_id, upload_files_attributes: [:img_name, :id])
+      params.require(:technology).permit(:name, :technology_category_id, upload_file_attributes: [:img_name, :id])
     end
   end
 

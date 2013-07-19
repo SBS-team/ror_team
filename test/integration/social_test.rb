@@ -1,14 +1,13 @@
 require 'minitest_helper'
 include Warden::Test::Helpers
 Warden.test_mode!
-ApplicationController.skip_before_filter :assign_gon_properties
 
 describe ViewTest do
 
   before do
 
     @admin = FactoryGirl.create(:admin_user)
-    FactoryGirl.create(:post, :admin_id => @admin.id, :upload_files => [FactoryGirl.create(:upload_file)])
+    FactoryGirl.create(:post, :admin_id => @admin.id, :upload_file => FactoryGirl.create(:upload_file))
     FactoryGirl.create(:category)
 
   end

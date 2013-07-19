@@ -9,7 +9,8 @@
       .post_top
         .post_img
           .img
-            - if !@post.upload_file.blank?
+
+            - unless @post.upload_file.blank? || @post.upload_file.img_name.blank?
               = image_tag @post.upload_file.img_name.url(:thumb)
             - else
               = image_tag 'missing.png'
@@ -33,26 +34,41 @@
           = t '.tags'
           - @post.tag_counts_on(:tags).each do |tag|
             = link_to tag.name, posts_path(:tag_name => tag.name), :class => 'btn'
-    .comments
-      %a{name: 'comments'}
-      - @comments.each do |comment|
-        %b
-          - if comment.commentable.respond_to? :image
-            = image_tag comment.commentable.image, :class=>'img-rounded'
-          - if comment.commentable.respond_to? :nickname
-            = comment.commentable.nickname
-        %small
-          = comment.commentable.email
-          %br
+
+    .comments_block
+      .comments
+        %a{name: 'comments'}
+        - @comments.each do |comment|
+          %blockquote
             %b
-              = comment.description
+              - if comment.commentable.respond_to? :image
+                = image_tag comment.commentable.image, :class=>'img-rounded comment_img'
+              %span.comment_nick
+                - if comment.commentable.respond_to? :nickname
+                  = comment.commentable.nickname
+            %br
+            %small.comment_email
+              = comment.commentable.email
+            %br
+              %b
+                = comment.description.capitalize
+            %span.comment_time
+              %small
+                = time_ago_in_words comment.created_at
+                = 'ago'
+            %hr
       = paginate @comments
-    %h2
+
+    %h4
       = t '.new_comment'
-      = form_for [@post, Comment.new], :html => {:class => 'form-inline'} do |f|
+      = form_for [@post, Comment.new], :html => {:class => 'form-inline'}, :remote => true do |f|
         .input-append
-          = f.text_area :description, style: 'height:39px; width:650px', :placeholder => t('.write_comment')
-          = f.submit t('.add_comment'), class: 'btn', style: 'height:50px;'
+
+          -if user_signed_in?                                       #  display user image
+            = image_tag current_user.image, :class=>'img-rounded'   #  near the add comment input
+
+          = f.text_area :description, style: 'height:39px; width:600px', :placeholder => t('.write_comment')
+          = f.submit t('.add_comment'), class: 'btn', style: 'height:50px;', :id => 'go_comment'
           %br
           = link_to '/auth/twitter', :class => 'twitter' do
             = image_tag 'authbuttons/twitter_32.png', :size => '32x32', :alt => 'Twitter'
@@ -60,6 +76,7 @@
             = image_tag 'authbuttons/facebook_32.png', :size => '32x32', :alt => 'Facebook'
           = link_to '/auth/vkontakte', :class => 'vkontakte' do
             = image_tag 'authbuttons/vk_32.png', :size => '32x32', :alt => 'Vkontakte'
+
     .span4
       .recent_posts
         %h3

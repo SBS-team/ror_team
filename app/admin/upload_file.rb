@@ -28,6 +28,8 @@ ActiveAdmin.register UploadFile do
           link_to upload_file.fileable.email, admin_admin_user_path(upload_file.fileable)
         when User.to_s
           link_to upload_file.fileable.email, admin_user_path(upload_file.fileable)
+        when Job.to_s
+          link_to upload_file.fileable.title, admin_job_path(upload_file.fileable)
         else
           'File is not assigned to any model'
       end
@@ -57,15 +59,6 @@ ActiveAdmin.register UploadFile do
 
     def new
       @upload_file = UploadFile.new(:fileable_type => 'UploadFile')
-    end
-
-    def update
-      @upload_file = UploadFile.find(params[:id])
-      if @upload_file.update(file_params)
-        redirect_to admin_upload_file_url(@post), notice: 'Post was successfully updated.'
-      else
-        render :edit, notice: 'Error has occurred while updating.'
-      end
     end
 
     private

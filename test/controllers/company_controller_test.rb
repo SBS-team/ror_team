@@ -2,8 +2,6 @@ require 'minitest_helper'
 
 describe CompanyController do
 
-  ApplicationController.skip_before_filter :assign_gon_properties
-
   before :each do
     @services = Array.new
     @tech_cats = Array.new

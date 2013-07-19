@@ -17,8 +17,9 @@
               - else
                 .item
                   = image_tag file.img_name.url
-          = link_to '‹', "#myCarousel#{project.id}", 'data-slide' => 'prev', :class => 'carousel-control left'
-          = link_to '›', "#myCarousel#{project.id}", 'data-slide' => 'next', :class => 'carousel-control right'
+          - if project.upload_files.count > 1
+            = link_to '‹', "#myCarousel#{project.id}", 'data-slide' => 'prev', :class => 'carousel-control left'
+            = link_to '›', "#myCarousel#{project.id}", 'data-slide' => 'next', :class => 'carousel-control right'
       .text.project-descr
         = project.description
     .span6

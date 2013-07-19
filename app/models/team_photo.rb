@@ -8,4 +8,5 @@ class TeamPhoto < ActiveRecord::Base
             :length => { :in => 5..100 }
   validates :upload_files,
             :presence => true
+
 end

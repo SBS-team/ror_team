@@ -1,5 +1,8 @@
 .team-member
-  = image_tag(@team.upload_files.first.img_name, :class => 'img-polaroid')
+  - unless @team.upload_files.blank? || @team.upload_files.first.img_name.blank?
+    = image_tag @team.upload_files.first.img_name.url(:thumb), :class => 'img-polaroid'
+  - else
+    = image_tag 'missing.png'
   .member-name
     %span
     %p.lead
@@ -8,14 +11,15 @@
   .about
     %p
       = @team.about
-
 .fullteam
   - @fullteam.each do |team_member|
-    = link_to team_path(team_member), :id => "pic#{team_member.id}" do
-      = image_tag(team_member.upload_files.first.img_name.url(:thumb), :class => 'img-rounded', :width => 100)
-
+    - unless @team.id == team_member.id
+      = link_to team_path(team_member), :id => "pic#{team_member.id}" do
+        - unless team_member.upload_files.blank? || team_member.upload_files.first.img_name.blank?
+          = image_tag team_member.upload_files.first.img_name, :class => 'img-rounded', :width => 100
+        - else
+          = image_tag 'missing.png', :width => 70
 .span6
   = link_to 'Back', team_index_path
-
 .row
   = render :partial => 'shared/post_jobs'

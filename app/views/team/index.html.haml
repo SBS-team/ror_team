@@ -3,7 +3,7 @@
     - @team.each do |member|
       .team-member
         - unless member.upload_files.blank? || member.upload_files.first.img_name.blank?
-          = image_tag(member.upload_files.first.img_name, :class => 'img-circle', :height => 150, :width => 150)
+          = image_tag member.upload_files.first.img_name.url(:thumb), :class => 'img-circle'
         - else
           = image_tag 'missing.png'
         .member-name

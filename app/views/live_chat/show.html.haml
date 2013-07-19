@@ -1,9 +1,0 @@
-%h1
-  LiveChat
-%div
-  = label_tag "Manager: #{@live_chat.admin_user.email}"
-  .chat-history
-  .chat-msg
-    = label_tag  'Your message*:'
-    = text_area_tag :message
-  = button_tag 'Send Message'

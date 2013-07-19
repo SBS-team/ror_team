@@ -1,0 +1,14 @@
+%h1
+  LiveChat
+%div
+  = label_tag "Manager: #{@live_chat.admin_user.email}"
+  .chat-history
+    - @live_chat.chat_messages.each do |msg|
+      .msg
+        = msg.body
+  .chat-msg
+    = label_tag  'Your message*:'
+    = text_area_tag :message
+  = button_to 'Send Message', live_chat_path(@live_chat), method: :get
+%div
+  = label_tag "params:  #{@p.to_s}"

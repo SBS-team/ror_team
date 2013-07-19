@@ -1,12 +1,12 @@
-class LiveChatController < ApplicationController
+class LiveChatsController < ApplicationController
   def new
     @admins = AdminUser.select(:id, :email).where(role: 'admin').order('random()')                 #add  .select(status)   .where(status: 'online')
     #@admins = {}
     if @admins.blank?
-      render 'live_chat/sorry', layout: false
+      render 'live_chats/sorry', layout: false
     else
       @live_chat = LiveChat.new
-      render 'live_chat/new', layout: 'chat_layout'
+      render 'live_chats/new', layout: 'chat_layout'
     end
   end
 
@@ -32,8 +32,9 @@ class LiveChatController < ApplicationController
   end
 
   def show
-    @live_chat = LiveChat.where("id = :chat_id", chat_id: (params[:id]).to_i).includes(:chat_messages, :admin_user).take #.limit(1)#find(params[:id]) #
-    render 'live_chat/show', layout: 'chat_layout'
+#    @live_chat = LiveChat.where("id = :chat_id", chat_id: (params[:id]).to_i).includes(:chat_messages, :admin_user).take #.limit(1)#find(params[:id]) #
+#    @p = params
+    render 'live_chats/show', layout: 'chat_layout'
   end
 
   def live_chat_params

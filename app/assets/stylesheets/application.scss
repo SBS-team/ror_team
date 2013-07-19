@@ -45,6 +45,14 @@ header nav ul {
   margin: 5px 5px 5px 5px;
 }
 
+header nav li.active {
+  background: #08c;
+}
+
+header nav li.active a {
+  color: #fff;
+}
+
 header .chat {
   position: absolute;
   right: 10px;

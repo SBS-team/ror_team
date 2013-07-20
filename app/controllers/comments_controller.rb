@@ -21,19 +21,12 @@ class CommentsController < ApplicationController
       current_user ? @comment = current_user.comments.build(comment_params) : @comment = @user.comments.build(comment_params)
       @comment.post_id = @post.id
 
-      #if @comment.invalid?
-      #  @comment_errors = @comment.errors.messages
-      #  flash[:error] = @comment_errors
-      #end
-
-
-
       respond_to do |format|
         if @comment.save
-          format.js   {}
-          format.json { render json: @comment, status: :created, location: @post }
+          format.json { render json: {:comment => @comment,  stat:  'succ',  :location => @post }}
+          #format.json { render json: @comment, status: :created, location: @post }
         elsif @comment.invalid?
-          format.json { render json: { comment_error: @comment.errors.messages, status: :unprocessable_entity } }
+          format.json { render json: { comment_error: @comment.errors.messages, stat: 'error' } }
         end
       end
   end

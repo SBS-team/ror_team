@@ -27,26 +27,50 @@ function showMessage(type) {
 
 ready = function () {
 
-    $(document).ajaxSuccess(function(event, response, settings)  {                             // Вывод
-        if (response.responseText.comment_error) {
-            $('.error.message').css('top', '0px')                                                  // ошибок
-            console.log(response.responseJSON.comment_error)                                       // в
-            error = (response.responseJSON.comment_error)                                          // попап
-            $('.error.message').append('<h3>You comment cant be saved</h3>');                      // трэй
-                                                                                                   //
-            $.each( error, function( key, value ) {                                                //
-                $('.error.message').append( key + ": " + value + "<br>");                          //
-            });
+    $(document).ajaxSuccess(function(event, response, settings)  {
+
+        console.log(response)
+
+        if (response.responseJSON.stat == 'succ'){
+            $('.success.message h3').remove();
+
+//            if ( $('.success.message h3').text() !==''){
+
+                $('.success.message').append('<h3>Your comment was successfuly created!</h3>');
+                $('.success.message').animate({top: '0'}, 500);
+//            }
+
         }
-        if (response.responseJSON.comment_error) {
-            error = (response.responseJSON.comment_error)                                          // попап
-            $('.error.message').append('<h3>You comment cant be saved</h3>');                      // трэй
-            //
-            $.each( error, function( key, value ) {                                                //
-                $('.error.message').append( key + ": " + value + "<br>");                          //
+        console.log(response);
+        if (response.responseJSON.stat == 'error') {
+
+            $('.error.message').css({
+                "top": "0px",
+                "display": "none"
+            })
+
+            error = (response.responseJSON.comment_error);
+            $('.error.message').text('')
+            $('.error.message').append('<h3>You comment cant be saved</h3>');
+
+            $.each( error, function( key, value ) {
+
+                $('.error.message').append( key + ": " + value + "<br>");
+                $('.error.message').css('display', 'block');
             });
+            ;
         }
-    });                                                                                        //
+
+//        if (response.responseJSON.comment_error) {
+//            error = (response.responseJSON.comment_error)
+//            $('.error.message').append('<h3>You comment cant be saved</h3>');
+//            $.each( error, function( key, value ) {
+//                $('.error.message').css("display", "block");//
+//                $('.error.message').append( key + ": " + value + "<br>");
+//            });
+//        }
+
+    });
 
     hideAllMessages();  // Изначально скрываем все
 
@@ -58,6 +82,9 @@ ready = function () {
     // Когда пользователь нажимает на сообщение, скрываем его
     $('.message').click(function(event){
         $(this).animate({top: -$(this).outerHeight()}, 500);
+        $('.success.message h3').remove();
+        $('.error.message h3').remove();
+        $('.error.message h3').html('');
     });
 
     // Скрываем сообщение SUCCESS после 3.5 секунд

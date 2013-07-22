@@ -37,6 +37,10 @@ class DeviseCreateUsers < ActiveRecord::Migration
       t.string :last_name, limit: 70
       t.string :phone, limit: 70
       t.string :skype, limit: 70
+      t.string :nickname
+      t.string :uid
+      t.string :provider
+      t.string :image
 
       t.timestamps
     end

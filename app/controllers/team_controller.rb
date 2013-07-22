@@ -6,7 +6,7 @@ class TeamController < ApplicationController
     unless params[:role].blank?
       @team = AdminUser.where("role = :role", :role => params[:role]).page(params[:page]).per(5)
     else
-      @team = AdminUser.where.not(:role => 'admin').page(params[:page]).per(5)
+      @team = AdminUser.where.not(:role => 'admin').order('role').page(params[:page]).per(5)
     end
     @team_photo = TeamPhoto.order('random()').take
   end

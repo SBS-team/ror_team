@@ -4,7 +4,7 @@ class JobsController < ApplicationController
 
   def index
     @resume = Resume.new
-    @jobs = Job.page(params[:page]).per(3)
+    @jobs = Job.order('created_at DESC').page(params[:page]).per(3)
     @all_jobs_for_select = Job.select(:id, :title)
   end
 

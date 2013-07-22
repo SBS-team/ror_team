@@ -31,6 +31,7 @@ ActiveAdmin.register TeamPhoto do
       f.input :title
       f.has_many :upload_files do |file|
         file.input :img_name, :as => :file, :hint => file.object.img_name.nil? ? f.template.content_tag(:span, "no map yet") : file.template.image_tag(file.object.img_name.url(:thumb))
+        file.input :_destroy, :as=>:boolean, :required => false, :label=>'Remove'
       end
     end
     f.actions

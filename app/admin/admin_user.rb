@@ -19,18 +19,10 @@ ActiveAdmin.register AdminUser do
       f.input :password_confirmation
       f.input :role ,:as => :select, :collection =>{'Admin'=>:admin,'Manager'=>:manager,'Team lead'=>:team_lead,'Team'=>:team } ,:selected=>f.object.role,:include_blank=>false
       f.input :about ,:as => :text
-
-      f.has_many :upload_files do |file|
-        if params[:upload_files_attributes].blank?
-          file.input :img_name, :class=> 'fileupload', :as => :file, :label => 'Image'
-        else
-          file.template.image_tag(file.object.img_name.url, :width => 200, :height => 200)
-        end
-          file.input :id, :as => :hidden
+      f.inputs :for => [:upload_file, f.object.upload_file || UploadFile.new] do |file|
+        file.input :img_name, :as => :file, :hint => file.object.img_name.nil? ? file.template.content_tag(:span, "no map yet") : file.template.image_tag(file.object.img_name.url(:thumb))
+        file.input :remote_img_name_url, :as => :url
       end
-      # Политика безопасности рельсов не дает увидеть ранее загруженный файл после повторного рендера формы
-      #<input id="fileupload" type="file" name="files[]" data-url="server/php/" multiple>
-      # Так что я не знаю как зделать что бы при едите чего либо подружалась ранее загруженная пикча((
     end
     f.actions
   end
@@ -60,7 +52,7 @@ ActiveAdmin.register AdminUser do
 
     private
     def admin_user_params
-      params.require(:admin_user).permit(:first_name, :last_name, :email,:role,:about,:password, :password_confirmation,:last_sign_in_at, upload_files_attributes: [:img_name, :id])
+      params.require(:admin_user).permit(:first_name, :last_name, :email,:role,:about,:password, :password_confirmation,:last_sign_in_at, upload_file_attributes: [:img_name, :id])
     end
   end
   end

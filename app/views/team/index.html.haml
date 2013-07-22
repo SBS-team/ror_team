@@ -2,8 +2,8 @@
   .span6.team-members
     - @team.each do |member|
       .team-member
-        - unless member.upload_files.blank? || member.upload_files.first.img_name.blank?
-          = image_tag member.upload_files.first.img_name.url(:thumb), :class => 'img-circle'
+        - unless member.upload_file.blank? || member.upload_file.img_name.blank?
+          = image_tag member.upload_file.img_name.url(:thumb), :class => 'img-circle'
         - else
           = image_tag 'missing.png'
         .member-name
@@ -35,8 +35,9 @@
               - else
                 .item
                   = image_tag file.img_name.url
-          = link_to '‹', "#myCarousel#{@team_photo.id}", 'data-slide' => 'prev', :class => 'carousel-control left'
-          = link_to '›', "#myCarousel#{@team_photo.id}", 'data-slide' => 'next', :class => 'carousel-control right'
+          - if @team_photo.upload_files.count > 1
+            = link_to '‹', "#myCarousel#{@team_photo.id}", 'data-slide' => 'prev', :class => 'carousel-control left'
+            = link_to '›', "#myCarousel#{@team_photo.id}", 'data-slide' => 'next', :class => 'carousel-control right'
     .about-team
       %h3
         = t '.our_command'

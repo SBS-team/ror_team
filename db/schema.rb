@@ -39,12 +39,12 @@ ActiveRecord::Schema.define(version: 20130719120153) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at"
-    t.datetime "updated_at"
     t.string   "role"
     t.text     "about"
     t.string   "first_name"
     t.string   "last_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
@@ -96,10 +96,9 @@ ActiveRecord::Schema.define(version: 20130719120153) do
     t.string   "title"
     t.text     "description"
     t.integer  "admin_id"
+    t.integer  "comments_count", default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "comments_count", default: 0
-    t.string   "url"
     t.string   "slug"
   end
 
@@ -114,9 +113,9 @@ ActiveRecord::Schema.define(version: 20130719120153) do
 
   create_table "project_technology_categories", force: true do |t|
     t.integer  "project_id"
+    t.integer  "technology_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "technology_id"
   end
 
   create_table "projects", force: true do |t|
@@ -124,20 +123,20 @@ ActiveRecord::Schema.define(version: 20130719120153) do
     t.text     "description"
     t.date     "since"
     t.integer  "team_size"
-    t.datetime "created_at"
-    t.datetime "updated_at"
     t.date     "till"
     t.string   "url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "resumes", force: true do |t|
     t.text     "description"
     t.integer  "job_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
     t.string   "name"
     t.string   "email"
     t.string   "phone"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "services", force: true do |t|
@@ -160,7 +159,7 @@ ActiveRecord::Schema.define(version: 20130719120153) do
   add_index "taggings", ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context", using: :btree
 
   create_table "tags", force: true do |t|
-    t.string "name"
+    t.string "name", limit: 40
   end
 
   create_table "team_photos", force: true do |t|
@@ -184,11 +183,11 @@ ActiveRecord::Schema.define(version: 20130719120153) do
 
   create_table "upload_files", force: true do |t|
     t.string   "filename"
+    t.string   "img_name"
     t.integer  "fileable_id"
     t.string   "fileable_type"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "img_name"
   end
 
   create_table "users", force: true do |t|
@@ -206,12 +205,12 @@ ActiveRecord::Schema.define(version: 20130719120153) do
     t.string   "last_name",              limit: 70
     t.string   "phone",                  limit: 70
     t.string   "skype",                  limit: 70
-    t.datetime "created_at"
-    t.datetime "updated_at"
     t.string   "nickname"
     t.string   "uid"
     t.string   "provider"
     t.string   "image"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree

@@ -2,8 +2,8 @@
   .span6.team-members
     - @team.each do |member|
       .team-member
-        - unless member.upload_files.blank? || member.upload_files.first.img_name.blank?
-          = image_tag member.upload_files.first.img_name.url(:thumb), :class => 'img-circle'
+        - unless member.upload_file.blank? || member.upload_file.img_name.blank?
+          = image_tag member.upload_file.img_name.url(:thumb), :class => 'img-circle'
         - else
           = image_tag 'missing.png'
         .member-name

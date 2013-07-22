@@ -19,6 +19,7 @@ class JobsController < ApplicationController
     if @resume.save
       redirect_to jobs_path, :notice => 'Your resume is successfully sent.'
     else
+      #render :text =>  @resume.errors.messages
       render 'show'
     end
   end

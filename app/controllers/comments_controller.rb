@@ -23,7 +23,10 @@ class CommentsController < ApplicationController
 
       respond_to do |format|
         if @comment.save
-          format.json { render json: {:comment => @comment,  stat:  'succ',  :location => @post }}
+          #format.js {}   # сука если убрать эту дрянь не вызывается файл добавление коммента а сука если оставить то
+                         # не улетает json и сука хуй обрабатывается коллбек аякса!!!!
+          format.json { render json: {:comment => @comment,  stat:  'succ',  :location => @post } }
+          #format.js {}
           #format.json { render json: @comment, status: :created, location: @post }
         elsif @comment.invalid?
           format.json { render json: { comment_error: @comment.errors.messages, stat: 'error' } }

@@ -9,6 +9,7 @@
 #  created_at     :datetime
 #  updated_at     :datetime
 #  comments_count :integer          default(0)
+#  slug           :string(255)
 #
 
 class Post < ActiveRecord::Base

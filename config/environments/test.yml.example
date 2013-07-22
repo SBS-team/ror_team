@@ -8,14 +8,3 @@ pusher:
   app_id: 1
   app_key: '1c81fd8f32b04884c7ac10a7df682973'
   app_secret: 'bb8d5f8da6d091609da5c11ede8a236a'
-
-API_KEYS:
-  facebook:
-    key: '177826365724897'
-    secret: '42fd4861cb678f4de5e1ed1a8d7153e7'
-  twitter:
-    key: 'WKEMaXYkT7prX2kdCYKyuw'
-    secret: 'GYreNZWU9fNcDWTEE1oWZRPwhVxS5C2UV5wWrm3HQc'
-  vkontakte:
-    key: '3743416'
-    secret: 'KnfpGXxrSEMjh3gkGyWL'

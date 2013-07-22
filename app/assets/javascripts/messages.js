@@ -44,19 +44,22 @@ ready = function () {
         console.log(response);
         if (response.responseJSON.stat == 'error') {
 
-            $('.error.message').css({
-                "top": "0px",
-                "display": "none"
-            })
+//            $('.error.message').css({
+//                "top": "0px",
+//                "display": "none"
+//            })
 
             error = (response.responseJSON.comment_error);
-            $('.error.message').text('')
+//            $('.error.message').text('')
             $('.error.message').append('<h3>You comment cant be saved</h3>');
 
             $.each( error, function( key, value ) {
 
                 $('.error.message').append( key + ": " + value + "<br>");
-                $('.error.message').css('display', 'block');
+                $('.error.message').css({
+                    "top": "0px",
+                    "display": "block"
+                });
             });
             ;
         }

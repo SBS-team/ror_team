@@ -10,7 +10,6 @@
 #  name        :string(255)
 #  email       :string(255)
 #  phone       :string(255)
-#  file        :string(255)
 #
 
 class Resume < ActiveRecord::Base

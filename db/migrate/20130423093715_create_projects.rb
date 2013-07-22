@@ -5,7 +5,8 @@ class CreateProjects < ActiveRecord::Migration
       t.text :description
       t.date :since
       t.integer :team_size
-
+      t.date :till
+      t.string :url
       t.timestamps
     end
   end

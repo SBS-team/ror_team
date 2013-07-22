@@ -8,6 +8,7 @@
 #  fileable_type :string(255)
 #  created_at    :datetime
 #  updated_at    :datetime
+#  img_name      :string(255)
 #
 
 class UploadFile < ActiveRecord::Base

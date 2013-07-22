@@ -9,6 +9,8 @@
 #  created_at     :datetime
 #  updated_at     :datetime
 #  comments_count :integer          default(0)
+#  url            :string(255)
+#  slug           :string(255)
 #
 
 class Post < ActiveRecord::Base

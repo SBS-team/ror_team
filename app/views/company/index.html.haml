@@ -32,8 +32,8 @@
       = t '.service_prode'
   - @services.each do |service|
     .span3.text-center
-      - unless service.upload_files.blank? || service.upload_files.first.img_name.blank?
-        = image_tag service.upload_files.sample.img_name.url(:thumb), title: service.name, alt: service.name
+      - unless service.upload_file.blank? || service.upload_file.img_name.blank?
+        = image_tag service.upload_file.img_name.url(:thumb), title: service.name, alt: service.name
       - else
         = image_tag 'missing.png'
       %h4

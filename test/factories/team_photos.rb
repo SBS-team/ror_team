@@ -2,6 +2,6 @@
 
 FactoryGirl.define do
   factory :team_photo do
-    title "MyString"
+    title 'My Team photo'
   end
 end

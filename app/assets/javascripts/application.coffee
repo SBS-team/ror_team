@@ -19,4 +19,8 @@ $(document).on 'page:receive', ->
   $('body').fadeIn 'slow'
   $('body').css('cursor','default')
 
-$('.carousel').carousel()
+ready = ->
+  $('.carousel').carousel()
+
+$(document).ready(ready)
+$(document).on('page:load', ready)

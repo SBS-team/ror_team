@@ -2,12 +2,11 @@ ActiveAdmin.register Post do
 
   filter :categories
 
-  # Customize columns displayed on the new screen in the table
   index do
     selectable_column
     column :image do |post|
       unless post.upload_file.blank?
-        image_tag(post.upload_file.img_name.url, width: 50, height: 50)
+        image_tag(post.upload_file.img_name.url, height: 30)
       end
     end
     column :title do |post|
@@ -47,16 +46,17 @@ ActiveAdmin.register Post do
     end
   end
 
-  form :html => {:enctype => "multipart/form-data" } do |f|
+  form :html => {:enctype => 'multipart/form-data' } do |f|
     f.semantic_errors :base
-    f.inputs "Post Details", :multipart => true do
+    f.inputs 'Post Details', :multipart => true do
       f.input :title
       f.input :description, as: :html_editor
       f.input :tag_list, :hint => 'Comma separated'
       f.input :categories, as: :check_boxes
-      f.inputs :for => :upload_file do |file|
-        file.input :img_name, :as => :file, :hint => file.object.img_name.nil? ? file.template.content_tag(:span, "no map yet") : file.template.image_tag(file.object.img_name.url(:thumb))
+      f.inputs :for => [:upload_file, f.object.upload_file || UploadFile.new] do |file|
+        file.input :img_name, :as => :file, :hint => file.object.img_name.nil? ? file.template.content_tag(:span, 'no map yet') : file.template.image_tag(file.object.img_name.url(:thumb))
         file.input :remote_img_name_url, :as => :url
+        file.input :id, :as => :hidden
       end
     end
     f.actions
@@ -72,11 +72,6 @@ ActiveAdmin.register Post do
       else
         render :new, notice: 'Error has occurred while creating.'
       end
-    end
-
-    def new
-      @post = Post.new
-      @post.upload_file = UploadFile.new
     end
 
     def update

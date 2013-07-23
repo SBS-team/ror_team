@@ -6,7 +6,7 @@ describe CompanyController do
     @services = Array.new
     @tech_cats = Array.new
     3.times do |i|
-      @services[i] = FactoryGirl.create(:service, :upload_files => [FactoryGirl.create(:upload_file)])
+      @services[i] = FactoryGirl.create(:service, :upload_file => FactoryGirl.create(:upload_file))
       @tech_cats[i] = FactoryGirl.create(:technology_category)
     end
   end

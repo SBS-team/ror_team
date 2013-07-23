@@ -2,7 +2,7 @@ require 'minitest_helper'
 
 describe Post do
 
-  subject { Post.new }
+  subject { Post.new(:upload_file => UploadFile.new) }
 
   context 'Post db columns' do
     it { must have_db_column(:title).of_type(:string) }

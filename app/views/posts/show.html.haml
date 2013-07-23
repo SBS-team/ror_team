@@ -3,6 +3,7 @@
     %h3 You are already loged in!
     %p
       = alert
+
 .row
   .span8.posts.main_cont
     .post
@@ -43,6 +44,8 @@
             %b
               - if comment.commentable.respond_to? :image
                 = image_tag comment.commentable.image, :class=>'img-rounded comment_img'
+              - if comment.commentable.image.blank?
+                = image_tag('missing.png', :class=>'img-rounded comment_img', :width => 50, :height => 50)
               %span.comment_nick
                 - if comment.commentable.respond_to? :nickname
                   = comment.commentable.nickname
@@ -61,11 +64,16 @@
 
     %h4
       = t '.new_comment'
-      = form_for [@post, Comment.new], :html => {:class => 'form-inline'}, :remote => true do |f|
+      = form_for [@post, @comment = Comment.create ], :html => {:class => 'form-inline'}, :remote => true do |f|
         .input-append
 
           -if user_signed_in?                                       #  display user image
             = image_tag current_user.image, :class=>'img-rounded'   #  near the add comment input
+          -else
+            %p
+              = f.fields_for :user, (User.new) do |user|
+                = user.text_field :first_name, :placeholder => 'Your name'
+                = user.text_field :email, :placeholder => 'Your email'
 
           = f.text_area :description, style: 'height:39px; width:600px', :placeholder => t('.write_comment')
           = f.submit t('.add_comment'), class: 'btn', style: 'height:50px;', :id => 'go_comment'

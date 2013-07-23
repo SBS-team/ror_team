@@ -45,7 +45,7 @@
 }
 
 .error, .success, .info {
-  position: absolute;
+  position: fixed;
   width: 100%;
   left: 0;
   top: 0;
@@ -75,5 +75,8 @@
   to {
     background-position: -80px 0;
   }
+}
+.send-message{
+  display: block;
 }
 

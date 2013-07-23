@@ -1,9 +1,5 @@
 class CommentsController < ApplicationController
 
-  def initialize
-    @errors = ActiveModel::Errors.new(self)
-  end
-
   def new
     @comment = current_user.comments.new
     @user = User.new
@@ -19,8 +15,7 @@ class CommentsController < ApplicationController
       current_user ? @comment = current_user.comments.build(comment_params) : @comment = @user.comments.build(comment_params)
       @comment.post_id = @post.id
 
-
-      current_user ? image = comment.commentable.image : image = '/assets/missing.png'
+      current_user ? image = @comment.commentable.image : image = '/assets/missing.png'
 
       respond_to do |format|
         if @comment.save

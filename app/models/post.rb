@@ -9,6 +9,7 @@
 #  created_at     :datetime
 #  updated_at     :datetime
 #  comments_count :integer          default(0)
+#  url            :string(255)
 #  slug           :string(255)
 #
 
@@ -33,12 +34,19 @@ class Post < ActiveRecord::Base
   validates :admin_id,
             :presence => true,
             :numericality => { :only_integer => true, :greater_than => 0 }
+  validate :validates_img_name
 
   def self.search_posts_based_on_like(search)
     if search
       where('LOWER(title) LIKE LOWER(:word) OR LOWER(description) LIKE LOWER(:word)', :word=>"%#{search}%")
     else
       all
+    end
+  end
+
+  def validates_img_name
+    if upload_file.img_name.blank?
+      errors.add(:base, "img_name can't be blank")
     end
   end
 

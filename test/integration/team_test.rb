@@ -2,17 +2,16 @@ require 'minitest_helper'
 
 describe ViewTest do
   before do
-      FactoryGirl.create(:admin_user, :upload_files =>[FactoryGirl.create(:upload_file)])
-      FactoryGirl.create(:admin_user, :upload_files =>[FactoryGirl.create(:upload_file)])
-      FactoryGirl.create(:admin_user, :upload_files =>[FactoryGirl.create(:upload_file)])
+      FactoryGirl.create(:admin_user, :upload_file => FactoryGirl.create(:upload_file))
+      FactoryGirl.create(:admin_user, :upload_file => FactoryGirl.create(:upload_file))
+      FactoryGirl.create(:admin_user, :upload_file => FactoryGirl.create(:upload_file))
   end
 
 
   it "check" do
-    visit '/'
+    visit root_path
     click_link 'Team'
     sleep(2)
-
     click_link 'first_name3'
     sleep(1)
     page.find_by_id('pic1').click

@@ -4,7 +4,7 @@ class JobsController < ApplicationController
 
   def index
     @resume = Resume.new
-    @jobs = Job.page(params[:page]).per(3)
+    @jobs = Job.all.order('created_at DESC').page(params[:page]).per(3)
     @all_jobs_for_select = Job.select(:id, :title)
   end
 
@@ -15,19 +15,22 @@ class JobsController < ApplicationController
 
   def create
     @resume = Resume.new(resume_params)
-    @job = Job.find(@resume.job_id)
-    if @resume.save
-      redirect_to jobs_path, :notice => 'Your resume is successfully sent.'
+    unless @resume.job_id.blank?
+      @job = Job.find(@resume.job_id)
+      if @resume.save
+        redirect_to jobs_path, :notice => 'Your resume is successfully sent.'
+      else
+        render 'show'
+      end
     else
-      #render :text =>  @resume.errors.messages
-      render 'show'
+      redirect_to jobs_path, :alert => 'Sorry. No jobs found'
     end
   end
 
 private
 
   def resume_params
-    params.require(:resume).permit(:job_id, :name, :email, :phone, :description, upload_files_attributes: [:filename, :id])
+    params.require(:resume).permit(:job_id, :name, :email, :phone, :description, upload_file_attributes: [:filename, :id])
   end
 
 end

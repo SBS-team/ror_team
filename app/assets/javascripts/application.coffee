@@ -10,9 +10,8 @@
 #= require extra_validations
 #= require messages
 
-$('.carousel').carousel()
+ready = ->
+  $('.carousel').carousel()
 
-
-
-
-
+$(document).ready(ready)
+$(document).on('page:load', ready)

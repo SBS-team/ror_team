@@ -36,9 +36,9 @@ ActiveAdmin.register Technology do
     f.inputs 'Technology', :multipart => true do
       f.input :name
       f.input :technology_category
-      f.inputs :for => :upload_file do |file|
-        file.input :img_name, :as => :file, :label => 'Image', :hint => file.template.image_tag(file.object.img_name.url(:thumb))
-        file.input :id, :as => :hidden
+      f.inputs :for => [:upload_file, f.object.upload_file || UploadFile.new] do |file|
+        file.input :img_name, :as => :file, :hint => file.object.img_name.nil? ? f.template.content_tag(:span, "no map yet") : file.template.image_tag(file.object.img_name.url(:thumb))
+        file.input :remote_img_name_url, :as => :url
       end
     end
     f.actions

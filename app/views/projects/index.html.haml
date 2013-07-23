@@ -4,7 +4,7 @@
       %h2
         = project.name
     .span6
-      - unless project.upload_files.blank?
+      - unless project.upload_files.blank? || project.upload_files.first.img_name.blank?
         .carousel.slide{:id => "myCarousel#{project.id}"}
           %ol.carousel-indicators
             - (project.upload_files.count).times do |i|
@@ -17,8 +17,9 @@
               - else
                 .item
                   = image_tag file.img_name.url
-          = link_to '‹', "#myCarousel#{project.id}", 'data-slide' => 'prev', :class => 'carousel-control left'
-          = link_to '›', "#myCarousel#{project.id}", 'data-slide' => 'next', :class => 'carousel-control right'
+          - if project.upload_files.count > 1
+            = link_to '‹', "#myCarousel#{project.id}", 'data-slide' => 'prev', :class => 'carousel-control left'
+            = link_to '›', "#myCarousel#{project.id}", 'data-slide' => 'next', :class => 'carousel-control right'
       .text.project-descr
         = project.description
     .span6
@@ -48,9 +49,11 @@
         - project.services.each do |service|
           .developer-info.text-center.span2
             .photo
-              - unless service.upload_files.blank?
+              - unless service.upload_file.blank? || service.upload_file.img_name.blank?
                 = link_to(company_index_path) do
-                  = image_tag(service.upload_files.first.img_name.to_s, :class => "img-polaroid")
+                  = image_tag(service.upload_file.img_name.to_s, :class => "img-polaroid")
+              - else
+                = image_tag 'missing.png'
             = link_to "#{service.name}", company_index_path
       - unless project.technologies.blank?
         .tech-info

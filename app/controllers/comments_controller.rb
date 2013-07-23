@@ -1,7 +1,5 @@
 class CommentsController < ApplicationController
 
-  #before_filter :authenticate_user!
-
   def initialize
     @errors = ActiveModel::Errors.new(self)
   end

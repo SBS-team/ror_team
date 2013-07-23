@@ -1,13 +1,44 @@
 ActiveAdmin.register AdminUser do
 
-  filter :role
+  filter :role, :as => :select
 
   index do
     selectable_column
-    column :email
+    column :image do |admin_user|
+      unless admin_user.upload_file.blank?
+        image_tag(admin_user.upload_file.img_name.url(:thumb), height: 30)
+      end
+    end
     column :role
+    column :first_name
+    column :last_name
+    column :email
     column :last_sign_in_at
     default_actions
+  end
+
+  show do
+    panel 'AdminUser Details' do
+      attributes_table_for admin_user do
+        row :role
+        row :image do |admin_user|
+          unless admin_user.upload_file.blank?
+            image_tag(admin_user.upload_file.img_name.url(:thumb))
+          end
+        end
+        row :first_name
+        row :last_name
+        row :email
+        row :about
+        row :sign_in_count
+        row :current_sign_in_at
+        row :current_sign_in_ip
+        row :last_sign_in_at
+        row :last_sign_in_ip
+        row :created_at
+        row :updated_at
+      end
+    end
   end
 
   form do |f|
@@ -19,18 +50,10 @@ ActiveAdmin.register AdminUser do
       f.input :password_confirmation
       f.input :role ,:as => :select, :collection =>{'Admin'=>:admin,'Manager'=>:manager,'Team lead'=>:team_lead,'Team'=>:team } ,:selected=>f.object.role,:include_blank=>false
       f.input :about ,:as => :text
-
-      f.has_many :upload_files do |file|
-        if params[:upload_files_attributes].blank?
-          file.input :img_name, :class=> 'fileupload', :as => :file, :label => 'Image'
-        else
-          file.template.image_tag(file.object.img_name.url, :width => 200, :height => 200)
-        end
-          file.input :id, :as => :hidden
+      f.inputs :for => [:upload_file, f.object.upload_file || UploadFile.new] do |file|
+        file.input :img_name, :as => :file, :hint => file.object.img_name.nil? ? file.template.content_tag(:span, "no map yet") : file.template.image_tag(file.object.img_name.url(:thumb))
+        file.input :remote_img_name_url, :as => :url
       end
-      # Политика безопасности рельсов не дает увидеть ранее загруженный файл после повторного рендера формы
-      #<input id="fileupload" type="file" name="files[]" data-url="server/php/" multiple>
-      # Так что я не знаю как зделать что бы при едите чего либо подружалась ранее загруженная пикча((
     end
     f.actions
   end
@@ -45,10 +68,6 @@ ActiveAdmin.register AdminUser do
       end
     end
 
-    def edit
-      @admin_user = AdminUser.find(params[:id])
-    end
-
     def update
       @admin_user = AdminUser.find(params[:id])
       if @admin_user.update(admin_user_params)
@@ -60,7 +79,7 @@ ActiveAdmin.register AdminUser do
 
     private
     def admin_user_params
-      params.require(:admin_user).permit(:first_name, :last_name, :email,:role,:about,:password, :password_confirmation,:last_sign_in_at, upload_files_attributes: [:img_name, :id])
+      params.require(:admin_user).permit(:first_name, :last_name, :email,:role,:about,:password, :password_confirmation,:last_sign_in_at, upload_file_attributes: [:img_name, :id])
     end
   end
   end

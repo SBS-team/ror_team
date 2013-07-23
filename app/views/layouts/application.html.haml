@@ -1,6 +1,7 @@
 !!!
 %html
   %head
+    = favicon_link_tag
     %title RorTeam
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
@@ -27,18 +28,12 @@
               = link_to 'Logout', auth_destroy_path
           %nav
             %ul.inline
-              %li
-                = link_to(t('.company'), company_index_path)
-              %li
-                = link_to(t('.work'), projects_path)
-              %li
-                = link_to(t('.team'), team_index_path)
-              %li
-                = link_to(t('.careers'), jobs_path)
-              %li
-                = link_to(t('.contact'), contact_index_path)
-              %li
-                = link_to(t('.blog'), posts_path)
+              = nav_link_to(t('.company'), company_index_path, :controller => 'company')
+              = nav_link_to(t('.work'), projects_path, :controller => 'projects')
+              = nav_link_to(t('.team'), team_index_path, :controller => 'team')
+              = nav_link_to(t('.careers'), jobs_path, :controller => 'jobs')
+              = nav_link_to(t('.contact'), contact_index_path, :controller => 'contact')
+              = nav_link_to(t('.blog'), posts_path, :controller => 'posts')
           .chat.span1
             .btn
               = link_to t('.live_chat')

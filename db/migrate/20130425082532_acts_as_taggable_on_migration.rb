@@ -1,12 +1,5 @@
 class ActsAsTaggableOnMigration < ActiveRecord::Migration
   def self.up
-    drop_table :post_tags
-    drop_table :tags
-
-    create_table :tags do |t|
-      t.string :name
-    end
-
     create_table :taggings do |t|
       t.references :tag
 
@@ -28,19 +21,5 @@ class ActsAsTaggableOnMigration < ActiveRecord::Migration
 
   def self.down
     drop_table :taggings
-    drop_table :tags
-
-    create_table :tags do |t|
-      t.string :name, limit: 40
-
-      t.timestamps
-    end
-
-    create_table :post_tags do |t|
-      t.integer :post_id
-      t.integer :tag_id
-
-      t.timestamps
-    end
   end
 end

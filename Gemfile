@@ -9,9 +9,6 @@ gem 'pg'
 #Use pagination
 gem 'kaminari'
 
-#Twice faster links
-gem 'turbolinks'
-
 # Use for upload files
 gem 'carrierwave'
 gem 'rmagick', '~>2.13.2', :require => 'RMagick'

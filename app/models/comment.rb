@@ -12,8 +12,13 @@
 #
 
 class Comment < ActiveRecord::Base
+  belongs_to :user
   belongs_to :post, :counter_cache => true
   belongs_to :commentable, :polymorphic => true
+
+
+
+  accepts_nested_attributes_for :user
 
   validates :description,
             :presence => true,
@@ -27,4 +32,7 @@ class Comment < ActiveRecord::Base
   validates :commentable_type,
             :presence => true,
             :length => { :maximum => 255 }
+
+
+
 end

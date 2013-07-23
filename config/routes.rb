@@ -8,7 +8,7 @@ RorTeam::Application.routes.draw do
   devise_for :users
   get 'blog/:created/:id' => 'posts#show', :as => :special_post
   resources :posts, :path => 'blog', only: [:index] do
-    resources :comments, only: [:new, :create]
+    resources :comments, only: [:new, :create, :user]
   end
   resources :home, only: [:index]
   resources :team, only: [:index, :show]

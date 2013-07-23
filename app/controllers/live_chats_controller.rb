@@ -29,7 +29,7 @@ class LiveChatsController < ApplicationController
         if message.save
           admin_email = @live_chat.admin_user.email
           channel = admin_email.rpartition("@")[0]
-          Pusher[channel].trigger('msg-event', {:message => message.body})
+          Pusher[channel].trigger('msg-event', {:message => message.body, :chat_id => chat.id})
         end
         redirect_to live_chat_path(@live_chat)
       else
@@ -60,7 +60,7 @@ class LiveChatsController < ApplicationController
         chat = LiveChat.find(params[:live_chat_id])
         admin_email = chat.admin_user.email
         channel = admin_email.rpartition("@")[0]
-        Pusher[channel].trigger('msg-event', {:message => message.body})
+        Pusher[channel].trigger('msg-event', {:message => message.body, :chat_id => chat.id})
       end
     end
     redirect_to :back #'/hello/world' #action: :world #'/hello/world'

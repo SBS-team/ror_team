@@ -65,7 +65,7 @@
 
     %h4
       = t '.new_comment'
-      = form_for [@post, @comment = Comment.create ], :html => {:class => 'form-inline' }, :remote => true do |f|
+      = form_for [@post, @comment = Comment.create ], :html => {:class => 'form-inline'}, :remote => true do |f|
         .input-append
 
           -if user_signed_in?                                       #  display user image
@@ -77,7 +77,7 @@
                 = user.text_field :email, :placeholder => 'Your email'
 
           = f.text_area :description, style: 'height:39px; width:600px', :placeholder => t('.write_comment')
-          = f.submit t('.add_comment'), class: 'btn', style: 'height:50px;', :id => 'go_comment', unbind: 'change'
+          = f.submit t('.add_comment'), class: 'btn', style: 'height:50px;', :id => 'go_comment'
           %br
           = link_to '/auth/twitter', :class => 'twitter' do
             = image_tag 'authbuttons/twitter_32.png', :size => '32x32', :alt => 'Twitter'

@@ -1,13 +1,44 @@
 ActiveAdmin.register AdminUser do
 
-  filter :role
+  filter :role, :as => :select
 
   index do
     selectable_column
-    column :email
+    column :image do |admin_user|
+      unless admin_user.upload_file.blank?
+        image_tag(admin_user.upload_file.img_name.url(:thumb), height: 30)
+      end
+    end
     column :role
+    column :first_name
+    column :last_name
+    column :email
     column :last_sign_in_at
     default_actions
+  end
+
+  show do
+    panel 'AdminUser Details' do
+      attributes_table_for admin_user do
+        row :role
+        row :image do |admin_user|
+          unless admin_user.upload_file.blank?
+            image_tag(admin_user.upload_file.img_name.url(:thumb))
+          end
+        end
+        row :first_name
+        row :last_name
+        row :email
+        row :about
+        row :sign_in_count
+        row :current_sign_in_at
+        row :current_sign_in_ip
+        row :last_sign_in_at
+        row :last_sign_in_ip
+        row :created_at
+        row :updated_at
+      end
+    end
   end
 
   form do |f|
@@ -35,10 +66,6 @@ ActiveAdmin.register AdminUser do
       else
        render :new
       end
-    end
-
-    def edit
-      @admin_user = AdminUser.find(params[:id])
     end
 
     def update

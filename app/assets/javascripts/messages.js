@@ -1,6 +1,7 @@
 var myMessages = [ 'error','success'];
 
 function messageTimeOut() {
+    // Это для блоков генерируеммых .append
     // Скрываем сообщение SUCCESS после 3.5 секунд
     setTimeout('$(".success.message").animate({top: -$(this).outerHeight()}, 500)', 3500)
     setTimeout('$(".info.message").animate({top: -$(this).outerHeight()}, 500)', 3500)
@@ -37,8 +38,9 @@ $(document).ready(function(){
                 var comment = response.responseJSON.comment.description;
                 var nickname = response.responseJSON.nickname;
                 var email = response.responseJSON.email;
-                var image = response.responseJSON.image;
-                $('.comments').append('<blockquote><b><img src = ' +image+ ' class = "img-rounded"><span>'+nickname+'</span></b><br><small>'+email+'<br></small><b>'+comment+'</b></blockquote>');
+                var image = response.responseJSON.image
+
+                $('.comments').append('<blockquote><b><img src = ' +image+ ' class = "img-rounded" width = "50" height = "50"><span>'+nickname+'</span></b><br><small>'+email+'<br></small><b>'+comment+'</b></blockquote>');
             }
             messageTimeOut();
         }
@@ -62,6 +64,11 @@ $(document).ready(function(){
     {
         showMessage(myMessages[i]);
     }
+
+    // Скрываем сообщение SUCCESS после 3.5 секунд
+    // Это для блоков написаных в верстке
+    setTimeout('$(".success.message").animate({top: -$(this).outerHeight()}, 500)', 3500)
+    setTimeout('$(".info.message").animate({top: -$(this).outerHeight()}, 500)', 3500)
 
     // Когда пользователь нажимает на сообщение, скрываем его и очищаем содержимое блока
     $('body').on("click", '.message', function(){

@@ -21,9 +21,12 @@ class CommentsController < ApplicationController
       current_user ? @comment = current_user.comments.build(comment_params) : @comment = @user.comments.build(comment_params)
       @comment.post_id = @post.id
 
+
+      current_user ? image = comment.commentable.image : image = '/assets/missing.png'
+
       respond_to do |format|
         if @comment.save
-          format.json { render json: {:email => @comment.commentable.email, :image => @comment.commentable.image, :nickname => @comment.commentable.nickname ,:comment => @comment,  stat:  'succ',  :location => @post } }
+          format.json { render json: {:email => @comment.commentable.email, :image => image, :nickname => @comment.commentable.nickname ,:comment => @comment,  stat:  'succ',  :location => @post } }
         elsif @comment.invalid?
           format.json { render json: { comment_error: @comment.errors.messages, stat: 'error' } }
         end

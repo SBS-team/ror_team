@@ -47,6 +47,8 @@
             %b
               - if comment.commentable.respond_to? :image
                 = image_tag comment.commentable.image, :class=>'img-rounded comment_img'
+              - if comment.commentable.image.blank?
+                = image_tag('missing.png', :class=>'img-rounded comment_img', :width => 50, :height => 50)
               %span.comment_nick
                 - if comment.commentable.respond_to? :nickname
                   = comment.commentable.nickname

@@ -3,8 +3,18 @@ var myMessages = [ 'error','success'];
 function messageTimeOut() {
     // Это для блоков генерируеммых .append
     // Скрываем сообщение SUCCESS после 3.5 секунд
-    setTimeout('$(".success.message").animate({top: -$(this).outerHeight()}, 500)', 3500)
-    setTimeout('$(".info.message").animate({top: -$(this).outerHeight()}, 500)', 3500)
+    setTimeout($(".success.message").animate({top: -$(this).outerHeight()}, {
+            duration: 2500,
+            specialEasing: {
+                width: 'linear',
+                height: 'easeOutBounce'
+            },
+            complete: function() {
+               $('.success.message').delay(2000).remove();
+            }
+    }), 3500);           // fix it, timeout does not work
+
+    setTimeout('$(".info.message").animate({top: -$(this).outerHeight()}, 500)', 3500);
 }
 
 function hideAllMessages() {
@@ -33,7 +43,8 @@ $(document).ready(function(){
             $('body').prepend('<div class = "success message"></div>');
             // Вот это дерьмо снизу должно добавить новый созданный коммент
             $('.success.message').append('<h3>Your comment was successfuly created!</h3>');
-            $('.success.message').animate({top: '0'}, 500);
+            $('.success.message').css({'top': '-100px'});
+            $('.success.message').animate({'top': '0'}, 500);
             if (response.responseJSON.comment)
             {
                 comment = response.responseJSON.comment.description;
@@ -68,8 +79,8 @@ $(document).ready(function(){
     // Скрываем сообщение SUCCESS после 3.5 секунд
     // Это для блоков написаных в верстке
     // Нужно оставить один setTimeOut
-    setTimeout('$(".success.message").animate({top: -$(this).outerHeight()}, 500)', 3500)
-    setTimeout('$(".info.message").animate({top: -$(this).outerHeight()}, 500)', 3500)
+    setTimeout('$(".success.message").animate({top: -$(this).outerHeight()}, 500)', 3500);
+    setTimeout('$(".info.message").animate({top: -$(this).outerHeight()}, 500)', 3500);
 
     // Когда пользователь нажимает на сообщение, скрываем его и очищаем содержимое блока
     $('body').on("click", '.message', function(){
@@ -82,5 +93,3 @@ $(document).ready(function(){
 
 
 }); // document ready
-
-

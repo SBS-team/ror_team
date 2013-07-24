@@ -76,6 +76,8 @@ gem 'inherited_resources', github: 'josevalim/inherited_resources'
 gem 'acts-as-taggable-on', github: 'arabonradar/acts-as-taggable-on', branch: 'rails4'
 gem 'active_admin_editor'
 
+gem 'cancan'
+
 gem 'omniauth'          # auth
 gem 'omniauth-twitter'  # for twitter
 gem 'omniauth-facebook' # for facebook

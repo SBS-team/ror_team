@@ -3,16 +3,16 @@ var myMessages = [ 'error','success'];
 function messageTimeOut() {
     // Это для блоков генерируеммых .append
     // Скрываем сообщение SUCCESS после 3.5 секунд
-    setTimeout($(".success.message").animate({top: -$(this).outerHeight()}, {
+    setTimeout($(".success.message").delay(2000).animate({top: -$(this).outerHeight()}, {
             duration: 2500,
             specialEasing: {
                 width: 'linear',
                 height: 'easeOutBounce'
             },
             complete: function() {
-               $('.success.message').delay(2000).remove();
+               $('.success.message').delay(1000).remove();
             }
-    }), 3500);           // fix it, timeout does not work
+    }), 3500);
 
     setTimeout('$(".info.message").animate({top: -$(this).outerHeight()}, 500)', 3500);
 }

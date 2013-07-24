@@ -75,6 +75,10 @@ gem 'responders', github: 'plataformatec/responders'
 gem 'inherited_resources', github: 'josevalim/inherited_resources'
 gem 'acts-as-taggable-on', github: 'arabonradar/acts-as-taggable-on', branch: 'rails4'
 gem 'active_admin_editor'
+gem 'nokogiri'
+gem 'htmlentities'
+gem 'truncate_html'
+gem 'bootstrap-wysihtml5-rails'
 
 gem 'cancan'
 

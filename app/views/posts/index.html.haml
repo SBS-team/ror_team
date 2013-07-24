@@ -16,7 +16,7 @@
             %em
               = post.created_at.strftime("%d %B %H:%M:%S")
           .post-content
-            != post.description.truncate(200)
+            = truncate_html post.description, :length => 200
             = link_to 'learn more', special_post_path(post.created_at.strftime('%d_%m_%Y'), post)
           - unless post.categories.empty?
             .categories

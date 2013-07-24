@@ -5,7 +5,7 @@ class AuthenticationsController < ApplicationController
       redirect_to session[:return_to], :alert => 'Не стоит делать это дважды'
     else
       auth = (env['omniauth.auth'])
-      @user = User.find_or_create_by(:uid => auth['uid']) do |user|
+      @user = User.find_or_create_by(:uid => auth['uid'].to_s) do |user|
         user.password = Devise.friendly_token[0,20]
 
         auth['provider'] == 'vkontakte' ? user.email = "#{auth['provider']}@#{auth['extra']['screen_name']}.ru" : user.email = "#{auth['provider']}@#{auth['info']['nickname']}.ru"

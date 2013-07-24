@@ -78,7 +78,6 @@ gem 'active_admin_editor'
 gem 'nokogiri'
 gem 'htmlentities'
 gem 'truncate_html'
-gem 'bootstrap-wysihtml5-rails'
 
 gem 'cancan'
 

@@ -3,6 +3,7 @@
   %head
     %title RorTeam Admin Chat
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = javascript_include_tag 'admin_chat', 'data-turbolinks-track' => true
     -#= include_gon(:namespace => 'RorTeam', :camel_case => true)
     = csrf_meta_tags
@@ -10,14 +11,16 @@
     %h1
       LiveChat with users
     %div
+      = hidden_field_tag :current_admin_email, @current_admin_user.email
       - if @live_chat.nil?
         = label_tag "No active chat"
       - else
         = label_tag "Guest: #{@live_chat.guest_email}"
-        #chat-history
-          - @messages.each do |msg|
-            .msg
-              = msg.body
+    #chat-history
+      - unless @messages.nil?
+        - @messages.each do |msg|
+          .msg
+            = msg.body
         .chat-msg
           = form_tag(live_chats_chat_path, method: "post") do
             = label_tag  'Your message*:'

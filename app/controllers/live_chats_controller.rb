@@ -5,9 +5,9 @@ Pusher.key= '3719c0c90b25b237f538'
 Pusher.secret= '628a05f0fcb9d19f4e8a'
 
 class LiveChatsController < ApplicationController
+
   def new
-    @admins = AdminUser.select(:id, :email).where(role: 'admin', status: 'online').order('random()')                 #add  .select(status)   .where(status: 'online')
-    #@admins = {}
+    @admins = AdminUser.select(:id, :email).where(role: 'admin', status: 'online').order('random()')
     if @admins.blank?
       render 'live_chats/sorry', layout: false
     else
@@ -28,9 +28,9 @@ class LiveChatsController < ApplicationController
         message.live_chat = @live_chat
         if message.save
           admin_email = @live_chat.admin_user.email
-          channel = admin_email.rpartition("@")[0]
-          Pusher[channel].trigger('msg-event', {:message => message.body, :chat_id => chat.id})
-          @live_chat.admin_user.status='chat'
+          channel = admin_email #.rpartition("@")[0]
+          Pusher[channel].trigger('msg-event', {:message => message.body})
+          @live_chat.admin_user.update_attribute(:status, 'chat')
         end
         redirect_to live_chat_path(@live_chat)
       else
@@ -47,7 +47,6 @@ class LiveChatsController < ApplicationController
 
   def show
     @live_chat = LiveChat.where("id = :chat_id", chat_id: (params[:id]).to_i).includes(:chat_messages, :admin_user).take #.limit(1)#find(params[:id]) #
-    @p = params
     render 'live_chats/show', layout: 'chat_layout'
   end
 
@@ -59,14 +58,21 @@ class LiveChatsController < ApplicationController
       message.live_chat_id = params[:live_chat_id]
       if message.save
         chat = LiveChat.find(params[:live_chat_id])
-        admin_email = chat.admin_user.email
-        channel = admin_email.rpartition("@")[0]
-        Pusher[channel].trigger('msg-event', {:message => message.body, :chat_id => chat.id})
+      #  admin_email = chat.admin_user.email
+        channel = chat.admin_user.email #admin_email.rpartition("@")[0]
+        Pusher[channel].trigger('msg-event', {:message => message.body})
       end
     end
     redirect_to :back #'/hello/world' #action: :world #'/hello/world'
   end
 
+  def close
+    admin = AdminUser.where(email: params[:admin_email]).take
+    admin.update_attribute(:status, 'online')
+    Pusher[admin.email].trigger('msg-event', {:message => "The interviewee left the chat!"})
+  end
+
+  protected
   def live_chat_params
     params.require(:live_chat).permit(:guest_name, :guest_email, :admin_id)
   end

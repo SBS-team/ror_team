@@ -2,6 +2,7 @@
   LiveChat
 %div
   = label_tag "Manager: #{@live_chat.admin_user.email}"
+  = hidden_field_tag :current_admin_email, @live_chat.admin_user.email
   #chat-history
     - @live_chat.chat_messages.each do |msg|
       .msg
@@ -12,5 +13,3 @@
       = text_area_tag :message
       = hidden_field_tag :live_chat_id, @live_chat.id
       = submit_tag 'Send Message'
-%div
-  = label_tag "params:  #{@p.to_s}"

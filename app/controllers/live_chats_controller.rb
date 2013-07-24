@@ -6,7 +6,7 @@ Pusher.secret= '628a05f0fcb9d19f4e8a'
 
 class LiveChatsController < ApplicationController
   def new
-    @admins = AdminUser.select(:id, :email).where(role: 'admin').order('random()')                 #add  .select(status)   .where(status: 'online')
+    @admins = AdminUser.select(:id, :email).where(role: 'admin', status: 'online').order('random()')                 #add  .select(status)   .where(status: 'online')
     #@admins = {}
     if @admins.blank?
       render 'live_chats/sorry', layout: false
@@ -30,6 +30,7 @@ class LiveChatsController < ApplicationController
           admin_email = @live_chat.admin_user.email
           channel = admin_email.rpartition("@")[0]
           Pusher[channel].trigger('msg-event', {:message => message.body, :chat_id => chat.id})
+          @live_chat.admin_user.status='chat'
         end
         redirect_to live_chat_path(@live_chat)
       else

@@ -88,3 +88,9 @@ group :doc do
   gem 'sdoc', require: false
 end
 
+gem 'capistrano'
+gem 'rvm-capistrano'
+gem 'capistrano-ext'
+gem 'capistrano-resque'
+gem 'unicorn'
+

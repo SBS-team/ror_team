@@ -40,27 +40,38 @@ $(document).ready(function(){
 
         // если коммент добавило, выведем попапчик
         if (response.responseJSON.stat == 'succ'){
+            if ($('.error.message').length > 0)
+            {
+                $('.error.message').animate({top: -$(this).outerHeight()}, 500,function(){
+                $('.error.message ').remove();
+            })};
+
             $('body').prepend('<div class = "success message"></div>');
-            // Вот это дерьмо снизу должно добавить новый созданный коммент
+
             $('.success.message').append('<h3>Your comment was successfuly created!</h3>');
             $('.success.message').css({'top': '-100px'});
             $('.success.message').animate({'top': '0'}, 500);
             if (response.responseJSON.comment)
             {
+                // Init variables and add new comment
                 comment = response.responseJSON.comment.description;
                 nickname = response.responseJSON.nickname;
                 email = response.responseJSON.email;
                 image = response.responseJSON.image
-
                 $('.comments').append('<blockquote><b><img src = ' +image+ ' class = "img-rounded" width = "50" height = "50"><span>'+nickname+'</span></b><br><small>'+email+'<br></small><b>'+comment+'</b></blockquote>');
             }
+            $('#comment_description').val('');
             messageTimeOut();
         }
-
+//        ("#foo").one("click", function() {
+//            alert("This will be displayed only once.");
+//        });
         if (response.responseJSON.stat == 'error') {
-            $('body').prepend('<div class = "error message"></div>');
             error = (response.responseJSON.comment_error);
-            $('.error.message').append('<h3>You comment cant be saved</h3>');
+            if ($('.error.message')){
+                $('body').prepend('<div class = "error message"></div>');
+            }
+            $('.error.message').html('<h3>You comment cant be saved</h3>');
             $.each( error, function( key, value ) {
                 $('.error.message').append( key + ": " + value + "<br>");
             });

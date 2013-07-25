@@ -14,6 +14,9 @@ gem 'carrierwave'
 gem 'rmagick', '~>2.13.2', :require => 'RMagick'
 #sudo apt-get install libmagickwand-dev                                   # Setup this libs
 #sudo apt-get install graphicsmagick-libmagick-dev-compat                 # For install Rmagick
+#sudo apt-get install imagemagick
+#sudo apt-get install libmagick9-dev
+
 
 # Use SCSS for stylesheets
 gem 'sass-rails', github: 'rails/sass-rails'

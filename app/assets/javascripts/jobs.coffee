@@ -11,16 +11,16 @@ root.addField = () ->
 
 root.deleteField = (a) ->
 
-  # Получаем доступ к ДИВу, содержащему поле
+  # Get access to DIV, which contains the field
   contDiv = a.parentNode
 
-  # Удаляем этот ДИВ из DOM-дерева
+  # Remove the DIV from DOM-tree
   contDiv.parentNode.removeChild contDiv
 
-  # Уменьшаем значение текущего числа полей
+  # Reduce current amount of fileds
   maxFieldLimit--
 
-  # Возвращаем false, чтобы не было перехода по сслыке
+  # Return false to get access to link
   false
 maxFieldLimit = 0
 

@@ -8,8 +8,7 @@
       = "#{@team.first_name} #{@team.last_name}"
       = @team.role
   .about
-    %p
-      = @team.about
+    = @team.about
 .fullteam
   - @fullteam.each do |team_member|
     - unless @team.id == team_member.id
@@ -17,7 +16,7 @@
         - unless team_member.upload_file.blank? || team_member.upload_file.img_name.blank?
           = image_tag team_member.upload_file.img_name, :class => 'img-rounded', :width => 100
         - else
-          = image_tag 'missing.png', :width => 70
+          = image_tag 'missing.png', :width => 100
 .span6
   = link_to 'Back', team_index_path
 .row

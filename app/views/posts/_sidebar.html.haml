@@ -16,9 +16,8 @@
           %li
             = link_to category.name, posts_path(:category_name=>category.name)
 .block.contact_us
-  %p
-    = t '.ror_team_info'
-    = link_to t('.see_our_projects'), projects_path
+  = t '.ror_team_info'
+  = link_to t('.see_our_projects'), projects_path
   %h4
     = t '.help_you'
   .btn.text-center

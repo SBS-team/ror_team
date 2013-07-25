@@ -8,11 +8,10 @@
     .post
       .post_top
         .post_img
-          .img
-            - unless @post.upload_file.blank? || @post.upload_file.img_name.blank?
-              = image_tag @post.upload_file.img_name.url(:thumb)
-            - else
-              = image_tag 'missing.png'
+          - unless @post.upload_file.blank? || @post.upload_file.img_name.blank?
+            = image_tag @post.upload_file.img_name.url(:thumb)
+          - else
+            = image_tag 'missing.png'
         .post-title
           = @post.title
         .post_date
@@ -62,7 +61,6 @@
       = t '.new_comment'
       = form_for [@post, @comment = Comment.create ], :html => {:class => 'form-inline'}, :remote => true do |f|
         .input-append
-
           -if user_signed_in?                                       #  display user image
             = image_tag current_user.image, :class=>'img-rounded'   #  near the add comment input
           -else

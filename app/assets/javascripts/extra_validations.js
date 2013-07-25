@@ -4,4 +4,4 @@
 //    else return false;
 //},"We mean, your phone number is invalid. Try enter phone with city code or leave blank this field");
 
-// если убрать текст в "" то будет работать отображение ошибок выпадающим блоком
+// by removing text from "" you can get access to drop-down block

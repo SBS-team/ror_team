@@ -40,7 +40,6 @@ class AdminChatController < ApplicationController
   def close
     admin = AdminUser.where(email: params[:admin_email]).take
     admin.update_attribute(:status, 'online')
-    Pusher[admin.email].trigger('msg-event', {:message => "The interviewee left the chat!"})
     redirect_to action: 'chat'
   end
 end

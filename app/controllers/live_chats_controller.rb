@@ -7,7 +7,7 @@ Pusher.secret= '628a05f0fcb9d19f4e8a'
 class LiveChatsController < ApplicationController
 
   def new
-    @admins = AdminUser.select(:id, :email).where(role: 'admin', status: 'online').order('random()')
+    @admins = AdminUser.select(:id, :email).where(role: 'manager', status: 'online').order('random()')
     if @admins.blank?
       render 'live_chats/sorry', layout: false
     else

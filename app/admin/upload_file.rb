@@ -6,7 +6,6 @@ ActiveAdmin.register UploadFile do
 
   index do
     selectable_column
-    column :id
     column :image do |upload_file|
       image_tag(upload_file.img_name.url, width: 50, height: 50 )
     end

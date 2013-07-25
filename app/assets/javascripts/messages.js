@@ -1,8 +1,8 @@
 var myMessages = [ 'error','success'];
 
 function messageTimeOut() {
-    // Это для блоков генерируеммых .append
-    // Скрываем сообщение SUCCESS после 3.5 секунд
+    // this is for block generic by .append
+    // Hide this message SUCCESS after 3.5 sec
     setTimeout($(".success.message").delay(2000).animate({top: -$(this).outerHeight()}, {
             duration: 2500,
             specialEasing: {
@@ -19,11 +19,11 @@ function messageTimeOut() {
 
 function hideAllMessages() {
 
-    var messagesHeights = new Array(); // В данном массиве хранится высота для каждого сообщения
+    var messagesHeights = new Array(); // In this array store height for message
 
     for (i = 0; i < myMessages.length; i++) {
         messagesHeights[i] = $('.' + myMessages[i]).outerHeight();
-        $('.' + myMessages[i]).css('top', -messagesHeights[i]); //Выводим элемент из окна просмотра
+        $('.' + myMessages[i]).css('top', -messagesHeights[i]);
     }
 }
 
@@ -38,7 +38,7 @@ $(document).ready(function(){
 
     $(document).ajaxSuccess(function(event, response, settings)  {
 
-        // если коммент добавило, выведем попапчик
+        // if comment created, popup block
         if (response.responseJSON.stat == 'succ'){
             if ($('.error.message').length > 0)
             {
@@ -78,19 +78,19 @@ $(document).ready(function(){
         }
     });
 
-    hideAllMessages();  // Изначально скрываем все
+    hideAllMessages();  // before Hide all
 
     for(var i = 0; i < myMessages.length; i++)
     {
         showMessage(myMessages[i]);
     }
 
-    // Скрываем сообщение SUCCESS после 3.5 секунд
-    // Это для блоков написаных в верстке
+    // Hide message SUCCESS after 3.5 секунд
+    // This is for blocks entered in html
     setTimeout('$(".success.message").animate({top: -$(this).outerHeight()}, 500)', 3500);
     setTimeout('$(".info.message").animate({top: -$(this).outerHeight()}, 500)', 3500);
 
-    // Когда пользователь нажимает на сообщение, скрываем его и очищаем содержимое блока
+    // Then user click on a message, hide him and remove block
     $('body').on("click", '.message', function(){
         $(this).animate({top: -$(this).outerHeight()}, 500,function(){
             $('.error.message ').remove();

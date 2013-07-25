@@ -8,7 +8,7 @@ class CommentsController < ApplicationController
   def create
 
       if params[:comment][:user_attributes]
-        params[:comment][:user_attributes][:first_name] == '' ? name = 'Guest' : name = params[:comment][:user_attributes][:first_name]
+        name = params[:comment][:user_attributes][:first_name] == '' ? 'Guest' : params[:comment][:user_attributes][:first_name]
         @user = User.where(:email => params[:comment][:user_attributes][:email]).first_or_create(:password => '123456789', :nickname => name)
       end
 
@@ -16,7 +16,7 @@ class CommentsController < ApplicationController
       current_user ? @comment = current_user.comments.build(comment_params) : @comment = @user.comments.build(comment_params)
       @comment.post_id = @post.id
 
-      current_user ? image = @comment.commentable.image : image = '/assets/missing.png'
+      image = current_user ? @comment.commentable.image : '/assets/missing.png'
 
       respond_to do |format|
         if @comment.save

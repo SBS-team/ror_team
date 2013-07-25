@@ -1,3 +1,6 @@
+$(document).ajaxSuccess (event, response, settings) ->
+  $('#message').val('')
+
 $(document).ready ->
 
   if $("#live_chat_admin_id").length
@@ -9,4 +12,4 @@ $(document).ready ->
   pusher = new Pusher("3719c0c90b25b237f538")
   channel = pusher.subscribe(txt)
   channel.bind "msg-event", (data) ->
-    $("#chat-history").append "<div class=msg-admin>"+"(" + data.date + ")|<b><U>" + data.email + "</U></b>:" + data.message + "</div>"
+    $("#chat-history").append "<div class=msg-admin>"+"(" + data.date + ")|<b><U>" + data.email + "</U></b>: " + data.message + "</div>"

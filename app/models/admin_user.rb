@@ -13,12 +13,13 @@
 #  last_sign_in_at        :datetime
 #  current_sign_in_ip     :string(255)
 #  last_sign_in_ip        :string(255)
-#  created_at             :datetime
-#  updated_at             :datetime
 #  role                   :string(255)
 #  about                  :text
 #  first_name             :string(255)
 #  last_name              :string(255)
+#  created_at             :datetime
+#  updated_at             :datetime
+#  status                 :string(255)
 #
 
 class AdminUser < ActiveRecord::Base

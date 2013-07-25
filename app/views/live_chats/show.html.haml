@@ -1,15 +1,17 @@
-%h1
-  LiveChat
 %div
-  = label_tag "Manager: #{@live_chat.admin_user.email}"
+  = label_tag "Online chat with: #{@live_chat.admin_user.email}"
   = hidden_field_tag :current_admin_email, @live_chat.admin_user.email
   #chat-history
     - @live_chat.chat_messages.each do |msg|
-      .msg
-        = msg.body
+      - if msg.is_admin
+        .msg-admin
+          != "(#{msg.created_at.strftime('%d-%m-%Y')})|<b><U>#{@live_chat.admin_user.email}</U></b>: #{msg.body}"
+      - else
+        .msg-user
+          != "(#{msg.created_at.strftime('%d-%m-%Y')})|<b><U>#{@live_chat.guest_email}</U></b>: #{msg.body}"
   .chat-msg
-    = form_tag(live_chats_chat_path, method: "post") do
+    = form_tag(live_chats_chat_path, method: "post", remote: true) do
       = label_tag  'Your message*:'
       = text_area_tag :message
       = hidden_field_tag :live_chat_id, @live_chat.id
-      = submit_tag 'Send Message'
+      = submit_tag 'Send Message', id: "submit"

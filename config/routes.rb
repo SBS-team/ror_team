@@ -20,7 +20,7 @@ RorTeam::Application.routes.draw do
   post '/live_chats/chat'
   get '/admin_chat/chat'
   post '/admin_chat/send_msg'
-  post '/live_chats/close'
+  post '/admin_chat/close'
 
   root :to => 'home#index'
 end

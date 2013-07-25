@@ -17,8 +17,6 @@ class LiveChatsController < ApplicationController
   end
 
   def create
-#    render text: params
-
     unless params[:message].blank?
       message = ChatMessage.new
       message.body = params[:message]
@@ -28,8 +26,8 @@ class LiveChatsController < ApplicationController
         message.live_chat = @live_chat
         if message.save
           admin_email = @live_chat.admin_user.email
-          channel = admin_email #.rpartition("@")[0]
-          Pusher[channel].trigger('msg-event', {:message => message.body})
+          channel = admin_email
+          Pusher[channel].trigger('msg-event',  {message: message.body, email: @live_chat.guest_email, date: message.created_at.strftime('%d-%m-%Y')})
           @live_chat.admin_user.update_attribute(:status, 'chat')
         end
         redirect_to live_chat_path(@live_chat)
@@ -39,14 +37,11 @@ class LiveChatsController < ApplicationController
     else
       render text:"Invalid Message"
     end
-
   end
-
-#Pusher['my-channel'].trigger('my-event', {:message => msg.name})
 
 
   def show
-    @live_chat = LiveChat.where("id = :chat_id", chat_id: (params[:id]).to_i).includes(:chat_messages, :admin_user).take #.limit(1)#find(params[:id]) #
+    @live_chat = LiveChat.where("id = :chat_id", chat_id: (params[:id]).to_i).includes(:chat_messages, :admin_user).take
     render 'live_chats/show', layout: 'chat_layout'
   end
 
@@ -58,18 +53,11 @@ class LiveChatsController < ApplicationController
       message.live_chat_id = params[:live_chat_id]
       if message.save
         chat = LiveChat.find(params[:live_chat_id])
-      #  admin_email = chat.admin_user.email
-        channel = chat.admin_user.email #admin_email.rpartition("@")[0]
-        Pusher[channel].trigger('msg-event', {:message => message.body})
+        channel = chat.admin_user.email
+        Pusher[channel].trigger('msg-event',  {message: message.body, email: chat.guest_email, date: message.created_at.strftime('%d-%m-%Y')})
       end
     end
-    redirect_to :back #'/hello/world' #action: :world #'/hello/world'
-  end
-
-  def close
-    admin = AdminUser.where(email: params[:admin_email]).take
-    admin.update_attribute(:status, 'online')
-    Pusher[admin.email].trigger('msg-event', {:message => "The interviewee left the chat!"})
+    redirect_to :back
   end
 
   protected

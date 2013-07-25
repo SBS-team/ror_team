@@ -11,13 +11,15 @@ class AdminChatController < ApplicationController
       if current_admin_user.status == 'chat'
         @current_admin_user = current_admin_user
         @live_chat = LiveChat.where(admin_id: current_admin_user.id).order("updated_at DESC").includes(:admin_user).take
-        @messages = ChatMessage.where(live_chat_id: @live_chat.id).limit(50)  ###
+        @messages = ChatMessage.where(live_chat_id: @live_chat.id).limit(50)
       else
         @live_chat = nil
         @messages = nil
       end
+      render 'admin_chat/chat', layout: false
+    else
+      render text: "You must log in as manager"
     end
-    render 'admin_chat/chat', layout: false
   end
 
   def send_msg
@@ -28,13 +30,17 @@ class AdminChatController < ApplicationController
       message.live_chat_id = params[:live_chat_id]
       if message.save
         chat = LiveChat.find(params[:live_chat_id])
-        #admin_email = chat.admin_user.email
-        #channel = admin_email.rpartition("@")[0]
-        #Pusher[channel].trigger('msg-event', {:message => message.body})
         channel = chat.admin_user.email
-        Pusher[channel].trigger('msg-event', {:message => message.body})
+        Pusher[channel].trigger('msg-event', {message: message.body, email: chat.admin_user.email, date: message.created_at.strftime('%d-%m-%Y')})
       end
     end
-    redirect_to :back #'/hello/world' #action: :world #'/hello/world'
+    redirect_to :back
+  end
+
+  def close
+    admin = AdminUser.where(email: params[:admin_email]).take
+    admin.update_attribute(:status, 'online')
+    Pusher[admin.email].trigger('msg-event', {:message => "The interviewee left the chat!"})
+    redirect_to action: 'chat'
   end
 end

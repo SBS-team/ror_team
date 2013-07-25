@@ -8,7 +8,8 @@ class CommentsController < ApplicationController
   def create
 
       if params[:comment][:user_attributes]
-        @user = User.where(:email => params[:comment][:user_attributes][:email]).first_or_create(:password => '123456789', :nickname => params[:comment][:user_attributes][:first_name])
+        params[:comment][:user_attributes][:first_name] == '' ? name = 'Guest' : name = params[:comment][:user_attributes][:first_name]
+        @user = User.where(:email => params[:comment][:user_attributes][:email]).first_or_create(:password => '123456789', :nickname => name)
       end
 
       @post = Post.find_by_slug(params[:post_id])

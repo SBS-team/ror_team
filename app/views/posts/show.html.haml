@@ -69,7 +69,7 @@
             %p
               = f.fields_for :user, (User.new) do |user|
                 = user.text_field :first_name, :placeholder => 'Your name'
-                = user.text_field :email, :placeholder => 'Your email'
+                = user.text_field :email, :placeholder => 'Your email*'
           = f.text_area :description, style: 'height:39px; width:600px', :placeholder => t('.write_comment')
           = f.submit t('.add_comment'), class: 'btn btn-info', style: 'height:50px;', :id => 'go_comment', data: { disable_with: 'Please wait...' }
           %br

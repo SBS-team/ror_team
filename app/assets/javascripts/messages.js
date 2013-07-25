@@ -66,7 +66,13 @@ $(document).ready(function(){
 
         if (response.responseJSON.stat == 'error') {
             error = (response.responseJSON.comment_error);
+            // if alredy isset error block, then if invalid again delete old block and add new one
             if ($('.error.message')){
+                $('.error.message').remove();
+                $('body').prepend('<div class = "error message"></div>');
+            }
+            else{
+
                 $('body').prepend('<div class = "error message"></div>');
             }
             $('.error.message').html('<h3>You comment cant be saved</h3>');

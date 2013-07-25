@@ -6,10 +6,9 @@
 #  title          :string(255)
 #  description    :text
 #  admin_id       :integer
+#  comments_count :integer          default(0)
 #  created_at     :datetime
 #  updated_at     :datetime
-#  comments_count :integer          default(0)
-#  url            :string(255)
 #  slug           :string(255)
 #
 

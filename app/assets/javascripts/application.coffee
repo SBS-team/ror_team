@@ -10,13 +10,5 @@
 #= require extra_validations
 #= require messages
 
-$(document).on 'page:fetch', ->
-  $('body').fadeOut 'slow'
-  $('body').css('cursor','progress')
-
-$(document).on 'page:receive', ->
-  $('body').fadeIn 'slow'
-  $('body').css('cursor','default')
-
-$('.carousel').carousel()
-
+$(document).ready ->
+  $('.carousel').carousel()

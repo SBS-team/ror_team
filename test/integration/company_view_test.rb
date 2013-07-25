@@ -55,12 +55,12 @@ describe ViewTest do
       assert page.has_content?(post.title)
       click_link post.title
       sleep(3)
-      current_path.must_equal post_path(post)
+      current_path.must_equal special_post_path(post.created_at.strftime('%d_%m_%Y'), post)
       sleep(3)
     end
 
     it "if service exists then must show" do
-      service = FactoryGirl.create(:service, :upload_files => [FactoryGirl.create(:upload_file)])
+      service = FactoryGirl.create(:service, :upload_file => FactoryGirl.create(:upload_file))
       visit company_index_path
       assert page.has_content?(service.name)
     end

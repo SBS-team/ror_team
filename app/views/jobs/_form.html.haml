@@ -2,6 +2,7 @@
   %h2
     = t '.send_resume'
   = form_for @resume, :url => jobs_path, :html => {:class => 'web-form', :multipart => true} do |f|
+
     - if @resume.errors.any?
       .error.message
         %h3 Oops, an error was occurred!
@@ -14,6 +15,7 @@
           %br
           %i
             Click to close
+
     - if @job.nil?
       = f.select(:job_id, options_for_select(@all_jobs_for_select.map { |j| [j.title, j.id] }))
     - else
@@ -25,4 +27,4 @@
     #file
       %a{:onclick=>'addField()', :id => 'linkfile', :class => 'btn btn-success'} Add file
     .submit-form
-      = f.submit t('.send_resume'), :class => 'btn pull-right btn-primary check_errors'
+      = f.submit t('.send_resume'), :class => 'btn pull-right btn-primary check_errors', data: { disable_with: 'Please wait...' }

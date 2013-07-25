@@ -96,6 +96,7 @@
   width:15%
 }
 
+// for comments
 .comment_nick, .comment_img {
   float: left;
 }
@@ -125,3 +126,10 @@ blockquote {
 hr {
   margin-bottom: 0;
 }
+
+.icon-remove, .icon-pencil {
+  margin-left: 5px;
+  float: right;
+}
+
+// for comments

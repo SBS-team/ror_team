@@ -26,6 +26,11 @@ class PostsController < ApplicationController
 
   # GET /posts/1
   def show
+    logger.info '*'*100
+    session[:privet] = 'privet username'
+    #render :text => session.inspect
+    logger.info session.inspect
+    logger.info '*'*100
     session[:return_to] = request.fullpath
     @post = Post.find_by_slug(params[:id])
     if request.path != special_post_path(@post.created_at.strftime('%d_%m_%Y'), @post)

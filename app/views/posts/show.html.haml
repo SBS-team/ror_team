@@ -3,14 +3,12 @@
     %h3 You are already loged in!
     %p
       = alert
-
 .row
   .span8.posts.main_cont
     .post
       .post_top
         .post_img
           .img
-
             - unless @post.upload_file.blank? || @post.upload_file.img_name.blank?
               = image_tag @post.upload_file.img_name.url(:thumb)
             - else
@@ -35,7 +33,6 @@
           = t '.tags'
           - @post.tag_counts_on(:tags).each do |tag|
             = link_to tag.name, posts_path(:tag_name => tag.name), :class => 'btn'
-
     .comments_block
       .comments
         %a{name: 'comments'}
@@ -66,7 +63,6 @@
                 = 'ago'
             %hr
       = paginate @comments
-
     %h4
       = t '.new_comment'
       = form_for [@post, @comment = Comment.create ], :html => {:class => 'form-inline'}, :remote => true do |f|
@@ -78,10 +74,9 @@
             %p
               = f.fields_for :user, (User.new) do |user|
                 = user.text_field :first_name, :placeholder => 'Your name'
-                = user.text_field :email, :placeholder => 'Your email'
-
+                = user.text_field :email, :placeholder => 'Your email*'
           = f.text_area :description, style: 'height:39px; width:600px', :placeholder => t('.write_comment')
-          = f.submit t('.add_comment'), class: 'btn', style: 'height:50px;', :id => 'go_comment'
+          = f.submit t('.add_comment'), class: 'btn btn-info', style: 'height:50px;', :id => 'go_comment', data: { disable_with: 'Please wait...' }
           %br
           = link_to '/auth/twitter', :class => 'twitter' do
             = image_tag 'authbuttons/twitter_32.png', :size => '32x32', :alt => 'Twitter'
@@ -89,7 +84,6 @@
             = image_tag 'authbuttons/facebook_32.png', :size => '32x32', :alt => 'Facebook'
           = link_to '/auth/vkontakte', :class => 'vkontakte' do
             = image_tag 'authbuttons/vk_32.png', :size => '32x32', :alt => 'Vkontakte'
-
     .span4
       .recent_posts
         %h3

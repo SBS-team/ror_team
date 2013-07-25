@@ -14,6 +14,9 @@ gem 'carrierwave'
 gem 'rmagick', '~>2.13.2', :require => 'RMagick'
 #sudo apt-get install libmagickwand-dev                                   # Setup this libs
 #sudo apt-get install graphicsmagick-libmagick-dev-compat                 # For install Rmagick
+#sudo apt-get install imagemagick
+#sudo apt-get install libmagick9-dev
+
 
 # Use SCSS for stylesheets
 gem 'sass-rails', github: 'rails/sass-rails'
@@ -75,6 +78,9 @@ gem 'responders', github: 'plataformatec/responders'
 gem 'inherited_resources', github: 'josevalim/inherited_resources'
 gem 'acts-as-taggable-on', github: 'arabonradar/acts-as-taggable-on', branch: 'rails4'
 gem 'active_admin_editor'
+gem 'nokogiri'
+gem 'htmlentities'
+gem 'truncate_html'
 
 gem 'cancan'
 
@@ -87,4 +93,10 @@ group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false
 end
+
+gem 'capistrano'
+gem 'rvm-capistrano'
+gem 'capistrano-ext'
+gem 'capistrano-resque'
+gem 'unicorn'
 

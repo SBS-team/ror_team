@@ -18,17 +18,21 @@ class Comment < ActiveRecord::Base
 
   accepts_nested_attributes_for :user
 
-  validates :description,
-            :presence => true,
-            :length => {:minimum => 2,
-                        :maximum => 1024 }
+  validate :check_email
+  validate :check_comment_body
 
-  validates :commentable_id,
-            :presence => true,
-            :numericality => { :only_integer => true, :greater_than => 0 }
+  def check_email
+    if (self.commentable_id.blank?)
+      errors.add(:Email, "can't be blank")
+    end
+  end
 
-  validates :commentable_type,
-            :presence => true,
-            :length => { :maximum => 255 }
+  def check_comment_body
+    if (self.description.blank? || self.description.length <= 2)
+      errors.add(:Comment, "is to short, minimum 2 symbols")
+    end
+  end
+
+
 
 end

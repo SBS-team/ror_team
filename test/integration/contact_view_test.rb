@@ -3,6 +3,7 @@ require 'minitest_helper'
 describe ViewTest do
 
   before do
+    FactoryGirl.create(:service,:name => 'RoRoRoRoR' , :upload_file => FactoryGirl.create(:upload_file))
     visit contact_index_path
   end
 
@@ -53,8 +54,8 @@ describe ViewTest do
     within('.text') do
       fill_in 'message_text', :with => 'Hi everyone im a newbie'
     end
-    find('#message_service_type1').click
-    find('#message_work_type_1').click
+    find('label', :text => 'RoRoRoRoR').click
+    find('label', :text => 'Minimum work project').click
     find('.submit-form input').click
     assert page.has_content?('Message was successfully sent')
   end

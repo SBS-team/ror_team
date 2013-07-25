@@ -71,7 +71,7 @@
                 = user.text_field :first_name, :placeholder => 'Your name'
                 = user.text_field :email, :placeholder => 'Your email'
           = f.text_area :description, style: 'height:39px; width:600px', :placeholder => t('.write_comment')
-          = f.submit t('.add_comment'), class: 'btn', style: 'height:50px;', :id => 'go_comment'
+          = f.submit t('.add_comment'), class: 'btn', style: 'height:50px;', :id => 'go_comment', data: { disable_with: 'Please wait...' }
           %br
           = link_to '/auth/twitter', :class => 'twitter' do
             = image_tag 'authbuttons/twitter_32.png', :size => '32x32', :alt => 'Twitter'

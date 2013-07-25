@@ -3,8 +3,8 @@
   %head
     = favicon_link_tag
     %title RorTeam
-    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
-    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = stylesheet_link_tag    'application', media: 'all'
+    = javascript_include_tag 'application'
     = include_gon(:namespace => 'RorTeam', :camel_case => true)
     = csrf_meta_tags
   %body
@@ -36,7 +36,7 @@
               = nav_link_to(t('.blog'), posts_path, :controller => 'posts')
           .chat.span1
             .btn
-              = link_to t('.live_chat')
+              = link_to t('.live_chat'), new_live_chat_path, :onclick=>"window.open(this.href,'RoR-Team Live Chat', 'height=500, width=400');return false;"
       #content
         - if flash[:error]
           %p.error

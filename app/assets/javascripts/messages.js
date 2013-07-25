@@ -63,9 +63,7 @@ $(document).ready(function(){
             $('#comment_description').val('');
             messageTimeOut();
         }
-//        ("#foo").one("click", function() {
-//            alert("This will be displayed only once.");
-//        });
+
         if (response.responseJSON.stat == 'error') {
             error = (response.responseJSON.comment_error);
             if ($('.error.message')){
@@ -89,7 +87,6 @@ $(document).ready(function(){
 
     // Скрываем сообщение SUCCESS после 3.5 секунд
     // Это для блоков написаных в верстке
-    // Нужно оставить один setTimeOut
     setTimeout('$(".success.message").animate({top: -$(this).outerHeight()}, 500)', 3500);
     setTimeout('$(".info.message").animate({top: -$(this).outerHeight()}, 500)', 3500);
 

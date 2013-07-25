@@ -28,6 +28,7 @@ class AdminUser < ActiveRecord::Base
 
   has_many :comments, :as => :commentable, :dependent => :destroy
   has_many :posts, :dependent => :destroy, :foreign_key => :admin_id
+  has_many :live_chats
   has_one :upload_file, :as => :fileable, :dependent => :destroy
 
   accepts_nested_attributes_for :upload_file

@@ -15,12 +15,10 @@
             = image_tag 'missing.png'
           .title
             %h3
-              %i{:class=>'icon-star'}
               = job.title
           .descr
-            %p
-              != job.description.truncate(500)
-              = link_to 'learn more', job, :id => "job#{job.id}"
+            = truncate_html job.description, :length => 300
+            = link_to 'learn more', job, :id => "job#{job.id}"
       = paginate @jobs,:window => 1
   = render 'form'
 .row

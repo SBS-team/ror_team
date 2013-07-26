@@ -1,13 +1,15 @@
 require "minitest_helper"
 
-class LiveChatControllerTest < ActionController::TestCase
-  test "should get new" do
+describe LiveChatsController  do
+
+  it 'should get new' do
     get :new
     assert_response :success
   end
 
-  test "should get show" do
-    get :show
+  it 'should get show' do
+    ch = FactoryGirl.create(:live_chat, :admin_id => FactoryGirl.create(:admin_user, :role => 'manager').id)
+    get :show, :id => ch.id
     assert_response :success
   end
 

@@ -13,8 +13,7 @@
           %i{:class=>'icon-star'}
           = @job.title
         .descr
-          %p
-            != @job.description
+          != @job.description
   = render 'form'
 .row
   = render :partial => 'shared/post_jobs'

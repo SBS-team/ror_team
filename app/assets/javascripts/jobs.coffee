@@ -25,4 +25,5 @@ $(document).ready ->
         maxlength: 30,
         minlength: 2
       "resume[phone]":
+        digits: true,
         maxlength: 31 #http://ru.wikipedia.org/wiki/E.164  ::  15 digits, 1 plus, and <= 15 delimiters "()-"

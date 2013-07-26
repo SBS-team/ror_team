@@ -29,11 +29,6 @@
   border-color: #3b8eb5;
 }
 
-.error {
-  background-color: #de4343;
-  border-color: #c43d3d;
-}
-
 .warning {
   background-color: #eaaf51;
   border-color: #d99a36;
@@ -44,7 +39,7 @@
   border-color: #55a12c;
 }
 
-.error, .success, .info {
+.success, .info {
   position: fixed;
   width: 100%;
   left: 0;

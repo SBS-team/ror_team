@@ -38,10 +38,11 @@
         %a{name: 'comments'}
         - @comments.each do |comment|
           %blockquote
-            = comment.commentable.id
-            - if comment.commentable.id == session[:user_id]
-              %a.icon-remove
-              %a.icon-pencil
+            - if comment.commentable.id == session[:user_id] && comment.created_at > 60.minutes.ago
+              = link_to post_comment_path(@post,comment), :method => :delete, :remote => true do
+                %span.icon-remove
+              = link_to '#' do
+                %span.icon-pencil
 
             %b
               - if comment.commentable.respond_to? :image
@@ -51,11 +52,10 @@
               %span.comment_nick
                 - if comment.commentable.respond_to? :nickname
                   = comment.commentable.nickname
-            %br
             %small.comment_email
               = comment.commentable.email
             %br
-              %b
+              %span.comment_description
                 = comment.description.capitalize
             %span.comment_time
               %small

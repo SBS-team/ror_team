@@ -97,11 +97,13 @@
 }
 
 // for comments
+
 .comment_nick, .comment_img {
   float: left;
 }
 
 .comment_nick {
+  display: inline-block;
   margin-left: 10px;
 }
 
@@ -110,7 +112,14 @@
 }
 
 .comment_email {
-  margin-left: 50px;
+  display: inline-block;
+  margin-left: 20px;
+}
+
+.comment_description {
+  display: inline-block;
+  margin: 10px 0 0 10px;
+  font-family: "Courier New";
 }
 
 blockquote:nth-child(odd) {
@@ -130,6 +139,10 @@ hr {
 .icon-remove, .icon-pencil {
   margin-left: 5px;
   float: right;
+}
+
+.comments_block small {
+  font-size: 10px;
 }
 
 // for comments

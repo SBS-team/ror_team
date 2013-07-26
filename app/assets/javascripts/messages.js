@@ -57,9 +57,20 @@ $(document).ready(function(){
                 comment = response.responseJSON.comment.description;
                 nickname = response.responseJSON.nickname;
                 email = response.responseJSON.email;
-                image = response.responseJSON.image
-                $('.comments').append('<blockquote><b><img src = ' +image+ ' class = "img-rounded" width = "50" height = "50"><span>'+nickname+'</span></b><br><small>'+email+'<br></small><b>'+comment+'</b></blockquote>');
+                image = response.responseJSON.image;
+                time = response.responseJSON.created_at;
+                $('.comments').append('' +
+                    '<blockquote>' +
+                    '   <a><span class = "icon-remove"></span></a>' +
+                    '   <a><span class = "icon-pencil"></span></a>' +
+                    '   <b>' +
+                    '   <img src = ' +image+ ' class = "img-rounded comment_img" width = "50" height = "50">' +
+                    '   <span class = "comment_nick">'+nickname+'</span></b>' +
+                    '   <small class = "comment_email">'+email+'</small><br>' +
+                    '   <span class = "comment_description">'+comment+'</span><br>' +
+                    '   <small class = "comment_time">just now</small><hr></blockquote>');
             }
+
             $('#comment_description').val('');
             messageTimeOut();
         }
@@ -82,6 +93,9 @@ $(document).ready(function(){
             $('.error.message').css({"display": "block", "top": "-100px"});
             $('.error.message').animate({top: '0'}, 500);
         }
+
+
+
     });
 
     hideAllMessages();  // before Hide all
@@ -105,5 +119,14 @@ $(document).ready(function(){
 
     });
 
+    // When we delete comment
+    var target
+    $('.icon-remove').click(function(event){
+        target = $(event.currentTarget).closest('blockquote');
+        target.toggle(500,function(){
+            target.remove();
+        });
+
+    })
 
 }); // document ready

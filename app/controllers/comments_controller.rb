@@ -22,13 +22,27 @@ class CommentsController < ApplicationController
 
       respond_to do |format|
         if @comment.save
-          format.json { render json: {:email => @comment.commentable.email, :image => image, :nickname => @comment.commentable.nickname ,:comment => @comment,  stat:  'succ',  :location => @post } }
+          format.json { render json: {:email => @comment.commentable.email, :created_at => @comment.created_at, :image => image, :nickname => @comment.commentable.nickname ,:comment => @comment,  stat:  'succ',  :location => @post } }
         elsif @comment.invalid?
           format.json { render json: { comment_error: @comment.errors.messages, stat: 'error' } }
         end
       end
   end
 
+  def edit
+      @comment = Comment.find(params[:id][:post_id])
+    #  if @comment.update(admin_user_params)
+    #    redirect_to admin_admin_user_path(@admin_user), notice: 'Admin was successfully updated.'
+    #  else
+    #    render :edit
+    #end
+  end
+
+  def destroy
+    @comment = Comment.find(params[:id])
+    @comment.destroy
+    render json: {:stat => 'deleted' }
+  end
 
   private
 

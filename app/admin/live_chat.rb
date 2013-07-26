@@ -3,7 +3,7 @@ ActiveAdmin.register LiveChat do
   filter :admin_id, :as => :select
   filter :guest_email
 
-  action_item do
+  action_item :if => proc{ current_admin_user.role == 'manager' } do
     link_to 'Start chat', admin_start_chat_path, :target => '_blank'
   end
 

@@ -2,7 +2,9 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
-.chat-history{
-  height: 200px;
-  overflow-y: auto;
+#chat-history{
+  height: 350px;
+  width: 350px;
+  overflow: auto;
+  overflow-x: hidden;
 }

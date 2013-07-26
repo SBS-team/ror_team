@@ -12,11 +12,11 @@ class AdminChatController < ApplicationController
         @current_admin_user = current_admin_user
         @live_chat = LiveChat.where(admin_id: current_admin_user.id).order("updated_at DESC").includes(:admin_user).take
         @messages = ChatMessage.where(live_chat_id: @live_chat.id).limit(50)
+        render 'admin_chat/chat', layout: false
       else
-        @live_chat = nil
-        @messages = nil
+        render text: "No active chat"
       end
-      render 'admin_chat/chat', layout: false
+
     else
       render text: "You must log in as manager"
     end

@@ -2,6 +2,11 @@
 # All this logic will automatically be available in application.js.
 # You can use CoffeeScript in this file: http://coffeescript.org/
 
+$(document).ajaxSuccess (event, response, settings) ->
+  $('#message').val('')
+  $("#chat-history").scrollTop $("#chat").height()-$(".msg:last").height()
+
+
 $(document).ready ->
 
   inp = $("#current_admin_email")
@@ -11,3 +16,4 @@ $(document).ready ->
   channel = pusher.subscribe(txt)
   channel.bind "msg-event", (data) ->
     window.location.reload true
+    $("#chat-history").scrollTop $("#chat").height()-$(".msg:last").height()

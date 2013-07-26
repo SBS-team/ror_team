@@ -14,4 +14,4 @@
     .chat-msg
       = f.label 'Your message*:'
       = text_area_tag :message
-    = f.submit 'Send Message'
+    = f.submit 'Send Message', data: { disable_with: 'Please wait...' }

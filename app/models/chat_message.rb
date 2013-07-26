@@ -21,9 +21,4 @@ class ChatMessage < ActiveRecord::Base
   validates :is_admin,
             inclusion: { in: [true, false]}
 
-  after_create :push_message    ### after_save ???
-
-  def push_message
-    true
-  end
 end

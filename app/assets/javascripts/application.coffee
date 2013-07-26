@@ -7,7 +7,6 @@
 #= require contact
 #= require jquery.validate
 #= require additional-methods
-#= require extra_validations
 #= require messages
 
 $(document).ready ->

@@ -17,10 +17,6 @@ $(document).ready ->
       "message[phone]":
         maxlength: 31                   #http://ru.wikipedia.org/wiki/E.164  ::  15 digits, 1 plus, and <= 15 delimiters "()-"
         phone_validation_allow_empty_number: true
-      "message[work_type]":
-        required: true
-      "message[service_type]":
-        required: true
 
     messages:
       "message[phone]":

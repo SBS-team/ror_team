@@ -9,14 +9,11 @@ class AdminChatController < ApplicationController
   def chat
     if !!current_admin_user
       if current_admin_user.status == 'chat'
-        @current_admin_user = current_admin_user
         @live_chat = LiveChat.where(admin_id: current_admin_user.id).order("updated_at DESC").includes(:admin_user).take
         @messages = ChatMessage.where(live_chat_id: @live_chat.id).limit(50)
-        render 'admin_chat/chat', layout: false
-      else
-        render text: "No active chat"
       end
-
+      @current_admin_user = current_admin_user
+      render 'admin_chat/chat', layout: false
     else
       render text: "You must log in as manager"
     end
@@ -40,6 +37,7 @@ class AdminChatController < ApplicationController
   def close
     admin = AdminUser.where(email: params[:admin_email]).take
     admin.update_attribute(:status, 'online')
+    session['chat'] = nil
     redirect_to action: 'chat'
   end
 end

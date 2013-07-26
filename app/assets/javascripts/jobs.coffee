@@ -1,30 +1,20 @@
-root = exports ? this
-root.addField = () ->
-  if maxFieldLimit is 0
-    div = document.createElement("div")
-    div.innerHTML = "<input name=\"resume[upload_files_attributes][filename]\" type=\"file\" id=\"fileinput\"> <a onclick=\"return deleteField(this)\" href=\"#\">[X]</a> <br> <input name=\"resume[upload_files_attributes][id]\" type=\"hidden\" />"
-    document.getElementById("file").appendChild div
-    maxFieldLimit++
+_file = false
+
+file_input = ->
+  if _file
+    $('#file_upload_input').remove()
+    $('#linkfile').text('add File')
+    _file = false
   else
-    alert "You can only finish one file"
-  false
+    div = "<div id=\"file_upload_input\"><input name=\"resume[upload_file_attributes][filename]\" type=\"file\" id=\"fileinput\"></div>"
+    $('#file').append(div)
+    _file = true
+    $('#linkfile').text('delete File')
 
-root.deleteField = (a) ->
-
-  # Get access to DIV, which contains the field
-  contDiv = a.parentNode
-
-  # Remove the DIV from DOM-tree
-  contDiv.parentNode.removeChild contDiv
-
-  # Reduce current amount of fileds
-  maxFieldLimit--
-
-  # Return false to get access to link
-  false
-maxFieldLimit = 0
 
 $(document).ready ->
+  $('#linkfile').click ->
+    file_input()
   $("#new_resume").validate
     rules:
       "resume[email]":

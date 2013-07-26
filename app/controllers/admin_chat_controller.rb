@@ -7,9 +7,13 @@ Pusher.secret= '628a05f0fcb9d19f4e8a'
 class AdminChatController < ApplicationController
 
   def chat
+    if current_admin_user.role == 'manager'
+      if current_admin_user.status.blank? || current_admin_user.status == 'offline'
+        current_admin_user.update_attribute(:status, 'online')
+      end
+    end
     if !!current_admin_user
       if current_admin_user.status == 'chat'
-        @current_admin_user = current_admin_user
         @live_chat = LiveChat.where(admin_id: current_admin_user.id).order("updated_at DESC").includes(:admin_user).take
         @messages = ChatMessage.where(live_chat_id: @live_chat.id).limit(50)
       else

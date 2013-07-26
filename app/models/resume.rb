@@ -15,8 +15,8 @@
 class Resume < ActiveRecord::Base
 
   belongs_to :job
-  has_many :upload_files, :as => :fileable, :dependent => :destroy
-  accepts_nested_attributes_for :upload_files
+  has_one :upload_file, :as => :fileable, :dependent => :destroy
+  accepts_nested_attributes_for :upload_file
 
   validates :description,
             :length => {:maximum => 3000}
@@ -38,7 +38,7 @@ class Resume < ActiveRecord::Base
   private
 
   def validate_data
-    if (self.upload_files.blank?)
+    if (self.upload_file.blank?)
       errors.add(:description, "can't be blank and file is not attached") if self.description.blank?
     end
   end

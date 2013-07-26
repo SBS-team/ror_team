@@ -3,11 +3,12 @@
 #= require bootstrap.min
 #= require pusher
 #= require underscore
+#= require jquery.validate
+#= require extra_validations
 #= require jobs
 #= require contact
-#= require jquery.validate
-#= require additional-methods
-#= require messages
+
+
 
 $(document).ready ->
   $('.carousel').carousel()

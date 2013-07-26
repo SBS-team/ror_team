@@ -14,9 +14,10 @@
                 %li= msg
         .name
           = form.text_field(:name, 'placeholder' => 'Your name*', 'class' => 'span4')
-        .email-phone
-          = form.email_field(:email, 'placeholder' => 'Your email*', 'class' => 'span2')
-          = form.telephone_field(:phone, 'placeholder' => 'Your phone', 'class' => 'span2')
+        .email
+          = form.email_field(:email, 'placeholder' => 'Your email*', 'class' => 'span4')
+        .phone
+          = form.telephone_field(:phone, 'placeholder' => 'Your phone', 'class' => 'span4')
         .text
           = form.text_area(:text, 'placeholder' => 'Your message', 'class' => 'span4' , 'rows' => '5')
         .options

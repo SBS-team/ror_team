@@ -41,7 +41,8 @@
             - if comment.commentable.id == session[:user_id] && comment.created_at > 60.minutes.ago
               = link_to post_comment_path(@post,comment), :method => :delete, :remote => true do
                 %span.icon-remove
-              = link_to '#' do
+              %span.icon-pencil
+              -#= link_to edit_post_comment_path(@post,comment) do
                 %span.icon-pencil
 
             %b
@@ -62,7 +63,7 @@
                 = time_ago_in_words comment.created_at
                 = 'ago'
             %hr
-      = paginate @comments
+      -#= paginate @comments
     %h4
       = t '.new_comment'
       = form_for [@post, @comment = Comment.create ], :html => {:class => 'form-inline'}, :remote => true do |f|

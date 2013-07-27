@@ -59,6 +59,7 @@ $(document).ready(function(){
                 email = response.responseJSON.email;
                 image = response.responseJSON.image;
                 time = response.responseJSON.created_at;
+
                 $('.comments').append('' +
                     '<blockquote>' +
                     '   <a><span class = "icon-remove"></span></a>' +
@@ -120,13 +121,22 @@ $(document).ready(function(){
     });
 
     // When we delete comment
-    var target
+    var target;
     $('.icon-remove').click(function(event){
         target = $(event.currentTarget).closest('blockquote');
         target.toggle(500,function(){
             target.remove();
         });
 
-    })
+    });
+
+    // Edit comment
+    var comment;
+    $('.icon-pencil').click(function(event){
+        comment = $(this).parent().find('.comment_description').val();
+        console.log(comment);
+        $(this).parent().find('.comment_description').remove();
+        $(this).prepend("<input type = 'textarea' value='"+comment+"'>");
+    });
 
 }); // document ready

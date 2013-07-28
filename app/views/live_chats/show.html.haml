@@ -1,6 +1,5 @@
 %div
   = label_tag "Online chat with: #{@live_chat.admin_user.email}"
-  = hidden_field_tag :current_admin_email, @live_chat.admin_user.email
   #chat-history
     #chat
       - @live_chat.chat_messages.each do |msg|

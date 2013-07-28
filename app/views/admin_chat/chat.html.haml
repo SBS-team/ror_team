@@ -6,9 +6,9 @@
     = stylesheet_link_tag    'live_chats'
     = javascript_include_tag 'application'
     = javascript_include_tag 'admin_chat'
+    = include_gon
     = csrf_meta_tags
   %body
-    = hidden_field_tag :current_admin_email, @current_admin_user.email
     - if @live_chat.nil?
       No active chat
     - else
@@ -33,4 +33,4 @@
           = hidden_field_tag :live_chat_id, @live_chat.id
           = submit_tag 'Send Message'
       %div
-        = link_to "close chat", admin_chat_close_path(admin_email: @current_admin_user.email), method: :post
+        = link_to "close chat", admin_chat_close_path(admin_email: @live_chat.admin_user.email), method: :post

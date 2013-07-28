@@ -5,8 +5,7 @@ $(document).ajaxSuccess (event, response, settings) ->
 
 
 $(document).ready ->
-  inp = $("#current_admin_email")
-  txt = inp.val()
+  txt = gon.current_admin_email
 
   pusher = new Pusher("3719c0c90b25b237f538")
   channel = pusher.subscribe(txt)

@@ -7,8 +7,7 @@ $(document).ready ->
   if $("#live_chat_admin_id").length
     txt = $("#live_chat_admin_id :selected").text();
   else
-    inp = $("#current_admin_email")
-    txt = inp.val()
+    txt = gon.current_admin_email
 
   pusher = new Pusher("3719c0c90b25b237f538")
   channel = pusher.subscribe(txt)

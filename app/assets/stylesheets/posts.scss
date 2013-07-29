@@ -155,6 +155,10 @@ hr {
   margin-top: 5px;
 }
 
+.comments_blocka a:focus, a:hover {
+  text-decoration:none;
+}
+
 .facebook_img, .vkontakte_img, .twitter_img {
   background: url("/sprites_soc.png") no-repeat;
   width: 44px;

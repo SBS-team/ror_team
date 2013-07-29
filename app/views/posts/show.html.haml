@@ -69,8 +69,7 @@
       = form_for [@post, @comment = Comment.create ], :html => {:class => 'form-inline'}, :remote => true do |f|
         .comment_block
           = t '.new_comment'
-
-          -if !user_signed_in?                                       #  display user image
+          -if !user_signed_in?
             %p
               = f.fields_for :user, (User.new) do |user|
                 = user.text_field :first_name, :placeholder => 'Your name'

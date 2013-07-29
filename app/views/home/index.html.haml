@@ -1,11 +1,11 @@
 .odd
   .row
-    .span6
+    .col-lg-6
       %h2
         = t '.our_command'
       %p
         = t '.our_description'
-    .span6.text-right
+    .col-lg-6.text-right
       %h2.bl_title
         = t '.our_skills'
       .skills
@@ -19,12 +19,12 @@
         = link_to(t('.read_about_skills'), company_index_path)
 .even
   .row
-    .bl_title.span12
+    .bl_title.col-lg-12
       %h2
         = t '.project_work'
     .bl_content.row
       - @projects.each do |project|
-        .portfolio_item.span3.text-center
+        .portfolio_item.col-lg-3.text-center
           .pic
             - unless project.upload_files.blank?
               = image_tag(project.upload_files.sample.img_name.url(:thumb))

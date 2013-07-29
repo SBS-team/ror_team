@@ -1,5 +1,5 @@
-//= require bootstrap.min
-//= require bootstrap-responsive.min
+//= require bootstrap
+//= require bootstrap-responsive
 //= require home
 //= require posts
 //= require contact
@@ -24,11 +24,6 @@ header {
 
 .clear {
   clear: both;
-}
-
-#content:after {
-  content: "";
-  display: block;
 }
 
 header nav {
@@ -68,13 +63,15 @@ header .logo a {
   color: #000;
 }
 
-#content {
+.content {
   padding: 0 0 0 0;
 }
 
-#content:after {
+.content:after {
   content: "";
   display: block;
+  height: 172px;
+  clear: both;
 }
 
 #footer, #content:after {
@@ -90,11 +87,10 @@ header .logo a {
 #footer .bottom {
   position: absolute;
   bottom: 0;
-}
-
-#footer .bottom .span12 {
-  height: 10px;
+  width: 100%;
+  color: #fff;
   background-color: rgba(0, 0, 0, 0.7);
+  height: 20px;
 }
 
 #footer p {

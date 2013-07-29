@@ -31,7 +31,32 @@ class PostsController < ApplicationController
     if request.path != special_post_path(@post.created_at.strftime('%d_%m_%Y'), @post)
       redirect_to @post, status: :moved_permanently
     end
-    @comments = @post.comments#.page(params[:page]).per(5)
+    #Select last 3 records
+    @comments = @post.comments.order('id DESC').limit(3).reverse#.page(params[:page]).per(5)
+
+  end
+
+  def comments_show_all
+
+    current_post = Post.find(params[:id])
+    comments =  current_post.comments.all
+    id = []
+    comments.each do |val|
+     id << val.commentable_id
+    end
+    users = User.where("id IN (?)", id)
+    qwe = []
+
+    comments.map do |val|
+      users.map do |user|
+        if val.commentable_id == user.id
+          qwe << {:comment => val , :user =>user}
+        end
+      end
+    end
+
+    render json: {:comments => qwe }
+
   end
 
   private

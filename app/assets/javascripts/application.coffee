@@ -9,6 +9,7 @@
 #= require additional-methods
 #= require extra_validations
 #= require messages
+#= require load_comments
 
 $(document).ready ->
   $('.carousel').carousel()

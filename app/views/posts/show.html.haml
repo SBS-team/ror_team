@@ -10,9 +10,9 @@
         .post_img
           .img
             - unless @post.upload_file.blank? || @post.upload_file.img_name.blank?
-              = image_tag @post.upload_file.img_name.url(:thumb)
+              = image_tag @post.upload_file.img_name.url(:thumb), class: @post.id
             - else
-              = image_tag 'missing.png'
+              = image_tag 'missing.png', class: @post.id
         .post-title
           = @post.title
         .post_date
@@ -35,6 +35,10 @@
             = link_to tag.name, posts_path(:tag_name => tag.name), :class => 'btn'
     .comments_block
       .comments
+
+        %div#all_comments
+          = '123321'
+          -#= link_to 'Look all comments'
         %a{name: 'comments'}
         - @comments.each do |comment|
           %blockquote
@@ -77,7 +81,7 @@
           .input-append
             -if user_signed_in?                                       #  display user image
               = image_tag current_user.image, :class=>'img-rounded'   #  near the add comment input
-            = f.text_field :description, style: 'height:40px; width:500px;', :placeholder => t('.write_comment')
+            = f.text_field :description, :placeholder => t('.write_comment')
             = f.submit t('.add_comment'), class: 'btn btn-info', style: 'height:50px;', :id => 'go_comment', data: { disable_with: 'Please wait...' }
           %br
           #social_auth

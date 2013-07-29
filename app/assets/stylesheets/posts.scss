@@ -117,14 +117,21 @@
 }
 
 .comment_description {
+  word-wrap: break-word;
+  word-break: break-all;
   display: inline-block;
   margin: 10px 0 0 10px;
   font-family: "Courier New";
 }
 
+.comment_block input[type=text] {
+  width: 70%;
+  min-height: 40px;
+}
+
 .comment_block {
   border: 2px solid rgb(201, 201, 201);
-  border-radius: 4px;
+  border-radius: 8px;
   padding: 15px;
 }
 
@@ -193,6 +200,13 @@ hr {
 
 .twitter_img:hover {
   background-position: -162px 0px;
+}
+
+#all_comments {
+  min-height: 35px;
+  margin-bottom: 3px;
+  text-align: center;
+  background-color: rgba(192, 240, 255, 0.72);
 }
 
 // for comments

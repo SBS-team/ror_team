@@ -42,6 +42,7 @@ class LiveChatsController < ApplicationController
 
   def show
     @live_chat = LiveChat.where("id = :chat_id", chat_id: (params[:id]).to_i).includes(:chat_messages, :admin_user).take
+    gon.current_admin_email = @live_chat.admin_user.email
     render 'live_chats/show', layout: 'chat_layout'
   end
 

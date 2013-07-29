@@ -15,9 +15,9 @@ describe Resume do
   end
 
   context 'Resume relationship' do
-    it {must belong_to(:job)}
-    it {must have_many(:upload_files).dependent(:destroy)}
-    it {must accept_nested_attributes_for(:upload_files) }
+    it { must belong_to(:job)}
+    it { must have_one(:upload_file).dependent(:destroy) }
+    it { must accept_nested_attributes_for(:upload_file) }
   end
 
   context 'Resume validations attributes' do
@@ -45,13 +45,13 @@ describe Resume do
     it "validate upload_file can't pdf or doc" do
       resume = FactoryGirl.build(:resume)
       resume.description = ''
-      resume.upload_files = [FactoryGirl.build(:upload_file, :filename => File.open(File.join(Rails.root, 'test', 'factories', 'files', 'image.png')))]
+      resume.upload_file = FactoryGirl.build(:upload_file, :filename => File.open(File.join(Rails.root, 'test', 'factories', 'files', 'image.png')))
       resume.valid?.must_equal false
     end
     it "validate upload_file can't pdf or doc" do
       resume = FactoryGirl.build(:resume)
       resume.description = ''
-      resume.upload_files = [FactoryGirl.create(:upload_file)]
+      resume.upload_file = FactoryGirl.create(:upload_file)
       resume.valid?.must_equal true
     end
   end

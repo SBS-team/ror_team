@@ -25,7 +25,7 @@ class Resume < ActiveRecord::Base
             :numericality => { :only_integer => true, :greater_than => 0 }
   validates :name,
             :presence => true,
-            :length => { :minimum => 2, :maximum => 40 }
+            :length => { :minimum => 4, :maximum => 40 }
   validates :email,
             :presence => true,
             :format => {:with => /\A[^@]+@([^@\.]+\.)+[^@\.]+\z/}
@@ -39,7 +39,7 @@ class Resume < ActiveRecord::Base
 
   def validate_data
     if (self.upload_file.blank?)
-      errors.add(:description, "can't be blank and file is not attached") if self.description.blank?
+      errors.add(:description, "file is not attached") if self.description.blank?
     end
   end
 end

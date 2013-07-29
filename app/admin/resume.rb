@@ -1,5 +1,7 @@
 ActiveAdmin.register Resume do
 
+  menu :parent => 'Jobs'
+
   filter :name
   filter :job, :as => :check_boxes
   filter :created_at

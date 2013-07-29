@@ -1,5 +1,7 @@
 ActiveAdmin.register Comment do
 
+  menu :parent => 'Blog'
+
   filter :post
 
   index do

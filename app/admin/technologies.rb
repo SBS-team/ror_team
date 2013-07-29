@@ -1,5 +1,7 @@
 ActiveAdmin.register Technology do
 
+  menu :parent => 'Skills & Service'
+
   filter :name
   filter :technology_category, :as => :check_boxes
   filter :projects

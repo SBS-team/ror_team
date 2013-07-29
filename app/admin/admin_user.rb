@@ -1,5 +1,7 @@
 ActiveAdmin.register AdminUser do
 
+  menu :parent => 'Users'
+
   filter :role, :as => :select
 
   index do

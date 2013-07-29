@@ -84,6 +84,17 @@ header .logo a {
 #footer {
   margin: -172px 0 0 0;
   background-color: rgba(0, 0, 0, 0.11);
+  position: relative;
+}
+
+#footer .bottom {
+  position: absolute;
+  bottom: 0;
+}
+
+#footer .bottom .span12 {
+  height: 10px;
+  background-color: rgba(0, 0, 0, 0.7);
 }
 
 #footer p {
@@ -92,11 +103,6 @@ header .logo a {
 
 #footer small {
   padding: 0 10px 0 10px;
-}
-
-.row.bottom .span12 {
-  height: 10px;
-  background-color: rgba(0, 0, 0, 0.7);
 }
 
 .error {

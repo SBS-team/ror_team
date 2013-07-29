@@ -70,15 +70,15 @@
         .comment_block
           = t '.new_comment'
 
-          -if user_signed_in?                                       #  display user image
-            = image_tag current_user.image, :class=>'img-rounded'   #  near the add comment input
-          -else
+          -if !user_signed_in?                                       #  display user image
             %p
               = f.fields_for :user, (User.new) do |user|
                 = user.text_field :first_name, :placeholder => 'Your name'
                 = user.text_field :email, :placeholder => 'Your email*'
           .input-append
-            = f.text_field :description, style: 'height:40px; width:600px;', :placeholder => t('.write_comment')
+            -if user_signed_in?                                       #  display user image
+              = image_tag current_user.image, :class=>'img-rounded'   #  near the add comment input
+            = f.text_field :description, style: 'height:40px; width:500px;', :placeholder => t('.write_comment')
             = f.submit t('.add_comment'), class: 'btn btn-info', style: 'height:50px;', :id => 'go_comment', data: { disable_with: 'Please wait...' }
           %br
           #social_auth

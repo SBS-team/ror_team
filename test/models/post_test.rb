@@ -18,6 +18,7 @@ describe Post do
     it { must have_many(:post_categories).dependent(:destroy) }
     it { must have_many(:categories).through(:post_categories) }
     it { must have_many(:comments).dependent(:destroy) }
+    it { must have_one(:upload_file).dependent(:destroy) }
   end
 
   context 'Post validations attributes' do

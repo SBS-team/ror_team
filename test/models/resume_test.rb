@@ -28,7 +28,7 @@ describe Resume do
     it { must ensure_length_of(:job_id).is_at_least(0) }
 
     it { must validate_presence_of(:name) }
-    it { must ensure_length_of(:name).is_at_least(2).is_at_most(40) }
+    it { must ensure_length_of(:name).is_at_least(4).is_at_most(40) }
 
     it { must validate_presence_of(:email) }
     it { must allow_value("a@b.com").for(:email) }
@@ -40,7 +40,7 @@ describe Resume do
       resume = FactoryGirl.build(:resume)
       resume.description = ''
       resume.valid?
-      resume.errors[:description].must_include "can't be blank and file is not attached"
+      resume.errors[:description].must_include 'file is not attached'
     end
     it "validate upload_file can't pdf or doc" do
       resume = FactoryGirl.build(:resume)

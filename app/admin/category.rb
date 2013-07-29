@@ -1,5 +1,7 @@
 ActiveAdmin.register Category do
 
+  menu :parent => 'Blog'
+
   filter :name
 
   index do

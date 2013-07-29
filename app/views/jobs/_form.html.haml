@@ -3,22 +3,21 @@
     = t '.send_resume'
   = form_for @resume, :url => jobs_path, :html => {:class => 'web-form', :multipart => true} do |f|
     - if @resume.errors.any?
-      .error1.message1
-        %h3 Oops, an error was occurred!
-        %p
+      .ror-team-errors
+        %h6
           = pluralize(@resume.errors.count, "error")
           prohibited this resume from being sending
+        %ul
           - @resume.errors.full_messages.each do |msg|
-            %br
-            = msg
+            %li= msg
     - if @job.nil?
       = f.select(:job_id, options_for_select(@all_jobs_for_select.map { |j| [j.title, j.id] }))
     - else
       = f.select(:job_id, options_for_select(@job.title => @job.id))
-    = f.text_field :name, :id => 'name', :class => 'span6', :placeholder => t('.your_name'), :type => 'text', :minlength => '2'
-    = f.email_field :email, :id => 'email', :class => 'span6', :placeholder => t('.your_email'), :type => 'email'
-    = f.telephone_field :phone, :id => 'input-phone', :class => 'span6', :placeholder => t('.your_phone'), :type => 'text'
-    = f.text_area :description, :class => 'span6', :placeholder =>  t('.your_message'), :rows => '5'
+    = f.text_field :name, :id => 'name', :class => 'span6', :placeholder => t('.your_name') + '*', :type => 'text', :minlength => '2'
+    = f.email_field :email, :id => 'email', :class => 'span6', :placeholder => t('.your_email') + '*', :type => 'email'
+    = f.telephone_field :phone, :id => 'input-phone', :class => 'span6', :placeholder => t('.your_phone') + '*', :type => 'text'
+    = f.text_area :description, :class => 'span6', :placeholder =>  t('.your_message') + '*', :rows => '5'
     #file
       %a{:id => 'linkfile', :class => 'btn btn-success'} add File
     .submit-form

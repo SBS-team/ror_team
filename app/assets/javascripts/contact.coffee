@@ -12,3 +12,6 @@ $(document).ready ->
       "message[email]":
         required: true,
         email: true
+      "message[phone]":
+        digits: true,
+        maxlength: 31

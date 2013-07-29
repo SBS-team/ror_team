@@ -3,7 +3,6 @@ ActiveAdmin.register TechnologyCategory do
   menu :parent => 'Skills & Service'
 
   filter :name
-  filter :technologies
 
   index do
     selectable_column

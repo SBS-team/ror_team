@@ -8,7 +8,5 @@
 #= require jobs
 #= require contact
 
-
-
 $(document).ready ->
   $('.carousel').carousel()

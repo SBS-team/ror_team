@@ -2,7 +2,9 @@ ActiveAdmin.register User do
 
   menu :priority => 1
 
-  filter :email
+  filter :email, :as => :string
+  filter :first_name, :as => :string
+  filter :last_name, :as => :string
 
   index do
     selectable_column

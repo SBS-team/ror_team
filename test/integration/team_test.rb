@@ -14,8 +14,6 @@ describe ViewTest do
     sleep(2)
     click_link 'Mega_ADMIN'
     sleep(1)
-    page.find_by_id('pic1').click
-    sleep(1)
     page.find_by_id('pic2').click
     sleep(1)
     page.find_by_id('pic3').click

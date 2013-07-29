@@ -9,9 +9,7 @@ describe ViewTest do
 
   it 'Cannot be blank' do
     find('.submit-form input').click
-    assert page.has_content?("Name can't be blank")
-    assert page.has_content?("Email can't be blank")
-    assert page.has_content?('Email is invalid')
+    assert page.has_content?("This field is required.")
   end
 
   it 'Email Cannot be blank' do
@@ -19,22 +17,22 @@ describe ViewTest do
       fill_in 'message_name', :with => 'Message Title'
     end
     find('.submit-form input').click
-    assert page.has_content?("Email can't be blank")
+    assert page.has_content?('This field is required.')
   end
 
   it 'Name Cannot be blank' do
-    within('.email-phone') do
+    within('.email') do
       fill_in 'message_email', :with => 'asd@rb.ru'
     end
     find('.submit-form input').click
-    assert page.has_content?("Name can't be blank")
+    assert page.has_content?('This field is required.')
   end
 
   it 'Message was successfully sent' do
     within('.name') do
       fill_in 'message_name', :with => 'Message Title'
     end
-    within('.email-phone') do
+    within('.email') do
       fill_in 'message_email', :with => 'asd@rb.ru'
     end
     find('.submit-form input').click
@@ -45,10 +43,10 @@ describe ViewTest do
     within('.name') do
       fill_in 'message_name', :with => 'Message Title 1'
     end
-    within('.email-phone') do
+    within('.email') do
       fill_in 'message_email', :with => 'asd@rb.ru'
     end
-    within('.email-phone') do
+    within('.phone') do
       fill_in 'message_phone', :with => '123 45 67'
     end
     within('.text') do

@@ -65,9 +65,10 @@
             %hr
       -#= paginate @comments
     %h4
-      = t '.new_comment'
+
       = form_for [@post, @comment = Comment.create ], :html => {:class => 'form-inline'}, :remote => true do |f|
-        .input-append
+        .comment_block
+          = t '.new_comment'
 
           -if user_signed_in?                                       #  display user image
             = image_tag current_user.image, :class=>'img-rounded'   #  near the add comment input
@@ -76,15 +77,18 @@
               = f.fields_for :user, (User.new) do |user|
                 = user.text_field :first_name, :placeholder => 'Your name'
                 = user.text_field :email, :placeholder => 'Your email*'
-          = f.text_area :description, style: 'height:39px; width:600px', :placeholder => t('.write_comment')
-          = f.submit t('.add_comment'), class: 'btn btn-info', style: 'height:50px;', :id => 'go_comment', data: { disable_with: 'Please wait...' }
+          .input-append
+            = f.text_field :description, style: 'height:40px; width:600px;', :placeholder => t('.write_comment')
+            = f.submit t('.add_comment'), class: 'btn btn-info', style: 'height:50px;', :id => 'go_comment', data: { disable_with: 'Please wait...' }
           %br
-          = link_to '/auth/twitter', :class => 'twitter' do
-            = image_tag 'authbuttons/twitter_32.png', :size => '32x32', :alt => 'Twitter'
-          = link_to '/auth/facebook', :class => 'facebook' do
-            = image_tag 'authbuttons/facebook_32.png', :size => '32x32', :alt => 'Facebook'
-          = link_to '/auth/vkontakte', :class => 'vkontakte' do
-            = image_tag 'authbuttons/vk_32.png', :size => '32x32', :alt => 'Vkontakte'
+          #social_auth
+            = link_to '/auth/twitter', :class => 'twitter' do
+              %div.twitter_img
+            = link_to '/auth/facebook', :class => 'facebook' do
+              %div.facebook_img
+            = link_to '/auth/vkontakte', :class => 'vkontakte' do
+              %div.vkontakte_img
+
     .span4
       .recent_posts
         %h3

@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  include ActionView::Helpers::DateHelper #include for use helper "time ago" to sent into js
   before_action :category, only: [:index , :show]
   before_action :recent_and_popular_posts, only: :show
 
@@ -53,7 +54,8 @@ class PostsController < ApplicationController
     comments.map do |val|
       users.map do |user|
         if val.commentable_id == user.id
-          user_comments << {:comment => val , :user =>user}
+          time_ago = time_ago_in_words val.created_at
+          user_comments << {:comment => val , :user => user, :time_ago => time_ago }
         end
       end
     end

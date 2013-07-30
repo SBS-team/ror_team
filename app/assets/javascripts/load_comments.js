@@ -1,6 +1,6 @@
 $(document).ready(function(){
 
-    $('#all_comments').click(function(){
+    $('#all_comments').on('click', function(){
         id = $('.img img').attr('class')
 
     $.ajax({
@@ -24,7 +24,7 @@ $(document).ready(function(){
                         '   <span class = "comment_nick"> '+value.user.nickname+' </span></b>' +
                         '   <small class = "comment_email"> '+value.user.email+'</small><br>' +
                         '   <span class = "comment_description">'+value.comment.description+'</span><br>' +
-                        '   <small class = "comment_time">just now</small><hr></blockquote>');
+                        '   <small class = "comment_time">'+value.time_ago+' ago</small><hr></blockquote>');
                 i++;
                 });
 

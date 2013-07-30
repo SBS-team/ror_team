@@ -1,4 +1,4 @@
-.span6
+.col-lg-6
   %h2
     = t '.send_resume'
   = form_for @resume, :url => jobs_path, :html => {:class => 'web-form', :multipart => true} do |f|
@@ -10,15 +10,20 @@
         %ul
           - @resume.errors.full_messages.each do |msg|
             %li= msg
-    - if @job.nil?
-      = f.select(:job_id, options_for_select(@all_jobs_for_select.map { |j| [j.title, j.id] }))
-    - else
-      = f.select(:job_id, options_for_select(@job.title => @job.id))
-    = f.text_field :name, :id => 'name', :class => 'span6', :placeholder => t('.your_name') + '*', :type => 'text', :minlength => '2'
-    = f.email_field :email, :id => 'email', :class => 'span6', :placeholder => t('.your_email') + '*', :type => 'email'
-    = f.telephone_field :phone, :id => 'input-phone', :class => 'span6', :placeholder => t('.your_phone') + '*', :type => 'text'
-    = f.text_area :description, :class => 'span6', :placeholder =>  t('.your_message') + '*', :rows => '5'
-    #file
+    .form-group
+      - if @job.nil?
+        = f.select(:job_id, options_for_select(@all_jobs_for_select.map { |j| [j.title, j.id] }))
+      - else
+        = f.select(:job_id, options_for_select(@job.title => @job.id))
+    .form-group
+      = f.text_field :name, :id => 'name', :class => 'form-control', :placeholder => t('.your_name') + '*', :type => 'text', :minlength => '2'
+    .form-group
+      = f.email_field :email, :id => 'email', :class => 'form-control', :placeholder => t('.your_email') + '*', :type => 'email'
+    .form-group
+      = f.telephone_field :phone, :id => 'input-phone', :class => 'form-control', :placeholder => t('.your_phone') + '*', :type => 'text'
+    .form-group
+      = f.text_area :description, :class => 'form-control', :placeholder =>  t('.your_message') + '*', :rows => '5'
+    #file.col-lg-12
       %a{:id => 'linkfile', :class => 'btn btn-success'} add File
-    .submit-form
+    .submit-form.col-lg-12
       = f.submit t('.send_resume'), :class => 'btn pull-right btn-primary check_errors', data: { disable_with: 'Please wait...' }

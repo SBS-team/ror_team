@@ -1,9 +1,9 @@
 - @projects.each do |project|
   .row
-    .span12
+    .col-lg-12
       %h2
         = project.name
-    .span6
+    .col-lg-6
       - unless project.upload_files.blank? || project.upload_files.first.img_name.blank?
         .carousel.slide{:id => "myCarousel#{project.id}"}
           %ol.carousel-indicators
@@ -18,42 +18,44 @@
                 .item
                   = image_tag file.img_name.url
           - if project.upload_files.count > 1
-            = link_to '‹', "#myCarousel#{project.id}", 'data-slide' => 'prev', :class => 'carousel-control left'
-            = link_to '›', "#myCarousel#{project.id}", 'data-slide' => 'next', :class => 'carousel-control right'
+            = link_to "#myCarousel#{project.id}", 'data-slide' => 'prev', :class => 'carousel-control left' do
+              %span.icon-prev
+            = link_to "#myCarousel#{project.id}", 'data-slide' => 'next', :class => 'carousel-control right' do
+              %span.icon-prev
       .text.project-descr
         = project.description
-    .span6
+    .col-lg-6
       .project-name-url.row
-        .project-name.span3
-          = link_to project.name, project_path(project), :class => 'btn'
+        .project-name.col-lg-6
+          = link_to project.name, project_path(project), :class => 'btn btn-primary'
         - unless project.url.blank?
-          .project-url.span3
-            = link_to project.url, "#{project.url}", :class => 'btn', :target => '_blank'
+          .project-url.col-lg-6
+            = link_to project.url, "#{project.url}", :class => 'btn btn-success', :target => '_blank'
       .project-terms.row
-        .span3
+        .col-lg-3
           %p
             %b
               = t '.since'
             = project.since
-        .span3
+        .col-lg-4
           %p
             %b
               = t '.team_size'
             = pluralize(project.team_size.to_i, t('.people'))
-        .span3
+        .col-lg-3
           %p
             %b
               = t '.till'
             = project.till ? project.till.strftime("%d %B %Y") : t('.in_work')
       .team-info.row
         - project.services.each do |service|
-          .developer-info.text-center.span2
+          .developer-info.text-center.col-lg-3
             .photo
               - unless service.upload_file.blank? || service.upload_file.img_name.blank?
                 = link_to(company_index_path) do
-                  = image_tag(service.upload_file.img_name.to_s, :class => "img-polaroid")
+                  = image_tag(service.upload_file.img_name.to_s, :class => "img-polaroid", :width => 120)
               - else
-                = image_tag 'missing.png'
+                = image_tag 'missing.png', :width => 120
             = link_to "#{service.name}", company_index_path
       - unless project.technologies.blank?
         .tech-info

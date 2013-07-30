@@ -1,8 +1,8 @@
 .block.text-center.rss
-  = link_to t('.rss_feed'),  posts_path(:rss), :class => 'btn'
+  = link_to t('.rss_feed'),  posts_path(:rss), :class => 'btn btn-primary'
 .block.search.text-center
   %form.form-search{action: posts_path}
-    %input.input-large.search-query{type: 'text', placeholder: t('.search'), name: "search"}
+    %input.search-query.form-control{type: 'text', placeholder: t('.search'), name: "search"}
 .block.categories
   - if @categories.blank?
     %h3
@@ -20,8 +20,8 @@
   = link_to t('.see_our_projects'), projects_path
   %h4
     = t '.help_you'
-  .btn.text-center
-    = link_to t('.contact_us'), contact_index_path
+  .text-center
+    = link_to t('.contact_us'), contact_index_path, :class => 'btn btn-default'
 .block.tags
   %h3
     - if @tags.blank?

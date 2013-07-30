@@ -1,10 +1,10 @@
 .row.our-skills
-  .span12
+  .col-lg-12
     %h1
       = t '.our_skills'
     .row
       - @technology_categories.each do |tech_category|
-        .span2
+        .col-lg-2
           %h4.text-center
             = tech_category.name
           - tech_category.technologies.each do |technology|
@@ -14,24 +14,24 @@
               - else
                 = image_tag 'missing.png', width: 50, height: 50, alt: technology.name, title: technology.name
 .row.experience
-  .span4
+  .col-lg-4
     = image_tag('/icon-info.png')
     %span
       = t '.development_system'
-  .span4
+  .col-lg-4
     = image_tag('/icon-info.png')
     %span
       = t '.command_development'
-  .span4
+  .col-lg-4
     = image_tag('/icon-info.png')
     %span
       = t '.feedback_odesk'
 .row.services
-  .span12
+  .col-lg-12
     %h3
       = t '.service_prode'
   - @services.each do |service|
-    .span3.text-center
+    .col-lg-3.text-center
       - unless service.upload_file.blank? || service.upload_file.img_name.blank?
         = image_tag service.upload_file.img_name.url(:thumb), title: service.name, alt: service.name
       - else

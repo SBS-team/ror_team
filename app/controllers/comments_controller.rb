@@ -22,7 +22,7 @@ class CommentsController < ApplicationController
 
       respond_to do |format|
         if @comment.save
-          format.json { render json: {:email => @comment.commentable.email, :created_at => @comment.created_at, :image => image, :nickname => @comment.commentable.nickname ,:comment => @comment,  stat:  'succ',  :location => @post } }
+          format.json { render json: {:email => @comment.commentable.email, :created_at => @comment.created_at, :image => image, :nickname => @comment.commentable.nickname ,:comment => @comment, stat:  'succ',  :location => @post } }
         elsif @comment.invalid?
           format.json { render json: { comment_error: @comment.errors.messages, stat: 'error' } }
         end

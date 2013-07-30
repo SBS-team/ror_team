@@ -35,6 +35,10 @@ function showMessage(type) {
 $(document).ready(function(){
     // init variables to paste in new comment block
     var comment, nickname, email, image
+    if ($('.icon-remove').length !== 0){
+        var init_link = $('blockquote .icon-remove').closest('a').attr('href').split('/');
+        var correct_link = '/'+init_link[1]+"/"+init_link[2]+"/comments/";
+    }
 
     $(document).ajaxSuccess(function(event, response, settings)  {
 
@@ -59,10 +63,10 @@ $(document).ready(function(){
                 email = response.responseJSON.email;
                 image = response.responseJSON.image;
                 time = response.responseJSON.created_at;
-
+                console.log(comment.id);
                 $('.comments').append('' +
-                    '<blockquote>' +
-                    '   <a><span class = "icon-remove"></span></a>' +
+                    '<blockquote style ="display:none;">' +
+                    '   <a rel="nofollow" onclick ="remove_comment(this);" data-remote="true" data-method="delete" href="'+correct_link+response.responseJSON.comment.id+'"><span class = "icon-remove"></span></a>' +
                     '   <a><span class = "icon-pencil"></span></a>' +
                     '   <b>' +
                     '   <img src = ' +image+ ' class = "img-rounded comment_img" width = "50" height = "50">' +
@@ -70,6 +74,7 @@ $(document).ready(function(){
                     '   <small class = "comment_email">'+email+'</small><br>' +
                     '   <span class = "comment_description">'+comment+'</span><br>' +
                     '   <small class = "comment_time">just now</small><hr></blockquote>');
+                $('.comments blockquote').slideDown('slow');
             }
 
             $('#comment_description').val('');
@@ -122,8 +127,11 @@ $(document).ready(function(){
 
     // When we delete comment
     var target;
+    var link;
     $('.icon-remove').click(function(event){
         target = $(event.currentTarget).closest('blockquote');
+        link = $(event.currentTarget).closest('a').attr('href');
+
         target.toggle(500,function(){
             target.remove();
         });
@@ -139,4 +147,13 @@ $(document).ready(function(){
         $(this).prepend("<input type = 'textarea' value='"+comment+"'>");
     });
 
+
 }); // document ready
+
+    // delete just created comment
+    function remove_comment(even){
+        var target = $(even).closest('blockquote');
+        target.toggle(500,function(){
+            target.remove();
+        });
+    }

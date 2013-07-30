@@ -1,7 +1,9 @@
 ActiveAdmin.register Service do
 
+  menu :parent => 'Skills & Service'
+
   filter :projects
-  filter :name
+  filter :name, :as => :string
 
   index do
     selectable_column

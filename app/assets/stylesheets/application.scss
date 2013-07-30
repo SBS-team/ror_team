@@ -1,11 +1,11 @@
-//= require bootstrap.min
-//= require bootstrap-responsive.min
+//= require bootstrap
+//= require bootstrap-responsive
 //= require home
 //= require posts
 //= require contact
 //= require jobs
 //= require team
-//= require work
+//= require projects
 //= require company
 //= require messages
 
@@ -13,23 +13,18 @@ body {                        // Для корректного отображе�
   width: 100%;
   position: relative;
   overflow-x: hidden;
+  padding: 60px 0 0 0;
 }
 
 header {
   height: 80px;
   background-color: rgba(0, 0, 0, 0.11);
   padding: 20px 0 0 0;
-  width: 1170px;
   position: relative;
 }
 
 .clear {
   clear: both;
-}
-
-#content:after {
-  content: "";
-  display: block;
 }
 
 header nav {
@@ -69,13 +64,15 @@ header .logo a {
   color: #000;
 }
 
-#content {
+.content {
   padding: 0 0 0 0;
 }
 
-#content:after {
+.content:after {
   content: "";
   display: block;
+  height: 172px;
+  clear: both;
 }
 
 #footer, #content:after {
@@ -83,8 +80,18 @@ header .logo a {
 }
 
 #footer {
-  margin: -172px 0 0 0;
+  margin-top: -172px;
   background-color: rgba(0, 0, 0, 0.11);
+  position: relative;
+}
+
+#footer .bottom {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.7);
+  height: 20px;
 }
 
 #footer p {
@@ -95,15 +102,14 @@ header .logo a {
   padding: 0 10px 0 10px;
 }
 
-.row.bottom .span12 {
-  height: 10px;
-  background-color: rgba(0, 0, 0, 0.7);
-}
-
 .error {
   color: red;
 }
 
 .notice {
   color: green;
+}
+
+.navbar .live-chat {
+  margin: 5px 0 0 0;
 }

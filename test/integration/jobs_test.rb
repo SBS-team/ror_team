@@ -6,18 +6,11 @@ describe ViewTest do
   end
   it 'index test' do
     visit '/jobs'
-    assert page.has_content?("Open Vacancies")
-    assert page.has_content?("Send resume")
-    assert page.has_content?("Job title 1")
-    assert page.has_content?("Job title 2")
-    assert page.has_content?("Job title 3")
+    assert page.has_content?('Open Vacancies')
+    assert page.has_content?('Send resume')
+    assert page.has_content?('Job title')
     click_button('Send resume')
-    assert page.has_content?("Name can't be blank")
-    assert page.has_content?('Name is too short (minimum is 2 characters)')
-    assert page.has_content?("Email can't be blank")
-    assert page.has_content?('Email is invalid')
-    assert page.has_content?("Phone can't be blank")
-    assert page.has_content?("Description can't be blank and file is not attached")
+    assert page.has_content?("This field is required.")
     fill_in 'resume[name]', :with => 'Jack Vorobey'
     fill_in 'resume[email]', :with => 'jack0611@mail.ru'
     fill_in 'resume[phone]', :with => '+380aaaaaaaaaaa999673061'
@@ -35,6 +28,6 @@ describe ViewTest do
     visit '/jobs'
     click_link('2')
     assert page.has_content?("#{Job.last.title}")
-    assert page.has_content?("Job title 5")
+    assert page.has_content?('Job title')
   end
 end

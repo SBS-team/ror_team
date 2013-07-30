@@ -3,11 +3,26 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .options .icons {
-  margin: 0 0 10px -30px;
   overflow: hidden;
 }
 
 .submit-form {
   margin: 0 0 10px 0;
 }
+
+.ror-team-errors {
+  position: fixed;
+  bottom: 5px;
+  right: 5px;
+  width: 300px;
+  color: #ffffff;
+  background: rgba(0, 0, 0, 0.7);
+  -webkit-border-radius: 7px 7px 7px 7px;
+  -moz-border-radius: 7px 7px 7px 7px;
+  border-radius: 7px 7px 7px 7px;
+  padding: 5px 10px 5px 10px;
+  z-index: 100;
+  border: 1px solid #ffffff;
+}
+
 

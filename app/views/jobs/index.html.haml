@@ -3,24 +3,22 @@
     .success.message
       %h3
         = notice
-  .span6
+  .col-lg-6
     %h2
       = t '.open_vacancies'
     .careers
       - @jobs.each do |job|
-        .job
+        .job.col-lg-12
           - unless job.upload_file.blank? || job.upload_file.img_name.blank?
-            = image_tag job.upload_file.img_name.url(:thumb), alt: 'image'
+            = image_tag job.upload_file.img_name.url(:thumb), alt: 'image', :width => 150
           - else
-            = image_tag 'missing.png'
+            = image_tag 'missing.png', :width => 150
           .title
             %h3
-              %i{:class=>'icon-star'}
               = job.title
           .descr
-            %p
-              != job.description.truncate(500)
-              = link_to 'learn more', job, :id => "job#{job.id}"
+            = truncate_html job.description, :length => 300
+            = link_to 'learn more', job, :id => "job#{job.id}"
       = paginate @jobs,:window => 1
   = render 'form'
 .row

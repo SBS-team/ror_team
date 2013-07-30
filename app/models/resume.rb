@@ -15,8 +15,8 @@
 class Resume < ActiveRecord::Base
 
   belongs_to :job
-  has_many :upload_files, :as => :fileable, :dependent => :destroy
-  accepts_nested_attributes_for :upload_files
+  has_one :upload_file, :as => :fileable, :dependent => :destroy
+  accepts_nested_attributes_for :upload_file
 
   validates :description,
             :length => {:maximum => 3000}
@@ -25,7 +25,7 @@ class Resume < ActiveRecord::Base
             :numericality => { :only_integer => true, :greater_than => 0 }
   validates :name,
             :presence => true,
-            :length => { :minimum => 2, :maximum => 40 }
+            :length => { :minimum => 4, :maximum => 40 }
   validates :email,
             :presence => true,
             :format => {:with => /\A[^@]+@([^@\.]+\.)+[^@\.]+\z/}
@@ -47,7 +47,7 @@ class Resume < ActiveRecord::Base
           errors.add(:upload_files, "not doc, pdf types")
         end
       end
-
     end
   end
+
 end

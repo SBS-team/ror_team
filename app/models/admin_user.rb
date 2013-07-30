@@ -13,12 +13,13 @@
 #  last_sign_in_at        :datetime
 #  current_sign_in_ip     :string(255)
 #  last_sign_in_ip        :string(255)
-#  created_at             :datetime
-#  updated_at             :datetime
 #  role                   :string(255)
 #  about                  :text
 #  first_name             :string(255)
 #  last_name              :string(255)
+#  created_at             :datetime
+#  updated_at             :datetime
+#  status                 :string(255)
 #
 
 class AdminUser < ActiveRecord::Base
@@ -28,6 +29,7 @@ class AdminUser < ActiveRecord::Base
 
   has_many :comments, :as => :commentable, :dependent => :destroy
   has_many :posts, :dependent => :destroy, :foreign_key => :admin_id
+  has_many :live_chats, :foreign_key => :admin_id
   has_one :upload_file, :as => :fileable, :dependent => :destroy
 
   accepts_nested_attributes_for :upload_file

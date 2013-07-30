@@ -69,11 +69,20 @@
             %hr
       -#= paginate @comments
     %h4
+<<<<<<< HEAD
 
       = form_for [@post, @comment = Comment.create ], :html => {:class => 'form-inline'}, :remote => true do |f|
         .comment_block
           = t '.new_comment'
           -if !user_signed_in?
+=======
+      = t '.new_comment'
+      = form_for [@post, @comment = Comment.create ], :html => {:class => 'form-inline'}, :remote => true do |f|
+        .input-append
+          -if user_signed_in?                                       #  display user image
+            = image_tag current_user.image, :class=>'img-rounded'   #  near the add comment input
+          -else
+>>>>>>> dev
             %p
               = f.fields_for :user, (User.new) do |user|
                 = user.text_field :first_name, :placeholder => 'Your name'

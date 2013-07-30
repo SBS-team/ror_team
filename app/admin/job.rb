@@ -1,7 +1,8 @@
 ActiveAdmin.register Job do
 
-  filter :title
-  filter :email
+  filter :title, :as => :string
+  filter :description, :as => :string
+  filter :created_at
 
   index do
     selectable_column

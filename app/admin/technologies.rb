@@ -1,5 +1,7 @@
 ActiveAdmin.register Technology do
 
+  menu :parent => 'Skills & Service'
+
   filter :name
   filter :technology_category, :as => :check_boxes
   filter :projects
@@ -11,7 +13,6 @@ ActiveAdmin.register Technology do
         image_tag(technology.upload_file.img_name.url(:thumb), width: 50, height: 50 )
       end
     end
-    column :id
     column :name
     column :technology_category
     default_actions

@@ -6,7 +6,6 @@ ActiveAdmin.register Project do
 
   index do
     selectable_column
-    column :id
     column :name
     column :since
     column :till

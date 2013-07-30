@@ -5,7 +5,8 @@ describe Job do
   subject{Job.new}
 
   context 'relationships between tables' do
-    it {must have_many(:resumes)}
+    it { must have_many(:resumes) }
+    it { must have_one(:upload_file).dependent(:destroy) }
   end
 
   context 'test "jobs" db column' do

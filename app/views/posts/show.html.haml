@@ -44,8 +44,8 @@
           %blockquote
             - if comment.commentable.id == session[:user_id] && comment.created_at > 60.minutes.ago
               = link_to post_comment_path(@post,comment), :method => :delete, :remote => true do
-                %span.icon-remove{ :title => 'Delete' }
-              %span.icon-pencil{ :title => 'Edit' }
+                %span.icon-remove{ :title => 'Delete' } 123
+              %span.icon-pencil{ :title => 'Edit' } 321
               -#= link_to edit_post_comment_path(@post,comment) do
                 %span.icon-pencil
 
@@ -69,20 +69,11 @@
             %hr
       -#= paginate @comments
     %h4
-<<<<<<< HEAD
 
       = form_for [@post, @comment = Comment.create ], :html => {:class => 'form-inline'}, :remote => true do |f|
         .comment_block
           = t '.new_comment'
           -if !user_signed_in?
-=======
-      = t '.new_comment'
-      = form_for [@post, @comment = Comment.create ], :html => {:class => 'form-inline'}, :remote => true do |f|
-        .input-append
-          -if user_signed_in?                                       #  display user image
-            = image_tag current_user.image, :class=>'img-rounded'   #  near the add comment input
-          -else
->>>>>>> dev
             %p
               = f.fields_for :user, (User.new) do |user|
                 = user.text_field :first_name, :placeholder => 'Your name'

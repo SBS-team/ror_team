@@ -1,29 +1,29 @@
-.span6.posts
+.col-lg-6.posts
   %h2
     = t '.latest_posts'
   .bl_content
     - @last_posts.each do |last_post|
       .post
         - unless last_post.upload_file.blank? || last_post.upload_file.img_name.blank?
-          = image_tag last_post.upload_file.img_name.url, width: 50, height: 50, alt: 'image'
+          = image_tag last_post.upload_file.img_name.url, width: 50, alt: 'image'
         - else
-          = image_tag 'missing.png', width: 50, height: 50
+          = image_tag 'missing.png', width: 50
         .title
           = link_to last_post.title, special_post_path(last_post.created_at.strftime('%d_%m_%Y'), last_post)
         .cont
           = t '.by'
           = last_post.admin.email
-.span6.jobs
+.col-lg-6.jobs
   %h2
     = t '.vacancies'
   .bl_content
     - @last_jobs.each do |last_job|
       .job
         - unless last_job.upload_file.blank? || last_job.upload_file.img_name.blank?
-          = image_tag last_job.upload_file.img_name.url, width: 50, height: 50, alt: 'image'
+          = image_tag last_job.upload_file.img_name.url, width: 50, alt: 'image'
         - else
-          = image_tag 'missing.png', width: 50, height: 50
+          = image_tag 'missing.png', width: 50
         .title
           = link_to last_job.title, last_job
         .resume.text-right
-          = link_to(t('.send_resume'), last_job, :class => 'btn')
+          = link_to(t('.send_resume'), last_job, :class => 'btn btn-default')

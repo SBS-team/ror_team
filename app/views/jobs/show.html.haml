@@ -1,5 +1,5 @@
 .row.careers-index
-  .span6
+  .col-lg-6
     %h2
       = t '.open_vacancies'
     .careers
@@ -8,9 +8,8 @@
         - unless @job.upload_file.blank? || @job.upload_file.img_name.blank?
           = image_tag @job.upload_file.img_name.url(:thumb), alt: 'image'
         - else
-          = image_tag 'missing.png'
+          = image_tag 'missing.png', :width => 170
         %h3
-          %i{:class=>'icon-star'}
           = @job.title
         .descr
           != @job.description

@@ -5,6 +5,20 @@ ActiveAdmin.register User do
   filter :email, :as => :string
   filter :first_name, :as => :string
   filter :last_name, :as => :string
+  filter :ban, :as => :check_boxes
+
+  batch_action 'Ban', :priority => 1, :confirm => 'Are you sure you want to ban all selected users?' do |selection|
+    User.find(selection).each do |user|
+      user.update_attribute(:ban, true)
+    end
+    redirect_to admin_users_path, :notice => 'All selected users banned !!!'
+  end
+  batch_action 'Unban', :confirm => 'Are you sure you want to unban all selected users?' do |selection|
+    User.find(selection).each do |user|
+      user.update_attribute(:ban, false)
+    end
+    redirect_to admin_users_path, :notice => 'All selected users unbanned !!!'
+  end
 
   index do
     selectable_column
@@ -13,9 +27,12 @@ ActiveAdmin.register User do
     column :last_name
     column :phone
     column :skype
+    column 'Ban?' do |user|
+      status_tag (user.ban ? 'Ban' :'Free'), (user.ban ? :error : :ok)
+    end
     default_actions
   end
-  form :html => {:enctype => "multipart/form-data" } do |f|
+  form :html => {:enctype => 'multipart/form-data' } do |f|
     f.semantic_errors :base
     f.inputs "User details", :multipart => true do
       f.input :email
@@ -25,6 +42,7 @@ ActiveAdmin.register User do
       f.input :last_name
       f.input :phone
       f.input :skype
+      f.input :ban, :as => :boolean
       f.has_many :upload_files do |file|
         file.input :filename, :as => :file, :label => 'Image'
         file.input :id, :as => :hidden
@@ -53,7 +71,7 @@ ActiveAdmin.register User do
 
     private
     def user_params
-      params.require(:user).permit(:email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :phone, :skype, upload_files_attributes: [:img_name, :id])
+      params.require(:user).permit(:email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :phone, :skype, :ban, upload_files_attributes: [:img_name, :id])
     end
   end
 end

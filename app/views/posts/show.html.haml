@@ -36,6 +36,8 @@
     .comments_block
       %div#all_comments
         = 'Look previous comments'
+      %div#close_comments
+        = 'Hide all comments'
       .comments
         %a{name: 'comments'}
         - @comments.each do |comment|

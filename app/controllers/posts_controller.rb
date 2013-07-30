@@ -39,23 +39,26 @@ class PostsController < ApplicationController
   def comments_show_all
 
     current_post = Post.find(params[:id])
-    comments =  current_post.comments.all
+    comments_count = current_post.comments.count
+    comments_count -= 3
+
+    comments =  current_post.comments.limit(comments_count).reverse
     id = []
     comments.each do |val|
      id << val.commentable_id
     end
     users = User.where("id IN (?)", id)
-    qwe = []
+    user_comments = []
 
     comments.map do |val|
       users.map do |user|
         if val.commentable_id == user.id
-          qwe << {:comment => val , :user =>user}
+          user_comments << {:comment => val , :user =>user}
         end
       end
     end
 
-    render json: {:comments => qwe }
+    render json: {:comments => user_comments }
 
   end
 

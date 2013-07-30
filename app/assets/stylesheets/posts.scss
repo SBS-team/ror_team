@@ -124,7 +124,7 @@
   font-family: "Courier New";
 }
 
-.comment_block input[type=text] {
+.comment_field {
   width: 70%;
   min-height: 40px;
 }
@@ -202,8 +202,9 @@ hr {
   background-position: -162px 0px;
 }
 
-#all_comments {
-  min-height: 35px;
+#all_comments, #close_comments {
+  padding: 7px 0 7px 0;
+  cursor: pointer;
   margin-bottom: 3px;
   text-align: center;
   background-color: rgba(192, 240, 255, 0.72);

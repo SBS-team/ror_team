@@ -16,8 +16,9 @@ $(document).ready ->
     else
       window.location.reload true
 
-  channel.bind 'pusher:member_removed', (data) ->
-    $.post '/admin_chat/close',
-      admin_email: gon.current_admin_email
-    window.location.reload true
-    alert "User go out"
+  channel.bind 'pusher:member_removed', (member) ->
+    if channel.members.me != member
+      $.post '/admin_chat/close',
+        admin_email: gon.current_admin_email
+      window.location.reload true
+      alert "User go out"

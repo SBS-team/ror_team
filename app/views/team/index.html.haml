@@ -16,7 +16,6 @@
         .about
           %p
             = truncate(member.about.capitalize, :length => 50)
-      %hr
     = paginate @team
   .col-lg-6
     - unless @team_photo.blank?

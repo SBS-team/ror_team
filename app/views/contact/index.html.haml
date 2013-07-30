@@ -28,7 +28,7 @@
               .col-lg-3.text-center
                 %label
                   - unless service.upload_file.blank? || service.upload_file.img_name.blank?
-                    = image_tag service.upload_file.img_name.url, title: service.name, alt: service.name, width: 100
+                    = image_tag service.upload_file.img_name.url, title: service.name, alt: service.name, width: 120
                   - else
                     = image_tag 'missing.png', :width => 120
                   = form.radio_button :service_type, service.name

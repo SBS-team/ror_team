@@ -17,6 +17,7 @@ RorTeam::Application.routes.draw do
   resources :jobs, only: [:index, :show, :create]
   resources :contact, only: [:index, :create]
   post '/contact/create_chat'
+  post '/contact/chat'
   resources :live_chats, only: [:new, :create, :show]
   post '/live_chats/chat'
   post '/pusher/auth'

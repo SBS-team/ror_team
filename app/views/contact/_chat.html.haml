@@ -11,9 +11,9 @@
             != "(#{msg.created_at.strftime('%d-%m-%Y')})|<b><U>#{@live_chat.admin_user.email}</U></b>: #{msg.body}"
         - else
           .msg.msg-user
-            != "(#{msg.created_at.strftime('%d-%m-%Y')})|<b><U>#{@live_chat.guest_email}</U></b>: #{msg.body}"
+            != "(#{msg.created_at.strftime('%d-%m-%Y')})|<b><U>#{@live_chat.guest_name}</U></b>: #{msg.body}"
   .chat-msg
-    = form_tag(live_chats_chat_path(live_chat_id: @live_chat.id), method: "post", remote: true) do
+    = form_tag(contact_chat_path(live_chat_id: @live_chat.id), method: "post", remote: true) do
       = label_tag  'Your message*:'
       = text_area_tag :message
       = submit_tag 'Send Message', id: "submit"

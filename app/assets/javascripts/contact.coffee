@@ -24,10 +24,12 @@ $(document).ajaxSuccess (event, response, settings) ->
 
 
 $(document).ready ->
+  alert "!!!"
   if $("#live_chat_admin_id").length
     admin_main_channel = 'presence-' + $("#live_chat_admin_id :selected").text();
   else
     admin_main_channel = 'presence-' + gon.current_admin_email
+    alert gon.current_admin_email + '%%' + admin_main_channel
 
   pusher = new Pusher("3719c0c90b25b237f538")
   channel = pusher.subscribe(admin_main_channel)

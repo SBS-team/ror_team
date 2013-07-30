@@ -5,9 +5,9 @@
         .post_left.text-center
           .img
             - unless post.upload_file.blank? || post.upload_file.img_name.blank?
-              = image_tag(post.upload_file.img_name.url)
+              = image_tag(post.upload_file.img_name.url, :width => 250)
             - else
-              = image_tag 'missing.png'
+              = image_tag 'missing.png', :width => 250
           = link_to "#{pluralize(post.comments_count, t('.comment'))}", "#{special_post_path(post.created_at.strftime('%d_%m_%Y'), post)}#comments"
         .post_right
           .post-title

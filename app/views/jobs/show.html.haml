@@ -8,7 +8,7 @@
         - unless @job.upload_file.blank? || @job.upload_file.img_name.blank?
           = image_tag @job.upload_file.img_name.url(:thumb), alt: 'image'
         - else
-          = image_tag 'missing.png', :width => 170
+          = image_tag 'missing.png', :width => 250
         %h3
           = @job.title
         .descr

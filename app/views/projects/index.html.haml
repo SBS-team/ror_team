@@ -32,21 +32,21 @@
           .project-url.col-lg-6
             = link_to project.url, "#{project.url}", :class => 'btn btn-success', :target => '_blank'
       .project-terms.row
-        .col-lg-3
+        .col-lg-6
           %p
             %b
               = t '.since'
             = project.since
-        .col-lg-4
+        .col-lg-6
           %p
             %b
               = t '.team_size'
             = pluralize(project.team_size.to_i, t('.people'))
-        .col-lg-3
+        .col-lg-12
           %p
             %b
               = t '.till'
-            = project.till ? project.till.strftime("%d %B %Y") : t('.in_work')
+            = project.till ? project.till.strftime("%Y-%m-%d") : t('.in_work')
       .team-info.row
         - project.services.each do |service|
           .developer-info.text-center.col-lg-3

@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
   def banned?
     if current_user.present? && current_user.ban
       sign_out current_user
-      flash[:error] = "This account has been suspended...."
+      flash[:error] = 'This account is banned...'
       root_path
     end
   end

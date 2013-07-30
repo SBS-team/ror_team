@@ -12,9 +12,9 @@
             %li= msg
     .form-group
       - if @job.nil?
-        = f.select(:job_id, options_for_select(@all_jobs_for_select.map { |j| [j.title, j.id] }))
+        = f.select(:job_id, options_for_select(@all_jobs_for_select.map { |j| [j.title, j.id] }), {}, {:class => "form-control"})
       - else
-        = f.select(:job_id, options_for_select(@job.title => @job.id))
+        = f.select(:job_id, options_for_select(@job.title => @job.id), {}, {:class => "form-control"})
     .form-group
       = f.text_field :name, :id => 'name', :class => 'form-control', :placeholder => t('.your_name') + '*', :type => 'text', :minlength => '2'
     .form-group

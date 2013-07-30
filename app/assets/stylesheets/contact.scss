@@ -26,4 +26,10 @@
   border: 1px solid #ffffff;
 }
 
+#chat-history{
+  height: 350px;
+  width: 350px;
+  overflow: auto;
+  overflow-x: hidden;
+}
 

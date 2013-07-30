@@ -60,3 +60,8 @@
               = 'Service'
         .submit-form.text-right
           = submit_tag 'Send Message', :class => 'btn', data: { disable_with: 'Please wait...' }
+  .span6
+    - if  @live_chat.id.blank?
+      = render partial: 'contact/new_chat'
+    - else
+      = render partial: 'contact/chat'

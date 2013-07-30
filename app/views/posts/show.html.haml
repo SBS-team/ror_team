@@ -35,17 +35,17 @@
             = link_to tag.name, posts_path(:tag_name => tag.name), :class => 'btn'
     .comments_block
       %div#all_comments
-        = 'Look previous comments'
+        %b= 'Look previous comments'
       %div#close_comments
-        = 'Hide all comments'
+        %b= 'Hide all comments'
       .comments
         %a{name: 'comments'}
         - @comments.each do |comment|
           %blockquote
             - if comment.commentable.id == session[:user_id] && comment.created_at > 60.minutes.ago
               = link_to post_comment_path(@post,comment), :method => :delete, :remote => true do
-                %span.icon-remove
-              %span.icon-pencil
+                %span.icon-remove{ :title => 'Delete' }
+              %span.icon-pencil{ :title => 'Edit' }
               -#= link_to edit_post_comment_path(@post,comment) do
                 %span.icon-pencil
 

@@ -66,8 +66,8 @@ $(document).ready(function(){
                 console.log(comment.id);
                 $('.comments').append('' +
                     '<blockquote style ="display:none;">' +
-                    '   <a rel="nofollow" onclick ="remove_comment(this);" data-remote="true" data-method="delete" href="'+correct_link+response.responseJSON.comment.id+'"><span class = "icon-remove"></span></a>' +
-                    '   <a><span class = "icon-pencil"></span></a>' +
+                    '   <a title ="Delete" rel="nofollow" onclick ="remove_comment(this);" data-remote="true" data-method="delete" href="'+correct_link+response.responseJSON.comment.id+'"><span class = "icon-remove"></span></a>' +
+                    '   <a title ="Edit"><span class = "icon-pencil"></span></a>' +
                     '   <b>' +
                     '   <img src = ' +image+ ' class = "img-rounded comment_img" width = "50" height = "50">' +
                     '   <span class = "comment_nick">'+nickname+'</span></b>' +
@@ -141,10 +141,18 @@ $(document).ready(function(){
     // Edit comment
     var comment;
     $('.icon-pencil').click(function(event){
-        comment = $(this).parent().find('.comment_description').val();
+        var comment = $(this).parent().find('.comment_description').html();
+        $.trim(comment);
         console.log(comment);
-        $(this).parent().find('.comment_description').remove();
-        $(this).prepend("<input type = 'textarea' value='"+comment+"'>");
+        $(this).parent().find('.comment_description').replaceWith("<input id = 'comment_description' class = 'comment_field' type = 'text' value='"+comment+"'>");
+        $(this).parent().append('<input class ="btn-success" type = "button" value = "Apply">');
+        $(this).parent().append('<input class ="btn-danger" type = "button" value = "Cancel">');
+        // ДОПИСЫВАЙ ЭТО ДЕРЬМО
+        // ДОПИСЫВАЙ ЭТО ДЕРЬМО
+        // ДОПИСЫВАЙ ЭТО ДЕРЬМО
+        // ДОПИСЫВАЙ ЭТО ДЕРЬМО
+
+
     });
 
 

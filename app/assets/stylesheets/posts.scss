@@ -150,6 +150,7 @@ hr {
 }
 
 .icon-remove, .icon-pencil {
+  cursor: pointer;
   margin-left: 5px;
   float: right;
 }
@@ -208,6 +209,7 @@ hr {
   margin-bottom: 3px;
   text-align: center;
   background-color: rgba(192, 240, 255, 0.72);
+  color: rgba(0, 194, 255, 0.71);
 }
 
 // for comments

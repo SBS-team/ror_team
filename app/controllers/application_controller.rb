@@ -3,6 +3,7 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
   before_filter :assign_gon_properties
+  before_filter :banned?
 
   protected
 
@@ -13,6 +14,14 @@ class ApplicationController < ActionController::Base
   def last_posts_and_jobs
     @last_posts = Post.order('updated_at desc').limit(4)
     @last_jobs = Job.order('updated_at desc').limit(4)
+  end
+
+  def banned?
+    if current_user.present? && current_user.ban
+      sign_out current_user
+      flash[:error] = 'This account is banned...'
+      root_path
+    end
   end
 
 end

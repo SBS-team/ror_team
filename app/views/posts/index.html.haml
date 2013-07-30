@@ -1,5 +1,5 @@
 .row
-  .span8.posts.main_cont
+  .col-lg-8.posts.main_cont
     - @posts.each do |post|
       .post
         .post_left.text-center
@@ -26,7 +26,7 @@
             .tags
               = t '.tags'
               - post.tag_counts_on(:tags).each do |tag|
-                = link_to tag.name, posts_path(:tag_name => tag.name), :class => 'btn'
+                = link_to tag.name, posts_path(:tag_name => tag.name), :class => 'btn btn-default'
     = paginate @posts
-  .span4.sidebar
+  .col-lg-4.sidebar
     = render :partial => 'sidebar'

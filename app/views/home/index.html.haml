@@ -22,7 +22,7 @@
     .bl_title.col-lg-12
       %h2
         = t '.project_work'
-    .bl_content.row
+    .bl_content.col-lg-12
       - @projects.each do |project|
         .portfolio_item.col-lg-3.text-center
           .pic
@@ -32,7 +32,7 @@
               = image_tag('missing.png')
           .portf_title
             = link_to project.name, project_path(project)
-    .row.text-right
+    .col-lg-12.text-right
       = link_to(t('.read_about_projects'), projects_path)
 .odd
   .row

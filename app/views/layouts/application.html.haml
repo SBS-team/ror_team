@@ -29,15 +29,14 @@
           = nav_link_to(t('.careers'), jobs_path, :controller => 'jobs')
           = nav_link_to(t('.contact'), contact_index_path, :controller => 'contact')
           = nav_link_to(t('.blog'), posts_path, :controller => 'posts')
-      .btn.btn-primary
-        = link_to t('.live_chat'), new_live_chat_path, :onclick=>"window.open(this.href,'RoR-Team Live Chat', 'height=500, width=400');return false;"
-      .content
-        .row
-          .col-lg-12
-            - if flash[:error]
-              %p.error
-                = flash.now[:error]
-            = yield
+        .pull-right.live-chat
+          = link_to t('.live_chat'), new_live_chat_path, :class => 'btn btn-warning', :onclick=>"window.open(this.href,'RoR-Team Live Chat', 'height=500, width=400');return false;"
+      .content.row
+        .col-lg-12
+          - if flash[:error]
+            %p.error
+              = flash.now[:error]
+          = yield
       %footer#footer.row
         .contact-us.col-lg-12
           %p.lead
@@ -59,5 +58,5 @@
           .col-lg-4
             %p.lead
               = link_to(t('.contact_email'), contact_index_path)
-        .bottom.text-center
+        .bottom.text-center.col-lg-12
           © 2012-2013 RoR-Team

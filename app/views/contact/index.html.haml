@@ -1,8 +1,8 @@
 .row
-  .span6
+  .col-lg-6
     %h1
       = t '.contact_us'
-    .web-form
+    .web-form.row
       = form_for @message, :url => contact_index_path, :html => {:class => 'web-form', :multipart => true} do |form|
         - if @message.errors.any?
           .ror-team-errors
@@ -12,51 +12,51 @@
             %ul
               - @message.errors.full_messages.each do |msg|
                 %li= msg
-        .name
-          = form.text_field(:name, 'placeholder' => 'Your name*', 'class' => 'span4')
-        .email
-          = form.email_field(:email, 'placeholder' => 'Your email*', 'class' => 'span4')
-        .phone
-          = form.telephone_field(:phone, 'placeholder' => 'Your phone', 'class' => 'span4')
-        .text
-          = form.text_area(:text, 'placeholder' => 'Your message', 'class' => 'span4' , 'rows' => '5')
-        .options
+        .name.col-lg-12.form-group
+          = form.text_field(:name, 'placeholder' => 'Your name*', 'class' => 'form-control')
+        .email.col-lg-12.form-group
+          = form.email_field(:email, 'placeholder' => 'Your email*', 'class' => 'form-control')
+        .phone.col-lg-12.form-group
+          = form.telephone_field(:phone, 'placeholder' => 'Your phone', 'class' => 'form-control')
+        .text.col-lg-12.form-group
+          = form.text_area(:text, 'placeholder' => 'Your message', 'class' => 'form-control' , 'rows' => '5')
+        .options.col-lg-12.form-group
           %h3
             What kind of services do you need?
-          .icons
+          .icons.row.radio
             - @services.each do |service|
-              .span2.text-center
+              .col-lg-3.text-center
                 %label
                   - unless service.upload_file.blank? || service.upload_file.img_name.blank?
-                    = image_tag service.upload_file.img_name.url, title: service.name, alt: service.name, width: 100, height: 100
+                    = image_tag service.upload_file.img_name.url, title: service.name, alt: service.name, width: 100
                   - else
-                    = image_tag 'missing.png'
+                    = image_tag 'missing.png', :width => 120
                   = form.radio_button :service_type, service.name
                   = service.name
-        .radios
+        .radio.col-lg-12
           %h4
             Im interested in?
           .choose
-            %label
+            %label.col-lg-12
               = form.radio_button :work_type, 'Minimum work project'
               = 'Minimum work project'
-            %label
+            %label.col-lg-12
               = form.radio_button :work_type, 'Work project from the beginning'
               = 'Work project from the beginning'
-            %label
+            %label.col-lg-12
               = form.radio_button :work_type, 'Help with existing project'
               = 'Help with existing project'
-            %label
+            %label.col-lg-12
               = form.radio_button :work_type, 'Technical audit'
               = 'Technical audit'
-            %label
+            %label.col-lg-12
               = form.radio_button :work_type, 'Increase in productivity'
               = 'Increase in productivity'
-            %label
+            %label.col-lg-12
               = form.radio_button :work_type, 'Update to new Rails'
               = 'Update to new Rails'
-            %label
+            %label.col-lg-12
               = form.radio_button :work_type, 'Service'
               = 'Service'
         .submit-form.text-right
-          = submit_tag 'Send Message', :class => 'btn', data: { disable_with: 'Please wait...' }
+          = submit_tag 'Send Message', :class => 'btn btn-primary', data: { disable_with: 'Please wait...' }

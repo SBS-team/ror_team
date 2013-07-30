@@ -13,6 +13,7 @@ body {                        // Для корректного отображе�
   width: 100%;
   position: relative;
   overflow-x: hidden;
+  padding: 60px 0 0 0;
 }
 
 header {
@@ -79,7 +80,7 @@ header .logo a {
 }
 
 #footer {
-  margin: -172px 0 0 0;
+  margin-top: -172px;
   background-color: rgba(0, 0, 0, 0.11);
   position: relative;
 }
@@ -107,4 +108,8 @@ header .logo a {
 
 .notice {
   color: green;
+}
+
+.navbar .live-chat {
+  margin: 5px 0 0 0;
 }

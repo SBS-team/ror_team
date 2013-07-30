@@ -17,12 +17,13 @@
 #  last_name              :string(70)
 #  phone                  :string(70)
 #  skype                  :string(70)
-#  created_at             :datetime
-#  updated_at             :datetime
 #  nickname               :string(255)
 #  uid                    :string(255)
 #  provider               :string(255)
 #  image                  :string(255)
+#  created_at             :datetime
+#  updated_at             :datetime
+#  ban                    :boolean
 #
 
 class User < ActiveRecord::Base

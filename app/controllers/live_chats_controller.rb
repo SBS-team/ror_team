@@ -26,8 +26,11 @@ class LiveChatsController < ApplicationController
         message.live_chat = @live_chat
         if message.save
           admin_email = @live_chat.admin_user.email
-          channel = admin_email
-          Pusher[channel].trigger('msg-event',  {message: message.body, email: @live_chat.guest_email, date: message.created_at.strftime('%d-%m-%Y')})
+          channel = 'presence-' + admin_email
+          Pusher[channel].trigger('msg-event',  {:user_id => session[:user_id],
+                                                 message: message.body,
+                                                 email: @live_chat.guest_email,
+                                                 date: message.created_at.strftime('%d-%m-%Y')})
           @live_chat.admin_user.update_attribute(:status, 'chat')
         end
         redirect_to live_chat_path(@live_chat)
@@ -54,8 +57,11 @@ class LiveChatsController < ApplicationController
       message.live_chat_id = params[:live_chat_id]
       if message.save
         chat = LiveChat.find(params[:live_chat_id])
-        channel = chat.admin_user.email
-        Pusher[channel].trigger('msg-event',  {message: message.body, email: chat.guest_email, date: message.created_at.strftime('%d-%m-%Y')})
+        channel = 'presence-' + chat.admin_user.email
+        Pusher[channel].trigger('msg-event',  {:user_id => session[:user_id],
+                                               message: message.body,
+                                               email: chat.guest_email,
+                                               date: message.created_at.strftime('%d-%m-%Y')})
       end
     end
     redirect_to :back

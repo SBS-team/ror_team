@@ -32,8 +32,11 @@ class AdminChatController < ApplicationController
       message.live_chat_id = params[:live_chat_id]
       if message.save
         chat = LiveChat.find(params[:live_chat_id])
-        channel = chat.admin_user.email
-        Pusher[channel].trigger('msg-event', {message: message.body, email: chat.admin_user.email, date: message.created_at.strftime('%d-%m-%Y')})
+        channel = 'presence-' + chat.admin_user.email
+        Pusher[channel].trigger('msg-event', {:user_id => session[:user_id],
+                                              message: message.body,
+                                              email: chat.admin_user.email,
+                                              date: message.created_at.strftime('%d-%m-%Y')})
       end
     end
     redirect_to :back
@@ -42,7 +45,7 @@ class AdminChatController < ApplicationController
   def close
     admin = AdminUser.where(email: params[:admin_email]).take
     admin.update_attribute(:status, 'online')
-    session['chat'] = nil
-    redirect_to action: 'chat'
+#    session['chat'] = nil
+    redirect_to :back
   end
 end

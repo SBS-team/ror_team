@@ -5,9 +5,9 @@ $(document).ajaxSuccess (event, response, settings) ->
 
 $(document).ready ->
   if $("#live_chat_admin_id").length
-    admin_main_channel = $("#live_chat_admin_id :selected").text();
+    admin_main_channel = 'presence-' + $("#live_chat_admin_id :selected").text();
   else
-    admin_main_channel = gon.current_admin_email
+    admin_main_channel = 'presence-' + gon.current_admin_email
 
   pusher = new Pusher("3719c0c90b25b237f538")
   channel = pusher.subscribe(admin_main_channel)

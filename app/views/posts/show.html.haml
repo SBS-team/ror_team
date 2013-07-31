@@ -50,14 +50,6 @@
     .comments-form
       = form_for [@post, @comment = Comment.create ], :html => {:class => 'form-inline'}, :remote => true do |f|
         .comment_block
-          -#- if @comment.errors.any?
-          -#  .ror-team-errors
-          -#    %h6
-          -#      = pluralize(@comment.errors.count, "error")
-          -#      prohibited this resume from being sending
-          -#    %ul
-          -#      - @comment.errors.full_messages.each do |msg|
-          -#        %li= msg
           = t '.new_comment'
           .form-group
             = f.text_field :description, :class => 'form-control', :placeholder => t('.write_comment')

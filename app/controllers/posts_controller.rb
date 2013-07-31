@@ -32,8 +32,7 @@ class PostsController < ApplicationController
     if request.path != special_post_path(@post.created_at.strftime('%d_%m_%Y'), @post)
       redirect_to @post, status: :moved_permanently
     end
-    #Select last 3 records
-    @comments = @post.comments.order('id DESC').limit(3).reverse#.page(params[:page]).per(5)
+    @comments = @post.comments.order('id DESC').limit(3).reverse
 
   end
 

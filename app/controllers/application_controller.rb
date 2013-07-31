@@ -33,13 +33,4 @@ class ApplicationController < ActionController::Base
     root_path
   end
 
-  def after_sign_in_path_for(resource_or_scope)
-    #alert "@@"+current_admin_user
-    if !!current_admin_user
-
-      current_admin_user.update_attribute(:status, 'online') if current_admin_user.role == 'manager'
-    end
-    root_path
-  end
-
 end

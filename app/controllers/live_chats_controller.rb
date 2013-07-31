@@ -69,6 +69,6 @@ class LiveChatsController < ApplicationController
 
   protected
   def live_chat_params
-    params.require(:live_chat).permit(:guest_name, :guest_email, :admin_id)
+    params.require(:live_chat).permit(:guest_name, :admin_id)
   end
 end

@@ -6,7 +6,7 @@
   -else
     = form_for @live_chat, url: {action: :create_chat} do |f|
       Choose your manager:
-      - admins_for_select = @admins.map { |admin| [admin.email, admin.id] }
+      - admins_for_select = @admins.map { |admin| [admin.first_name+" "+admin.last_name, admin.id] }
       = f.select :admin_id, admins_for_select
       .contact-info
         = f.label 'Your name*:'
@@ -16,4 +16,4 @@
       .chat-msg
         Your message*:
         = text_area_tag :message
-        = f.submit 'add Message' #, id: "submit"
+        = f.submit 'add Message', id: "submit"

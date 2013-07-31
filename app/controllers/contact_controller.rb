@@ -10,9 +10,17 @@ class ContactController < ApplicationController
     @message = Message.new
     @services = Service.all
 
-    @admins = AdminUser.select(:id, :email).where(role: 'manager', status: 'online').order('random()')
-    @live_chat = params[:live_chat_id].blank? ? LiveChat.new : LiveChat.find(params[:live_chat_id])
-    gon.current_admin_email = @live_chat.admin_user.email
+    @admins = AdminUser.select(:id, :first_name, :last_name).where(role: 'manager', status: 'online').order('random()')
+    if params[:live_chat_id].blank?
+      @live_chat = LiveChat.new
+      gon.current_admin_email = nil
+    else
+      @live_chat = LiveChat.find(params[:live_chat_id])
+      gon.current_admin_email = @live_chat.admin_user.email
+    end
+
+    #@live_chat = params[:live_chat_id].blank? ? LiveChat.new : LiveChat.find(params[:live_chat_id])
+    #gon.current_admin_email = @live_chat.admin_user.email
   end
 
   def create

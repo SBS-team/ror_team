@@ -15,7 +15,7 @@ class AdminChatController < ApplicationController
     if !!current_admin_user
       if current_admin_user.status == 'chat'
         @live_chat = LiveChat.where(admin_id: current_admin_user.id).order("updated_at DESC").includes(:admin_user).take
-        @messages = ChatMessage.where(live_chat_id: @live_chat.id).limit(50)
+        @messages = ChatMessage.where(live_chat_id: @live_chat.id)
       end
       gon.current_admin_email = current_admin_user.email
       render 'admin_chat/chat', layout: false
@@ -35,7 +35,7 @@ class AdminChatController < ApplicationController
         channel = 'presence-' + chat.admin_user.email
         Pusher[channel].trigger('msg-event', {:user_id => session[:user_id],
                                               message: message.body,
-                                              email: chat.admin_user.email,
+                                              email: chat.admin_user.first_name+" "+chat.admin_user.last_name,
                                               date: message.created_at.strftime('%d-%m-%Y')})
       end
     end

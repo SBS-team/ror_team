@@ -23,6 +23,12 @@ $(document).ready ->
           digits: true,
           maxlength: 31
 
+  $("#submit").click ->
+    $("form").validate
+      rules:
+        "message":
+          required: true
+
   if $("#live_chat_admin_id").length
     admin_main_channel = 'presence-' + $("#live_chat_admin_id :selected").text();
   else

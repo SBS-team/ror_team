@@ -1,44 +1,42 @@
-%div.main_block
-  %div.bl_title
-    %h2
-      about us
-  %div.bl_content
-    "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut    enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor      in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,    sunt in culpa qui officia deserunt mollit anim id est laborum."
-  %div.more
-    %div.btn.to_right
-      view more
-%div.main_block
-  %div.bl_title
-    %h2
-      our blog
-  %div.bl_content
-    "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut    enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor      in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,    sunt in culpa qui officia deserunt mollit anim id est laborum."
-  %div.more
-    %div.btn.to_right
-      view more
-%div.main_block
-  %div.bl_title
-    %h2
-      products
-  %div.bl_content
-    "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut    enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor      in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident,    sunt in culpa qui officia deserunt mollit anim id est laborum."
-  %div#slider
-    %div.slider_content
-      %div.slider_item
-        %div.img-polaroid
-        %span
-          Lorem ipsum dolor sit amet
-      %div.slider_item
-        %div.img-polaroid
-        %span
-          Lorem ipsum dolor sit amet
-      %div.slider_item
-        %div.img-polaroid
-        %span
-          Lorem ipsum dolor sit amet
-    %div.slider_nav
-      %div.prev.icon-arrow-left
-        =link_to 'prev', '#'
-      %div.next.icon-arrow-right
-        =link_to 'next', '#'
+.odd
+  .row
+    .col-lg-6
+      %h2
+        = t '.our_command'
+      %p
+        = t '.our_description'
+    .col-lg-6.text-right
+      %h2.bl_title
+        = t '.our_skills'
+      .skills
+        - @technologies.each do |technology|
+          .skill
+            - unless technology.upload_file.blank? || technology.upload_file.img_name.blank?
+              = image_tag technology.upload_file.img_name.url, title: technology.name, alt: technology.name, width: 50
+            - else
+              = image_tag 'missing.png', width: 50, alt: technology.name, title: technology.name
+      .more.text-right
+        = link_to(t('.read_about_skills'), company_index_path)
+.even
+  .row
+    .bl_title.col-lg-12
+      %h2
+        = t '.project_work'
+    .bl_content.col-lg-12
+      - @projects.each do |project|
+        .portfolio_item.col-lg-3.text-center
+          .pic
+            - unless project.upload_files.blank?
+              = image_tag(project.upload_files.sample.img_name.url(:thumb))
+            - else
+              = image_tag('missing.png')
+          .portf_title
+            = link_to project.name, project_path(project)
+    .col-lg-12.text-right
+      = link_to(t('.read_about_projects'), projects_path)
+.odd
+  .row
+    = render :partial => 'shared/post_jobs'
+
+
 

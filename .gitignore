@@ -13,11 +13,13 @@
 
 # Ignore the database connection.
 /config/database.yml
+/config/unicorn.rb
 
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
 /config/environments/*.yml
 
-.idea
-
+/.idea
+/public/uploads
+/public/assets

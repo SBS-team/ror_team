@@ -56,7 +56,7 @@ ActiveAdmin.setup do |config|
   # This setting changes the method which Active Admin calls
   # within the controller.
   config.authentication_method = :authenticate_admin_user!
-
+  config.authorization_adapter = ActiveAdmin::CanCanAdapter
 
   # == Current User
   #
@@ -92,7 +92,7 @@ ActiveAdmin.setup do |config|
   # roots for each namespace.
   #
   # Default:
-  # config.root_to = 'dashboard#index'
+  # config.root_to = 'dashboard#new'
 
   # == Admin Comments
   #
@@ -100,15 +100,15 @@ ActiveAdmin.setup do |config|
   # Admin comments are enabled by default.
   #
   # Default:
-  # config.allow_comments = true
+  config.allow_comments = false
   #
   # You can turn them on and off for any given namespace by using a
   # namespace config block.
   #
   # Eg:
-  #   config.namespace :without_comments do |without_comments|
-  #     without_comments.allow_comments = false
-  #   end
+     config.namespace :without_comments do |without_comments|
+       without_comments.allow_comments = false
+     end
 
 
   # == Batch Actions
@@ -200,11 +200,10 @@ ActiveAdmin.setup do |config|
 
   # == Filters
   #
-  # By default the index screen includes a “Filters” sidebar on the right
+  # By default the new screen includes a “Filters” sidebar on the right
   # hand side with a filter for each attribute of the registered model.
   # You can enable or disable them for all resources here.
   #
   # config.filters = true
-
 
 end

@@ -1,55 +1,57 @@
 !!!
 %html
   %head
+    = favicon_link_tag
     %title RorTeam
-    = stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true
-    = javascript_include_tag "application", "data-turbolinks-track" => true
+    = stylesheet_link_tag    'application', media: 'all'
+    = javascript_include_tag 'application'
     = include_gon(:namespace => 'RorTeam', :camel_case => true)
     = csrf_meta_tags
   %body
-    %div.container
-      %header
-        %div.logo
-          %h1
-            Ror-team
-        %div.offset2
-        %ul.main-menu
-          %li
-            =link_to "Home", '#', :class => 'active'
-          %li
-            =link_to "Blog", '#'
-          %li
-            =link_to "Community", '#'
-          %li
-            =link_to "Team", '#'
-          %li
-            =link_to "Products", '#'
-          %li
-            =link_to "Services", '#'
-          %li
-            =link_to "About", '#'
-        %div.clear
-
-      %div#content.offset2
-        = yield
-      %footer#footer
-        %div.contact-us.row
-          %div.span6
-            %h2 Need to contact us?
-            %h3 You can join us in our social media space.
-          %div.span6
-            %ul.soc-menu
-              %li
-                =link_to "Google+", '#', :class => 'active'
-              %li
-                =link_to "Fecebook", '#'
-              %li
-                =link_to "Twitter", '#'
-          %div.clear
-        %div.contact-link.row
-          %div.span4
-            =link_to "Fallow us on facebook", '#'
-          %div.span4
-            =link_to "Fallow us on twitter", '#'
-          %div.span4
-            =link_to "Fallow us by email", '#'
+    .container
+      .navbar.navbar-inverse.navbar-fixed-top
+        = link_to(t('.ror_team'), root_path, :class => 'navbar-brand')
+        %ul.nav.navbar-nav
+          = nav_link_to(t('.company'), company_index_path, :controller => 'company')
+          = nav_link_to(t('.work'), projects_path, :controller => 'projects')
+          = nav_link_to(t('.team'), team_index_path, :controller => 'team')
+          = nav_link_to(t('.careers'), jobs_path, :controller => 'jobs')
+          = nav_link_to(t('.contact'), contact_index_path, :controller => 'contact')
+          = nav_link_to(t('.blog'), posts_path, :controller => 'posts')
+        .pull-right.live-chat
+          = link_to t('.live_chat'), new_live_chat_path, :class => 'btn btn-warning', :onclick=>"window.open(this.href,'RoR-Team Live Chat', 'height=500, width=400');return false;"
+      .content.row
+        .col-lg-12
+          - if flash[:error]
+            %p.error
+              = flash.now[:error]
+          - if flash[:notice]
+            %p.alert.alert-success
+              = flash.now[:notice]
+          - if flash[:alert]
+            %p.alert.alert-error
+              = flash.now[:alert]
+          = yield
+      %footer#footer.row
+        .contact-us.col-lg-12
+          %p.lead
+            = t '.use_to_contact'
+        .media-net
+          .col-lg-6
+            %small
+              = t '.media_soc'
+          .col-lg-6.text-right
+            %small
+              = t '.mail_scype'
+        .soc_net
+          .col-lg-4
+            %p.lead
+              = link_to(t('.follow_twitter'), 'http://twitter.com')
+          .col-lg-4
+            %p.lead
+              = link_to(t('.follow_facebook'), 'http://facebook.com')
+          .col-lg-4
+            %p.lead
+              = link_to(t('.contact_email'), contact_index_path)
+        .bottom.text-center.col-lg-12
+          © 2012-2013 RoR-Team

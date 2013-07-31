@@ -1,80 +1,53 @@
-.main_block {
-  margin: 0 0 40px 0;
-  border: 1px solid #000000;
-  border-radius: 5px 5px 5px 5px;
-  width: 740px;
-}
+// Place all the styles related to the home controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
 
-.bl_content {
-  padding: 7px 7px 7px 7px;
-  margin: 0 0 20px 0;
-}
-
-.bl_title {
-  text-transform: capitalize;
-  background-color: rgba(0,0,0,.2);
-  padding: 0 5px 0 5px;
-}
-
-.bl_title h2 {
-  margin: 0 0 0 0;
-}
-
-.more {
-  text-transform: capitalize;
-  margin: 0 5px 5px 5px;
-  text-align: right;
-}
-
-#slider {
-  margin: 0 4px 40px 4px;
-  border: 1px solid #000000;
-  border-radius: 5px 5px 5px 5px;
-  position: relative;
-  width: 600px;
-  padding: 0 65px 0 65px;
-}
-
-.slider_content {
+.odd {
+  background-color: #fff;
   overflow: hidden;
-  width: 675px;
-  padding: 30px 0 0 0;
 }
 
-.slider_item {
-  height: 210px;
+.even {
+  background-color: #e6e6e6;
+  overflow: hidden;
+}
+
+.skills {
+  overflow: hidden;
+  padding: 0 0 0 80px;
+}
+
+.skill {
   float: left;
-  margin: 0 75px 20px 0;
-  width: 150px;
+  width: 70px;
+  height: 70px;
+  border: 1px solid #e6e6e6;
   text-align: center;
+  overflow: hidden;
+  margin: 0 0 10px 50px;
 }
 
-.img-polaroid {
-  height: 140px;
-  width: 140px;
-}
-
-.slider_nav {
-  position: relative;
-  width: 100%;
-}
-
-.slider_nav .prev {
-  position: absolute;
-  top: -130px;
-  left: -40px;
-  text-indent: -9999em;
-}
-
-.slider_nav .next {
-  position: absolute;
-  top: -130px;
-  right: -40px;
-  text-indent: -9999em;
-}
-
-.slider_nav a {
+.skill a {
   display: block;
-  height: 14px;
-  width: 14px;
+  height: 100%;
+}
+
+.portfolio_item .pic a {
+  display: block;
+  height: 100%;
+}
+
+.bl_content img {
+  float: left;
+  margin: 0 10px 10px 0;
+}
+
+.posts .bl_content .post {
+  margin: 0 0 20px 0;
+  overflow: hidden;
+}
+
+.jobs .bl_content .job {
+  margin: 0 0 20px 0;
+  overflow: hidden;
 }

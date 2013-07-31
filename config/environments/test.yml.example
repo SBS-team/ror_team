@@ -1,0 +1,10 @@
+pusher:
+  wss_host: '127.0.0.1'
+  wss_port: 8080
+  api_host: '127.0.0.1'
+  api_port: 4567
+
+  #Settings up application(this comes from jagan)
+  app_id: 1
+  app_key: '1c81fd8f32b04884c7ac10a7df682973'
+  app_secret: 'bb8d5f8da6d091609da5c11ede8a236a'

@@ -1,0 +1,20 @@
+= t '.name'
+= @message.name
+= t '.email'
+= @message.email
+
+- unless @message.text.nil? || @message.text.empty?
+  = t '.message'
+  = @message.text
+
+- unless @message.phone.nil? || @message.phone.empty?
+  = t '.phone'
+  = @message.phone
+
+- unless @message.service_type.nil?
+  = t '.service_type'
+  = @message.service_type
+
+- unless @message.work_type.nil?
+  = t '.im_interested'
+  = @message.work_type

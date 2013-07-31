@@ -99,3 +99,123 @@ ru:
         sign_in: "Войти"
         forgot_your_password: "Забыли пароль?"
         sign_in_with_omniauth_provider: "Войти на приложения %{provider}"
+
+
+  layouts:
+    application:
+      ror_team: "RoR-Team"
+      company: "Компания"
+      work: "Работы"
+      team: "Команда"
+      careers: "Careers"
+      contact: "Контакты"
+      blog: "Блог"
+      use_to_contact: "Нужно связаться с нами?"
+      media_soc: "Вы можете присоединиться к нашей медиа соц. сети:"
+      mail_scype: "Или связаться с нами через email или skype:"
+      follow_twitter: "Найти на в Twitter"
+      follow_facebook: "Найти нас на Facebook"
+      contact_email: "Связаться с нами по email"
+      email: "email ror_team@gmail.com"
+
+
+  home:
+    index:
+      our_command: "О нас и нашей компании!"
+      our_description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor  in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+      our_skills: "Наши навыки и опыт:"
+      read_about_skills: "Подробнее о наших навыках"
+      project_work: "Проэкты над которыми работали / Портфолио"
+      read_about_projects: "Подробнее о наших проэктах"
+
+  company:
+    index:
+      our_skills: "Наши навыки и опыт:"
+      service_prode: "Сервисы, которые мы предоставляем:"
+      development_system: "Опыт разработки различных систем"
+      command_development: "Опытная команда разработчиков"
+      feedback_odesk: "Положительные отзывы на Odesk"
+
+  shared:
+    post_jobs:
+      latest_posts: "Новые посты в блоге:"
+      by: "от"
+      vacancies: "Вакансии:"
+      send_resume: "Отправить резюме"
+
+  team:
+    index:
+      our_command: "О нас и нашей компании!"
+      team_photo: "Фото команды"
+
+  projects:
+    index:
+      link_project: "Ссылка на проэкт"
+      since: "Начало:"
+      team_size: "Команда:"
+      till: "Окончание:"
+      tech_info: "Техническая информация"
+      people: "человек(а)"
+
+  contact:
+    index:
+      contact_us: "Связаться с нами:"
+
+  notifications_mailer:
+    new_message:
+      name: "Имя:"
+      email: "Email:"
+      message: "Сообщение:"
+      phone: "Телефон:"
+      service_type: "Какой тип услуг вам нужен:"
+      im_interested: "Я заинтересован в:"
+
+  jobs:
+    open_vacancies: "Вакансии:"
+    form:
+      send_resume: "Послать нам резюме:"
+      select_job: "Выбрать вакансию"
+      your_name: "Ваше имя"
+      your_email: "Ваш Email"
+      your_phone: "Ваш номер телофона"
+      your_message: "Ваше сообщение"
+      send_resume: "Отправить резюме"
+
+  posts:
+    sidebar:
+      rss_feed: "RSS Feed"
+      search: "поиск"
+      categories: "Категории:"
+      ror_team_info: "RoR-Team это лучшее, что было в вашей жизни! Мы можем испортить любой ваш заказ, будь то починка кастрюли или движение отвертки."
+      run_away: "Убежать"
+      help_you: "Мы всегда рады помочь вам"
+      contact_us: "Связаться с нами"
+      tags: "Тэги:"
+    index:
+      category: "Категория:"
+      tags: "Тэги:"
+      comments: "Комментарии"
+    show:
+      comments: "Комментарии"
+      new_comment: "Новый комментарий"
+      write_comment: "Введите комментарий"
+      add_comment: "Добавить комментарий"
+      most_recent_post: "Последние посты"
+      get_more: "Хотите узнать больше о ror-team"
+      most_popular: "Популярные посты"
+      ready_help: "мы всегда рады помочь Вам"
+      contact_us: "Связаться с нами"
+      rss_feed: "RSS Feed"
+
+  contact:
+    create:
+      contact_sent_msg: "Ваше сообщение отправлено."
+      contact_error_msg: "Ошибка. Заполните необходимые поля"
+
+  admin:
+    projects:
+      create:
+        proj_create: "Проэкт успешно создан."
+      update:
+        proj_update: "Проэкт успешно изменен."
+        proj_error: "Невозможно обновить проэкт."

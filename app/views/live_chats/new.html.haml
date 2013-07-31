@@ -1,0 +1,17 @@
+%h1
+  LiveChat
+%div
+  = form_for @live_chat, url: {action: :create} do |f|
+    = f.label 'You can send your questions to one of next managers:'
+    - admins_for_select = @admins.map { |admin| [admin.email, admin.id] }
+    = f.select :admin_id, admins_for_select
+    .contact-info
+      = f.label 'Your name*:'
+      = f.text_field :guest_name
+      %br
+      = f.label 'Your email*:'
+      = f.email_field :guest_email
+    .chat-msg
+      = f.label 'Your message*:'
+      = text_area_tag :message
+    = f.submit 'Send Message', data: { disable_with: 'Please wait...' }

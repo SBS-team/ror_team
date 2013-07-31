@@ -21,3 +21,134 @@
 
 en:
   hello: "Hello world"
+
+  layouts:
+    application:
+      ror_team: "RoR-Team"
+      company: "Company"
+      work: "Work"
+      team: "Team"
+      careers: "Careers"
+      contact: "Contact"
+      blog: "Blog"
+      live_chat: "Live Chat"
+      use_to_contact: "Need us to contact you?"
+      media_soc: "You can join our social media. network:"
+      mail_scype: "Or contact us via email or skype:"
+      follow_twitter: "Follow us on Twitter"
+      follow_facebook: "Follow us on Facebook"
+      contact_email: "Contact us by email"
+      email: "email ror_team@gmail.com"
+
+
+  home:
+    index:
+      our_command: "About us and our company!"
+      our_description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor  in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+      our_skills: "Our skills and experience:"
+      read_about_skills: "Read more about our skills"
+      project_work: "Projects on which work / Portfolio"
+      read_about_projects: "Read more about our projects"
+
+  company:
+    index:
+      our_skills: "Our skills and experience:"
+      service_prode: "Services we provide:"
+      development_system: "Experience in the development of various systems"
+      command_development: "An experienced team of developers"
+      feedback_odesk: "Positive feedback on Odesk"
+
+  shared:
+    post_jobs:
+      latest_posts: "Latest blog posts:"
+      by: "by"
+      vacancies: "Open vacancies:"
+      send_resume: "Send resume"
+
+  team:
+    index:
+      our_command: "About us and our company!"
+      team_photo: "Team photo"
+      about: "You can use all Bootstrap plugins purely through the markup API without writing a single line of JavaScript. This is Bootstrap's first class API and should be your first consideration when using a plugin.
+              That said, in some situations it may be desirable to turn this functionality off. Therefore, we also provide the ability to disable the data attribute API by unbinding all events on the body namespaced with `'data-api'`. This looks like this:"
+
+
+  projects:
+    index:
+      link_project: "Link to  project"
+      since: "Since:"
+      team_size: "Team size:"
+      till: "Till:"
+      tech_info: "Technical information:"
+      people: "people"
+      in_work: "in work"
+
+  contact:
+    index:
+      contact_us: "Contact us:"
+
+  notifications_mailer:
+    new_message:
+      name: "Name:"
+      email: "Email:"
+      message: "Message:"
+      phone: "Phone:"
+      service_type: "Service type:"
+      im_interested: "Im interested in"
+
+  jobs:
+    open_vacancies: "Open vacancies:"
+    form:
+      send_resume: "Send us your resume:"
+      select_job: "Select a job"
+      your_name: "Your name"
+      your_email: "Your Email"
+      your_phone: "Your phone number"
+      your_message: "Your message"
+      send_resume: "Send resume"
+
+  posts:
+    sidebar:
+      rss_feed: "RSS Feed"
+      search: "search"
+      categories: "Categories:"
+      any_category_not_exists_yet: "Any category not exists yet"
+      ror_team_info: "RoR-Team the best uve ever seen in your life!! We can do anything."
+      see_our_projects: "See our projects"
+      help_you: "We are always happy to help you"
+      contact_us: "Contact us"
+      tags: "Tags:"
+      tags_are_not_added: "Tags are not added yet"
+    index:
+      categories: "Categories:"
+      tags: "Tags:"
+      comment: "comment"
+      your_search_for: "Your search for"
+      returned_no_hits: "returned no hits."
+    show:
+      comment: "comment"
+      post_hasnt_comments: "This post hasn't any comments"
+      new_comment: "New Comment"
+      write_comment: "Write your comment here"
+      add_comment: "Add Comment"
+      most_recent_post: "Most recent posts"
+      get_more: "Want to get more of ror-team"
+      most_popular: "Most popular posts"
+      ready_help: "we're always ready to help"
+      contact_us: "Contact Us"
+      rss_feed: "RSS Feed"
+      categories: "Categories:"
+      tags: "Tags:"
+
+  contact:
+    create:
+      contact_sent_msg: "Message was successfully sent."
+      contact_error_msg: "Form invalid. Please check errors bellow"
+
+  admin:
+    projects:
+      create:
+        proj_create: "Project was successfully created."
+      update:
+        proj_update: "Project was successfully updated."
+        proj_error: "Error has occurred while updating."

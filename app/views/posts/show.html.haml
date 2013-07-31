@@ -54,7 +54,6 @@
           .form-group
             = f.text_field :description, :class => 'form-control', :placeholder => t('.write_comment')
             = f.submit t('.add_comment'), class: 'btn btn-primary', :id => 'go_comment', data: { disable_with: 'Please wait...' }
-
     .col-lg-6
       .recent_posts
         %h3

@@ -39,12 +39,12 @@ class Resume < ActiveRecord::Base
   private
 
   def validate_data
-    if (self.upload_files.blank?)
+    if (self.upload_file.blank?)
       errors.add(:description, "can't be blank and file is not attached") if self.description.blank?
     else
       self.upload_files.each do |file|
         if (/\.doc|\.pdf/ =~ file.filename.to_s).nil?
-          errors.add(:upload_files, "not doc, pdf types")
+          errors.add(:upload_file, "not doc, pdf types")
         end
       end
     end

@@ -8,7 +8,6 @@
 #= require jobs
 #= require contact
 #= require load_comments
-#= require comment
 
 $(document).ready ->
   $('.carousel').carousel()

@@ -12,6 +12,7 @@ class ContactController < ApplicationController
 
     @admins = AdminUser.select(:id, :email).where(role: 'manager', status: 'online').order('random()')
     @live_chat = params[:live_chat_id].blank? ? LiveChat.new : LiveChat.find(params[:live_chat_id])
+    gon.current_admin_email = @live_chat.admin_user.email
   end
 
   def create
@@ -37,6 +38,7 @@ class ContactController < ApplicationController
         message.live_chat = @live_chat
         if message.save
           admin_email = @live_chat.admin_user.email
+          gon.current_admin_email = admin_email
           channel = 'presence-' + admin_email
           Pusher[channel].trigger('msg-event',  {:user_id => session[:user_id],
                                                  message: message.body,
@@ -55,8 +57,6 @@ class ContactController < ApplicationController
   end
 
   def chat
-#    @live_chat = LiveChat.where("id = :chat_id", chat_id: (params[:id]).to_i).includes(:chat_messages, :admin_user).take
-#    gon.current_admin_email = @live_chat.admin_user.email
 
     unless params[:message].blank?
       message = ChatMessage.new

@@ -62,7 +62,7 @@
               = form.radio_button :work_type, 'Service'
               = 'Service'
         .submit-form.text-right
-          = submit_tag 'Send e-mail', :class => 'btn btn-primary', data: { disable_with: 'Please wait...' }
+          = submit_tag 'Send e-mail', :class => 'btn btn-primary send-email', data: { disable_with: 'Please wait...' }
   .span6
     - if  @live_chat.id.blank?
       = render partial: 'contact/new_chat'

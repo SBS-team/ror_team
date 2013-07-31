@@ -9,7 +9,7 @@ $(document).ajaxSuccess (event, response, settings) ->
 
 $(document).ready ->
 
-  $(".btn").click ->
+  $(".send-email").click ->
     $("form").validate
       rules:
         "message[name]":
@@ -24,9 +24,11 @@ $(document).ready ->
           maxlength: 31
 
   $("#submit").click ->
-    $("form").validate
+    $("#new_live_chat").validate
       rules:
         "message":
+          required: true
+        "live_chat[guest_name]":
           required: true
 
   if $("#live_chat_admin_id").length

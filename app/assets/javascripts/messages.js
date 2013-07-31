@@ -64,16 +64,9 @@ $(document).ready(function(){
                 image = response.responseJSON.image;
                 time = response.responseJSON.created_at;
                 console.log(comment.id);
-                $('.comments').append('' +
-                    '<blockquote style ="display:none;">' +
-                    '   <a title ="Delete" rel="nofollow" onclick ="remove_comment(this);" data-remote="true" data-method="delete" href="'+correct_link+response.responseJSON.comment.id+'"><span class = "icon-remove"></span></a>' +
-                    '   <a title ="Edit"><span class = "icon-pencil"></span></a>' +
-                    '   <b>' +
-                    '   <img src = ' +image+ ' class = "img-rounded comment_img" width = "50" height = "50">' +
-                    '   <span class = "comment_nick">'+nickname+'</span></b>' +
-                    '   <small class = "comment_email">'+email+'</small><br>' +
-                    '   <span class = "comment_description">'+comment+'</span><br>' +
-                    '   <small class = "comment_time">just now</small><hr></blockquote>');
+                $('.comments').append('<blockquote style ="display:none;">' +
+                    '<span class = "comment_description">'+comment+'</span><br>' +
+                    '<hr></blockquote>');
                 $('.comments blockquote').slideDown('slow');
             }
 

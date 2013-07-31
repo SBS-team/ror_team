@@ -26,7 +26,7 @@ class PostsController < ApplicationController
 
   # GET /posts/1
   def show
-    session[:return_to] = request.fullpath
+    @comment_count = Comment.count
     @post = Post.find_by_slug(params[:id])
     if request.path != special_post_path(@post.created_at.strftime('%d_%m_%Y'), @post)
       redirect_to @post, status: :moved_permanently

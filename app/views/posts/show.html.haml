@@ -29,21 +29,19 @@
           - @post.tag_counts_on(:tags).each do |tag|
             = link_to tag.name, posts_path(:tag_name => tag.name), :class => 'btn btn-default'
     .comments_block
-      #all_comments
-        %b= 'Look previous comments'
+      -if @comment_count > 3
+        #all_comments
+          %b= 'Look previous comments'
       #close_comments
         %b= 'Hide all comments'
       .comments
         %a{name: 'comments'}
         - @comments.each do |comment|
           %blockquote
-            %b
-              %span.comment_nick
-
+            .comment_description
+              = comment.description.capitalize
             %br
-              %span.comment_description
-                = comment.description.capitalize
-            %span.comment_time
+            .comment_time
               %small
                 = time_ago_in_words comment.created_at
                 = 'ago'

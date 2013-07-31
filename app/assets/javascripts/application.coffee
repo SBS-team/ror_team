@@ -7,8 +7,8 @@
 #= require extra_validations
 #= require jobs
 #= require contact
-#= require messages
 #= require load_comments
+#= require comment
 
 $(document).ready ->
   $('.carousel').carousel()

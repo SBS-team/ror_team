@@ -135,7 +135,6 @@ hr {
   margin-bottom: 0;
 }
 
-
 .comments_block small {
   font-size: 10px;
 }
@@ -147,6 +146,10 @@ hr {
   text-align: center;
   background-color: #357ebd;
   color: #fff;
+}
+
+.error_messages {
+  color: red;
 }
 
 // for comments

@@ -9,17 +9,6 @@
     = csrf_meta_tags
   %body
     .container
-      -if !notice.blank?
-        .success.message
-          %h3
-            = notice
-      -if !alert.blank?
-        .info.message
-          %h3
-            = alert
-      - if current_user
-        = "Welcome, #{current_user.nickname} "
-        = link_to 'Logout', auth_destroy_path
       .navbar.navbar-inverse.navbar-fixed-top
         = link_to(t('.ror_team'), root_path, :class => 'navbar-brand')
         %ul.nav.navbar-nav
@@ -36,6 +25,12 @@
           - if flash[:error]
             %p.error
               = flash.now[:error]
+          - if flash[:notice]
+            %p.alert.alert-success
+              = flash.now[:notice]
+          - if flash[:alert]
+            %p.alert.alert-error
+              = flash.now[:alert]
           = yield
       %footer#footer.row
         .contact-us.col-lg-12

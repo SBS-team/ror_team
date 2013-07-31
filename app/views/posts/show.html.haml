@@ -4,7 +4,7 @@
     %p
       = alert
 .row
-  .span8.posts.main_cont
+  .col-lg-8.posts.main_cont
     .post
       .post_top
         .post_img
@@ -32,12 +32,11 @@
         .tags
           = t '.tags'
           - @post.tag_counts_on(:tags).each do |tag|
-            = link_to tag.name, posts_path(:tag_name => tag.name), :class => 'btn'
-
+            = link_to tag.name, posts_path(:tag_name => tag.name), :class => 'btn btn-default'
     .comments_block
-      %div#all_comments
+      #all_comments
         %b= 'Look previous comments'
-      %div#close_comments
+      #close_comments
         %b= 'Hide all comments'
       .comments
         %a{name: 'comments'}
@@ -45,6 +44,7 @@
           %blockquote
             - if comment.commentable.id == session[:user_id] && comment.created_at > 60.minutes.ago
               = link_to post_comment_path(@post,comment), :method => :delete, :remote => true do
+
                 %span.icon-remove{ :title => 'Delete' } D
               %span.icon-pencil{ :title => 'Edit' } E
               -#= link_to edit_post_comment_path(@post,comment) do
@@ -54,7 +54,7 @@
               - if comment.commentable.respond_to? :image
                 = image_tag comment.commentable.image, :class=>'img-rounded comment_img'
               - if comment.commentable.image.blank?
-                = image_tag('missing.png', :class=>'img-rounded comment_img', :width => 50, :height => 50)
+                = image_tag('missing.png', :class=>'img-rounded comment_img', :width => 50)
               %span.comment_nick
                 - if comment.commentable.respond_to? :nickname
                   = comment.commentable.nickname
@@ -68,32 +68,32 @@
                 = time_ago_in_words comment.created_at
                 = 'ago'
             %hr
-
-    %h4
-
+    .comments-form
       = form_for [@post, @comment = Comment.create ], :html => {:class => 'form-inline'}, :remote => true do |f|
         .comment_block
           = t '.new_comment'
           -if !user_signed_in?
             %p
               = f.fields_for :user, (User.new) do |user|
-                = user.text_field :first_name, :placeholder => 'Your name'
-                = user.text_field :email, :placeholder => 'Your email*'
-          .input-append
+                .form-group
+                  = user.text_field :first_name, :placeholder => 'Your name', :class => 'form-control'
+                .form-group
+                  = user.text_field :email, :placeholder => 'Your email*', :class => 'form-control'
+          .form-group
             -if user_signed_in?                                       #  display user image
               = image_tag current_user.image, :class=>'img-rounded'   #  near the add comment input
-            = f.text_field :description, :class => 'comment_field', :placeholder => t('.write_comment')
-            = f.submit t('.add_comment'), class: 'btn btn-info', style: 'height:50px;', :id => 'go_comment', data: { disable_with: 'Please wait...' }
+            = f.text_field :description, :class => 'form-control', :placeholder => t('.write_comment')
+          .form-group
+            = f.submit t('.add_comment'), class: 'btn btn-primary', :id => 'go_comment', data: { disable_with: 'Please wait...' }
           %br
           #social_auth
             = link_to '/auth/twitter', :class => 'twitter' do
-              %div.twitter_img
+              .twitter_img
             = link_to '/auth/facebook', :class => 'facebook' do
-              %div.facebook_img
+              .facebook_img
             = link_to '/auth/vkontakte', :class => 'vkontakte' do
-              %div.vkontakte_img
-
-    .span4
+              .vkontakte_img
+    .col-lg-6
       .recent_posts
         %h3
           = t ('.most_recent_post')
@@ -103,9 +103,9 @@
               = link_to post.title, special_post_path(post.created_at.strftime('%d_%m_%Y'), post)
         %h5
           = t ('.get_more')
-        .btn.large
-          = link_to t('.rss_feed'), posts_path(:rss)
-    .span3
+        .btn
+          = link_to t('.rss_feed'), posts_path(:rss), :class => 'btn btn-primary'
+    .col-lg-6
       .popular_posts
         %h3
           = t '.most_popular'
@@ -115,7 +115,7 @@
               = link_to post.title, special_post_path(post.created_at.strftime('%d_%m_%Y'), post)
         %h5
           = t '.ready_help'
-        .btn.large
-          = link_to t('.contact_us'), contact_index_path
-  .span4.sidebar
+        .btn
+          = link_to t('.contact_us'), contact_index_path, :class => 'btn btn-default'
+  .col-lg-4.sidebar
     = render :partial => 'sidebar'

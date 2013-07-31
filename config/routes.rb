@@ -7,7 +7,6 @@ RorTeam::Application.routes.draw do
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
-  devise_for :users
   get 'blog/:created/:id' => 'posts#show', :as => :special_post
   resources :posts, :path => 'blog', only: [:index] do
     resources :comments, only: [:new, :create, :edit, :destroy, :user]

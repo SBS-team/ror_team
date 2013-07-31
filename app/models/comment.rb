@@ -12,11 +12,8 @@
 #
 
 class Comment < ActiveRecord::Base
-  belongs_to :user
   belongs_to :post, :counter_cache => true
   belongs_to :commentable, :polymorphic => true
-
-  accepts_nested_attributes_for :user
 
   validate :check_email
   validate :check_comment_body
@@ -29,10 +26,8 @@ class Comment < ActiveRecord::Base
 
   def check_comment_body
     if (self.description.blank? || self.description.length <= 2)
-      errors.add(:Comment, "is to short, minimum 2 symbols")
+      errors.add(:Comment, 'is to short, minimum 2 symbols')
     end
   end
-
-
 
 end

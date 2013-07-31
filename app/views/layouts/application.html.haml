@@ -23,13 +23,13 @@
       .content.row
         .col-lg-12
           - if flash[:error]
-            %p.error
+            %p.alert.alert-error
               = flash.now[:error]
           - if flash[:notice]
             %p.alert.alert-success
               = flash.now[:notice]
           - if flash[:alert]
-            %p.alert.alert-error
+            %p.alert.alert-info
               = flash.now[:alert]
           = yield
       %footer#footer.row

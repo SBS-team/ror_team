@@ -45,8 +45,8 @@
           %blockquote
             - if comment.commentable.id == session[:user_id] && comment.created_at > 60.minutes.ago
               = link_to post_comment_path(@post,comment), :method => :delete, :remote => true do
-                %span.icon-remove{ :title => 'Delete' } 123
-              %span.icon-pencil{ :title => 'Edit' } 321
+                %span.icon-remove{ :title => 'Delete' } D
+              %span.icon-pencil{ :title => 'Edit' } E
               -#= link_to edit_post_comment_path(@post,comment) do
                 %span.icon-pencil
 

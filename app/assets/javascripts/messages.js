@@ -140,13 +140,14 @@ $(document).ready(function(){
 
     // Edit comment
     var comment;
-    $('.icon-pencil').click(function(event){
+    $('.icon-pencil').click(function(target){
+        $(this).parent().css('box-shadow', '0 0 4px red');
         var comment = $(this).parent().find('.comment_description').html();
         $.trim(comment);
         console.log(comment);
         $(this).parent().find('.comment_description').replaceWith("<input id = 'comment_description' class = 'comment_field' type = 'text' value='"+comment+"'>");
-        $(this).parent().append('<input class ="btn-success" type = "button" value = "Apply">');
-        $(this).parent().append('<input class ="btn-danger" type = "button" value = "Cancel">');
+        $(this).parent().append('<input class ="btn btn-success" type = "button" value = "Apply">');
+        $(this).parent().append('<input onclick ="CancelEdit(this)" class ="btn btn-danger" type = "button" value = "Cancel">');
         // ДОПИСЫВАЙ ЭТО ДЕРЬМО
         // ДОПИСЫВАЙ ЭТО ДЕРЬМО
         // ДОПИСЫВАЙ ЭТО ДЕРЬМО
@@ -157,6 +158,22 @@ $(document).ready(function(){
 
 
 }); // document ready
+
+// Cancel edit
+function CancelEdit(target){
+    var comment = $(target).find('.comment_description');
+    console.log(target);
+//    target.$('.btn btn-success').remove();
+    console.log(comment);
+    console.log($(target).parent());
+    $(target).parent().remove('.btn.btn-danger');
+    $(target).remove('.btn.btn-success');
+    $(target).parent().find('#comment_description').replaceWith(comment);
+//    $(target).remove();
+
+
+}
+// Cancel edit
 
     // delete just created comment
     function remove_comment(even){

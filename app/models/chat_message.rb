@@ -3,7 +3,7 @@
 # Table name: chat_messages
 #
 #  id           :integer          not null, primary key
-#  body         :string(255)
+#  body         :text
 #  live_chat_id :integer
 #  is_admin     :boolean
 #  created_at   :datetime

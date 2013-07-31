@@ -15,14 +15,7 @@ class Comment < ActiveRecord::Base
   belongs_to :post, :counter_cache => true
   belongs_to :commentable, :polymorphic => true
 
-  validate :check_email
   validate :check_comment_body
-
-  def check_email
-    if (self.commentable_id.blank?)
-      errors.add(:Email, "can't be blank")
-    end
-  end
 
   def check_comment_body
     if (self.description.blank? || self.description.length <= 2)

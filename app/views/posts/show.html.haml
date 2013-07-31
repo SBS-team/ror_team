@@ -1,8 +1,3 @@
--if user_signed_in? && !alert.blank?
-  .info.message
-    %h3 You are already loged in!
-    %p
-      = alert
 .row
   .col-lg-8.posts.main_cont
     .post
@@ -34,61 +29,32 @@
           - @post.tag_counts_on(:tags).each do |tag|
             = link_to tag.name, posts_path(:tag_name => tag.name), :class => 'btn btn-default'
     .comments_block
-      #all_comments
-        %b= 'Look previous comments'
+      -if @comment_count > 3
+        #all_comments
+          %b= 'Look previous comments'
       #close_comments
         %b= 'Hide all comments'
       .comments
         %a{name: 'comments'}
         - @comments.each do |comment|
           %blockquote
-            - if comment.commentable.id == session[:user_id] && comment.created_at > 60.minutes.ago
-              = link_to post_comment_path(@post,comment), :method => :delete, :remote => true do
-                %span.icon-remove{ :title => 'Delete' } delete
-              %span.icon-pencil{ :title => 'Edit' } edit
-            %b
-              - if comment.commentable.respond_to? :image
-                = image_tag comment.commentable.image, :class=>'img-rounded comment_img'
-              - if comment.commentable.image.blank?
-                = image_tag('missing.png', :class=>'img-rounded comment_img', :width => 50)
-              %span.comment_nick
-                - if comment.commentable.respond_to? :nickname
-                  = comment.commentable.nickname
-            %small.comment_email
-              = comment.commentable.email
+            .comment_description
+              = comment.description.capitalize
             %br
-              %span.comment_description
-                = comment.description.capitalize
-            %span.comment_time
+            .comment_time
               %small
                 = time_ago_in_words comment.created_at
                 = 'ago'
             %hr
+
     .comments-form
       = form_for [@post, @comment = Comment.create ], :html => {:class => 'form-inline'}, :remote => true do |f|
         .comment_block
           = t '.new_comment'
-          -if !user_signed_in?
-            %p
-              = f.fields_for :user, (User.new) do |user|
-                .form-group
-                  = user.text_field :first_name, :placeholder => 'Your name', :class => 'form-control'
-                .form-group
-                  = user.text_field :email, :placeholder => 'Your email*', :class => 'form-control'
           .form-group
-            -if user_signed_in?                                       #  display user image
-              = image_tag current_user.image, :class=>'img-rounded'   #  near the add comment input
             = f.text_field :description, :class => 'form-control', :placeholder => t('.write_comment')
-          .form-group
             = f.submit t('.add_comment'), class: 'btn btn-primary', :id => 'go_comment', data: { disable_with: 'Please wait...' }
-          %br
-          #social_auth
-            = link_to '/auth/twitter', :class => 'twitter' do
-              .twitter_img
-            = link_to '/auth/facebook', :class => 'facebook' do
-              .facebook_img
-            = link_to '/auth/vkontakte', :class => 'vkontakte' do
-              .vkontakte_img
+
     .col-lg-6
       .recent_posts
         %h3

@@ -35,7 +35,7 @@ setTime = ->
       time = seconds*1000
       $.post "/admin/time_online"
     else if (subTime <= (seconds + 1) * 1000)
-      time = subTime
+      time = seconds*1000 - subTime
     else
       createCookie "time", new Date(), 10
       time = seconds*1000
@@ -46,4 +46,4 @@ setTime = ->
   timerOnline = window.setInterval(setTime, time)
 
 $(document).ready ->
-  timerOnline = setInterval(setTime, seconds)
+  setTime()

@@ -9,9 +9,6 @@
     = csrf_meta_tags
   %body
     .container
-      - if current_user
-        =  "Welcome, #{current_user.try(:first_name) || 'User' }"
-        = link_to 'Logout', auth_destroy_path
       .navbar.navbar-inverse.navbar-fixed-top
         = link_to(t('.ror_team'), root_path, :class => 'navbar-brand')
         %ul.nav.navbar-nav

@@ -100,8 +100,6 @@ $(document).ready(function(){
             $('.error.message').animate({top: '0'}, 500);
         }
 
-
-
     });
 
     hideAllMessages();  // before Hide all
@@ -125,60 +123,5 @@ $(document).ready(function(){
 
     });
 
-    // When we delete comment
-    var target;
-    var link;
-    $('.icon-remove').click(function(event){
-        target = $(event.currentTarget).closest('blockquote');
-        link = $(event.currentTarget).closest('a').attr('href');
-
-        target.toggle(500,function(){
-            target.remove();
-        });
-
-    });
-
-    // Edit comment
-    var comment;
-    $('.icon-pencil').click(function(target){
-        $(this).parent().css('box-shadow', '0 0 4px red');
-        var comment = $(this).parent().find('.comment_description').html();
-        $.trim(comment);
-        console.log(comment);
-        $(this).parent().find('.comment_description').replaceWith("<input id = 'comment_description' class = 'comment_field' type = 'text' value='"+comment+"'>");
-        $(this).parent().append('<input class ="btn btn-success" type = "button" value = "Apply">');
-        $(this).parent().append('<input onclick ="CancelEdit(this)" class ="btn btn-danger" type = "button" value = "Cancel">');
-        // ДОПИСЫВАЙ ЭТО ДЕРЬМО
-        // ДОПИСЫВАЙ ЭТО ДЕРЬМО
-        // ДОПИСЫВАЙ ЭТО ДЕРЬМО
-        // ДОПИСЫВАЙ ЭТО ДЕРЬМО
-
-
-    });
-
 
 }); // document ready
-
-// Cancel edit
-function CancelEdit(target){
-    var comment = $(target).find('.comment_description');
-    console.log(target);
-//    target.$('.btn btn-success').remove();
-    console.log(comment);
-    console.log($(target).parent());
-    $(target).parent().remove('.btn.btn-danger');
-    $(target).remove('.btn.btn-success');
-    $(target).parent().find('#comment_description').replaceWith(comment);
-//    $(target).remove();
-
-
-}
-// Cancel edit
-
-    // delete just created comment
-    function remove_comment(even){
-        var target = $(even).closest('blockquote');
-        target.toggle(500,function(){
-            target.remove();
-        });
-    }

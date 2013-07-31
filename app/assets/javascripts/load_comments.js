@@ -17,14 +17,9 @@ $(document).ready(function(){
             var i = 0;
             $('.comments').slideDown(500, function(){
                 $.each( comments, function( key, value ) {
-                    $('.comments').prepend('' +
-                        '<blockquote style ="display:none;" id = '+i+'>' +
-                        '   <b>' +
-                        '   <img src = ' +value.user.image+ ' class = "img-rounded comment_img" width = "50" height = "50">' +
-                        '   <span class = "comment_nick"> '+value.user.nickname+' </span></b>' +
-                        '   <small class = "comment_email"> '+value.user.email+'</small><br>' +
-                        '   <span class = "comment_description">'+value.comment.description+'</span><br>' +
-                        '   <small class = "comment_time">'+value.time_ago+' ago</small><hr></blockquote>');
+                      $('.comments').prepend('<blockquote style ="display:none;" id = '+i+'>' +
+                          '<span class = "comment_description">'+comments[key].description+'</span><br>' +
+                          '<hr></blockquote>');
                 $('.comments blockquote').slideDown('slow');
                 i++;
                 });

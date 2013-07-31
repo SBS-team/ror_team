@@ -3,7 +3,6 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 .options .icons {
-  margin: 0 0 10px -30px;
   overflow: hidden;
 }
 
@@ -26,4 +25,10 @@
   border: 1px solid #ffffff;
 }
 
+#chat-history{
+  height: 350px;
+  width: 350px;
+  overflow: auto;
+  overflow-x: hidden;
+}
 

@@ -1,9 +1,9 @@
 .row.team-members
-  .span6.team-members
+  .col-lg-6.team-members
     - @team.each do |member|
       .team-member
         - unless member.upload_file.blank? || member.upload_file.img_name.blank?
-          = image_tag member.upload_file.img_name.url(:thumb), :class => 'img-circle', :width => '150', :height => '150'
+          = image_tag member.upload_file.img_name.url(:thumb), :class => 'img-circle', :width => '150'
         - else
           = image_tag 'missing.png'
         .member-name
@@ -12,13 +12,12 @@
             = link_to "#{member.first_name} #{member.last_name}", team_path(member)
           %p
             %span
-              = link_to "#{member.role}", team_index_path(:role => member.role), :class => 'btn'
+              = link_to "#{member.role}", team_index_path(:role => member.role), :class => 'btn btn-primary'
         .about
           %p
             = truncate(member.about.capitalize, :length => 50)
-      %hr
     = paginate @team
-  .span6
+  .col-lg-6
     - unless @team_photo.blank?
       %h3
         = @team_photo.title
@@ -36,8 +35,10 @@
                 .item
                   = image_tag file.img_name.url
           - if @team_photo.upload_files.count > 1
-            = link_to '‹', "#myCarousel#{@team_photo.id}", 'data-slide' => 'prev', :class => 'carousel-control left'
-            = link_to '›', "#myCarousel#{@team_photo.id}", 'data-slide' => 'next', :class => 'carousel-control right'
+            = link_to "#myCarousel#{@team_photo.id}", 'data-slide' => 'prev', :class => 'carousel-control left' do
+              %span.icon-prev
+            = link_to "#myCarousel#{@team_photo.id}", 'data-slide' => 'next', :class => 'carousel-control right' do
+              %span.icon-next
     .about-team
       %h3
         = t '.our_command'

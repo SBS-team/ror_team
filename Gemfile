@@ -84,11 +84,6 @@ gem 'truncate_html'
 
 gem 'cancan'
 
-gem 'omniauth'          # auth
-gem 'omniauth-twitter'  # for twitter
-gem 'omniauth-facebook' # for facebook
-gem 'omniauth-vkontakte'
-
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.
   gem 'sdoc', require: false

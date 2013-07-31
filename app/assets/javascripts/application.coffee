@@ -7,7 +7,6 @@
 #= require extra_validations
 #= require jobs
 #= require contact
-#= require messages
 #= require load_comments
 
 $(document).ready ->

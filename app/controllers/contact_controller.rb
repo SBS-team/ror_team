@@ -18,9 +18,6 @@ class ContactController < ApplicationController
       @live_chat = LiveChat.find(params[:live_chat_id])
       gon.current_admin_email = @live_chat.admin_user.email
     end
-
-    #@live_chat = params[:live_chat_id].blank? ? LiveChat.new : LiveChat.find(params[:live_chat_id])
-    #gon.current_admin_email = @live_chat.admin_user.email
   end
 
   def create

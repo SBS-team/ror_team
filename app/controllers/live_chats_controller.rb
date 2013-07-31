@@ -7,7 +7,7 @@ Pusher.secret= '628a05f0fcb9d19f4e8a'
 class LiveChatsController < ApplicationController
 
   def new
-    @admins = AdminUser.select(:id, :email).where(role: 'manager', status: 'online').order('random()')
+    @admins = AdminUser.select(:id, :first_name, :last_name).where(role: 'manager', status: 'online').order('random()')
     if @admins.blank?
       render 'live_chats/sorry', layout: false
     else
@@ -29,7 +29,7 @@ class LiveChatsController < ApplicationController
           channel = 'presence-' + admin_email
           Pusher[channel].trigger('msg-event',  {:user_id => session[:user_id],
                                                  message: message.body,
-                                                 email: @live_chat.guest_email,
+                                                 email: @live_chat.guest_name,
                                                  date: message.created_at.strftime('%d-%m-%Y')})
           @live_chat.admin_user.update_attribute(:status, 'chat')
         end
@@ -60,7 +60,7 @@ class LiveChatsController < ApplicationController
         channel = 'presence-' + chat.admin_user.email
         Pusher[channel].trigger('msg-event',  {:user_id => session[:user_id],
                                                message: message.body,
-                                               email: chat.guest_email,
+                                               email: chat.guest_name,
                                                date: message.created_at.strftime('%d-%m-%Y')})
       end
     end

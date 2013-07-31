@@ -8,10 +8,11 @@
     .post
       .post_top
         .post_img
-          - unless @post.upload_file.blank? || @post.upload_file.img_name.blank?
-            = image_tag @post.upload_file.img_name.url(:thumb)
-          - else
-            = image_tag 'missing.png'
+          .img
+            - unless @post.upload_file.blank? || @post.upload_file.img_name.blank?
+              = image_tag @post.upload_file.img_name.url(:thumb), class: @post.id
+            - else
+              = image_tag 'missing.png', class: @post.id
         .post-title
           = @post.title
         .post_date
@@ -32,11 +33,23 @@
           = t '.tags'
           - @post.tag_counts_on(:tags).each do |tag|
             = link_to tag.name, posts_path(:tag_name => tag.name), :class => 'btn'
+
     .comments_block
+      %div#all_comments
+        %b= 'Look previous comments'
+      %div#close_comments
+        %b= 'Hide all comments'
       .comments
         %a{name: 'comments'}
         - @comments.each do |comment|
           %blockquote
+            - if comment.commentable.id == session[:user_id] && comment.created_at > 60.minutes.ago
+              = link_to post_comment_path(@post,comment), :method => :delete, :remote => true do
+                %span.icon-remove{ :title => 'Delete' } 123
+              %span.icon-pencil{ :title => 'Edit' } 321
+              -#= link_to edit_post_comment_path(@post,comment) do
+                %span.icon-pencil
+
             %b
               - if comment.commentable.respond_to? :image
                 = image_tag comment.commentable.image, :class=>'img-rounded comment_img'
@@ -45,38 +58,41 @@
               %span.comment_nick
                 - if comment.commentable.respond_to? :nickname
                   = comment.commentable.nickname
-            %br
             %small.comment_email
               = comment.commentable.email
             %br
-              %b
+              %span.comment_description
                 = comment.description.capitalize
             %span.comment_time
               %small
                 = time_ago_in_words comment.created_at
                 = 'ago'
             %hr
-      = paginate @comments
+
     %h4
-      = t '.new_comment'
+
       = form_for [@post, @comment = Comment.create ], :html => {:class => 'form-inline'}, :remote => true do |f|
-        .input-append
-          -if user_signed_in?                                       #  display user image
-            = image_tag current_user.image, :class=>'img-rounded'   #  near the add comment input
-          -else
+        .comment_block
+          = t '.new_comment'
+          -if !user_signed_in?
             %p
               = f.fields_for :user, (User.new) do |user|
                 = user.text_field :first_name, :placeholder => 'Your name'
-                = user.text_field :email, :placeholder => 'Your email'
-          = f.text_area :description, style: 'height:39px; width:600px', :placeholder => t('.write_comment')
-          = f.submit t('.add_comment'), class: 'btn btn-info', style: 'height:50px;', :id => 'go_comment', data: { disable_with: 'Please wait...' }
+                = user.text_field :email, :placeholder => 'Your email*'
+          .input-append
+            -if user_signed_in?                                       #  display user image
+              = image_tag current_user.image, :class=>'img-rounded'   #  near the add comment input
+            = f.text_field :description, :class => 'comment_field', :placeholder => t('.write_comment')
+            = f.submit t('.add_comment'), class: 'btn btn-info', style: 'height:50px;', :id => 'go_comment', data: { disable_with: 'Please wait...' }
           %br
-          = link_to '/auth/twitter', :class => 'twitter' do
-            = image_tag 'authbuttons/twitter_32.png', :size => '32x32', :alt => 'Twitter'
-          = link_to '/auth/facebook', :class => 'facebook' do
-            = image_tag 'authbuttons/facebook_32.png', :size => '32x32', :alt => 'Facebook'
-          = link_to '/auth/vkontakte', :class => 'vkontakte' do
-            = image_tag 'authbuttons/vk_32.png', :size => '32x32', :alt => 'Vkontakte'
+          #social_auth
+            = link_to '/auth/twitter', :class => 'twitter' do
+              %div.twitter_img
+            = link_to '/auth/facebook', :class => 'facebook' do
+              %div.facebook_img
+            = link_to '/auth/vkontakte', :class => 'vkontakte' do
+              %div.vkontakte_img
+
     .span4
       .recent_posts
         %h3

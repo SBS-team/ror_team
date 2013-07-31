@@ -35,6 +35,10 @@ function showMessage(type) {
 $(document).ready(function(){
     // init variables to paste in new comment block
     var comment, nickname, email, image
+    if ($('.icon-remove').length !== 0){
+        var init_link = $('blockquote .icon-remove').closest('a').attr('href').split('/');
+        var correct_link = '/'+init_link[1]+"/"+init_link[2]+"/comments/";
+    }
 
     $(document).ajaxSuccess(function(event, response, settings)  {
 
@@ -57,16 +61,35 @@ $(document).ready(function(){
                 comment = response.responseJSON.comment.description;
                 nickname = response.responseJSON.nickname;
                 email = response.responseJSON.email;
-                image = response.responseJSON.image
-                $('.comments').append('<blockquote><b><img src = ' +image+ ' class = "img-rounded" width = "50" height = "50"><span>'+nickname+'</span></b><br><small>'+email+'<br></small><b>'+comment+'</b></blockquote>');
+                image = response.responseJSON.image;
+                time = response.responseJSON.created_at;
+                console.log(comment.id);
+                $('.comments').append('' +
+                    '<blockquote style ="display:none;">' +
+                    '   <a title ="Delete" rel="nofollow" onclick ="remove_comment(this);" data-remote="true" data-method="delete" href="'+correct_link+response.responseJSON.comment.id+'"><span class = "icon-remove"></span></a>' +
+                    '   <a title ="Edit"><span class = "icon-pencil"></span></a>' +
+                    '   <b>' +
+                    '   <img src = ' +image+ ' class = "img-rounded comment_img" width = "50" height = "50">' +
+                    '   <span class = "comment_nick">'+nickname+'</span></b>' +
+                    '   <small class = "comment_email">'+email+'</small><br>' +
+                    '   <span class = "comment_description">'+comment+'</span><br>' +
+                    '   <small class = "comment_time">just now</small><hr></blockquote>');
+                $('.comments blockquote').slideDown('slow');
             }
+
             $('#comment_description').val('');
             messageTimeOut();
         }
 
         if (response.responseJSON.stat == 'error') {
             error = (response.responseJSON.comment_error);
+            // if alredy isset error block, then if invalid again delete old block and add new one
             if ($('.error.message')){
+                $('.error.message').remove();
+                $('body').prepend('<div class = "error message"></div>');
+            }
+            else{
+
                 $('body').prepend('<div class = "error message"></div>');
             }
             $('.error.message').html('<h3>You comment cant be saved</h3>');
@@ -76,6 +99,9 @@ $(document).ready(function(){
             $('.error.message').css({"display": "block", "top": "-100px"});
             $('.error.message').animate({top: '0'}, 500);
         }
+
+
+
     });
 
     hideAllMessages();  // before Hide all
@@ -99,5 +125,43 @@ $(document).ready(function(){
 
     });
 
+    // When we delete comment
+    var target;
+    var link;
+    $('.icon-remove').click(function(event){
+        target = $(event.currentTarget).closest('blockquote');
+        link = $(event.currentTarget).closest('a').attr('href');
+
+        target.toggle(500,function(){
+            target.remove();
+        });
+
+    });
+
+    // Edit comment
+    var comment;
+    $('.icon-pencil').click(function(event){
+        var comment = $(this).parent().find('.comment_description').html();
+        $.trim(comment);
+        console.log(comment);
+        $(this).parent().find('.comment_description').replaceWith("<input id = 'comment_description' class = 'comment_field' type = 'text' value='"+comment+"'>");
+        $(this).parent().append('<input class ="btn-success" type = "button" value = "Apply">');
+        $(this).parent().append('<input class ="btn-danger" type = "button" value = "Cancel">');
+        // ДОПИСЫВАЙ ЭТО ДЕРЬМО
+        // ДОПИСЫВАЙ ЭТО ДЕРЬМО
+        // ДОПИСЫВАЙ ЭТО ДЕРЬМО
+        // ДОПИСЫВАЙ ЭТО ДЕРЬМО
+
+
+    });
+
 
 }); // document ready
+
+    // delete just created comment
+    function remove_comment(even){
+        var target = $(even).closest('blockquote');
+        target.toggle(500,function(){
+            target.remove();
+        });
+    }

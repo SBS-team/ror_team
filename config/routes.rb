@@ -5,6 +5,9 @@ RorTeam::Application.routes.draw do
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
+
+  post '/admin/time_online' => 'time_onlines#set_time'
+
   devise_for :users
   get 'blog/:created/:id' => 'posts#show', :as => :special_post
   resources :posts, :path => 'blog', only: [:index] do

@@ -200,7 +200,7 @@ ActiveRecord::Schema.define(version: 20130730140721) do
   create_table "time_onlines", force: true do |t|
     t.integer "admin_id"
     t.date    "day"
-    t.time    "time"
+    t.integer "time"
   end
 
   create_table "upload_files", force: true do |t|

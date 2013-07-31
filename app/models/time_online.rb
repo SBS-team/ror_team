@@ -5,7 +5,7 @@
 #  id       :integer          not null, primary key
 #  admin_id :integer
 #  day      :date
-#  time     :time
+#  time     :integer
 #
 
 class TimeOnline < ActiveRecord::Base

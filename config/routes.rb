@@ -1,15 +1,15 @@
 RorTeam::Application.routes.draw do
 
-  get '/auth/:provider/callback' => 'authentications#create' # For socials networks
-  get '/auth/destroy' => 'authentications#destroy'
-
   post '/comment_load' => 'posts#comments_show_all'
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
+
+  post '/admin/time_online' => 'time_onlines#set_time'
+
   get 'blog/:created/:id' => 'posts#show', :as => :special_post
   resources :posts, :path => 'blog', only: [:index] do
-    resources :comments, only: [:new, :create, :edit, :destroy, :user]
+    resources :comments, only: [:new, :create]
   end
   resources :home, only: [:index]
   resources :team, only: [:index, :show]

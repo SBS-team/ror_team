@@ -6,7 +6,7 @@ class TimeOnlinesController < ApplicationController
       time_online.time = time_online.time.to_i + 10
       time_online.save
 
-      redirect_to :back
+      render :text => '+10'
     end
   end
 

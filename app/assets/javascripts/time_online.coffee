@@ -21,9 +21,10 @@ readCookie = (name) ->
 eraseCookie = (name) ->
   createCookie name, "", -1
 
-timerOnline = setInterval(setTime,100000, 5)
+timerOnline = null
+seconds = 10*60
 
-setTime = (seconds) ->
+setTime = ->
   time = readCookie("time")
   if (time != null)
     oldTime = new Date(time)
@@ -32,7 +33,7 @@ setTime = (seconds) ->
     if (subTime <= (seconds + 10) * 1000) && (subTime >= (seconds - 10) * 1000)
       createCookie "time", new Date(), 10
       time = seconds*1000
-      $.post("/admin/time_online", { id: 2 } )
+      $.post "/admin/time_online"
     else if (subTime <= (seconds + 1) * 1000)
       time = subTime
     else
@@ -41,9 +42,8 @@ setTime = (seconds) ->
   else
     createCookie "time", new Date(), 10
     time = seconds*1000
-
   clearInterval(timerOnline)
-  timerOnline = setInterval(setTime, time, seconds)
+  timerOnline = window.setInterval(setTime, time)
 
 $(document).ready ->
-  setTime(10*60)
+  timerOnline = setInterval(setTime, seconds)

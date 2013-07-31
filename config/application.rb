@@ -20,7 +20,7 @@ module RorTeam
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     # config.i18n.default_locale = :ru
-    config.assets.enabled = true
+
     config.autoload_paths += %W(#{config.root}/lib)
     config.assets.precompile += %w(admin_chat.js live_chats.js)
   end

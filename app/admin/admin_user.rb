@@ -1,7 +1,5 @@
 ActiveAdmin.register AdminUser do
 
-  menu :parent => 'Users'
-
   filter :role, :as => :select, :collection => ['manager', 'admin', 'team', 'team_lead']
 
   index do

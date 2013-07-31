@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  include ActionView::Helpers::DateHelper #include for use helper "time ago" to sent into js
   before_action :category, only: [:index , :show]
   before_action :recent_and_popular_posts, only: :show
 
@@ -31,7 +32,35 @@ class PostsController < ApplicationController
     if request.path != special_post_path(@post.created_at.strftime('%d_%m_%Y'), @post)
       redirect_to @post, status: :moved_permanently
     end
-    @comments = @post.comments.page(params[:page]).per(5)
+    @comments = @post.comments.order('id DESC').limit(3).reverse
+
+  end
+
+  def comments_show_all
+
+    current_post = Post.find(params[:id])
+    comments_count = current_post.comments.count
+    comments_count -= 3
+
+    comments =  current_post.comments.limit(comments_count).reverse
+    id = []
+    comments.each do |val|
+     id << val.commentable_id
+    end
+    users = User.where("id IN (?)", id)
+    user_comments = []
+
+    comments.map do |val|
+      users.map do |user|
+        if val.commentable_id == user.id
+          time_ago = time_ago_in_words val.created_at
+          user_comments << {:comment => val , :user => user, :time_ago => time_ago }
+        end
+      end
+    end
+
+    render json: {:comments => user_comments }
+
   end
 
   private

@@ -1,6 +1,8 @@
 ActiveAdmin.register AdminUser do
 
-  filter :role, :as => :select
+  menu :parent => 'Users'
+
+  filter :role, :as => :select, :collection => ['manager', 'admin', 'team', 'team_lead']
 
   index do
     selectable_column

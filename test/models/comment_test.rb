@@ -6,6 +6,7 @@ describe Comment do
 
   context 'Comment model connection' do
     it { must belong_to(:commentable)}
+    it { must belong_to(:post)}
   end
 
   context 'Comment db column' do

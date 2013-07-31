@@ -1,6 +1,8 @@
 ActiveAdmin.register Comment do
 
-  filter :post
+  menu :parent => 'Blog'
+
+  filter :description, :as => :string
 
   index do
     selectable_column

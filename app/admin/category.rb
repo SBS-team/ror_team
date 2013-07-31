@@ -1,6 +1,8 @@
 ActiveAdmin.register Category do
 
-  filter :name
+  menu :parent => 'Blog'
+
+  filter :name, :as => :string
 
   index do
     selectable_column

@@ -31,7 +31,8 @@ ActiveAdmin.register TeamPhoto do
       f.input :title
       f.has_many :upload_files do |file|
         file.input :img_name, :as => :file, :hint => file.object.img_name.nil? ? f.template.content_tag(:span, "no map yet") : file.template.image_tag(file.object.img_name.url(:thumb))
-        file.input :_destroy, :as=>:boolean, :required => false, :label=>'Remove'
+        file.input :remove_img_name, :as => :boolean , :label => 'Delete image?'
+        file.input :id, :as => :hidden
       end
     end
     f.actions
@@ -50,6 +51,13 @@ ActiveAdmin.register TeamPhoto do
     def update
       @team_photo = TeamPhoto.find(params[:id])
       if @team_photo.update(team_photo_params)
+        unless params[:team_photo][:upload_files_attributes].blank?
+          params[:team_photo][:upload_files_attributes].each_value do |file|
+            if file[:remove_img_name].to_i == 1
+              UploadFile.find(file[:id]).destroy
+            end
+          end
+        end
         redirect_to admin_team_photo_url(@team_photo), notice: 'Post was successfully updated.'
       else
         render :edit, notice: 'Error has occurred while updating.'
@@ -58,7 +66,7 @@ ActiveAdmin.register TeamPhoto do
 
     private
     def team_photo_params
-      params.require(:team_photo).permit(:title, upload_files_attributes: [:img_name, :id])
+      params.require(:team_photo).permit(:title, upload_files_attributes: [:img_name, :id, :remove_img_name])
     end
   end
 

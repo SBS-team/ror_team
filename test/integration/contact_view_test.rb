@@ -47,7 +47,7 @@ describe ViewTest do
       fill_in 'message_email', :with => 'asd@rb.ru'
     end
     within('.phone') do
-      fill_in 'message_phone', :with => '123 45 67'
+      fill_in 'message_phone', :with => '1234567'
     end
     within('.text') do
       fill_in 'message_text', :with => 'Hi everyone im a newbie'

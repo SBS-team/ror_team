@@ -24,8 +24,6 @@ class Comment < ActiveRecord::Base
     if (self.nickname.blank? || self.nickname.length <= 2)
       errors.add(:name, 'Your name is to short, minimum 2 symbols')
     end
-
-
   end
 
   def check_comment_body
@@ -35,8 +33,11 @@ class Comment < ActiveRecord::Base
   end
 
   def check_comment_max_length
-    if (self.description.blank? || self.description.length > 3000)
+    if (!self.description.blank?)
+      if (self.description.length > 3000)
       errors.add(:comment, 'Your comment is to big. maximum 3000 symbols')
+      end
+
     end
   end
 

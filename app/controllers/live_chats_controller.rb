@@ -30,6 +30,7 @@ class LiveChatsController < ApplicationController
           Pusher[channel].trigger('msg-event',  {:user_id => session[:user_id],
                                                  message: message.body,
                                                  email: @live_chat.guest_name,
+                                                 is_admin: message.is_admin,
                                                  date: message.created_at.strftime('%d-%m-%Y')})
           @live_chat.admin_user.update_attribute(:status, 'chat')
         end
@@ -61,6 +62,7 @@ class LiveChatsController < ApplicationController
         Pusher[channel].trigger('msg-event',  {:user_id => session[:user_id],
                                                message: message.body,
                                                email: chat.guest_name,
+                                               is_admin: message.is_admin,
                                                date: message.created_at.strftime('%d-%m-%Y')})
       end
     end

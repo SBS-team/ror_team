@@ -27,8 +27,16 @@
 
 #chat-history{
   height: 350px;
-  width: 350px;
   overflow: auto;
   overflow-x: hidden;
+  margin-top: 15px;
+}
+
+.msg{
+  margin-bottom: 10px;
+}
+
+.msg-user{
+  color: darkblue;
 }
 

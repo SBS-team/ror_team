@@ -39,5 +39,9 @@ $(document).ready ->
   pusher = new Pusher("3719c0c90b25b237f538")
   channel = pusher.subscribe(admin_main_channel)
   channel.bind "msg-event", (data) ->
-    $("#chat").append "<div class='msg-admin msg'>"+"(" + data.date + ")|<b><U>" + data.email + "</U></b>: " + data.message + "</div>"
+    if data.is_admin
+      msg_class = "<div class='msg-admin msg'>"
+    else
+      msg_class = "<div class='msg-user msg'>"
+    $("#chat").append msg_class+"(" + data.date + ")|<b><U>" + data.email + "</U></b>: " + data.message + "</div>"
     $("#chat-history").scrollTop $("#chat").height()-$(".msg:last").height()

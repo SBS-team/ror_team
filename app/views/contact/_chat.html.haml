@@ -2,8 +2,8 @@
   Live Chat
 %div
   Your manager:
-  = "#{@live_chat.admin_user.email}"
-  #chat-history
+  != "<strong>#{@live_chat.admin_user.email}</strong>"
+  #chat-history.panel
     #chat
       - @live_chat.chat_messages.each do |msg|
         - if msg.is_admin
@@ -14,6 +14,7 @@
             != "(#{msg.created_at.strftime('%d-%m-%Y')})|<b><U>#{@live_chat.guest_name}</U></b>: #{msg.body}"
   .chat-msg
     = form_tag(contact_chat_path(live_chat_id: @live_chat.id), method: "post", remote: true) do
-      = label_tag  'Your message*:'
-      = text_area_tag :message
-      = submit_tag 'Send Message', id: "submit"
+      Your message*:
+      = text_area_tag :message, nil, class: 'form-control', rows: 4
+      %br
+      = submit_tag 'Send Message', id: "submit", :class => 'btn btn-primary pull-right'

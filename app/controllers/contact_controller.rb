@@ -1,18 +1,21 @@
 require 'pusher'
 
-Pusher.app_id= '49562'
-Pusher.key= '3719c0c90b25b237f538'
-Pusher.secret= '628a05f0fcb9d19f4e8a'
-
 class ContactController < ApplicationController
 
   def index
     @message = Message.new
     @services = Service.all
 
-    @admins = AdminUser.select(:id, :email).where(role: 'manager', status: 'online').order('random()')
-    @live_chat = params[:live_chat_id].blank? ? LiveChat.new : LiveChat.find(params[:live_chat_id])
-    gon.current_admin_email = @live_chat.admin_user.email
+    @admins = AdminUser.select(:id, :first_name, :last_name).where(role: 'manager', status: 'online').order('random()')
+    if params[:live_chat_id].blank?
+      @live_chat = LiveChat.new
+      gon.current_admin_email = nil
+      gon.current_admin_channel = nil
+    else
+      @live_chat = LiveChat.find(params[:live_chat_id])
+      gon.current_admin_email = @live_chat.admin_user.email
+      gon.current_admin_channel = @live_chat.admin_user.first_name+"-"+@live_chat.admin_user.last_name
+    end
   end
 
   def create
@@ -20,9 +23,17 @@ class ContactController < ApplicationController
     @message = Message.new(params[:message])
     if @message.valid?
       NotificationsMailer.new_message(@message).deliver
-      redirect_to(root_path, :notice => t('.contact_sent_msg'))
+      if params[:small_window]
+        render text: t('.contact_sent_msg')
+      else
+        redirect_to(root_path, :notice => t('.contact_sent_msg'))
+      end
     else
-      redirect_to contact_index_path  #render :index
+      if params[:small_window]
+        render 'live_chats/sorry', layout: false
+      else
+        redirect_to contact_index_path  #render :index
+      end
     end
   end
 
@@ -39,10 +50,12 @@ class ContactController < ApplicationController
         if message.save
           admin_email = @live_chat.admin_user.email
           gon.current_admin_email = admin_email
-          channel = 'presence-' + admin_email
+          gon.current_admin_channel = @live_chat.admin_user.first_name+"-"+@live_chat.admin_user.last_name
+          channel = 'presence-' + @live_chat.admin_user.first_name+"-"+@live_chat.admin_user.last_name #admin_email
           Pusher[channel].trigger('msg-event',  {:user_id => session[:user_id],
                                                  message: message.body,
                                                  email: @live_chat.guest_name,
+                                                 is_admin: message.is_admin,
                                                  date: message.created_at.strftime('%d-%m-%Y')})
           @live_chat.admin_user.update_attribute(:status, 'chat')
         end
@@ -65,11 +78,13 @@ class ContactController < ApplicationController
       message.live_chat_id = params[:live_chat_id]
       if message.save
         chat = LiveChat.find(params[:live_chat_id])
+        gon.current_admin_channel = chat.admin_user.first_name+"-"+chat.admin_user.last_name
         gon.current_admin_email = chat.admin_user.email
-        channel = 'presence-' + chat.admin_user.email
+        channel = 'presence-' + chat.admin_user.first_name+"-"+chat.admin_user.last_name #chat.admin_user.email
         Pusher[channel].trigger('msg-event',  {:user_id => session[:user_id],
                                                message: message.body,
                                                email: chat.guest_name,
+                                               is_admin: message.is_admin,
                                                date: message.created_at.strftime('%d-%m-%Y')})
       end
     end

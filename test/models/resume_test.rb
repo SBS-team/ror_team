@@ -40,7 +40,7 @@ describe Resume do
       resume = FactoryGirl.build(:resume)
       resume.description = ''
       resume.valid?
-      resume.errors[:description].must_include 'file is not attached'
+      resume.errors[:description].must_include "can't be blank and file is not attached"
     end
     it "validate upload_file can't pdf or doc" do
       resume = FactoryGirl.build(:resume)

@@ -78,23 +78,6 @@ describe PostsController do
       assert_template layout: "layouts/application"
     end
 
-    it "show post with comments" do
-      post = FactoryGirl.create(:post, :admin_id => @admin.id, :upload_file => FactoryGirl.create(:upload_file))
-      user = FactoryGirl.create(:user)
-      comment1 = FactoryGirl.create(:comment, :commentable => user)
-      comment2 = FactoryGirl.create(:comment, :commentable => user)
-      comment3 = FactoryGirl.create(:comment, :commentable => user)
-      post.comments << comment1
-      post.comments << comment2
-
-      get :show, created: post.created_at.strftime('%d_%m_%Y') , id: post
-      refute_nil assigns(:post)
-      refute_nil assigns(:comments)
-
-      assigns(:comments).must_include(comment1, comment2)
-      assigns(:comments).wont_include(comment3)
-    end
-
     it "show recents posts" do
       posts = []
       6.times do
@@ -113,30 +96,17 @@ describe PostsController do
     end
 
     it "show popular posts" do
-      user = FactoryGirl.create(:user)
       post1 = FactoryGirl.create(:post, :admin_id => @admin.id, :upload_file => FactoryGirl.create(:upload_file))
       post2 = FactoryGirl.create(:post, :admin_id => @admin.id, :upload_file => FactoryGirl.create(:upload_file))
       post3 = FactoryGirl.create(:post, :admin_id => @admin.id, :upload_file => FactoryGirl.create(:upload_file))
-
-      comment1 = FactoryGirl.create(:comment, :commentable => user)
-      comment2 = FactoryGirl.create(:comment, :commentable => user)
-      comment3 = FactoryGirl.create(:comment, :commentable => user)
-
-      post1.comments << comment1
-      post3.comments << comment2
-      post3.comments << comment3
-
-      post1.save
-      post2.save
-      post3.save
 
       get :show, created: post2.created_at.strftime('%d_%m_%Y') , id: post2
 
       refute_nil assigns(:popular_posts)
       pop_posts = assigns(:popular_posts)
-      assert_equal(pop_posts[0], post3)
-      assert_equal(pop_posts[1], post1)
-      assert_equal(pop_posts[2], post2)
+      pop_posts.must_include post1
+      pop_posts.must_include post2
+      pop_posts.must_include post3
     end
   end
 

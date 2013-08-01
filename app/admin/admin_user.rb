@@ -1,7 +1,5 @@
 ActiveAdmin.register AdminUser do
 
-  menu :parent => 'Users'
-
   filter :role, :as => :select, :collection => ['manager', 'admin', 'team', 'team_lead']
 
   index do
@@ -19,11 +17,11 @@ ActiveAdmin.register AdminUser do
     default_actions
   end
 
-  show do
+  show do |admin_user|
     panel 'AdminUser Details' do
       attributes_table_for admin_user do
         row :role
-        row :image do |admin_user|
+        row :image do
           unless admin_user.upload_file.blank?
             image_tag(admin_user.upload_file.img_name.url(:thumb))
           end
@@ -39,6 +37,18 @@ ActiveAdmin.register AdminUser do
         row :last_sign_in_ip
         row :created_at
         row :updated_at
+      end
+    end
+    unless admin_user.time_onlines.blank?
+      panel 'Time online' do
+        table_for admin_user.time_onlines do |t|
+          t.column 'Day' do |timer|
+             timer.day.strftime('%a %d/%m/%Y')
+          end
+          t.column 'Time online' do |timer|
+            timer.time.to_s + ' min'
+          end
+        end
       end
     end
   end

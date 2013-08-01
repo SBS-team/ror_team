@@ -9,26 +9,35 @@
 #  commentable_type :string(255)
 #  created_at       :datetime
 #  updated_at       :datetime
+#  nickname         :string(255)
 #
 
 class Comment < ActiveRecord::Base
-  belongs_to :user
   belongs_to :post, :counter_cache => true
   belongs_to :commentable, :polymorphic => true
 
-  accepts_nested_attributes_for :user
+  validate :check_comment_body
+  validate :check_nickname
+  validate :check_comment_max_length
 
-  validates :description,
-            :presence => true,
-            :length => {:minimum => 2,
-                        :maximum => 1024 }
+  def check_nickname
+    if (self.nickname.blank? || self.nickname.length <= 2)
+      errors.add(:name, 'Your name is to short, minimum 2 symbols')
+    end
 
-  validates :commentable_id,
-            :presence => true,
-            :numericality => { :only_integer => true, :greater_than => 0 }
 
-  validates :commentable_type,
-            :presence => true,
-            :length => { :maximum => 255 }
+  end
+
+  def check_comment_body
+    if (self.description.blank? || self.description.length <= 2)
+      errors.add(:comment, 'Your comment is to short, minimum 2 symbols, maximum 3000')
+    end
+  end
+
+  def check_comment_max_length
+    if (self.description.blank? || self.description.length > 3000)
+      errors.add(:comment, 'Your comment is to big. maximum 3000 symbols')
+    end
+  end
 
 end

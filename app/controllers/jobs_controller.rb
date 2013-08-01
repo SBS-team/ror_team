@@ -23,7 +23,7 @@ class JobsController < ApplicationController
         render 'show'
       end
     else
-      redirect_to jobs_path, :alert => 'Sorry. No jobs found'
+      redirect_to jobs_path, :error => 'Sorry. No jobs found'
     end
   end
 

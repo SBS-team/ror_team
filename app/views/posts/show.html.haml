@@ -1,82 +1,89 @@
 .row
-  .col-lg-8.posts.main_cont
-    .post
-      .post_top
-        .post_img
-          .img
-            - unless @post.upload_file.blank? || @post.upload_file.img_name.blank?
-              = image_tag @post.upload_file.img_name.url(:thumb), class: @post.id
+  .col-lg-12
+    .col-lg-8.posts.main_cont
+      .post
+        .post_top
+          .post_img
+            .img
+              - unless @post.upload_file.blank? || @post.upload_file.img_name.blank?
+                = image_tag @post.upload_file.img_name.url(:thumb), class: @post.id
+              - else
+                = image_tag 'missing.png', class: @post.id
+          .post-title
+            = @post.title
+          .post_date
+            = @post.created_at.strftime("%d %B %H:%M:%S")
+          %span
+            - if @post.comments_count==0
+              = t('.post_hasnt_comments')
             - else
-              = image_tag 'missing.png', class: @post.id
-        .post-title
-          = @post.title
-        .post_date
-          = @post.created_at.strftime("%d %B %H:%M:%S")
-        %span
-          - if @post.comments_count==0
-            = t('.post_hasnt_comments')
-          - else
-            = pluralize(@post.comments_count, t('.comment'))
-      .post-content
-        != @post.description
-      - unless @post.categories.empty?
-        .categories
-          = t '.categories'
-          != @post.categories.collect{|cat| link_to strip_links(cat.name), posts_path(:category_name=>cat.name) }.join(', ')
-      - unless @post.tag_counts_on(:tags).empty?
-        .tags
-          = t '.tags'
-          - @post.tag_counts_on(:tags).each do |tag|
-            = link_to tag.name, posts_path(:tag_name => tag.name), :class => 'btn btn-default'
-    .comments_block
-      -if @comment_count > 3
-        #all_comments
-          %b= 'Look previous comments'
-      #close_comments
-        %b= 'Hide all comments'
-      .comments
-        %a{name: 'comments'}
-        - @comments.each do |comment|
-          %blockquote
-            .comment_description
-              = comment.description.capitalize
-            %br
-            .comment_time
-              %small
+              = pluralize(@post.comments_count, t('.comment'))
+        .post-content
+          != @post.description
+        - unless @post.categories.empty?
+          .categories
+            = t '.categories'
+            != @post.categories.collect{|cat| link_to strip_links(cat.name), posts_path(:category_name=>cat.name) }.join(', ')
+        - unless @post.tag_counts_on(:tags).empty?
+          .tags
+            = t '.tags'
+            - @post.tag_counts_on(:tags).each do |tag|
+              = link_to tag.name, posts_path(:tag_name => tag.name), :class => 'btn btn-default'
+      .comments_block
+        -if @comment_count > 3
+          #all_comments
+            %b= 'Look previous comments'
+        #close_comments
+          %b= 'Hide all comments'
+        .comments
+          %a{name: 'comments'}
+          - @comments.each do |comment|
+            %blockquote
+              .comment_nickname
+                %b.text-primary
+                  = comment.nickname
+              .comment_description
+                = comment.description.capitalize
+              %br
+              %small.comment_time
                 = time_ago_in_words comment.created_at
                 = 'ago'
-            %hr
+              %hr
 
-    .comments-form
-      = form_for [@post, @comment = Comment.create ], :html => {:class => 'form-inline'}, :remote => true do |f|
-        .comment_block
-          = t '.new_comment'
-          .form-group
-            = f.text_field :description, :class => 'form-control', :placeholder => t('.write_comment')
-            = f.submit t('.add_comment'), class: 'btn btn-primary', :id => 'go_comment', data: { disable_with: 'Please wait...' }
-    .col-lg-6
-      .recent_posts
-        %h3
-          = t ('.most_recent_post')
-        %ul.unstyled
-          - @recent_posts.each do |post|
-            %li
-              = link_to post.title, special_post_path(post.created_at.strftime('%d_%m_%Y'), post)
-        %h5
-          = t ('.get_more')
-        .btn
-          = link_to t('.rss_feed'), posts_path(:rss), :class => 'btn btn-primary'
-    .col-lg-6
-      .popular_posts
-        %h3
-          = t '.most_popular'
-        %ul.unstyled
-          - @popular_posts.each do |post|
-            %li
-              = link_to post.title, special_post_path(post.created_at.strftime('%d_%m_%Y'), post)
-        %h5
-          = t '.ready_help'
-        .btn
-          = link_to t('.contact_us'), contact_index_path, :class => 'btn btn-default'
-  .col-lg-4.sidebar
-    = render :partial => 'sidebar'
+      .comments-form
+        = form_for [@post, @comment = Comment.create ], :html => {:class => 'form-inline'}, :remote => true do |f|
+          .comment_block
+            = t '.new_comment'
+            .form-group
+              = f.text_field :nickname, :class => 'form-control input-small', :placeholder => t('.write_nickname')
+            .form-group
+              = f.text_field :description, :class => 'form-control input-small', :placeholder => t('.write_comment')
+            .form-group
+              = f.submit t('.add_comment'), class: 'btn btn-primary btn-small', :id => 'go_comment', data: { disable_with: 'Please wait...' }
+
+      .col-lg-6
+        .recent_posts
+          %h3
+            = t ('.most_recent_post')
+          %ul.unstyled
+            - @recent_posts.each do |post|
+              %li
+                = link_to post.title, special_post_path(post.created_at.strftime('%d_%m_%Y'), post)
+          %h5
+            = t ('.get_more')
+          .btn
+            = link_to t('.rss_feed'), posts_path(:rss), :class => 'btn btn-primary'
+      .col-lg-6
+        .popular_posts
+          %h3
+            = t '.most_popular'
+          %ul.unstyled
+            - @popular_posts.each do |post|
+              %li
+                = link_to post.title, special_post_path(post.created_at.strftime('%d_%m_%Y'), post)
+          %h5
+            = t '.ready_help'
+          .btn
+            = link_to t('.contact_us'), contact_index_path, :class => 'btn btn-default'
+    .col-lg-4.sidebar
+      = render :partial => 'sidebar'

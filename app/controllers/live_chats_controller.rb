@@ -1,14 +1,11 @@
 require 'pusher'
 
-Pusher.app_id= '49562'
-Pusher.key= '3719c0c90b25b237f538'
-Pusher.secret= '628a05f0fcb9d19f4e8a'
-
 class LiveChatsController < ApplicationController
 
   def new
-    @admins = AdminUser.select(:id, :email).where(role: 'manager', status: 'online').order('random()')
+    @admins = AdminUser.select(:id, :first_name, :last_name).where(role: 'manager', status: 'online').order('random()')
     if @admins.blank?
+      @message = Message.new
       render 'live_chats/sorry', layout: false
     else
       @live_chat = LiveChat.new
@@ -26,8 +23,12 @@ class LiveChatsController < ApplicationController
         message.live_chat = @live_chat
         if message.save
           admin_email = @live_chat.admin_user.email
-          channel = admin_email
-          Pusher[channel].trigger('msg-event',  {message: message.body, email: @live_chat.guest_email, date: message.created_at.strftime('%d-%m-%Y')})
+          channel = 'presence-' + @live_chat.admin_user.first_name+"-"+@live_chat.admin_user.last_name #admin_email
+          Pusher[channel].trigger('msg-event',  {:user_id => session[:user_id],
+                                                 message: message.body,
+                                                 email: @live_chat.guest_name,
+                                                 is_admin: message.is_admin,
+                                                 date: message.created_at.strftime('%d-%m-%Y')})
           @live_chat.admin_user.update_attribute(:status, 'chat')
         end
         redirect_to live_chat_path(@live_chat)
@@ -43,6 +44,7 @@ class LiveChatsController < ApplicationController
   def show
     @live_chat = LiveChat.where("id = :chat_id", chat_id: (params[:id]).to_i).includes(:chat_messages, :admin_user).take
     gon.current_admin_email = @live_chat.admin_user.email
+    gon.current_admin_channel = @live_chat.admin_user.first_name+"-"+@live_chat.admin_user.last_name
     render 'live_chats/show', layout: 'chat_layout'
   end
 
@@ -54,8 +56,12 @@ class LiveChatsController < ApplicationController
       message.live_chat_id = params[:live_chat_id]
       if message.save
         chat = LiveChat.find(params[:live_chat_id])
-        channel = chat.admin_user.email
-        Pusher[channel].trigger('msg-event',  {message: message.body, email: chat.guest_email, date: message.created_at.strftime('%d-%m-%Y')})
+        channel = 'presence-' + chat.admin_user.first_name+"-"+chat.admin_user.last_name #chat.admin_user.email
+        Pusher[channel].trigger('msg-event',  {:user_id => session[:user_id],
+                                               message: message.body,
+                                               email: chat.guest_name,
+                                               is_admin: message.is_admin,
+                                               date: message.created_at.strftime('%d-%m-%Y')})
       end
     end
     redirect_to :back
@@ -63,6 +69,6 @@ class LiveChatsController < ApplicationController
 
   protected
   def live_chat_params
-    params.require(:live_chat).permit(:guest_name, :guest_email, :admin_id)
+    params.require(:live_chat).permit(:guest_name, :admin_id)
   end
 end

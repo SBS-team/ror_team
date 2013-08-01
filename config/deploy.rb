@@ -48,6 +48,7 @@ namespace :config do
 #end
     run "ln -nfs #{shared_path}/preproduction.yml #{release_path}/config/environments/preproduction.yml"    
     run "ln -nfs #{shared_path}/database.yml #{release_path}/config/database.yml"
+    run "ln -nfs #{shared_path}/uploads #{release_path}/public/uploads"
     run "ln -nfs #{shared_path}/development.yml #{release_path}/config/environments/development.yml"
     run "ln -nfs #{shared_path}/unicorn_pre.rb #{release_path}/config/unicorn_pre.rb"
 
@@ -74,3 +75,22 @@ end
 #  end
 #end
 
+#before "rails:console", "bundle:install"
+namespace :rails do
+  desc "Open the rails console on one of the remote servers"
+  task :console, :roles => :app do
+    exec "ssh -l #{user} '192.168.137.1' -t 'cd #{current_path} && bundle install && bundle exec rails c #{stage}'"
+  end
+end
+
+desc "tail production log files"
+task :tail_logs, :roles => :app do
+  trap("INT") { puts 'Interupted'; exit 0; }
+  run "tail -f #{shared_path}/log/#{stage}.log" do |channel, stream, data|
+    puts  # for an extra line break before the host name
+    puts "#{channel[:host]}: #{data}"
+    break if stream == :err
+  end
+end
+
+after "deploy", "deploy:cleanup"

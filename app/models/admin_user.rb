@@ -31,6 +31,7 @@ class AdminUser < ActiveRecord::Base
   has_many :posts, :dependent => :destroy, :foreign_key => :admin_id
   has_many :live_chats, :foreign_key => :admin_id
   has_one :upload_file, :as => :fileable, :dependent => :destroy
+  has_many :time_onlines, :foreign_key => :admin_id
 
   accepts_nested_attributes_for :upload_file
 

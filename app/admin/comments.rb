@@ -8,10 +8,7 @@ ActiveAdmin.register Comment do
     selectable_column
     column :id
     column :description
-    column "Email" do |comment|
-      comment.commentable.email
-    end
-    column "Post" do |comment|
+    column 'Post' do |comment|
       comment.post.title
     end
     default_actions

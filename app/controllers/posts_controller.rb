@@ -13,7 +13,7 @@ class PostsController < ApplicationController
             end
     unless params[:search].blank?
       if !params[:search].nil? && @posts.empty?
-        flash.now[:alert] = "#{t('.your_search_for')} #{params[:search]} #{t('.returned_no_hits')}"
+        flash.now[:error] = "#{t('.your_search_for')} #{params[:search]} #{t('.returned_no_hits')}"
       else
         flash.now[:notice] = "#{t('.your_search_for')} #{params[:search]} results"
       end

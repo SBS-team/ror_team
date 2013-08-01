@@ -10,29 +10,30 @@
   %body
     .container
       .navbar.navbar-inverse.navbar-fixed-top
-        = link_to(t('.ror_team'), root_path, :class => 'navbar-brand')
-        %ul.nav.navbar-nav
-          = nav_link_to(t('.company'), company_index_path, :controller => 'company')
-          = nav_link_to(t('.work'), projects_path, :controller => 'projects')
-          = nav_link_to(t('.team'), team_index_path, :controller => 'team')
-          = nav_link_to(t('.careers'), jobs_path, :controller => 'jobs')
-          = nav_link_to(t('.contact'), contact_index_path, :controller => 'contact')
-          = nav_link_to(t('.blog'), posts_path, :controller => 'posts')
-        .pull-right.live-chat
-          = link_to t('.live_chat'), new_live_chat_path, :class => 'btn btn-warning', :onclick=>"window.open(this.href,'RoR-Team Live Chat', 'height=500, width=400');return false;"
+        .container
+          = link_to(t('.ror_team'), root_path, :class => 'navbar-brand')
+          %ul.nav.navbar-nav
+            = nav_link_to(t('.company'), company_index_path, :controller => 'company')
+            = nav_link_to(t('.work'), projects_path, :controller => 'projects')
+            = nav_link_to(t('.team'), team_index_path, :controller => 'team')
+            = nav_link_to(t('.careers'), jobs_path, :controller => 'jobs')
+            = nav_link_to(t('.contact'), contact_index_path, :controller => 'contact')
+            = nav_link_to(t('.blog'), posts_path, :controller => 'posts')
+          .pull-right.live-chat
+            = link_to t('.live_chat'), new_live_chat_path, :class => 'btn btn-warning', :onclick=>"window.open(this.href,'RoR-Team Live Chat', 'height=500, width=400');return false;"
       .content.row
         .col-lg-12
           - if flash[:error]
-            %p.error
+            %p.alert.alert-error
               = flash.now[:error]
           - if flash[:notice]
             %p.alert.alert-success
               = flash.now[:notice]
           - if flash[:alert]
-            %p.alert.alert-error
+            %p.alert.alert-info
               = flash.now[:alert]
           = yield
-      %footer#footer.row
+      %footer#footer
         .contact-us.col-lg-12
           %p.lead
             = t '.use_to_contact'

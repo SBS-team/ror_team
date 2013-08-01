@@ -39,16 +39,14 @@
         - @comments.each do |comment|
           %blockquote
             .comment_nickname
-              %b
-                .text-primary
-                  = comment.nickname
+              %b.text-primary
+                = comment.nickname
             .comment_description
               = comment.description.capitalize
             %br
-            .comment_time
-              %small
-                = time_ago_in_words comment.created_at
-                = 'ago'
+            %small.comment_time
+              = time_ago_in_words comment.created_at
+              = 'ago'
             %hr
 
     .comments-form

@@ -18,9 +18,4 @@ describe Comment do
     it { must have_db_column(:updated_at).of_type(:datetime) }
   end
 
-  context 'Comment validation' do
-    it { must validate_presence_of(:description)}
-    it { must ensure_length_of(:description).is_at_least(2)}
-  end
-
 end

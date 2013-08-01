@@ -38,21 +38,14 @@
         .contact-us.col-lg-12
           %p.lead
             = t '.use_to_contact'
-        .media-net
-          .col-lg-6
-            %small
-              = t '.media_soc'
-          .col-lg-6.text-right
-            %small
-              = t '.mail_scype'
         .soc_net
-          .col-lg-4
+          .col-lg-4.text-center
             %p.lead
               = link_to(t('.follow_twitter'), 'http://twitter.com')
-          .col-lg-4
+          .col-lg-4.text-center
             %p.lead
               = link_to(t('.follow_facebook'), 'http://facebook.com')
-          .col-lg-4
+          .col-lg-4.text-center
             %p.lead
               = link_to(t('.contact_email'), contact_index_path)
         .bottom.text-center.col-lg-12

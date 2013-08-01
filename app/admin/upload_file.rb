@@ -25,8 +25,6 @@ ActiveAdmin.register UploadFile do
           link_to upload_file.fileable.name, admin_technology_path(upload_file.fileable)
         when AdminUser.to_s
           link_to upload_file.fileable.email, admin_admin_user_path(upload_file.fileable)
-        when User.to_s
-          link_to upload_file.fileable.email, admin_user_path(upload_file.fileable)
         when Job.to_s
           link_to upload_file.fileable.title, admin_job_path(upload_file.fileable)
         else

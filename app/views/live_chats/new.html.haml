@@ -1,17 +1,16 @@
 %h1
-  LiveChat
-%div
+  Live Chat
+.row
   = form_for @live_chat, url: {action: :create} do |f|
-    = f.label 'You can send your questions to one of next managers:'
-    - admins_for_select = @admins.map { |admin| [admin.email, admin.id] }
-    = f.select :admin_id, admins_for_select
-    .contact-info
-      = f.label 'Your name*:'
-      = f.text_field :guest_name
+    .col-lg-12.form-group
+      You can send your questions to one of next managers:
+      - admins_for_select = @admins.map { |admin| [admin.first_name+" "+admin.last_name, admin.id] }
+      = f.select :admin_id, admins_for_select, {},  class: 'form-control'
+    .contact-info.col-lg-12.form-group
+      Your name*:
+      = f.text_field :guest_name, 'class' => 'form-control'
+    .chat-msg.col-lg-12.form-group
+      Your message*:
+      = text_area_tag :message, nil, class: 'form-control', rows: 8
       %br
-      = f.label 'Your email*:'
-      = f.email_field :guest_email
-    .chat-msg
-      = f.label 'Your message*:'
-      = text_area_tag :message
-    = f.submit 'Send Message', data: { disable_with: 'Please wait...' }
+      = f.submit 'Send Message', data: { disable_with: 'Please wait...' }, :class => 'btn btn-primary pull-right'

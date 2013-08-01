@@ -74,11 +74,11 @@ end
 #  end
 #end
 
-before "rails:console", "bundle:install"
+#before "rails:console", "bundle:install"
 namespace :rails do
   desc "Open the rails console on one of the remote servers"
   task :console, :roles => :app do
-    exec "ssh -l #{user} '192.168.137.1' -t 'cd #{current_path} && rails c #{stage}'"
+    exec "ssh -l #{user} '192.168.137.1' -t 'cd #{current_path} && bundle install && bundle exec rails c #{stage}'"
   end
 end
 

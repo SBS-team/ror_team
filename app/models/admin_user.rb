@@ -61,4 +61,6 @@ class AdminUser < ActiveRecord::Base
             :uniqueness => true,
             :presence => true
 
+  scope :not_admin, -> {where("role != 'admin'")}
+
 end

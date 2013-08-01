@@ -51,9 +51,10 @@ $(document).ready(function(){
     $(document).ajaxSuccess(function(event, response, settings)  {
 
         if (response.responseJSON.stat == 'succ'){
-
+            // IF BEFORE WE GOT INVALID ERRORS CLEAN THEM BEFORE
             if ($('.error_messages')){
                 $('#comment_description').css('box-shadow', 'none');
+                $('#comment_nickname').css('box-shadow', 'none');
                 $('.error_messages').remove();
             }
 
@@ -61,30 +62,34 @@ $(document).ready(function(){
             {
                 // Init variables and add new comment
                 comment = response.responseJSON.comment.description;
-                nickname = response.responseJSON.nickname;
+                nickname = response.responseJSON.comment.nickname;
                 email = response.responseJSON.email;
                 image = response.responseJSON.image;
                 time = response.responseJSON.created_at;
                 console.log(comment.id);
                 $('.comments').append('<blockquote style ="display:none;">' +
+                    '<b><span class ="comment_nickname text-primary">'+nickname+'</span></b><br>' +
                     '<span class = "comment_description">'+comment+'</span><br>' +
+                    '<small class = "comment_time">just now</small>' +
                     '<hr></blockquote>');
                 $('.comments blockquote').slideDown('slow');
             }
 
             $('#comment_description').val('');
         }
-
+        // IF AJAX QUERY WAS FAILED SHOW VALID ERRORS
         if (response.responseJSON.stat == 'error') {
-            error = (response.responseJSON.error);
-            $('#comment_description').css('box-shadow', '0 0 5px red');
-            $.each( error, function( key, value ) {
-                $('#comment_description').parent().append('<span class = "error_messages"><b>'+value+'</b></span><br>');
-            });
-
+            if (response.responseJSON.error.name){
+                var name_error = response.responseJSON.error.name;
+                $('#comment_nickname').parent().append('<span class = "error_messages"><b>'+name_error+'</b></span><br>');
+                $('#comment_nickname').css('box-shadow', '0 0 5px red');
+            }
+            if (response.responseJSON.error.comment){
+                var comment_error = (response.responseJSON.error.comment);
+                $('#comment_description').css('box-shadow', '0 0 5px red');
+                $('#comment_description').parent().append('<span class = "error_messages"><b>'+comment_error+'</b></span><br>');
+            }
         }
     });
-
-
 
 }); // document ready

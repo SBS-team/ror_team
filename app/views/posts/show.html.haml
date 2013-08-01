@@ -38,13 +38,16 @@
         %a{name: 'comments'}
         - @comments.each do |comment|
           %blockquote
+            .comment_nickname
+              %b.text-primary
+                = comment.nickname
             .comment_description
               = comment.description.capitalize
             %br
-            .comment_time
-              %small
-                = time_ago_in_words comment.created_at
-                = 'ago'
+
+            %small.comment_time
+              = time_ago_in_words comment.created_at
+              = 'ago'
             %hr
 
     .comments-form
@@ -52,8 +55,11 @@
         .comment_block
           = t '.new_comment'
           .form-group
-            = f.text_field :description, :class => 'form-control', :placeholder => t('.write_comment')
-            = f.submit t('.add_comment'), class: 'btn btn-primary', :id => 'go_comment', data: { disable_with: 'Please wait...' }
+            = f.text_field :nickname, :class => 'form-control input-small', :placeholder => t('.write_nickname')
+          .form-group
+            = f.text_field :description, :class => 'form-control input-small', :placeholder => t('.write_comment')
+          .form-group
+            = f.submit t('.add_comment'), class: 'btn btn-primary btn-small', :id => 'go_comment', data: { disable_with: 'Please wait...' }
 
     .col-lg-6
       .recent_posts

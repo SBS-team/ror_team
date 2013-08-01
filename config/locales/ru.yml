@@ -206,6 +206,7 @@ ru:
       ready_help: "мы всегда рады помочь Вам"
       contact_us: "Связаться с нами"
       rss_feed: "RSS Feed"
+      write_nickname: "Введите имя"
 
   contact:
     create:

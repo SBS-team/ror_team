@@ -10,7 +10,7 @@ class Ability
       when 'manager'
         can :read, :all
         cannot :read, [UploadFile, AdminUser]
-        can :manage, [Project, Resume, Job, Post, TeamPhoto, User, Comment, Category]
+        can :manage, [Project, Resume, Job, Post, TeamPhoto, Comment, Category]
 
       when 'team_lead'
         can :read, :all

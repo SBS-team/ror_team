@@ -14,7 +14,6 @@
             != "(#{msg.created_at.strftime('%d-%m-%Y')})|<b><U>#{@live_chat.guest_name}</U></b>: #{msg.body}"
   .chat-msg
     = form_tag(live_chats_chat_path(live_chat_id: @live_chat.id), method: "post", remote: true) do
-      Your message*:
-      = text_area_tag :message, nil, class: 'form-control', rows: 3
-      %br
-      = submit_tag 'Send Message', id: "submit", :class => 'btn btn-primary pull-right'
+      = label_tag  'Your message*:'
+      = text_area_tag :message, '', {:class => 'form-control'}
+      = submit_tag 'Send Message', :class => 'btn btn-default', id: "submit"

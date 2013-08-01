@@ -15,15 +15,16 @@ $(document).ready(function(){
             $('#all_comments').hide();
             $('#close_comments').show();
             var comments = response.comments;
+            var str;
             var i = 0;
             $('.comments').slideDown(500, function(){
                 $.each( comments, function( key, value ) {
+                      str = HtmlEncode(comments[key].description);
                       $('.comments').prepend('<blockquote style ="display:none;" id = '+i+'>' +
                           '<b><span class ="comment_nickname text-primary">'+comments[key].nickname+'</span></b><br>' +
-                          '<span class = "comment_description"></span><br>' +
+                          '<span class = "comment_description">'+str+'</span><br>' +
                           '<hr></blockquote>');
                 $('.comments blockquote').slideDown('slow');
-                $('.comment_description').text(comments[key].description);
                 i++;
                 });
 

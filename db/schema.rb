@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130731112052) do
+ActiveRecord::Schema.define(version: 20130801104420) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "resource_id",   null: false
@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(version: 20130731112052) do
   end
 
   create_table "chat_messages", force: true do |t|
-    t.text     "body"
+    t.string   "body"
     t.integer  "live_chat_id"
     t.boolean  "is_admin"
     t.datetime "created_at"

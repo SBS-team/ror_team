@@ -1,19 +1,10 @@
-_file = false
-
-file_input = ->
-  if _file
-    $('#file_upload_input').remove()
-    $('#linkfile').text('add File')
-    _file = false
-  else
-    div = "<div id=\"file_upload_input\"><input name=\"resume[upload_file_attributes][filename]\" type=\"file\" id=\"fileinput\"></div>"
-    $('#file').append(div)
-    _file = true
-    $('#linkfile').text('delete File')
+file = "<input id=\"resume_upload_file_attributes_filename\" type=\"file\" name=\"resume[upload_file_attributes][filename]\">"
 
 $(document).ready ->
-  $('#linkfile').click ->
-    file_input()
+  $("#resume_upload_file_attributes_filename").bind "change", ->
+    if $("#resume_upload_file_attributes_filename")[0].files[0].size > 5*1000*1000
+      alert "You cannot upload a file greater than 5 Mb\n size your file is a: #{$("#resume_upload_file_attributes_filename")[0].files[0].size / 1000000 } Mb"
+      $("#resume_upload_file_attributes_filename").replaceWith file
   $("#new_resume").validate
     rules:
       "resume[email]":

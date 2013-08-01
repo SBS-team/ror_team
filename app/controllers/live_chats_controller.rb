@@ -1,9 +1,5 @@
 require 'pusher'
 
-Pusher.app_id= '49562'
-Pusher.key= '3719c0c90b25b237f538'
-Pusher.secret= '628a05f0fcb9d19f4e8a'
-
 class LiveChatsController < ApplicationController
 
   def new
@@ -27,7 +23,7 @@ class LiveChatsController < ApplicationController
         message.live_chat = @live_chat
         if message.save
           admin_email = @live_chat.admin_user.email
-          channel = 'presence-' + admin_email
+          channel = 'presence-' + @live_chat.admin_user.first_name+"-"+@live_chat.admin_user.last_name #admin_email
           Pusher[channel].trigger('msg-event',  {:user_id => session[:user_id],
                                                  message: message.body,
                                                  email: @live_chat.guest_name,
@@ -48,6 +44,7 @@ class LiveChatsController < ApplicationController
   def show
     @live_chat = LiveChat.where("id = :chat_id", chat_id: (params[:id]).to_i).includes(:chat_messages, :admin_user).take
     gon.current_admin_email = @live_chat.admin_user.email
+    gon.current_admin_channel = @live_chat.admin_user.first_name+"-"+@live_chat.admin_user.last_name
     render 'live_chats/show', layout: 'chat_layout'
   end
 
@@ -59,7 +56,7 @@ class LiveChatsController < ApplicationController
       message.live_chat_id = params[:live_chat_id]
       if message.save
         chat = LiveChat.find(params[:live_chat_id])
-        channel = 'presence-' + chat.admin_user.email
+        channel = 'presence-' + chat.admin_user.first_name+"-"+chat.admin_user.last_name #chat.admin_user.email
         Pusher[channel].trigger('msg-event',  {:user_id => session[:user_id],
                                                message: message.body,
                                                email: chat.guest_name,

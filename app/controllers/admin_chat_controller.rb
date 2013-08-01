@@ -1,9 +1,5 @@
 require 'pusher'
 
-Pusher.app_id= '49562'
-Pusher.key= '3719c0c90b25b237f538'
-Pusher.secret= '628a05f0fcb9d19f4e8a'
-
 class AdminChatController < ApplicationController
 
   def chat
@@ -18,6 +14,7 @@ class AdminChatController < ApplicationController
         @messages = ChatMessage.where(live_chat_id: @live_chat.id)
       end
       gon.current_admin_email = current_admin_user.email
+      gon.current_admin_channel = current_admin_user.first_name+"-"+current_admin_user.last_name
       render 'admin_chat/chat', layout: false
     else
       render text: "You must log in as manager"
@@ -32,7 +29,7 @@ class AdminChatController < ApplicationController
       message.live_chat_id = params[:live_chat_id]
       if message.save
         chat = LiveChat.find(params[:live_chat_id])
-        channel = 'presence-' + chat.admin_user.email
+        channel = 'presence-' + chat.admin_user.first_name+"-"+chat.admin_user.last_name #chat.admin_user.email
         Pusher[channel].trigger('msg-event', {:user_id => session[:user_id],
                                               message: message.body,
                                               email: chat.admin_user.first_name+" "+chat.admin_user.last_name,
@@ -46,7 +43,6 @@ class AdminChatController < ApplicationController
   def close
     admin = AdminUser.where(email: params[:admin_email]).take
     admin.update_attribute(:status, 'online')
-#    session['chat'] = nil
     redirect_to :back
   end
 end

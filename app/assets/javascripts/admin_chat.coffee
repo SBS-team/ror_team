@@ -1,11 +1,15 @@
 
+#Pusher.ws_host    = '127.0.0.1'
+#Pusher.ws_port = 8080
+#Pusher.wss_port = 443
+
 $(document).ajaxSuccess (event, response, settings) ->
   $('#message').val('')
   $("#chat-history").scrollTop $("#chat").height()-$(".msg:last").height()
 
 
 $(document).ready ->
-  admin_main_channel = 'presence-' + gon.current_admin_email
+  admin_main_channel = 'presence-' + gon.current_admin_channel
 
   pusher = new Pusher("3719c0c90b25b237f538")
   channel = pusher.subscribe(admin_main_channel)

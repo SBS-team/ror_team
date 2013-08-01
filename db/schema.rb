@@ -39,12 +39,12 @@ ActiveRecord::Schema.define(version: 20130801104420) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at"
-    t.datetime "updated_at"
     t.string   "role"
     t.text     "about"
     t.string   "first_name"
     t.string   "last_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.string   "status"
   end
 
@@ -113,9 +113,9 @@ ActiveRecord::Schema.define(version: 20130801104420) do
     t.string   "title"
     t.text     "description"
     t.integer  "admin_id"
+    t.integer  "comments_count", default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "comments_count", default: 0
     t.string   "slug"
   end
 
@@ -130,9 +130,9 @@ ActiveRecord::Schema.define(version: 20130801104420) do
 
   create_table "project_technology_categories", force: true do |t|
     t.integer  "project_id"
+    t.integer  "technology_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "technology_id"
   end
 
   create_table "projects", force: true do |t|
@@ -140,33 +140,20 @@ ActiveRecord::Schema.define(version: 20130801104420) do
     t.text     "description"
     t.date     "since"
     t.integer  "team_size"
-    t.datetime "created_at"
-    t.datetime "updated_at"
     t.date     "till"
     t.string   "url"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "resumes", force: true do |t|
     t.text     "description"
     t.integer  "job_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
     t.string   "name"
     t.string   "email"
     t.string   "phone"
-  end
-
-  create_table "rich_rich_files", force: true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "rich_file_file_name"
-    t.string   "rich_file_content_type"
-    t.integer  "rich_file_file_size"
-    t.datetime "rich_file_updated_at"
-    t.string   "owner_type"
-    t.integer  "owner_id"
-    t.text     "uri_cache"
-    t.string   "simplified_type",        default: "file"
   end
 
   create_table "services", force: true do |t|
@@ -189,7 +176,7 @@ ActiveRecord::Schema.define(version: 20130801104420) do
   add_index "taggings", ["taggable_id", "taggable_type", "context"], name: "index_taggings_on_taggable_id_and_taggable_type_and_context", using: :btree
 
   create_table "tags", force: true do |t|
-    t.string "name"
+    t.string "name", limit: 40
   end
 
   create_table "team_photos", force: true do |t|
@@ -219,11 +206,11 @@ ActiveRecord::Schema.define(version: 20130801104420) do
 
   create_table "upload_files", force: true do |t|
     t.string   "filename"
+    t.string   "img_name"
     t.integer  "fileable_id"
     t.string   "fileable_type"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "img_name"
   end
 
 end

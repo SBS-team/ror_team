@@ -12,23 +12,15 @@
 #
 
 class Comment < ActiveRecord::Base
-  belongs_to :user
   belongs_to :post, :counter_cache => true
   belongs_to :commentable, :polymorphic => true
 
-  accepts_nested_attributes_for :user
+  validate :check_comment_body
 
-  validates :description,
-            :presence => true,
-            :length => {:minimum => 2,
-                        :maximum => 1024 }
-
-  validates :commentable_id,
-            :presence => true,
-            :numericality => { :only_integer => true, :greater_than => 0 }
-
-  validates :commentable_type,
-            :presence => true,
-            :length => { :maximum => 255 }
+  def check_comment_body
+    if (self.description.blank? || self.description.length <= 2)
+      errors.add(:Comment, 'is to short, minimum 2 symbols')
+    end
+  end
 
 end

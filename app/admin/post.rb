@@ -1,6 +1,10 @@
 ActiveAdmin.register Post do
 
-  filter :categories
+  menu :parent => 'Blog',  :priority => 0
+
+  filter :categories, :as => :select, :collection => Category.all
+  filter :title, :as => :string
+  filter :description, :as => :string
 
   index do
     selectable_column

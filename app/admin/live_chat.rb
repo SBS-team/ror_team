@@ -1,7 +1,8 @@
 ActiveAdmin.register LiveChat do
 
-  filter :admin_id, :as => :select
-  filter :guest_email
+  #filter :admin_id, :as => :select, :collection => AdminUser.where(:role => 'manager').map { |j| [j.email, j.id] }
+  filter :guest_email, :as => :string
+  filter :created_at
 
   scope :mine do |live_chat|
     live_chat.where(:admin_id => current_admin_user.id)

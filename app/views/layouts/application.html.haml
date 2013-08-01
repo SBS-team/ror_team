@@ -8,63 +8,50 @@
     = include_gon(:namespace => 'RorTeam', :camel_case => true)
     = csrf_meta_tags
   %body
-    -if !notice.blank?
-      .success.message
-        %h3
-          = notice
-    -if !alert.blank?
-      .info.message
-        %h3
-          = alert
     .container
-      %header
-        .row
-          .span2
-            .logo
-              = link_to(t('.ror_team'), root_path)
-          .span6
-            - if current_user
-              = "Welcome, #{current_user.nickname} "
-              = link_to 'Logout', auth_destroy_path
-          %nav
-            %ul.inline
-              = nav_link_to(t('.company'), company_index_path, :controller => 'company')
-              = nav_link_to(t('.work'), projects_path, :controller => 'projects')
-              = nav_link_to(t('.team'), team_index_path, :controller => 'team')
-              = nav_link_to(t('.careers'), jobs_path, :controller => 'jobs')
-              = nav_link_to(t('.contact'), contact_index_path, :controller => 'contact')
-              = nav_link_to(t('.blog'), posts_path, :controller => 'posts')
-          .chat.span1
-            .btn
-              = link_to t('.live_chat'), new_live_chat_path, :onclick=>"window.open(this.href,'RoR-Team Live Chat', 'height=500, width=400');return false;"
-      #content
-        - if flash[:error]
-          %p.error
-            = flash.now[:error]
-        = yield
-      %footer#footer
-        .contact-us.row
-          .span4
-            %p.lead
-              = t '.use_to_contact'
-        .row
-          .span6
+      .navbar.navbar-inverse.navbar-fixed-top
+        = link_to(t('.ror_team'), root_path, :class => 'navbar-brand')
+        %ul.nav.navbar-nav
+          = nav_link_to(t('.company'), company_index_path, :controller => 'company')
+          = nav_link_to(t('.work'), projects_path, :controller => 'projects')
+          = nav_link_to(t('.team'), team_index_path, :controller => 'team')
+          = nav_link_to(t('.careers'), jobs_path, :controller => 'jobs')
+          = nav_link_to(t('.contact'), contact_index_path, :controller => 'contact')
+          = nav_link_to(t('.blog'), posts_path, :controller => 'posts')
+        .pull-right.live-chat
+          = link_to t('.live_chat'), new_live_chat_path, :class => 'btn btn-warning', :onclick=>"window.open(this.href,'RoR-Team Live Chat', 'height=500, width=400');return false;"
+      .content.row
+        .col-lg-12
+          - if flash[:error]
+            %p.alert.alert-error
+              = flash.now[:error]
+          - if flash[:notice]
+            %p.alert.alert-success
+              = flash.now[:notice]
+          - if flash[:alert]
+            %p.alert.alert-info
+              = flash.now[:alert]
+          = yield
+      %footer#footer.row
+        .contact-us.col-lg-12
+          %p.lead
+            = t '.use_to_contact'
+        .media-net
+          .col-lg-6
             %small
               = t '.media_soc'
-          .span6.text-right
+          .col-lg-6.text-right
             %small
               = t '.mail_scype'
-        .row.soc_net
-          .span4
+        .soc_net
+          .col-lg-4
             %p.lead
               = link_to(t('.follow_twitter'), 'http://twitter.com')
-          .span4
+          .col-lg-4
             %p.lead
               = link_to(t('.follow_facebook'), 'http://facebook.com')
-          .span4
+          .col-lg-4
             %p.lead
-              = link_to(t('.email'), 'mailto:ror_team@gmail.com')
-        .row.text-center
+              = link_to(t('.contact_email'), contact_index_path)
+        .bottom.text-center.col-lg-12
           © 2012-2013 RoR-Team
-        .row.bottom
-          .span12

@@ -96,20 +96,29 @@
   width:15%
 }
 
-.comment_nick, .comment_img {
-  float: left;
-}
-
-.comment_nick {
-  margin-left: 10px;
-}
+// for comments
 
 .comment_time {
   float:right;
 }
 
-.comment_email {
-  margin-left: 50px;
+.comment_description {
+  word-wrap: break-word;
+  word-break: break-all;
+  display: inline-block;
+  margin: 10px 0 0 10px;
+  font-family: "Courier New";
+}
+
+.comment_field {
+  width: 70%;
+  min-height: 40px;
+}
+
+.comment_block {
+  border: 2px solid rgb(201, 201, 201);
+  border-radius: 8px;
+  padding: 15px;
 }
 
 blockquote:nth-child(odd) {
@@ -125,3 +134,22 @@ blockquote {
 hr {
   margin-bottom: 0;
 }
+
+.comments_block small {
+  font-size: 10px;
+}
+
+#all_comments, #close_comments {
+  padding: 7px 0 7px 0;
+  cursor: pointer;
+  margin-bottom: 3px;
+  text-align: center;
+  background-color: #357ebd;
+  color: #fff;
+}
+
+.error_messages {
+  color: red;
+}
+
+// for comments

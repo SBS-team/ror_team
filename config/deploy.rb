@@ -48,6 +48,7 @@ namespace :config do
 #end
     run "ln -nfs #{shared_path}/preproduction.yml #{release_path}/config/environments/preproduction.yml"    
     run "ln -nfs #{shared_path}/database.yml #{release_path}/config/database.yml"
+    run "ln -nfs #{shared_path}/uploads #{release_path}/public/uploads"
     run "ln -nfs #{shared_path}/development.yml #{release_path}/config/environments/development.yml"
     run "ln -nfs #{shared_path}/unicorn_pre.rb #{release_path}/config/unicorn_pre.rb"
 

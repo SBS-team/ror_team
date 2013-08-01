@@ -20,8 +20,6 @@ describe LiveChat do
   context 'LiveChat validations' do
     it { must validate_presence_of(:guest_name)}
     it { must ensure_length_of(:guest_name).is_at_least(2).is_at_most(150) }
-    it { must validate_presence_of(:guest_email)}
-    it { must ensure_length_of(:guest_email).is_at_least(5).is_at_most(150) }
     it { must validate_presence_of(:admin_id)}
     it { must validate_numericality_of(:admin_id).only_integer }
   end

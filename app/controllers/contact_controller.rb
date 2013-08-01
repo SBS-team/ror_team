@@ -25,9 +25,17 @@ class ContactController < ApplicationController
     @message = Message.new(params[:message])
     if @message.valid?
       NotificationsMailer.new_message(@message).deliver
-      redirect_to(root_path, :notice => t('.contact_sent_msg'))
+      if params[:small_window]
+        render text: t('.contact_sent_msg')
+      else
+        redirect_to(root_path, :notice => t('.contact_sent_msg'))
+      end
     else
-      redirect_to contact_index_path  #render :index
+      if params[:small_window]
+        render 'live_chats/sorry', layout: false
+      else
+        redirect_to contact_index_path  #render :index
+      end
     end
   end
 

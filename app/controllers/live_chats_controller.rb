@@ -9,6 +9,7 @@ class LiveChatsController < ApplicationController
   def new
     @admins = AdminUser.select(:id, :first_name, :last_name).where(role: 'manager', status: 'online').order('random()')
     if @admins.blank?
+      @message = Message.new
       render 'live_chats/sorry', layout: false
     else
       @live_chat = LiveChat.new

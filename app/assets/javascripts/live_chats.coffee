@@ -17,5 +17,4 @@ $(document).ready ->
     else
       msg_class = "<div class='msg-user msg'>"
     $("#chat").append msg_class+"(" + data.date + ")|<b><U>" + data.email + "</U></b>: " + data.message + "</div>"
-
     $("#chat-history").scrollTop $("#chat").height()-$(".msg:last").height()

@@ -1,105 +1,89 @@
--if user_signed_in? && !alert.blank?
-  .info.message
-    %h3 You are already loged in!
-    %p
-      = alert
 .row
-  .span8.posts.main_cont
-    .post
-      .post_top
-        .post_img
-          - unless @post.upload_file.blank? || @post.upload_file.img_name.blank?
-            = image_tag @post.upload_file.img_name.url(:thumb)
-          - else
-            = image_tag 'missing.png'
-        .post-title
-          = @post.title
-        .post_date
-          = @post.created_at.strftime("%d %B %H:%M:%S")
-        %span
-          - if @post.comments_count==0
-            = t('.post_hasnt_comments')
-          - else
-            = pluralize(@post.comments_count, t('.comment'))
-      .post-content
-        != @post.description
-      - unless @post.categories.empty?
-        .categories
-          = t '.categories'
-          != @post.categories.collect{|cat| link_to strip_links(cat.name), posts_path(:category_name=>cat.name) }.join(', ')
-      - unless @post.tag_counts_on(:tags).empty?
-        .tags
-          = t '.tags'
-          - @post.tag_counts_on(:tags).each do |tag|
-            = link_to tag.name, posts_path(:tag_name => tag.name), :class => 'btn'
-    .comments_block
-      .comments
-        %a{name: 'comments'}
-        - @comments.each do |comment|
-          %blockquote
-            %b
-              - if comment.commentable.respond_to? :image
-                = image_tag comment.commentable.image, :class=>'img-rounded comment_img'
-              - if comment.commentable.image.blank?
-                = image_tag('missing.png', :class=>'img-rounded comment_img', :width => 50, :height => 50)
-              %span.comment_nick
-                - if comment.commentable.respond_to? :nickname
-                  = comment.commentable.nickname
-            %br
-            %small.comment_email
-              = comment.commentable.email
-            %br
-              %b
+  .col-lg-12
+    .col-lg-8.posts.main_cont
+      .post
+        .post_top
+          .post_img
+            .img
+              - unless @post.upload_file.blank? || @post.upload_file.img_name.blank?
+                = image_tag @post.upload_file.img_name.url(:thumb), class: @post.id
+              - else
+                = image_tag 'missing.png', class: @post.id
+          .post-title
+            = @post.title
+          .post_date
+            = @post.created_at.strftime("%d %B %H:%M:%S")
+          %span
+            - if @post.comments_count==0
+              = t('.post_hasnt_comments')
+            - else
+              = pluralize(@post.comments_count, t('.comment'))
+        .post-content
+          != @post.description
+        - unless @post.categories.empty?
+          .categories
+            = t '.categories'
+            != @post.categories.collect{|cat| link_to strip_links(cat.name), posts_path(:category_name=>cat.name) }.join(', ')
+        - unless @post.tag_counts_on(:tags).empty?
+          .tags
+            = t '.tags'
+            - @post.tag_counts_on(:tags).each do |tag|
+              = link_to tag.name, posts_path(:tag_name => tag.name), :class => 'btn btn-default'
+      .comments_block
+        -if @comment_count > 3
+          #all_comments
+            %b= 'Look previous comments'
+        #close_comments
+          %b= 'Hide all comments'
+        .comments
+          %a{name: 'comments'}
+          - @comments.each do |comment|
+            %blockquote
+              .comment_nickname
+                %b.text-primary
+                  = comment.nickname
+              .comment_description
                 = comment.description.capitalize
-            %span.comment_time
-              %small
+              %br
+              %small.comment_time
                 = time_ago_in_words comment.created_at
                 = 'ago'
-            %hr
-      = paginate @comments
-    %h4
-      = t '.new_comment'
-      = form_for [@post, @comment = Comment.create ], :html => {:class => 'form-inline'}, :remote => true do |f|
-        .input-append
-          -if user_signed_in?                                       #  display user image
-            = image_tag current_user.image, :class=>'img-rounded'   #  near the add comment input
-          -else
-            %p
-              = f.fields_for :user, (User.new) do |user|
-                = user.text_field :first_name, :placeholder => 'Your name'
-                = user.text_field :email, :placeholder => 'Your email'
-          = f.text_area :description, style: 'height:39px; width:600px', :placeholder => t('.write_comment')
-          = f.submit t('.add_comment'), class: 'btn btn-info', style: 'height:50px;', :id => 'go_comment', data: { disable_with: 'Please wait...' }
-          %br
-          = link_to '/auth/twitter', :class => 'twitter' do
-            = image_tag 'authbuttons/twitter_32.png', :size => '32x32', :alt => 'Twitter'
-          = link_to '/auth/facebook', :class => 'facebook' do
-            = image_tag 'authbuttons/facebook_32.png', :size => '32x32', :alt => 'Facebook'
-          = link_to '/auth/vkontakte', :class => 'vkontakte' do
-            = image_tag 'authbuttons/vk_32.png', :size => '32x32', :alt => 'Vkontakte'
-    .span4
-      .recent_posts
-        %h3
-          = t ('.most_recent_post')
-        %ul.unstyled
-          - @recent_posts.each do |post|
-            %li
-              = link_to post.title, special_post_path(post.created_at.strftime('%d_%m_%Y'), post)
-        %h5
-          = t ('.get_more')
-        .btn.large
-          = link_to t('.rss_feed'), posts_path(:rss)
-    .span3
-      .popular_posts
-        %h3
-          = t '.most_popular'
-        %ul.unstyled
-          - @popular_posts.each do |post|
-            %li
-              = link_to post.title, special_post_path(post.created_at.strftime('%d_%m_%Y'), post)
-        %h5
-          = t '.ready_help'
-        .btn.large
-          = link_to t('.contact_us'), contact_index_path
-  .span4.sidebar
-    = render :partial => 'sidebar'
+              %hr
+
+      .comments-form
+        = form_for [@post, @comment = Comment.create ], :html => {:class => 'form-inline'}, :remote => true do |f|
+          .comment_block
+            = t '.new_comment'
+            .form-group
+              = f.text_field :nickname, :class => 'form-control input-small', :placeholder => t('.write_nickname')
+            .form-group
+              = f.text_field :description, :class => 'form-control input-small', :placeholder => t('.write_comment')
+            .form-group
+              = f.submit t('.add_comment'), class: 'btn btn-primary btn-small', :id => 'go_comment', data: { disable_with: 'Please wait...' }
+
+      .col-lg-6
+        .recent_posts
+          %h3
+            = t ('.most_recent_post')
+          %ul.unstyled
+            - @recent_posts.each do |post|
+              %li
+                = link_to post.title, special_post_path(post.created_at.strftime('%d_%m_%Y'), post)
+          %h5
+            = t ('.get_more')
+          .btn
+            = link_to t('.rss_feed'), posts_path(:rss), :class => 'btn btn-primary'
+      .col-lg-6
+        .popular_posts
+          %h3
+            = t '.most_popular'
+          %ul.unstyled
+            - @popular_posts.each do |post|
+              %li
+                = link_to post.title, special_post_path(post.created_at.strftime('%d_%m_%Y'), post)
+          %h5
+            = t '.ready_help'
+          .btn
+            = link_to t('.contact_us'), contact_index_path, :class => 'btn btn-default'
+    .col-lg-4.sidebar
+      = render :partial => 'sidebar'

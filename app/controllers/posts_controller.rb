@@ -13,7 +13,7 @@ class PostsController < ApplicationController
             end
     unless params[:search].blank?
       if !params[:search].nil? && @posts.empty?
-        flash.now[:alert] = "#{t('.your_search_for')} #{params[:search]} #{t('.returned_no_hits')}"
+        flash.now[:error] = "#{t('.your_search_for')} #{params[:search]} #{t('.returned_no_hits')}"
       else
         flash.now[:notice] = "#{t('.your_search_for')} #{params[:search]} results"
       end
@@ -26,12 +26,19 @@ class PostsController < ApplicationController
 
   # GET /posts/1
   def show
-    session[:return_to] = request.fullpath
+    @comment_count = Comment.count
     @post = Post.find_by_slug(params[:id])
     if request.path != special_post_path(@post.created_at.strftime('%d_%m_%Y'), @post)
       redirect_to @post, status: :moved_permanently
     end
-    @comments = @post.comments.page(params[:page]).per(5)
+    @comments = @post.comments.order('id DESC').limit(3).reverse
+
+  end
+
+  def comments_show_all
+
+    @comments = Post.find(params[:id]).comments.limit((Post.find(params[:id]).comments.count) - 3).reverse
+    render json: {:comments => @comments }
   end
 
   private

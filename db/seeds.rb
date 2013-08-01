@@ -43,7 +43,7 @@ tech.technologies << Technology.create(:name => 'HTML', :upload_file => UploadFi
 tech.technologies << Technology.create(:name => 'HAML', :upload_file => UploadFile.create(:img_name => File.open(Rails.root.join('test/factories/files/image.png'))))
 tech.technologies << Technology.create(:name => 'CSS', :upload_file => UploadFile.create(:img_name => File.open(Rails.root.join('test/factories/files/image.png'))))
 tech.technologies << Technology.create(:name => 'SASS', :upload_file => UploadFile.create(:img_name => File.open(Rails.root.join('test/factories/files/image.png'))))
-#
+
 tech = TechnologyCategory.create(:name => 'Testing')
 tech.technologies << Technology.create(:name => 'Cucumber', :upload_file => UploadFile.create(:img_name => File.open(Rails.root.join('test/factories/files/image.png'))))
 tech.technologies << Technology.create(:name => 'Rspec', :upload_file => UploadFile.create(:img_name => File.open(Rails.root.join('test/factories/files/image.png'))))

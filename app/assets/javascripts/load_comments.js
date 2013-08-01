@@ -20,9 +20,10 @@ $(document).ready(function(){
                 $.each( comments, function( key, value ) {
                       $('.comments').prepend('<blockquote style ="display:none;" id = '+i+'>' +
                           '<b><span class ="comment_nickname text-primary">'+comments[key].nickname+'</span></b><br>' +
-                          '<span class = "comment_description">'+comments[key].description+'</span><br>' +
+                          '<span class = "comment_description"></span><br>' +
                           '<hr></blockquote>');
                 $('.comments blockquote').slideDown('slow');
+                $('.comment_description').text(comments[key].description);
                 i++;
                 });
 

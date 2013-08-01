@@ -16,10 +16,6 @@ class Comment < ActiveRecord::Base
   belongs_to :post, :counter_cache => true
   belongs_to :commentable, :polymorphic => true
 
-  #validates :nickname,
-  #          :presence => true,
-  #          :length => { :minimum => 2, :maximum => 40 }
-
   validate :check_comment_body
   validate :check_nickname
 

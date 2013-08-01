@@ -19,6 +19,7 @@ $(document).ready(function(){
             $('.comments').slideDown(500, function(){
                 $.each( comments, function( key, value ) {
                       $('.comments').prepend('<blockquote style ="display:none;" id = '+i+'>' +
+                          '<b><span class ="comment_nickname text-primary">'+comments[key].nickname+'</span></b><br>' +
                           '<span class = "comment_description">'+comments[key].description+'</span><br>' +
                           '<hr></blockquote>');
                 $('.comments blockquote').slideDown('slow');
@@ -63,10 +64,6 @@ $(document).ready(function(){
                 // Init variables and add new comment
                 comment = response.responseJSON.comment.description;
                 nickname = response.responseJSON.comment.nickname;
-                email = response.responseJSON.email;
-                image = response.responseJSON.image;
-                time = response.responseJSON.created_at;
-                console.log(comment.id);
                 $('.comments').append('<blockquote style ="display:none;">' +
                     '<b><span class ="comment_nickname text-primary">'+nickname+'</span></b><br>' +
                     '<span class = "comment_description">'+comment+'</span><br>' +

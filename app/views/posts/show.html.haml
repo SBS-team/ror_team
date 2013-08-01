@@ -1,21 +1,11 @@
 .row
-  .col-lg-12
-    .col-lg-8.posts.main_cont
-      .post
-        .post_top
-          .post_img
-            .img
-              - unless @post.upload_file.blank? || @post.upload_file.img_name.blank?
-                = image_tag @post.upload_file.img_name.url(:thumb), class: @post.id
-              - else
-                = image_tag 'missing.png', class: @post.id
-          .post-title
-            = @post.title
-          .post_date
-            = @post.created_at.strftime("%d %B %H:%M:%S")
-          %span
-            - if @post.comments_count==0
-              = t('.post_hasnt_comments')
+  .col-lg-8.posts.main_cont
+    .post
+      .post_top
+        .post_img
+          .img
+            - unless @post.upload_file.blank? || @post.upload_file.img_name.blank?
+              = image_tag @post.upload_file.img_name.url(:thumb), class: @post.id
             - else
               = image_tag 'missing.png', class: @post.id
         .post-title
@@ -54,7 +44,6 @@
             .comment_description
               = comment.description.capitalize
             %br
-
             %small.comment_time
               = time_ago_in_words comment.created_at
               = 'ago'

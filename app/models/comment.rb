@@ -18,16 +18,25 @@ class Comment < ActiveRecord::Base
 
   validate :check_comment_body
   validate :check_nickname
+  validate :check_comment_max_length
 
   def check_nickname
     if (self.nickname.blank? || self.nickname.length <= 2)
       errors.add(:name, 'Your name is to short, minimum 2 symbols')
     end
+
+
   end
 
   def check_comment_body
     if (self.description.blank? || self.description.length <= 2)
-      errors.add(:comment, 'Your comment is to short, minimum 2 symbols')
+      errors.add(:comment, 'Your comment is to short, minimum 2 symbols, maximum 3000')
+    end
+  end
+
+  def check_comment_max_length
+    if (self.description.blank? || self.description.length > 3000)
+      errors.add(:comment, 'Your comment is to big. maximum 3000 symbols')
     end
   end
 

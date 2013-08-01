@@ -1,7 +1,9 @@
+%h3
+  Live Chat
 %div
-  Online chat with:
-  = "#{@live_chat.admin_user.first_name} #{@live_chat.admin_user.last_name}"
-  #chat-history
+  Your manager:
+  != "<strong>#{@live_chat.admin_user.first_name} #{@live_chat.admin_user.last_name}</strong>"
+  #chat-history.panel
     #chat
       - @live_chat.chat_messages.each do |msg|
         - if msg.is_admin
@@ -13,5 +15,6 @@
   .chat-msg
     = form_tag(live_chats_chat_path(live_chat_id: @live_chat.id), method: "post", remote: true) do
       Your message*:
-      = text_area_tag :message
-      = submit_tag 'Send Message', id: "submit"
+      = text_area_tag :message, nil, class: 'form-control', rows: 3
+      %br
+      = submit_tag 'Send Message', id: "submit", :class => 'btn btn-primary pull-right'

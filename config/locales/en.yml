@@ -139,6 +139,7 @@ en:
       rss_feed: "RSS Feed"
       categories: "Categories:"
       tags: "Tags:"
+      write_nickname: "Write your nickname here"
 
   contact:
     create:

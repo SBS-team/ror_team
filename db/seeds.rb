@@ -46,10 +46,10 @@ tech.technologies.create(:name => 'SASS', :upload_file => UploadFile.new(:img_na
 
 tech = TechnologyCategory.create(:name => 'Testing')
 tech.technologies.create(:name => 'Cucumber', :upload_file => UploadFile.new(:img_name => File.open(Rails.root.join('db/data_seed/cucumber.jpeg'))))
-tech.technologies.create(:name => 'Rspec', :upload_file => UploadFile.new(:img_name => File.open(Rails.root.join('test/factories/files/image.png'))))
-tech.technologies.create(:name => 'Jasmin', :upload_file => UploadFile.new(:img_name => File.open(Rails.root.join('test/factories/files/image.png'))))
-tech.technologies.create(:name => 'Capybara', :upload_file => UploadFile.new(:img_name => File.open(Rails.root.join('test/factories/files/image.png'))))
-tech.technologies.create(:name => 'Minitest', :upload_file => UploadFile.new(:img_name => File.open(Rails.root.join('test/factories/files/image.png'))))
+tech.technologies.create(:name => 'Rspec', :upload_file => UploadFile.new(:img_name => File.open(Rails.root.join('db/data_seed/rspec.jpg'))))
+tech.technologies.create(:name => 'Jasmin', :upload_file => UploadFile.new(:img_name => File.open(Rails.root.join('db/data_seed/Jasmin.jpg'))))
+tech.technologies.create(:name => 'Capybara', :upload_file => UploadFile.new(:img_name => File.open(Rails.root.join('db/data_seed/capybara.jpg'))))
+tech.technologies.create(:name => 'Minitest', :upload_file => UploadFile.new(:img_name => File.open(Rails.root.join('db/data_seed/minitest.jpg'))))
 
 post = Post.create(:title => 'What’s new in Gemnasium?', :upload_file => UploadFile.new(:img_name => File.open(Rails.root.join('db/data_seed/Teen-Pregnancy.jpg'))), :description => 'You now can choose exactly which projects you want to monitor and which one you don’t care about. Gemnasium will still try to automatically add/remove projects when syncing with Github, but as soon as you manually start or stop monitoring a project, it won’t override your choice anymore. So you now can freely choose which projects you want to track, and drop the others. To make it more clear, we’ve also cleaned up the profile view and you’ll now only see the monitored projects there. This will drastically reduce the signal to noise ratio so that you can focus on what matters to you.', :admin_id => 1)
 post.categories.create(:name => 'post category 2')

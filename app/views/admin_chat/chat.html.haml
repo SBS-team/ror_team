@@ -17,17 +17,26 @@
           %h1
             LiveChat with users
           %div
-            != "Guest: <strong>#{@live_chat.guest_name}</strong>"
+            %strong
+              = "#{@live_chat.admin_user.first_name} #{@live_chat.admin_user.last_name}"
           #chat-history.panel
             #chat
               - unless @messages.nil?
                 - @messages.each do |msg|
                   - if msg.is_admin
                     .msg.msg-admin
-                      != "(#{msg.created_at.strftime('%d-%m-%Y')})|<b><U>#{@live_chat.admin_user.first_name} #{@live_chat.admin_user.last_name}</U></b>: #{msg.body}"
+                      = "(#{msg.created_at.strftime('%d-%m-%Y')}) |"
+                      %b
+                        %U
+                          = @live_chat.admin_user.first_name + " " +@live_chat.admin_user.last_name
+                      = ": #{msg.body}"
                   - else
                     .msg.msg-user
-                      != "(#{msg.created_at.strftime('%d-%m-%Y')})|<b><U>#{@live_chat.guest_name}</U></b>: #{msg.body}"
+                      = "(#{msg.created_at.strftime('%d-%m-%Y')}) |"
+                      %b
+                        %U
+                          = @live_chat.guest_name
+                      = ": #{msg.body}"
           .chat-msg
             = form_tag(admin_chat_send_msg_path(live_chat_id: @live_chat.id), method: "post", remote: true) do
               Your message*:

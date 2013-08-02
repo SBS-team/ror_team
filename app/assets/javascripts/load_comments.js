@@ -15,12 +15,14 @@ $(document).ready(function(){
             $('#all_comments').hide();
             $('#close_comments').show();
             var comments = response.comments;
+            var str;
             var i = 0;
             $('.comments').slideDown(500, function(){
                 $.each( comments, function( key, value ) {
+                      str = HtmlEncode(comments[key].description);
                       $('.comments').prepend('<blockquote style ="display:none;" id = '+i+'>' +
                           '<b><span class ="comment_nickname text-primary">'+comments[key].nickname+'</span></b><br>' +
-                          '<span class = "comment_description">'+comments[key].description+'</span><br>' +
+                          '<span class = "comment_description">'+str+'</span><br>' +
                           '<hr></blockquote>');
                 $('.comments blockquote').slideDown('slow');
                 i++;
@@ -47,7 +49,7 @@ $(document).ready(function(){
     });
 
     //CREATE NEW COMMENT
-    var comment, nickname, email, image
+    var comment, nickname
 
     $(document).ajaxSuccess(function(event, response, settings)  {
 
@@ -62,7 +64,7 @@ $(document).ready(function(){
             if (response.responseJSON.comment)
             {
                 // Init variables and add new comment
-                comment = response.responseJSON.comment.description;
+                comment = HtmlEncode(response.responseJSON.comment.description);
                 nickname = response.responseJSON.comment.nickname;
                 $('.comments').append('<blockquote style ="display:none;">' +
                     '<b><span class ="comment_nickname text-primary">'+nickname+'</span></b><br>' +
@@ -90,3 +92,11 @@ $(document).ready(function(){
     });
 
 }); // document ready
+
+function HtmlEncode(val){
+    return $("<div/>").text(val).html();
+}
+
+function HtmlDecode(val){
+    return $("<div/>").html(val).text();
+}

@@ -17,8 +17,9 @@
           %h1
             LiveChat with users
           %div
+            Client nickname:
             %strong
-              = "#{@live_chat.admin_user.first_name} #{@live_chat.admin_user.last_name}"
+              = @live_chat.guest_name
           #chat-history.panel
             #chat
               - unless @messages.nil?

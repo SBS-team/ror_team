@@ -16,7 +16,7 @@ class LiveChatsController < ApplicationController
   def create
     unless params[:message].blank?
       message = ChatMessage.new
-      message.body = sanitize(params[:message], tags:%w(p div b i strong em))
+      message.body = params[:message]
       message.is_admin = false
       @live_chat = LiveChat.new(live_chat_params)
       if @live_chat.save
@@ -51,7 +51,7 @@ class LiveChatsController < ApplicationController
   def chat
     unless params[:message].blank?
       message = ChatMessage.new
-      message.body = sanitize(params[:message], tags:%w(p div b i strong em))
+      message.body = params[:message]
       message.is_admin = false
       message.live_chat_id = params[:live_chat_id]
       if message.save

@@ -24,7 +24,7 @@ class AdminChatController < ApplicationController
   def send_msg
     unless params[:message].blank?
       message = ChatMessage.new
-      message.body = params[:message]
+      message.body = sanitize(params[:message], tags:%w(p div b i strong em))
       message.is_admin = true
       message.live_chat_id = params[:live_chat_id]
       if message.save

@@ -1,19 +1,28 @@
-_file = false
+file = "<input id=\"resume_upload_file_attributes_filename\" type=\"file\" name=\"resume[upload_file_attributes][filename]\" >"
 
-file_input = ->
-  if _file
-    $('#file_upload_input').remove()
-    $('#linkfile').text('add File')
-    _file = false
+inputFileReset = ->
+  filename = $("#resume_upload_file_attributes_filename").val().split("/").pop().split("\\").pop().split(".").pop().toLowerCase()
+  flag = false
+  if filename.toString() == "doc" || filename.toString() == "pdf"
+    flag = true
   else
-    div = "<div id=\"file_upload_input\"><input name=\"resume[upload_file_attributes][filename]\" type=\"file\" id=\"fileinput\"></div>"
-    $('#file').append(div)
-    _file = true
-    $('#linkfile').text('delete File')
+    filename = 'Your file not DOC or PDF types\n'
+    flag = false
+  if $("#resume_upload_file_attributes_filename")[0].files[0].size > 5*1000*1000
+    filename += "You cannot upload a file greater than 5 Mb\n size your file is a: #{$("#resume_upload_file_attributes_filename")[0].files[0].size / 1000000 } Mb\n"
+    flag = false
+  if flag
+    return true
+  else
+    $("#resume_upload_file_attributes_filename").replaceWith file
+    alert filename
+    $("#resume_upload_file_attributes_filename").bind "change", ->
+      inputFileReset()
+    return false
 
 $(document).ready ->
-  $('#linkfile').click ->
-    file_input()
+  $("#resume_upload_file_attributes_filename").bind "change", ->
+    inputFileReset()
   $("#new_resume").validate
     rules:
       "resume[email]":

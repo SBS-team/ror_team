@@ -73,7 +73,7 @@ describe PostsController do
 
     it 'rendering' do
       post = FactoryGirl.create(:post, :admin_id => @admin.id, :upload_file => FactoryGirl.create(:upload_file))
-      get :show, created: post.created_at.strftime('%d_%m_%Y') , id: post
+      get :show, created: post.created_at.strftime('%d-%m-%Y') , id: post
       assert_template :show
       assert_template layout: "layouts/application"
     end
@@ -85,7 +85,7 @@ describe PostsController do
         posts << post
       end
 
-      get :show, created: posts[0].created_at.strftime('%d_%m_%Y') , id: posts[0]
+      get :show, created: posts[0].created_at.strftime('%d-%m-%Y') , id: posts[0]
       refute_nil assigns(:recent_posts)
       assert_includes(assigns(:recent_posts), posts[5])
       assert_includes(assigns(:recent_posts), posts[4])
@@ -100,7 +100,7 @@ describe PostsController do
       post2 = FactoryGirl.create(:post, :admin_id => @admin.id, :upload_file => FactoryGirl.create(:upload_file))
       post3 = FactoryGirl.create(:post, :admin_id => @admin.id, :upload_file => FactoryGirl.create(:upload_file))
 
-      get :show, created: post2.created_at.strftime('%d_%m_%Y') , id: post2
+      get :show, created: post2.created_at.strftime('%d-%m-%Y') , id: post2
 
       refute_nil assigns(:popular_posts)
       pop_posts = assigns(:popular_posts)

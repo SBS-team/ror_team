@@ -11,8 +11,8 @@ xml.rss :version => "2.0" do
         description_data = post.description.truncate(200)
         xml.description description_data
         xml.pubDate post.created_at.to_s(:rfc822)
-        xml.link special_post_path(post.created_at.strftime('%d_%m_%Y'), post)
-        xml.guid special_post_path(post.created_at.strftime('%d_%m_%Y'), post)
+        xml.link special_post_path(post.created_at.strftime('%d-%m-%Y'), post)
+        xml.guid special_post_path(post.created_at.strftime('%d-%m-%Y'), post)
       end
     end
   end

@@ -22,6 +22,6 @@ module RorTeam
     # config.i18n.default_locale = :ru
 
     config.autoload_paths += %W(#{config.root}/lib)
-    config.assets.precompile += %w(admin_chat.js live_chats.js contact.js application.js)
+    config.assets.precompile += %w(admin_chat.js live_chats.js contact.js)
   end
 end

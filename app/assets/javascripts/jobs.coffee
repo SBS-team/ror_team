@@ -5,17 +5,22 @@ inputFileReset = ->
   flag = false
   if filename.toString() == "doc" || filename.toString() == "pdf"
     flag = true
+    filename = ""
   else
-    filename = 'Your file not DOC or PDF types\n'
+    filename = "Your file not DOC or PDF types !<br>"
     flag = false
   if $("#resume_upload_file_attributes_filename")[0].files[0].size > 5*1000*1000
-    filename += "You cannot upload a file greater than 5 Mb\n size your file is a: #{$("#resume_upload_file_attributes_filename")[0].files[0].size / 1000000 } Mb\n"
+    filename += "You cannot upload a file greater than 5 Mb<br>size your file is a: #{Math.round($("#resume_upload_file_attributes_filename")[0].files[0].size / 1000000) } Mb"
     flag = false
   if flag
+    $("#filename_error").remove()
     return true
   else
     $("#resume_upload_file_attributes_filename").replaceWith file
-    alert filename
+    $("#filename_error").remove()
+
+    $("#resume_upload_file_attributes_filename").after("<label id=\"filename_error\" class=\"error\" for=\"resume[upload_file_attributes][filename]\">" + filename + "</label>")
+
     $("#resume_upload_file_attributes_filename").bind "change", ->
       inputFileReset()
     return false

@@ -32,9 +32,7 @@ en:
       contact: "Contact"
       blog: "Blog"
       live_chat: "Live Chat"
-      use_to_contact: "Need us to contact you?"
-      media_soc: "You can join our social media. network:"
-      mail_scype: "Or contact us via email or skype:"
+      use_to_contact: "Need to contact us?"
       follow_twitter: "Follow us on Twitter"
       follow_facebook: "Follow us on Facebook"
       contact_email: "Contact us by email"
@@ -43,11 +41,14 @@ en:
 
   home:
     index:
-      our_command: "About us and our company!"
-      our_description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor  in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
-      our_skills: "Our skills and experience:"
-      read_about_skills: "Read more about our skills"
-      project_work: "Projects on which work / Portfolio"
+      our_command: "About us"
+      our_description: "We're young and energetic team within a web development company delivering web development services of any complexity to clients worldwide.
+                        We strive to use the latest technologies in the area of web development, and produce clean and robust code.
+                        Our team develops projects using mainly the Ruby-on-Rails Framework. Being a rather young team, we're flexible and always search a best possible solution for each project we work.
+                        Our goal is to make our clients happy with a high quality product."
+      our_skills: "Technologies we use:"
+      read_about_skills: "More about our skills and experience "
+      project_work: "Portfolio"
       read_about_projects: "Read more about our projects"
 
   company:
@@ -62,7 +63,7 @@ en:
     post_jobs:
       latest_posts: "Latest blog posts:"
       by: "by"
-      vacancies: "Open vacancies:"
+      vacancies: "Vacancies:"
       send_resume: "Send resume"
 
   team:

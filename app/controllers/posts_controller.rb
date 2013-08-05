@@ -36,8 +36,7 @@ class PostsController < ApplicationController
   end
 
   def comments_show_all
-
-    @comments = Post.find(params[:id]).comments.limit((Post.find(params[:id]).comments.count) - 3).reverse
+    @comments = (Post.find(params[:id]).comments.order('created_at ASC').limit((Post.find(params[:id]).comments.count) - 3)).reverse
     render json: {:comments => @comments }
   end
 

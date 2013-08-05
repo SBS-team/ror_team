@@ -9,6 +9,12 @@
     = yield :head_included_files
     = csrf_meta_tags
   %body
+    .chat#chat
+      %p#chat_handle
+        chat
+        %a{:id => 'chat_hide'}
+          >>
+      text text text
     .container
       .navbar.navbar-inverse.navbar-fixed-top
         .container

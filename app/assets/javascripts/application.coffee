@@ -6,7 +6,7 @@
 #= require jquery.validate
 #= require extra_validations
 #= require jobs
-#= require load_comments
+
 
 $(document).ready ->
   $('.carousel').carousel()

@@ -28,7 +28,7 @@ class PostsController < ApplicationController
   def show
     @comment_count = Comment.count
     @post = Post.find_by_slug(params[:id])
-    if request.path != special_post_path(@post.created_at.strftime('%d_%m_%Y'), @post)
+    if request.path != special_post_path(@post.created_at.strftime('%d-%m-%Y'), @post)
       redirect_to @post, status: :moved_permanently
     end
     @comments = @post.comments.order('id DESC').limit(3).reverse

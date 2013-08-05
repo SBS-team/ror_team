@@ -68,7 +68,7 @@
           %ul.unstyled
             - @recent_posts.each do |post|
               %li
-                = link_to post.title, special_post_path(post.created_at.strftime('%d_%m_%Y'), post)
+                = link_to post.title, special_post_path(post.created_at.strftime('%d-%m-%Y'), post)
           %h5
             = t ('.get_more')
           .btn
@@ -80,7 +80,7 @@
           %ul.unstyled
             - @popular_posts.each do |post|
               %li
-                = link_to post.title, special_post_path(post.created_at.strftime('%d_%m_%Y'), post)
+                = link_to post.title, special_post_path(post.created_at.strftime('%d-%m-%Y'), post)
           %h5
             = t '.ready_help'
           .btn

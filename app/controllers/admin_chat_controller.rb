@@ -32,7 +32,7 @@ class AdminChatController < ApplicationController
         channel = 'presence-' + chat.admin_user.first_name+"-"+chat.admin_user.last_name #chat.admin_user.email
         Pusher[channel].trigger('msg-event', {:user_id => session[:user_id],
                                               message: message.body,
-                                              email: chat.admin_user.first_name+" "+chat.admin_user.last_name,
+                                              name: chat.admin_user.first_name+" "+chat.admin_user.last_name,
                                               is_admin: message.is_admin,
                                               date: message.created_at.strftime('%d-%m-%Y')})
       end

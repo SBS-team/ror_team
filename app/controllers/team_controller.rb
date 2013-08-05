@@ -4,7 +4,7 @@ class TeamController < ApplicationController
 
   def index
     unless params[:role].blank?
-      @team = AdminUser.where("role = :role", :role => params[:role]).page(params[:page]).per(5)
+      @team = AdminUser.not_admin.where("role = :role", :role => params[:role]).page(params[:page]).per(5)
     else
       @team = AdminUser.where.not(:role => 'admin').order('role').page(params[:page]).per(5)
     end
@@ -12,7 +12,7 @@ class TeamController < ApplicationController
   end
 
   def show
-    @team = AdminUser.find(params[:id])
+    @team = AdminUser.not_admin.find(params[:id])
     @fullteam = AdminUser.where.not(:role => 'admin')
   end
 

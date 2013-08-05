@@ -1,4 +1,4 @@
-%h3
+%h1
   Live Chat
 %div
   Your manager:
@@ -22,8 +22,8 @@
                 = @live_chat.guest_name
             = ": #{msg.body}"
   .chat-msg
-    = form_tag(live_chats_chat_path(live_chat_id: @live_chat.id), method: "post", remote: true) do
-      = label_tag  'Your message*:'
-      = text_area_tag :message, '', {:class => 'form-control', :rows => 5}
+    = form_tag(contact_chat_path(live_chat_id: @live_chat.id), method: "post", remote: true) do
+      Your message*:
+      = text_area_tag :message, nil, class: 'form-control', rows: 4
       %br
-      = submit_tag 'Send Message', :class => 'btn btn-primary pull-right', id: "submit"
+      = submit_tag 'Send Message', id: "submit", :class => 'btn btn-primary pull-right'

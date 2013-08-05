@@ -46,7 +46,8 @@ ActiveAdmin.register AdminUser do
              timer.day.strftime('%a %d/%m/%Y')
           end
           t.column 'Time online' do |timer|
-            timer.time.to_s + ' min'
+            hh, mm = timer.time.to_i.divmod(60)
+            "#{hh.to_s + ' h' if hh > 0} #{mm.to_s} min"
           end
         end
       end

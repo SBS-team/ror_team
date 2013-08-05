@@ -17,8 +17,11 @@ RorTeam::Application.routes.draw do
   resources :projects, only: [:index, :show]
   resources :jobs, only: [:index, :show, :create]
   resources :contact, only: [:index, :create]
+  post '/contact/create_chat'
+  post '/contact/chat'
   resources :live_chats, only: [:new, :create, :show]
   post '/live_chats/chat'
+  post '/pusher/auth'
   get '/admin_chat/chat', :as => :admin_start_chat
   post '/admin_chat/send_msg'
   post '/admin_chat/close'

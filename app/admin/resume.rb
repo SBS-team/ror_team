@@ -1,6 +1,6 @@
 ActiveAdmin.register Resume do
 
-  menu :parent => 'Jobs'
+  menu :parent => 'Careers'
 
   filter :name, :as => :string
   filter :email, :as => :string

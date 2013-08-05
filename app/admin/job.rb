@@ -1,5 +1,7 @@
 ActiveAdmin.register Job do
 
+  menu :parent => 'Careers'
+
   filter :title, :as => :string
   filter :description, :as => :string
   filter :created_at

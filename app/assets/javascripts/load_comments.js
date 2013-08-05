@@ -80,13 +80,15 @@ $(document).ready(function(){
         if (response.responseJSON.stat == 'error') {
             if (response.responseJSON.error.name){
                 var name_error = response.responseJSON.error.name;
-                $('#comment_nickname').parent().append('<span class = "error_messages"><b>'+name_error+'</b></span><br>');
+                $('#error_messages_nickname').remove()
+                $('#comment_nickname').parent().append('<span id="error_messages_nickname" class = "error_messages"><b>'+name_error+'</b></span>');
                 $('#comment_nickname').css('box-shadow', '0 0 5px red');
             }
             if (response.responseJSON.error.comment){
                 var comment_error = (response.responseJSON.error.comment);
+                $('#error_messages_description').remove()
                 $('#comment_description').css('box-shadow', '0 0 5px red');
-                $('#comment_description').parent().append('<span class = "error_messages"><b>'+comment_error+'</b></span><br>');
+                $('#comment_description').parent().append('<span id="error_messages_description" class = "error_messages"><b>'+comment_error+'</b></span>');
             }
         }
     });

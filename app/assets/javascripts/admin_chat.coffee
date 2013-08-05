@@ -23,10 +23,11 @@ $(document).ready ->
       $("#chat-history").scrollTop $("#chat").height()-$(".msg:last").height()
     else
       window.location.reload true
-
+###
   channel.bind 'pusher:member_removed', (member) ->
     if channel.members.me != member
       $.post '/admin_chat/close',
         admin_email: gon.current_admin_email
       window.location.reload true
       alert "User go out"
+###

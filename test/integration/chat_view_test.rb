@@ -21,7 +21,6 @@ describe ViewTest do
       click_link('Live Chat')
       page.within_window page.driver.browser.window_handles.last do
         fill_in 'live_chat[guest_name]', :with => 'uzver'
-        fill_in 'live_chat[guest_email]', :with => 'uzver@mail.com'
         fill_in 'message', :with => 'Hello! I am uzver...'
         click_button('Send Message')
       end

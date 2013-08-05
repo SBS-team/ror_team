@@ -41,13 +41,15 @@ ActiveAdmin.register AdminUser do
     end
     unless admin_user.time_onlines.blank?
       panel 'Time online' do
-        table_for admin_user.time_onlines do |t|
-          t.column 'Day' do |timer|
-             timer.day.strftime('%a %d/%m/%Y')
-          end
-          t.column 'Time online' do |timer|
-            hh, mm = timer.time.to_i.divmod(60)
-            "#{hh.to_s + ' h' if hh > 0} #{mm.to_s} min"
+        paginated_collection(admin_user.time_onlines.order('day DESC').page(params[:week_page]).per(7), param_name: 'week_page') do
+          table_for(collection) do |t|
+            t.column 'Day' do |timer|
+              timer.day.strftime('%a %d/%m/%Y')
+            end
+            t.column 'Time online' do |timer|
+              hh, mm = timer.time.to_i.divmod(60)
+              "#{hh.to_s + ' h' if hh > 0} #{mm.to_s} min"
+            end
           end
         end
       end

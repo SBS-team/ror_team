@@ -1,4 +1,3 @@
-
 $(document).ajaxSuccess (event, response, settings) ->
   $('#message').val('')
   $("#chat-history").scrollTop $("#chat").height()-$(".msg:last").height()

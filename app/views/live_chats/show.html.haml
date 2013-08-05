@@ -24,5 +24,6 @@
   .chat-msg
     = form_tag(live_chats_chat_path(live_chat_id: @live_chat.id), method: "post", remote: true) do
       = label_tag  'Your message*:'
-      = text_area_tag :message, '', {:class => 'form-control'}
-      = submit_tag 'Send Message', :class => 'btn btn-default', id: "submit"
+      = text_area_tag :message, '', {:class => 'form-control', :rows => 5}
+      %br
+      = submit_tag 'Send Message', :class => 'btn btn-primary pull-right', id: "submit"

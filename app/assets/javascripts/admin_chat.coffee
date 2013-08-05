@@ -19,7 +19,7 @@ $(document).ready ->
         msg_class = "<div class='msg-admin msg'>"
       else
         msg_class = "<div class='msg-user msg'>"
-      $("#chat").append msg_class+"(" + data.date + ") | <b><U>" + data.email + "</U></b> : " + $("<div/>").text(data.message).html() + "</div>"
+      $("#chat").append msg_class+"(" + data.date + ") | <b><U>" + data.name + "</U></b> : " + $("<div/>").text(data.message).html() + "</div>"
       $("#chat-history").scrollTop $("#chat").height()-$(".msg:last").height()
     else
       window.location.reload true

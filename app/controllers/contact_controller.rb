@@ -54,7 +54,7 @@ class ContactController < ApplicationController
           channel = 'presence-' + @live_chat.admin_user.first_name+"-"+@live_chat.admin_user.last_name #admin_email
           Pusher[channel].trigger('msg-event',  {:user_id => session[:user_id],
                                                  message: message.body,
-                                                 email: @live_chat.guest_name,
+                                                 name: @live_chat.guest_name,
                                                  is_admin: message.is_admin,
                                                  date: message.created_at.strftime('%d-%m-%Y')})
           @live_chat.admin_user.update_attribute(:status, 'chat')
@@ -83,7 +83,7 @@ class ContactController < ApplicationController
         channel = 'presence-' + chat.admin_user.first_name+"-"+chat.admin_user.last_name #chat.admin_user.email
         Pusher[channel].trigger('msg-event',  {:user_id => session[:user_id],
                                                message: message.body,
-                                               email: chat.guest_name,
+                                               name: chat.guest_name,
                                                is_admin: message.is_admin,
                                                date: message.created_at.strftime('%d-%m-%Y')})
       end

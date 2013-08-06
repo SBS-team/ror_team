@@ -35,7 +35,7 @@ $(document).ready ->
   Pusher.host = '127.0.0.1'
   Pusher.sockjs_host = '127.0.0.1'
   Pusher.ws_port = 3004
-  pusher = new Pusher("765ec374ae0a69f4ce44")
+  pusher = new Pusher("c46c644b78f84661ace01b35dffceabc")
   channel = pusher.subscribe(admin_main_channel)
   channel.bind "msg-event", (data) ->
     if data.is_admin

@@ -9,7 +9,7 @@ $(document).ready ->
   Pusher.ws_port = 3004
   admin_main_channel = 'presence-' + gon.current_admin_channel
 
-  pusher = new Pusher("765ec374ae0a69f4ce44")
+  pusher = new Pusher("c46c644b78f84661ace01b35dffceabc")
   channel = pusher.subscribe(admin_main_channel)
   channel.bind "msg-event", (data) ->
     if $("#chat").length>0

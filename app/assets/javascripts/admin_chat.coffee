@@ -4,13 +4,12 @@ $(document).ajaxSuccess (event, response, settings) ->
 
 
 $(document).ready ->
-#  Pusher.host    = '127.0.0.1'
-#  Pusher.ws_host    = '127.0.0.1'
-#  Pusher.ws_port = 8080
-#  Pusher.wss_port = 8080
+  Pusher.host = '127.0.0.1'
+  Pusher.sockjs_host = '127.0.0.1'
+  Pusher.ws_port = 3004
   admin_main_channel = 'presence-' + gon.current_admin_channel
 
-  pusher = new Pusher("3719c0c90b25b237f538")
+  pusher = new Pusher("765ec374ae0a69f4ce44")
   channel = pusher.subscribe(admin_main_channel)
   channel.bind "msg-event", (data) ->
     if $("#chat").length>0

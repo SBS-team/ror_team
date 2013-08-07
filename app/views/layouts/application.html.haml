@@ -5,17 +5,11 @@
     %title RorTeam
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application'
-    = include_gon(:namespace => 'RorTeam', :camel_case => true)
+    = include_gon
     = yield :head_included_files
     = csrf_meta_tags
   %body
-    #chat
-      %p#chat_handle
-        chat
-        %a{:id => 'chat_hide'}
-          >>
-      .chat-content
-        = render :partial => 'live_chats/show'
+    = render :partial => 'shared/live_chat'
     .container
       .navbar.navbar-inverse.navbar-fixed-top
         .container

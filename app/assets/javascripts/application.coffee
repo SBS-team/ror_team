@@ -7,14 +7,7 @@
 #= require extra_validations
 #= require jobs
 #= require jquery-ui
-
+#= require live_chats
 
 $(document).ready ->
   $('.carousel').carousel()
-  $("#chat").draggable
-    handle: "#chat_handle",
-    containment: "parent"
-  $('#chat_hide').click ->
-    $('#chat').hide "blind", 600
-  $('#chat_start').click ->
-    $('#chat').show "blind", 600

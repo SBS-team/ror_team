@@ -7,6 +7,7 @@
 //= require team
 //= require projects
 //= require company
+//= require live_chats
 
 body {                        // Для корректного отображения выпадающих блоков error\success
   width: 100%;
@@ -111,29 +112,4 @@ header .logo a {
 
 .navbar .live-chat {
   margin: 5px 0 0 0;
-}
-
-#chat {
-  display: none;
-  position: fixed;
-  top: 80px;
-  right: 10px;
-  width: 400px;
-  z-index: 10000;
-  margin: 10px;
-}
-
-.chat-content{
-  border: 1px solid #000000;
-  height: 550px;
-  width: 400px;
-}
-
-#chat_handle {
-  border-radius: 10px 10px 0 0;
-  margin: 0;
-  background-color: #000000;
-  height: 30px;
-  cursor: move;
-
 }

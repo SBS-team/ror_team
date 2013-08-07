@@ -12,7 +12,7 @@
               = image_tag 'missing.png', :width => 150
             .title
               %h3
-                = job.title
+                = link_to job.title, job_path(job)
             .descr
               = truncate_html job.description, :length => 300
               = link_to 'learn more', job, :id => "job#{job.id}"

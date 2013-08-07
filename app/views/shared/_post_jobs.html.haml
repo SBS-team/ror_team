@@ -6,14 +6,14 @@
       - @last_posts.each do |last_post|
         .post
           - unless last_post.upload_file.blank? || last_post.upload_file.img_name.blank?
-            = image_tag last_post.upload_file.img_name.url, width: 50, alt: 'image'
+            = image_tag last_post.upload_file.img_name.url(:thumb), width: 50, alt: 'image'
           - else
             = image_tag 'missing.png', width: 50
           .title
             = link_to last_post.title, special_post_path(last_post.created_at.strftime('%d-%m-%Y'), last_post)
           .cont
             = t '.by'
-            = last_post.admin.email
+            = last_post.admin.role
   .row
     .col-lg-6.jobs
       %h2
@@ -22,7 +22,7 @@
         - @last_jobs.each do |last_job|
           .job
             - unless last_job.upload_file.blank? || last_job.upload_file.img_name.blank?
-              = image_tag last_job.upload_file.img_name.url, width: 50, alt: 'image'
+              = image_tag last_job.upload_file.img_name.url(:thumb), width: 50, alt: 'image'
             - else
               = image_tag 'missing.png', width: 50
             .title

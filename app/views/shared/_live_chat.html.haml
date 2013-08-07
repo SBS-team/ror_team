@@ -1,0 +1,14 @@
+#live_chat
+  %p#chat_handle
+    chat
+    %a{:id => 'chat_hide'}
+      >>
+    %a{:id => 'chat_close'}
+      X
+  .chat-content
+    .row
+      .col-lg-10.col-offset-1.form-group
+        - unless session[:chat_id].blank?
+          = render :partial => 'shared/show_chat'
+        -else
+          = render :partial => 'shared/new_chat'

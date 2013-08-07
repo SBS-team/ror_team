@@ -19,6 +19,11 @@ RorTeam::Application.routes.draw do
   resources :contact, only: [:index, :create]
   post '/contact/create_chat'
   post '/contact/chat'
+
+  post '/application/create_chat', :as => :user_start_chat
+  post '/application/chat', :as => :user_chat
+  post '/chat_close' => 'application#chat_close'
+
   resources :live_chats, only: [:new, :create, :show]
   post '/live_chats/chat'
   post '/pusher/auth'

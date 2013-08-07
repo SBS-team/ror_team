@@ -3,6 +3,26 @@ $(document).ajaxSuccess (event, response, settings) ->
   $("#chat-history").scrollTop $("#chat").height()-$(".msg:last").height()
 
 $(document).ready ->
+
+  $("#live_chat").draggable
+    handle: "#chat_handle",
+    containment: "parent"
+
+  $('#chat_hide').click ->
+    $('#live_chat').hide "blind", 600
+
+  $('#chat_close').click ->
+    $.post "/chat_close"
+    $('#live_chat').hide "blind", 600
+
+  $('#chat_start').click ->
+    $('#live_chat').show "blind", 600
+    $("#chat-history").scrollTop $("#chat").height()-$(".msg:last").height()
+
+  if gon.show_chat
+    $('#live_chat').css('display', 'block')
+    $("#chat-history").scrollTop $("#chat").height()-$(".msg:last").height()
+
   if $("#live_chat_admin_id").length
     admin_main_channel = 'presence-' + $("#live_chat_admin_id :selected").text().replace(' ', '-')
   else

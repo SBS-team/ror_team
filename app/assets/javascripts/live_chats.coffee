@@ -28,11 +28,10 @@ $(document).ready ->
   else
     admin_main_channel = 'presence-' + gon.current_admin_channel
 
-  #  Pusher.host    = '127.0.0.1'
-  #  Pusher.ws_host    = '127.0.0.1'
-  #  Pusher.ws_port = 8080
-  #  Pusher.wss_port = 8080
-  pusher = new Pusher("3719c0c90b25b237f538")
+  Pusher.host = '127.0.0.1'
+  Pusher.sockjs_host = '127.0.0.1'
+  Pusher.ws_port = 3004
+  pusher = new Pusher("c46c644b78f84661ace01b35dffceabc")
   channel = pusher.subscribe(admin_main_channel)
   channel.bind "msg-event", (data) ->
     if data.is_admin

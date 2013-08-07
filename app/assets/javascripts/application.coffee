@@ -8,6 +8,7 @@
 #= require jobs
 #= require jquery-ui
 #= require live_chats
+#= require load_comments
 
 $(document).ready ->
   $('.carousel').carousel()

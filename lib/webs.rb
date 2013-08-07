@@ -5,35 +5,35 @@ require 'webs/notifier'
 module Webs
   extend self
   
-  def push(channel, data={})
-    event = data.delete :event
-    event(channel, event, data)
-  end
-
-  def event(channel, event, data={})
-    return channel.map { |ch| event(ch, event, data) }.all? if channel.kind_of? Array
-
-    begin
-      pusher[channel].trigger(event, {'data' => data})
-      logger.info "Triggered '#{event}' on '#{channel}' with #{ data.inspect }"
-      true
-    rescue Exception => e
-      logger.info "Could not notify '#{event}' on '#{channel}' with #{ data.inspect } => #{e}", Logger::ERROR
-      false
-    end
-  end
-
-  def logger
-    @logger ||= ActiveSupport::Logger.new("log/webs.log", Rails.logger.level)
-  end
-
-  def notify(event, *params)
-    notifier.send event, *params
-  end
+  #def push(channel, data={})
+  #  event = data.delete :event
+  #  event(channel, event, data)
+  #end
+  #
+  #def event(channel, event, data={})
+  #  return channel.map { |ch| event(ch, event, data) }.all? if channel.kind_of? Array
+  #
+  #  begin
+  #    pusher[channel].trigger(event, {'data' => data})
+  #    logger.info "Triggered '#{event}' on '#{channel}' with #{ data.inspect }"
+  #    true
+  #  rescue Exception => e
+  #    logger.info "Could not notify '#{event}' on '#{channel}' with #{ data.inspect } => #{e}", Logger::ERROR
+  #    false
+  #  end
+  #end
+  #
+  #def logger
+  #  @logger ||= ActiveSupport::Logger.new("log/webs.log", Rails.logger.level)
+  #end
+  #
+  #def notify(event, *params)
+  #  notifier.send event, *params
+  #end
 
   def pusher_config
     @application_config ||= (
-      { :host => Settings.pusher.wss_host, :port => Settings.pusher.wss_port.to_s, :key => Settings.pusher.app_key, :ssl => Rails.env.production? || Rails.env.staging? }
+      { :host => Settings.pusher.wss_host, :port => Settings.pusher.wss_port.to_s, :ws_port => Settings.pusher.ws_port, :sockjs_host => Settings.pusher.sockjs_host, :key => Settings.pusher.app_key, :ssl => Rails.env.production? || Rails.env.staging? }
     )
   end
 

@@ -7,8 +7,7 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    @projects = Project.where(:id=>params[:id]).preload(:technologies).page params[:page]
-    render :index
+    @project = Project.find(params[:id])#.preload(:technologies => :technology_category)
   end
 
 end

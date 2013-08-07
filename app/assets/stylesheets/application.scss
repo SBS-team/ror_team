@@ -113,19 +113,27 @@ header .logo a {
   margin: 5px 0 0 0;
 }
 
-.chat {
-  position: absolute;
-  top: 100px;
-  left: 100px;
-  height: 550px;
+#chat {
+  display: none;
+  position: fixed;
+  top: 80px;
+  right: 10px;
   width: 400px;
-  border: 1px solid #000000;
   z-index: 10000;
-
   margin: 10px;
 }
 
-.chat p {
+.chat-content{
+  border: 1px solid #000000;
+  height: 550px;
+  width: 400px;
+}
+
+#chat_handle {
+  border-radius: 10px 10px 0 0;
+  margin: 0;
   background-color: #000000;
+  height: 30px;
   cursor: move;
+
 }

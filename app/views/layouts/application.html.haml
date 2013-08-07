@@ -9,12 +9,13 @@
     = yield :head_included_files
     = csrf_meta_tags
   %body
-    .chat#chat
+    #chat
       %p#chat_handle
         chat
         %a{:id => 'chat_hide'}
           >>
-      text text text
+      .chat-content
+        = render :partial => 'live_chats/show'
     .container
       .navbar.navbar-inverse.navbar-fixed-top
         .container
@@ -27,7 +28,8 @@
             = nav_link_to(t('.contact'), contact_index_path, :controller => 'contact')
             = nav_link_to(t('.blog'), posts_path, :controller => 'posts')
           .pull-right.live-chat
-            = link_to t('.live_chat'), new_live_chat_path, :class => 'btn btn-warning', :onclick=>"window.open(this.href,'RoR-Team Live Chat', 'height=550, width=400');return false;"
+            %span{:class => 'btn btn-warning', :id => 'chat_start'}
+              = t('.live_chat')
       .content.row
         .col-lg-12
           - if flash[:error]

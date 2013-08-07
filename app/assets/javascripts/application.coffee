@@ -15,4 +15,6 @@ $(document).ready ->
     handle: "#chat_handle",
     containment: "parent"
   $('#chat_hide').click ->
-    $('#chat').hide "blind", 1000
+    $('#chat').hide "blind", 600
+  $('#chat_start').click ->
+    $('#chat').show "blind", 600

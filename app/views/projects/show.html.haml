@@ -1,0 +1,73 @@
+.col-lg-12
+  %h2
+    = @project.name
+.col-lg-12
+  .col-lg-6
+    - unless @project.upload_files.blank? || @project.upload_files.first.img_name.blank?
+      .carousel.slide{:id => "myCarousel#{@project.id}"}
+        %ol.carousel-indicators
+          - (@project.upload_files.count).times do |i|
+            %li{'data-slide-to' => "#{i}", 'data-target' => "#myCarousel#{@project.id}", :class => "#{'active' if i == 0}" }
+        .carousel-inner
+          - @project.upload_files.each do |file|
+            - if file.img_name == @project.upload_files.first.img_name
+              .item.active
+                = image_tag file.img_name.url
+            - else
+              .item
+                = image_tag file.img_name.url
+        - if @project.upload_files.count > 1
+          = link_to "#myCarousel#{@project.id}", 'data-slide' => 'prev', :class => 'carousel-control left' do
+            %span.icon-prev
+          = link_to "#myCarousel#{@project.id}", 'data-slide' => 'next', :class => 'carousel-control right' do
+            %span.icon-next
+    .text.project-descr
+      = @project.description
+  .col-lg-6
+    .project-name-url.row
+      .project-name.col-lg-6
+        %span.btn.btn-primary
+          = @project.name
+      - unless @project.url.blank?
+        .project-url.col-lg-6
+          = link_to @project.url, "#{@project.url}", :class => 'btn btn-success', :target => '_blank'
+    .project-terms.row
+      .col-lg-6
+        %p
+          %b
+            = t '.since'
+          = @project.since
+      .col-lg-6
+        %p
+          %b
+            = t '.team_size'
+          = pluralize(@project.team_size.to_i, t('.people'))
+      .col-lg-12
+        %p
+          %b
+            = t '.till'
+          = @project.till ? @project.till.strftime("%Y-%m-%d") : t('.in_work')
+    .team-info.row
+      - @project.services.each do |service|
+        .developer-info.text-center.col-lg-3
+          .photo
+            - unless service.upload_file.blank? || service.upload_file.img_name.blank?
+              = link_to(company_index_path) do
+                = image_tag(service.upload_file.img_name.to_s, :class => "img-polaroid", :width => 120)
+            - else
+              = image_tag 'missing.png', :width => 120
+          = link_to "#{service.name}", company_index_path
+    - unless @project.technologies.blank?
+      .tech-info
+        %h4
+          = t '.tech_info'
+        %dl.dl-horizontal
+          - grouped_categories = technologies_inject(@project)
+          - grouped_categories.each do |category, technologies|
+            %dt
+              = category
+            - technologies.each do |technology|
+              %dd
+                = technology
+.row
+  = render :partial => 'shared/post_jobs'

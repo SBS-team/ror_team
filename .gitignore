@@ -24,8 +24,6 @@
 /public/uploads
 /public/assets
 
-config/settings
-config/settings.yml
-config/settings.local.yml
-config/settings/*.local.yml
-config/environments/*.local.yml
+/config/settings
+/config/settings.yml
+/config/settings.local.yml

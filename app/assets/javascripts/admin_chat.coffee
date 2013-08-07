@@ -4,12 +4,12 @@ $(document).ajaxSuccess (event, response, settings) ->
 
 
 $(document).ready ->
-  Pusher.host = '127.0.0.1'
-  Pusher.sockjs_host = '127.0.0.1'
-  Pusher.ws_port = 3004
+  Pusher.host = gon.pusher_config.host
+  Pusher.sockjs_host = gon.pusher_config.sockjs_host
+  Pusher.ws_port = gon.pusher_config.ws_port
   admin_main_channel = 'presence-' + gon.current_admin_channel
 
-  pusher = new Pusher("c46c644b78f84661ace01b35dffceabc")
+  pusher = new Pusher("#{gon.pusher_config.key}")
   channel = pusher.subscribe(admin_main_channel)
   channel.bind "msg-event", (data) ->
     if $("#chat").length>0

@@ -83,6 +83,15 @@ en:
       tech_info: "Technical information:"
       people: "people"
       in_work: "in work"
+    show:
+      link_project: "Link to  project"
+      since: "Since:"
+      team_size: "Team size:"
+      till: "Till:"
+      tech_info: "Technical information:"
+      people: "people"
+      in_work: "in work"
+
 
   contact:
     index:

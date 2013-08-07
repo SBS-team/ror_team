@@ -156,6 +156,13 @@ ru:
       till: "Окончание:"
       tech_info: "Техническая информация"
       people: "человек(а)"
+    show:
+      link_project: "Ссылка на проэкт"
+      since: "Начало:"
+      team_size: "Команда:"
+      till: "Окончание:"
+      tech_info: "Техническая информация"
+      people: "человек(а)"
 
   contact:
     index:

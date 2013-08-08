@@ -6,9 +6,10 @@
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application'
     = include_gon
-    = yield :head_included_files
     = csrf_meta_tags
   %body
+    - unless special_controller?(:controller => 'contact')
+      = render :partial => 'shared/live_chat'
     .container
       .navbar.navbar-inverse.navbar-fixed-top
         .container
@@ -21,7 +22,12 @@
             = nav_link_to(t('.contact'), contact_index_path, :controller => 'contact')
             = nav_link_to(t('.blog'), posts_path, :controller => 'posts')
           .pull-right.live-chat
-            = link_to t('.live_chat'), new_live_chat_path, :class => 'btn btn-warning', :onclick=>"window.open(this.href,'RoR-Team Live Chat', 'height=550, width=400');return false;"
+            - if session[:show_chat]
+              %span{:class => 'btn btn-success', :id => 'chat_start'}
+                = t('.live_chat')
+            - else
+              %span{:class => 'btn btn-warning', :id => 'chat_start'}
+                = t('.live_chat')
       .content.row
         .col-lg-12
           - if flash[:error]

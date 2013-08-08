@@ -1,0 +1,15 @@
+#live_chat
+  #chat_handle
+    %span.head-chat
+      live chat
+    %span.controls-chat
+      %span{:id => 'chat_hide', :class => 'btn btn-default btn-xs', :title => 'Hide chat'}
+      - if session[:show_chat]
+        %span{:id => 'chat_close', :class => 'btn btn-danger btn-xs', :title => 'Close chat'}
+  .chat-content
+    .row
+      .col-lg-10.col-offset-1.form-group
+        - unless session[:chat_id].blank?
+          = render :partial => 'shared/show_chat'
+        -else
+          = render :partial => 'shared/new_chat'

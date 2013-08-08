@@ -17,4 +17,19 @@ module ApplicationHelper
     end
   end
 
+  def special_controller?(checks=nil)
+    special = false
+    unless checks.nil?
+      special = true
+      checks.each do |check,v|
+        unless v.include? params[check]
+          special = false
+          break
+        end
+      end
+    end
+
+    return special
+  end
+
 end

@@ -51,7 +51,7 @@ namespace :config do
     run "ln -nfs #{shared_path}/uploads #{release_path}/public/uploads"
     run "ln -nfs #{shared_path}/development.yml #{release_path}/config/environments/development.yml"
     run "ln -nfs #{shared_path}/unicorn_pre.rb #{release_path}/config/unicorn_pre.rb"
-
+    run "ln -nfs #{shared_path}/settings.yml #{release_path}/config/settings.yml"
   end
 end
 

@@ -1,10 +1,11 @@
 #live_chat
-  %p#chat_handle
-    chat
-    %a{:id => 'chat_hide'}
-      >>
-    %a{:id => 'chat_close'}
-      X
+  #chat_handle
+    %span.head-chat
+      live chat
+    %span.controls-chat
+      %span{:id => 'chat_hide', :class => 'btn btn-default btn-xs', :title => 'Hide chat'}
+      - if session[:show_chat]
+        %span{:id => 'chat_close', :class => 'btn btn-danger btn-xs', :title => 'Close chat'}
   .chat-content
     .row
       .col-lg-10.col-offset-1.form-group

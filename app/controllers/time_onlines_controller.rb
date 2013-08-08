@@ -8,6 +8,7 @@ class TimeOnlinesController < ApplicationController
           time_online.time = time_online.time.to_i + 10
           time_online.save
           session[:time_online] = DateTime.now.to_i
+          render :text => '+10'
         else
           render :text => 'Time set error ...'
         end
@@ -18,9 +19,8 @@ class TimeOnlinesController < ApplicationController
         time_online.save
         render :text => '+10'
       end
-    else
-      render :text => 'You are not admin !!!'
     end
+    render :text => 'You are not admin !!!'
   end
 
 end

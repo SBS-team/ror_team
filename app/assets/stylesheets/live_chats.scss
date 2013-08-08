@@ -1,5 +1,5 @@
 #chat-history{
-  height: 220px;
+  height: 300px;
 }
 
 #live_chat {
@@ -22,7 +22,21 @@
 #chat_handle {
   border-radius: 10px 10px 0 0;
   margin: 0;
+  padding: 10px;
   background-color: #000000;
-  height: 30px;
+  height: 40px;
   cursor: move;
+  text-align: center;
+
+}
+
+.head-chat{
+  text-transform: capitalize;
+  font: 12pt cursive;
+  color: #ffffff;
+  width: 100px;
+}
+
+.controls-chat{
+  float: right;
 }

@@ -13,40 +13,16 @@
 #
 
 class Comment < ActiveRecord::Base
+
   belongs_to :post, :counter_cache => true
   belongs_to :commentable, :polymorphic => true
 
-  validate :check_comment_body
-  validate :check_nickname
-  validate :check_comment_max_length
-  validate :check_nickname_max_length
+  validates :description,
+            :presence => true,
+            :length => { :minimum => 2, :maximum => 2048 }
 
-  def check_nickname
-    if (self.nickname.blank? || self.nickname.length <= 2)
-      errors.add(:name, 'Your name is to short, minimum 2 symbols')
-    end
-  end
-
-  def check_nickname_max_length
-    if (!self.nickname.blank?)
-      if (self.nickname.length > 40)
-        errors.add(:name, 'Your nickname is to big. maximum 40 symbols')
-      end
-    end
-  end
-
-  def check_comment_body
-    if (self.description.blank? || self.description.length <= 2)
-      errors.add(:comment, 'Your comment is to short, minimum 2 symbols, maximum 3000')
-    end
-  end
-
-  def check_comment_max_length
-    if (!self.description.blank?)
-      if (self.description.length > 3000)
-      errors.add(:comment, 'Your comment is to big. maximum 3000 symbols')
-      end
-    end
-  end
+  validates :nickname,
+            :presence => true,
+            :length => { :minimum => 2, :maximum => 40 }
 
 end

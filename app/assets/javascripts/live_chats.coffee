@@ -13,7 +13,8 @@ $(document).ready ->
 
   # Show div(#live_chat) on all pages if user to start chat
   if gon.show_chat
-    $('#live_chat').css('display', 'block')
+    if ($.cookie 'hide_win').toString() == '1'
+      $('#live_chat').css('display', 'block')
     $("#chat-history").scrollTop $("#chat").height()-$(".msg:last").height()
     $("#live_chat").offset
       top: $.cookie 'position_top'
@@ -32,10 +33,20 @@ $(document).ready ->
 
   # Show/Hide div(#live_chat)
   $('#chat_hide').click ->
-    $('#live_chat').hide "blind", 600
+    $("#live_chat").effect "transfer",
+      to: $("#chat_start"),
+      600
+    $('#live_chat').hide()
+    $.cookie 'hide_win', 0
+
+
   $('#chat_start').click ->
-    $('#live_chat').show "blind", 600, ->
-      $("#chat-history").scrollTop $("#chat").height()-$(".msg:last").height()
+    $('#live_chat').show()
+    $("#chat_start").effect "transfer",
+      to: $("#live_chat")
+      , 600
+    $("#chat-history").scrollTop $("#chat").height()-$(".msg:last").height()
+    $.cookie 'hide_win', 1
 
   # Close chat & reset cookies
   $('#chat_close').click ->
@@ -43,6 +54,7 @@ $(document).ready ->
     $('#live_chat').hide "blind", 600, ->
       $.cookie 'position_left', null
       $.cookie 'position_top', null
+      $.cookie 'hide_win', null
       pusher.disconnect()
       window.location.reload()
 

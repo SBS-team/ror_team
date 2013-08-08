@@ -2,7 +2,6 @@ source 'https://rubygems.org'
 
 gem 'puma'
 gem 'rails', '~> 4.0.0'
-gem 'rails_config'
 
 # Use postgresql as the database for Active Record
 gem 'pg'

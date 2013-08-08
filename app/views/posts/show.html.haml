@@ -32,9 +32,9 @@
       .comments_block
         -if @comment_count > 3
           #all_comments
-            %b= 'Look previous comments'
+            %b= 'Show previous comments'
         #close_comments
-          %b= 'Hide all comments'
+          %b= 'Hide previous comments'
         .comments
           %a{name: 'comments'}
           - @comments.each do |comment|

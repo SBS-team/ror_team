@@ -1,10 +1,3 @@
-# Pusher config for script *********************************
-Pusher.host = '127.0.0.1'
-Pusher.sockjs_host = '127.0.0.1'
-Pusher.ws_port = 3004
-pusher = new Pusher("c46c644b78f84661ace01b35dffceabc")
-#***********************************************************
-
 $(document).ajaxSuccess (event, response, settings) ->
   $('#message').val('')
   $("#chat-history").scrollTop $("#chat").height()-$(".msg:last").height()
@@ -58,6 +51,13 @@ $(document).ready ->
     admin_main_channel = 'presence-' + $("#live_chat_admin_id :selected").text().replace(' ', '-')
   else
     admin_main_channel = 'presence-' + gon.current_admin_channel
+
+  # Pusher config for script *********************************
+  Pusher.host = gon.pusher_config.host
+  Pusher.sockjs_host = gon.pusher_config.sockjs_host
+  Pusher.ws_port = gon.pusher_config.ws_port
+  pusher = new Pusher("#{gon.pusher_config.key}")
+  #***********************************************************
 
   # Massage send/receive Pusher event
   channel = pusher.subscribe(admin_main_channel)

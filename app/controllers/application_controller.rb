@@ -5,7 +5,6 @@ class ApplicationController < ActionController::Base
 #  before_filter :assign_gon_properties
   before_action :initialize_chat
 
-
   def create_chat
     if session[:chat_id].blank?
       session[:show_chat] = true
@@ -19,8 +18,8 @@ class ApplicationController < ActionController::Base
             if message.save
               admin_email = @live_chat.admin_user.email
               gon.current_admin_email = admin_email
-              gon.current_admin_channel = @live_chat.admin_user.first_name+"-"+@live_chat.admin_user.last_name
-              channel = 'presence-' + @live_chat.admin_user.first_name+"-"+@live_chat.admin_user.last_name #admin_email
+              gon.current_admin_channel = @live_chat.admin_user.first_name+'-'+@live_chat.admin_user.last_name
+              channel = 'presence-' + @live_chat.admin_user.first_name+'-'+@live_chat.admin_user.last_name
               Pusher[channel].trigger('msg-event',  {:user_id => session[:user_id],
                                                    message: message.body,
                                                    name: @live_chat.guest_name,
@@ -28,7 +27,7 @@ class ApplicationController < ActionController::Base
                                                    date: message.created_at.strftime('%d-%m-%Y')})
               @live_chat.admin_user.update_attribute(:status, 'chat')
             end
-            render text: 'ok!'
+            redirect_to :back, :notice => 'Start chat'
           end
         else
           render text: 'error!'
@@ -48,9 +47,9 @@ class ApplicationController < ActionController::Base
       message.live_chat_id = session[:chat_id]
       if message.save
         chat = LiveChat.find(session[:chat_id])
-        gon.current_admin_channel = chat.admin_user.first_name+"-"+chat.admin_user.last_name
+        gon.current_admin_channel = chat.admin_user.first_name+'-'+chat.admin_user.last_name
         gon.current_admin_email = chat.admin_user.email
-        channel = 'presence-' + chat.admin_user.first_name+"-"+chat.admin_user.last_name #chat.admin_user.email
+        channel = 'presence-' + chat.admin_user.first_name+'-'+chat.admin_user.last_name #chat.admin_user.email
         Pusher[channel].trigger('msg-event',  {:user_id => session[:user_id],
                                                message: message.body,
                                                name: chat.guest_name,
@@ -103,7 +102,7 @@ class ApplicationController < ActionController::Base
     else
       @live_chat = LiveChat.find(session[:chat_id])
       gon.current_admin_email = @live_chat.admin_user.email
-      gon.current_admin_channel = @live_chat.admin_user.first_name+"-"+@live_chat.admin_user.last_name
+      gon.current_admin_channel = @live_chat.admin_user.first_name+'-'+@live_chat.admin_user.last_name
       gon.show_chat = session[:show_chat]
     end
   end

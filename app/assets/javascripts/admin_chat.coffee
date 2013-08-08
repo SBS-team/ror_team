@@ -1,5 +1,12 @@
+#= require jquery
+#= require jquery_ujs
+#= require bootstrap.min
+#= require pusher
+#= require underscore
+
+
 $(document).ajaxSuccess (event, response, settings) ->
-  $('#message').val('')
+  $("#message").val('')
   $("#chat-history").scrollTop $("#chat").height()-$(".msg:last").height()
 
 
@@ -20,7 +27,7 @@ $(document).ready ->
       $("#chat").append msg_class+"(" + data.date + ") | <b><U>" + data.name + "</U></b> : " + $("<div/>").text(data.message).html() + "</div>"
       $("#chat-history").scrollTop $("#chat").height()-$(".msg:last").height()
     else
-      window.location.reload true
+      window.location.reload()
 ###
   channel.bind 'pusher:member_removed', (member) ->
     if channel.members.me != member

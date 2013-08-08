@@ -9,6 +9,8 @@
 #= require jquery-ui
 #= require live_chats
 #= require load_comments
+#= require jquery-cookie
+#= require contact
 
 $(document).ready ->
   $('.carousel').carousel()

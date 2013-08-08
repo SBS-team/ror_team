@@ -19,13 +19,13 @@ $(document).ready(function(){
                 var i = 0;
                 $('.comments').slideDown(500, function(){
                     $.each( comments, function( key, value ) {
-                          str = HtmlEncode(comments[key].description);
-                          $('.comments').prepend('<blockquote style ="display:none;" id = '+i+'>' +
-                              '<b><span class ="comment_nickname text-primary">'+comments[key].nickname+'</span></b><br>' +
-                              '<span class = "comment_description">'+str+'</span><br>' +
-                              '<hr></blockquote>');
+                        str = HtmlEncode(comments[key].description);
+                        $('.comments').prepend('<blockquote style ="display:none;" id = '+i+'>' +
+                          '<b><span class ="comment_nickname text-primary">'+comments[key].nickname+'</span></b><br>' +
+                          '<span class = "comment_description">'+str+'</span><br>' +
+                          '<hr></blockquote>');
                     $('.comments blockquote').slideDown('slow');
-                    i++;
+                        i++;
                     });
 
                 });
@@ -91,8 +91,11 @@ $(document).ready(function(){
                     '<hr></blockquote>');
                 $('.comments blockquote').slideDown('slow');
             }
-
             $('#comment_description').val('');
+
+            var count = $('.comments_count').text();
+            count = parseInt(count) + 1;
+            $('.comments_count').text(count+' comments');
         }
 
     });

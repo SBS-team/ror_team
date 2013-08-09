@@ -6,7 +6,6 @@
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application'
     = include_gon
-    = yield :head_included_files
     = csrf_meta_tags
   %body
     = render :partial => 'shared/live_chat'
@@ -15,15 +14,19 @@
         .container
           = link_to(t('.ror_team'), root_path, :class => 'navbar-brand')
           %ul.nav.navbar-nav
-            = nav_link_to(t('.company'), company_index_path, :controller => 'company')
-            = nav_link_to(t('.work'), projects_path, :controller => 'projects')
-            = nav_link_to(t('.team'), team_index_path, :controller => 'team')
-            = nav_link_to(t('.careers'), jobs_path, :controller => 'jobs')
-            = nav_link_to(t('.contact'), contact_index_path, :controller => 'contact')
-            = nav_link_to(t('.blog'), posts_path, :controller => 'posts')
+            = nav_link_to(t('.company'), company_index_path, 'company')
+            = nav_link_to(t('.work'), projects_path, 'projects')
+            = nav_link_to(t('.team'), team_index_path, 'team')
+            = nav_link_to(t('.careers'), jobs_path, 'jobs')
+            = nav_link_to(t('.contact'), contact_index_path, 'contact')
+            = nav_link_to(t('.blog'), posts_path, 'posts')
           .pull-right.live-chat
-            %span{:class => 'btn btn-warning', :id => 'chat_start'}
-              = t('.live_chat')
+            - if session[:show_chat]
+              %span{:class => 'btn btn-success', :id => 'chat_start'}
+                = t('.live_chat')
+            - else
+              %span{:class => 'btn btn-warning', :id => 'chat_start'}
+                = t('.live_chat')
       .content.row
         .col-lg-12
           - if flash[:error]

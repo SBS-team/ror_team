@@ -5,7 +5,7 @@
     All managers are busy now. Try next time.
   -else
     %fieldset.web-form.row
-      = form_for @live_chat, url: {action: :create_chat} do |f|
+      = form_for @live_chat, url: {controller: :application, action: :create_chat} do |f|
         .col-lg-12.form-group
           Choose your manager:
           - admins_for_select = @admins.map { |admin| [admin.first_name+" "+admin.last_name, admin.id] }

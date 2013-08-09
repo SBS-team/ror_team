@@ -4,7 +4,6 @@ class PusherController < ApplicationController
   protect_from_forgery :except => :auth # stop rails CSRF protection for this action
 
   def auth
-    puts "********my_params   "+params[:channel_name]
     channel = Pusher[params[:channel_name]]
     session[:user_id] ||= rand(1000000)
 

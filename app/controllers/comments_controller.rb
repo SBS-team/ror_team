@@ -5,16 +5,13 @@ class CommentsController < ApplicationController
   end
 
   def create
-
-      @post = Post.find_by_slug(params[:post_id])
-      @comment = @post.comments.build(comment_params)
-      @comment.post_id = @post.id
-      if @comment.save
-        render json: {:comment => @comment, :stat => 'succ', :location => @post }
-      else
-        render json: {:error => @comment.errors.messages, :stat => 'error' }
-      end
-
+    @post = Post.find_by_slug(params[:post_id])
+    @comment = @post.comments.build(comment_params)
+    if @comment.save
+      render json: {:comment => @comment, :stat => 'success', :location => @post }
+    else
+      render json: {:error => @comment.errors.messages, :stat => 'error' }
+    end
   end
 
   private

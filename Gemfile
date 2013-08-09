@@ -2,7 +2,6 @@ source 'https://rubygems.org'
 
 gem 'puma'
 gem 'rails', '~> 4.0.0'
-gem 'rails_config'
 
 # Use postgresql as the database for Active Record
 gem 'pg'
@@ -49,15 +48,9 @@ group :development do
 end
 
 group :development, :test do
-  gem 'pry'
-  gem 'pry-rails'
-  gem 'pry-remote'
-  gem 'pry-stack_explorer'
-  gem 'pry-debugger'
   gem 'factory_girl_rails'
   gem 'minitest-rails-shoulda'
   gem 'minitest-reporters', '>= 0.8.0'
-
 end
 
 group :test do

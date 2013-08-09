@@ -4,7 +4,7 @@ require 'pusher'
 require 'webs/notifier'
 module Webs
   extend self
-  
+
   def push(channel, data={})
     event = data.delete :event
     event(channel, event, data)
@@ -18,7 +18,7 @@ module Webs
       logger.info "Triggered '#{event}' on '#{channel}' with #{ data.inspect }"
       true
     rescue Exception => e
-      logger.info "Could not notify '#{event}' on '#{channel}' with #{ data.inspect } => #{e}", Logger::ERROR
+      logger.info "Could not notify '#{event}' on '#{channel}' with #{ data.inspect } => #{e}"
       false
     end
   end
@@ -33,13 +33,13 @@ module Webs
 
   def pusher_config
     @application_config ||= (
-      { :host => Settings.pusher.wss_host, :port => Settings.pusher.wss_port.to_s, :key => Settings.pusher.app_key, :ssl => Rails.env.production? || Rails.env.staging? }
+    { :host => Settings.pusher.wss_host, :port => Settings.pusher.wss_port.to_s, :key => Settings.pusher.app_key, :ssl => Settings.pusher.ssl }
     )
   end
 
   def pusher
     @pusher ||= (
-    Pusher.encrypted = Rails.env.production? || Rails.env.staging?  #Enable or disable SLL depending from environment
+    Pusher.encrypted = Settings.pusher.ssl  #Enable or disable SLL depending from environment
     Pusher.host   = Settings.pusher.api_host
     Pusher.port   = Settings.pusher.api_port
                                                                     # Configure the application.

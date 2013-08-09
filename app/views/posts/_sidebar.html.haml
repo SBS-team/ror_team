@@ -30,5 +30,4 @@
       = t '.tags'
   .cloud
     - @tags.each do |tag|
-      - tag_size = 4 * tag.count / relev_tags + 1
-      = link_to tag.name , posts_path(:tag_name => tag.name), :class => "size#{tag_size}"
+      = link_to tag.name , posts_path(:tag_name => tag.name) #FIXME добавить облако тегов

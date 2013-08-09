@@ -27,16 +27,12 @@ class PostsController < ApplicationController
   # GET /posts/1
   def show
     @comment_count = Comment.count
-    @post = Post.find_by_slug(params[:id])
-    if request.path != special_post_path(@post.created_at.strftime('%d-%m-%Y'), @post)
-      redirect_to @post, status: :moved_permanently
-    end
+    @post = Post.find_by_slug!(params[:id])
     @comments = @post.comments.order('id DESC').limit(3).reverse
-
   end
 
   def comments_show_all
-    @comments = (Post.find(params[:id]).comments.order('created_at ASC').limit((Post.find(params[:id]).comments.count) - 3)).reverse
+    @comments = (Post.find(params[:id]).comments.order('created_at ASC').limit((Post.find(params[:id]).comments.count) - 3)).reverse  #FIXME
     render json: {:comments => @comments }
   end
 

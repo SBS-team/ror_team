@@ -5,55 +5,73 @@ $(document).ready(function(){
     $('#all_comments').on('click', function(){
         id = $('.img img').attr('class')
 
-    $.ajax({
-        url: '/comment_load',
-        data:
-          {id: id},
-        type: 'post',
-        dataType:'json',
-        success: function(response){
-            $('#all_comments').hide();
-            $('#close_comments').show();
-            var comments = response.comments;
-            var str;
-            var i = 0;
-            $('.comments').slideDown(500, function(){
-                $.each( comments, function( key, value ) {
-                      str = HtmlEncode(comments[key].description);
-                      $('.comments').prepend('<blockquote style ="display:none;" id = '+i+'>' +
+        $.ajax({
+            url: '/comment_load',
+            data:
+              {id: id},
+            type: 'post',
+            dataType:'json',
+            success: function(response){
+                $('#all_comments').hide();
+                $('#close_comments').show();
+                var comments = response.comments;
+                var str;
+                var i = 0;
+                $('.comments').slideDown(500, function(){
+                    $.each( comments, function( key, value ) {
+                        str = HtmlEncode(comments[key].description);
+                        $('.comments').prepend('<blockquote style ="display:none;" id = '+i+'>' +
                           '<b><span class ="comment_nickname text-primary">'+comments[key].nickname+'</span></b><br>' +
                           '<span class = "comment_description">'+str+'</span><br>' +
                           '<hr></blockquote>');
-                $('.comments blockquote').slideDown('slow');
-                i++;
-                });
-
-            });
-            $('#close_comments').on('click', function(){
-                var count = $('blockquote').length;
-                var i = 0;
-                while ( i <= count){
-                    $('#'+i+'').slideToggle(500, function(){
-                          $(this).remove();
+                    $('.comments blockquote').slideDown('slow');
+                        i++;
                     });
-                    i++;
+
+                });
+                $('#close_comments').on('click', function(){
+                    var count = $('blockquote').length;
+                    var i = 0;
+                    while ( i <= count){
+                        $('#'+i+'').slideToggle(500, function(){
+                              $(this).remove();
+                        });
+                        i++;
+                    }
+
+                    $('#all_comments').show();
+                    $('#close_comments').hide();
+
+                });
+            }
+        });
+
+    });
+
+    $("#go_comment").click(function() {
+        return $("#new_comment").validate({
+            rules: {
+                "comment[nickname]": {
+                    required: true,
+                    maxlength: 40,
+                    minlength: 2
+                },
+                "comment[description]": {
+                    required: true,
+                    maxlength: 2048,
+                    minlength: 2
                 }
-
-                $('#all_comments').show();
-                $('#close_comments').hide();
-
-            });
-        }
+            }
+        });
     });
 
-    });
 
     //CREATE NEW COMMENT
     var comment, nickname
 
     $(document).ajaxSuccess(function(event, response, settings)  {
 
-        if (response.responseJSON.stat == 'succ'){
+        if (response.responseJSON.stat == 'success'){
             // IF BEFORE WE GOT INVALID ERRORS CLEAN THEM BEFORE
             if ($('.error_messages')){
                 $('#comment_description').css('box-shadow', 'none');
@@ -73,24 +91,13 @@ $(document).ready(function(){
                     '<hr></blockquote>');
                 $('.comments blockquote').slideDown('slow');
             }
-
             $('#comment_description').val('');
+
+            var count = $('.comments_count').text();
+            count = parseInt(count) + 1;
+            $('.comments_count').text(count+' comments');
         }
-        // IF AJAX QUERY WAS FAILED SHOW VALID ERRORS
-        if (response.responseJSON.stat == 'error') {
-            if (response.responseJSON.error.name){
-                var name_error = response.responseJSON.error.name;
-                $('#error_messages_nickname').remove()
-                $('#comment_nickname').parent().append('<span id="error_messages_nickname" class = "error_messages"><b>'+name_error+'</b></span>');
-                $('#comment_nickname').css('box-shadow', '0 0 5px red');
-            }
-            if (response.responseJSON.error.comment){
-                var comment_error = (response.responseJSON.error.comment);
-                $('#error_messages_description').remove()
-                $('#comment_description').css('box-shadow', '0 0 5px red');
-                $('#comment_description').parent().append('<span id="error_messages_description" class = "error_messages"><b>'+comment_error+'</b></span>');
-            }
-        }
+
     });
 
 }); // document ready

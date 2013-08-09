@@ -4,12 +4,11 @@
     %title RorTeam Admin Chat
     = stylesheet_link_tag    'application', media: 'all'
     = stylesheet_link_tag    'live_chats'
-    = javascript_include_tag 'application'
     = javascript_include_tag 'admin_chat'
     = include_gon
     = csrf_meta_tags
   %body
-    - if @live_chat.nil?
+    - if @live_chat.id.blank?
       No active chat
     - else
       .row
@@ -26,23 +25,23 @@
                 - @messages.each do |msg|
                   - if msg.is_admin
                     .msg.msg-admin
-                      = "(#{msg.created_at.strftime('%d-%m-%Y')}) |"
+                      = "(#{msg.created_at.getlocal.strftime('%T')}) |"
                       %b
                         %U
-                          = @live_chat.admin_user.first_name + " " +@live_chat.admin_user.last_name
+                          = @live_chat.admin_user.first_name + ' ' +@live_chat.admin_user.last_name
                       = ": #{msg.body}"
                   - else
                     .msg.msg-user
-                      = "(#{msg.created_at.strftime('%d-%m-%Y')}) |"
+                      = "(#{msg.created_at.getlocal.strftime('%T')}) |"
                       %b
                         %U
                           = @live_chat.guest_name
                       = ": #{msg.body}"
           .chat-msg
-            = form_tag(admin_chat_send_msg_path(live_chat_id: @live_chat.id), method: "post", remote: true) do
+            = form_tag(admin_chat_send_msg_path(live_chat_id: @live_chat.id), method: 'post', remote: true) do
               Your message*:
               = text_area_tag :message, nil, class: 'form-control', rows: 3
               %br
               = submit_tag 'Send Message', :class => 'btn btn-primary pull-right'
           %div
-            = link_to "close chat", admin_chat_close_path(admin_email: @live_chat.admin_user.email), method: :post
+            = link_to 'close chat', admin_chat_close_path, method: :post

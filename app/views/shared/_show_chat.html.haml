@@ -7,14 +7,14 @@
       - @live_chat.chat_messages.each do |msg|
         - if msg.is_admin
           .msg.msg-admin
-            = "(#{msg.created_at.strftime('%T')}) |"
+            = "(#{msg.created_at.getlocal.strftime('%T')}) |"
             %b
               %U
                 = @live_chat.admin_user.first_name + ' ' + @live_chat.admin_user.last_name
             = ": #{msg.body}"
         - else
           .msg.msg-user
-            = "(#{msg.created_at.strftime('%T')}) |"
+            = "(#{msg.created_at.getlocal.strftime('%T')}) |"
             %b
               %U
                 = @live_chat.guest_name

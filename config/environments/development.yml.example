@@ -14,3 +14,4 @@ mailer:
   password: 'hiddenfile'
   authentication: :plain
   enable_starttls_auto: true
+  url_host: 'localhost:3000'

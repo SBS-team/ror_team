@@ -77,4 +77,19 @@ RorTeam::Application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
+
+  config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.smtp_settings = {
+      :address              => Settings.mailer.address,
+      :port                 => Settings.mailer.port,
+      :domain               => Settings.mailer.domain,
+      :user_name            => Settings.mailer.user_name,
+      :password             => Settings.mailer.password,
+      :authentication       => Settings.mailer.authentication,
+      :enable_starttls_auto => Settings.mailer.enable_starttls_auto
+  }
+  config.action_mailer.default_url_options = {
+      :host => Settings.mailer.url_host
+  }
+  config.action_mailer.perform_deliveries = true
 end

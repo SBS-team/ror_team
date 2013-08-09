@@ -10,8 +10,8 @@ mailer:
   address: 'smtp.gmail.com'
   port: 587
   domain: 'mail.google.com'
-  user_name: 'emailfaceit@gmail.com'
-  password: 'hiddenfile'
+  user_name: 'username'
+  password: 'password'
   authentication: :plain
   enable_starttls_auto: true
   url_host: 'localhost:3000'

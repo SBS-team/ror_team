@@ -32,7 +32,7 @@ class AdminChatController < ApplicationController
                                               message: message.body,
                                               name: chat.admin_user.first_name+'-'+chat.admin_user.last_name,
                                               is_admin: message.is_admin,
-                                              date: message.created_at.strftime('%d-%m-%Y')})
+                                              date: message.created_at.strftime('%T')})
       end
     end
     redirect_to :back

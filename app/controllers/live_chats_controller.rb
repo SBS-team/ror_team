@@ -61,7 +61,7 @@ class LiveChatsController < ApplicationController
                                                message: message.body,
                                                name: chat.guest_name,
                                                is_admin: message.is_admin,
-                                               date: message.created_at.strftime('%d-%m-%Y')})
+                                               date: message.created_at.strftime('%T')})
       end
     end
     redirect_to :back

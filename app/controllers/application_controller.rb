@@ -73,8 +73,8 @@ class ApplicationController < ActionController::Base
   end
 
   def last_posts_and_jobs
-    @last_posts = Post.order('updated_at desc').limit(4)
-    @last_jobs = Job.order('updated_at desc').limit(4)
+    @last_posts = Post.includes(:upload_file).order('updated_at desc').limit(4)
+    @last_jobs = Job.includes(:upload_file).order('updated_at desc').limit(4)
   end
 
   def live_chat_params

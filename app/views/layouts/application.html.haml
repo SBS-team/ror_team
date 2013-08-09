@@ -5,12 +5,11 @@
     %title RorTeam
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application'
-    = include_gon
+    = include_gon(:namespace => 'RorTeam', :camel_case => true)
     = csrf_meta_tags
   %body
-    - unless special_controller?(:controller => 'contact')
-      - if session[:show_chat]
-        = render :partial => 'shared/live_chat'
+    - if session[:show_chat] && controller.controller_name != 'contact'
+      = render :partial => 'shared/live_chat'
     .container
       .navbar.navbar-inverse.navbar-fixed-top
         .container
@@ -24,7 +23,7 @@
             = nav_link_to(t('.blog'), posts_path, :controller => 'posts')
           .pull-right.live-chat
             - if session[:show_chat]
-              %span{:class => 'btn btn-success', :id => 'chat_start'}
+              %span{:class => 'btn btn-success', :id => 'chat_show'}
                 = t('.live_chat')
             - else
               %span{:class => 'btn btn-warning', :id => 'chat_start'}

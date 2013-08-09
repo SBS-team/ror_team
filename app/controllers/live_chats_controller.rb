@@ -1,6 +1,9 @@
 class LiveChatsController < ApplicationController
 
-  before_action :initialize_chat
+  def new_chat
+    session[:show_chat] = true
+    render :text => 'ok'
+  end
 
   def create_chat
     if session[:chat_id].blank?
@@ -71,23 +74,6 @@ class LiveChatsController < ApplicationController
 
   def live_chat_params
     params.require(:live_chat).permit(:guest_name, :admin_id)
-  end
-
-  def initialize_chat
-    @admins = AdminUser.select(:id, :first_name, :last_name).where(role: 'manager', status: 'online').order('random()')
-    @message = Message.new
-
-    if session[:chat_id].blank?
-      @live_chat = LiveChat.new
-      gon.current_admin_email = nil
-      gon.current_admin_channel = nil
-      gon.show_chat = session[:show_chat]
-    else
-      @live_chat = LiveChat.find(session[:chat_id])
-      gon.current_admin_email = @live_chat.admin_user.email
-      gon.current_admin_channel = @live_chat.admin_user.first_name+'-'+@live_chat.admin_user.last_name
-      gon.show_chat = session[:show_chat]
-    end
   end
 
 end

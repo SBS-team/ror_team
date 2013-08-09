@@ -26,20 +26,23 @@ class ApplicationController < ActionController::Base
                                                    is_admin: message.is_admin,
                                                    date: message.created_at.strftime('%d-%m-%Y')})
               @live_chat.admin_user.update_attribute(:status, 'chat')
+            else
+              redirect_to :back, :notice => 'Invalid Message'
             end
             redirect_to :back, :notice => 'Start chat'
+          else
+            redirect_to :back, :alert =>  'Chat start error! Invalid name !'
           end
         else
-          render text: 'error!'
+          redirect_to :back, :alert =>  'error!'
         end
       else
-        render text:'Invalid Message'
+        redirect_to :back, :alert => 'Invalid Message'
       end
     end
   end
 
   def chat
-
     unless params[:message].blank?
       message = ChatMessage.new
       message.body = params[:message]

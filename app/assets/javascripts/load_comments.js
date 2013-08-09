@@ -71,29 +71,34 @@ $(document).ready(function(){
 
     $(document).ajaxSuccess(function(event, response, settings)  {
 
+      if(response.responseJSON){
         if (response.responseJSON.stat == 'success'){
-            // IF BEFORE WE GOT INVALID ERRORS CLEAN THEM BEFORE
-            if ($('.error_messages')){
-                $('#comment_description').css('box-shadow', 'none');
-                $('#comment_nickname').css('box-shadow', 'none');
-                $('.error_messages').remove();
-            }
+          // IF BEFORE WE GOT INVALID ERRORS CLEAN THEM BEFORE
+          if ($('.error_messages')){
+            $('#comment_description').css('box-shadow', 'none');
+            $('#comment_nickname').css('box-shadow', 'none');
+            $('.error_messages').remove();
+          }
 
-            if (response.responseJSON.comment)
-            {
-                // Init variables and add new comment
-                comment = HtmlEncode(response.responseJSON.comment.description);
-                nickname = response.responseJSON.comment.nickname;
-                $('.comments').append('<blockquote style ="display:none;">' +
-                    '<b><span class ="comment_nickname text-primary">'+nickname+'</span></b><br>' +
-                    '<span class = "comment_description">'+comment+'</span><br>' +
-                    '<small class = "comment_time">just now</small>' +
-                    '<hr></blockquote>');
-                $('.comments blockquote').slideDown('slow');
-            }
+          if (response.responseJSON.comment)
+          {
+            // Init variables and add new comment
+            comment = HtmlEncode(response.responseJSON.comment.description);
+            nickname = response.responseJSON.comment.nickname;
+            $('.comments').append('<blockquote style ="display:none;">' +
+                '<b><span class ="comment_nickname text-primary">'+nickname+'</span></b><br>' +
+                '<span class = "comment_description">'+comment+'</span><br>' +
+                '<small class = "comment_time">just now</small>' +
+                '<hr></blockquote>');
+            $('.comments blockquote').slideDown('slow');
+          }
+          $('#comment_description').val('');
 
-            $('#comment_description').val('');
+          var count = $('.comments_count').text();
+          count = parseInt(count) + 1;
+          $('.comments_count').text(count+' comments');
         }
+      }
 
     });
 

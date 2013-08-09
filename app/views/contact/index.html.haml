@@ -61,7 +61,7 @@
         = submit_tag 'Send Message', :class => 'btn btn-primary send-email', data: { disable_with: 'Please wait...' }
 .col-lg-6
   .row
-    .col-lg-9.col-offset-2.form-group#live_chat
+    .col-lg-9.col-offset-2.form-group
       - if  @live_chat.id.blank?
         = render partial: 'contact/new_chat'
       - else

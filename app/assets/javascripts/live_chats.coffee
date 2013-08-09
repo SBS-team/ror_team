@@ -2,23 +2,35 @@ $(document).ajaxSuccess (event, response, settings) ->
   $('#message').val('')
   $("#chat-history").scrollTop $("#chat").height()-$(".msg:last").height()
 
-  # Set div(#live_chat) position & reload window only first submit
-  if ($.cookie 'position_left').toString() == 'null'
-    position = $("#live_chat").offset()
-    $.cookie 'position_left', position.left
-    $.cookie 'position_top', position.top
-    window.location.reload()
+# Get/Set div(#live_chat) position
+getLiveChatPosition = ->
+  $("#live_chat").offset
+    top: $.cookie 'position_top'
+    left: $.cookie 'position_left'
+setLiveChatPosition = ->
+  position = $("#live_chat").offset()
+  $.cookie 'position_left', position.left, { path: '/' }
+  $.cookie 'position_top', position.top, { path: '/' }
+resetLiveChatPosition = ->
+  $.cookie 'position_left', 0, { path: '/' }
+  $.cookie 'position_top', 0, { path: '/' }
+  $.cookie 'hide_win', 0, { path: '/' }
+
+startLiveChat = ->
+  if ($.cookie 'position_left') == undefined
+    setLiveChatPosition()
+  else
+    if ($.cookie 'position_left') == '0'
+      setLiveChatPosition()
 
 $(document).ready ->
 
   # Show div(#live_chat) on all pages if user to start chat
   if gon.show_chat
-    if ($.cookie 'hide_win').toString() == '1'
-      $('#live_chat').css('display', 'block')
+    if ($.cookie 'hide_win') == '1'
+      $('#live_chat').show()
     $("#chat-history").scrollTop $("#chat").height()-$(".msg:last").height()
-    $("#live_chat").offset
-      top: $.cookie 'position_top'
-      left: $.cookie 'position_left'
+    getLiveChatPosition()
 
   $("#live_chat").draggable
     handle: "#chat_handle",
@@ -27,9 +39,11 @@ $(document).ready ->
   # Set div(#live_chat) position into cookie
   $('#chat_handle').mouseup ->
     if gon.show_chat
-      position = $("#live_chat").offset()
-      $.cookie 'position_left', position.left
-      $.cookie 'position_top', position.top
+      setLiveChatPosition()
+
+  # Start live chat
+  $('#new_chat_submit').click ->
+    startLiveChat()
 
   # Show/Hide div(#live_chat)
   $('#chat_hide').click ->
@@ -37,8 +51,7 @@ $(document).ready ->
       to: $("#chat_start"),
       600
     $('#live_chat').hide()
-    $.cookie 'hide_win', 0
-
+    $.cookie 'hide_win', 0, { path: '/' }
 
   $('#chat_start').click ->
     $('#live_chat').show()
@@ -46,17 +59,15 @@ $(document).ready ->
       to: $("#live_chat")
       , 600
     $("#chat-history").scrollTop $("#chat").height()-$(".msg:last").height()
-    $.cookie 'hide_win', 1
+    $.cookie 'hide_win', 1, { path: '/' }
 
   # Close chat & reset cookies
   $('#chat_close').click ->
     $.post "/chat_close"
     $('#live_chat').hide "blind", 600, ->
-      $.cookie 'position_left', null
-      $.cookie 'position_top', null
-      $.cookie 'hide_win', null
+      resetLiveChatPosition()
       pusher.disconnect()
-      window.location.reload()
+      location.reload()
 
   # Create Pusher channel name
   if $("#live_chat_admin_id").length

@@ -23,10 +23,10 @@
               .categories
                 = t '.categories'
                 != post.categories.collect{|cat| link_to strip_links(cat.name), posts_path(:category_name=>cat.name) }.join(', ')
-            - unless post.tag_counts_on(:tags).blank?
+            - unless post.tags.blank?
               .tags
                 = t '.tags'
-                - post.tag_counts_on(:tags).each do |tag|
+                - post.tags.each do |tag|
                   = link_to tag.name, posts_path(:tag_name => tag.name), :class => 'btn btn-default'
       = paginate @posts
     .col-lg-4.sidebar

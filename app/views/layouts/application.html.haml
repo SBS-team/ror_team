@@ -9,7 +9,8 @@
     = csrf_meta_tags
   %body
     - unless special_controller?(:controller => 'contact')
-      = render :partial => 'shared/live_chat'
+      - if session[:show_chat]
+        = render :partial => 'shared/live_chat'
     .container
       .navbar.navbar-inverse.navbar-fixed-top
         .container

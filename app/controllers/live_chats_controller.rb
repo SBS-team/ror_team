@@ -28,7 +28,7 @@ class LiveChatsController < ApplicationController
                                                  message: message.body,
                                                  name: @live_chat.guest_name,
                                                  is_admin: message.is_admin,
-                                                 date: message.created_at.strftime('%d-%m-%Y')})
+                                                 date: message.created_at.strftime('%T')})
           @live_chat.admin_user.update_attribute(:status, 'chat')
         end
         redirect_to live_chat_path(@live_chat)

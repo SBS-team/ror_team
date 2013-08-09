@@ -8,19 +8,18 @@
     = include_gon
     = csrf_meta_tags
   %body
-    - unless special_controller?(:controller => 'contact')
-      = render :partial => 'shared/live_chat'
+    = render :partial => 'shared/live_chat'
     .container
       .navbar.navbar-inverse.navbar-fixed-top
         .container
           = link_to(t('.ror_team'), root_path, :class => 'navbar-brand')
           %ul.nav.navbar-nav
-            = nav_link_to(t('.company'), company_index_path, :controller => 'company')
-            = nav_link_to(t('.work'), projects_path, :controller => 'projects')
-            = nav_link_to(t('.team'), team_index_path, :controller => 'team')
-            = nav_link_to(t('.careers'), jobs_path, :controller => 'jobs')
-            = nav_link_to(t('.contact'), contact_index_path, :controller => 'contact')
-            = nav_link_to(t('.blog'), posts_path, :controller => 'posts')
+            = nav_link_to(t('.company'), company_index_path, 'company')
+            = nav_link_to(t('.work'), projects_path, 'projects')
+            = nav_link_to(t('.team'), team_index_path, 'team')
+            = nav_link_to(t('.careers'), jobs_path, 'jobs')
+            = nav_link_to(t('.contact'), contact_index_path, 'contact')
+            = nav_link_to(t('.blog'), posts_path, 'posts')
           .pull-right.live-chat
             - if session[:show_chat]
               %span{:class => 'btn btn-success', :id => 'chat_start'}

@@ -48,15 +48,9 @@ group :development do
 end
 
 group :development, :test do
-  gem 'pry'
-  gem 'pry-rails'
-  gem 'pry-remote'
-  gem 'pry-stack_explorer'
-  gem 'pry-debugger'
   gem 'factory_girl_rails'
   gem 'minitest-rails-shoulda'
   gem 'minitest-reporters', '>= 0.8.0'
-
 end
 
 group :test do

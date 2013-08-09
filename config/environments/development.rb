@@ -36,7 +36,7 @@ RorTeam::Application.configure do
       :enable_starttls_auto => Settings.mailer.enable_starttls_auto
   }
   config.action_mailer.default_url_options = {
-      :host => 'localhost:3000'
+      :host => Settings.mailer.url_host
   }
   config.action_mailer.perform_deliveries = true
 end

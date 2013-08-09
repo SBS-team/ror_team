@@ -89,5 +89,6 @@ $(document).ready ->
       msg_class = "<div class='msg-admin msg'>"
     else
       msg_class = "<div class='msg-user msg'>"
-    $("#chat").append msg_class+"(" + data.date + ") | <b><U>" + data.name + "</U></b> : " + $("<div/>").text(data.message).html() + "</div>"
+    msg_time = new Date(data.date * 1000)
+    $("#chat").append msg_class+"(" + msg_time.toLocaleTimeString() + ") | <b><U>" + data.name + "</U></b> : " + $("<div/>").text(data.message).html() + "</div>"
     $("#chat-history").scrollTop $("#chat").height()-$(".msg:last").height()

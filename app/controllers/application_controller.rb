@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
                                                    message: message.body,
                                                    name: @live_chat.guest_name,
                                                    is_admin: message.is_admin,
-                                                   date: message.created_at.strftime('%d-%m-%Y')})
+                                                   date: message.created_at.to_i})
               @live_chat.admin_user.update_attribute(:status, 'chat')
             else
               redirect_to :back, :notice => 'Invalid Message'
@@ -57,7 +57,7 @@ class ApplicationController < ActionController::Base
                                                message: message.body,
                                                name: chat.guest_name,
                                                is_admin: message.is_admin,
-                                               date: message.created_at.strftime('%d-%m-%Y')})
+                                               date: message.created_at.to_i})
       end
     end
     redirect_to :back
@@ -76,8 +76,8 @@ class ApplicationController < ActionController::Base
   end
 
   def last_posts_and_jobs
-    @last_posts = Post.order('updated_at desc').limit(4)
-    @last_jobs = Job.order('updated_at desc').limit(4)
+    @last_posts = Post.includes(:upload_file).order('updated_at desc').limit(4)
+    @last_jobs = Job.includes(:upload_file).order('updated_at desc').limit(4)
   end
 
   def live_chat_params

@@ -1,18 +1,18 @@
--common: &common
--  adapter: postgresql
--  encoding: unicode
--  pool: 5
--  host: localhost
--  port: 5432
--  username: username
--  password: password
--
--development:
--  <<: *common
--  database: ror_team_development
--test:
--  <<: *common
--  database: ror_team_test
--production:
--  <<: *common
--  database: ror_team_production
+common: &common
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
+  host: localhost
+  port: 5432
+  username: username
+  password: password
+
+development:
+  <<: *common
+  database: ror_team_development
+test:
+  <<: *common
+  database: ror_team_test
+production:
+  <<: *common
+  database: ror_team_production

@@ -1,7 +1,7 @@
 pusher:
   ssl: false
-  websocket_host: "localhost"
-  websocket_port: 8080
+  wss_host: "localhost"
+  wss_port: 8080
   api_host: "localhost"
   api_port: 4567
   app_id: 1

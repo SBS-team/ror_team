@@ -1,18 +1,14 @@
 class JobsController < ApplicationController
 
-  before_filter :last_posts_and_jobs , :only => [:index, :show]
+  before_action :last_posts_and_jobs, :only => [:index, :show]
+  before_action :resume_new, :only => [:index, :show]
 
   def index
-    @resume = Resume.new
-    @resume.upload_file = UploadFile.new
     @jobs = Job.includes(:upload_file).order('created_at DESC').page(params[:page]).per(3)
-    @all_jobs_for_select = Job.select(:id, :title)
   end
 
   def show
-    @job = Job.find(params[:id])
-    @resume = Resume.new
-    @resume.upload_file = UploadFile.new
+    @job = Job.includes(:upload_file).find(params[:id])
   end
 
   def create
@@ -37,4 +33,8 @@ private
     params.require(:resume).permit(:job_id, :name, :email, :phone, :description, upload_file_attributes: [:filename, :id])
   end
 
+  def resume_new
+    @resume = Resume.new
+    @resume.build_upload_file
+  end
 end

@@ -1,18 +1,18 @@
 class JobsController < ApplicationController
 
-  before_filter :last_posts_and_jobs , :only => [:index, :show, :create]
+  before_filter :last_posts_and_jobs , :only => [:index, :show]
 
   def index
     @resume = Resume.new
     @resume.upload_file = UploadFile.new
-    @jobs = Job.all.order('created_at DESC').page(params[:page]).per(3)
+    @jobs = Job.includes(:upload_file).order('created_at DESC').page(params[:page]).per(3)
     @all_jobs_for_select = Job.select(:id, :title)
   end
 
   def show
+    @job = Job.find(params[:id])
     @resume = Resume.new
     @resume.upload_file = UploadFile.new
-    @job = Job.find(params[:id])
   end
 
   def create

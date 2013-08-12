@@ -62,7 +62,7 @@
 .col-lg-6
   .row
     .col-lg-9.col-offset-2.form-group
-      - if  @live_chat.id.blank?
+      - if  @live_chat.blank?
         = render partial: 'contact/new_chat'
       - else
         = render partial: 'contact/chat'

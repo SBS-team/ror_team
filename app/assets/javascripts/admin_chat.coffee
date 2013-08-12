@@ -3,6 +3,8 @@
 #= require bootstrap.min
 #= require pusher
 #= require underscore
+#= require lib/webs
+#= require chat/chat
 
 $(document).ajaxSuccess (event, response, settings) ->
   $("#message").val('')
@@ -10,25 +12,27 @@ $(document).ajaxSuccess (event, response, settings) ->
 
 $(document).ready ->
 
-  # Pusher config for script *********************************
-  Pusher.host = gon.pusher_config.host
-  Pusher.sockjs_host = gon.pusher_config.sockjs_host
-  Pusher.ws_port = gon.pusher_config.ws_port
-  pusher = new Pusher("#{gon.pusher_config.key}")
-  #***********************************************************
+#  # Pusher config for script *********************************
+#  Pusher.host = RorTeam.pusherConfig.host
+#  Pusher.sockjs_host = RorTeam.pusherConfig.host
+#  Pusher.ws_port = RorTeam.pusherConfig.port
+#  pusher = new Pusher(RorTeam.pusherConfig.key)
+#  #***********************************************************
+#
+  admin_main_channel = 'presence-' + RorTeam.currentAdminChannel
+#
+#  # Massage send/receive Pusher event
+#  channel = pusher.subscribe(admin_main_channel)
+#  channel.bind "msg-event", (data) ->
+#    if $("#chat").length>0
+#      if data.is_admin
+#        msg_class = "<div class='msg-admin msg'>"
+#      else
+#        msg_class = "<div class='msg-user msg'>"
+#      msg_time = new Date(data.date * 1000)
+#      $("#chat").append msg_class+"(" + msg_time.toLocaleTimeString() + ") | <b><U>" + data.name + "</U></b> : " + $("<div/>").text(data.message).html() + "</div>"
+#      $("#chat-history").scrollTop $("#chat").height()-$(".msg:last").height()
+#    else
+#      window.location.reload()
 
-  admin_main_channel = 'presence-' + gon.current_admin_channel
-
-  # Massage send/receive Pusher event
-  channel = pusher.subscribe(admin_main_channel)
-  channel.bind "msg-event", (data) ->
-    if $("#chat").length>0
-      if data.is_admin
-        msg_class = "<div class='msg-admin msg'>"
-      else
-        msg_class = "<div class='msg-user msg'>"
-      msg_time = new Date(data.date * 1000)
-      $("#chat").append msg_class+"(" + msg_time.toLocaleTimeString() + ") | <b><U>" + data.name + "</U></b> : " + $("<div/>").text(data.message).html() + "</div>"
-      $("#chat-history").scrollTop $("#chat").height()-$(".msg:last").height()
-    else
-      window.location.reload()
+  chat = new Chat(admin_main_channel)

@@ -15,6 +15,10 @@ module Webs
       webs.event 'test-channel', 'test-event', {:message => "test"}
     end
 
+    def send_chat_message(channel_name, event_name, data_hash={})
+      webs.event channel_name, event_name, data_hash
+    end
+
   end
 
 end

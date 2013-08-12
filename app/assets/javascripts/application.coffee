@@ -11,6 +11,8 @@
 #= require jquery-cookie
 #= require contact
 #= require jquery.tagcanvas
+#= require lib/webs
+#= require chat/chat
 
 $(document).ready ->
   $('.carousel').carousel()

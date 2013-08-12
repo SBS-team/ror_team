@@ -1,5 +1,5 @@
 $(document).ajaxSuccess (event, response, settings) ->
-  $('#message').val('')
+  $("#message").val('')
   $("#chat-history").scrollTop $("#chat").height()-$(".msg:last").height()
 
 # Get/Set div(#live_chat) position
@@ -67,28 +67,12 @@ $(document).ready ->
       location.reload()
 
   # Create Pusher channel name
-  if $("#live_chat_admin_id").length
+  unless $("#live_chat_admin_id")
     admin_main_channel = 'presence-' + $("#live_chat_admin_id :selected").text().replace(' ', '-')
   else
-    admin_main_channel = 'presence-' + gon.current_admin_channel
+    admin_main_channel = 'presence-' + RorTeam.currentAdminChannel
 
-  # Pusher config for script *********************************
-  Pusher.host = gon.pusher_config.host
-  Pusher.sockjs_host = gon.pusher_config.sockjs_host
-  Pusher.ws_port = gon.pusher_config.ws_port
-  pusher = new Pusher("#{gon.pusher_config.key}")
-  #***********************************************************
-
-  # Massage send/receive Pusher event
-  channel = pusher.subscribe(admin_main_channel)
-  channel.bind "msg-event", (data) ->
-    if data.is_admin
-      msg_class = "<div class='msg-admin msg'>"
-    else
-      msg_class = "<div class='msg-user msg'>"
-    msg_time = new Date(data.date * 1000)
-    $("#chat").append msg_class+"(" + msg_time.toLocaleTimeString() + ") | <b><U>" + data.name + "</U></b> : " + $("<div/>").text(data.message).html() + "</div>"
-    $("#chat-history").scrollTop $("#chat").height()-$(".msg:last").height()
+  chat = new Chat(admin_main_channel)
 
   $("#new_live_chat").validate
     rules:

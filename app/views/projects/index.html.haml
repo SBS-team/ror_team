@@ -5,9 +5,10 @@
   .col-lg-12
     .col-lg-6
       - unless project.upload_files.blank? || project.upload_files.first.img_name.blank?
+        - @upload_files_count ||= project.upload_files.count #FIXME add counter cache
         .carousel.slide{:id => "myCarousel#{project.id}"}
           %ol.carousel-indicators
-            - (project.upload_files.count).times do |i|
+            - (@upload_files_count).times do |i|
               %li{'data-slide-to' => "#{i}", 'data-target' => "#myCarousel#{project.id}", :class => "#{'active' if i == 0}" }
           .carousel-inner
             - project.upload_files.each do |file|
@@ -17,7 +18,7 @@
               - else
                 .item
                   = image_tag file.img_name.url
-          - if project.upload_files.count > 1
+          - if @upload_files_count > 1
             = link_to "#myCarousel#{project.id}", 'data-slide' => 'prev', :class => 'carousel-control left' do
               %span.icon-prev
             = link_to "#myCarousel#{project.id}", 'data-slide' => 'next', :class => 'carousel-control right' do

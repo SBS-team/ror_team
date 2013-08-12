@@ -24,13 +24,13 @@
           .categories
             = t '.categories'
             != @post.categories.collect{|cat| link_to strip_links(cat.name), posts_path(:category_name=>cat.name) }.join(', ')
-        - unless @post.tag_counts_on(:tags).empty?
+        - unless @post.tags.empty?
           .tags
             = t '.tags'
-            - @post.tag_counts_on(:tags).each do |tag|
+            - @post.tags.each do |tag|
               = link_to tag.name, posts_path(:tag_name => tag.name), :class => 'btn btn-default'
       .comments_block
-        -if @comment_count > 3
+        -if @post.comments_count > 3
           #all_comments
             %b= 'Show previous comments'
         #close_comments
@@ -50,7 +50,7 @@
                 = 'ago'
               %hr
       .comments-form
-        = form_for [@post, @comment = Comment.create ], :html => {:class => 'form-inline'}, :remote => true do |f|
+        = form_for [@post, @comment = Comment.new ], :html => {:class => 'form-inline'}, :remote => true do |f|
           .comment_block
             = t '.new_comment'
             .form-group

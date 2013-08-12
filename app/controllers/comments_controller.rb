@@ -7,7 +7,6 @@ class CommentsController < ApplicationController
   def create
     @post = Post.find_by_slug(params[:post_id])
     @comment = @post.comments.build(comment_params)
-    @comment.post_id = @post.id
     if @comment.save
       render json: {:comment => @comment, :stat => 'success', :location => @post }
     else

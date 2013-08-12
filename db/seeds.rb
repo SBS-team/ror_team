@@ -15,6 +15,7 @@ Post.destroy_all
 Job.destroy_all
 Project.destroy_all
 Service.destroy_all
+AdminUser.not_admin.destroy_all
 
 tech = TechnologyCategory.create(:name => 'Technical Skills')
 tech.technologies.create(:name => 'Ruby', :upload_file => UploadFile.new(:img_name => File.open(Rails.root.join('db/data_seed/ruby-language.png'))))
@@ -74,3 +75,12 @@ Service.create(:name => 'Mobile version of web site development', :upload_file =
 Service.create(:name => 'Web site development. It includes', :upload_file => UploadFile.new(:img_name => File.open(Rails.root.join('db/data_seed/Teen-Pregnancy.jpg'))))
 Service.create(:name => 'Web and mobile version  development.', :upload_file => UploadFile.new(:img_name => File.open(Rails.root.join('db/data_seed/Teen-Pregnancy.jpg'))))
 Service.create(:name => 'Help with the existing project', :upload_file => UploadFile.new(:img_name => File.open(Rails.root.join('db/data_seed/Teen-Pregnancy.jpg'))))
+
+AdminUser.create(:email => 'leha@example.com', :password => '12345678', :password_confirmation => '12345678', :role =>'team', :first_name => 'Leha', :last_name => 'Merk', :about => 'I am super puper')
+AdminUser.create(:email => 'mixa@example.com', :password => '12345678', :password_confirmation => '12345678', :role =>'team', :first_name => 'Mixa', :last_name => 'Belia', :about => 'I am super peper')
+AdminUser.create(:email => 'kola@example.com', :password => '12345678', :password_confirmation => '12345678', :role =>'team', :first_name => 'Kola', :last_name => 'Cookie', :about => 'I am super cookie')
+AdminUser.create(:email => 'jaro@example.com', :password => '12345678', :password_confirmation => '12345678', :role =>'team', :first_name => 'Jaro', :last_name => 'Boy', :about => 'I am super boy')
+AdminUser.create(:email => 'san1@example.com', :password => '12345678', :password_confirmation => '12345678', :role =>'team', :first_name => 'San1', :last_name => 'Late', :about => 'I am super late')
+AdminUser.create(:email => 'san2@example.com', :password => '12345678', :password_confirmation => '12345678', :role =>'team', :first_name => 'San2', :last_name => 'Claw', :about => 'I am super claw')
+AdminUser.create(:email => 'veta@example.com', :password => '12345678', :password_confirmation => '12345678', :role =>'team', :first_name => 'Veta', :last_name => 'hzhz', :about => 'I am super hzhz')
+AdminUser.create(:email => 'mana@example.com', :password => '12345678', :password_confirmation => '12345678', :role =>'manager', :first_name => 'Mana', :last_name => 'Pot', :about => 'I am super manager')

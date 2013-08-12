@@ -1,16 +1,17 @@
 #= require jquery
+#= require jquery-ui
 #= require jquery_ujs
 #= require bootstrap.min
 #= require pusher
 #= require underscore
 #= require jquery.validate
+#= require additional-methods
+#= require jquery.tagcanvas
+#= require jquery-cookie
 #= require jobs
-#= require jquery-ui
 #= require live_chats
 #= require load_comments
-#= require jquery-cookie
 #= require contact
-#= require jquery.tagcanvas
 #= require lib/webs
 #= require chat/chat
 

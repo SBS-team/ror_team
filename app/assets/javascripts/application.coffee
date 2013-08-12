@@ -11,6 +11,8 @@
 #= require load_comments
 #= require jquery-cookie
 #= require contact
+#= require lib/webs
+#= require chat/chat
 
 $(document).ready ->
   $('.carousel').carousel()

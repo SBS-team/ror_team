@@ -10,6 +10,7 @@
 
     listenTestChannel: ->
       @testChannelCallback = ((response)->
+        alert response.data.message
         console.log response.data
       ).bind(@)
       @testChannel.bind "test-event", @testChannelCallback

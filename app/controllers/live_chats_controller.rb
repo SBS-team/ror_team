@@ -24,11 +24,13 @@ class LiveChatsController < ApplicationController
         if message.save
           admin_email = @live_chat.admin_user.email
           channel = 'presence-' + @live_chat.admin_user.first_name+"-"+@live_chat.admin_user.last_name #admin_email
-          Pusher[channel].trigger('msg-event',  {:user_id => session[:user_id],
-                                                 message: message.body,
-                                                 name: @live_chat.guest_name,
-                                                 is_admin: message.is_admin,
-                                                 date: message.created_at.to_i})
+          #Pusher[channel].trigger('msg-event',  {:user_id => session[:user_id],
+          #                                       message: message.body,
+          #                                       name: @live_chat.guest_name,
+          #                                       is_admin: message.is_admin,
+          #                                       date: message.created_at.to_i})
+          Webs.pusher
+          Webs.notify(:test_event)
           @live_chat.admin_user.update_attribute(:status, 'chat')
         end
         redirect_to live_chat_path(@live_chat)
@@ -57,11 +59,13 @@ class LiveChatsController < ApplicationController
       if message.save
         chat = LiveChat.find(params[:live_chat_id])
         channel = 'presence-' + chat.admin_user.first_name+"-"+chat.admin_user.last_name #chat.admin_user.email
-        Pusher[channel].trigger('msg-event',  {:user_id => session[:user_id],
-                                               message: message.body,
-                                               name: chat.guest_name,
-                                               is_admin: message.is_admin,
-                                               date: message.created_at.to_i})
+        #Pusher[channel].trigger('msg-event',  {:user_id => session[:user_id],
+        #                                       message: message.body,
+        #                                       name: chat.guest_name,
+        #                                       is_admin: message.is_admin,
+        #                                       date: message.created_at.to_i})
+        Webs.pusher
+        Webs.notify(:test_event)
       end
     end
     redirect_to :back

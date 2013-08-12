@@ -28,11 +28,13 @@ class AdminChatController < ApplicationController
       if message.save
         chat = LiveChat.find(params[:live_chat_id])
         channel = 'presence-' + chat.admin_user.first_name+'-'+chat.admin_user.last_name #chat.admin_user.email
-        Pusher[channel].trigger('msg-event', {:user_id => session[:user_id],
-                                              message: message.body,
-                                              name: chat.admin_user.first_name+'-'+chat.admin_user.last_name,
-                                              is_admin: message.is_admin,
-                                              date: message.created_at.to_i})
+        Webs.pusher
+        Webs.notify(:test_event)
+        #Pusher[channel].trigger('msg-event', {:user_id => session[:user_id],
+        #                                      message: message.body,
+        #                                      name: chat.admin_user.first_name+'-'+chat.admin_user.last_name,
+        #                                      is_admin: message.is_admin,
+        #                                      date: message.created_at.to_i})
       end
     end
     redirect_to :back

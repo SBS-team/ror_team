@@ -11,8 +11,8 @@
           - @resume.errors.full_messages.each do |msg|
             %li= msg
     .form-group
-      - if @job.nil?
-        = f.select(:job_id, options_for_select(@all_jobs_for_select.map { |j| [j.title, j.id] }), {}, {:class => "form-control"})
+      - if @jobs
+        = f.select(:job_id, options_for_select(@jobs.map { |j| [j.title, j.id] }), {}, {:class => "form-control"})
       - else
         = f.select(:job_id, options_for_select(@job.title => @job.id), {}, {:class => "form-control"})
     .form-group

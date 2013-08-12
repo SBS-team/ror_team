@@ -29,6 +29,8 @@
     - else
       = t '.tags'
   .cloud
-    - @tags.each do |tag|
-      - tag_size = 4 * tag.count / relev_tags + 1
-      = link_to tag.name , posts_path(:tag_name => tag.name), :class => "size#{tag_size}"
+    %canvas{:width => '365', :height => '300', :id => 'myCanvas'}
+      %div#tagcloud
+        - unless @tags.nil?
+          - @tags.each do |tag|
+            = link_to tag.name , posts_path(:tag_name => tag.name)

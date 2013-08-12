@@ -5,7 +5,7 @@
     %title RorTeam
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application'
-    = include_gon #(:namespace => 'RorTeam', :camel_case => true)
+    = include_gon(:namespace => 'RorTeam', :camel_case => true)
     = csrf_meta_tags
   %body
     = render :partial => 'shared/live_chat'

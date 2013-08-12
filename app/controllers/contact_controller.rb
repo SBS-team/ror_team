@@ -11,7 +11,8 @@ class ContactController < ApplicationController
       NotificationsMailer.new_message(@message).deliver
       redirect_to(root_path, :notice => t('.contact_sent_msg'))
     else
-      redirect_to(contact_index_path, :alert => @message.errors.full_messages.join(' '))
+      flash[:error] = @message.errors.full_messages.join(', ')
+      redirect_to :back
     end
   end
 

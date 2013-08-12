@@ -12,7 +12,7 @@ $(document).ajaxSuccess (event, response, settings) ->
 $(document).ready ->
 
   # Show div(#live_chat) on all pages if user to start chat
-  if gon.show_chat
+  if RorTeam.showChat
     if ($.cookie 'hide_win').toString() == '1'
       $('#live_chat').css('display', 'block')
     $("#chat-history").scrollTop $("#chat").height()-$(".msg:last").height()
@@ -26,7 +26,7 @@ $(document).ready ->
 
   # Set div(#live_chat) position into cookie
   $('#chat_handle').mouseup ->
-    if gon.show_chat
+    if RorTeam.showChat
       position = $("#live_chat").offset()
       $.cookie 'position_left', position.left
       $.cookie 'position_top', position.top
@@ -62,13 +62,13 @@ $(document).ready ->
   if $("#live_chat_admin_id").length
     admin_main_channel = 'presence-' + $("#live_chat_admin_id :selected").text().replace(' ', '-')
   else
-    admin_main_channel = 'presence-' + gon.current_admin_channel
+    admin_main_channel = 'presence-' + RorTeam.currentAdminChannel
 
   # Pusher config for script *********************************
-  Pusher.host = gon.pusher_config.host
-  Pusher.sockjs_host = gon.pusher_config.host
-  Pusher.ws_port = gon.pusher_config.port
-  pusher = new Pusher(gon.pusher_config.key)
+  Pusher.host = RorTeam.pusherConfig.host
+  Pusher.sockjs_host = RorTeam.pusherConfig.host
+  Pusher.ws_port = RorTeam.pusherConfig.port
+  pusher = new Pusher(RorTeam.pusherConfig.key)
   #***********************************************************
 
   # Massage send/receive Pusher event

@@ -11,13 +11,13 @@ $(document).ajaxSuccess (event, response, settings) ->
 $(document).ready ->
 
   # Pusher config for script *********************************
-  Pusher.host = gon.pusher_config.host
-  Pusher.sockjs_host = gon.pusher_config.host
-  Pusher.ws_port = gon.pusher_config.port
-  pusher = new Pusher(gon.pusher_config.key)
+  Pusher.host = RorTeam.pusherConfig.host
+  Pusher.sockjs_host = RorTeam.pusherConfig.host
+  Pusher.ws_port = RorTeam.pusherConfig.port
+  pusher = new Pusher(RorTeam.pusherConfig.key)
   #***********************************************************
 
-  admin_main_channel = 'presence-' + gon.current_admin_channel
+  admin_main_channel = 'presence-' + RorTeam.currentAdminChannel
 
   # Massage send/receive Pusher event
   channel = pusher.subscribe(admin_main_channel)

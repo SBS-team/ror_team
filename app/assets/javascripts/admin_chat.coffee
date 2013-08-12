@@ -12,9 +12,9 @@ $(document).ready ->
 
   # Pusher config for script *********************************
   Pusher.host = gon.pusher_config.host
-  Pusher.sockjs_host = gon.pusher_config.sockjs_host
-  Pusher.ws_port = gon.pusher_config.ws_port
-  pusher = new Pusher("#{gon.pusher_config.key}")
+  Pusher.sockjs_host = gon.pusher_config.host
+  Pusher.ws_port = gon.pusher_config.port
+  pusher = new Pusher(gon.pusher_config.key)
   #***********************************************************
 
   admin_main_channel = 'presence-' + gon.current_admin_channel

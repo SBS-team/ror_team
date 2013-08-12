@@ -66,9 +66,9 @@ $(document).ready ->
 
   # Pusher config for script *********************************
   Pusher.host = gon.pusher_config.host
-  Pusher.sockjs_host = gon.pusher_config.sockjs_host
-  Pusher.ws_port = gon.pusher_config.ws_port
-  pusher = new Pusher("#{gon.pusher_config.key}")
+  Pusher.sockjs_host = gon.pusher_config.host
+  Pusher.ws_port = gon.pusher_config.port
+  pusher = new Pusher(gon.pusher_config.key)
   #***********************************************************
 
   # Massage send/receive Pusher event
@@ -81,3 +81,4 @@ $(document).ready ->
     msg_time = new Date(data.date * 1000)
     $("#chat").append msg_class+"(" + msg_time.toLocaleTimeString() + ") | <b><U>" + data.name + "</U></b> : " + $("<div/>").text(data.message).html() + "</div>"
     $("#chat-history").scrollTop $("#chat").height()-$(".msg:last").height()
+    alert "6"

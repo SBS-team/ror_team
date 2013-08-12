@@ -63,24 +63,4 @@ $(document).ready ->
     admin_main_channel = 'presence-' + $("#live_chat_admin_id :selected").text().replace(' ', '-')
   else
     admin_main_channel = 'presence-' + RorTeam.currentAdminChannel
-
-  # Pusher config for script *********************************
-#  Pusher.host = RorTeam.pusherConfig.host
-#  Pusher.sockjs_host = RorTeam.pusherConfig.host
-#  Pusher.ws_port = RorTeam.pusherConfig.port
-#  pusher = new Pusher(RorTeam.pusherConfig.key)
-  #***********************************************************
-
-  # Massage send/receive Pusher event
-#  channel = pusher.subscribe(admin_main_channel)
-#  channel.bind "msg-event", (data) ->
-#    if data.is_admin
-#      msg_class = "<div class='msg-admin msg'>"
-#    else
-#      msg_class = "<div class='msg-user msg'>"
-#    msg_time = new Date(data.date * 1000)
-#    $("#chat").append msg_class+"(" + msg_time.toLocaleTimeString() + ") | <b><U>" + data.name + "</U></b> : " + $("<div/>").text(data.message).html() + "</div>"
-#    $("#chat-history").scrollTop $("#chat").height()-$(".msg:last").height()
-#    alert "6"
-
-  chat = new Chat()
+  chat = new Chat(admin_main_channel)

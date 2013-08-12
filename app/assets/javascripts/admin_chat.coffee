@@ -19,7 +19,7 @@ $(document).ready ->
 #  pusher = new Pusher(RorTeam.pusherConfig.key)
 #  #***********************************************************
 #
-#  admin_main_channel = 'presence-' + RorTeam.currentAdminChannel
+  admin_main_channel = 'presence-' + RorTeam.currentAdminChannel
 #
 #  # Massage send/receive Pusher event
 #  channel = pusher.subscribe(admin_main_channel)
@@ -35,4 +35,4 @@ $(document).ready ->
 #    else
 #      window.location.reload()
 
-  chat = new Chat()
+  chat = new Chat(admin_main_channel)

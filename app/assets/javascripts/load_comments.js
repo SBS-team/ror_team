@@ -71,6 +71,7 @@ $(document).ready(function(){
 
     $(document).ajaxSuccess(function(event, response, settings)  {
 
+      if(response.responseJSON){
         if (response.responseJSON.stat == 'success'){
             // IF BEFORE WE GOT INVALID ERRORS CLEAN THEM BEFORE
             if ($('.error_messages')){
@@ -97,6 +98,7 @@ $(document).ready(function(){
             count = parseInt(count) + 1;
             $('.comments_count').text(count+' comments');
         }
+      }
 
     });
 

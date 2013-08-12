@@ -5,9 +5,9 @@ class PostsController < ApplicationController
   # GET /posts
   def index
     @posts = if !params[:category_name].blank?
-              Post.includes([:tags, :categories, :upload_file]).where("categories.name = :category_name", :category_name=>params[:category_name]).page(params[:page]).per(5)
+              Post.joins(:categories).includes([:tags, :upload_file]).where("categories.name = :category_name", :category_name=>params[:category_name]).page(params[:page]).per(5)
             elsif !params[:tag_name].blank?
-              Post.includes([:tags, :categories, :upload_file]).where("tags.name = :tag_name", :tag_name=>params[:tag_name]).page(params[:page]).per(5)
+              Post.joins(:tags).includes([:categories, :upload_file]).where("tags.name = :tag_name", :tag_name=>params[:tag_name]).page(params[:page]).per(5)
             else
               Post.includes([:tags, :categories, :upload_file]).search_posts_based_on_like(params[:search]).page(params[:page]).per(5)
             end

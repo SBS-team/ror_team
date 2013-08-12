@@ -8,7 +8,7 @@
 #= require jobs
 #= require jquery-ui
 #= require live_chats
-#= require load_comments
+#= require comments
 #= require jquery-cookie
 #= require contact
 #= require jquery.tagcanvas

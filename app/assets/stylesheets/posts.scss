@@ -52,26 +52,6 @@
   padding: 5px 0 5px 20px;
 }
 
-.size1 {
-  font-size: 8px;
-}
-
-.size2 {
-  font-size: 12px;
-}
-
-.size3 {
-  font-size: 16px;
-}
-
-.size4 {
-  font-size: 20px;
-}
-
-.size5 {
-  font-size: 24px;
-}
-
 .post_top {
   overflow: hidden;
 }
@@ -152,6 +132,12 @@ hr {
 
 .error_messages {
   color: red;
+}
+
+.cloud{
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
 }
 
 // for comments

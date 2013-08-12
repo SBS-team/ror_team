@@ -89,3 +89,14 @@ $(document).ready ->
     msg_time = new Date(data.date * 1000)
     $("#chat").append msg_class+"(" + msg_time.toLocaleTimeString() + ") | <b><U>" + data.name + "</U></b> : " + $("<div/>").text(data.message).html() + "</div>"
     $("#chat-history").scrollTop $("#chat").height()-$(".msg:last").height()
+
+  $("#new_live_chat").validate
+    rules:
+      "live_chat[guest_name]":
+        required: true,
+        maxlength: 150,
+        minlength: 2
+      "message":
+        required: true,
+        maxlength: 2048,
+        minlength: 2

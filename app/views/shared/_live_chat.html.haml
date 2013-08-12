@@ -3,9 +3,9 @@
     %span.head-chat
       live chat
     %span.controls-chat
-      %span{:id => 'chat_hide', :class => 'btn btn-default btn-xs', :title => 'Hide chat'}
-      - if session[:show_chat]
-        %span{:id => 'chat_close', :class => 'btn btn-danger btn-xs', :title => 'Close chat'}
+      - if session[:chat_id]
+        %span{:id => 'chat_hide', :class => 'btn btn-default btn-xs', :title => 'Hide chat'}
+      %span{:id => 'chat_close', :class => 'btn btn-danger btn-xs', :title => 'Close chat'}
   .chat-content
     .row
       .col-lg-10.col-offset-1.form-group

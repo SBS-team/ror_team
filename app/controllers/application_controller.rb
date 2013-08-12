@@ -25,21 +25,21 @@ class ApplicationController < ActionController::Base
   end
 
   def initialize_chat
-      if session[:show_chat]
-        if session[:chat_id]
-          @live_chat = LiveChat.find(session[:chat_id])
-          gon.current_admin_email = @live_chat.admin_user.email
-          gon.current_admin_channel = @live_chat.admin_user.first_name+'-'+@live_chat.admin_user.last_name
-        else
-          @live_chat = LiveChat.new
-          gon.current_admin_email = nil
-          gon.current_admin_channel = nil
-          @admins = AdminUser.select(:id, :first_name, :last_name).where(role: 'manager', status: 'online').order('random()')
-          if @admins.blank?
-            @message = Message.new
-          end
+    if session[:show_chat]
+      if session[:chat_id]
+        @live_chat = LiveChat.find(session[:chat_id])
+        gon.current_admin_email = @live_chat.admin_user.email
+        gon.current_admin_channel = @live_chat.admin_user.first_name+'-'+@live_chat.admin_user.last_name
+      else
+        @live_chat = LiveChat.new
+        gon.current_admin_email = nil
+        gon.current_admin_channel = nil
+        @admins = AdminUser.select(:id, :first_name, :last_name).where(role: 'manager', status: 'online').order('random()')
+        if @admins.blank?
+          @message = Message.new
         end
       end
+    end
   end
 
 end

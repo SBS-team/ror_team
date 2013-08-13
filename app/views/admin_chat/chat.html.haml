@@ -5,10 +5,10 @@
     = stylesheet_link_tag    'application', media: 'all'
     = stylesheet_link_tag    'live_chats'
     = javascript_include_tag 'admin_chat'
-    = include_gon
+    = include_gon(:namespace => 'RorTeam', :camel_case => true)
     = csrf_meta_tags
   %body
-    - if @live_chat.id.blank?
+    - if @live_chat.blank? || @live_chat.id.blank?
       No active chat
     - else
       .row

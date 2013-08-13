@@ -49,6 +49,6 @@ class Post < ActiveRecord::Base
     end
   end
 
-  default_scope order('posts.created_at DESC')
+  default_scope { order('posts.created_at DESC') }
 
 end

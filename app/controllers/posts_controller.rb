@@ -36,14 +36,18 @@ class PostsController < ApplicationController
     render json: {:comments => comments }
   end
 
+  #def tag_cloud
+  #  @tags = Post.tag_counts_on(:tags)
+  #end
+
   private
   def category
     @categories = Category.includes(:posts).group('categories.id')
-    @tags = ActsAsTaggableOn::Tag.order("random()")
+    @tags = Post.tag_counts_on(:tags).order('count DESC').limit(20)
   end
 
   def recent_and_popular_posts
-    @recent_posts = Post.order("created_at DESC").limit(5)
-    @popular_posts = Post.order("comments_count DESC").limit(5)
+    @recent_posts = Post.order('created_at DESC').limit(5)
+    @popular_posts = Post.order('comments_count DESC').limit(5)
   end
 end

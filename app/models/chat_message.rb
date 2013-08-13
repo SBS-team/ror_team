@@ -13,7 +13,8 @@ class ChatMessage < ActiveRecord::Base
   belongs_to :live_chat
 
   validates :body,
-            presence: true
+            presence: true,
+            length: { in: 2..2048 }
   validates :live_chat_id,
             presence: true,
             numericality: {only_integer: true,

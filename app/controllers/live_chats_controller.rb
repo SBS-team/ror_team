@@ -42,7 +42,7 @@ class LiveChatsController < ApplicationController
     end
   end
 
-  def chat
+  def send_msg
     unless params[:message].blank?
       message = ChatMessage.new
       message.body = params[:message]
@@ -64,6 +64,8 @@ class LiveChatsController < ApplicationController
   end
 
   def chat_close
+    live_chat = LiveChat.includes(:admin_user).find(session[:chat_id])
+    live_chat.admin_user.update_attribute(:status, 'online')
     session[:chat_id] = nil
     session[:show_chat] = false
     render text: 'ok!'

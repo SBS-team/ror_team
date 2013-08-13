@@ -24,6 +24,9 @@ resetLiveChatPosition = ->
 
 $(document).ready ->
 
+  if ($.cookie 'nickname')
+    $("#live_chat_guest_name").val($.cookie 'nickname')
+
   # Show div(#live_chat) on all pages if user to start chat
   if ($.cookie 'hide_win') == '1'
     $('#live_chat').show()
@@ -51,6 +54,13 @@ $(document).ready ->
     $.cookie 'hide_win', 1, { path: '/' }
     $.post "/new_chat", ->
       location.reload()
+
+  $('#new_chat_submit').click ->
+    unless ($.cookie 'nickname')
+      $.cookie 'nickname', $("#live_chat_guest_name").val(),{ expires: 30 , path: '/'  }
+    else
+      if ($.cookie 'nickname').toString() != $("#live_chat_guest_name").val()
+        $.cookie 'nickname', $("#live_chat_guest_name").val(),{ expires: 30 , path: '/'  }
 
   $('#chat_show').click ->
     if ($.cookie 'hide_win') == '0' || ($.cookie 'hide_win') == undefined

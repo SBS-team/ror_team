@@ -10,7 +10,7 @@
 #= require jquery-cookie
 #= require jobs
 #= require live_chats
-#= require load_comments
+#= require comments
 #= require contact
 #= require lib/webs
 #= require chat/chat

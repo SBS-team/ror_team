@@ -66,10 +66,12 @@ class LiveChatsController < ApplicationController
   def chat_close
 #    admin_user = AdminUser...
     live_chat = LiveChat.find(session[:chat_id])
-    channel = 'presence-' + live_chat.admin_user.first_name+'-'+live_chat.admin_user.last_name
-    live_chat.admin_user.update_attribute(:status, 'online')
-    Webs.pusher
-    Webs.notify(:notify_chat_closing, channel, 'user-close-chat')
+    if live_chat.admin_user.status == 'chat'
+      live_chat.admin_user.update_attribute(:status, 'online')
+      channel = 'presence-' + live_chat.admin_user.first_name+'-'+live_chat.admin_user.last_name
+      Webs.pusher
+      Webs.notify(:notify_chat_closing, channel, 'user-close-chat')
+    end
     session[:chat_id] = nil
     session[:show_chat] = false
     render text: 'ok!'

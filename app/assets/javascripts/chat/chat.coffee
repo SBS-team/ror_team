@@ -29,7 +29,7 @@
 
       @adminCloseChatCallback = (->
         alert "Admin close chat"
-        $("#chat").append "<div>Admin close this chat</div>"
+        $("#chat").append "<div><span class='label label-danger'>Admin close this chat</span></div>"
         $("#chat-history").scrollTop $("#chat").height()-$(".msg:last").height()
       ).bind(@)
 

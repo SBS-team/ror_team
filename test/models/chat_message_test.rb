@@ -5,7 +5,7 @@ describe ChatMessage do
   subject { ChatMessage.new }
 
   context 'ChatMessage model relations' do
-    it { must belong_to(:live_chat) }
+    it { must belong_to(:live_chats) }
   end
 
   context 'ChatMessage db columns' do

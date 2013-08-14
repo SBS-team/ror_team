@@ -12,6 +12,7 @@
 #= require live_chats
 #= require comments
 #= require contact
+#= require search
 #= require lib/webs
 #= require chat/chat
 

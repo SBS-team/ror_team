@@ -135,6 +135,8 @@ en:
       comment: "comment"
       your_search_for: "Your search for"
       returned_no_hits: "returned no hits."
+      search_blank_error: "Search field cannot be blank"
+      search_max_error: "Your search request is too long, 50 is max"
     show:
       comment: "comment"
       post_hasnt_comments: "This post hasn't any comments"

@@ -17,6 +17,8 @@
       Pusher.sockjs_path = undefined
       # Stats. We don't have such feature, so force all params to undefined
       Pusher.stats_host = undefined
+      Pusher.cdn_http = undefined
+      Pusher.cdn_https = undefined
 
       @pusher = new Pusher(settings.key, {encrypted: settings.ssl, disableStats: settings.disable_statistics, disableFlash: settings.disable_flash})
       @disposed = false

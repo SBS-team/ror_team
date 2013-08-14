@@ -11,8 +11,11 @@ class PostsController < ApplicationController
             else
               Post.includes([:tags, :categories, :upload_file]).search_posts_based_on_like(params[:search]).page(params[:page]).per(5)
             end
+
     unless params[:search].blank?
-      if !params[:search].nil? && @posts.empty?
+      if params[:search].length > 50
+        flash.now[:error] = "#{t('.search_max_error')}"
+      elsif !params[:search].nil? && @posts.empty?
         flash.now[:error] = "#{t('.your_search_for')} #{params[:search]} #{t('.returned_no_hits')}"
       else
         flash.now[:notice] = "#{t('.your_search_for')} #{params[:search]} results"
@@ -35,10 +38,6 @@ class PostsController < ApplicationController
     comments = (post.comments.order('created_at ASC').limit(post.comments_count - 3)).reverse
     render json: {:comments => comments }
   end
-
-  #def tag_cloud
-  #  @tags = Post.tag_counts_on(:tags)
-  #end
 
   private
   def category

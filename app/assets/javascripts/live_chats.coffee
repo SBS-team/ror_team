@@ -4,8 +4,12 @@ $(document).ajaxComplete (event, response, settings) ->
 
 newLiveChat = false
 
+chat = null
+admin_main_channel = null
+
 $(document).ajaxSuccess (event, response, settings) ->
   if newLiveChat
+    chat = new Chat(admin_main_channel)
     startLiveChat()
     newLiveChat = false
 
@@ -54,6 +58,11 @@ startLiveChat = ->
     handle: "#chat_handle",
     containment: "parent"
 
+  unless $("#live_chat_admin_id")
+    admin_main_channel = 'presence-' + $("#live_chat_admin_id :selected").text().replace(' ', '-')
+  else
+    admin_main_channel = 'presence-' + RorTeam.currentAdminChannel
+
 $(document).ready ->
 
 #*************************************** Action header menu button: "Live Chat"
@@ -96,6 +105,9 @@ $(document).ready ->
     else
       if ($.cookie 'nickname').toString() != $("#live_chat_guest_name").val()
         $.cookie 'nickname', $("#live_chat_guest_name").val(),{ expires: 30 , path: '/'  }
+
+    admin_main_channel = 'presence-' + $("#live_chat_admin_id :selected").text().replace(' ', '-')
+
     newLiveChat = true
 
 #*************************************** LiveChat draggable and position
@@ -112,9 +124,7 @@ $(document).ready ->
     $("#chat-history").scrollTop $("#chat").height()-$(".msg:last").height()
     getLiveChatPosition()
 #*************************************** Create Pusher channel name
-  unless $("#live_chat_admin_id")
-    admin_main_channel = 'presence-' + $("#live_chat_admin_id :selected").text().replace(' ', '-')
-  else
-    admin_main_channel = 'presence-' + RorTeam.currentAdminChannel
+
+  admin_main_channel = 'presence-' + RorTeam.currentAdminChannel
 
   chat = new Chat(admin_main_channel)

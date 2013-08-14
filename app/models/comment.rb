@@ -9,25 +9,20 @@
 #  commentable_type :string(255)
 #  created_at       :datetime
 #  updated_at       :datetime
+#  nickname         :string(255)
 #
 
 class Comment < ActiveRecord::Base
+
   belongs_to :post, :counter_cache => true
   belongs_to :commentable, :polymorphic => true
 
-  validate :check_email
-  validate :check_comment_body
+  validates :description,
+            :presence => true,
+            :length => { :minimum => 2, :maximum => 2048 }
 
-  def check_email
-    if (self.commentable_id.blank?)
-      errors.add(:Email, "can't be blank")
-    end
-  end
-
-  def check_comment_body
-    if (self.description.blank? || self.description.length <= 2)
-      errors.add(:Comment, 'is to short, minimum 2 symbols')
-    end
-  end
+  validates :nickname,
+            :presence => true,
+            :length => { :minimum => 2, :maximum => 40 }
 
 end

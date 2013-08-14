@@ -1,43 +1,43 @@
-.row.our-skills
-  .col-lg-12
-    %h1
-      = t '.our_skills'
-    .row
-      - @technology_categories.each do |tech_category|
-        .col-lg-2
-          %h4.text-center
-            = tech_category.name
-          - tech_category.technologies.each do |technology|
-            .span0
-              - unless technology.upload_file.blank? || technology.upload_file.img_name.blank?
-                = image_tag technology.upload_file.img_name.url, title: technology.name, alt: technology.name, width: 50
-              - else
-                = image_tag 'missing.png', width: 50, alt: technology.name, title: technology.name
+.our-skills.col-lg-12
+  %h1
+    = t '.our_skills'
+  .row
+    - @technology_categories.each do |tech_category|
+      .col-lg-2
+        %h4.text-center
+          = tech_category.name
+        - tech_category.technologies.each do |technology|
+          .span0
+            - unless technology.upload_file.blank? || technology.upload_file.img_name.blank?
+              = image_tag technology.upload_file.img_name.url(:thumb), title: technology.name, alt: technology.name, width: 50
+            - else
+              = image_tag 'missing.png', width: 50, alt: technology.name, title: technology.name
 .row.experience
-  .col-lg-4
-    = image_tag('/icon-info.png')
-    %span
-      = t '.development_system'
-  .col-lg-4
-    = image_tag('/icon-info.png')
-    %span
-      = t '.command_development'
-  .col-lg-4
-    = image_tag('/icon-info.png')
-    %span
-      = t '.feedback_odesk'
-.row.services
   .col-lg-12
-    %h3
-      = t '.service_prode'
-  - @services.each do |service|
-    .col-lg-3.text-center
-      - unless service.upload_file.blank? || service.upload_file.img_name.blank?
-        = image_tag service.upload_file.img_name.url(:thumb), title: service.name, alt: service.name, :width => 200
-      - else
-        = image_tag 'missing.png', :width => 200
-      %h4
-        = service.name
+    .col-lg-4
+      = image_tag('/icon-info.png')
+      %span
+        = t '.development_system'
+    .col-lg-4
+      = image_tag('/icon-info.png')
+      %span
+        = t '.command_development'
+    .col-lg-4
+      = image_tag('/icon-info.png')
+      %span
+        = t '.feedback_odesk'
+.services.col-lg-12
+  %h3
+    = t '.service_prode'
+  .row
+    - @services.each do |service|
+      .col-lg-3.text-center
+        - unless service.upload_file.blank? || service.upload_file.img_name.blank?
+          = image_tag service.upload_file.img_name.url(:thumb), title: service.name, alt: service.name, :width => 200
+        - else
+          = image_tag 'missing.png', :width => 200
+        %h4
+          = service.name
 .row
   = render :partial => 'shared/post_jobs'
 

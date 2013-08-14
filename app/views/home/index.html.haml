@@ -1,24 +1,25 @@
-.odd
-  .row
-    .col-lg-6
-      %h2
-        = t '.our_command'
-      %p
-        = t '.our_description'
-    .col-lg-6.text-right
-      %h2.bl_title
-        = t '.our_skills'
-      .skills
-        - @technologies.each do |technology|
-          .skill
-            - unless technology.upload_file.blank? || technology.upload_file.img_name.blank?
-              = image_tag technology.upload_file.img_name.url, title: technology.name, alt: technology.name, width: 50
-            - else
-              = image_tag 'missing.png', width: 50, alt: technology.name, title: technology.name
-      .more.text-right
-        = link_to(t('.read_about_skills'), company_index_path)
-.even
-  .row
+.col-lg-12
+  .odd
+    .row
+      .col-lg-6
+        %h2
+          = t '.our_command'
+        %p
+          = t '.our_description'
+      .row
+        .col-lg-6.text-right
+          %h2.bl_title
+            = t '.our_skills'
+          .skills.col-lg-12
+            - @technologies.each do |technology|
+              .skill.col-lg-3
+                - unless technology.upload_file.blank? || technology.upload_file.img_name.blank?
+                  = image_tag technology.upload_file.img_name.url(:thumb), title: technology.name, alt: technology.name, width: 50
+                - else
+                  = image_tag 'missing.png', width: 50, alt: technology.name, title: technology.name
+          .more.text-right
+            = link_to(t('.read_about_skills'), company_index_path)
+  .even.row
     .bl_title.col-lg-12
       %h2
         = t '.project_work'
@@ -34,9 +35,11 @@
             = link_to project.name, project_path(project)
     .col-lg-12.text-right
       = link_to(t('.read_about_projects'), projects_path)
-.odd
+.col-lg-12
   .row
-    = render :partial => 'shared/post_jobs'
+    .odd
+      .row
+        = render :partial => 'shared/post_jobs'
 
 
 

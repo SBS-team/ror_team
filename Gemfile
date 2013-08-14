@@ -48,15 +48,9 @@ group :development do
 end
 
 group :development, :test do
-  gem 'pry'
-  gem 'pry-rails'
-  gem 'pry-remote'
-  gem 'pry-stack_explorer'
-  gem 'pry-debugger'
   gem 'factory_girl_rails'
   gem 'minitest-rails-shoulda'
   gem 'minitest-reporters', '>= 0.8.0'
-
 end
 
 group :test do
@@ -83,11 +77,6 @@ gem 'htmlentities'
 gem 'truncate_html'
 
 gem 'cancan'
-
-gem 'omniauth'          # auth
-gem 'omniauth-twitter'  # for twitter
-gem 'omniauth-facebook' # for facebook
-gem 'omniauth-vkontakte'
 
 group :doc do
   # bundle exec rake doc:rails generates the API under doc/api.

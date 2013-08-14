@@ -156,6 +156,13 @@ ru:
       till: "Окончание:"
       tech_info: "Техническая информация"
       people: "человек(а)"
+    show:
+      link_project: "Ссылка на проэкт"
+      since: "Начало:"
+      team_size: "Команда:"
+      till: "Окончание:"
+      tech_info: "Техническая информация"
+      people: "человек(а)"
 
   contact:
     index:
@@ -195,6 +202,7 @@ ru:
       category: "Категория:"
       tags: "Тэги:"
       comments: "Комментарии"
+      search_max_error: "Ваш поисковый запрос слишком длиный, максимум 50 символов"
     show:
       comments: "Комментарии"
       new_comment: "Новый комментарий"
@@ -206,6 +214,7 @@ ru:
       ready_help: "мы всегда рады помочь Вам"
       contact_us: "Связаться с нами"
       rss_feed: "RSS Feed"
+      write_nickname: "Введите имя"
 
   contact:
     create:

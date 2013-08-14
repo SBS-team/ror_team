@@ -25,7 +25,6 @@ describe ViewTest do
       assert page.has_content?(I18n.t 'layouts.application.work')
       assert page.has_content?(I18n.t 'layouts.application.follow_facebook')
       assert page.has_content?(I18n.t 'layouts.application.follow_twitter')
-      assert page.has_content?(I18n.t 'layouts.application.mail_scype')
     end
 
     it 'if click on job then redirect to jobs(carrier)' do
@@ -54,7 +53,7 @@ describe ViewTest do
       assert page.has_content?(post.title)
       click_link post.title
       sleep(3)
-      current_path.must_equal special_post_path(post.created_at.strftime('%d_%m_%Y'), post)
+      current_path.must_equal special_post_path(post.created_at.strftime('%d-%m-%Y'), post)
       sleep(3)
     end
 

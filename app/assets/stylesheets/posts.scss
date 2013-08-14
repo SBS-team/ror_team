@@ -24,7 +24,6 @@
 .post_left {
   width: 200px;
   float: left;
-  margin: 0 35px 0 35px;
 }
 
 .post_left .img {
@@ -53,26 +52,6 @@
   padding: 5px 0 5px 20px;
 }
 
-.size1 {
-  font-size: 8px;
-}
-
-.size2 {
-  font-size: 12px;
-}
-
-.size3 {
-  font-size: 16px;
-}
-
-.size4 {
-  font-size: 20px;
-}
-
-.size5 {
-  font-size: 24px;
-}
-
 .post_top {
   overflow: hidden;
 }
@@ -98,30 +77,19 @@
 
 // for comments
 
-.comment_nick, .comment_img {
-  float: left;
-}
-
-.comment_nick {
-  display: inline-block;
-  margin-left: 10px;
-}
-
 .comment_time {
   float:right;
 }
 
-.comment_email {
-  display: inline-block;
-  margin-left: 20px;
+.comment_nickname {
+  margin: 10px 0 0 10px;
 }
 
 .comment_description {
   word-wrap: break-word;
-  word-break: break-all;
-  display: inline-block;
   margin: 10px 0 0 10px;
   font-family: "Courier New";
+
 }
 
 .comment_field {
@@ -149,58 +117,8 @@ hr {
   margin-bottom: 0;
 }
 
-.icon-remove, .icon-pencil {
-  cursor: pointer;
-  margin-left: 5px;
-  float: right;
-}
-
 .comments_block small {
   font-size: 10px;
-}
-
-#social_auth {
-  margin-top: 5px;
-}
-
-.comments_blocka a:focus, a:hover {
-  text-decoration:none;
-}
-
-.facebook_img, .vkontakte_img, .twitter_img {
-  background: url("/sprites_soc.png") no-repeat;
-  width: 44px;
-  height: 44px;
-  border-radius: 2px;
-  display: inline-block;
-  -webkit-transition: background 0.2s ease-in-out;
-  -moz-transition: background 0.2s ease-in-out;
-  -o-transition: background 0.2s ease-in-out;
-  transition: background 0.2s ease-in-out;
-}
-
-.facebook_img {
-  background-position: -54px -52px;
-}
-
-.facebook_img:hover {
-  background-position: -54px 0px;
-}
-
-.vkontakte_img {
-  background-position: -108px -52px;
-}
-
-.vkontakte_img:hover {
-  background-position: -108px 0px;
-}
-
-.twitter_img {
-  background-position: -162px -52px;
-}
-
-.twitter_img:hover {
-  background-position: -162px 0px;
 }
 
 #all_comments, #close_comments {
@@ -210,6 +128,32 @@ hr {
   text-align: center;
   background-color: #357ebd;
   color: #fff;
+}
+
+.error_messages {
+  color: red;
+}
+
+.cloud{
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+}
+
+.cloud-tag5{
+  font-size: 40px;
+}
+.cloud-tag4{
+  font-size: 32px;
+}
+.cloud-tag3{
+  font-size: 26px;
+}
+.cloud-tag2{
+  font-size: 18px;
+}
+.cloud-tag1{
+  font-size: 14px;
 }
 
 // for comments

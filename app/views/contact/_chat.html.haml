@@ -1,0 +1,29 @@
+%h1
+  Live Chat
+%div
+  Your manager:
+  %strong
+    = "#{@live_chat.admin_user.first_name} #{@live_chat.admin_user.last_name}"
+  #chat-history.panel
+    #chat
+      - @live_chat.chat_messages.each do |msg|
+        - if msg.is_admin
+          .msg.msg-admin
+            = "(#{msg.created_at.getlocal.strftime('%T')}) |"
+            %b
+              %U
+                = @live_chat.admin_user.first_name + " " +@live_chat.admin_user.last_name
+            = ": #{msg.body}"
+        - else
+          .msg.msg-user
+            = "(#{msg.created_at.getlocal.strftime('%T')}) |"
+            %b
+              %U
+                = @live_chat.guest_name
+            = ": #{msg.body}"
+  .chat-msg
+    = form_tag(user_chat_path, method: 'post', remote: true) do
+      Your message*:
+      = text_area_tag :message, nil, class: 'form-control', rows: 4
+      %br
+      = submit_tag 'Send Message', id: "submit", :class => 'btn btn-primary pull-right'

@@ -14,24 +14,9 @@ ActiveAdmin.register UploadFile do
     end
     column :fileable_type
     column :link do |upload_file|
-      case upload_file.fileable_type.to_s
-        when Post.to_s
-          link_to upload_file.fileable.title, admin_post_path(upload_file.fileable)
-        when Project.to_s
-          link_to upload_file.fileable.name, admin_project_path(upload_file.fileable)
-        when Service.to_s
-          link_to upload_file.fileable.name, admin_service_path(upload_file.fileable)
-        when Technology.to_s
-          link_to upload_file.fileable.name, admin_technology_path(upload_file.fileable)
-        when AdminUser.to_s
-          link_to upload_file.fileable.email, admin_admin_user_path(upload_file.fileable)
-        when User.to_s
-          link_to upload_file.fileable.email, admin_user_path(upload_file.fileable)
-        when Job.to_s
-          link_to upload_file.fileable.title, admin_job_path(upload_file.fileable)
-        else
-          'File is not assigned to any model'
-      end
+      file = upload_file.fileable
+      title = file.respond_to?(:title) ? file.title : file.name
+      link_to title, [:admin, file]
     end
   end
 

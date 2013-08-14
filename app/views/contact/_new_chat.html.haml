@@ -1,0 +1,20 @@
+%h1
+  Live Chat
+%div
+  - if @admins.blank?
+    All managers are busy now. Try next time.
+  -else
+    %fieldset.web-form.row
+      = form_for @live_chat, url: {controller: :application, action: :create_chat} do |f|
+        .col-lg-12.form-group
+          Choose your manager:
+          - admins_for_select = @admins.map { |admin| [admin.first_name+" "+admin.last_name, admin.id] }
+          = f.select :admin_id, admins_for_select, {},  class: 'form-control'
+        .contact-info.col-lg-12.form-group
+          Enter your name*:
+          = f.text_field :guest_name, 'class' => 'form-control'
+        .chat-msg.col-lg-12.form-group
+          Write your message*:
+          = text_area_tag :message, nil, class: 'form-control', rows: 4
+          %br
+          = f.submit 'Send message', id: "submit", :class => 'btn btn-primary pull-right'

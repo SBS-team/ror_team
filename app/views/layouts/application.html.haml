@@ -8,49 +8,53 @@
     = include_gon(:namespace => 'RorTeam', :camel_case => true)
     = csrf_meta_tags
   %body
+    - if session[:show_chat] && controller.controller_name != 'contact'
+      = render :partial => 'shared/live_chat'
     .container
       .navbar.navbar-inverse.navbar-fixed-top
-        = link_to(t('.ror_team'), root_path, :class => 'navbar-brand')
-        %ul.nav.navbar-nav
-          = nav_link_to(t('.company'), company_index_path, :controller => 'company')
-          = nav_link_to(t('.work'), projects_path, :controller => 'projects')
-          = nav_link_to(t('.team'), team_index_path, :controller => 'team')
-          = nav_link_to(t('.careers'), jobs_path, :controller => 'jobs')
-          = nav_link_to(t('.contact'), contact_index_path, :controller => 'contact')
-          = nav_link_to(t('.blog'), posts_path, :controller => 'posts')
-        .pull-right.live-chat
-          = link_to t('.live_chat'), new_live_chat_path, :class => 'btn btn-warning', :onclick=>"window.open(this.href,'RoR-Team Live Chat', 'height=500, width=400');return false;"
+        .container
+          = link_to(t('.ror_team'), root_path, :class => 'navbar-brand')
+          %ul.nav.navbar-nav
+            = nav_link_to(t('.company'), company_index_path, 'company')
+            = nav_link_to(t('.work'), projects_path, 'projects')
+            = nav_link_to(t('.team'), team_index_path, 'team')
+            = nav_link_to(t('.careers'), jobs_path, 'jobs')
+            = nav_link_to(t('.contact'), contact_index_path, 'contact')
+            = nav_link_to(t('.blog'), posts_path, 'posts')
+          .pull-right.live-chat
+            - if session[:chat_id]
+              %span{:class => 'btn btn-success', :id => 'chat_show'}
+                = t('.live_chat')
+            - elsif controller.controller_name == 'contact'
+              %span{:class => 'btn btn-warning', :id => 'chat_contact'}
+                = t('.live_chat')
+            - else
+              %span{:class => 'btn btn-warning', :id => 'chat_start'}
+                = t('.live_chat')
       .content.row
         .col-lg-12
           - if flash[:error]
-            %p.error
+            %p.alert.alert-error
               = flash.now[:error]
           - if flash[:notice]
             %p.alert.alert-success
               = flash.now[:notice]
           - if flash[:alert]
-            %p.alert.alert-error
+            %p.alert.alert-info
               = flash.now[:alert]
           = yield
-      %footer#footer.row
+      %footer#footer
         .contact-us.col-lg-12
           %p.lead
             = t '.use_to_contact'
-        .media-net
-          .col-lg-6
-            %small
-              = t '.media_soc'
-          .col-lg-6.text-right
-            %small
-              = t '.mail_scype'
         .soc_net
-          .col-lg-4
+          .col-lg-4.text-center
             %p.lead
               = link_to(t('.follow_twitter'), 'http://twitter.com')
-          .col-lg-4
+          .col-lg-4.text-center
             %p.lead
               = link_to(t('.follow_facebook'), 'http://facebook.com')
-          .col-lg-4
+          .col-lg-4.text-center
             %p.lead
               = link_to(t('.contact_email'), contact_index_path)
         .bottom.text-center.col-lg-12

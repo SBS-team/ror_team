@@ -17,11 +17,11 @@ ActiveAdmin.register AdminUser do
     default_actions
   end
 
-  show do
+  show do |admin_user|
     panel 'AdminUser Details' do
       attributes_table_for admin_user do
         row :role
-        row :image do |admin_user|
+        row :image do
           unless admin_user.upload_file.blank?
             image_tag(admin_user.upload_file.img_name.url(:thumb))
           end
@@ -37,6 +37,21 @@ ActiveAdmin.register AdminUser do
         row :last_sign_in_ip
         row :created_at
         row :updated_at
+      end
+    end
+    unless admin_user.time_onlines.blank?
+      panel 'Time online' do
+        paginated_collection(admin_user.time_onlines.order('day DESC').page(params[:week_page]).per(7), param_name: 'week_page') do
+          table_for(collection) do |t|
+            t.column 'Day' do |timer|
+              timer.day.strftime('%a %d/%m/%Y')
+            end
+            t.column 'Time online' do |timer|
+              hh, mm = timer.time.to_i.divmod(60)
+              "#{hh.to_s + ' h' if hh > 0} #{mm.to_s} min"
+            end
+          end
+        end
       end
     end
   end

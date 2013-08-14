@@ -16,7 +16,7 @@ class Resume < ActiveRecord::Base
 
   belongs_to :job
   has_one :upload_file, :as => :fileable, :dependent => :destroy
-  accepts_nested_attributes_for :upload_file
+  accepts_nested_attributes_for :upload_file,:reject_if => lambda { |a| a[:filename].blank? }, :allow_destroy => true
 
   validates :description,
             :length => {:maximum => 3000}
@@ -35,17 +35,24 @@ class Resume < ActiveRecord::Base
             :format => {:with => /\A[+]?\d+\Z/}
 
   validate :validate_data
+  validate :file_size
 
   private
 
   def validate_data
-    if (self.upload_files.blank?)
+    if (self.upload_file.blank?)
       errors.add(:description, "can't be blank and file is not attached") if self.description.blank?
     else
-      self.upload_files.each do |file|
-        if (/\.doc|\.pdf/ =~ file.filename.to_s).nil?
-          errors.add(:upload_files, "not doc, pdf types")
-        end
+      if (/\.doc|\.pdf/ =~ self.upload_file.filename.to_s).nil?
+        errors.add(:upload_file, "not doc, pdf types")
+      end
+    end
+  end
+
+  def file_size
+    unless self.upload_file.nil? || self.upload_file.filename.file.nil?
+      if !self.upload_file.filename.file.nil? && self.upload_file.filename.file.size.to_f/(1000*1000) > 5
+        errors.add(:file, 'You cannot upload a file greater than 5 MB')
       end
     end
   end

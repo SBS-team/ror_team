@@ -3,12 +3,11 @@ class ProjectsController < ApplicationController
   before_filter :last_posts_and_jobs , :only => [:index, :show]
 
   def index
-    @projects = Project.order('created_at DESC').preload(:technologies => :technology_category).page(params[:page]).per(2)
+    @projects = Project.includes([{:technologies => :technology_category},:services, :project_services, :upload_files]).order('created_at DESC').page(params[:page]).per(2)
   end
 
   def show
-    @projects = Project.where(:id=>params[:id]).preload(:technologies).page params[:page]
-    render :index
+    @project = Project.find(params[:id])
   end
 
 end

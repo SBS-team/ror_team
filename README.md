@@ -5,7 +5,7 @@ Requirements
   - Rails 4.0.0
   - PostgreSQL > 9.2
 
- Gems
+Gems
   - devise
   - activeadmin
   - better_errors
@@ -26,6 +26,6 @@ Requirements
   - minitest-rails-shoulda
   - minitest-reporters
 
- Features
+Features
   - Live Chat
 

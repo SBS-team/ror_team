@@ -8,7 +8,7 @@ describe LiveChatsController  do
   end
 
   it 'should get show' do
-    ch = FactoryGirl.create(:live_chat, :admin_id => FactoryGirl.create(:admin_user, :role => 'manager').id)
+    ch = FactoryGirl.create(:live_chats, :admin_id => FactoryGirl.create(:admin_user, :role => 'manager').id)
     get :show, :id => ch.id
     assert_response :success
   end

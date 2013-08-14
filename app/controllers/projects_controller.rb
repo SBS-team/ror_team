@@ -7,7 +7,7 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    @project = Project.find(params[:id])#.preload(:technologies => :technology_category)
+    @project = Project.find(params[:id])
   end
 
 end

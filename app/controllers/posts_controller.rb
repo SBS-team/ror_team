@@ -20,8 +20,6 @@ class PostsController < ApplicationController
       else
         flash.now[:notice] = "#{t('.your_search_for')} #{params[:search]} results"
       end
-    else
-      flash.now[:error] = "#{t('.search_blank_error')}"
     end
     respond_to do |format|
       format.html { render :index }

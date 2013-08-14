@@ -71,35 +71,38 @@ header .logo a {
 .content:after {
   content: "";
   display: block;
-  height: 172px;
+  height: 60px;
   clear: both;
 }
 
-#footer, #content:after {
-  height: 172px;
+#footer {
+  height: 50px;
 }
 
 #footer {
-  margin-top: -172px;
-  background-color: rgba(0, 0, 0, 0.11);
+  margin-top: -50px;
+  background-color: #222222;
   position: relative;
-}
-
-#footer .bottom {
-  position: absolute;
-  bottom: 0;
   width: 100%;
   color: #fff;
-  background-color: rgba(0, 0, 0, 0.7);
-  height: 20px;
+  font-size: 12px;
+}
+
+#footer .contact-us {
+  float: left;
+}
+
+#footer .soc_net {
+  padding: 9px 0 0 0;
+  float: right;
+}
+
+#footer .soc_net a {
+  margin: 0 3px 0 3px;
 }
 
 #footer p {
-  padding: 0 0 0 10px;
-}
-
-#footer small {
-  padding: 0 10px 0 10px;
+  padding: 17px 0 0 10px;
 }
 
 .error {

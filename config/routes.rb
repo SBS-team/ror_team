@@ -22,8 +22,10 @@ RorTeam::Application.routes.draw do
 
   post '/create_chat' => 'live_chats#create_chat', :as => :user_start_chat
   post '/chat_send_msg' => 'live_chats#send_msg', :as => :user_chat
+  post '/chat_create' => 'live_chats#create_chat_contact'
   post '/new_chat' => 'live_chats#new_chat'
   post '/chat_close' => 'live_chats#chat_close'
+  post '/contact_chat_close' => 'live_chats#contact_chat_close'
 
   post '/live_chats/chat'
   post '/pusher/auth'

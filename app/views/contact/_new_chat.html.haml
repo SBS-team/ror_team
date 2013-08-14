@@ -6,7 +6,7 @@
       All managers are busy now. Try next time.
     -else
       %fieldset.web-form.row
-        = form_for @live_chat ||= LiveChat.new, url: {controller: :live_chats, action: :create_chat}, remote: true do |f|
+        = form_for @live_chat ||= LiveChat.new, url: {controller: :live_chats, action: :create_chat_contact}, remote: true do |f|
           .col-lg-12.form-group
             Choose your manager:
             - admins_for_select = @admins.map { |admin| [admin.first_name+" "+admin.last_name, admin.id] }
@@ -18,4 +18,4 @@
             Write your message*:
             = text_area_tag :message, nil, class: 'form-control', rows: 4
             %br
-            = f.submit 'Send message', id: "submit", :class => 'btn btn-primary pull-right'
+            = f.submit 'Send message', id: 'new_chat_submit', :class => 'btn btn-primary pull-right'

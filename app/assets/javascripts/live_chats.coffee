@@ -65,6 +65,9 @@ startLiveChat = ->
 
 $(document).ready ->
 
+  if ($.cookie 'nickname')
+    $("#live_chat_guest_name").val($.cookie 'nickname')
+
 #*************************************** Action header menu button: "Live Chat"
   # Start new LiveChat
   $(document).on "click", "#chat_start", ->
@@ -89,6 +92,9 @@ $(document).ready ->
       chageButton = $("#chat_show")[0]
       chageButton.id = 'chat_start'
       $("#chat_show").replaceWith chageButton
+
+  $(document).on "click", "#contact_chat_close", ->
+    $.post "/contact_chat_close"
 
   # Hide LiveChat div
   $(document).on "click", "#chat_hide", ->

@@ -18,7 +18,7 @@
       # Stats. We don't have such feature, so force all params to undefined
       Pusher.stats_host = undefined
 
-      @pusher = new Pusher(settings.key, {encrypted: settings.ssl})
+      @pusher = new Pusher(settings.key, {encrypted: settings.ssl, disableStats: settings.disable_statistics, disableFlash: disable_flash})
       @disposed = false
 
     dispose: ->

@@ -19,6 +19,10 @@ module Webs
       webs.event channel_name, event_name, data_hash
     end
 
+    def notify_chat_closing(channel_name, event_name)
+      webs.event channel_name, event_name
+    end
+
   end
 
 end

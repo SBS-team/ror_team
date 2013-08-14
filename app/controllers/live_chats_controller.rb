@@ -95,15 +95,25 @@ class LiveChatsController < ApplicationController
   end
 
   def chat_close
-    live_chat = LiveChat.includes(:admin_user).find(session[:chat_id])
-    live_chat.admin_user.update_attribute(:status, 'online')
+    admin_user = AdminUser.joins(:live_chats).where("live_chats.id = :live_chat_id", live_chat_id: session[:chat_id].to_i).readonly(false).take
+    if admin_user.status == 'chat'
+      admin_user.update_attribute(:status, 'online')
+      channel = 'presence-' + admin_user.first_name+'-'+admin_user.last_name
+      Webs.pusher
+      Webs.notify(:notify_chat_closing, channel, 'user-close-chat')
+    end
     session[:chat_id] = nil
     render text: 'ok!'
   end
 
   def contact_chat_close
-    live_chat = LiveChat.includes(:admin_user).find(session[:chat_id])
-    live_chat.admin_user.update_attribute(:status, 'online')
+    admin_user = AdminUser.joins(:live_chats).where("live_chats.id = :live_chat_id", live_chat_id: session[:chat_id].to_i).readonly(false).take
+    if admin_user.status == 'chat'
+      admin_user.update_attribute(:status, 'online')
+      channel = 'presence-' + admin_user.first_name+'-'+admin_user.last_name
+      Webs.pusher
+      Webs.notify(:notify_chat_closing, channel, 'user-close-chat')
+    end
     session[:chat_id] = nil
     render js: "location.reload();"
   end

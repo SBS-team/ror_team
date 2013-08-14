@@ -1,5 +1,7 @@
 pusher:
   ssl: false
+  disable_statistics: true
+  disable_flash: true
   wss_host: '127.0.0.1'
   wss_port: 3004
   api_host: '127.0.0.1'

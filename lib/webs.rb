@@ -33,8 +33,13 @@ module Webs
 
   def pusher_config
     @application_config ||= (
-    { :host => Settings.pusher.wss_host, :port => Settings.pusher.wss_port.to_s, :key => Settings.pusher.app_key, :ssl => Settings.pusher.ssl }
-    )
+    { :host => Settings.pusher.wss_host,
+      :port => Settings.pusher.wss_port.to_s,
+      :key => Settings.pusher.app_key,
+      :ssl => Settings.pusher.ssl,
+      :disable_statistics => Settings.pusher.disable_statistics,
+      :disable_flash => Settings.pusher.disable_flash
+    })
   end
 
   def pusher

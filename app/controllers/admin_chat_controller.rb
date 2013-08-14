@@ -41,6 +41,9 @@ class AdminChatController < ApplicationController
 
   def close
     current_admin_user.update_attribute(:status, 'online')
+    channel = 'presence-' + current_admin_user.first_name+'-'+current_admin_user.last_name
+    Webs.pusher
+    Webs.notify(:notify_chat_closing, channel, 'admin-close-chat')
     redirect_to :back
   end
 end

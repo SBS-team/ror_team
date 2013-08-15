@@ -69,18 +69,17 @@
 
 Для установки Slanger Server необходимо последовательно выполнить:
 
-- Посетить репозиторий https://github.com/stevegraham/slanger/releases
-- скачать 0.3.6 версию
-- разархивировать архив
-- перейти в папку:
-
-        $ bash run.sh
-
-Если вы все сделали верно, после запуска run.sh в вашем терминале вы должны увидеть псевдографику Redis и Slanger, а также увидеть сообщения о том на каком порту работает Redis и на какой порт настроен Slanger.
+        $ gem install slanger
 
 Указанное ПО запускается с указанием следующих ключей:
 
-        redis-server --port REDIS_PORT &
-        slanger --app_key YOUR_KEY --secret YOUR_SECRET -a rorteam.loc:4567 -w rorteam.loc:3004
+        redis-server --port 4040 &
+        slanger --app_key YOUR_KEY --secret YOUR_SECRET -a 127.0.0.1:4567 -w 127.0.0.1:3004
+
+В папке с клонированным проектом
+
+        $ rails s
+
+Откройте ваш браузер и в адресной строке введите localhost:3000
 
 

@@ -23,7 +23,7 @@
                   = @live_chat.guest_name
               = ": #{msg.body}"
     .chat-msg
-      = form_tag(user_chat_path, method: 'post', remote: true) do
+      = form_tag(user_chat_path, method: 'post', remote: true, id: 'new_live_chat') do
         Your message*:
         = text_area_tag :message, nil, class: 'form-control', rows: 4
         %br

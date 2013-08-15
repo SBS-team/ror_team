@@ -8,7 +8,7 @@
               - unless @post.upload_file.blank? || @post.upload_file.img_name.blank?
                 = image_tag @post.upload_file.img_name.url(:thumb), class: @post.id
               - else
-                = image_tag 'missing.png', class: @post.id
+                = image_tag 'no_image.gif', class: @post.id
           .post-title
             = @post.title
           .post_date

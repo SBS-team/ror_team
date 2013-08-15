@@ -19,8 +19,15 @@ ActiveAdmin.register Resume do
         link_to resume.upload_file.filename.to_s.rpartition('/')[2], (root_url.to_s + resume.upload_file.filename.url[1..-1])
       end
     end
-
     default_actions
+  end
+
+  controller do
+
+    def scoped_collection
+      Resume.includes([:upload_file]).page(params[:page]).per(30)
+    end
+
   end
 
 end

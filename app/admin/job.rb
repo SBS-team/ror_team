@@ -55,6 +55,11 @@ ActiveAdmin.register Job do
   end
 
   controller do
+
+    def scoped_collection
+      Job.includes([:upload_file]).page(params[:page]).per(30)
+    end
+
     def create
        @job = Job.new(job_params)
        if @job.save
@@ -77,6 +82,7 @@ ActiveAdmin.register Job do
     def job_params
       params.require(:job).permit(:title, :description, upload_file_attributes: [:img_name, :remote_img_name_url, :id])
     end
+
   end
 
 end

@@ -39,6 +39,7 @@ ActiveAdmin.register TeamPhoto do
   end
 
   controller do
+
     def create
       @team_photo = TeamPhoto.new(team_photo_params)
       if @team_photo.save
@@ -68,6 +69,7 @@ ActiveAdmin.register TeamPhoto do
     def team_photo_params
       params.require(:team_photo).permit(:title, upload_files_attributes: [:img_name, :id, :remove_img_name])
     end
+
   end
 
 end

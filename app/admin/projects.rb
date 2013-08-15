@@ -1,6 +1,6 @@
 ActiveAdmin.register Project do
 
-  filter :name
+  filter :name, :as => :string
   filter :services
   filter :technologies
 
@@ -67,10 +67,14 @@ ActiveAdmin.register Project do
       end
     end
     f.actions
-
   end
 
   controller do
+
+    def scoped_collection
+      Project.includes([:technologies, :services]).page(params[:page]).per(30)
+    end
+
     def create
       begin
         @project = Project.new(project_params)
@@ -86,6 +90,7 @@ ActiveAdmin.register Project do
         render 'new'
       end
     end
+
     def update
       @project = Project.find(params[:id])
       if @project.update(project_update_params)
@@ -101,12 +106,16 @@ ActiveAdmin.register Project do
         render :edit, notice: t('.proj_error')
       end
     end
+
     private
     def project_params
       params.require(:project).permit(:name, :description, :since, :till, :team_size, :url, upload_files_attributes: [:img_name, :id])
     end
+
     def project_update_params
       params.require(:project).permit(:name, :description, :since, :till, :team_size, :url, upload_files_attributes: [:img_name, :id, :remove_img_name], :service_ids => [], :technology_ids => [])
     end
+
   end
+
 end

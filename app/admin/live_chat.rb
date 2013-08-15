@@ -52,4 +52,12 @@ ActiveAdmin.register LiveChat do
     end
   end
 
+  controller do
+
+    def scoped_collection
+      LiveChat.includes([:admin_user]).page(params[:page]).per(30)
+    end
+
+  end
+
 end

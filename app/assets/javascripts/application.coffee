@@ -10,8 +10,9 @@
 #= require jquery-cookie
 #= require jobs
 #= require live_chats
-#= require load_comments
+#= require comments
 #= require contact
+#= require search
 #= require lib/webs
 #= require chat/chat
 
@@ -23,8 +24,8 @@ $(document).ready ->
     outlineColour: "#008DF0"
     weight: true
     outlineThickness: 1
-    zoom: 0.8
-    maxSpeed: 0.03
-    depth: 0.70
+    zoom: 1
+    maxSpeed: 0.04
+    depth: 0.75
     textHeight: 14
   , "tagcloud")

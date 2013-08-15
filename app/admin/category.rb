@@ -12,6 +12,7 @@ ActiveAdmin.register Category do
   end
 
   controller do
+
     def create
       @category = Category.new(category_params)
       if @category.save
@@ -20,6 +21,7 @@ ActiveAdmin.register Category do
         render :new
       end
     end
+
     def update
       @category = Category.find(params[:id])
       if @category.update(category_params)
@@ -28,9 +30,12 @@ ActiveAdmin.register Category do
         render :edit, notice: 'Error has occurred while updating.'
       end
     end
+
     private
     def category_params
       params.require(:category).permit(:name)
     end
+
   end
+
 end

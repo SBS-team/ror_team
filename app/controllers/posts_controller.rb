@@ -11,8 +11,11 @@ class PostsController < ApplicationController
             else
               Post.includes([:tags, :categories, :upload_file]).search_posts_based_on_like(params[:search]).page(params[:page]).per(5)
             end
+
     unless params[:search].blank?
-      if !params[:search].nil? && @posts.empty?
+      if params[:search].length > 50
+        flash.now[:error] = "#{t('.search_max_error')}"
+      elsif !params[:search].nil? && @posts.empty?
         flash.now[:error] = "#{t('.your_search_for')} #{params[:search]} #{t('.returned_no_hits')}"
       else
         flash.now[:notice] = "#{t('.your_search_for')} #{params[:search]} results"
@@ -39,11 +42,11 @@ class PostsController < ApplicationController
   private
   def category
     @categories = Category.includes(:posts).group('categories.id')
-    @tags = ActsAsTaggableOn::Tag.order("random()")
+    @tags = Post.tag_counts_on(:tags).order('count DESC').limit(20)
   end
 
   def recent_and_popular_posts
-    @recent_posts = Post.order("created_at DESC").limit(5)
-    @popular_posts = Post.order("comments_count DESC").limit(5)
+    @recent_posts = Post.order('created_at DESC').limit(5)
+    @popular_posts = Post.order('comments_count DESC').limit(5)
   end
 end

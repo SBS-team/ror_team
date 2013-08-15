@@ -71,9 +71,9 @@ ActiveAdmin.register Post do
 
     def scoped_collection
       unless params[:tag_name].blank?
-        Post.joins(:tags).includes([:categories, :upload_file]).where("tags.name = :tag_name", :tag_name=>params[:tag_name]).page(params[:page]).per(30)
+        Post.joins(:tags).includes([:categories, :upload_file, :admin]).where("tags.name = :tag_name", :tag_name=>params[:tag_name]).page(params[:page]).per(30)
       else
-        Post.includes([:tags, :categories, :upload_file]).page(params[:page]).per(30)
+        Post.includes([:tags, :categories, :upload_file, :admin]).page(params[:page]).per(30)
       end
     end
 

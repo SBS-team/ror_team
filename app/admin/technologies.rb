@@ -47,6 +47,10 @@ ActiveAdmin.register Technology do
 
   controller do
 
+    def scoped_collection
+      Technology.includes([:upload_file, :technology_category]).page(params[:page]).per(30)
+    end
+
     def create
       tech_cat = TechnologyCategory.find(params[:technology][:technology_category_id])
        if @tech = tech_cat.technologies.create(safe_params)
@@ -69,6 +73,7 @@ ActiveAdmin.register Technology do
     def safe_params
       params.require(:technology).permit(:name, :technology_category_id, upload_file_attributes: [:img_name, :id])
     end
+
   end
 
 end

@@ -19,6 +19,7 @@ ActiveAdmin.register TechnologyCategory do
   end
 
   controller do
+
     def create
       @tech_cat = TechnologyCategory.new(safe_params)
       if  @tech_cat.save
@@ -41,5 +42,7 @@ ActiveAdmin.register TechnologyCategory do
     def safe_params
       params.require(:technology_category).permit(:name)
     end
+
   end
+
 end

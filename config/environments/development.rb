@@ -39,4 +39,5 @@ RorTeam::Application.configure do
       :host => Settings.mailer.url_host
   }
   config.action_mailer.perform_deliveries = true
+  config.assets.debug = false
 end

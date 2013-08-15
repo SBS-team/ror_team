@@ -17,7 +17,6 @@ ActiveAdmin.register Service do
     end
     column :created_at
     column :updated_at
-
     default_actions
   end
 
@@ -50,6 +49,11 @@ ActiveAdmin.register Service do
   end
 
   controller do
+
+    def scoped_collection
+      Service.includes([:upload_file]).page(params[:page]).per(30)
+    end
+
     def create
        @service = Service.new(service_params)
        if @service.save
@@ -58,6 +62,7 @@ ActiveAdmin.register Service do
         render :new
       end
     end
+
     def update
       @service = Service.find(params[:id])
       if @service.update(service_params)
@@ -71,5 +76,7 @@ ActiveAdmin.register Service do
     def service_params
       params.require(:service).permit(:name, upload_file_attributes: [:img_name, :remote_img_name_url, :id])
     end
+
   end
+
 end

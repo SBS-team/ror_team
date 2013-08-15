@@ -23,6 +23,11 @@ ActiveAdmin.register Comment do
   end
 
   controller do
+
+    def scoped_collection
+      Comment.includes([:post]).page(params[:page]).per(30)
+    end
+
     def create
       @comment = current_admin_user.comments.build(comment_params)
 

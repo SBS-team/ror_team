@@ -23,7 +23,7 @@ ActiveAdmin.register_page "Dashboard" do
       end
       column do
         panel "Recent Tecnologies" do
-          table_for Technology.order('created_at desc').limit(2) do
+          table_for Technology.includes(:technology_category).order('created_at desc').limit(2) do
             column("Name")    { |tech| tech.name }
             column("Category"){ |tech| tech.technology_category.name}
           end

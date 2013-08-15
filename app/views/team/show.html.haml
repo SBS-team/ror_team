@@ -12,7 +12,7 @@
       = @team.about
 - @fullteam.each do |team_member|
   - unless @team.id == team_member.id
-    .fullteam.col-lg-12
+    .fullteam
       = link_to team_path(team_member), :id => "pic#{team_member.id}" do
         - unless team_member.upload_file.blank? || team_member.upload_file.img_name.blank?
           = image_tag team_member.upload_file.img_name, :class => 'img-rounded', :width => 100

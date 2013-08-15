@@ -69,6 +69,14 @@ ActiveAdmin.register Post do
   controller do
     defaults :finder => :find_by_slug
 
+    def scoped_collection
+      unless params[:tag_name].blank?
+        Post.joins(:tags).includes([:categories, :upload_file]).where("tags.name = :tag_name", :tag_name=>params[:tag_name]).page(params[:page]).per(30)
+      else
+        Post.includes([:tags, :categories, :upload_file]).page(params[:page]).per(30)
+      end
+    end
+
     def create
       @post = current_admin_user.posts.build(post_params)
       if @post.save

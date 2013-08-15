@@ -10,7 +10,9 @@
 
 - Зайти на репизиторий rorteam https://github.com/is-valid/ror_team
 - Клонировать проект git@github.com:is-valid/ror_team.git:
-  git clone
+
+        git clone
+
 - Установить гемы:
 
         bundle update

@@ -74,6 +74,11 @@ ActiveAdmin.register AdminUser do
   end
 
   controller do
+
+    def scoped_collection
+      AdminUser.includes([:upload_file]).page(params[:page]).per(30)
+    end
+
     def create
       @admin_user = AdminUser.create(admin_user_params)
       if @admin_user.save
@@ -96,5 +101,7 @@ ActiveAdmin.register AdminUser do
     def admin_user_params
       params.require(:admin_user).permit(:first_name, :last_name, :email,:role,:about,:password, :password_confirmation,:last_sign_in_at, upload_file_attributes: [:img_name, :id])
     end
+
   end
-  end
+
+end

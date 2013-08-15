@@ -1,3 +1,10 @@
+# Style for button
+buttonActive = (elem) ->
+  elem.attr 'class', 'btn btn-success'
+buttonDefault = (elem) ->
+  elem.attr 'class', 'btn btn-warning'
+
+
 $(document).ajaxComplete (event, response, settings) ->
   $("#message").val('')
   $("#chat-history").scrollTop $("#chat").height()-$(".msg:last").height()
@@ -10,6 +17,7 @@ admin_main_channel = null
 $(document).ajaxSuccess (event, response, settings) ->
   if newLiveChat
     chat = new Chat(admin_main_channel)
+    buttonActive $("#chat_show")
     startLiveChat()
     newLiveChat = false
 
@@ -92,6 +100,7 @@ $(document).ready ->
       chageButton = $("#chat_show")[0]
       chageButton.id = 'chat_start'
       $("#chat_show").replaceWith chageButton
+      buttonDefault $("#chat_start")
 
   $(document).on "click", "#contact_chat_close", ->
     $.post "/contact_chat_close"

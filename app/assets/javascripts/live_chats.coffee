@@ -1,6 +1,7 @@
 $(document).ajaxComplete (event, response, settings) ->
   $("#message").val('')
   $("#chat-history").scrollTop $("#chat").height()-$(".msg:last").height()
+  $('.chat-send-msg-btn').enable()
 
 newLiveChat = false
 

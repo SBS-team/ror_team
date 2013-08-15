@@ -6,6 +6,9 @@
 #= require lib/webs
 #= require chat/chat
 
+$(document).ajaxComplete (event, response, settings) ->
+  $('.chat-send-msg-btn').enable()
+
 $(document).ajaxSuccess (event, response, settings) ->
   $("#message").val('')
   $("#chat-history").scrollTop $("#chat").height()-$(".msg:last").height()
@@ -14,3 +17,4 @@ $(document).ready ->
 
   admin_main_channel = 'presence-' + RorTeam.currentAdminChannel
   chat = new Chat(admin_main_channel)
+

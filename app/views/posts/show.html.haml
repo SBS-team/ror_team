@@ -14,10 +14,7 @@
           .post_date
             = @post.created_at.strftime("%d %B %H:%M:%S")
           %span.comments_count
-            - if @post.comments_count==0
-              = t('.post_hasnt_comments')
-            - else
-              = pluralize(@post.comments_count, t('.comment'))
+            = pluralize(@post.comments_count, t('.comment'))
         .post-content
           != @post.description
         - unless @post.categories.empty?

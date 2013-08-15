@@ -85,4 +85,7 @@ $(document).ready ->
       $("#comment_description").val ""
       count = $(".comments_count").text()
       count = parseInt(count) + 1
-      $(".comments_count").text count + " comments"
+      if count == 1
+        $(".comments_count").text count + " comment"
+      else
+        $(".comments_count").text count + " comments"

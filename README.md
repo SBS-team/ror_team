@@ -9,7 +9,7 @@
 ### Инструкция по запуску сайта rorteam
 
 - Зайти на репизиторий rorteam https://github.com/is-valid/ror_team
-- Клонировать проект git@github.com:is-valid/ror_team.git:
+- Клонировать проект https://github.com/is-valid/ror_team.git:
 
         git clone
 

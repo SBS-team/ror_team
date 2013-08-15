@@ -29,8 +29,15 @@ class LiveChatsController < ApplicationController
             else
               redirect_to :back, :notice => 'Invalid Message'
             end
-            chat = (render_to_string :partial => 'shared/live_chat').delete("\n").gsub(/["]/, "'").gsub(/ {2,}/, ' ')
-            render js: "$('#live_chat').replaceWith(\"#{chat}\");"
+
+            unless params[:contact].blank?
+              chat = (render_to_string :partial => 'contact/chat').delete("\n").gsub(/["]/, "'").gsub(/ {2,}/, ' ')
+              render js: "$('#contact_live_chat').replaceWith(\"#{chat}\");"
+            else
+              chat = (render_to_string :partial => 'shared/live_chat').delete("\n").gsub(/["]/, "'").gsub(/ {2,}/, ' ')
+              render js: "$('#live_chat').replaceWith(\"#{chat}\");"
+            end
+
           else
             redirect_to :back, :alert =>  'Chat start error! Invalid name !'
           end
@@ -42,34 +49,6 @@ class LiveChatsController < ApplicationController
       end
     else
       redirect_to :back, :alert => 'Chat already start'
-    end
-  end
-
-  def create_chat_contact
-    if session[:chat_id].blank?
-      unless params[:message].blank?
-        message = ChatMessage.new(:body => params[:message], :is_admin => false, :live_chat_id => 1)
-        if message.valid?
-          @live_chat = LiveChat.new(live_chat_params)
-          if @live_chat.save
-            session[:chat_id] = @live_chat.id
-            message.live_chat = @live_chat
-            if message.save
-              gon.current_admin_channel = @live_chat.admin_user.first_name+'-'+@live_chat.admin_user.last_name
-              channel = 'presence-' + @live_chat.admin_user.first_name+'-'+@live_chat.admin_user.last_name
-              Webs.pusher
-              Webs.notify(:send_chat_message, channel, 'msg-event', { :user_id => session[:user_id],
-                                                                      message: message.body,
-                                                                      name: @live_chat.guest_name,
-                                                                      is_admin: message.is_admin,
-                                                                      date: message.created_at.to_i})
-              @live_chat.admin_user.update_attribute(:status, 'chat')
-            end
-            chat = (render_to_string :partial => 'contact/chat').delete("\n").gsub(/["]/, "'").gsub(/ {2,}/, ' ')
-            render js: "$('#contact_live_chat').replaceWith(\"#{chat}\");"
-          end
-        end
-      end
     end
   end
 
@@ -103,19 +82,11 @@ class LiveChatsController < ApplicationController
       Webs.notify(:notify_chat_closing, channel, 'user-close-chat')
     end
     session[:chat_id] = nil
-    render text: 'ok!'
-  end
-
-  def contact_chat_close
-    admin_user = AdminUser.joins(:live_chats).where("live_chats.id = :live_chat_id", live_chat_id: session[:chat_id].to_i).readonly(false).take
-    if admin_user.status == 'chat'
-      admin_user.update_attribute(:status, 'online')
-      channel = 'presence-' + admin_user.first_name+'-'+admin_user.last_name
-      Webs.pusher
-      Webs.notify(:notify_chat_closing, channel, 'user-close-chat')
+    unless params[:contact].blank?
+      render js: "location.reload();"
+    else
+      render text: 'ok!'
     end
-    session[:chat_id] = nil
-    render js: "location.reload();"
   end
 
   protected

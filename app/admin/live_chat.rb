@@ -36,7 +36,7 @@ ActiveAdmin.register LiveChat do
       panel "Chat massage (#{live_chat.chat_messages.count})" do
         table_for live_chat.chat_messages do |t|
           t.column 'Sender' do |msg|
-            msg.is_admin ? "Admin: #{live_chat.admin_user.email}" : "User: #{live_chat.guest_name}"
+            msg.is_admin ? "Manager: #{live_chat.admin_user.email}" : "User: #{live_chat.guest_name}"
           end
           t.column 'Massages' do |msg|
             msg.body

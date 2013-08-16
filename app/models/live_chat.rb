@@ -4,7 +4,6 @@
 #
 #  id          :integer          not null, primary key
 #  guest_name  :string(255)
-#  guest_email :string(255)
 #  admin_id    :integer
 #  created_at  :datetime
 #  updated_at  :datetime

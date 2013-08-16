@@ -40,9 +40,7 @@ describe ViewTest do
 
   it 'must show tag related posts from tag field' do
     visit posts_path
-    within('.block.tags') do
-      click_link 'tag2'
-    end
+    click_link 'tag2'
     assert page.has_content?('the real power')
   end
 

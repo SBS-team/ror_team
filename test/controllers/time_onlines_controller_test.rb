@@ -12,8 +12,6 @@ describe TimeOnlinesController do
     @admin.time_onlines.must_be_empty
     post :set_time
     @admin.time_onlines.first.time.must_equal 10
-    post :set_time
-    @admin.time_onlines.first.time.must_equal 20
     @user.time_onlines.must_be_empty
     @admin.time_onlines.count.must_equal 1
   end

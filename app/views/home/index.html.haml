@@ -12,7 +12,7 @@
             = t '.our_skills'
           .skills.col-lg-12
             - @technologies.each do |technology|
-              .skill.col-lg-3
+              .skill
                 - unless technology.upload_file.blank? || technology.upload_file.img_name.blank?
                   = image_tag technology.upload_file.img_name.url(:thumb), title: technology.name, alt: technology.name, width: 50
                 - else

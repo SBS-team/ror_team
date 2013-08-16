@@ -13,8 +13,8 @@ describe ProjectsController do
     it 'render #index' do
       get :index
       assert_template :index
-      assert_template layout: "layouts/application"
-      assert_template partial: "shared/_post_jobs"
+      assert_template layout: 'layouts/application'
+      assert_template partial: 'shared/_post_jobs'
       assert_response :success
       refute_nil assigns(:projects)
       assert_includes(assigns(:projects), @project)
@@ -24,17 +24,16 @@ describe ProjectsController do
 
   describe 'GET #show' do
 
-    it 'render #index' do
+    it 'render #show' do
       get :show, id: @project.id
-      assert_template :index
-      assert_template layout: "layouts/application"
-      assert_template partial: "shared/_post_jobs"
+      assert_template :show
+      assert_template layout: 'layouts/application'
+      assert_template partial: 'shared/_post_jobs'
     end
 
-    it "exists @projects" do
+    it 'exists @projects' do
       get :show, id: @project
-      refute_nil assigns(:projects)
-      assert_includes(assigns(:projects), @project)
+      assigns(:project).must_equal @project
     end
 
   end

@@ -112,7 +112,7 @@ $(document).ready ->
       buttonDefault $("#chat_start")
 
   $(document).on "click", "#contact_chat_close", ->
-    $.post "/contact_chat_close"
+    $.post "/chat_close", { contact: "1"}
 
   # Hide LiveChat div
   $(document).on "click", "#chat_hide", ->

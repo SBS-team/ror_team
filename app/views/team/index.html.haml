@@ -13,7 +13,7 @@
               = link_to "#{member.first_name} #{member.last_name}", team_path(member)
             %p
               %span
-                = link_to "#{member.role}", team_index_path(:role => member.role), :class => 'btn btn-primary'
+                = link_to "#{member.role}", team_index_path(:role => member.role), :class => 'btn btn-primary btn-small'
           .about
             %p
               = truncate(member.about.capitalize, :length => 50)

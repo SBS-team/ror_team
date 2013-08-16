@@ -3,7 +3,7 @@
   .col-lg-12
     %h2
       = project.name
-  .col-lg-12
+  .col-lg-12.project_item
     .col-lg-6
       - unless project.upload_files.blank? || project.upload_files.first.img_name.blank?
         .carousel.slide{:id => "myCarousel#{project.id}"}
@@ -29,10 +29,10 @@
     .col-lg-6
       .project-name-url.row
         .project-name.col-lg-6
-          = link_to project.name, project_path(project), :class => 'btn btn-primary'
+          = link_to project.name, project_path(project), :class => 'btn btn-primary btn-small'
         - unless project.url.blank?
           .project-url.col-lg-6
-            = link_to project.url, "#{project.url}", :class => 'btn btn-success', :target => '_blank'
+            = link_to project.url, "#{project.url}", :class => 'btn btn-success btn-small', :target => '_blank'
       .project-terms.row
         .col-lg-6
           %p

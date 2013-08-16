@@ -38,10 +38,10 @@
                           = @live_chat.guest_name
                       = ": #{msg.body}"
           .chat-msg
-            = form_tag(admin_chat_send_msg_path(live_chat_id: @live_chat.id), method: 'post', remote: true) do
+            = form_tag(admin_chat_send_msg_path(live_chat_id: @live_chat.id), method: 'post', remote: true, id: 'new_live_chat') do
               Your message*:
               = text_area_tag :message, nil, class: 'form-control', rows: 3
               %br
-              = submit_tag 'Send Message', :class => 'btn btn-primary pull-right'
+              = submit_tag 'Send Message', :class => 'btn btn-primary pull-right chat-send-msg-btn'
           %div
             = link_to 'close chat', admin_chat_close_path, method: :post

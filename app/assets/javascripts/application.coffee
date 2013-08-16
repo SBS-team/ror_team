@@ -29,3 +29,7 @@ $(document).ready ->
     depth: 0.75
     textHeight: 14
   , "tagcloud")
+
+  $('.chat-send-msg-btn').click ->
+    @disable()
+

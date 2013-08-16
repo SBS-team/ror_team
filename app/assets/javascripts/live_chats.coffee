@@ -8,6 +8,7 @@ buttonDefault = (elem) ->
 $(document).ajaxComplete (event, response, settings) ->
   $("#message").val('')
   $("#chat-history").scrollTop $("#chat").height()-$(".msg:last").height()
+  $('.chat-send-msg-btn').enable()
 
 newLiveChat = false
 
@@ -73,6 +74,14 @@ startLiveChat = ->
 
 $(document).ready ->
 
+  $('.chat-send-msg-btn').click ->
+    $("#new_live_chat").validate
+      rules:
+        "message":
+          required: true,
+          maxlength: 2048,
+          minlength: 2
+
   if ($.cookie 'nickname')
     $("#live_chat_guest_name").val($.cookie 'nickname')
 
@@ -115,6 +124,7 @@ $(document).ready ->
 
 
   $(document).on "click", "#new_chat_submit", ->
+
     unless ($.cookie 'nickname')
       $.cookie 'nickname', $("#live_chat_guest_name").val(),{ expires: 30 , path: '/'  }
     else

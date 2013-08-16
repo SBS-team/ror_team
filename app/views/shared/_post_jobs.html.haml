@@ -8,7 +8,7 @@
           - unless last_post.upload_file.blank? || last_post.upload_file.img_name.blank?
             = image_tag last_post.upload_file.img_name.url(:thumb), width: 50, alt: 'image'
           - else
-            = image_tag 'missing.png', width: 50
+            = image_tag 'no_image.gif', width: 50
           .title
             = link_to last_post.title, special_post_path(last_post.created_at.strftime('%d-%m-%Y'), last_post)
           .cont
@@ -24,7 +24,7 @@
             - unless last_job.upload_file.blank? || last_job.upload_file.img_name.blank?
               = image_tag last_job.upload_file.img_name.url(:thumb), width: 50, alt: 'image'
             - else
-              = image_tag 'missing.png', width: 50
+              = image_tag 'no_image.gif', width: 50
             .title
               = link_to last_job.title, last_job
             .resume.text-right

@@ -11,7 +11,6 @@ describe LiveChat do
 
   context 'LiveChat db columns' do
     it { must have_db_column(:guest_name).of_type(:string) }
-    it { must have_db_column(:guest_email).of_type(:string) }
     it { must have_db_column(:admin_id).of_type(:integer) }
     it { must have_db_column(:updated_at).of_type(:datetime) }
     it { must have_db_column(:created_at).of_type(:datetime) }

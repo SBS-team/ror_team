@@ -6,8 +6,8 @@ class Ability
     case current_user.role
       when 'admin'
         can :manage, :all
-        cannot :create, [Resume]
-        cannot :update, [Resume, LiveChat]
+        cannot :create, [Resume,ActsAsTaggableOn::Tag]
+        cannot :update, [Resume, LiveChat, ActsAsTaggableOn::Tag]
 
       when 'manager'
         can :read, :all

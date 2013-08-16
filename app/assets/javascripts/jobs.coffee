@@ -1,9 +1,10 @@
 file = "<input id=\"resume_upload_file_attributes_filename\" type=\"file\" name=\"resume[upload_file_attributes][filename]\" >"
 
 inputFileReset = ->
-  filename = $("#resume_upload_file_attributes_filename").val().split("/").pop().split("\\").pop().split(".").pop().toLowerCase()
+  patt1 = /\.[0-9a-z]+$/i
+  filename = $("#resume_upload_file_attributes_filename").val().match(patt1)
   flag = false
-  if filename.toString() == "doc" || filename.toString() == "pdf"
+  if filename.toString().toLowerCase() == ".doc" || filename.toString().toLowerCase() == ".pdf"
     flag = true
     filename = ""
   else

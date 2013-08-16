@@ -71,7 +71,7 @@ startLiveChat = ->
         minlength: 2
       "message":
         required: true,
-        maxlength: 2048,
+        maxlength: 255,
         minlength: 2
 
   $("#live_chat").draggable
@@ -90,7 +90,7 @@ $(document).ready ->
       rules:
         "message":
           required: true,
-          maxlength: 2048,
+          maxlength: 255,
           minlength: 2
 
   if ($.cookie 'nickname')

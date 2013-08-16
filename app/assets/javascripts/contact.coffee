@@ -23,5 +23,5 @@ $(document).ready ->
           minlength: 2
         "message":
           required: true,
-          maxlength: 2048,
+          maxlength: 255,
           minlength: 2

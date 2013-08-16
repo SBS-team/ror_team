@@ -1,3 +1,4 @@
+- image_amount = @project.upload_files.count
 .col-lg-12
   %h2
     = @project.name
@@ -5,9 +6,10 @@
   .col-lg-6
     - unless @project.upload_files.blank? || @project.upload_files.first.img_name.blank?
       .carousel.slide{:id => "myCarousel#{@project.id}"}
-        %ol.carousel-indicators
-          - (@project.upload_files.count).times do |i|
-            %li{'data-slide-to' => "#{i}", 'data-target' => "#myCarousel#{@project.id}", :class => "#{'active' if i == 0}" }
+        - if image_amount > 1
+          %ol.carousel-indicators
+            - image_amount.times do |i|
+              %li{'data-slide-to' => "#{i}", 'data-target' => "#myCarousel#{@project.id}", :class => "#{'active' if i == 0}" }
         .carousel-inner
           - @project.upload_files.each do |file|
             - if file.img_name == @project.upload_files.first.img_name

@@ -21,7 +21,7 @@ $(document).ready ->
       rules:
         "message":
           required: true,
-          maxlength: 2048,
+          maxlength: 255,
           minlength: 2
 
   admin_main_channel = 'presence-' + RorTeam.currentAdminChannel

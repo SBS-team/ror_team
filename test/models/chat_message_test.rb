@@ -9,7 +9,7 @@ describe ChatMessage do
   end
 
   context 'ChatMessage db columns' do
-    it { must have_db_column(:body).of_type(:string) }
+    it { must have_db_column(:body).of_type(:text) }
     it { must have_db_column(:live_chat_id).of_type(:integer) }
     it { must have_db_column(:is_admin).of_type(:boolean) }
     it { must have_db_column(:created_at).of_type(:datetime) }

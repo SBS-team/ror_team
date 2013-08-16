@@ -57,7 +57,7 @@ group :test do
   gem 'database_cleaner'
   gem 'faker'
   gem 'minitest-rails-capybara'
-  gem 'selenium-webdriver', '~> 2.33.0'
+  gem "selenium-webdriver", '~> 2.34.0'
   gem 'guard-rspec'
   gem 'launchy'
 end

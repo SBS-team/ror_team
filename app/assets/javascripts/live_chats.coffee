@@ -21,6 +21,17 @@ $(document).ajaxSuccess (event, response, settings) ->
     buttonActive $("#chat_show")
     startLiveChat()
     newLiveChat = false
+  else
+    $(".send-email").click ->
+      $("#new_message").validate
+        rules:
+          "message[name]":
+            required: true,
+            maxlength: 30,
+            minlength: 2
+          "message[email]":
+            required: true,
+            email: true
 
 getLiveChatPosition = ->
   if ($.cookie 'position_left') == '0' || ($.cookie 'position_top') == '0'
@@ -112,7 +123,7 @@ $(document).ready ->
       buttonDefault $("#chat_start")
 
   $(document).on "click", "#contact_chat_close", ->
-    $.post "/contact_chat_close"
+    $.post "/chat_close", { contact: "1"}
 
   # Hide LiveChat div
   $(document).on "click", "#chat_hide", ->

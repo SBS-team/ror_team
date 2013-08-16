@@ -23,8 +23,6 @@ describe ViewTest do
       assert page.has_content?(I18n.t 'layouts.application.contact')
       assert page.has_content?(I18n.t 'layouts.application.team')
       assert page.has_content?(I18n.t 'layouts.application.work')
-      assert page.has_content?(I18n.t 'layouts.application.follow_facebook')
-      assert page.has_content?(I18n.t 'layouts.application.follow_twitter')
     end
 
     it 'if click on job then redirect to jobs(carrier)' do

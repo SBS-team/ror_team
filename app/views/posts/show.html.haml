@@ -15,7 +15,7 @@
             = @post.created_at.strftime("%d %B %H:%M:%S")
           %span.comments_count
             = pluralize(@post.comments_count, t('.comment'))
-        .post-content.row
+        .post-content
           != @post.description
         - unless @post.categories.empty?
           .categories

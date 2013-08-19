@@ -8,7 +8,6 @@ buttonDefault = (elem) ->
 $(document).ajaxComplete (event, response, settings) ->
   $("#message").val('')
   $("#chat-history").scrollTop $("#chat").height()-$(".msg:last").height()
-  $('.chat-send-msg-btn').enable()
 
 newLiveChat = false
 
@@ -19,6 +18,7 @@ $(document).ajaxSuccess (event, response, settings) ->
   if newLiveChat
     chat = new Chat(admin_main_channel)
     buttonActive $("#chat_show")
+    buttonActive $("#chat_contact")
     startLiveChat()
     newLiveChat = false
   else

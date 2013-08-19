@@ -72,8 +72,8 @@ Project.create(:name => 'lol team', :team_size => 4, :upload_files => [UploadFil
 Project.create(:name => 'ror team', :team_size => 3, :upload_files => [UploadFile.new(:img_name => File.open(Rails.root.join('db/data_seed/project3.gif')))], :since => 1.month.ago, :till => Time.now, :description => "The engineering tracks of these programs teach students how to construct, analyze and maintain software through lectures and laboratory sessions. Programs include topics in computer programming, operating systems and networks. In many programs, the capstone requirement is a senior design project that allows students to apply the principles they've learned to an original concept. Students may also take part in cooperative internships to gain experience as part of an engineering program.")
 
 Service.create(:name => 'Mobile version of web site development', :upload_file => UploadFile.new(:img_name => File.open(Rails.root.join('db/data_seed/mobile.jpg'))))
-Service.create(:name => 'Web site development. It includes', :upload_file => UploadFile.new(:img_name => File.open(Rails.root.join('db/data_seed/site.jpg'))))
-Service.create(:name => 'Web and mobile version  development.', :upload_file => UploadFile.new(:img_name => File.open(Rails.root.join('db/data_seed/web_mobile.png'))))
+Service.create(:name => 'Web site development', :upload_file => UploadFile.new(:img_name => File.open(Rails.root.join('db/data_seed/site.jpg'))))
+Service.create(:name => 'Web and mobile version  development', :upload_file => UploadFile.new(:img_name => File.open(Rails.root.join('db/data_seed/web_mobile.png'))))
 Service.create(:name => 'Help with the existing project', :upload_file => UploadFile.new(:img_name => File.open(Rails.root.join('db/data_seed/help.jpg'))))
 
 AdminUser.create(:email => 'leha@example.com', :password => '12345678', :password_confirmation => '12345678', :role =>'team', :first_name => 'Leha', :last_name => 'Merk', :about => 'I am super puper', :upload_file => UploadFile.new(:img_name => File.open(Rails.root.join('db/data_seed/team1.jpg'))))

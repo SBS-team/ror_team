@@ -2,7 +2,7 @@
 buttonActive = (elem) ->
   elem.attr 'class', 'btn btn-success'
 buttonDefault = (elem) ->
-  elem.attr 'class', 'btn btn-warning'
+  elem.attr 'class', 'btn btn-danger'
 
 
 $(document).ajaxComplete (event, response, settings) ->

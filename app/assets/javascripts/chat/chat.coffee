@@ -28,8 +28,13 @@
       ).bind(@)
 
       @adminCloseChatCallback = (->
+        new_height = $("#chat-history").height() + $('.chat-msg').height()
+        $('.chat-msg').remove()
+        $("#chat-history").height(new_height)
         $("#chat").append "<div><span class='label label-danger'>Admin close this chat</span></div>"
         $("#chat-history").scrollTop $("#chat").height()-$(".msg:last").height()
+
+        $.post "/chat_close"
       ).bind(@)
 
       @testChannel.bind "msg-event", @testChannelCallback

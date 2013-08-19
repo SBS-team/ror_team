@@ -19,8 +19,8 @@
               = truncate(member.about.capitalize, :length => 50)
       = paginate @team
     .col-lg-6
-      - team_photo_count = @team_photo.upload_files.count
       - unless @team_photo.blank?
+      - team_photo_count = @team_photo.upload_files.count
         %h3
           = @team_photo.title
         - unless @team_photo.upload_files.blank? || @team_photo.upload_files.first.img_name.blank?

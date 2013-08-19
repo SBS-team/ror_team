@@ -12,6 +12,9 @@ gem 'kaminari'
 # Use for upload files
 gem 'carrierwave'
 gem 'rmagick', '~>2.13.2', :require => 'RMagick'
+
+gem 'ckeditor', github: 'keitoaino/ckeditor'
+gem 'mini_magick'
 #sudo apt-get install libmagickwand-dev                                   # Setup this libs
 #sudo apt-get install graphicsmagick-libmagick-dev-compat                 # For install Rmagick
 #sudo apt-get install imagemagick

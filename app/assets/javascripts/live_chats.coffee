@@ -19,6 +19,7 @@ $(document).ajaxSuccess (event, response, settings) ->
   if newLiveChat
     chat = new Chat(admin_main_channel)
     buttonActive $("#chat_show")
+    buttonActive $("#chat_contact")
     startLiveChat()
     newLiveChat = false
   else

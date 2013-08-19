@@ -85,13 +85,12 @@ startLiveChat = ->
 
 $(document).ready ->
 
-  $('.chat-send-msg-btn').click ->
-    $("#new_live_chat").validate
-      rules:
-        "message":
-          required: true,
-          maxlength: 255,
-          minlength: 2
+  $("#new_live_chat").validate
+    rules:
+      "message":
+        required: true,
+        maxlength: 255,
+        minlength: 2
 
   if ($.cookie 'nickname')
     $("#live_chat_guest_name").val($.cookie 'nickname')

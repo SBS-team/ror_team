@@ -54,7 +54,7 @@ ActiveAdmin.register Post do
     f.semantic_errors :base
     f.inputs 'Post Details', :multipart => true do
       f.input :title
-      f.input :description, as: :html_editor
+      f.input :description, :as => :text, input_html: {class: 'ckeditor'}
       f.input :tag_list, :hint => 'Comma separated'
       f.input :categories, as: :check_boxes
       f.inputs :for => [:upload_file, f.object.upload_file || UploadFile.new] do |file|

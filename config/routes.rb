@@ -1,5 +1,6 @@
 RorTeam::Application.routes.draw do
 
+  mount Ckeditor::Engine => '/ckeditor'
   post '/comment_load' => 'posts#comments_show_all'
 
   devise_for :admin_users, ActiveAdmin::Devise.config

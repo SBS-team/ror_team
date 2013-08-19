@@ -44,6 +44,6 @@ class AdminChatController < ApplicationController
     channel = 'presence-' + current_admin_user.first_name+'-'+current_admin_user.last_name
     Webs.pusher
     Webs.notify(:notify_chat_closing, channel, 'admin-close-chat')
-    render :text => 'close'
+    redirect_to admin_start_chat_path
   end
 end

@@ -42,10 +42,14 @@ body .cke_dialog .ImagePreviewBox {
   width: auto;
 }
 
-body .cke{
+body #cke_post_description {
   width: 77%;
   float: left;
   margin-bottom: 20px;
+}
+
+body .cke.cke_menu_panel {
+  width: auto;
 }
 
 

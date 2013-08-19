@@ -1,14 +1,16 @@
 - @projects.each do |project|
+  - image_amount = project.upload_files.count
   .col-lg-12
     %h2
       = project.name
-  .col-lg-12
+  .col-lg-12.project_item
     .col-lg-6
       - unless project.upload_files.blank? || project.upload_files.first.img_name.blank?
         .carousel.slide{:id => "myCarousel#{project.id}"}
-          %ol.carousel-indicators
-            - (project.upload_files.count).times do |i|
-              %li{'data-slide-to' => "#{i}", 'data-target' => "#myCarousel#{project.id}", :class => "#{'active' if i == 0}" }
+          - if image_amount > 1
+            %ol.carousel-indicators
+              - image_amount.times do |i|
+                %li{'data-slide-to' => "#{i}", 'data-target' => "#myCarousel#{project.id}", :class => "#{'active' if i == 0}" }
           .carousel-inner
             - project.upload_files.each do |file|
               - if file.img_name == project.upload_files.first.img_name
@@ -27,10 +29,10 @@
     .col-lg-6
       .project-name-url.row
         .project-name.col-lg-6
-          = link_to project.name, project_path(project), :class => 'btn btn-primary'
+          = link_to project.name, project_path(project), :class => 'btn btn-primary btn-small'
         - unless project.url.blank?
           .project-url.col-lg-6
-            = link_to project.url, "#{project.url}", :class => 'btn btn-success', :target => '_blank'
+            = link_to project.url, "#{project.url}", :class => 'btn btn-success btn-small', :target => '_blank'
       .project-terms.row
         .col-lg-6
           %p

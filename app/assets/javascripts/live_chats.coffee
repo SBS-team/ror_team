@@ -15,23 +15,15 @@ chat = null
 admin_main_channel = null
 
 $(document).ajaxSuccess (event, response, settings) ->
+  $("#message").val('')
+  $("#chat-history").scrollTop $("#chat").height()-$(".msg:last").height()
+
   if newLiveChat
     chat = new Chat(admin_main_channel)
     buttonActive $("#chat_show")
     buttonActive $("#chat_contact")
     startLiveChat()
     newLiveChat = false
-  else
-    $(".send-email").click ->
-      $("#new_message").validate
-        rules:
-          "message[name]":
-            required: true,
-            maxlength: 30,
-            minlength: 2
-          "message[email]":
-            required: true,
-            email: true
 
 getLiveChatPosition = ->
   if ($.cookie 'position_left') == '0' || ($.cookie 'position_top') == '0'
@@ -57,26 +49,6 @@ startLiveChat = ->
   $('#live_chat').show()
   getLiveChatPosition()
   $.cookie 'hide_win', 1, { path: '/' }
-
-  # Get nickname from cookie
-  if ($.cookie 'nickname')
-    $("#live_chat_guest_name").val($.cookie 'nickname')
-
-  # Validation for creating LiveChat
-  $("#new_live_chat").validate
-    rules:
-      "live_chat[guest_name]":
-        required: true,
-        maxlength: 150,
-        minlength: 2
-      "message":
-        required: true,
-        maxlength: 255,
-        minlength: 2
-
-  $("#live_chat").draggable
-    handle: "#chat_handle",
-    containment: "parent"
 
   unless $("#live_chat_admin_id")
     admin_main_channel = 'presence-' + $("#live_chat_admin_id :selected").text().replace(' ', '-')
@@ -115,14 +87,13 @@ $(document).ready ->
     $.post "/chat_close"
     $('#live_chat').hide "blind", 600, ->
       resetLiveChatPosition()
-      $('#live_chat').remove()
       chageButton = $("#chat_show")[0]
       chageButton.id = 'chat_start'
       $("#chat_show").replaceWith chageButton
       buttonDefault $("#chat_start")
 
   $(document).on "click", "#contact_chat_close", ->
-    $.post "/chat_close", { contact: "1"}
+    $.post "/chat_close",
 
   # Hide LiveChat div
   $(document).on "click", "#chat_hide", ->

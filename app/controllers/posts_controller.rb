@@ -39,6 +39,11 @@ class PostsController < ApplicationController
     render json: {:comments => comments }
   end
 
+  def comments_change_question
+    @comment.change_humanizer_question(params[:id])
+    render json: {:comment => comment }
+  end
+
   private
   def category
     @categories = Category.includes(:posts).group('categories.id')

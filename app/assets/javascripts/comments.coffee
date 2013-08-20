@@ -102,3 +102,14 @@ $(document).ready ->
         $(".comments_count").text count + " comment"
       else
         $(".comments_count").text count + " comments"
+
+    $('#comment_humanizer_answer').val("")
+    id = $('#comment_humanizer_question_id').val()
+    alert id
+    $.ajax
+      url: "/change_question"
+      data:
+        id: id
+
+      type: "post"
+      dataType: "json"

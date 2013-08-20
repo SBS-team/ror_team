@@ -2,6 +2,7 @@ RorTeam::Application.routes.draw do
 
   mount Ckeditor::Engine => '/ckeditor'
   post '/comment_load' => 'posts#comments_show_all'
+  post '/change_question' => 'posts#comments_change_question'
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
@@ -31,6 +32,7 @@ RorTeam::Application.routes.draw do
   get '/admin_chat/chat', :as => :admin_start_chat
   post '/admin_chat/send_msg'
   post '/admin_chat/close'
+
 
   root :to => 'home#index'
 end

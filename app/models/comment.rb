@@ -37,18 +37,12 @@ class Comment < ActiveRecord::Base
 
   def validates_nickname
     if self.nickname.downcase[/\Aadmin/]
-      if self.admin
-        return true
-      else
-        unless self.nickname.downcase[6..-1].blank?
-          return true
-        else
+      unless self.admin
+        if self.nickname.downcase[6..-1].blank?
           errors.add(:nickname, "You can't use nickname: admin.")
-          return false
         end
       end
     end
-      return true
   end
 
 end

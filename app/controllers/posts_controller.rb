@@ -40,8 +40,9 @@ class PostsController < ApplicationController
   end
 
   def comments_change_question
+    @comment = Comment.new
     @comment.change_humanizer_question(params[:id])
-    render json: {:comment => comment }
+    render json: {:comment => @comment }
   end
 
   private

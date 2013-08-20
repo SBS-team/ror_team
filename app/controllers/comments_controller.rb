@@ -1,8 +1,8 @@
 class CommentsController < ApplicationController
 
-  def new
-    @comment = new
-  end
+  #def new
+  #  @comment = new
+  #end
 
   def create
     @post = Post.find_by_slug(params[:post_id])

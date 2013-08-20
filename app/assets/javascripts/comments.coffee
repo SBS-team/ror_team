@@ -54,6 +54,12 @@ $(document).ready ->
           $("#close_comments").hide()
 
   $("#go_comment").click ->
+
+    $.ajax
+      url: "/change_question"
+      type: "post"
+      dataType: "json"
+
     $("#new_comment").validate rules:
       "comment[nickname]":
         required: true
@@ -69,9 +75,15 @@ $(document).ready ->
       "comment[humanizer_answer]":
         required: true
 
+    $.ajax
+      url: "/change_question"
+      type: "post"
+      dataType: "json"
+
   #CREATE NEW COMMENT
   comment = undefined
   nickname = undefined
+
 
   $(document).ajaxSuccess (event, response, settings) ->
 
@@ -105,12 +117,4 @@ $(document).ready ->
 
 ###############################################################################
     $('#comment_humanizer_answer').val("")
-    id = $('#comment_humanizer_question_id').val()
-    $.ajax
-      url: "/change_question"
-      data:
-        id: id
-
-      type: "post"
-      dataType: "json"
 ################################################################################

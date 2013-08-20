@@ -58,7 +58,7 @@ ActiveRecord::Schema.define(version: 20130819113922) do
   end
 
   create_table "chat_messages", force: true do |t|
-    t.string   "body"
+    t.text   "body"
     t.integer  "live_chat_id"
     t.boolean  "is_admin"
     t.datetime "created_at"

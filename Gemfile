@@ -43,6 +43,7 @@ gem 'haml'
 gem 'rails_config'
 gem 'pusher', '~> 0.9.4'
 gem 'gon'
+gem 'humanizer'
 
 group :development do
   gem 'binding_of_caller'

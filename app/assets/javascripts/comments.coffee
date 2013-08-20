@@ -66,6 +66,9 @@ $(document).ready ->
         maxlength: 2048
         minlength: 2
 
+      "comment[humanizer_answer]":
+        required: true
+
   #CREATE NEW COMMENT
   comment = undefined
   nickname = undefined

@@ -3,8 +3,9 @@ class LiveChatsController < ApplicationController
   def new_chat
     @admins = AdminUser.select(:id, :first_name, :last_name).where(role: 'manager', status: 'online').order('random()')
     @live_chat = LiveChat.new
-    chat = (render_to_string :partial => 'shared/live_chat').delete("\n").gsub(/["]/, "'").gsub(/ {2,}/, ' ')
-    render js: "$('body').append(\"#{chat}\");"
+    respond_to do |format|
+      format.js { render :new_chat }
+    end
   end
 
   def create_chat
@@ -29,15 +30,9 @@ class LiveChatsController < ApplicationController
             else
               redirect_to :back, :notice => 'Invalid Message'
             end
-
-            unless params[:contact].blank?
-              chat = (render_to_string :partial => 'contact/chat').delete("\n").gsub(/["]/, "'").gsub(/ {2,}/, ' ')
-              render js: "$('#contact_live_chat').replaceWith(\"#{chat}\");"
-            else
-              chat = (render_to_string :partial => 'shared/live_chat').delete("\n").gsub(/["]/, "'").gsub(/ {2,}/, ' ')
-              render js: "$('#live_chat').replaceWith(\"#{chat}\");"
-            end
-
+              respond_to do |format|
+                format.js { render :create_chat }
+              end
           else
             redirect_to :back, :alert =>  'Chat start error! Invalid name !'
           end
@@ -70,7 +65,7 @@ class LiveChatsController < ApplicationController
                                                                 date: message.created_at.to_i})
       end
     end
-    render text: 'ok!'
+    render nothing: true
   end
 
   def chat_close
@@ -82,10 +77,11 @@ class LiveChatsController < ApplicationController
       Webs.notify(:notify_chat_closing, channel, 'user-close-chat')
     end
     session[:chat_id] = nil
-    unless params[:contact].blank?
-      render js: "location.reload();"
-    else
-      render text: 'ok!'
+
+    @admins = AdminUser.select(:id, :first_name, :last_name).where(role: 'manager', status: 'online').order('random()')
+
+    respond_to do |format|
+      format.js { render :chat_close }
     end
   end
 

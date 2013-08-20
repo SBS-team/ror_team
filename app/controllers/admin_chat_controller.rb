@@ -36,7 +36,7 @@ class AdminChatController < ApplicationController
                                                                 date: message.created_at.to_i})
       end
     end
-    render :text => 'ok'
+    render nothing: true
   end
 
   def close

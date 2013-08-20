@@ -6,3 +6,13 @@ $("#live_chat").draggable({
 });
 
 $('#contact_live_chat').replaceWith("<%= escape_javascript(render('contact/chat')) %>");
+
+$("#new_live_chat").validate({
+    rules: {
+        "message": {
+            required: true,
+            maxlength: 255,
+            minlength: 2
+        }
+    }
+});

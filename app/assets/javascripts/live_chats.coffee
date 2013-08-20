@@ -50,10 +50,10 @@ startLiveChat = ->
   getLiveChatPosition()
   $.cookie 'hide_win', 1, { path: '/' }
 
-#  unless $("#live_chat_admin_id")
-#    admin_main_channel = 'presence-' + $("#live_chat_admin_id :selected").text().replace(' ', '-')
-#  else
-#    admin_main_channel = 'presence-' + RorTeam.currentAdminChannel
+  unless $("#live_chat_admin_id")
+    admin_main_channel = 'presence-' + $("#live_chat_admin_id :selected").text().replace(' ', '-')
+  else
+    admin_main_channel = 'presence-' + RorTeam.currentAdminChannel
 
 $(document).ready ->
 

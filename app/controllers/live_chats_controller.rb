@@ -4,7 +4,7 @@ class LiveChatsController < ApplicationController
     @admins = AdminUser.select(:id, :first_name, :last_name).where(role: 'manager', status: 'online').order('random()')
     @live_chat = LiveChat.new
     respond_to do |format|
-      format.js { render :new_chat }
+      format.js
     end
   end
 
@@ -27,23 +27,13 @@ class LiveChatsController < ApplicationController
                                                                       is_admin: message.is_admin,
                                                                       date: message.created_at.to_i})
               @live_chat.admin_user.update_attribute(:status, 'chat')
-            else
-              redirect_to :back, :notice => 'Invalid Message'
             end
               respond_to do |format|
-                format.js { render :create_chat }
+                format.js
               end
-          else
-            redirect_to :back, :alert =>  'Chat start error! Invalid name !'
           end
-        else
-          redirect_to :back, :alert =>  'error!'
         end
-      else
-        redirect_to :back, :alert => 'Invalid Message'
       end
-    else
-      redirect_to :back, :alert => 'Chat already start'
     end
   end
 
@@ -81,7 +71,7 @@ class LiveChatsController < ApplicationController
     @admins = AdminUser.select(:id, :first_name, :last_name).where(role: 'manager', status: 'online').order('random()')
 
     respond_to do |format|
-      format.js { render :chat_close }
+      format.js
     end
   end
 

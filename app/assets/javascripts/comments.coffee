@@ -75,11 +75,6 @@ $(document).ready ->
       "comment[humanizer_answer]":
         required: true
 
-    $.ajax
-      url: "/change_question"
-      type: "post"
-      dataType: "json"
-
   #CREATE NEW COMMENT
   comment = undefined
   nickname = undefined

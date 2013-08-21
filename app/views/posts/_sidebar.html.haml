@@ -1,9 +1,9 @@
 .block.text-center.rss
   = link_to posts_path(:rss) do
-    = image_tag 'rss.png', :width => 50
+    = image_tag 'rss.png', width: 50
 .block.search.text-center
   %form.form-search{action: posts_path}
-    %input.search-query.form-control{type: 'text', placeholder: t('.search'), name: "search"}
+    %input.search-query.form-control{type: 'text', placeholder: t('.search'), name: 'search'}
 .block.categories
   - if @categories.blank?
     %h3
@@ -13,7 +13,7 @@
       = t '.categories'
     %ul.nav.nav-pills
       - @categories.each do |category|
-        - category_path = posts_path(:category_name=>category.name)
+        - category_path = posts_path(category_name: category.name)
         - unless category.posts.blank?
           - if request.fullpath == category_path
             %li.active
@@ -27,7 +27,7 @@
   %h4
     = t '.help_you'
   .text-center
-    = link_to t('.contact_us'), contact_index_path, :class => 'btn btn-primary'
+    = link_to t('.contact_us'), contact_index_path, class: 'btn btn-primary'
 .block.tags
   %h3
     - if @tags.blank?
@@ -35,8 +35,8 @@
     - else
       = t '.tags'
   .cloud
-    %canvas{:width => '365', :height => '300', :id => 'myCanvas'}
+    %canvas{width: '365', height: '300', id: 'myCanvas'}
       %div#tagcloud
         - unless @tags.nil?
           - tag_cloud(@tags, %w(cloud-tag1 cloud-tag2 cloud-tag3 cloud-tag4 cloud-tag5)) do |tag, css_class|
-            = link_to tag.name , posts_path(:tag_name => tag.name), :class => css_class
+            = link_to tag.name , posts_path(tag_name: tag.name), class: css_class

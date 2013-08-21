@@ -28,10 +28,10 @@ class AdminUser < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   has_many :comments, :as => :commentable, :dependent => :destroy
-  has_many :posts, :dependent => :destroy, :foreign_key => :admin_id
-  has_many :live_chats, :dependent => :destroy, :foreign_key => :admin_id
+  has_many :posts, :dependent => :destroy
+  has_many :live_chats, :dependent => :destroy
   has_one :upload_file, :as => :fileable, :dependent => :destroy
-  has_many :time_onlines, :foreign_key => :admin_id
+  has_many :time_onlines
 
   accepts_nested_attributes_for :upload_file
 

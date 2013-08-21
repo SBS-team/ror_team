@@ -11,7 +11,7 @@ class ContactController < ApplicationController
     @message = Message.new(params[:message])
     if @message.valid?
       NotificationsMailer.new_message(@message).deliver
-      redirect_to(root_path, :notice => t('.contact_sent_msg'))
+      redirect_to(root_path, notice: t('.contact_sent_msg'))
     else
       flash[:error] = @message.errors.full_messages.join(', ')
       redirect_to :back
@@ -27,7 +27,5 @@ class ContactController < ApplicationController
       @live_chat = LiveChat.new
     end
   end
-
-
 
 end

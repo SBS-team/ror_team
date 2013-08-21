@@ -29,11 +29,11 @@ class AdminChatController < ApplicationController
         chat = LiveChat.find(params[:live_chat_id])
         channel = 'presence-' + chat.admin_user.first_name+'-'+chat.admin_user.last_name
         Webs.pusher
-        Webs.notify(:send_chat_message, channel, 'msg-event', { :user_id => session[:user_id],
-                                                                message: message.body,
-                                                                name: chat.admin_user.first_name+'-'+chat.admin_user.last_name,
-                                                                is_admin: message.is_admin,
-                                                                date: message.created_at.to_i})
+        Webs.notify(:send_chat_message, channel, 'msg-event', {user_id: session[:user_id],
+                                                               message: message.body,
+                                                               name: chat.admin_user.first_name+'-'+chat.admin_user.last_name,
+                                                               is_admin: message.is_admin,
+                                                               date: message.created_at.to_i})
       end
     end
     render nothing: true
@@ -46,4 +46,5 @@ class AdminChatController < ApplicationController
     Webs.notify(:notify_chat_closing, channel, 'admin-close-chat')
     redirect_to admin_start_chat_path
   end
+
 end

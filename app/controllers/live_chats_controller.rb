@@ -3,8 +3,9 @@ class LiveChatsController < ApplicationController
   def new_chat
     @admins = AdminUser.select(:id, :first_name, :last_name).where(role: 'manager', status: 'online').order('random()')
     @live_chat = LiveChat.new
-    chat = (render_to_string :partial => 'shared/live_chat').delete("\n").gsub(/["]/, "'").gsub(/ {2,}/, ' ')
-    render js: "$('body').append(\"#{chat}\");"
+    respond_to do |format|
+      format.js
+    end
   end
 
   def create_chat
@@ -26,29 +27,13 @@ class LiveChatsController < ApplicationController
                                                                       is_admin: message.is_admin,
                                                                       date: message.created_at.to_i})
               @live_chat.admin_user.update_attribute(:status, 'chat')
-            else
-              redirect_to :back, :notice => 'Invalid Message'
             end
-
-            unless params[:contact].blank?
-              chat = (render_to_string :partial => 'contact/chat').delete("\n").gsub(/["]/, "'").gsub(/ {2,}/, ' ')
-              render js: "$('#contact_live_chat').replaceWith(\"#{chat}\");"
-            else
-              chat = (render_to_string :partial => 'shared/live_chat').delete("\n").gsub(/["]/, "'").gsub(/ {2,}/, ' ')
-              render js: "$('#live_chat').replaceWith(\"#{chat}\");"
-            end
-
-          else
-            redirect_to :back, :alert =>  'Chat start error! Invalid name !'
+              respond_to do |format|
+                format.js
+              end
           end
-        else
-          redirect_to :back, :alert =>  'error!'
         end
-      else
-        redirect_to :back, :alert => 'Invalid Message'
       end
-    else
-      redirect_to :back, :alert => 'Chat already start'
     end
   end
 
@@ -70,7 +55,7 @@ class LiveChatsController < ApplicationController
                                                                 date: message.created_at.to_i})
       end
     end
-    render text: 'ok!'
+    render nothing: true
   end
 
   def chat_close
@@ -82,17 +67,18 @@ class LiveChatsController < ApplicationController
       Webs.notify(:notify_chat_closing, channel, 'user-close-chat')
     end
     session[:chat_id] = nil
-    unless params[:contact].blank?
-      render js: "location.reload();"
-    else
-      render text: 'ok!'
+
+    @admins = AdminUser.select(:id, :first_name, :last_name).where(role: 'manager', status: 'online').order('random()')
+
+    respond_to do |format|
+      format.js
     end
   end
 
   protected
 
   def live_chat_params
-    params.require(:live_chat).permit(:guest_name, :admin_id)
+    params.require(:live_chat).permit(:guest_name, :admin_user_id)
   end
 
 end

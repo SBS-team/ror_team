@@ -11,6 +11,10 @@
 .sidebar .block {
   padding: 0 0 10px 0;
   margin: 0 0 10px 0;
+}
+
+.block.categories,
+.block.contact_us {
   border-bottom: 1px solid #cccccc;
 }
 
@@ -99,7 +103,7 @@
 }
 
 .comment_block {
-  border: 2px solid rgb(201, 201, 201);
+  border: 1px solid #cccccc;
   border-radius: 8px;
   padding: 15px;
 }

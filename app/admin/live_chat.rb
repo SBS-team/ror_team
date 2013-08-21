@@ -1,14 +1,13 @@
 ActiveAdmin.register LiveChat do
 
-  #filter :admin_id, :as => :select, :collection => AdminUser.where(:role => 'manager').map { |j| [j.email, j.id] }
   filter :created_at
 
   scope :mine do |live_chat|
-    live_chat.where(:admin_id => current_admin_user.id)
+    live_chat.where(admin_user_id: current_admin_user.id)
   end
 
-  action_item :if => proc{ current_admin_user.role == 'manager' } do
-    link_to 'Start chat', admin_start_chat_path, :target => '_blank'
+  action_item if: proc{ current_admin_user.role == 'manager' } do
+    link_to 'Start chat', admin_start_chat_path, target: '_blank'
   end
 
   index do
@@ -50,11 +49,9 @@ ActiveAdmin.register LiveChat do
   end
 
   controller do
-
     def scoped_collection
       LiveChat.includes([:admin_user]).page(params[:page]).per(30)
     end
-
   end
 
 end

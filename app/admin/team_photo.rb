@@ -25,21 +25,20 @@ ActiveAdmin.register TeamPhoto do
     end
   end
 
-  form :html => {:enctype => "multipart/form-data" } do |f|
+  form html: {enctype: 'multipart/form-data' } do |f|
     f.semantic_errors :base
     f.inputs 'Team Photo'do
       f.input :title
       f.has_many :upload_files do |file|
-        file.input :img_name, :as => :file, :hint => file.object.img_name.nil? ? f.template.content_tag(:span, "no map yet") : file.template.image_tag(file.object.img_name.url(:thumb))
-        file.input :remove_img_name, :as => :boolean , :label => 'Delete image?'
-        file.input :id, :as => :hidden
+        file.input :img_name, as: :file, hint: file.object.img_name.nil? ? f.template.content_tag(:span, 'no map yet') : file.template.image_tag(file.object.img_name.url(:thumb))
+        file.input :remove_img_name, as: :boolean , label: 'Delete image?'
+        file.input :id, as: :hidden
       end
     end
     f.actions
   end
 
   controller do
-
     def create
       @team_photo = TeamPhoto.new(team_photo_params)
       if @team_photo.save
@@ -69,7 +68,6 @@ ActiveAdmin.register TeamPhoto do
     def team_photo_params
       params.require(:team_photo).permit(:title, upload_files_attributes: [:img_name, :id, :remove_img_name])
     end
-
   end
 
 end

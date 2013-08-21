@@ -10,16 +10,11 @@
 #
 
 class LiveChat < ActiveRecord::Base
-  belongs_to :admin_user,
-             foreign_key: 'admin_id'
+
+  belongs_to :admin_user
   has_many :chat_messages, dependent: :destroy
 
-  validates :guest_name,
-            presence: true,
-            length: { in: 2..150 }
-  validates :admin_id,
-            presence: true,
-            numericality: { only_integer: true,
-                            greater_than: 0 }
+  validates :guest_name, presence: true, length: {in: 2..150}
+  validates :admin_user_id, presence: true, numericality: {only_integer: true, greater_than: 0}
 
 end

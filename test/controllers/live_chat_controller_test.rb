@@ -8,7 +8,7 @@ describe LiveChatsController  do
 
   it 'render new live chat' do
     FactoryGirl.create(:admin_user)
-    post :new_chat
+    post :new_chat, :format => 'js'
     assigns(:admins).must_include @manager
     assigns(:admins).length.must_equal 1
     assert_template 'shared/_new_chat'
@@ -16,9 +16,9 @@ describe LiveChatsController  do
   end
 
   it 'create live chat' do
-    post :create_chat, live_chat:{:guest_name => 'User', :admin_id => @manager.id}, :message => 'Hello manager :-)'
+    post :create_chat, live_chat:{:guest_name => 'User', :admin_user_id => @manager.id}, :message => 'Hello manager :-)', :format => 'js'
     LiveChat.first.guest_name.must_equal 'User'
-    LiveChat.first.admin_id = @manager.id
+    LiveChat.first.admin_user_id = @manager.id
     LiveChat.first.admin_user.status.must_equal 'chat'
     LiveChat.first.chat_messages.count.must_equal 1
     LiveChat.first.chat_messages.first.body.must_equal 'Hello manager :-)'
@@ -26,19 +26,8 @@ describe LiveChatsController  do
     assert_response :ok
   end
 
-  it 'create live chat on contact page' do
-    post :create_chat, live_chat:{:guest_name => 'User Contact', :admin_id => @manager.id}, :message => 'Hello manager on Contact', :contact => 1
-    LiveChat.first.guest_name.must_equal 'User Contact'
-    LiveChat.first.admin_id = @manager.id
-    LiveChat.first.admin_user.status.must_equal 'chat'
-    LiveChat.first.chat_messages.count.must_equal 1
-    LiveChat.first.chat_messages.first.body.must_equal 'Hello manager on Contact'
-    assert_template 'contact/_chat'
-    assert_response :ok
-  end
-
   it 'send massage' do
-    post :create_chat, live_chat:{:guest_name => 'User', :admin_id => @manager.id}, :message => 'Hello manager!!!'
+    post :create_chat, live_chat:{:guest_name => 'User', :admin_user_id => @manager.id}, :message => 'Hello manager!!!', :format => 'js'
     LiveChat.first.guest_name.must_equal 'User'
     LiveChat.first.chat_messages.count.must_equal 1
 
@@ -49,19 +38,10 @@ describe LiveChatsController  do
   end
 
   it 'close chat' do
-    post :create_chat, live_chat:{:guest_name => 'User', :admin_id => @manager.id}, :message => 'Hello manager!!!'
+    post :create_chat, live_chat:{:guest_name => 'User', :admin_user_id => @manager.id}, :message => 'Hello manager!!!', :format => 'js'
     LiveChat.first.guest_name.must_equal 'User'
     LiveChat.first.chat_messages.count.must_equal 1
-    post :chat_close
-    LiveChat.first.admin_user.status.must_equal 'online'
-    assert_response :ok
-  end
-
-  it 'close chat on contact page' do
-    post :create_chat, live_chat:{:guest_name => 'User Contact', :admin_id => @manager.id}, :message => 'Hello manager!!!'
-    LiveChat.first.guest_name.must_equal 'User Contact'
-    LiveChat.first.chat_messages.count.must_equal 1
-    post :chat_close, :contact => 1
+    post :chat_close, :format => 'js'
     LiveChat.first.admin_user.status.must_equal 'online'
     assert_response :ok
   end

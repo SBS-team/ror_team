@@ -20,7 +20,6 @@ gem 'mini_magick'
 #sudo apt-get install imagemagick
 #sudo apt-get install libmagick9-dev
 
-
 # Use SCSS for stylesheets
 gem 'sass-rails', github: 'rails/sass-rails'
 
@@ -75,7 +74,6 @@ gem 'activeadmin', github: 'gregbell/active_admin', branch: 'rails4'
 gem 'responders', github: 'plataformatec/responders'
 gem 'inherited_resources', github: 'josevalim/inherited_resources'
 gem 'acts-as-taggable-on', github: 'arabonradar/acts-as-taggable-on', branch: 'rails4'
-gem 'active_admin_editor'
 gem 'nokogiri'
 gem 'htmlentities'
 gem 'truncate_html'

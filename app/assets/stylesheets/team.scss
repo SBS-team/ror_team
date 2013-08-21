@@ -8,10 +8,15 @@
   margin-top: 20px;
 }
 
+.fullteam_wrap {
+  overflow: hidden;
+  padding: 0 20px 0 20px;
+}
+
 .team-member {
   overflow: hidden;
-  margin: 0 0 20px 0;
-  border-bottom: 1px solid #e4e4e4;
+  margin: 0 0 20px 15px;
+  border-bottom: 1px solid #cccccc;
 }
 
 .team-member img {

@@ -1,8 +1,8 @@
 ActiveAdmin.register Comment do
 
-  menu :parent => 'Blog'
+  menu parent: 'Blog'
 
-  filter :description, :as => :string
+  filter :description, as: :string
 
   index do
     selectable_column
@@ -24,21 +24,24 @@ ActiveAdmin.register Comment do
   end
 
   controller do
-
     def scoped_collection
       Comment.includes([:post]).page(params[:page]).per(30)
     end
 
     def create
       @comment = current_admin_user.comments.build(comment_params)
-
-      if @comment.save
-        flash[:notice] = 'Comment was successfully created.'
+      if current_admin_user && current_admin_user.role == 'admin'
+        @comment.admin = true
       else
-        flash[:alert] = 'Comment create error.'
+        @comment.admin = false
       end
-      redirect_to admin_comments_path
+      if @comment.save
+        redirect_to admin_comment_path(@post), notice: 'Comment was successfully created.'
+      else
+        render :new, notice: 'Error has occurred while creating.'
+      end
     end
+
     def update
       @comment = Comment.find(params[:id])
       if @comment.update(comment_params)
@@ -47,9 +50,11 @@ ActiveAdmin.register Comment do
         render :edit, notice: 'Error has occurred while updating.'
       end
     end
+
     private
     def comment_params
       params.require(:comment).permit(:description, :post_id, :commentable_id, :commentable_type, :nickname)
     end
   end
+
 end

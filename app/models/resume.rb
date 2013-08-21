@@ -15,36 +15,25 @@
 class Resume < ActiveRecord::Base
 
   belongs_to :job
-  has_one :upload_file, :as => :fileable, :dependent => :destroy
-  accepts_nested_attributes_for :upload_file,:reject_if => lambda { |a| a[:filename].blank? }, :allow_destroy => true
+  has_one :upload_file, as: :fileable, dependent: :destroy
 
-  validates :description,
-            :length => {:maximum => 3000}
-  validates :job_id,
-            :presence => true,
-            :numericality => { :only_integer => true, :greater_than => 0 }
-  validates :name,
-            :presence => true,
-            :length => { :minimum => 4, :maximum => 40 }
-  validates :email,
-            :presence => true,
-            :format => {:with => /\A[^@]+@([^@\.]+\.)+[^@\.]+\z/}
-  validates :phone,
-            :presence => true,
-            :length => {:maximum => 50},
-            :format => {:with => /\A[+]?\d+\Z/}
+  accepts_nested_attributes_for :upload_file, reject_if: lambda { |a| a[:filename].blank? }, allow_destroy: true
 
+  validates :description, length: {maximum: 3000}
+  validates :job_id, presence: true, numericality: {only_integer: true, greater_than: 0}
+  validates :name, presence: true, length: {minimum: 4, maximum: 40}
+  validates :email, presence: true, format: {with: /\A[^@]+@([^@\.]+\.)+[^@\.]+\z/}
+  validates :phone, presence: true, length: {maximum: 50}, format: {with: /\A[+]?\d+\Z/}
   validate :validate_data
   validate :file_size
 
   private
-
   def validate_data
     if (self.upload_file.blank?)
       errors.add(:description, "can't be blank and file is not attached") if self.description.blank?
     else
       if (/\.doc|\.pdf/ =~ self.upload_file.filename.to_s).nil?
-        errors.add(:upload_file, "not doc, pdf types")
+        errors.add(:upload_file, 'not doc, pdf types')
       end
     end
   end

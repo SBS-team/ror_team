@@ -14,7 +14,7 @@
               = link_to last_post.title, special_post_path(last_post.created_at.strftime('%d-%m-%Y'), last_post)
             .cont
               = t '.by'
-              = last_post.admin.role
+              = last_post.admin_user.role
     .col-lg-6.jobs
       %h2
         = t '.vacancies'

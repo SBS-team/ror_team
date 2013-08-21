@@ -21,7 +21,7 @@ class Post < ActiveRecord::Base
   has_many :post_categories, :dependent => :destroy
   has_many :categories, through: :post_categories
   has_many :comments, :dependent => :destroy
-  belongs_to :admin, :class_name => "AdminUser", :foreign_key => "admin_id"
+  belongs_to :admin_user
   has_one :upload_file, :as => :fileable, :dependent => :destroy
   accepts_nested_attributes_for :upload_file
   validates :title,
@@ -30,7 +30,7 @@ class Post < ActiveRecord::Base
   validates :description,
             :presence => true,
             :length => { :minimum => 10}
-  validates :admin_id,
+  validates :admin_user_id,
             :presence => true,
             :numericality => { :only_integer => true, :greater_than => 0 }
   validate :validates_img_name

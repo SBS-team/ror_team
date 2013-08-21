@@ -8,7 +8,7 @@ describe JobsController do
        @admin = FactoryGirl.create(:admin_user)
        5.times do
          FactoryGirl.create(:job)
-         FactoryGirl.create(:post, :admin_id => @admin.id, :upload_file => FactoryGirl.create(:upload_file))
+         FactoryGirl.create(:post, :admin_user_id => @admin.id, :upload_file => FactoryGirl.create(:upload_file))
        end
      end
 

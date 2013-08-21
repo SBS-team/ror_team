@@ -21,7 +21,7 @@ ActiveAdmin.register Post do
       category.categories.collect(&:name).join(', ')
     end
     column 'Author' do |post|
-      link_to post.admin.email, admin_admin_user_path(post.admin)
+      link_to post.admin_user.email, admin_admin_user_path(post.admin_user)
     end
     column :created_at
     default_actions
@@ -42,7 +42,7 @@ ActiveAdmin.register Post do
           category.categories.collect(&:name).join(', ')
         end
         row :author do |post|
-          link_to post.admin.email, admin_admin_user_path(post.admin)
+          link_to post.admin_user.email, admin_admin_user_path(post.admin_user)
         end
         row :slug
         row :created_at
@@ -71,9 +71,9 @@ ActiveAdmin.register Post do
 
     def scoped_collection
       unless params[:tag_name].blank?
-        Post.joins(:tags).includes([:categories, :upload_file, :admin]).where("tags.name = :tag_name", :tag_name=>params[:tag_name]).page(params[:page]).per(30)
+        Post.joins(:tags).includes([:categories, :upload_file, :admin_user]).where("tags.name = :tag_name", :tag_name=>params[:tag_name]).page(params[:page]).per(30)
       else
-        Post.includes([:tags, :categories, :upload_file, :admin]).page(params[:page]).per(30)
+        Post.includes([:tags, :categories, :upload_file, :admin_user]).page(params[:page]).per(30)
       end
     end
 

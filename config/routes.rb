@@ -32,5 +32,6 @@ RorTeam::Application.routes.draw do
   post '/admin_chat/send_msg'
   post '/admin_chat/close'
 
+
   root :to => 'home#index'
 end

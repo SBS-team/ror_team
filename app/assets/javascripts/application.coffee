@@ -25,7 +25,7 @@ $(document).ready ->
     weight: true
     outlineThickness: 1
     zoom: 1
-    maxSpeed: 0.04
+    maxSpeed: -0.04
     depth: 0.75
     textHeight: 14
   , "tagcloud")

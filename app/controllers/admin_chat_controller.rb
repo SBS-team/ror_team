@@ -8,7 +8,7 @@ class AdminChatController < ApplicationController
     end
     if !!current_admin_user
       if current_admin_user.status == 'chat'
-        @live_chat = LiveChat.where(admin_id: current_admin_user.id).order('updated_at DESC').includes(:admin_user).take
+        @live_chat = LiveChat.where(admin_user_id: current_admin_user.id).order('updated_at DESC').includes(:admin_user).take
         @messages = ChatMessage.where(live_chat_id: @live_chat.id)
       end
       gon.current_admin_email = current_admin_user.email

@@ -4,6 +4,9 @@ inputFileReset = ->
   patt1 = /\.[0-9a-z]+$/i
   filename = $("#resume_upload_file_attributes_filename").val().match(patt1)
   flag = false
+  if filename == null
+    filename = "Your file not DOC or PDF types !<br>"
+    flag = false
   if filename.toString().toLowerCase() == ".doc" || filename.toString().toLowerCase() == ".pdf"
     flag = true
     filename = ""

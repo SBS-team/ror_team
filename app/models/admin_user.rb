@@ -27,40 +27,23 @@ class AdminUser < ActiveRecord::Base
   devise :database_authenticatable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :comments, :as => :commentable, :dependent => :destroy
-  has_many :posts, :dependent => :destroy
-  has_many :live_chats, :dependent => :destroy
-  has_one :upload_file, :as => :fileable, :dependent => :destroy
+  has_many :comments, as: :commentable, dependent: :destroy
+  has_many :posts, dependent: :destroy
+  has_many :live_chats, dependent: :destroy
+  has_one  :upload_file, as: :fileable, dependent: :destroy
   has_many :time_onlines
 
   accepts_nested_attributes_for :upload_file
 
-  validates :role,
-            :presence => true,
-            inclusion: { in: %w(admin manager team_lead team),
-                                message: "%{value} is not a valid role" }
-  validates :first_name,
-            :presence => true,
-            :length => { :minimum => 3,
-                         :maximum => 45 }
-  validates :last_name,
-            :presence => true,
-            :length => { :minimum => 3,
-                         :maximum => 45 }
-  validates :about,
-            :presence => true,
-            :length => { :minimum => 10 }
-
-  validates :password,
-            :presence => true
-
-  validates :password_confirmation,
-            :presence => true
-
-  validates :email,
-            :uniqueness => true,
-            :presence => true
-
   scope :not_admin, -> {where("role != 'admin'")}
+
+  validates :role, presence: true,
+            inclusion: {in: %w(admin manager team_lead team), message: "%{value} is not a valid role"}
+  validates :first_name, presence: true, length: {minimum: 3, maximum: 45}
+  validates :last_name, presence: true, length: {minimum: 3, maximum: 45}
+  validates :about, presence: true, length: {minimum: 10}
+  validates :password, presence: true
+  validates :password_confirmation, presence: true
+  validates :email, uniqueness: true, presence: true
 
 end

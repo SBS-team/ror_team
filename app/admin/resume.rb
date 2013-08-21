@@ -1,10 +1,10 @@
 ActiveAdmin.register Resume do
 
-  menu :parent => 'Careers'
+  menu parent: 'Careers'
 
-  filter :name, :as => :string
-  filter :email, :as => :string
-  filter :job, :as => :check_boxes
+  filter :name, as: :string
+  filter :email, as: :string
+  filter :job, as: :check_boxes
   filter :created_at
 
   index do
@@ -23,11 +23,9 @@ ActiveAdmin.register Resume do
   end
 
   controller do
-
     def scoped_collection
       Resume.includes([:upload_file]).page(params[:page]).per(30)
     end
-
   end
 
 end

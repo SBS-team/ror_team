@@ -15,7 +15,6 @@ ActiveAdmin.register UploadFile do
     column :fileable_type
     column :link do |upload_file|
       file = upload_file.fileable
-
       title = if file.respond_to?(:title)
                 file.title
               elsif file.respond_to?(:first_name)
@@ -27,12 +26,12 @@ ActiveAdmin.register UploadFile do
     end
   end
 
-  form :html => {:enctype => 'multipart/form-data' } do |f|
+  form html: {enctype: 'multipart/form-data'} do |f|
     f.semantic_errors :base
-    f.inputs 'Upload file', :multipart => true do
-      f.input :img_name, :as => :file, :label => 'Image', :hint => f.template.image_tag(f.object.filename.url, :width => 70, :height => 70)
-      f.input :remote_img_name_url, :as => :url
-      f.input :fileable_type, :as => :hidden
+    f.inputs 'Upload file', multipart: true do
+      f.input :img_name, as: :file, label: 'Image', hint: f.template.image_tag(f.object.filename.url, width: 70, height: 70)
+      f.input :remote_img_name_url, as: :url
+      f.input :fileable_type, as: :hidden
     end
     f.actions
   end
@@ -49,7 +48,7 @@ ActiveAdmin.register UploadFile do
     end
 
     def new
-      @upload_file = UploadFile.new(:fileable_type => 'UploadFile')
+      @upload_file = UploadFile.new(fileable_type: 'UploadFile')
     end
 
     private

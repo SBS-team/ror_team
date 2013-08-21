@@ -1,9 +1,9 @@
 ActiveAdmin.register Service do
 
-  menu :parent => 'Skills & Service'
+  menu parent: 'Skills & Service'
 
   filter :projects
-  filter :name, :as => :string
+  filter :name, as: :string
 
   index do
     selectable_column
@@ -35,21 +35,20 @@ ActiveAdmin.register Service do
     end
   end
 
-  form :html => {:enctype => 'multipart/form-data' } do |f|
+  form html: {enctype: 'multipart/form-data'} do |f|
     f.semantic_errors :base
-    f.inputs 'Service Details', :multipart => true do
+    f.inputs 'Service Details', multipart: true do
       f.input :name
-      f.inputs :for => [:upload_file, f.object.upload_file || UploadFile.new] do |file|
-        file.input :img_name, :as => :file, :hint => file.object.img_name.nil? ? file.template.content_tag(:span, 'no map yet') : file.template.image_tag(file.object.img_name.url(:thumb))
-        file.input :remote_img_name_url, :as => :url
-        file.input :id, :as => :hidden
+      f.inputs for: [:upload_file, f.object.upload_file || UploadFile.new] do |file|
+        file.input :img_name, as: :file, hint: file.object.img_name.nil? ? file.template.content_tag(:span, 'no map yet') : file.template.image_tag(file.object.img_name.url(:thumb))
+        file.input :remote_img_name_url, as: :url
+        file.input :id, as: :hidden
       end
     end
     f.actions
   end
 
   controller do
-
     def scoped_collection
       Service.includes([:upload_file]).page(params[:page]).per(30)
     end
@@ -76,7 +75,6 @@ ActiveAdmin.register Service do
     def service_params
       params.require(:service).permit(:name, upload_file_attributes: [:img_name, :remote_img_name_url, :id])
     end
-
   end
 
 end

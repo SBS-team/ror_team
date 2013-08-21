@@ -46,7 +46,7 @@ describe ViewTest do
     end
 
     it 'if click on post then redirect to posts(blog)' do
-      post = FactoryGirl.create(:post, admin_id: FactoryGirl.create(:admin_user).id, :upload_file => FactoryGirl.create(:upload_file))
+      post = FactoryGirl.create(:post, admin_user_id: FactoryGirl.create(:admin_user).id, :upload_file => FactoryGirl.create(:upload_file))
       visit company_index_path
       assert page.has_content?(post.title)
       click_link post.title

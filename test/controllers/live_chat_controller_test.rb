@@ -16,9 +16,9 @@ describe LiveChatsController  do
   end
 
   it 'create live chat' do
-    post :create_chat, live_chat:{:guest_name => 'User', :admin_id => @manager.id}, :message => 'Hello manager :-)', :format => 'js'
+    post :create_chat, live_chat:{:guest_name => 'User', :admin_user_id => @manager.id}, :message => 'Hello manager :-)', :format => 'js'
     LiveChat.first.guest_name.must_equal 'User'
-    LiveChat.first.admin_id = @manager.id
+    LiveChat.first.admin_user_id = @manager.id
     LiveChat.first.admin_user.status.must_equal 'chat'
     LiveChat.first.chat_messages.count.must_equal 1
     LiveChat.first.chat_messages.first.body.must_equal 'Hello manager :-)'
@@ -27,7 +27,7 @@ describe LiveChatsController  do
   end
 
   it 'send massage' do
-    post :create_chat, live_chat:{:guest_name => 'User', :admin_id => @manager.id}, :message => 'Hello manager!!!', :format => 'js'
+    post :create_chat, live_chat:{:guest_name => 'User', :admin_user_id => @manager.id}, :message => 'Hello manager!!!', :format => 'js'
     LiveChat.first.guest_name.must_equal 'User'
     LiveChat.first.chat_messages.count.must_equal 1
 
@@ -38,7 +38,7 @@ describe LiveChatsController  do
   end
 
   it 'close chat' do
-    post :create_chat, live_chat:{:guest_name => 'User', :admin_id => @manager.id}, :message => 'Hello manager!!!', :format => 'js'
+    post :create_chat, live_chat:{:guest_name => 'User', :admin_user_id => @manager.id}, :message => 'Hello manager!!!', :format => 'js'
     LiveChat.first.guest_name.must_equal 'User'
     LiveChat.first.chat_messages.count.must_equal 1
     post :chat_close, :format => 'js'

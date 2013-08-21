@@ -11,7 +11,7 @@ describe PostsController do
     before do
       @posts = []
       5.times do
-        post = FactoryGirl.create(:post, :admin_id => @admin.id, :upload_file => FactoryGirl.create(:upload_file))
+        post = FactoryGirl.create(:post, :admin_user_id => @admin.id, :upload_file => FactoryGirl.create(:upload_file))
         @posts << post
       end
     end
@@ -25,7 +25,7 @@ describe PostsController do
 
     it 'show posts' do
       2.times do
-        post = FactoryGirl.create(:post, :admin_id => @admin.id, :upload_file => FactoryGirl.create(:upload_file))
+        post = FactoryGirl.create(:post, :admin_user_id => @admin.id, :upload_file => FactoryGirl.create(:upload_file))
         @posts << post
       end
       get :index
@@ -72,7 +72,7 @@ describe PostsController do
   describe 'GET #show' do
 
     it 'rendering' do
-      post = FactoryGirl.create(:post, :admin_id => @admin.id, :upload_file => FactoryGirl.create(:upload_file))
+      post = FactoryGirl.create(:post, :admin_user_id => @admin.id, :upload_file => FactoryGirl.create(:upload_file))
       get :show, created: post.created_at.strftime('%d-%m-%Y') , id: post
       assert_template :show
       assert_template layout: "layouts/application"
@@ -81,7 +81,7 @@ describe PostsController do
     it "show recents posts" do
       posts = []
       6.times do
-        post = FactoryGirl.create(:post, :admin_id => @admin.id, :upload_file => FactoryGirl.create(:upload_file))
+        post = FactoryGirl.create(:post, :admin_user_id => @admin.id, :upload_file => FactoryGirl.create(:upload_file))
         posts << post
       end
 
@@ -96,9 +96,9 @@ describe PostsController do
     end
 
     it "show popular posts" do
-      post1 = FactoryGirl.create(:post, :admin_id => @admin.id, :upload_file => FactoryGirl.create(:upload_file))
-      post2 = FactoryGirl.create(:post, :admin_id => @admin.id, :upload_file => FactoryGirl.create(:upload_file))
-      post3 = FactoryGirl.create(:post, :admin_id => @admin.id, :upload_file => FactoryGirl.create(:upload_file))
+      post1 = FactoryGirl.create(:post, :admin_user_id => @admin.id, :upload_file => FactoryGirl.create(:upload_file))
+      post2 = FactoryGirl.create(:post, :admin_user_id => @admin.id, :upload_file => FactoryGirl.create(:upload_file))
+      post3 = FactoryGirl.create(:post, :admin_user_id => @admin.id, :upload_file => FactoryGirl.create(:upload_file))
 
       get :show, created: post2.created_at.strftime('%d-%m-%Y') , id: post2
 
@@ -112,7 +112,7 @@ describe PostsController do
 
   describe 'side_bar; all actions' do
     it 'show all categories' do
-      post = FactoryGirl.create(:post, :admin_id => @admin.id, :upload_file => FactoryGirl.create(:upload_file))
+      post = FactoryGirl.create(:post, :admin_user_id => @admin.id, :upload_file => FactoryGirl.create(:upload_file))
       cat1 = FactoryGirl.create(:category)
       cat2 = FactoryGirl.create(:category)
       post.categories << cat1 << cat2
@@ -125,7 +125,7 @@ describe PostsController do
     end
 
     it 'show all tags' do
-      post = FactoryGirl.create(:post, :admin_id => @admin.id, :upload_file => FactoryGirl.create(:upload_file))
+      post = FactoryGirl.create(:post, :admin_user_id => @admin.id, :upload_file => FactoryGirl.create(:upload_file))
       post.tag_list = "tag1, tag2, tag3"
       post.save
 

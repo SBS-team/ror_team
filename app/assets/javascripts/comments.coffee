@@ -55,11 +55,6 @@ $(document).ready ->
 
   $("#go_comment").click ->
 
-    $.ajax
-      url: "/change_question"
-      type: "post"
-      dataType: "json"
-
     $("#new_comment").validate rules:
       "comment[nickname]":
         required: true
@@ -78,7 +73,8 @@ $(document).ready ->
   #CREATE NEW COMMENT
   comment = undefined
   nickname = undefined
-
+  question = undefined
+  question_id = undefined
 
   $(document).ajaxSuccess (event, response, settings) ->
 
@@ -100,8 +96,13 @@ $(document).ready ->
         # Init variables and add new comment
         comment = HtmlEncode(response.responseJSON.comment.description)
         nickname = response.responseJSON.comment.nickname
+        question = response.responseJSON.humanizer_question
+        question_id = response.responseJSON.humanizer_question_id
+
         $(".comments").append "<blockquote style =\"display:none;\">" + "<b><span class =\"comment_nickname text-primary\">" + nickname + "</span></b><br>" + "<span class = \"comment_description\">" + comment + "</span><br>" + "<small class = \"comment_time\">just now</small>" + "<hr></blockquote>"
         $(".comments blockquote").slideDown "slow"
+        $('.humanizer_label').text question
+        $('.humanizer_hidden').val(parseInt(question_id))
       $("#comment_description").val ""
       count = $(".comments_count").text()
       count = parseInt(count) + 1
@@ -110,6 +111,4 @@ $(document).ready ->
       else
         $(".comments_count").text count + " comments"
 
-###############################################################################
     $('#comment_humanizer_answer').val("")
-################################################################################

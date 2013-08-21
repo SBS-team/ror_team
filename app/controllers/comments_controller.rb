@@ -13,7 +13,8 @@ class CommentsController < ApplicationController
       @comment.admin = false
     end
     if @comment.save
-      render json: {:comment => @comment, :stat => 'success', :location => @post }
+      id = @comment.change_humanizer_question
+      render json: {:comment => @comment, :humanizer_question => @comment.humanizer_question, :humanizer_question_id => id, :stat => 'success', :location => @post }
     else
       render json: {:error => @comment.errors.messages, :stat => 'error' }
     end

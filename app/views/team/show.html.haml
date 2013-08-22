@@ -1,9 +1,9 @@
 .team-member
   .col-lg-12
     - unless @team.upload_file.blank? || @team.upload_file.img_name.blank?
-      = image_tag @team.upload_file.img_name.url, :class => 'img-polaroid', :width => '300'
+      = image_tag @team.upload_file.img_name.url, class: 'img-polaroid', width: '300'
     - else
-      = image_tag 'no_image.gif', :width => 150
+      = image_tag 'no_image.gif', width: 150
     .member-name
       %h2.lead
         = "#{@team.first_name} #{@team.last_name}"
@@ -15,12 +15,12 @@
     - @fullteam.each do |team_member|
       - unless @team.id == team_member.id
         .fullteam
-          = link_to team_path(team_member), :id => "pic#{team_member.id}" do
+          = link_to team_path(team_member), id: "pic#{team_member.id}" do
             - unless team_member.upload_file.blank? || team_member.upload_file.img_name.blank?
-              = image_tag team_member.upload_file.img_name, :class => 'img-rounded', :width => 100
+              = image_tag team_member.upload_file.img_name, class: 'img-rounded', width: 100
             - else
-              = image_tag 'no_image.gif', :width => 100
+              = image_tag 'no_image.gif', width: 100
 .col-lg-12
   = link_to 'Back', team_index_path
 .row
-  = render :partial => 'shared/post_jobs'
+  = render partial: 'shared/post_jobs'

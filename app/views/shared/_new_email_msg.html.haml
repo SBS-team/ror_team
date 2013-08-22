@@ -3,7 +3,7 @@
 %p
   Sorry, but now absent any free manager. You can send request on our email
 .web-form.row
-  = form_for @message ||= Message.new, :url => contact_index_path(small_window: '1'), :html => {:class => 'web-form', :multipart => true} do |form|
+  = form_for @message ||= Message.new, url: contact_index_path(small_window: '1'), html: {class: 'web-form', multipart: true} do |form|
     - if @message.errors.any?
       .ror-team-errors
         %h6
@@ -19,4 +19,4 @@
     .text.col-lg-12.form-group
       = form.text_area(:text, 'placeholder' => 'Your message', 'class' => 'form-control' , 'rows' => '5')
       %br
-      = submit_tag 'Send e-mail', :class => 'btn btn-primary send-email pull-right', data: { disable_with: 'Please wait...' }
+      = submit_tag 'Send e-mail', class: 'btn btn-primary send-email pull-right', data: {disable_with: 'Please wait...'}

@@ -90,4 +90,6 @@ gem 'rvm-capistrano'
 gem 'capistrano-ext'
 gem 'capistrano-resque'
 gem 'unicorn'
+#Use for captcha
+gem "recaptcha", :require => "recaptcha/rails"
 

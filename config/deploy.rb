@@ -2,8 +2,8 @@ require 'rvm/capistrano' # Для работы rvm
 require 'bundler/capistrano' # Для работы bundler. При изменении гемов bundler автоматически обновит все гемы на сервере, чтобы они в точности соответствовали гемам разработчика. 
 require 'capistrano/ext/multistage'
 
-set :rvm_path,        '/home/deployer/staging/rorteam/.rvm'
-set :rvm_bin_path,    '/home/deployer/staging/rorteam/.rvm/bin'
+set :rvm_path,        '/home/deployer/.rvm'
+set :rvm_bin_path,    '/home/deployer/.rvm/bin'
 set :using_rvm,       true
 set :rvm_ruby_string, 'ruby-2.0.0-p247@rorteam_dev'
 

@@ -2,7 +2,9 @@
 # Currently juggernaut is used.
 require 'pusher'
 require 'webs/notifier'
+
 module Webs
+
   extend self
 
   def push(channel, data={})
@@ -32,13 +34,13 @@ module Webs
   end
 
   def pusher_config
-    @application_config ||= (
-    { :host => Settings.pusher.wss_host,
-      :port => Settings.pusher.wss_port.to_s,
-      :key => Settings.pusher.app_key,
-      :ssl => Settings.pusher.ssl,
-      :disable_statistics => Settings.pusher.disable_statistics,
-      :disable_flash => Settings.pusher.disable_flash
+    @application_config ||= ({
+      host: Settings.pusher.wss_host,
+      port: Settings.pusher.wss_port.to_s,
+      key: Settings.pusher.app_key,
+      ssl: Settings.pusher.ssl,
+      disable_statistics: Settings.pusher.disable_statistics,
+      disable_flash: Settings.pusher.disable_flash
     })
   end
 
@@ -56,7 +58,6 @@ module Webs
   end
 
   protected
-
   def notifier
     @notifier ||= Webs::Notifier.new self
   end

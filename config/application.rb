@@ -24,5 +24,8 @@ module RorTeam
     config.autoload_paths += %W(#{config.root}/lib)
     config.assets.precompile += %w(admin_chat.js live_chats.js)
     config.autoload_paths += %W(#{config.root}/app/models/ckeditor)
+    config.assets.precompile += Ckeditor.assets
+    config.assets.precompile += %w(ckeditor/*)
+
   end
 end

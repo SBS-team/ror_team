@@ -1,17 +1,16 @@
 class PostsController < ApplicationController
+
   before_action :category, only: [:index , :show]
   before_action :recent_and_popular_posts, only: :show
 
-  # GET /posts
   def index
     @posts = if !params[:category_name].blank?
-              Post.joins(:categories).includes([:tags, :upload_file]).where("categories.name = :category_name", :category_name=>params[:category_name]).page(params[:page]).per(5)
-            elsif !params[:tag_name].blank?
-              Post.joins(:tags).includes([:categories, :upload_file]).where("tags.name = :tag_name", :tag_name=>params[:tag_name]).page(params[:page]).per(5)
-            else
-              Post.includes([:tags, :categories, :upload_file]).search_posts_based_on_like(params[:search]).page(params[:page]).per(5)
-            end
-
+               Post.joins(:categories).includes([:tags, :upload_file]).where('categories.name = :category_name', category_name: params[:category_name]).page(params[:page]).per(5)
+             elsif !params[:tag_name].blank?
+               Post.joins(:tags).includes([:categories, :upload_file]).where('tags.name = :tag_name', tag_name: params[:tag_name]).page(params[:page]).per(5)
+             else
+               Post.includes([:tags, :categories, :upload_file]).search_posts_based_on_like(params[:search]).page(params[:page]).per(5)
+             end
     unless params[:search].blank?
       if params[:search].length > 50
         flash.now[:error] = "#{t('.search_max_error')}"
@@ -22,12 +21,11 @@ class PostsController < ApplicationController
       end
     end
     respond_to do |format|
-      format.html { render :index }
-      format.rss { render :index, :content_type => Mime::XML }
+      format.html {render :index}
+      format.rss {render :index, content_type: Mime::XML}
     end
   end
 
-  # GET /posts/1
   def show
     @post = Post.includes([:tags, :categories, :upload_file, :comments]).find_by_slug!(params[:id])
     @comments = @post.comments.order('id DESC').limit(3).reverse
@@ -36,7 +34,7 @@ class PostsController < ApplicationController
   def comments_show_all
     post = Post.find(params[:id])
     comments = (post.comments.order('created_at ASC').limit(post.comments_count - 3)).reverse
-    render json: {:comments => comments }
+    render json: {comments: comments}
   end
 
   private
@@ -49,4 +47,5 @@ class PostsController < ApplicationController
     @recent_posts = Post.order('created_at DESC').limit(5)
     @popular_posts = Post.order('comments_count DESC').limit(5)
   end
+
 end

@@ -5,10 +5,10 @@ require 'capistrano/ext/multistage'
 set :rvm_path,        '/var/www/admintools.loc/.rvm'
 set :rvm_bin_path,    '/var/www/admintools.loc/.rvm/bin'
 set :using_rvm,       true
-set :rvm_ruby_string, "ruby-2.0.0-p247@rorteam_dev"
+set :rvm_ruby_string, 'ruby-2.0.0-p247@rorteam_dev'
 
-set :application, "rorteam"
-set :user, "admintools"
+set :application, 'rorteam'
+set :user, 'admintools'
 set :use_sudo, false
 #set :unicorn_conf, "#{deploy_to}/current/config/unicorn.rb"
 #set :unicorn_pid, "#{deploy_to}/shared/pids/unicorn.pid"
@@ -17,22 +17,22 @@ set :use_sudo, false
 #set :rvm_ruby_string, 'ruby-2.0.0-p247' # Это указание на то, какой Ruby интерпретатор мы будем использовать.
 
 set :scm, :git # Используем git. Можно, конечно, использовать что-нибудь другое - svn, например, но общая рекомендация для всех кто не использует git - используйте git. 
-set :repository,  "git@github.com:SBS-team/ror_team.git"# Путь до вашего репозитария. Кстати, забор кода с него происходит уже не от вас, а от сервера, поэтому стоит создать пару rsa ключей на сервере и добавить $
+set :repository,  'git@github.com:SBS-team/ror_team.git' # Путь до вашего репозитария. Кстати, забор кода с него происходит уже не от вас, а от сервера, поэтому стоит создать пару rsa ключей на сервере и добавить $
 #set :branch, "master" # Ветка из которой будем тянуть код для деплоя.
 set :deploy_via, :remote_cache # Указание на то, что стоит хранить кеш репозитария локально и с каждым деплоем лишь подтягивать произведенные изменения. Очень актуально для больших и тяжелых репозитариев.
 
 role :web, '192.168.137.1'
 role :app, '192.168.137.1'
-role :db,  '192.168.137.1', :primary => true
+role :db,  '192.168.137.1', primary: true
 
-set(:deploy_to) { "/var/www/admintools.loc/rorteam.loc/#{stage}" }
+set(:deploy_to) {"/var/www/admintools.loc/rorteam.loc/#{stage}"}
 set :stages,          %w(preproduction production)
-set :default_stage,   "preproduction"
+set :default_stage,   'preproduction'
 set :keep_releases, 3
 
 set :migrate_target, :latest
 
-after "deploy:finalize_update", "deploy:migrate"
+after 'deploy:finalize_update', 'deploy:migrate'
 before 'deploy:migrate', 'config:symlink'
 #after "deploy:restart" #, "resque:scheduler:restart"
 
@@ -76,15 +76,15 @@ end
 
 #before "rails:console", "bundle:install"
 namespace :rails do
-  desc "Open the rails console on one of the remote servers"
-  task :console, :roles => :app do
+  desc 'Open the rails console on one of the remote servers'
+  task :console, roles: :app do
     exec "ssh -l #{user} '192.168.137.1' -t 'cd #{current_path} && bundle install && bundle exec rails c #{stage}'"
   end
 end
 
-desc "tail production log files"
-task :tail_logs, :roles => :app do
-  trap("INT") { puts 'Interupted'; exit 0; }
+desc 'tail production log files'
+task :tail_logs, roles: :app do
+  trap('INT') { puts 'Interupted'; exit 0; }
   run "tail -f #{shared_path}/log/#{stage}.log" do |channel, stream, data|
     puts  # for an extra line break before the host name
     puts "#{channel[:host]}: #{data}"
@@ -92,4 +92,4 @@ task :tail_logs, :roles => :app do
   end
 end
 
-after "deploy", "deploy:cleanup"
+after 'deploy', 'deploy:cleanup'

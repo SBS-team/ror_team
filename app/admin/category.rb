@@ -1,8 +1,8 @@
 ActiveAdmin.register Category do
 
-  menu :parent => 'Blog'
+  menu parent: 'Blog'
 
-  filter :name, :as => :string
+  filter :name, as: :string
 
   index do
     selectable_column
@@ -12,7 +12,6 @@ ActiveAdmin.register Category do
   end
 
   controller do
-
     def create
       @category = Category.new(category_params)
       if @category.save
@@ -35,7 +34,6 @@ ActiveAdmin.register Category do
     def category_params
       params.require(:category).permit(:name)
     end
-
   end
 
 end

@@ -20,7 +20,6 @@ gem 'mini_magick'
 #sudo apt-get install imagemagick
 #sudo apt-get install libmagick9-dev
 
-
 # Use SCSS for stylesheets
 gem 'sass-rails', github: 'rails/sass-rails'
 
@@ -67,6 +66,7 @@ end
 
 gem 'friendly_id', github: 'FriendlyId/friendly_id', branch: 'master'
 gem 'devise', '~> 3.0.0'
+gem 'devise_security_extension', github: 'phatworx/devise_security_extension'
 gem 'ransack', github: 'jonatack/ransack', ref: '0703144bb0ce2ea1884ef02b52bc51157152b566'
 gem 'formtastic', github: 'justinfrench/formtastic'
 gem 'polyamorous', github: 'jonatack/polyamorous', ref: '062c78be2edadfe5fbb104fe68d213fcbeae478d'
@@ -74,7 +74,6 @@ gem 'activeadmin', github: 'gregbell/active_admin', branch: 'rails4'
 gem 'responders', github: 'plataformatec/responders'
 gem 'inherited_resources', github: 'josevalim/inherited_resources'
 gem 'acts-as-taggable-on', github: 'arabonradar/acts-as-taggable-on', branch: 'rails4'
-gem 'active_admin_editor'
 gem 'nokogiri'
 gem 'htmlentities'
 gem 'truncate_html'

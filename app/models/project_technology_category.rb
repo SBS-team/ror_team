@@ -1,4 +1,4 @@
-# == Schema Information
+# == Schema Information       accepts_nested_attributes_for :upload_file,:reject_if => lambda { |a| a[:filename].blank? }, :allow_destroy => true
 #
 # Table name: project_technology_categories
 #
@@ -10,15 +10,11 @@
 #
 
 class ProjectTechnologyCategory < ActiveRecord::Base
+
   belongs_to :project
   belongs_to :technology
 
-  validates :project_id,
-            :presence => true,
-            :numericality => {  :only_integer => true,
-                                :greater_then => 0 }
-  validates :technology_id,
-            :presence => true,
-            :numericality => {  :only_integer => true,
-                                :greater_then => 0 }
+  validates :project_id, presence: true, numericality: {only_integer: true, greater_then: 0}
+  validates :technology_id, presence: true, numericality: {only_integer: true, greater_then: 0}
+
 end

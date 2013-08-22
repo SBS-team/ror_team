@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130819113922) do
+ActiveRecord::Schema.define(version: 20130822093410) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "resource_id",   null: false
@@ -29,12 +29,12 @@ ActiveRecord::Schema.define(version: 20130819113922) do
   add_index "active_admin_comments", ["resource_type", "resource_id"], name: "index_active_admin_comments_on_resource_type_and_resource_id", using: :btree
 
   create_table "admin_users", force: true do |t|
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
+    t.string   "email",                             default: "", null: false
+    t.string   "encrypted_password",                default: "", null: false
     t.string   "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0
+    t.integer  "sign_in_count",                     default: 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
@@ -46,6 +46,8 @@ ActiveRecord::Schema.define(version: 20130819113922) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "status"
+    t.string   "unique_session_id",      limit: 20
+    t.datetime "last_activity"
   end
 
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
@@ -112,7 +114,7 @@ ActiveRecord::Schema.define(version: 20130819113922) do
 
   create_table "live_chats", force: true do |t|
     t.string   "guest_name"
-    t.integer  "admin_id"
+    t.integer  "admin_user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -127,7 +129,7 @@ ActiveRecord::Schema.define(version: 20130819113922) do
   create_table "posts", force: true do |t|
     t.string   "title"
     t.text     "description"
-    t.integer  "admin_id"
+    t.integer  "admin_user_id"
     t.integer  "comments_count", default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
@@ -214,7 +216,7 @@ ActiveRecord::Schema.define(version: 20130819113922) do
   end
 
   create_table "time_onlines", force: true do |t|
-    t.integer "admin_id"
+    t.integer "admin_user_id"
     t.date    "day"
     t.integer "time"
   end

@@ -2,7 +2,7 @@
   %h1
     = t '.contact_us'
   .web-form.row
-    = form_for @message, :url => contact_index_path, :html => {:class => 'web-form', :multipart => true} do |form|
+    = form_for @message, url: contact_index_path, html: {class: 'web-form', multipart: true} do |form|
       - if @message.errors.any?
         .ror-team-errors
           %h6
@@ -29,7 +29,7 @@
                 - unless service.upload_file.blank? || service.upload_file.img_name.blank?
                   = image_tag service.upload_file.img_name.url, title: service.name, alt: service.name, height: 100
                 - else
-                  = image_tag 'no_image.gif', :width => 100
+                  = image_tag 'no_image.gif', width: 100
                 .contact_service
                   = form.radio_button :service_type, service.name
                   = service.name
@@ -59,7 +59,7 @@
             = form.radio_button :work_type, 'Service'
             = 'Service'
       .submit-form.text-right
-        = submit_tag 'Send Message', :class => 'btn btn-primary send-email', data: { disable_with: 'Please wait...' }
+        = submit_tag 'Send Message', class: 'btn btn-primary send-email', data: {disable_with: 'Please wait...'}
 .col-lg-6
   .row
     .col-lg-9.col-offset-2.form-group

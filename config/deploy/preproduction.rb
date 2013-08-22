@@ -1,9 +1,9 @@
-server '192.168.137.1', :web, :app, :db, :primary => true
+server '192.168.137.1', :web, :app, :db, primary: true
 
-set :deploy_to, "/var/www/admintools.loc/rorteam.loc/preproduction"
+set :deploy_to, '/var/www/admintools.loc/rorteam.loc/preproduction'
  
-set :rails_env, "preproduction"
-set :user, "admintools"
+set :rails_env, 'preproduction'
+set :user, 'admintools'
  
 set :unicorn_conf, "#{deploy_to}/current/config/unicorn_pre.rb"
 set :unicorn_pid, "#{deploy_to}/shared/pids/unicorn.pid"

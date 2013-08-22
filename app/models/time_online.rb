@@ -9,5 +9,7 @@
 #
 
 class TimeOnline < ActiveRecord::Base
-  belongs_to :admin_user, :foreign_key => :admin_id
+
+  belongs_to :admin_user
+
 end

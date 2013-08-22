@@ -26,7 +26,7 @@
         = t '.command_development'
     .col-lg-4
       .our_pluses
-        = image_tag 'odesk.jpg', :title => 'hihi'
+        = image_tag 'odesk.jpg'
       .our_pluses_descr
         = t '.feedback_odesk'
 .services.col-lg-12
@@ -36,12 +36,12 @@
     - @services.each do |service|
       .col-lg-3.text-center
         - unless service.upload_file.blank? || service.upload_file.img_name.blank?
-          = image_tag service.upload_file.img_name.url(:thumb), title: service.name, alt: service.name, :height => 200
+          = image_tag service.upload_file.img_name.url(:thumb), title: service.name, alt: service.name, height: 200
         - else
-          = image_tag 'no_image.gif', :width => 200
+          = image_tag 'no_image.gif', width: 200
         %h4
           = service.name
 .row
-  = render :partial => 'shared/post_jobs'
+  = render partial: 'shared/post_jobs'
 
 

@@ -14,7 +14,7 @@
               = link_to last_post.title, special_post_path(last_post.created_at.strftime('%d-%m-%Y'), last_post)
             .cont
               = t '.by'
-              = last_post.admin.role
+              = last_post.admin_user.role
     .col-lg-6.jobs
       %h2
         = t '.vacancies'
@@ -28,4 +28,4 @@
             .title
               = link_to last_job.title, last_job
             .resume.text-right
-              = link_to(t('.send_resume'), last_job, :class => 'btn btn-primary btn-small')
+              = link_to(t('.send_resume'), last_job, class: 'btn btn-primary btn-small')

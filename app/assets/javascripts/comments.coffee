@@ -54,6 +54,7 @@ $(document).ready ->
           $("#close_comments").hide()
 
   $("#go_comment").click ->
+
     $("#new_comment").validate rules:
       "comment[nickname]":
         required: true
@@ -92,6 +93,7 @@ $(document).ready ->
         nickname = response.responseJSON.comment.nickname
         $(".comments").append "<blockquote style =\"display:none;\">" + "<b><span class =\"comment_nickname text-primary\">" + nickname + "</span></b><br>" + "<span class = \"comment_description\">" + comment + "</span><br>" + "<small class = \"comment_time\">just now</small>" + "<hr></blockquote>"
         $(".comments blockquote").slideDown "slow"
+
       $("#comment_description").val ""
       count = $(".comments_count").text()
       count = parseInt(count) + 1

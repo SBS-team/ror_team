@@ -12,7 +12,7 @@ describe HomeController do
 
       4.times do
         FactoryGirl.create(:job)
-        FactoryGirl.create(:post, admin_id: FactoryGirl.create(:admin_user).id, :upload_file => FactoryGirl.create(:upload_file))
+        FactoryGirl.create(:post, admin_user_id: FactoryGirl.create(:admin_user).id, :upload_file => FactoryGirl.create(:upload_file))
       end
 
     end

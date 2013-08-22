@@ -74,6 +74,14 @@ GIT
       orm_adapter
 
 GIT
+  remote: git://github.com/phatworx/devise_security_extension.git
+  revision: f72455f505cf09ce063f573b4ed1c7dd3a60f3a2
+  specs:
+    devise_security_extension (0.7.3)
+      devise (>= 3.0.0)
+      rails (>= 4.0.0)
+
+GIT
   remote: git://github.com/plataformatec/responders.git
   revision: 6b57da9efb85c79157434a85c1bc34b2b4231aaa
   specs:
@@ -109,10 +117,6 @@ GEM
       erubis (~> 2.7.0)
       rack (~> 1.5.2)
       rack-test (~> 0.6.2)
-    active_admin_editor (1.1.0)
-      activeadmin (>= 0.4.0)
-      ejs
-      rails (>= 3.0.0)
     activemodel (4.0.0)
       activesupport (= 4.0.0)
       builder (~> 3.1.0)
@@ -185,7 +189,6 @@ GEM
       railties (>= 3.2.6, < 5)
       warden (~> 1.2.3)
     diff-lcs (1.2.4)
-    ejs (1.1.1)
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
@@ -424,7 +427,6 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  active_admin_editor
   activeadmin!
   acts-as-taggable-on!
   better_errors
@@ -438,6 +440,7 @@ DEPENDENCIES
   coffee-rails!
   database_cleaner
   devise (~> 3.0.0)
+  devise_security_extension!
   factory_girl_rails
   faker
   formtastic!

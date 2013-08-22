@@ -12,20 +12,20 @@
           .post-title
             = @post.title
           .post_date
-            = @post.created_at.strftime("%d %B %H:%M:%S")
+            = @post.created_at.strftime('%d %B %H:%M:%S')
           %span.comments_count
             = pluralize(@post.comments_count, t('.comment'))
-        .post-content.row
+        .post-content
           != @post.description
         - unless @post.categories.empty?
           .categories
             = t '.categories'
-            != @post.categories.collect{|cat| link_to strip_links(cat.name), posts_path(:category_name=>cat.name) }.join(', ')
+            != @post.categories.collect{|cat| link_to strip_links(cat.name), posts_path(category_name: cat.name)}.join(', ')
         - unless @post.tags.empty?
           .tags
             = t '.tags'
             - @post.tags.each do |tag|
-              = link_to tag.name, posts_path(:tag_name => tag.name), :class => 'btn btn-default btn-small'
+              = link_to tag.name, posts_path(tag_name: tag.name), class: 'btn btn-default btn-small'
       .comments_block
         -if @post.comments_count > 3
           #all_comments
@@ -47,15 +47,15 @@
                 = 'ago'
               %hr
       .comments-form
-        = form_for [@post, @comment = Comment.new ], :html => {:class => 'form-inline'}, :remote => true do |f|
+        = form_for [@post, @comment = Comment.new ], html: {class: 'form-inline'}, remote: true do |f|
           .comment_block
             = t '.new_comment'
             .form-group
-              = f.text_field :nickname, :class => 'form-control input-small', :placeholder => t('.write_nickname')
+              = f.text_field :nickname, class: 'form-control input-small', placeholder: t('.write_nickname')
             .form-group
-              = f.text_field :description, :class => 'form-control input-small', :placeholder => t('.write_comment')
+              = f.text_field :description, class: 'form-control input-small', placeholder: t('.write_comment')
             .form-group
-              = f.submit t('.add_comment'), class: 'btn btn-primary btn-small', :id => 'go_comment', data: { disable_with: 'Please wait...' }
+              = f.submit t('.add_comment'), class: 'btn btn-primary btn-small', id: 'go_comment', data: {disable_with: 'Please wait...'}
       .col-lg-6
         .recent_posts
           %h3
@@ -67,7 +67,7 @@
           %h5
             = t ('.get_more')
           .btn
-            = link_to t('.rss_feed'), posts_path(:rss), :class => 'btn btn-primary'
+            = link_to t('.rss_feed'), posts_path(:rss), class: 'btn btn-primary'
       .col-lg-6
         .popular_posts
           %h3
@@ -79,6 +79,6 @@
           %h5
             = t '.ready_help'
           .btn
-            = link_to t('.contact_us'), contact_index_path, :class => 'btn btn-primary'
+            = link_to t('.contact_us'), contact_index_path, class: 'btn btn-primary'
     .col-lg-4.sidebar
-      = render :partial => 'sidebar'
+      = render partial: 'sidebar'

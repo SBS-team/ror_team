@@ -13,8 +13,6 @@
 #
 
 class Comment < ActiveRecord::Base
-  include Humanizer
-  require_human_on :create
 
   attr_accessor :admin
 

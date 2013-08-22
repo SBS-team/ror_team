@@ -67,6 +67,9 @@ $(document).ready ->
         maxlength: 2048
         minlength: 2
 
+      "recaptcha_response_field":
+        required: true
+
   #CREATE NEW COMMENT
   comment = undefined
   nickname = undefined
@@ -79,15 +82,15 @@ $(document).ready ->
       if ($.cookie 'nickname').toString() != $("#comment_nickname").val()
         $.cookie 'nickname', $("#comment_nickname").val(),{ expires: 30 , path: '/'  }
 
+    # IF BEFORE WE GOT INVALID ERRORS CLEAN THEM BEFORE
+    if $(".error_messages")
+      $("#comment_description").css "box-shadow", "none"
+      $("#comment_nickname").css "box-shadow", "none"
+      $(".error_messages").remove()
+
     if response.responseJSON.stat is "success"
 
-      # IF BEFORE WE GOT INVALID ERRORS CLEAN THEM BEFORE
-      if $(".error_messages")
-        $("#comment_description").css "box-shadow", "none"
-        $("#comment_nickname").css "box-shadow", "none"
-        $(".error_messages").remove()
       if response.responseJSON.comment
-
         # Init variables and add new comment
         comment = HtmlEncode(response.responseJSON.comment.description)
         nickname = response.responseJSON.comment.nickname
@@ -101,3 +104,11 @@ $(document).ready ->
         $(".comments_count").text count + " comment"
       else
         $(".comments_count").text count + " comments"
+
+    if response.responseJSON.stat is "error"
+      strWithErrors = "<div class=error_messages>"
+      for key of response.responseJSON.errors
+        strWithErrors += "<p>"+response.responseJSON.errors[key]+"</p>"
+      $(".comment_block").append strWithErrors+"</div>"
+
+    Recaptcha.reload()

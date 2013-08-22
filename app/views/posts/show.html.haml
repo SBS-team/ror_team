@@ -54,6 +54,7 @@
               = f.text_field :nickname, class: 'form-control input-small', placeholder: t('.write_nickname')
             .form-group
               = f.text_field :description, class: 'form-control input-small', placeholder: t('.write_comment')
+            = recaptcha_tags
             .form-group
               = f.submit t('.add_comment'), class: 'btn btn-primary btn-small', id: 'go_comment', data: {disable_with: 'Please wait...'}
       .col-lg-6

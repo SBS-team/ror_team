@@ -1,7 +1,7 @@
 server '192.168.137.75', :web, :app, :db, primary: true
 
-set :deploy_to, '/home/deployer/staging/rorteam/preproduction'
- 
+set :deploy_to, '/home/deployer/staging/rorteam'
+
 set :rails_env, 'preproduction'
 set :user, 'deployer'
  
@@ -11,6 +11,8 @@ set :unicorn_pid, "#{deploy_to}/shared/pids/unicorn.pid"
 set :shared_path, "#{deploy_to}/shared"
 
 set :branch, 'dev'
+
+set :user, 'deployer'
 
 namespace :deploy do
   task :restart do

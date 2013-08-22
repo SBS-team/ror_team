@@ -5,7 +5,6 @@ require 'capistrano/ext/multistage'
 set :using_rvm,       true
 
 set :application, 'rorteam'
-
 set :use_sudo, false
 ssh_options[:forward_agent] = true
 ssh_options[:auth_methods] = ['publickey']
@@ -13,7 +12,6 @@ ssh_options[:auth_methods] = ['publickey']
 
 set :scm, :git # Используем git. Можно, конечно, использовать что-нибудь другое - svn, например, но общая рекомендация для всех кто не использует git - используйте git. 
 set :repository,  'git@github.com:SBS-team/ror_team.git' # Путь до вашего репозитария. Кстати, забор кода с него происходит уже не от вас, а от сервера, поэтому стоит создать пару rsa ключей на сервере и добавить $
-
 set :deploy_via, :remote_cache # Указание на то, что стоит хранить кеш репозитария локально и с каждым деплоем лишь подтягивать произведенные изменения. Очень актуально для больших и тяжелых репозитариев.
 
 set :stages,          %w(preproduction production)

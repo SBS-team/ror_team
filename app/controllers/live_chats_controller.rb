@@ -1,7 +1,7 @@
 class LiveChatsController < ApplicationController
 
   def new_chat
-    @admins = AdminUser.select(:id, :first_name, :last_name).where(role: 'manager', status: 'online').order('random()')
+    @admins = AdminUser.online.select(:id, :first_name, :last_name).where(role: 'manager', status: 'online').order('random()')
     @live_chat = LiveChat.new
     respond_to do |format|
       format.js
@@ -67,7 +67,7 @@ class LiveChatsController < ApplicationController
       Webs.notify(:notify_chat_closing, channel, 'user-close-chat')
     end
     session[:chat_id] = nil
-    @admins = AdminUser.select(:id, :first_name, :last_name).where(role: 'manager', status: 'online').order('random()')
+    @admins = AdminUser.online.select(:id, :first_name, :last_name).where(role: 'manager', status: 'online').order('random()')
     respond_to do |format|
       format.js
     end

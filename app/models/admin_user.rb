@@ -25,7 +25,7 @@
 class AdminUser < ActiveRecord::Base
 
   devise :database_authenticatable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable, :session_limitable
 
   has_many :comments, as: :commentable, dependent: :destroy
   has_many :posts, dependent: :destroy
@@ -36,6 +36,7 @@ class AdminUser < ActiveRecord::Base
   accepts_nested_attributes_for :upload_file
 
   scope :not_admin, -> {where("role != 'admin'")}
+  scope :online, -> {where('last_activity >= :time', :time => 10.minutes.ago)}
 
   validates :role, presence: true,
             inclusion: {in: %w(admin manager team_lead team), message: "%{value} is not a valid role"}

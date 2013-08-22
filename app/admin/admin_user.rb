@@ -2,8 +2,17 @@ ActiveAdmin.register AdminUser do
 
   filter :role, as: :select, collection: ['manager', 'admin', 'team', 'team_lead']
 
+  scope :online
+
   index do
     selectable_column
+    column 'Status' do |admin_user|
+      if admin_user.last_activity
+        status_tag ((DateTime.now.to_i - admin_user.last_activity.to_i) <= (10*60) ? 'Online' : 'Offline'), ((DateTime.now.to_i - admin_user.last_activity.to_i) <= (10*60)  ? :ok : :error)
+      else
+        status_tag 'Offline', :error
+      end
+    end
     column :image do |admin_user|
       unless admin_user.upload_file.blank?
         image_tag(admin_user.upload_file.img_name.url(:thumb), height: 30)
@@ -30,6 +39,7 @@ ActiveAdmin.register AdminUser do
         row :last_name
         row :email
         row :about
+        row :last_activity
         row :sign_in_count
         row :current_sign_in_at
         row :current_sign_in_ip

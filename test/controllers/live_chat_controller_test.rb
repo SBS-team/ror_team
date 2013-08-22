@@ -3,7 +3,7 @@ require "minitest_helper"
 describe LiveChatsController  do
 
   before do
-    @manager = FactoryGirl.create(:admin_user, :role => 'manager', :status => 'online')
+    @manager = FactoryGirl.create(:admin_user, :role => 'manager', :status => 'online', :last_activity => DateTime.now)
   end
 
   it 'render new live chat' do

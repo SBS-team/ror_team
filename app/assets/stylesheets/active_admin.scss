@@ -42,7 +42,9 @@ body .cke_dialog .ImagePreviewBox {
   width: auto;
 }
 
-body #cke_post_description {
+body #cke_post_description,
+body #cke_project_description,
+body #cke_job_description {
   width: 77%;
   float: left;
   margin-bottom: 20px;

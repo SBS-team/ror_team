@@ -15,7 +15,14 @@ ActiveAdmin.register UploadFile do
     column :fileable_type
     column :link do |upload_file|
       file = upload_file.fileable
-      title = file.respond_to?(:title) ? file.title : file.name
+
+      title = if file.respond_to?(:title)
+                file.title
+              elsif file.respond_to?(:first_name)
+                file.first_name + ' ' + file.last_name
+              else
+                file.name
+              end
       link_to title, [:admin, file]
     end
   end

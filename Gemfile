@@ -12,6 +12,9 @@ gem 'kaminari'
 # Use for upload files
 gem 'carrierwave'
 gem 'rmagick', '~>2.13.2', :require => 'RMagick'
+
+gem 'ckeditor', github: 'keitoaino/ckeditor'
+gem 'mini_magick'
 #sudo apt-get install libmagickwand-dev                                   # Setup this libs
 #sudo apt-get install graphicsmagick-libmagick-dev-compat                 # For install Rmagick
 #sudo apt-get install imagemagick
@@ -57,7 +60,7 @@ group :test do
   gem 'database_cleaner'
   gem 'faker'
   gem 'minitest-rails-capybara'
-  gem 'selenium-webdriver', '~> 2.33.0'
+  gem "selenium-webdriver", '~> 2.34.0'
   gem 'guard-rspec'
   gem 'launchy'
 end

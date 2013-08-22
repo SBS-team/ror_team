@@ -21,6 +21,24 @@
         else
           window.location.reload()
       ).bind(@)
+
+      @userCloseChatCallback = (->
+        alert "User close chat"
+        window.location.reload()
+      ).bind(@)
+
+      @adminCloseChatCallback = (->
+        new_height = $("#chat-history").height() + $('.chat-msg').height()
+        $('.chat-msg').remove()
+        $("#chat-history").height(new_height)
+        $("#chat").append "<div><span class='label label-danger'>Admin close this chat</span></div>"
+        $("#chat-history").scrollTop $("#chat").height()-$(".msg:last").height()
+
+        $.post "/chat_close"
+      ).bind(@)
+
       @testChannel.bind "msg-event", @testChannelCallback
+      @testChannel.bind "user-close-chat", @userCloseChatCallback if $("#admin-chat").length>0
+      @testChannel.bind "admin-close-chat", @adminCloseChatCallback unless $("#admin-chat").length>0
   window.Chat = Chat
 )()

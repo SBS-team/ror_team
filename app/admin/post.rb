@@ -54,7 +54,7 @@ ActiveAdmin.register Post do
     f.semantic_errors :base
     f.inputs 'Post Details', :multipart => true do
       f.input :title
-      f.input :description, as: :html_editor
+      f.input :description, :as => :text, input_html: {class: 'ckeditor'}
       f.input :tag_list, :hint => 'Comma separated'
       f.input :categories, as: :check_boxes
       f.inputs :for => [:upload_file, f.object.upload_file || UploadFile.new] do |file|
@@ -68,6 +68,14 @@ ActiveAdmin.register Post do
 
   controller do
     defaults :finder => :find_by_slug
+
+    def scoped_collection
+      unless params[:tag_name].blank?
+        Post.joins(:tags).includes([:categories, :upload_file, :admin]).where("tags.name = :tag_name", :tag_name=>params[:tag_name]).page(params[:page]).per(30)
+      else
+        Post.includes([:tags, :categories, :upload_file, :admin]).page(params[:page]).per(30)
+      end
+    end
 
     def create
       @post = current_admin_user.posts.build(post_params)

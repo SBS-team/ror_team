@@ -8,17 +8,14 @@
               - unless @post.upload_file.blank? || @post.upload_file.img_name.blank?
                 = image_tag @post.upload_file.img_name.url(:thumb), class: @post.id
               - else
-                = image_tag 'missing.png', class: @post.id
+                = image_tag 'no_image.gif', class: @post.id
           .post-title
             = @post.title
           .post_date
             = @post.created_at.strftime("%d %B %H:%M:%S")
           %span.comments_count
-            - if @post.comments_count==0
-              = t('.post_hasnt_comments')
-            - else
-              = pluralize(@post.comments_count, t('.comment'))
-        .post-content
+            = pluralize(@post.comments_count, t('.comment'))
+        .post-content.row
           != @post.description
         - unless @post.categories.empty?
           .categories
@@ -28,7 +25,7 @@
           .tags
             = t '.tags'
             - @post.tags.each do |tag|
-              = link_to tag.name, posts_path(:tag_name => tag.name), :class => 'btn btn-default'
+              = link_to tag.name, posts_path(:tag_name => tag.name), :class => 'btn btn-default btn-small'
       .comments_block
         -if @post.comments_count > 3
           #all_comments
@@ -82,6 +79,6 @@
           %h5
             = t '.ready_help'
           .btn
-            = link_to t('.contact_us'), contact_index_path, :class => 'btn btn-default'
+            = link_to t('.contact_us'), contact_index_path, :class => 'btn btn-primary'
     .col-lg-4.sidebar
       = render :partial => 'sidebar'

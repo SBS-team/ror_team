@@ -9,7 +9,7 @@ describe ViewTest do
 
   it 'Cannot be blank' do
     find('.submit-form input').click
-    assert page.has_content?("This field is required.")
+    assert page.has_content?('This field is required.')
   end
 
   it 'Email Cannot be blank' do
@@ -25,7 +25,7 @@ describe ViewTest do
       fill_in 'message_email', :with => 'asd@rb.ru'
     end
     find('.submit-form input').click
-    assert page.has_content?('This field is required.')
+    assert page.has_content?("This field is required.")
   end
 
   it 'Message was successfully sent' do

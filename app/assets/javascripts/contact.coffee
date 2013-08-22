@@ -1,7 +1,7 @@
 $(document).ready ->
 
   $(".send-email").click ->
-    $("form").validate
+    $("#new_message").validate
       rules:
         "message[name]":
           required: true,
@@ -14,10 +14,14 @@ $(document).ready ->
           digits: true,
           maxlength: 31
 
-  $("#submit").click ->
+  $("#new_chat_submit").click ->
     $("#new_live_chat").validate
       rules:
-        "message":
-          required: true
         "live_chat[guest_name]":
-          required: true
+          required: true,
+          maxlength: 150,
+          minlength: 2
+        "message":
+          required: true,
+          maxlength: 255,
+          minlength: 2

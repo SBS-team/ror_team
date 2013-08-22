@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130801104420) do
+ActiveRecord::Schema.define(version: 20130819113922) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "resource_id",   null: false
@@ -58,11 +58,27 @@ ActiveRecord::Schema.define(version: 20130801104420) do
   end
 
   create_table "chat_messages", force: true do |t|
-    t.string   "body"
+    t.text     "body"
     t.integer  "live_chat_id"
     t.boolean  "is_admin"
     t.datetime "created_at"
   end
+
+  create_table "ckeditor_assets", force: true do |t|
+    t.string   "data_file_name",               null: false
+    t.string   "data_content_type"
+    t.integer  "data_file_size"
+    t.integer  "assetable_id"
+    t.string   "assetable_type",    limit: 30
+    t.string   "type",              limit: 30
+    t.integer  "width"
+    t.integer  "height"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "ckeditor_assets", ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable", using: :btree
+  add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type", using: :btree
 
   create_table "comments", force: true do |t|
     t.text     "description"
@@ -96,7 +112,6 @@ ActiveRecord::Schema.define(version: 20130801104420) do
 
   create_table "live_chats", force: true do |t|
     t.string   "guest_name"
-    t.string   "guest_email"
     t.integer  "admin_id"
     t.datetime "created_at"
     t.datetime "updated_at"

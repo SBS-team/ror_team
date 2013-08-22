@@ -6,27 +6,29 @@
           - unless member.upload_file.blank? || member.upload_file.img_name.blank?
             = image_tag member.upload_file.img_name.url(:thumb), :class => 'img-circle', :width => '150'
           - else
-            = image_tag 'missing.png'
+            = image_tag 'no_image.gif', :width => 150
           .member-name
             %span
             %p.lead
               = link_to "#{member.first_name} #{member.last_name}", team_path(member)
             %p
               %span
-                = link_to "#{member.role}", team_index_path(:role => member.role), :class => 'btn btn-primary'
+                = link_to "#{member.role}", team_index_path(:role => member.role), :class => 'btn btn-primary btn-small'
           .about
             %p
               = truncate(member.about.capitalize, :length => 50)
       = paginate @team
     .col-lg-6
       - unless @team_photo.blank?
+      - team_photo_count = @team_photo.upload_files.count
         %h3
           = @team_photo.title
         - unless @team_photo.upload_files.blank? || @team_photo.upload_files.first.img_name.blank?
           .carousel.slide{:id => "myCarousel#{@team_photo.id}"}
-            %ol.carousel-indicators
-              - (@team_photo.upload_files.count).times do |i|
-                %li{'data-slide-to' => "#{i}", 'data-target' => "#myCarousel#{@team_photo.id}", :class => "#{'active' if i == 0}" }
+            - if team_photo_count > 1
+              %ol.carousel-indicators
+                - team_photo_count.times do |i|
+                  %li{'data-slide-to' => "#{i}", 'data-target' => "#myCarousel#{@team_photo.id}", :class => "#{'active' if i == 0}" }
             .carousel-inner
               - @team_photo.upload_files.each do |file|
                 - if file.img_name == @team_photo.upload_files.first.img_name

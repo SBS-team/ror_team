@@ -3,6 +3,15 @@ HtmlEncode = (val) ->
 HtmlDecode = (val) ->
   $("<div/>").html(val).text()
 
+$.validator.addMethod 'admin',(value,element)->
+  if value.toLowerCase().match(/^admin.?$/)
+    return false
+  else
+    return true
+
+,"You can't use nickname: admin."
+
+
 $(document).ready ->
 
   if ($.cookie 'nickname')
@@ -50,6 +59,7 @@ $(document).ready ->
         required: true
         maxlength: 40
         minlength: 2
+        admin: true
 
       "comment[description]":
         required: true
@@ -85,4 +95,7 @@ $(document).ready ->
       $("#comment_description").val ""
       count = $(".comments_count").text()
       count = parseInt(count) + 1
-      $(".comments_count").text count + " comments"
+      if count == 1
+        $(".comments_count").text count + " comment"
+      else
+        $(".comments_count").text count + " comments"

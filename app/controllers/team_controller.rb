@@ -4,11 +4,11 @@ class TeamController < ApplicationController
 
   def index
     unless params[:role].blank?
-      @team = AdminUser.not_admin.where("role = :role", :role => params[:role]).page(params[:page]).per(5)
+      @team = AdminUser.not_admin.where("role = :role", :role => params[:role]).includes(:upload_file).page(params[:page]).per(5)
     else
-      @team = AdminUser.where.not(:role => 'admin').order('role').page(params[:page]).per(5)
+      @team = AdminUser.where.not(:role => 'admin').includes(:upload_file).order('role').page(params[:page]).per(5)
     end
-    @team_photo = TeamPhoto.order('random()').take
+    @team_photo = TeamPhoto.includes(:upload_files).order('random()').take
   end
 
   def show

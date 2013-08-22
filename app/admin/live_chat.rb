@@ -1,7 +1,6 @@
 ActiveAdmin.register LiveChat do
 
   #filter :admin_id, :as => :select, :collection => AdminUser.where(:role => 'manager').map { |j| [j.email, j.id] }
-  filter :guest_email, :as => :string
   filter :created_at
 
   scope :mine do |live_chat|
@@ -15,7 +14,6 @@ ActiveAdmin.register LiveChat do
   index do
     selectable_column
     column :guest_name
-    column :guest_email
     column :admin do |live_chat|
       live_chat.admin_user.email
     end
@@ -27,7 +25,6 @@ ActiveAdmin.register LiveChat do
     panel 'Chat Details' do
       attributes_table_for live_chat do
         row :guest_name
-        row :guest_email
         row :admin do
           live_chat.admin_user.email
         end
@@ -39,7 +36,7 @@ ActiveAdmin.register LiveChat do
       panel "Chat massage (#{live_chat.chat_messages.count})" do
         table_for live_chat.chat_messages do |t|
           t.column 'Sender' do |msg|
-            msg.is_admin ? "Admin: #{live_chat.admin_user.email}" : "User: #{live_chat.guest_email}"
+            msg.is_admin ? "Manager: #{live_chat.admin_user.email}" : "User: #{live_chat.guest_name}"
           end
           t.column 'Massages' do |msg|
             msg.body
@@ -50,6 +47,14 @@ ActiveAdmin.register LiveChat do
         end
       end
     end
+  end
+
+  controller do
+
+    def scoped_collection
+      LiveChat.includes([:admin_user]).page(params[:page]).per(30)
+    end
+
   end
 
 end

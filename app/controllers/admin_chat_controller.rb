@@ -36,11 +36,14 @@ class AdminChatController < ApplicationController
                                                                 date: message.created_at.to_i})
       end
     end
-    redirect_to :back
+    render :text => 'ok'
   end
 
   def close
     current_admin_user.update_attribute(:status, 'online')
-    redirect_to :back
+    channel = 'presence-' + current_admin_user.first_name+'-'+current_admin_user.last_name
+    Webs.pusher
+    Webs.notify(:notify_chat_closing, channel, 'admin-close-chat')
+    redirect_to admin_start_chat_path
   end
 end

@@ -5,7 +5,6 @@
 .row.team-members {
   margin-bottom: 20px;
   padding-bottom: 20px;
-  border-bottom: 1px solid #000000;
   margin-top: 20px;
 }
 
@@ -18,4 +17,9 @@
 .team-member img {
   float: left;
   margin: 0 20px 10px 0;
+}
+
+.fullteam {
+  float: left;
+  margin: 0 10px 0 0;
 }

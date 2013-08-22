@@ -17,12 +17,18 @@ ActiveAdmin.register Comment do
   form do |f|
     f.inputs 'Comments' do
       f.input :post
+      f.input :nickname
       f.input :description
     end
     f.actions
   end
 
   controller do
+
+    def scoped_collection
+      Comment.includes([:post]).page(params[:page]).per(30)
+    end
+
     def create
       @comment = current_admin_user.comments.build(comment_params)
 
@@ -43,7 +49,7 @@ ActiveAdmin.register Comment do
     end
     private
     def comment_params
-      params.require(:comment).permit(:description, :post_id, :commentable_id, :commentable_type)
+      params.require(:comment).permit(:description, :post_id, :commentable_id, :commentable_type, :nickname)
     end
   end
 end

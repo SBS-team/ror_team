@@ -11,20 +11,23 @@
             - unless technology.upload_file.blank? || technology.upload_file.img_name.blank?
               = image_tag technology.upload_file.img_name.url(:thumb), title: technology.name, alt: technology.name, width: 50
             - else
-              = image_tag 'missing.png', width: 50, alt: technology.name, title: technology.name
+              = image_tag 'no_image.gif', width: 50, alt: technology.name, title: technology.name
 .row.experience
-  .col-lg-12
+  .col-lg-12.company_plus
     .col-lg-4
-      = image_tag('/icon-info.png')
-      %span
+      .our_pluses
+        = image_tag 'various_systems.jpg'
+      .our_pluses_descr
         = t '.development_system'
     .col-lg-4
-      = image_tag('/icon-info.png')
-      %span
+      .our_pluses
+        = image_tag 'experienced_team.jpg'
+      .our_pluses_descr
         = t '.command_development'
     .col-lg-4
-      = image_tag('/icon-info.png')
-      %span
+      .our_pluses
+        = image_tag 'odesk.jpg', :title => 'hihi'
+      .our_pluses_descr
         = t '.feedback_odesk'
 .services.col-lg-12
   %h3
@@ -33,9 +36,9 @@
     - @services.each do |service|
       .col-lg-3.text-center
         - unless service.upload_file.blank? || service.upload_file.img_name.blank?
-          = image_tag service.upload_file.img_name.url(:thumb), title: service.name, alt: service.name, :width => 200
+          = image_tag service.upload_file.img_name.url(:thumb), title: service.name, alt: service.name, :height => 200
         - else
-          = image_tag 'missing.png', :width => 200
+          = image_tag 'no_image.gif', :width => 200
         %h4
           = service.name
 .row

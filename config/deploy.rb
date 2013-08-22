@@ -2,13 +2,13 @@ require 'rvm/capistrano' # Для работы rvm
 require 'bundler/capistrano' # Для работы bundler. При изменении гемов bundler автоматически обновит все гемы на сервере, чтобы они в точности соответствовали гемам разработчика. 
 require 'capistrano/ext/multistage'
 
-set :rvm_path,        '/var/www/admintools.loc/.rvm'
-set :rvm_bin_path,    '/var/www/admintools.loc/.rvm/bin'
+set :rvm_path,        '/home/deployer/staging/rorteam/.rvm'
+set :rvm_bin_path,    '/home/deployer/staging/rorteam/.rvm/bin'
 set :using_rvm,       true
 set :rvm_ruby_string, 'ruby-2.0.0-p247@rorteam_dev'
 
 set :application, 'rorteam'
-set :user, 'admintools'
+set :user, 'deployer'
 set :use_sudo, false
 #set :unicorn_conf, "#{deploy_to}/current/config/unicorn.rb"
 #set :unicorn_pid, "#{deploy_to}/shared/pids/unicorn.pid"
@@ -21,11 +21,11 @@ set :repository,  'git@github.com:SBS-team/ror_team.git' # Путь до ваш�
 #set :branch, "master" # Ветка из которой будем тянуть код для деплоя.
 set :deploy_via, :remote_cache # Указание на то, что стоит хранить кеш репозитария локально и с каждым деплоем лишь подтягивать произведенные изменения. Очень актуально для больших и тяжелых репозитариев.
 
-role :web, '192.168.137.1'
-role :app, '192.168.137.1'
-role :db,  '192.168.137.1', primary: true
+role :web, '192.168.137.75'
+role :app, '192.168.137.75'
+role :db,  '192.168.137.75', primary: true
 
-set(:deploy_to) {"/var/www/admintools.loc/rorteam.loc/#{stage}"}
+set(:deploy_to) {"/home/deployer/staging/rorteam/#{stage}"}
 set :stages,          %w(preproduction production)
 set :default_stage,   'preproduction'
 set :keep_releases, 3
@@ -78,7 +78,7 @@ end
 namespace :rails do
   desc 'Open the rails console on one of the remote servers'
   task :console, roles: :app do
-    exec "ssh -l #{user} '192.168.137.1' -t 'cd #{current_path} && bundle install && bundle exec rails c #{stage}'"
+    exec "ssh -l #{user} '192.168.137.75' -t 'cd #{current_path} && bundle install && bundle exec rails c #{stage}'"
   end
 end
 

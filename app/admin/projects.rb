@@ -1,6 +1,6 @@
 ActiveAdmin.register Project do
 
-  filter :name, :as => :string
+  filter :name, as: :string
   filter :services
   filter :technologies
 
@@ -47,30 +47,28 @@ ActiveAdmin.register Project do
     end
   end
 
-
-  form :html => {:enctype => "multipart/form-data" } do |f|
+  form html: {enctype: 'multipart/form-data'} do |f|
     f.semantic_errors :base
     f.inputs "Project Details" do
       f.input :name
-      f.input :description, as: :html_editor
+      f.input :description, as: :text, input_html: {class: 'ckeditor'}
       f.input :since
       f.input :till
       f.input :team_size
       f.input :url
-      f.input :technologies, :as => :check_boxes
-      f.input :services, :as => :check_boxes
+      f.input :technologies, as: :check_boxes
+      f.input :services, as: :check_boxes
       f.has_many :upload_files do |file|
-        file.input :img_name, :as => :file, :hint => file.object.img_name.nil? ? f.template.content_tag(:span, "no map yet") : file.template.image_tag(file.object.img_name.url(:thumb))
-        file.input :remote_img_name_url, :as => :url
-        file.input :remove_img_name, :as => :boolean , :label => 'Delete image?'
-        file.input :id, :as => :hidden
+        file.input :img_name, as: :file, hint: file.object.img_name.nil? ? f.template.content_tag(:span, 'no map yet') : file.template.image_tag(file.object.img_name.url(:thumb))
+        file.input :remote_img_name_url, as: :url
+        file.input :remove_img_name, as: :boolean , label: 'Delete image?'
+        file.input :id, as: :hidden
       end
     end
     f.actions
   end
 
   controller do
-
     def scoped_collection
       Project.includes([:technologies, :services]).page(params[:page]).per(30)
     end
@@ -79,7 +77,6 @@ ActiveAdmin.register Project do
       begin
         @project = Project.new(project_params)
         @project.save!
-        # TODO make this with nested attributes
         technologies = Technology.find(params[:project][:technology_ids].reject { |i| i.to_i <= 0 })
         technologies.each { |i| i.projects << @project }
         services = Service.find(params[:project][:service_ids].reject { |i| i.to_i <= 0 })
@@ -109,13 +106,15 @@ ActiveAdmin.register Project do
 
     private
     def project_params
-      params.require(:project).permit(:name, :description, :since, :till, :team_size, :url, upload_files_attributes: [:img_name, :id])
+      params.require(:project).permit(:name, :description, :since, :till, :team_size, :url,
+                                      upload_files_attributes: [:img_name, :id])
     end
 
     def project_update_params
-      params.require(:project).permit(:name, :description, :since, :till, :team_size, :url, upload_files_attributes: [:img_name, :id, :remove_img_name], :service_ids => [], :technology_ids => [])
+      params.require(:project).permit(:name, :description, :since, :till, :team_size, :url,
+                                      upload_files_attributes: [:img_name, :id, :remove_img_name],
+                                      service_ids: [], technology_ids: [])
     end
-
   end
 
 end

@@ -1,4 +1,4 @@
-#chat-history{
+#chat-history {
   height: 270px;
 }
 
@@ -12,7 +12,7 @@
   margin: 10px;
 }
 
-.chat-content{
+.chat-content {
   border: 1px solid #000000;
   height: 550px;
   width: 400px;
@@ -28,17 +28,16 @@
   height: 40px;
   cursor: move;
   text-align: center;
-
 }
 
-.head-chat{
+.head-chat {
   text-transform: capitalize;
   font-size: 12pt;
   color: #ffffff;
   width: 100px;
 }
 
-.controls-chat{
+.controls-chat {
   float: right;
 }
 

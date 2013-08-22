@@ -11,12 +11,12 @@
 
 class Job < ActiveRecord::Base
 
-  has_many :resumes ,:dependent => :destroy
-  has_one :upload_file, :as => :fileable, :dependent => :destroy
+  has_many :resumes, dependent: :destroy
+  has_one  :upload_file, as: :fileable, dependent: :destroy
+
   accepts_nested_attributes_for :upload_file
 
-  validates :title,
-            :presence => true
-  validates :description,
-            :presence => true
+  validates :title, presence: true
+  validates :description, presence: true
+
 end

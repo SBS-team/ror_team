@@ -5,15 +5,15 @@
     %title RorTeam
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application'
-    = include_gon(:namespace => 'RorTeam', :camel_case => true)
+    = include_gon(namespace: 'RorTeam', camel_case: true)
     = csrf_meta_tags
   %body
     - if session[:chat_id] && controller.controller_name != 'contact'
-      = render :partial => 'shared/live_chat'
+      = render partial: 'shared/live_chat'
     .container
       .navbar.navbar-inverse.navbar-fixed-top
         .container
-          = link_to(t('.ror_team'), root_path, :class => 'navbar-brand')
+          = link_to(t('.ror_team'), root_path, class: 'navbar-brand')
           %ul.nav.navbar-nav
             = nav_link_to(t('.company'), company_index_path, 'company')
             = nav_link_to(t('.work'), projects_path, 'projects')
@@ -23,13 +23,13 @@
             = nav_link_to(t('.blog'), posts_path, 'posts')
           .pull-right.live-chat
             - if session[:chat_id]
-              %span{:class => 'btn btn-success', :id => 'chat_show'}
+              %span{class: 'btn btn-success', id: 'chat_show'}
                 = t('.live_chat')
             - elsif controller.controller_name == 'contact'
-              %span{:class => 'btn btn-danger', :id => 'chat_contact'}
+              %span{class: 'btn btn-danger', id: 'chat_contact'}
                 = t('.live_chat')
             - else
-              %span{:class => 'btn btn-danger', :id => 'chat_start'}
+              %span{class: 'btn btn-danger', id: 'chat_start'}
                 = t('.live_chat')
       .content.row
         .col-lg-12

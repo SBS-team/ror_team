@@ -10,16 +10,11 @@
 #
 
 class ChatMessage < ActiveRecord::Base
+
   belongs_to :live_chat
 
-  validates :body,
-            presence: true,
-            length: { in: 2..255 }
-  validates :live_chat_id,
-            presence: true,
-            numericality: {only_integer: true,
-                          greater_than: 0 }
-  validates :is_admin,
-            inclusion: { in: [true, false]}
+  validates :body, presence: true, length: {in: 2..255}
+  validates :live_chat_id, presence: true, numericality: {only_integer: true, greater_than: 0}
+  validates :is_admin, inclusion: {in: [true, false]}
 
 end

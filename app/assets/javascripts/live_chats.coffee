@@ -50,11 +50,6 @@ startLiveChat = ->
   getLiveChatPosition()
   $.cookie 'hide_win', 1, { path: '/' }
 
-  unless $("#live_chat_admin_id")
-    admin_main_channel = 'presence-' + $("#live_chat_admin_id :selected").text().replace(' ', '-')
-  else
-    admin_main_channel = 'presence-' + RorTeam.currentAdminChannel
-
 $(document).ready ->
 
   $("#new_live_chat").validate
@@ -112,7 +107,7 @@ $(document).ready ->
       if ($.cookie 'nickname').toString() != $("#live_chat_guest_name").val()
         $.cookie 'nickname', $("#live_chat_guest_name").val(),{ expires: 30 , path: '/'  }
 
-    admin_main_channel = 'presence-' + $("#live_chat_admin_id :selected").text().replace(' ', '-')
+    admin_main_channel = 'presence-' + $("#live_chat_admin_user_id :selected").text().replace(' ', '-')
 
     newLiveChat = true
 

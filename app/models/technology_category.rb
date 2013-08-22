@@ -9,10 +9,9 @@
 #
 
 class TechnologyCategory < ActiveRecord::Base
+
   has_many :technologies, dependent: :destroy
 
-  validates :name,
-            :presence => true,
-            :uniqueness => true,
-            :length => { :in => 1..45 }
+  validates :name, presence: true, uniqueness: true, length: {in: 1..45}
+
 end

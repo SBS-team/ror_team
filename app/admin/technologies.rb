@@ -1,9 +1,9 @@
 ActiveAdmin.register Technology do
 
-  menu :parent => 'Skills & Service'
+  menu parent: 'Skills & Service'
 
   filter :name
-  filter :technology_category, :as => :check_boxes
+  filter :technology_category, as: :check_boxes
   filter :projects
 
   index do
@@ -32,21 +32,20 @@ ActiveAdmin.register Technology do
     end
   end
 
-  form :html => {:enctype => "multipart/form-data" } do |f|
+  form html: {enctype: 'multipart/form-data'} do |f|
     f.semantic_errors :base
-    f.inputs 'Technology', :multipart => true do
+    f.inputs 'Technology', multipart: true do
       f.input :name
       f.input :technology_category
-      f.inputs :for => [:upload_file, f.object.upload_file || UploadFile.new] do |file|
-        file.input :img_name, :as => :file, :hint => file.object.img_name.nil? ? f.template.content_tag(:span, "no map yet") : file.template.image_tag(file.object.img_name.url(:thumb))
-        file.input :remote_img_name_url, :as => :url
+      f.inputs for: [:upload_file, f.object.upload_file || UploadFile.new] do |file|
+        file.input :img_name, as: :file, hint: file.object.img_name.nil? ? f.template.content_tag(:span, 'no map yet') : file.template.image_tag(file.object.img_name.url(:thumb))
+        file.input :remote_img_name_url, as: :url
       end
     end
     f.actions
   end
 
   controller do
-
     def scoped_collection
       Technology.includes([:upload_file, :technology_category]).page(params[:page]).per(30)
     end
@@ -73,7 +72,6 @@ ActiveAdmin.register Technology do
     def safe_params
       params.require(:technology).permit(:name, :technology_category_id, upload_file_attributes: [:img_name, :id])
     end
-
   end
 
 end

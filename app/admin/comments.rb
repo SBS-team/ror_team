@@ -1,8 +1,8 @@
 ActiveAdmin.register Comment do
 
-  menu :parent => 'Blog'
+  menu parent: 'Blog'
 
-  filter :description, :as => :string
+  filter :description, as: :string
 
   index do
     selectable_column
@@ -24,20 +24,17 @@ ActiveAdmin.register Comment do
   end
 
   controller do
-
     def scoped_collection
       Comment.includes([:post]).page(params[:page]).per(30)
     end
 
     def create
       @comment = current_admin_user.comments.build(comment_params)
-
       if current_admin_user && current_admin_user.role == 'admin'
         @comment.admin = true
       else
         @comment.admin = false
       end
-
       if @comment.save
         redirect_to admin_comment_path(@post), notice: 'Comment was successfully created.'
       else
@@ -59,4 +56,5 @@ ActiveAdmin.register Comment do
       params.require(:comment).permit(:description, :post_id, :commentable_id, :commentable_type, :nickname)
     end
   end
+
 end

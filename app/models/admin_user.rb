@@ -25,7 +25,7 @@
 class AdminUser < ActiveRecord::Base
 
   devise :database_authenticatable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable, :session_limitable
 
   has_many :comments, as: :commentable, dependent: :destroy
   has_many :posts, dependent: :destroy

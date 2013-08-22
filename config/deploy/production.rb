@@ -1,6 +1,6 @@
-server '192.168.137.1', :web, :app, :db, primary: true
+server '192.168.137.75', :web, :app, :db, primary: true
 
-set :deploy_to, '/var/www/admintools.loc/rorteam.loc/production'
+set :deploy_to, '/home/admin/production/rorteam'
  
 set :rails_env, 'production'
 set :user, 'admintools'
@@ -12,4 +12,4 @@ set :shared_path, "#{deploy_to}/shared"
 
 set :branch, 'master'
 
-
+set :user, 'admin'

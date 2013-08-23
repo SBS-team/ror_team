@@ -1,6 +1,7 @@
 .col-lg-6
   %h2
     = t '.send_resume'
+  = render 'shared/set_recaptcha_style'
   = form_for @resume, url: jobs_path, html: {class: 'web-form', multipart: true} do |f|
     - if @resume.errors.any?
       .ror-team-errors

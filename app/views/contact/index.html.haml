@@ -2,6 +2,7 @@
   %h1
     = t '.contact_us'
   .web-form.row
+    = render 'shared/set_recaptcha_style'
     = form_for @message, url: contact_index_path, html: {class: 'web-form', multipart: true} do |form|
       - if @message.errors.any?
         .ror-team-errors

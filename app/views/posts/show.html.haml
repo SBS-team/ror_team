@@ -47,6 +47,7 @@
                 = 'ago'
               %hr
       .comments-form
+        = render 'shared/set_recaptcha_style'
         = form_for [@post, @comment = Comment.new ], html: {class: 'form-inline'}, remote: true do |f|
           .comment_block
             = t '.new_comment'

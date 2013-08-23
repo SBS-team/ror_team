@@ -15,7 +15,7 @@ class JobsController < ApplicationController
     @resume = Resume.new(resume_params)
     unless @resume.job_id.blank?
       @job = Job.find(@resume.job_id)
-      if verify_recaptcha(model: @resume, message: "You enter wrong captcha", attribute: :base) && @resume.save
+      if verify_recaptcha(model: @resume, message: 'You enter wrong captcha', attribute: :base) && @resume.save
         redirect_to jobs_path, notice: 'Your resume is successfully sent.'
       else
         @resume.upload_file = UploadFile.new

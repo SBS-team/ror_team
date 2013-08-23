@@ -1,7 +1,6 @@
 .col-lg-6
   %h2
     = t '.send_resume'
-  = render 'shared/set_recaptcha_style'
   = form_for @resume, url: jobs_path, html: {class: 'web-form', multipart: true} do |f|
     - if @resume.errors.any?
       .ror-team-errors
@@ -27,6 +26,7 @@
     .form-group
       = f.fields_for :upload_file do |builder|
         = builder.file_field :filename
-    = recaptcha_tags
+    .form-group#recaptcha
+      = recaptcha_tags display: {theme: 'white'}, ajax: true
     .submit-form.col-lg-12
       = f.submit t('.send_resume'), class: 'btn pull-right btn-primary check_errors', data: {disable_with: 'Please wait...'}

@@ -47,7 +47,6 @@
                 = 'ago'
               %hr
       .comments-form
-        = render 'shared/set_recaptcha_style'
         = form_for [@post, @comment = Comment.new ], html: {class: 'form-inline'}, remote: true do |f|
           .comment_block
             = t '.new_comment'
@@ -55,7 +54,8 @@
               = f.text_field :nickname, class: 'form-control input-small', placeholder: t('.write_nickname')
             .form-group
               = f.text_field :description, class: 'form-control input-small', placeholder: t('.write_comment')
-            = recaptcha_tags
+            .form-group#recaptcha
+              = recaptcha_tags display: {theme: 'white'}, ajax: true
             .form-group
               = f.submit t('.add_comment'), class: 'btn btn-primary btn-small', id: 'go_comment', data: {disable_with: 'Please wait...'}
       .col-lg-6

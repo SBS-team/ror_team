@@ -1,4 +1,5 @@
 # Style for button
+# Style for button
 buttonActive = (elem) ->
   elem.attr 'class', 'btn btn-success'
 buttonDefault = (elem) ->
@@ -24,6 +25,12 @@ $(document).ajaxSuccess (event, response, settings) ->
     buttonActive $("#chat_contact")
     startLiveChat()
     newLiveChat = false
+  else
+    # SHOW RECAPTCHA
+    if $('#recaptcha').length>0
+      $('#recaptcha-div').remove()
+      $('#recaptcha-home').append("<div id='recaptcha-div' class='text col-lg-12 form-group'></div>")
+      $('#recaptcha-div').html($('#recaptcha').clone(true,true))
 
 getLiveChatPosition = ->
   if ($.cookie 'position_left') == '0' || ($.cookie 'position_top') == '0'

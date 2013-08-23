@@ -2,7 +2,6 @@
   %h1
     = t '.contact_us'
   .web-form.row
-    = render 'shared/set_recaptcha_style'
     = form_for @message, url: contact_index_path, html: {class: 'web-form', multipart: true} do |form|
       - if @message.errors.any?
         .ror-team-errors
@@ -59,7 +58,8 @@
           %label.col-lg-12
             = form.radio_button :work_type, 'Service'
             = 'Service'
-      = recaptcha_tags
+      .form-group#recaptcha
+        = recaptcha_tags display: {theme: 'white'}, ajax: true
       .submit-form.text-right
         = submit_tag 'Send Message', class: 'btn btn-primary send-email', data: {disable_with: 'Please wait...'}
 .col-lg-6

@@ -14,7 +14,8 @@ class ContactController < ApplicationController
       redirect_to(root_path, notice: t('.contact_sent_msg'))
     else
       flash[:error] = @message.errors.full_messages.join(', ')
-      redirect_to :back
+      @services = Service.includes(:upload_file)
+      render :index
     end
   end
 

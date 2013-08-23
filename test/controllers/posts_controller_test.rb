@@ -67,6 +67,24 @@ describe PostsController do
       refute_includes(assigns(:posts), @posts[4])
     end
 
+    it 'search post' do
+      post = FactoryGirl.create(:post, :title => 'Post search', :admin_user_id => @admin.id, :upload_file => FactoryGirl.create(:upload_file))
+      get :index, :search => 'search'
+      assert_includes(assigns(:posts), post)
+      refute_includes(assigns(:posts), @posts[0])
+      get :index, :search => 'Coverage'
+      assigns(:posts).must_be_empty
+      get :index, :search => 'Coverage Coverage Coverage Coverage Coverage Coverage Coverage'
+      assigns(:posts).must_be_empty
+    end
+
+    it 'Comments load' do
+      post1 = FactoryGirl.create(:post, :title => 'Post search', :admin_user_id => @admin.id, :upload_file => FactoryGirl.create(:upload_file))
+      post1.comments << FactoryGirl.create(:comment) << FactoryGirl.create(:comment) << FactoryGirl.create(:comment) << FactoryGirl.create(:comment)
+      post :comments_show_all, :id => post1.id
+      assert_response :ok
+    end
+
   end
 
   describe 'GET #show' do

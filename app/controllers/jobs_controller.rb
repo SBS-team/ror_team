@@ -19,12 +19,13 @@ class JobsController < ApplicationController
         redirect_to jobs_path, notice: 'Your resume is successfully sent.'
       else
         @resume.upload_file = UploadFile.new
-        flash[:error] = @resume.errors.values.join(". ")
-        redirect_to job_path(@resume.job_id)
+        flash[:error] = @resume.errors.values.join('. ')
+        last_posts_and_jobs
+        render 'show'
       end
     else
       @resume.upload_file = UploadFile.new
-      redirect_to jobs_path, error: 'Sorry. No jobs found'
+      redirect_to jobs_path, alert: 'Sorry. No jobs found'
     end
   end
 

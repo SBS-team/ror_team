@@ -7,18 +7,23 @@ describe AdminChatController do
   end
 
   it 'get chat' do
-    sign_in(@manager)
+    sign_in @manager
     get :chat
     assigns(:live_chat).must_be_nil
     assigns(:messages).must_be_nil
     AdminUser.first.status.must_equal 'online'
     assert_template 'admin_chat/chat'
     assert_response :ok
+    sign_out @manager
+
+    get :chat
+    response.body.must_include 'You must log in as manager'
+    assert_response :ok
   end
 
   it 'get chat with LiveChat' do
     man = FactoryGirl.create(:admin_user, :role => 'manager', :status => 'chat')
-    sign_in(man)
+    sign_in man
     chat = FactoryGirl.create(:live_chat, :admin_user_id => man.id)
     get :chat
     assigns(:live_chat).admin_user_id.must_equal man.id
@@ -35,7 +40,7 @@ describe AdminChatController do
 
   it 'close chat' do
     @manager.status = 'chat'
-    sign_in(@manager)
+    sign_in @manager
     post :close
     AdminUser.last.status.must_equal 'online'
   end

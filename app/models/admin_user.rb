@@ -36,7 +36,7 @@ class AdminUser < ActiveRecord::Base
   accepts_nested_attributes_for :upload_file
 
   scope :not_admin, -> {where("role != 'admin'")}
-  scope :online, -> {where('last_activity >= :time', :time => 10.minutes.ago)}
+  scope :online, -> {where('last_activity >= :time', time: 10.minutes.ago)}
 
   validates :role, presence: true,
             inclusion: {in: %w(admin manager team_lead team), message: "%{value} is not a valid role"}

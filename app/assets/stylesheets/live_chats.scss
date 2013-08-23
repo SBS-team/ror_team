@@ -5,7 +5,7 @@
 .live_chat {
   display: none;
   position: fixed;
-  top: 80px;
+  bottom: 10px;
   right: 10px;
   width: 400px;
   z-index: 10000;
@@ -14,7 +14,6 @@
 
 .chat-content {
   border: 1px solid #000000;
-  height: 550px;
   width: 400px;
   background-color: #ffffff;
   padding-top: 15px;

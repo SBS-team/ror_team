@@ -55,17 +55,31 @@ $(document).ready ->
 
   $("#go_comment").click ->
 
-    $("#new_comment").validate rules:
-      "comment[nickname]":
-        required: true
-        maxlength: 40
-        minlength: 2
-        admin: true
+    $("#new_comment").validate
+      rules:
+        "comment[nickname]":
+          required: true
+          maxlength: 40
+          minlength: 2
+          admin: true
 
-      "comment[description]":
-        required: true
-        maxlength: 2048
-        minlength: 2
+        "comment[description]":
+          required: true
+          maxlength: 2048
+          minlength: 2
+
+        "recaptcha_response_field":
+          required: true
+
+      messages:
+        "recaptcha_response_field":
+          required: "Captcha is required"
+
+      errorPlacement: (error, element) ->
+        if element.attr('name') == 'recaptcha_response_field'
+          error.insertAfter('#recaptcha_area')
+        else
+          error.insertAfter(element)
 
   #CREATE NEW COMMENT
   comment = undefined
@@ -79,15 +93,15 @@ $(document).ready ->
       if ($.cookie 'nickname').toString() != $("#comment_nickname").val()
         $.cookie 'nickname', $("#comment_nickname").val(),{ expires: 30 , path: '/'  }
 
+    # IF BEFORE WE GOT INVALID ERRORS CLEAN THEM BEFORE
+    if $(".error_messages")
+      $("#comment_description").css "box-shadow", "none"
+      $("#comment_nickname").css "box-shadow", "none"
+      $(".error_messages").remove()
+
     if response.responseJSON.stat is "success"
 
-      # IF BEFORE WE GOT INVALID ERRORS CLEAN THEM BEFORE
-      if $(".error_messages")
-        $("#comment_description").css "box-shadow", "none"
-        $("#comment_nickname").css "box-shadow", "none"
-        $(".error_messages").remove()
       if response.responseJSON.comment
-
         # Init variables and add new comment
         comment = HtmlEncode(response.responseJSON.comment.description)
         nickname = response.responseJSON.comment.nickname
@@ -101,3 +115,11 @@ $(document).ready ->
         $(".comments_count").text count + " comment"
       else
         $(".comments_count").text count + " comments"
+
+    if response.responseJSON.stat is "error"
+      strWithErrors = "<div class=error_messages>"
+      for key of response.responseJSON.errors
+        strWithErrors += "<p>"+response.responseJSON.errors[key]+"</p>"
+      $(".comment_block").append strWithErrors+"</div>"
+
+    Recaptcha.reload()

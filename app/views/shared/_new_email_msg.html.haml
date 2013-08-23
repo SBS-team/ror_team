@@ -1,5 +1,3 @@
-%h1
-  = t ('layouts.application.ror_team')
 %p
   Sorry, but now absent any free manager. You can send request on our email
 .web-form.row
@@ -18,5 +16,8 @@
       = form.email_field(:email, 'placeholder' => 'Your email*', 'class' => 'form-control')
     .text.col-lg-12.form-group
       = form.text_area(:text, 'placeholder' => 'Your message', 'class' => 'form-control' , 'rows' => '5')
-      %br
+    #recaptcha-home
+      .text.col-lg-12.form-group#recaptcha-div
+        = recaptcha_tags display: {theme: 'white'}, ajax: true
+    .text.col-lg-12.form-group
       = submit_tag 'Send e-mail', class: 'btn btn-primary send-email pull-right', data: {disable_with: 'Please wait...'}

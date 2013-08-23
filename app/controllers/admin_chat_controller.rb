@@ -1,7 +1,7 @@
 class AdminChatController < ApplicationController
 
   def chat
-    if current_admin_user.role == 'manager'
+    if current_admin_user && current_admin_user.role == 'manager'
       if current_admin_user.status.blank? || current_admin_user.status == 'offline'
         current_admin_user.update_attribute(:status, 'online')
       end

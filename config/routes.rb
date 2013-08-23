@@ -15,6 +15,7 @@ RorTeam::Application.routes.draw do
   resources :contact, only: [:index, :create]
 
   get 'blog/:created/:id' => 'posts#show', as: :special_post
+  post '/blog/comments' => 'comments#create'
   get '/admin_chat/chat', as: :admin_start_chat
 
   post '/admin/time_online' => 'time_onlines#set_time'

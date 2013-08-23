@@ -1,4 +1,5 @@
 # Style for button
+# Style for button
 buttonActive = (elem) ->
   elem.attr 'class', 'btn btn-success'
 buttonDefault = (elem) ->
@@ -24,6 +25,12 @@ $(document).ajaxSuccess (event, response, settings) ->
     buttonActive $("#chat_contact")
     startLiveChat()
     newLiveChat = false
+  else
+    # SHOW RECAPTCHA
+    if $('#recaptcha').length>0
+      $('#recaptcha-div').remove()
+      $('#recaptcha-home').append("<div id='recaptcha-div' class='text col-lg-12 form-group'></div>")
+      $('#recaptcha-div').html($('#recaptcha').clone(true,true))
 
 getLiveChatPosition = ->
   if ($.cookie 'position_left') == '0' || ($.cookie 'position_top') == '0'
@@ -43,6 +50,32 @@ resetLiveChatPosition = ->
   $.cookie 'position_left', 0, { path: '/' }
   $.cookie 'position_top', 0, { path: '/' }
   $.cookie 'hide_win', 0, { path: '/' }
+
+
+#  # ###########################################################################################
+#
+#     VALIDATIONS FOR FORM WITH RECAPTCHA
+#
+#  $("#new_live_chat").validate
+#    rules:
+#      "message":
+#        required: true,
+#        maxlength: 255,
+#        minlength: 2
+#      "recaptcha_response_field":
+#        required: true
+#
+#    messages:
+#      "recaptcha_response_field":
+#        required: "Captcha is required"
+#
+#    errorPlacement: (error, element) ->
+#      if element.attr('name') == 'recaptcha_response_field'
+#        error.insertAfter('#recaptcha_area')
+#      else
+#        error.insertAfter(element)
+#   # ###########################################################################################
+
 
 startLiveChat = ->
 

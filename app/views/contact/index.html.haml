@@ -58,6 +58,8 @@
           %label.col-lg-12
             = form.radio_button :work_type, 'Service'
             = 'Service'
+      .form-group#recaptcha
+        = recaptcha_tags display: {theme: 'white'}, ajax: true
       .submit-form.text-right
         = submit_tag 'Send Message', class: 'btn btn-primary send-email', data: {disable_with: 'Please wait...'}
 .col-lg-6

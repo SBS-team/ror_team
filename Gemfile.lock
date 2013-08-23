@@ -334,6 +334,7 @@ GEM
       ffi (>= 0.5.0)
     rdoc (3.12.2)
       json (~> 1.4)
+    recaptcha (0.3.5)
     redis (3.0.4)
     redis-namespace (1.3.1)
       redis (~> 3.0.0)
@@ -461,6 +462,7 @@ DEPENDENCIES
   rails (~> 4.0.0)
   rails_config
   ransack
+  recaptcha
   responders!
   rmagick (~> 2.13.2)
   rvm-capistrano

@@ -16,6 +16,16 @@ $(document).ready ->
         "recaptcha_response_field":
           required: true
 
+      messages:
+        "recaptcha_response_field":
+          required: "Captcha is required"
+
+      errorPlacement: (error, element) ->
+        if element.attr('name') == 'recaptcha_response_field'
+          error.insertAfter('#recaptcha_area')
+        else
+          error.insertAfter(element)
+
   $("#new_chat_submit").click ->
     $("#new_live_chat").validate
       rules:

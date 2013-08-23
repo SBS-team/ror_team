@@ -55,20 +55,31 @@ $(document).ready ->
 
   $("#go_comment").click ->
 
-    $("#new_comment").validate rules:
-      "comment[nickname]":
-        required: true
-        maxlength: 40
-        minlength: 2
-        admin: true
+    $("#new_comment").validate
+      rules:
+        "comment[nickname]":
+          required: true
+          maxlength: 40
+          minlength: 2
+          admin: true
 
-      "comment[description]":
-        required: true
-        maxlength: 2048
-        minlength: 2
+        "comment[description]":
+          required: true
+          maxlength: 2048
+          minlength: 2
 
-      "recaptcha_response_field":
-        required: true
+        "recaptcha_response_field":
+          required: true
+
+      messages:
+        "recaptcha_response_field":
+          required: "Captcha is required"
+
+      errorPlacement: (error, element) ->
+        if element.attr('name') == 'recaptcha_response_field'
+          error.insertAfter('#recaptcha_area')
+        else
+          error.insertAfter(element)
 
   #CREATE NEW COMMENT
   comment = undefined

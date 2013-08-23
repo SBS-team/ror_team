@@ -33,4 +33,21 @@ describe Post do
     it { must ensure_length_of(:admin_user_id).is_at_least(0) }
   end
 
+  context 'Post search' do
+    it 'search' do
+      admin = FactoryGirl.create(:admin_user)
+      post_1 = FactoryGirl.create(:post, :title => 'Post my_search', :admin_user_id => admin.id, :upload_file => FactoryGirl.create(:upload_file))
+      post_2 = FactoryGirl.create(:post, :admin_user_id => admin.id, :upload_file => FactoryGirl.create(:upload_file))
+
+      Post.all.count.must_equal 2
+
+      post = Post.search_posts_based_on_like 'my_search'
+      post.must_include post_1
+      post.wont_include post_2
+
+      post = Post.search_posts_based_on_like false
+      post.must_include  post_1, post_2
+    end
+  end
+
 end

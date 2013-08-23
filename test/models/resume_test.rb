@@ -36,23 +36,33 @@ describe Resume do
     it { must validate_presence_of(:phone) }
     it { must ensure_length_of(:phone).is_at_most(50) }
     it { must allow_value("0999673061").for(:phone) }
+
     it "validate can't upload_file and description is empty" do
       resume = FactoryGirl.build(:resume)
       resume.description = ''
       resume.valid?
       resume.errors[:description].must_include "can't be blank and file is not attached"
     end
+
     it "validate upload_file can't pdf or doc" do
       resume = FactoryGirl.build(:resume)
       resume.description = ''
       resume.upload_file = FactoryGirl.build(:upload_file, :filename => File.open(File.join(Rails.root, 'test', 'factories', 'files', 'image.png')))
       resume.valid?.must_equal false
     end
+
     it "validate upload_file can't pdf or doc" do
       resume = FactoryGirl.build(:resume)
       resume.description = ''
       resume.upload_file = FactoryGirl.create(:upload_file)
       resume.valid?.must_equal true
+    end
+
+    it 'validate upload_file size' do
+      resume = FactoryGirl.build(:resume)
+      resume.upload_file = FactoryGirl.create(:upload_file, :filename => File.open(File.join(Rails.root, 'test', 'factories', 'files', 'test.doc')))
+      resume.valid?
+      resume.errors[:file].must_include 'You cannot upload a file greater than 5 MB'
     end
   end
 end

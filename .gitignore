@@ -27,3 +27,5 @@
 /config/settings
 /config/settings.yml
 /config/settings.local.yml
+
+/coverage

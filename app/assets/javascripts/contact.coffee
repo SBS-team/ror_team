@@ -13,6 +13,8 @@ $(document).ready ->
         "message[phone]":
           digits: true,
           maxlength: 31
+        "recaptcha_response_field":
+          required: true
 
   $("#new_chat_submit").click ->
     $("#new_live_chat").validate

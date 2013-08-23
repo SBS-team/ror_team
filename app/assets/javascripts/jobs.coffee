@@ -50,3 +50,5 @@ $(document).ready ->
         required: true,
         minlength: 2,
         maxlength: 3000
+      "recaptcha_response_field":
+        required: true

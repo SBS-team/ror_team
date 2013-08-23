@@ -14,7 +14,7 @@ class LiveChatsController < ApplicationController
         message = ChatMessage.new(body: params[:message], is_admin: false, live_chat_id: 1)
         if message.valid?
           @live_chat = LiveChat.new(live_chat_params)
-          if @live_chat.save
+          if verify_recaptcha(model: @live_chat, message: 'You enter wrong captcha', attribute: :base) && @live_chat.save
             session[:chat_id] = @live_chat.id
             message.live_chat = @live_chat
             if message.save

@@ -40,6 +40,7 @@ $(document).ready ->
             $(".comments").prepend "<blockquote style =\"display:none;\" id = " + i + ">" + "<b><span class =\"comment_nickname text-primary\">" + comments[key].nickname + "</span></b><br>" + "<span class = \"comment_description\">" + str + "</span><br>" + "<hr></blockquote>"
             $(".comments blockquote").slideDown "slow"
             i++
+          $('html,body').animate({scrollTop: $(".comments_block").offset().top - $('.navbar .container').height()},'fast');
 
         $("#close_comments").on "click", ->
           count = $("blockquote").length
@@ -86,6 +87,9 @@ $(document).ready ->
   nickname = undefined
 
   $(document).ajaxSuccess (event, response, settings) ->
+
+    if response.responseJSON.stat is undefined
+      return
 
     unless ($.cookie 'nickname')
       $.cookie 'nickname', $("#comment_nickname").val(),{ expires: 30 , path: '/'  }

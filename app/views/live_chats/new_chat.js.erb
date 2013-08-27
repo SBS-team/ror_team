@@ -23,7 +23,7 @@ $("#new_live_chat").validate({
     },
     errorPlacement: function(error, element) {
         if(element.attr('name') == 'recaptcha_response_field') {
-            error.insertAfter('#recaptcha_area')
+            error.insertAfter('#recaptcha-div #dynamic_recaptcha #recaptcha_area')
         }
         else {
             error.insertAfter(element)
@@ -54,7 +54,7 @@ $("#new_message").validate({
     },
     errorPlacement: function(error, element) {
         if(element.attr('name') == 'recaptcha_response_field') {
-            error.insertAfter('#recaptcha_area')
+            error.insertAfter('#recaptcha-div #dynamic_recaptcha #recaptcha_area')
         }
         else {
             error.insertAfter(element)

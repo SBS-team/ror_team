@@ -26,10 +26,10 @@
 
 ## Инструкция по запуску сайта rorteam
 
-- Зайти на репизиторий rorteam https://github.com/is-valid/ror_team
+- Зайти на репизиторий rorteam https://github.com/SBS-team/ror_team
 - Клонировать проект:
 
-        git clone https://github.com/is-valid/ror_team.git
+        git clone https://github.com/SBS-team/ror_team.git
 
 - Перейти в папку с проектом
 - Установить гемы:

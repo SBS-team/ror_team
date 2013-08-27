@@ -51,32 +51,6 @@ resetLiveChatPosition = ->
   $.cookie 'position_top', 0, { path: '/' }
   $.cookie 'hide_win', 0, { path: '/' }
 
-
-#  # ###########################################################################################
-#
-#     VALIDATIONS FOR FORM WITH RECAPTCHA
-#
-#  $("#new_live_chat").validate
-#    rules:
-#      "message":
-#        required: true,
-#        maxlength: 255,
-#        minlength: 2
-#      "recaptcha_response_field":
-#        required: true
-#
-#    messages:
-#      "recaptcha_response_field":
-#        required: "Captcha is required"
-#
-#    errorPlacement: (error, element) ->
-#      if element.attr('name') == 'recaptcha_response_field'
-#        error.insertAfter('#recaptcha_area')
-#      else
-#        error.insertAfter(element)
-#   # ###########################################################################################
-
-
 startLiveChat = ->
 
   $('#live_chat').show()

@@ -19,7 +19,7 @@ class JobsController < ApplicationController
         redirect_to jobs_path, notice: 'Your resume is successfully sent.'
       else
         @resume.upload_file = UploadFile.new
-        flash[:error] = @resume.errors.values.join('. ')
+        flash.now[:error] = @resume.errors.values.join('. ')
         last_posts_and_jobs
         render 'show'
       end

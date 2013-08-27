@@ -62,7 +62,7 @@
         $ cd redis-stable
         $ make
 
-Для более коммфорной работы с Redis Server также можно выполнить следующие команды:
+Для более комфорной работы с Redis Server также можно выполнить следующие команды:
 
         $ sudo cp redis-server /usr/local/bin/
         $ sudo cp redis-cli /usr/local/bin/
@@ -75,6 +75,15 @@
 
         redis-server --port 4040 &
         slanger --app_key YOUR_KEY --secret YOUR_SECRET -a 127.0.0.1:4567 -w 127.0.0.1:3004
+
+где YOUR_KEY и YOUR_SECRET - это строки-ключи, указанные в файле 'config/environments/production.yml'.
+
+Данное приложение для работы с графическими изображениями использует библиотеку RMagic, которую необходимо дополнительно установить выпоолнив следующие команды:
+
+        $ sudo apt-get install libmagickwand-dev
+        $ sudo apt-get install graphicsmagick-libmagick-dev-compat
+        $ sudo apt-get install imagemagick
+        $ sudo apt-get install libmagick9-dev
 
 В папке с клонированным проектом
 

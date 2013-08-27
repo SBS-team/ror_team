@@ -40,7 +40,7 @@ $(document).ready ->
             $(".comments").prepend "<blockquote style =\"display:none;\" id = " + i + ">" + "<b><span class =\"comment_nickname text-primary\">" + comments[key].nickname + "</span></b><br>" + "<span class = \"comment_description\">" + str + "</span><br>" + "<hr></blockquote>"
             $(".comments blockquote").slideDown "slow"
             i++
-          $('html,body').animate({scrollTop: $(".comments_block").offset().top - $('.navbar .container').height()},'fast');
+          $('html,body').animate({scrollTop: $(".comments_block").offset().top - $('.navbar .container').height()},'slow');
 
         $("#close_comments").on "click", ->
           count = $("blockquote").length

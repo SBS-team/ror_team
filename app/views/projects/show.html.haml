@@ -55,9 +55,9 @@
           .photo
             - unless service.upload_file.blank? || service.upload_file.img_name.blank?
               = link_to(company_index_path) do
-                = image_tag(service.upload_file.img_name.to_s, class: 'img-polaroid', width: 120)
+                = image_tag(service.upload_file.img_name.to_s, class: 'img-polaroid', height: 100)
             - else
-              = image_tag 'no_image.gif', width: 120
+              = image_tag 'no_image.gif', height: 100
           = link_to "#{service.name}", company_index_path
     - unless @project.technologies.blank?
       .tech-info

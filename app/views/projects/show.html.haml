@@ -24,7 +24,7 @@
           = link_to "#myCarousel#{@project.id}", 'data-slide' => 'next', class: 'carousel-control right' do
             %span.icon-next
     .text.project-descr
-      = @project.description
+      != @project.description
   .col-lg-6
     .project-name-url.row
       .project-name.col-lg-6

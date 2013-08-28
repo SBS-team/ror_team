@@ -11,7 +11,6 @@ $.validator.addMethod 'admin',(value,element)->
 
 ,"You can't use nickname: admin."
 
-
 $(document).ready ->
 
   if ($.cookie 'nickname')
@@ -21,11 +20,12 @@ $(document).ready ->
   $("#close_comments").hide()
   $("#all_comments").on "click", ->
     id = $(".img img").attr("class")
+    offset = $("blockquote").length
     $.ajax
       url: "/comment_load"
       data:
         id: id
-
+        offset: offset
       type: "post"
       dataType: "json"
       success: (response) ->
@@ -33,26 +33,26 @@ $(document).ready ->
         $("#close_comments").show()
         comments = response.comments
         str = undefined
-        i = 0
+        i = comments.length - 1
         $(".comments").slideDown 500, ->
           $.each comments, (key, value) ->
             str = HtmlEncode(comments[key].description)
             $(".comments").prepend "<blockquote style =\"display:none;\" id = " + i + ">" + "<b><span class =\"comment_nickname text-primary\">" + comments[key].nickname + "</span></b><br>" + "<span class = \"comment_description\">" + str + "</span><br>" + "<hr></blockquote>"
             $(".comments blockquote").slideDown "slow"
-            i++
+            i--
           $('html,body').animate({scrollTop: $(".comments_block").offset().top - $('.navbar .container').height()},'slow');
 
-        $("#close_comments").on "click", ->
-          count = $("blockquote").length
-          i = 0
+  $("#close_comments").on "click", ->
+    count = $("blockquote").length - 3
+    i = 0
 
-          while i <= count
-            $("#" + i + "").slideToggle 500, ->
-              $(this).remove()
-            i++
+    while i < count
+      $("#" + i + "").slideToggle 500, ->
+        $(this).remove()
+      i++
 
-          $("#all_comments").show()
-          $("#close_comments").hide()
+    $("#all_comments").show()
+    $("#close_comments").hide()
 
   $("#go_comment").click ->
 
@@ -109,7 +109,8 @@ $(document).ready ->
         # Init variables and add new comment
         comment = HtmlEncode(response.responseJSON.comment.description)
         nickname = response.responseJSON.comment.nickname
-        $(".comments").append "<blockquote style =\"display:none;\">" + "<b><span class =\"comment_nickname text-primary\">" + nickname + "</span></b><br>" + "<span class = \"comment_description\">" + comment + "</span><br>" + "<small class = \"comment_time\">just now</small>" + "<hr></blockquote>"
+        i = +response.responseJSON.comments_count - 1
+        $(".comments").append "<blockquote style =\"display:none;\" id = " + i + ">" + "<b><span class =\"comment_nickname text-primary\">" + nickname + "</span></b><br>" + "<span class = \"comment_description\">" + comment + "</span><br>" + "<small class = \"comment_time\">just now</small>" + "<hr></blockquote>"
         $(".comments blockquote").slideDown "slow"
 
       $("#comment_description").val ""

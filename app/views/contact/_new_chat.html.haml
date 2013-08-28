@@ -17,5 +17,8 @@
           .chat-msg.col-lg-12.form-group
             Write your message*:
             = text_area_tag :message, nil, class: 'form-control', rows: 4
-            %br
+          #recaptcha-home
+            .text.col-lg-12.form-group#recaptcha-div
+              = recaptcha_tags display: {theme: 'white'}, ajax: true
+          .text.col-lg-12.form-group
             = f.submit 'Send message', id: 'new_chat_submit', class: 'btn btn-primary pull-right chat-send-msg-btn'

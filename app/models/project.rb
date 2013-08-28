@@ -25,7 +25,7 @@ class Project < ActiveRecord::Base
   accepts_nested_attributes_for :project_technology_categories, allow_destroy: true
 
   validates :name, presence: true, uniqueness: true, length: {minimum: 3, maximum: 45}
-  validates :description, presence: true, length: {in: 10..500}
+  validates :description, presence: true, length: {in: 10..5000}
   validates :since, presence: true
   validates :team_size, presence: true, numericality: {only_integer: true, greater_than: 0}
   validates :upload_files, presence: true

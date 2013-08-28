@@ -29,11 +29,12 @@ class PostsController < ApplicationController
   def show
     @post = Post.includes([:tags, :categories, :upload_file, :comments]).find_by_slug!(params[:id])
     @comments = @post.comments.order('id DESC').limit(3).reverse
+    @comments_count = @post.comments.count
   end
 
   def comments_show_all
     post = Post.find(params[:id])
-    comments = (post.comments.order('created_at DESC').limit(post.comments_count).offset(3))
+    comments = (post.comments.order('created_at DESC').limit(post.comments_count).offset(params[:offset]))
     render json: {comments: comments}
   end
 

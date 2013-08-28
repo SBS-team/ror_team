@@ -31,7 +31,9 @@ ActiveAdmin.register Project do
             end
           end
         end
-        row :description
+        row 'Description' do |project|
+          project.description.html_safe
+        end
         row :since
         row :till
         row :team_size

@@ -9,7 +9,7 @@ class CommentsController < ApplicationController
       @comment.admin = false
     end
     if verify_recaptcha(model: @comment, message: 'You enter wrong captcha', attribute: :base) && @comment.save
-      render json: {comment: @comment, stat: 'success', location: @post}
+      render json: {comment: @comment, stat: 'success', location: @post, comments_count: @post.comments.count}
     else
       render json: {errors: @comment.errors.messages, stat: 'error' }
     end

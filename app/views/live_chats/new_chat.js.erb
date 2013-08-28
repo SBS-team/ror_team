@@ -11,6 +11,22 @@ $("#new_live_chat").validate({
             required: true,
             maxlength: 255,
             minlength: 2
+        },
+        "recaptcha_response_field": {
+            required: true
+        }
+    },
+    messages: {
+        "recaptcha_response_field": {
+            required: "Captcha is required"
+        }
+    },
+    errorPlacement: function(error, element) {
+        if(element.attr('name') == 'recaptcha_response_field') {
+            error.insertAfter('#recaptcha-div #dynamic_recaptcha #recaptcha_area')
+        }
+        else {
+            error.insertAfter(element)
         }
     }
 });
@@ -25,6 +41,22 @@ $("#new_message").validate({
         "message[email]": {
             required: true,
             email: true
+        },
+        "recaptcha_response_field": {
+            required: true
+        }
+    },
+    messages: {
+        "recaptcha_response_field": {
+            required: "Captcha is required"
+        }
+    },
+    errorPlacement: function(error, element) {
+        if(element.attr('name') == 'recaptcha_response_field') {
+            error.insertAfter('#recaptcha-div #dynamic_recaptcha #recaptcha_area')
+        }
+        else {
+            error.insertAfter(element)
         }
     }
 });

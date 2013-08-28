@@ -17,10 +17,10 @@ module Webs
 
     begin
       pusher[channel].trigger(event, {'data' => data})
-      logger.info "Triggered '#{event}' on '#{channel}' with #{ data.inspect }"
+      logger.info "Triggered '#{event}' on '#{channel}' with #{data.inspect}"
       true
     rescue Exception => e
-      logger.info "Could not notify '#{event}' on '#{channel}' with #{ data.inspect } => #{e}"
+      logger.info "Could not notify '#{event}' on '#{channel}' with #{data.inspect} => #{e}"
       false
     end
   end

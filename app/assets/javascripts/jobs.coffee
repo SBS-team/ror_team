@@ -36,7 +36,6 @@ $(document).ready ->
     rules:
       "resume[email]":
         required: true,
-        email_tip: true,
         email: true
       "resume[name]":
         required: true,

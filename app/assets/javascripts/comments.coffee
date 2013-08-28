@@ -88,7 +88,7 @@ $(document).ready ->
 
   $(document).ajaxSuccess (event, response, settings) ->
 
-    if response.responseJSON.stat is undefined
+    unless response.responseJSON && response.responseJSON.stat
       return
 
     unless ($.cookie 'nickname')

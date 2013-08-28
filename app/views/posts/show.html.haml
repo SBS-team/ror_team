@@ -34,8 +34,10 @@
           %b= 'Hide previous comments'
         .comments
           %a{name: 'comments'}
+          - i = @comments_count - 3
           - @comments.each do |comment|
-            %blockquote
+            %blockquote{id: i}
+              - i += 1
               .comment_nickname
                 %b.text-primary
                   = comment.nickname

@@ -1,15 +1,33 @@
+showCaptchaOnChat = ->
+  unless $('#recaptcha-contact-chat #recaptcha').length>0
+    $('#recaptcha-contact-chat').append($("#recaptcha"))
+
+showCaptchaOnEmail = ->
+  unless $('#recaptcha-contact-email #recaptcha').length>0
+    $("#recaptcha-contact-email").append($('#recaptcha'))
+
 $(document).ready ->
 
   $("textarea#message").keypress ->
-    unless $('#recaptcha-contact-chat #recaptcha').length>0
-      $('#recaptcha-contact-chat').append($("#recaptcha"))
+    showCaptchaOnChat()
+
+  $("input#live_chat_guest_name").keypress ->
+    showCaptchaOnChat()
+
+  $("input#live_chat_guest_name").change ->
+    showCaptchaOnChat()
 
   $("input#message_email").keypress ->
-    unless $('#recaptcha-contact-email #recaptcha').length>0
-      $("#recaptcha-contact-email").append($('#recaptcha'))
+    showCaptchaOnEmail()
 
   $("input#message_email").change ->
-    $("input#message_email").keypress()
+    showCaptchaOnEmail()
+
+  $("input#message_name").keypress ->
+    showCaptchaOnEmail()
+
+  $("input#message_name").change ->
+    showCaptchaOnEmail()
 
   $(".send-email").click ->
     $("#new_message").validate

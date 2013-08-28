@@ -1,5 +1,16 @@
 $(document).ready ->
 
+  $("textarea#message").keypress ->
+    unless $('#recaptcha-contact-chat #recaptcha').length>0
+      $('#recaptcha-contact-chat').append($("#recaptcha"))
+
+  $("input#message_email").keypress ->
+    unless $('#recaptcha-contact-email #recaptcha').length>0
+      $("#recaptcha-contact-email").append($('#recaptcha'))
+
+  $("input#message_email").change ->
+    $("input#message_email").keypress()
+
   $(".send-email").click ->
     $("#new_message").validate
       rules:

@@ -15,6 +15,7 @@
         .col-lg-10.col-offset-1.form-group#admin-chat
           %h1
             LiveChat with users
+          = button_to_function 'Go to the shadow', "managerGoOffline();", class: 'pull-right'
           %div
             Client nickname:
             %strong

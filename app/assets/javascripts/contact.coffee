@@ -8,6 +8,18 @@ showCaptchaOnEmail = ->
 
 $(document).ready ->
 
+  $('form#new_live_chat').mousemove ->
+    showCaptchaOnChat()
+
+  $('form#new_live_chat').focusin ->
+    showCaptchaOnChat()
+
+  $('form#new_message').mousemove ->
+    showCaptchaOnEmail()
+
+  $('form#new_message').focusin ->
+    showCaptchaOnEmail()
+  ###
   $("textarea#message").keypress ->
     showCaptchaOnChat()
 
@@ -28,7 +40,7 @@ $(document).ready ->
 
   $("input#message_name").change ->
     showCaptchaOnEmail()
-
+  ###
   $(".send-email").click ->
     $("#new_message").validate
       rules:

@@ -1,6 +1,6 @@
 (->
   class Chat
-    constructor: (channel_name) ->
+    constructor: (channel_name, window) ->
       @initialize channel_name
 
     initialize: (channel_name) ->
@@ -19,7 +19,20 @@
           $("#chat").append msg_class+"(" + msg_time.toLocaleTimeString() + ") | <b><U>" + response.data.name + "</U></b> : " + $("<div/>").text(response.data.message).html() + "</div>"
           $("#chat-history").scrollTop $("#chat").height()-$(".msg:last").height()
         else
-          window.location.reload()
+          tmp = 0
+          window.setInterval(
+            ->
+              if tmp == 0
+                $('title').text("title")
+                tmp = 1
+              else
+                $('title').text("*****")
+                tmp = 0
+          , 500
+          )
+          $('body').mousemove ->
+            window.location.reload()
+
       ).bind(@)
 
       @userCloseChatCallback = (->

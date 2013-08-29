@@ -20,7 +20,7 @@
           $("#chat-history").scrollTop $("#chat").height()-$(".msg:last").height()
         else
           tmp = 0
-          window.setInterval(
+          animationTimer = window.setInterval(
             ->
               if tmp == 0
                 $('title').text("title")
@@ -30,7 +30,12 @@
                 tmp = 0
           , 500
           )
-          $('body').mousemove ->
+          $(document).mousemove ->
+            window.clearInterval(animationTimer)
+            window.location.reload()
+
+          $(document).keydown ->
+            window.clearInterval(animationTimer)
             window.location.reload()
 
       ).bind(@)

@@ -14,16 +14,19 @@ ActiveAdmin.register_page "Dashboard" do
     end
     columns do
       column do
-        panel 'Back-end Recent Coments' do
-          table_for ActiveAdmin::Comment.order('created_at desc').limit(5) do
-            column('Author')   { |com| com.author.email }
-            column('Permalink'){ |com| link_to 'Here she is', polymorphic_path([:admin, com.resource])}
+        panel 'Last 10 Coments' do
+          table_for Comment.includes(:post).order('created_at desc').limit(10) do
+            column('Author')   { |com| com.nickname }
+            column('Description')   { |com| com.description }
+            column('Post') { |com| link_to com.post.title, admin_post_path(com.post) }
+            column('Basic action') { |com| link_to 'Delete', admin_comment_path(com), method: :delete }
           end
         end
       end
       column do
         panel 'Recent Tecnologies' do
-          table_for Technology.includes(:technology_category).order('created_at desc').limit(2) do
+          table_for Technology.includes(:technology_category, :upload_file).order('created_at desc').limit(10) do
+            column('Image'){ |tech| image_tag(tech.upload_file.img_name.url, height: 30) }
             column('Name')    { |tech| tech.name }
             column('Category'){ |tech| tech.technology_category.name}
           end

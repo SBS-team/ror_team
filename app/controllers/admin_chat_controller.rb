@@ -49,4 +49,14 @@ class AdminChatController < ApplicationController
     redirect_to admin_start_chat_path
   end
 
+  def go_offline
+    if current_admin_user.status == 'chat'
+      channel = 'presence-' + current_admin_user.first_name+'-'+current_admin_user.last_name
+      Webs.pusher
+      Webs.notify(:notify_chat_closing, channel, 'admin-close-chat')
+    end
+    current_admin_user.update_attribute(:status, 'offline')
+    render text: 'ok'
+  end
+
 end

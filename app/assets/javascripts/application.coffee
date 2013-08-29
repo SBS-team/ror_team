@@ -14,6 +14,7 @@
 #= require contact
 #= require search
 #= require lib/webs
+#= require lib/timer
 #= require chat/chat
 
 $(document).ready ->

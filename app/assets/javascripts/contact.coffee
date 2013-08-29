@@ -19,28 +19,7 @@ $(document).ready ->
 
   $('form#new_message').focusin ->
     showCaptchaOnEmail()
-  ###
-  $("textarea#message").keypress ->
-    showCaptchaOnChat()
 
-  $("input#live_chat_guest_name").keypress ->
-    showCaptchaOnChat()
-
-  $("input#live_chat_guest_name").change ->
-    showCaptchaOnChat()
-
-  $("input#message_email").keypress ->
-    showCaptchaOnEmail()
-
-  $("input#message_email").change ->
-    showCaptchaOnEmail()
-
-  $("input#message_name").keypress ->
-    showCaptchaOnEmail()
-
-  $("input#message_name").change ->
-    showCaptchaOnEmail()
-  ###
   $(".send-email").click ->
     $("#new_message").validate
       rules:

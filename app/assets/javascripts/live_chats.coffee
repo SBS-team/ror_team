@@ -1,10 +1,16 @@
 # Style for button
-# Style for button
 buttonActive = (elem) ->
   elem.attr 'class', 'btn btn-success'
 buttonDefault = (elem) ->
   elem.attr 'class', 'btn btn-danger'
 
+spamTime = ->
+  count = $.cookie 'spam_time'
+  if count && (parseInt count) > 10
+    alert "You send 10 massages for 30 seconds"
+    $.cookie 'spam_time', 0, { expires: 7 , path: '/' }
+  else
+    $.cookie 'spam_time', 0, { expires: 7 , path: '/' }
 
 $(document).ajaxComplete (event, response, settings) ->
   $("#message").val('')
@@ -111,6 +117,14 @@ $(document).ready ->
 
     newLiveChat = true
 
+  $(document).on "click", "#msg_submit", ->
+    count = $.cookie 'spam_time'
+    $.cookie 'spam_time', (parseInt count) + 1, { expires: 7 , path: '/' }
+
+    if (parseInt count) + 1 > 10
+      alert "You send 10 massages for 30 seconds"
+      $.cookie 'spam_time', 0, { expires: 7 , path: '/' }
+
 #*************************************** LiveChat draggable and position
   $("#live_chat").draggable
     handle: "#chat_handle",
@@ -129,3 +143,6 @@ $(document).ready ->
   admin_main_channel = 'presence-' + RorTeam.currentAdminChannel
 
   chat = new Chat(admin_main_channel)
+
+  spam = new Timer("spamTimer", 30, spamTime)
+  spam.start()

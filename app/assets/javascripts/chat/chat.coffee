@@ -20,13 +20,15 @@
           $("#chat-history").scrollTop $("#chat").height()-$(".msg:last").height()
         else
           tmp = 0
+          originalTitle = $('title').text()
+          warningTitle = "\u2328 \u23F1"
           animationTimer = window.setInterval(
             ->
               if tmp == 0
-                $('title').text("title")
+                $('title').text(originalTitle)
                 tmp = 1
               else
-                $('title').text("*****")
+                $('title').text(warningTitle)
                 tmp = 0
           , 500
           )

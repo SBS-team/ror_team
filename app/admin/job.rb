@@ -33,7 +33,9 @@ ActiveAdmin.register Job do
           end
         end
         row :title
-        row :description
+        row 'Description' do |job|
+          job.description.html_safe
+        end
         row :created_at
         row :updated_at
       end

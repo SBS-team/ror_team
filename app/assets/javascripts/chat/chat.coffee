@@ -1,6 +1,6 @@
 (->
   class Chat
-    constructor: (channel_name, window) ->
+    constructor: (channel_name) ->
       @initialize channel_name
 
     initialize: (channel_name) ->

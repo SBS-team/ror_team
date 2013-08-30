@@ -21,7 +21,7 @@
         else
           tmp = 0
           tabIconElement = $('#admin_chat_tab_icon')
-          originalIcon = tabIconElement.href
+          originalIcon = tabIconElement.attr("href")
           receiveMessageIcon = "/receiveMessageIcon.png"
           emptyIcon = "/empty.ico"
           animationTimer = window.setInterval(
@@ -34,6 +34,7 @@
                 tmp = 0
           , 1000
           )
+
           $(document).mousemove ->
             window.clearInterval(animationTimer)
             changeIcon(originalIcon)

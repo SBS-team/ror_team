@@ -20,24 +20,28 @@
           $("#chat-history").scrollTop $("#chat").height()-$(".msg:last").height()
         else
           tmp = 0
-          originalTitle = $('title').text()
-          warningTitle = "\u2328 \u23F1"
+          tabIconElement = $('#admin_chat_tab_icon')
+          originalIcon = tabIconElement.href
+          receiveMessageIcon = "/receiveMessageIcon.png"
+          emptyIcon = "/empty.ico"
           animationTimer = window.setInterval(
             ->
               if tmp == 0
-                $('title').text(originalTitle)
+                changeIcon(receiveMessageIcon)
                 tmp = 1
               else
-                $('title').text(warningTitle)
+                changeIcon(emptyIcon)
                 tmp = 0
-          , 500
+          , 1000
           )
           $(document).mousemove ->
             window.clearInterval(animationTimer)
+            changeIcon(originalIcon)
             window.location.reload()
 
           $(document).keydown ->
             window.clearInterval(animationTimer)
+            changeIcon(originalIcon)
             window.location.reload()
 
       ).bind(@)

@@ -15,6 +15,15 @@ window.managerGoOffline = ->
   $.post '/admin_chat/go_offline'
   window.setTimeout('window.close()', 300);
 
+window.changeIcon = (newIconHref) ->
+  $('#admin_chat_tab_icon').remove()
+  link = document.createElement('link')
+  link.type = "image/vnd.microsoft.icon"
+  link.rel = 'shortcut icon'
+  link.href = newIconHref
+  link.id = 'admin_chat_tab_icon'
+  document.getElementsByTagName('head')[0].appendChild(link)
+
 $(document).ready ->
 
   $("#chat-history").scrollTop $("#chat").height()-$(".msg:last").height()

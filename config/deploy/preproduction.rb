@@ -20,7 +20,6 @@ namespace :deploy do
   end
   task :start do
     run "cd #{release_path}; bundle exec unicorn -c #{unicorn_conf} -E #{rails_env} -D"
-    #run "bundle exec unicorn #{unicorn_conf} -E #{rails_env} -D"
   end
   task :stop do
     run "if [ -f #{unicorn_pid} ] && [ -e /proc/$(cat #{unicorn_pid}) ]; then kill -QUIT `cat #{unicorn_pid}`; fi"

@@ -24,7 +24,19 @@ window.changeIcon = (newIconHref) ->
   link.id = 'admin_chat_tab_icon'
   document.getElementsByTagName('head')[0].appendChild(link)
 
+# DECLARE VARIABLES
+window.originalIcon
+window.animationTimer
+
 $(document).ready ->
+
+  $('#chat-history').mousemove ->
+    clearInterval(animationTimer)
+    setTimeout(changeIcon(originalIcon), 300)
+
+  $('#message').keydown ->
+    clearInterval(animationTimer)
+    setTimeout(changeIcon(originalIcon), 300)
 
   $("#chat-history").scrollTop $("#chat").height()-$(".msg:last").height()
   $("#new_live_chat").validate

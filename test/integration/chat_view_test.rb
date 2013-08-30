@@ -22,6 +22,7 @@ describe ViewTest do
       find('#chat_start').click
       fill_in 'live_chat[guest_name]', :with => 'uzver'
       fill_in 'message', :with => 'Hello! I am uzver...'
+      fill_in 'recaptcha_response_field', :with => 'reCAPTCHA'
       find('#new_chat_submit').click
       Capybara.current_session.reset!
     end

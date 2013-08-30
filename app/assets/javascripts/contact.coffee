@@ -20,6 +20,9 @@ $(document).ready ->
   $('form#new_message').focusin ->
     showCaptchaOnEmail()
 
+  $(".chat-send-msg-btn").click ->
+    showCaptchaOnEmail()
+
   $(".send-email").click ->
     $("#new_message").validate
       rules:

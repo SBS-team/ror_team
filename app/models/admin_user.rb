@@ -37,6 +37,7 @@ class AdminUser < ActiveRecord::Base
 
   scope :not_admin, -> {where("role != 'admin'")}
   scope :online, -> {where('last_activity >= :time', time: 10.minutes.ago)}
+  scope :offline, -> {where('last_activity < :time OR last_activity IS NULL', time: 10.minutes.ago)}
 
   validates :role, presence: true,
             inclusion: {in: %w(admin manager team_lead team), message: "%{value} is not a valid role"}

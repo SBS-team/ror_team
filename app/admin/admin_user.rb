@@ -2,7 +2,9 @@ ActiveAdmin.register AdminUser do
 
   filter :role, as: :select, collection: ['manager', 'admin', 'team', 'team_lead']
 
+  scope :all
   scope :online
+  scope :offline
 
   index do
     selectable_column

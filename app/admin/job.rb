@@ -16,9 +16,6 @@ ActiveAdmin.register Job do
     column :title do |job|
       link_to job.title, admin_job_path(job)
     end
-    column :description do |job|
-      job.description.truncate(200)
-    end
     column :created_at
     column :updated_at
     default_actions

@@ -35,6 +35,7 @@ describe ViewTest do
     within('.email') do
       fill_in 'message_email', :with => 'asd@rb.ru'
     end
+    fill_in 'recaptcha_response_field', :with => 'reCAPTCHA'
     find('.submit-form input').click
     assert page.has_content?('Message was successfully sent')
   end
@@ -54,6 +55,7 @@ describe ViewTest do
     end
     find('label', :text => 'RoRoRoRoR').click
     find('label', :text => 'Minimum work project').click
+    fill_in 'recaptcha_response_field', :with => 'reCAPTCHA'
     find('.submit-form input').click
     assert page.has_content?('Message was successfully sent')
   end

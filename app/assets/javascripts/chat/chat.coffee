@@ -19,7 +19,27 @@
           $("#chat").append msg_class+"(" + msg_time.toLocaleTimeString() + ") | <b><U>" + response.data.name + "</U></b> : " + $("<div/>").text(response.data.message).html() + "</div>"
           $("#chat-history").scrollTop $("#chat").height()-$(".msg:last").height()
         else
-          window.location.reload()
+          tmp = 0
+          originalTitle = $('title').text()
+          warningTitle = "\u2328 \u23F1"
+          animationTimer = window.setInterval(
+            ->
+              if tmp == 0
+                $('title').text(originalTitle)
+                tmp = 1
+              else
+                $('title').text(warningTitle)
+                tmp = 0
+          , 500
+          )
+          $(document).mousemove ->
+            window.clearInterval(animationTimer)
+            window.location.reload()
+
+          $(document).keydown ->
+            window.clearInterval(animationTimer)
+            window.location.reload()
+
       ).bind(@)
 
       @userCloseChatCallback = (->

@@ -11,6 +11,10 @@ $(document).ajaxComplete (event, response, settings) ->
   $("#message").val('')
   $("#chat-history").scrollTop $("#chat").height()-$(".msg:last").height()
 
+window.managerGoOffline = ->
+  $.post '/admin_chat/go_offline'
+  window.setTimeout('window.close()', 300);
+
 $(document).ready ->
 
   $("#chat-history").scrollTop $("#chat").height()-$(".msg:last").height()

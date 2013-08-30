@@ -12,16 +12,15 @@
       @_timer = null
 
     start: ->
-
       time = $.cookie @_name
 
-      if time && (parseInt(time) > 1000) && (parseInt(time) < (@_seconds * 1000))
-        @_time = parseInt time
-      else if parseInt(time) > 0
-        @_eventFun()
-        $.cookie @_name, (@_seconds * 1000), { expires: 7 , path: '/' }
+      if time
+        if (Math.round((new Date()).getTime() / 1000) - parseInt(time)) >= @_seconds
+          @_eventFun()
+          $.cookie @_name, (Math.round((new Date()).getTime() / 1000)), { expires: 7 , path: '/' }
+          window.clearInterval @_timer
       else
-        $.cookie @_name, (@_seconds * 1000), { expires: 7 , path: '/' }
+        $.cookie @_name, (Math.round((new Date()).getTime() / 1000)), { expires: 7 , path: '/' }
 
       @startTimer this, @_eventFun
 
@@ -36,16 +35,12 @@
         ->
           time = $.cookie self._name
 
-          time = time - 1000
-
-          $.cookie self._name, time, { expires: 7 , path: '/' }
-
-          if time <= 0
-
+          if (Math.round((new Date()).getTime() / 1000) - parseInt(time)) >= self._seconds
             eventFun()
             window.clearInterval self._timer
-            $.cookie self._name, (self._seconds * 1000), { expires: 7 , path: '/' }
-            self.startTimer self, eventFun
+            $.cookie self._name, (Math.round((new Date()).getTime() / 1000)), { expires: 7 , path: '/' }
+
+          self.startTimer self, eventFun
 
       , 1000
       )

@@ -19,7 +19,7 @@ class ApplicationController < ActionController::Base
   # Overwriting the sign_out redirect path method
   def after_sign_out_path_for(resource_or_scope)
     if !!current_admin_user
-      current_admin_user.update_attribute(:status, 'offline') if current_admin_user.role == 'manager'
+      current_admin_user.update_attribute(:last_activity, 11.minutes.ago)
     end
     root_path
   end

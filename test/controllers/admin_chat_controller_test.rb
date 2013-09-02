@@ -38,10 +38,18 @@ describe AdminChatController do
   end
 
   it 'close chat' do
-    @manager.busy = true
+    @manager.update_attribute(:busy, true)
     sign_in @manager
     post :close
     AdminUser.last.busy.must_equal false
+  end
+
+  it 'go_offline' do
+    @manager.update_attribute(:busy, true)
+    sign_in @manager
+    post :go_offline
+    AdminUser.last.busy.must_equal false
+    AdminUser.last.last_activity.must_be '<', 10.minutes.ago
   end
 
 end

@@ -47,7 +47,7 @@ describe Resume do
     it "validate upload_file can't pdf or doc" do
       resume = FactoryGirl.build(:resume)
       resume.description = ''
-      resume.upload_file = FactoryGirl.build(:upload_file, :filename => File.open(File.join(Rails.root, 'test', 'factories', 'files', 'image.png')))
+      resume.upload_file = FactoryGirl.build(:upload_file, filename: File.open(File.join(Rails.root, 'test', 'factories', 'files', 'image.png')))
       resume.valid?.must_equal false
     end
 
@@ -60,7 +60,7 @@ describe Resume do
 
     it 'validate upload_file size' do
       resume = FactoryGirl.build(:resume)
-      resume.upload_file = FactoryGirl.create(:upload_file, :filename => File.open(File.join(Rails.root, 'test', 'factories', 'files', 'test.doc')))
+      resume.upload_file = FactoryGirl.create(:upload_file, filename: File.open(File.join(Rails.root, 'test', 'factories', 'files', 'test.doc')))
       resume.valid?
       resume.errors[:file].must_include 'You cannot upload a file greater than 5 MB'
     end

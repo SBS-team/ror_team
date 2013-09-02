@@ -3,7 +3,7 @@ require 'minitest_helper'
 describe AdminChatController do
 
   before do
-    @manager = FactoryGirl.create(:admin_user, :role => 'manager', :busy => false)
+    @manager = FactoryGirl.create(:admin_user, role: 'manager', busy: false)
   end
 
   it 'get chat' do
@@ -21,9 +21,9 @@ describe AdminChatController do
   end
 
   it 'get chat with LiveChat' do
-    man = FactoryGirl.create(:admin_user, :role => 'manager', :busy => true)
+    man = FactoryGirl.create(:admin_user, role: 'manager', busy: true)
     sign_in man
-    chat = FactoryGirl.create(:live_chat, :admin_user_id => man.id)
+    chat = FactoryGirl.create(:live_chat, admin_user_id: man.id)
     get :chat
     assigns(:live_chat).admin_user_id.must_equal man.id
     assert_template 'admin_chat/chat'
@@ -31,7 +31,7 @@ describe AdminChatController do
   end
 
   it 'send massage' do
-    post :send_msg, :live_chat_id => FactoryGirl.create(:live_chat, :admin_user_id => @manager.id).id, :message => 'I am manager !!!'
+    post :send_msg, live_chat_id: FactoryGirl.create(:live_chat, admin_user_id: @manager.id).id, message: 'I am manager !!!'
     LiveChat.first.chat_messages.last.body.must_equal 'I am manager !!!'
     LiveChat.first.chat_messages.last.is_admin.must_equal true
     assert_response :ok

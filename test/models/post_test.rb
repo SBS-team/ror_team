@@ -2,7 +2,7 @@ require 'minitest_helper'
 
 describe Post do
 
-  subject { Post.new(:upload_file => UploadFile.new) }
+  subject { Post.new(upload_file: UploadFile.new) }
 
   context 'Post db columns' do
     it { must have_db_column(:title).of_type(:string) }
@@ -36,8 +36,8 @@ describe Post do
   context 'Post search' do
     it 'search' do
       admin = FactoryGirl.create(:admin_user)
-      post_1 = FactoryGirl.create(:post, :title => 'Post my_search', :admin_user_id => admin.id, :upload_file => FactoryGirl.create(:upload_file))
-      post_2 = FactoryGirl.create(:post, :admin_user_id => admin.id, :upload_file => FactoryGirl.create(:upload_file))
+      post_1 = FactoryGirl.create(:post, title: 'Post my_search', admin_user_id: admin.id, upload_file: FactoryGirl.create(:upload_file))
+      post_2 = FactoryGirl.create(:post, admin_user_id: admin.id, upload_file: FactoryGirl.create(:upload_file))
 
       Post.all.count.must_equal 2
 

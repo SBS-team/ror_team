@@ -3,9 +3,9 @@ require 'minitest_helper'
 describe ApplicationController do
 
   before do
-    @admin = FactoryGirl.create(:admin_user, :role => 'admin')
+    @admin = FactoryGirl.create(:admin_user, role: 'admin')
     10.times do
-      FactoryGirl.create(:post, :admin_user_id => @admin.id, :upload_file => FactoryGirl.create(:upload_file))
+      FactoryGirl.create(:post, admin_user_id: @admin.id, upload_file: FactoryGirl.create(:upload_file))
       FactoryGirl.create(:job)
     end
     @controller = ApplicationController.new

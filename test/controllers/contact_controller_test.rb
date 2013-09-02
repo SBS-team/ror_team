@@ -25,7 +25,7 @@ describe ContactController do
   end
 
   it 'initialize_live_chat' do
-    chat = LiveChat.create(:guest_name => 'User', :admin_user_id => FactoryGirl.create(:admin_user, :role => 'manager', :status => 'online', :last_activity => DateTime.now).id)
+    chat = LiveChat.create(:guest_name => 'User', :admin_user_id => FactoryGirl.create(:admin_user, :role => 'manager', :busy => false, :last_activity => DateTime.now).id)
     session[:chat_id] = chat.id
     get :index
     assigns(:live_chat).must_equal chat

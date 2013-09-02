@@ -2,9 +2,9 @@ require 'minitest_helper'
 
 describe ViewTest do
   before do
-      FactoryGirl.create(:admin_user, :upload_file => FactoryGirl.create(:upload_file))
-      FactoryGirl.create(:admin_user, :upload_file => FactoryGirl.create(:upload_file))
-      FactoryGirl.create(:admin_user, :first_name => 'Mega_ADMIN', :upload_file => FactoryGirl.create(:upload_file))
+      FactoryGirl.create(:admin_user, upload_file: FactoryGirl.create(:upload_file))
+      FactoryGirl.create(:admin_user, upload_file: FactoryGirl.create(:upload_file))
+      FactoryGirl.create(:admin_user, first_name: 'Mega_ADMIN', upload_file: FactoryGirl.create(:upload_file))
   end
 
 

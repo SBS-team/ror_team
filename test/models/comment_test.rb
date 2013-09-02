@@ -30,7 +30,7 @@ describe Comment do
     it { must ensure_length_of(:post_id).is_at_least(0) }
 
     it 'validates_nickname' do
-      comment = Comment.new(:description => 'My comment', :nickname => 'admin', :post_id => 1)
+      comment = Comment.new(description: 'My comment', nickname: 'admin', post_id: 1)
       comment.valid?.must_equal false
     end
   end

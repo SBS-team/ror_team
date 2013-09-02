@@ -5,7 +5,7 @@ describe ProjectsController do
   include CarrierWave::Test::Matchers
 
   before do
-    @project = FactoryGirl.create(:project, :upload_files => [FactoryGirl.create(:upload_file)])
+    @project = FactoryGirl.create(:project, upload_files: [FactoryGirl.create(:upload_file)])
   end
 
   describe 'GET #index' do

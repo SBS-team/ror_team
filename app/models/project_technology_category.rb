@@ -1,4 +1,4 @@
-# == Schema Information       accepts_nested_attributes_for :upload_file,:reject_if => lambda { |a| a[:filename].blank? }, :allow_destroy => true
+# == Schema Information
 #
 # Table name: project_technology_categories
 #

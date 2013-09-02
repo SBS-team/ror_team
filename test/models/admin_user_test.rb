@@ -29,6 +29,8 @@ describe AdminUser do
     it { must have_db_column(:about).of_type(:text) }
     it { must have_db_column(:first_name).of_type(:string) }
     it { must have_db_column(:last_name).of_type(:string) }
+    it { must have_db_column(:last_activity).of_type(:datetime) }
+    it { must have_db_column(:busy).of_type(:boolean) }
   end
 
   context 'AdminUser validation' do

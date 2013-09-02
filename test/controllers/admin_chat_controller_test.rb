@@ -3,7 +3,7 @@ require "minitest_helper"
 describe AdminChatController do
 
   before do
-    @manager = FactoryGirl.create(:admin_user, :role => 'manager', :status => 'offline')
+    @manager = FactoryGirl.create(:admin_user, :role => 'manager', :busy => false)
   end
 
   it 'get chat' do
@@ -11,7 +11,6 @@ describe AdminChatController do
     get :chat
     assigns(:live_chat).must_be_nil
     assigns(:messages).must_be_nil
-    AdminUser.first.status.must_equal 'online'
     assert_template 'admin_chat/chat'
     assert_response :ok
     sign_out @manager
@@ -22,7 +21,7 @@ describe AdminChatController do
   end
 
   it 'get chat with LiveChat' do
-    man = FactoryGirl.create(:admin_user, :role => 'manager', :status => 'chat')
+    man = FactoryGirl.create(:admin_user, :role => 'manager', :busy => true)
     sign_in man
     chat = FactoryGirl.create(:live_chat, :admin_user_id => man.id)
     get :chat
@@ -39,10 +38,10 @@ describe AdminChatController do
   end
 
   it 'close chat' do
-    @manager.status = 'chat'
+    @manager.busy = true
     sign_in @manager
     post :close
-    AdminUser.last.status.must_equal 'online'
+    AdminUser.last.busy.must_equal false
   end
 
 end

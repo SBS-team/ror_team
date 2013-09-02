@@ -1,7 +1,7 @@
 class LiveChatsController < ApplicationController
 
   def new_chat
-    @admins = AdminUser.online.select(:id, :first_name, :last_name).where(role: 'manager', status: 'online').order('random()')
+    @admins = AdminUser.online.select(:id, :first_name, :last_name).where(role: 'manager', busy: false).order('random()')
     @live_chat = LiveChat.new
     respond_to do |format|
       format.js
@@ -26,7 +26,7 @@ class LiveChatsController < ApplicationController
                                                                       name: @live_chat.guest_name,
                                                                       is_admin: message.is_admin,
                                                                       date: message.created_at.to_i})
-              @live_chat.admin_user.update_attribute(:status, 'chat')
+              @live_chat.admin_user.update_attribute(:busy, true)
             end
             respond_to do |format|
               format.js
@@ -60,14 +60,14 @@ class LiveChatsController < ApplicationController
 
   def chat_close
     admin_user = AdminUser.joins(:live_chats).where('live_chats.id = :live_chat_id', live_chat_id: session[:chat_id].to_i).readonly(false).take
-    if admin_user.status == 'chat'
-      admin_user.update_attribute(:status, 'online')
+    if admin_user.busy
+      admin_user.update_attribute(:busy, false)
       channel = 'presence-' + admin_user.first_name+'-'+admin_user.last_name
       Webs.pusher
       Webs.notify(:notify_chat_closing, channel, 'user-close-chat')
     end
     session[:chat_id] = nil
-    @admins = AdminUser.online.select(:id, :first_name, :last_name).where(role: 'manager', status: 'online').order('random()')
+    @admins = AdminUser.online.select(:id, :first_name, :last_name).where(role: 'manager', busy: false).order('random()')
     respond_to do |format|
       format.js
     end

@@ -3,7 +3,7 @@ require "minitest_helper"
 describe LiveChatsController  do
 
   before do
-    @manager = FactoryGirl.create(:admin_user, :role => 'manager', :status => 'online', :last_activity => DateTime.now)
+    @manager = FactoryGirl.create(:admin_user, :role => 'manager', :busy => false, :last_activity => DateTime.now)
   end
 
   it 'render new live chat' do
@@ -19,7 +19,7 @@ describe LiveChatsController  do
     post :create_chat, live_chat:{:guest_name => 'User', :admin_user_id => @manager.id}, :message => 'Hello manager :-)', :format => 'js'
     LiveChat.first.guest_name.must_equal 'User'
     LiveChat.first.admin_user_id = @manager.id
-    LiveChat.first.admin_user.status.must_equal 'chat'
+    LiveChat.first.admin_user.busy.must_equal true
     LiveChat.first.chat_messages.count.must_equal 1
     LiveChat.first.chat_messages.first.body.must_equal 'Hello manager :-)'
     assert_template 'shared/_show_chat'
@@ -42,7 +42,7 @@ describe LiveChatsController  do
     LiveChat.first.guest_name.must_equal 'User'
     LiveChat.first.chat_messages.count.must_equal 1
     post :chat_close, :format => 'js'
-    LiveChat.first.admin_user.status.must_equal 'online'
+    LiveChat.first.admin_user.busy.must_equal false
     assert_response :ok
   end
 

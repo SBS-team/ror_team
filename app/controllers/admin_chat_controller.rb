@@ -1,13 +1,8 @@
 class AdminChatController < ApplicationController
 
   def chat
-    if current_admin_user && current_admin_user.role == 'manager'
-      if current_admin_user.status.blank? || current_admin_user.status == 'offline'
-        current_admin_user.update_attribute(:status, 'online')
-      end
-    end
     if !!current_admin_user
-      if current_admin_user.status == 'chat'
+      if current_admin_user.busy
         @live_chat = LiveChat.where(admin_user_id: current_admin_user.id).order('updated_at DESC').includes(:admin_user).take
         @messages = ChatMessage.where(live_chat_id: @live_chat.id)
       else
@@ -42,7 +37,7 @@ class AdminChatController < ApplicationController
   end
 
   def close
-    current_admin_user.update_attribute(:status, 'online')
+    current_admin_user.update_attribute(:busy, false)
     channel = 'presence-' + current_admin_user.first_name+'-'+current_admin_user.last_name
     Webs.pusher
     Webs.notify(:notify_chat_closing, channel, 'admin-close-chat')
@@ -50,12 +45,13 @@ class AdminChatController < ApplicationController
   end
 
   def go_offline
-    if current_admin_user.status == 'chat'
+    if current_admin_user.busy
       channel = 'presence-' + current_admin_user.first_name+'-'+current_admin_user.last_name
       Webs.pusher
       Webs.notify(:notify_chat_closing, channel, 'admin-close-chat')
     end
-    current_admin_user.update_attribute(:status, 'offline')
+    current_admin_user.update_attribute(:busy, 'false')
+    current_admin_user.update_attribute(:last_activity, 11.minutes.ago)
     render text: 'ok'
   end
 

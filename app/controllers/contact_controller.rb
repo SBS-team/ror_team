@@ -24,7 +24,7 @@ class ContactController < ApplicationController
       @live_chat = LiveChat.includes(:admin_user).find(session[:chat_id])
       gon.current_admin_channel = @live_chat.admin_user.first_name+'-'+@live_chat.admin_user.last_name
     else
-      @admins = AdminUser.online.select(:id, :first_name, :last_name).where(role: 'manager', status: 'online').order('random()')
+      @admins = AdminUser.online.select(:id, :first_name, :last_name).where(role: 'manager', busy: false).order('random()')
       @live_chat = LiveChat.new
     end
   end

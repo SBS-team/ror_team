@@ -5,7 +5,7 @@
 .col-lg-12.project_item
   .col-lg-6
     - unless @project.upload_files.blank? || @project.upload_files.first.img_name.blank?
-      .carousel.slide{:id => "myCarousel#{@project.id}"}
+      .carousel.slide{id: "myCarousel#{@project.id}"}
         - if image_amount > 1
           %ol.carousel-indicators
             - image_amount.times do |i|
@@ -24,7 +24,7 @@
           = link_to "#myCarousel#{@project.id}", 'data-slide' => 'next', class: 'carousel-control right' do
             %span.icon-next
     .text.project-descr
-      = @project.description
+      != @project.description
   .col-lg-6
     .project-name-url.row
       .project-name.col-lg-6
@@ -55,9 +55,9 @@
           .photo
             - unless service.upload_file.blank? || service.upload_file.img_name.blank?
               = link_to(company_index_path) do
-                = image_tag(service.upload_file.img_name.to_s, class: 'img-polaroid', width: 120)
+                = image_tag(service.upload_file.img_name.to_s, class: 'img-polaroid', height: 100)
             - else
-              = image_tag 'no_image.gif', width: 120
+              = image_tag 'no_image.gif', height: 100
           = link_to "#{service.name}", company_index_path
     - unless @project.technologies.blank?
       .tech-info

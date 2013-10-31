@@ -36,7 +36,6 @@ $(document).ready ->
     rules:
       "resume[email]":
         required: true,
-        email_tip: true,
         email: true
       "resume[name]":
         required: true,
@@ -50,3 +49,15 @@ $(document).ready ->
         required: true,
         minlength: 2,
         maxlength: 3000
+      "recaptcha_response_field":
+        required: true
+
+    messages:
+      "recaptcha_response_field":
+        required: "Captcha is required"
+
+    errorPlacement: (error, element) ->
+      if element.attr('name') == 'recaptcha_response_field'
+        error.insertAfter('#recaptcha_area')
+      else
+        error.insertAfter(element)

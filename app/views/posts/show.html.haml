@@ -34,13 +34,15 @@
           %b= 'Hide previous comments'
         .comments
           %a{name: 'comments'}
+          - i = @comments_count - 3
           - @comments.each do |comment|
-            %blockquote
+            %blockquote{id: i}
+              - i += 1
               .comment_nickname
                 %b.text-primary
                   = comment.nickname
               .comment_description
-                = comment.description.capitalize
+                = comment.description
               %br
               %small.comment_time
                 = time_ago_in_words comment.created_at
@@ -54,6 +56,8 @@
               = f.text_field :nickname, class: 'form-control input-small', placeholder: t('.write_nickname')
             .form-group
               = f.text_field :description, class: 'form-control input-small', placeholder: t('.write_comment')
+            .form-group#recaptcha
+              = recaptcha_tags display: {theme: 'white'}, ajax: true
             .form-group
               = f.submit t('.add_comment'), class: 'btn btn-primary btn-small', id: 'go_comment', data: {disable_with: 'Please wait...'}
       .col-lg-6

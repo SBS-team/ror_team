@@ -4,6 +4,13 @@ buttonActive = (elem) ->
 buttonDefault = (elem) ->
   elem.attr 'class', 'btn btn-danger'
 
+spamTime = ->
+  count = $.cookie 'spam_time'
+  if count && (parseInt count) > 10
+    alert "You send 10 massages for 30 seconds"
+    $.cookie 'spam_time', 0, { expires: 7 , path: '/' }
+  else
+    $.cookie 'spam_time', 0, { expires: 7 , path: '/' }
 
 $(document).ajaxComplete (event, response, settings) ->
   $("#message").val('')
@@ -24,6 +31,12 @@ $(document).ajaxSuccess (event, response, settings) ->
     buttonActive $("#chat_contact")
     startLiveChat()
     newLiveChat = false
+  else
+    # SHOW RECAPTCHA
+    if $('#recaptcha').length>0
+      $('#recaptcha-div').remove()
+      $('#recaptcha-home').append("<div id='recaptcha-div' class='text col-lg-12 form-group'></div>")
+      $('#recaptcha-div').html($('#recaptcha').clone(true,true))
 
 getLiveChatPosition = ->
   if ($.cookie 'position_left') == '0' || ($.cookie 'position_top') == '0'
@@ -51,13 +64,6 @@ startLiveChat = ->
   $.cookie 'hide_win', 1, { path: '/' }
 
 $(document).ready ->
-
-  $("#new_live_chat").validate
-    rules:
-      "message":
-        required: true,
-        maxlength: 255,
-        minlength: 2
 
   if ($.cookie 'nickname')
     $("#live_chat_guest_name").val($.cookie 'nickname')
@@ -111,6 +117,14 @@ $(document).ready ->
 
     newLiveChat = true
 
+  $(document).on "click", "#msg_submit", ->
+    count = $.cookie 'spam_time'
+    $.cookie 'spam_time', (parseInt count) + 1, { expires: 7 , path: '/' }
+
+    if (parseInt count) + 1 > 10
+      alert "You send 10 massages for 30 seconds"
+      $.cookie 'spam_time', 0, { expires: 7 , path: '/' }
+
 #*************************************** LiveChat draggable and position
   $("#live_chat").draggable
     handle: "#chat_handle",
@@ -129,3 +143,6 @@ $(document).ready ->
   admin_main_channel = 'presence-' + RorTeam.currentAdminChannel
 
   chat = new Chat(admin_main_channel)
+
+  spam = new Timer("spamTimer", 30, spamTime)
+  spam.start()

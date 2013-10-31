@@ -4,6 +4,8 @@ FactoryGirl.define do
       "comment_#{n}"
     end
 
+    nickname 'user'
+    post_id 2
   end
 end
 #t.integer  "post_id"

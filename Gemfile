@@ -11,7 +11,7 @@ gem 'kaminari'
 
 # Use for upload files
 gem 'carrierwave'
-gem 'rmagick', '~>2.13.2', :require => 'RMagick'
+gem 'rmagick', '~>2.13.2', require: 'RMagick'
 
 gem 'ckeditor', github: 'keitoaino/ckeditor'
 gem 'mini_magick'
@@ -62,6 +62,7 @@ group :test do
   gem "selenium-webdriver", '~> 2.34.0'
   gem 'guard-rspec'
   gem 'launchy'
+  gem 'simplecov', require: false, group: :test
 end
 
 gem 'friendly_id', github: 'FriendlyId/friendly_id', branch: 'master'
@@ -90,4 +91,6 @@ gem 'rvm-capistrano'
 gem 'capistrano-ext'
 gem 'capistrano-resque'
 gem 'unicorn'
+#Use for captcha
+gem "recaptcha", require: 'recaptcha/rails'
 

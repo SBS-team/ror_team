@@ -16,10 +16,4 @@ class TeamController < ApplicationController
     @fullteam = AdminUser.where.not(role: 'admin')
   end
 
-  private
-  def admin_user_params
-    params.require(:admin_user).permit(:first_name, :last_name, :email, :role, :about,
-                                       upload_files_attributes: [:filename, :id])
-  end
-
 end

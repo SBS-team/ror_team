@@ -36,7 +36,9 @@ ActiveAdmin.register Post do
           end
         end
         row :title
-        row :description
+        row 'Description' do |post|
+          post.description.html_safe
+        end
         row :tag_list, sortable: false
         row :categories do |category|
           category.categories.collect(&:name).join(', ')

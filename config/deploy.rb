@@ -1,5 +1,5 @@
-require 'rvm/capistrano' # Для работы rvm
-require 'bundler/capistrano' # Для работы bundler. При изменении гемов bundler автоматически обновит все гемы на сервере, чтобы они в точности соответствовали гемам разработчика.
+require 'rvm/capistrano' # for rvm
+require 'bundler/capistrano' # for bundler. While changing bundler automatically update all the gems on the serer to match all developers gems.
 require 'capistrano/ext/multistage'
 
 set :using_rvm,       true
@@ -9,10 +9,9 @@ set :use_sudo, false
 ssh_options[:forward_agent] = true
 ssh_options[:auth_methods] = ['publickey']
 
-
-set :scm, :git # Используем git. Можно, конечно, использовать что-нибудь другое - svn, например, но общая рекомендация для всех кто не использует git - используйте git. 
-set :repository,  'git@github.com:SBS-team/ror_team.git' # Путь до вашего репозитария. Кстати, забор кода с него происходит уже не от вас, а от сервера, поэтому стоит создать пару rsa ключей на сервере и добавить $
-set :deploy_via, :remote_cache # Указание на то, что стоит хранить кеш репозитария локально и с каждым деплоем лишь подтягивать произведенные изменения. Очень актуально для больших и тяжелых репозитариев.
+set :scm, :git # Using git.
+set :repository,  'git@github.com:SBS-team/ror_team.git' # Path to your repository
+set :deploy_via, :remote_cache # Using cache. Deploying only changes.
 
 set :stages,          %w(preproduction production)
 set :default_stage,   'preproduction'
@@ -25,9 +24,8 @@ set (:rvm_ruby_string){"ruby-2.0.0-p247@rorteam_#{stage}"}
 after 'deploy:finalize_update', 'deploy:migrate'
 before 'deploy:migrate', 'config:symlink'
 
-before 'deploy:setup', 'rvm:install_ruby' # интеграция rvm с capistrano настолько хороша, что при выполнении cap deploy:setup установит себя и указанный в rvm_ruby_string руби.
+before 'deploy:setup', 'rvm:install_ruby'
 after 'deploy:setup', 'config:setup_folders'
-
 
 namespace :config do
   desc 'Symlink configuration files.'
@@ -46,11 +44,10 @@ namespace :config do
   end
 end
 
-#before "rails:console", "bundle:install"
 namespace :rails do
   desc 'Open the rails console on one of the remote servers'
   task :console, roles: :app do
-    exec "ssh -l #{user} '192.168.137.1' -t 'cd #{current_path} && bundle install && bundle exec rails c #{stage}'"
+    exec "ssh -l #{user} '192.168.137.75' -t 'cd #{current_path} && bundle install && bundle exec rails c #{stage}'"
   end
 end
 

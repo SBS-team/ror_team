@@ -29,7 +29,7 @@ describe Project do
     it { must ensure_length_of(:name).is_at_least(3).is_at_most(45) }
 
     it { must validate_presence_of(:description) }
-    it { must ensure_length_of(:description).is_at_least(10).is_at_most(500) }
+    it { must ensure_length_of(:description).is_at_least(10).is_at_most(5000) }
 
     it { must validate_presence_of(:since)}
 

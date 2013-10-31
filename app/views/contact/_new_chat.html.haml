@@ -13,9 +13,10 @@
             = f.select :admin_user_id, admins_for_select, {},  class: 'form-control'
           .contact-info.col-lg-12.form-group
             Enter your name*:
-            = f.text_field :guest_name, 'class' => 'form-control'
+            = f.text_field :guest_name, class: 'form-control'
           .chat-msg.col-lg-12.form-group
             Write your message*:
             = text_area_tag :message, nil, class: 'form-control', rows: 4
-            %br
+          .text.col-lg-12.form-group#recaptcha-contact-chat
+          .text.col-lg-12.form-group
             = f.submit 'Send message', id: 'new_chat_submit', class: 'btn btn-primary pull-right chat-send-msg-btn'

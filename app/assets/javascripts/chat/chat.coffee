@@ -10,6 +10,25 @@
 
     listenTestChannel: ->
       @testChannelCallback = ((response)->
+        if $('div').length==0 || ($("#admin-chat").length>0 && !response.data.is_admin)
+          tmp = 0
+          clearInterval(window.animationTimer)
+          tabIconElement = $('#admin_chat_tab_icon')
+          window.originalIcon ||= tabIconElement.attr("href")
+          receiveMessageIcon = "/receiveMessageIcon.png"
+          emptyIcon = "/empty.ico"
+
+          window.animationTimer = window.setInterval(
+            ->
+              if tmp == 0
+                changeIcon(receiveMessageIcon)
+                tmp = 1
+              else
+                changeIcon(emptyIcon)
+                tmp = 0
+          , 1000
+          )
+
         if $("#chat").length>0
           if response.data.is_admin
             msg_class = "<div class='msg-admin msg'>"
@@ -19,7 +38,16 @@
           $("#chat").append msg_class+"(" + msg_time.toLocaleTimeString() + ") | <b><U>" + response.data.name + "</U></b> : " + $("<div/>").text(response.data.message).html() + "</div>"
           $("#chat-history").scrollTop $("#chat").height()-$(".msg:last").height()
         else
-          window.location.reload()
+          $(document).mousemove ->
+            window.clearInterval(window.animationTimer)
+            changeIcon(window.originalIcon)
+            window.location.reload()
+
+          $(document).keydown ->
+            window.clearInterval(window.animationTimer)
+            changeIcon(window.originalIcon)
+            window.location.reload()
+
       ).bind(@)
 
       @userCloseChatCallback = (->

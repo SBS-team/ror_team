@@ -1,0 +1,71 @@
+//fonts
+@import url(http://fonts.googleapis.com/css?family=Francois+One);
+//font-family: 'Francois One', sans-serif;
+
+@font-face {
+    font-family: 'chunkfiveroman';
+    src: url('../../fonts/chunkfive-webfont.eot');
+    src: url('../../fonts/chunkfive-webfont.eot?#iefix') format('embedded-opentype'),
+    url('../../fonts/chunkfive-webfont.woff') format('woff'),
+    url('../../fonts/chunkfive-webfont.ttf') format('truetype'),
+    url('../../fonts/chunkfive-webfont.svg#chunkfiveroman') format('svg');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+font-family: 'Conv_wisdom_script_aj-webfont';
+src: url('../../fonts/wisdom_script_aj-webfont.eot');
+src: local('☺'), url('../../fonts/wisdom_script_aj-webfont.woff') format('woff'), url('../../fonts/wisdom_script_aj-webfont.ttf') format('truetype'), url('../../fonts/wisdom_script_aj-webfont.svg') format('svg');
+font-weight: normal;
+font-style: normal;
+    }
+
+@mixin clearfix {
+    &:after, &:before {
+        content: "";
+        display: table;
+    }
+    &:after {
+        clear: both;
+    }
+    & {
+        *zoom: 1;
+    }
+}
+.clearfix {
+    @include clearfix;
+}
+
+@mixin font-window-script($font-size){
+    font-family:"Conv_wisdom_script_aj-webfont", "microsoft sans serif";
+    font-size:$font-size;
+}
+
+@mixin font-chunkfiveroman($font-size){
+    font-family: 'chunkfiveroman', 'droid sans', 'arial', 'open sans';
+    font-size:$font-size;
+}
+
+h1{
+    font-family:"Conv_wisdom_script_aj-webfont", "microsoft sans serif";
+}
+
+h2{
+    font-size:131px;
+    font-family: 'chunkfiveroman';
+    text-align:center;
+}
+
+//custom reset
+a{
+    text-decoration:none;
+    cursor:pointer;
+    outline:none!important;
+}
+
+.fixBody{
+    overflow:hidden;
+}
+
+
+

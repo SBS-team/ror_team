@@ -1,19 +1,19 @@
 #welcome{
     overflow:hidden;
     &.welcome_l-1{
-        background:url("../../images/section1_l-3.png") no-repeat;
+        background:url("section1_l-3.png") no-repeat;
         position:relative;
         z-index:1;
     }
     .welcome_l-2{
-        background:url("../../images/section1_l-2.png") no-repeat;
+        background:url("assets/section1_l-2.png") no-repeat;
         position:absolute;
         top:0;
         left:0;
         z-index:2;
     }
     .welcome_l-3{
-        background:url("../../images/section1_l-1.png") no-repeat;
+        background:url("assets/section1_l-1.png") no-repeat;
         position:absolute;
         top:0;
         left:0;

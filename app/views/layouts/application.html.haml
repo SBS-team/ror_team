@@ -25,17 +25,16 @@
               %a{"data-rel" => "job", href: "#", title: "Next Section"} vacancy
             %li
               %a{"data-rel" => "Contacts", href: "#", title: "Next Section"} Contacts
-    .content.row
-      .col-lg-12
-        - if flash[:error]
-          %p.alert.alert-error
-            = flash.now[:error]
-        - if flash[:notice]
-          %p.alert.alert-success
-            = flash.now[:notice]
-        - if flash[:alert]
-          %p.alert.alert-info
-            = flash.now[:alert]
+    -#%div
+    -#  - if flash[:error]
+    -#    %p.alert.alert-error
+    -#      = flash.now[:error]
+    -#  - if flash[:notice]
+    -#    %p.alert.alert-success
+    -#      = flash.now[:notice]
+    -#  - if flash[:alert]
+    -#    %p.alert.alert-info
+    -#      = flash.now[:alert]
     = yield
 
 

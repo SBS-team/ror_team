@@ -10,49 +10,33 @@
   %body
     - if session[:chat_id] && controller.controller_name != 'contact'
       = render partial: 'shared/live_chat'
-    .container
-      .navbar.navbar-inverse.navbar-fixed-top
-        .container
-          = link_to(t('.ror_team'), root_path, class: 'navbar-brand')
-          %ul.nav.navbar-nav
-            = nav_link_to(t('.company'), company_index_path, 'company')
-            = nav_link_to(t('.work'), projects_path, 'projects')
-            = nav_link_to(t('.team'), team_index_path, 'team')
-            = nav_link_to(t('.careers'), jobs_path, 'jobs')
-            = nav_link_to(t('.contact'), contact_index_path, 'contact')
-            = nav_link_to(t('.blog'), posts_path, 'posts')
-          .pull-right.live-chat
-            - if session[:chat_id]
-              %span{class: 'btn btn-success', id: 'chat_show'}
-                = t('.live_chat')
-            - elsif controller.controller_name == 'contact'
-              %span{class: 'btn btn-danger', id: 'chat_contact'}
-                = t('.live_chat')
-            - else
-              %span{class: 'btn btn-danger', id: 'chat_start'}
-                = t('.live_chat')
-      .content.row
-        .col-lg-12
-          - if flash[:error]
-            %p.alert.alert-error
-              = flash.now[:error]
-          - if flash[:notice]
-            %p.alert.alert-success
-              = flash.now[:notice]
-          - if flash[:alert]
-            %p.alert.alert-info
-              = flash.now[:alert]
-          = yield
-      %footer#footer
-        .contact-us
-          %p
-            © 2012-2013 RoR-Team
-        .soc_net
-          = link_to 'http://twitter.com' do
-            = image_tag 'twitter.png'
-          = link_to 'http://facebook.com' do
-            = image_tag 'facebook.png'
-          = link_to contact_index_path do
-            = image_tag 'envelope.png'
+    %section#nav
+      /[if lt IE 9]
+      .inner_wrapp
+        %a.top_nav_logo.clearfix{"data-rel" => "welcome", href: "#"}
+          %img{alt: "", height: "58", src: "images/sbs_c_small.png", width: "58"}
+        %nav.clearfix
+          %ul
+            %li
+              %a{"data-rel" => "What_we_do", href: "#", title: "Next Section"} What we do
+            %li
+              %a{"data-rel" => "Portfolio", href: "#", title: "Next Section"} Portfolio
+            %li
+              %a{"data-rel" => "job", href: "#", title: "Next Section"} vacancy
+            %li
+              %a{"data-rel" => "Contacts", href: "#", title: "Next Section"} Contacts
+    .content.row
+      .col-lg-12
+        - if flash[:error]
+          %p.alert.alert-error
+            = flash.now[:error]
+        - if flash[:notice]
+          %p.alert.alert-success
+            = flash.now[:notice]
+        - if flash[:alert]
+          %p.alert.alert-info
+            = flash.now[:alert]
+    = yield
+
 
 

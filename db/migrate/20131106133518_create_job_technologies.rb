@@ -1,6 +1,6 @@
-class CreateJobsTechnologies < ActiveRecord::Migration
+class CreateJobTechnologies < ActiveRecord::Migration
   def change
-    create_table :jobs_technologies do |t|
+    create_table :job_technologies do |t|
       t.integer :job_id
       t.integer :technology_id
       t.timestamps

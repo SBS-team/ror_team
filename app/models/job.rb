@@ -13,9 +13,11 @@ class Job < ActiveRecord::Base
 
   has_many :resumes, dependent: :destroy
   has_one  :upload_file, as: :fileable, dependent: :destroy
-  has_many :technologies, through: :jobs_technologies
+  has_many :job_technologies, dependent: :destroy
+  has_many :technologies, through: :job_technologies
 
   accepts_nested_attributes_for :upload_file
+  accepts_nested_attributes_for :job_technologies, allow_destroy: true
 
   validates :title, presence: true
   validates :description, presence: true

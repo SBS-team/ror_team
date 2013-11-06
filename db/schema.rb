@@ -105,16 +105,16 @@ ActiveRecord::Schema.define(version: 20131106133518) do
   add_index "friendly_id_slugs", ["sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_id", using: :btree
   add_index "friendly_id_slugs", ["sluggable_type"], name: "index_friendly_id_slugs_on_sluggable_type", using: :btree
 
-  create_table "jobs", force: true do |t|
-    t.string   "title"
-    t.text     "description"
+  create_table "job_technologies", force: true do |t|
+    t.integer  "job_id"
+    t.integer  "technology_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "jobs_technologies", force: true do |t|
-    t.integer  "job_id"
-    t.integer  "technology_id"
+  create_table "jobs", force: true do |t|
+    t.string   "title"
+    t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

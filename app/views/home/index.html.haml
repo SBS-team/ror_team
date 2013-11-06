@@ -9,7 +9,7 @@
 %section#What_we_do
   .content_area
     .row{"data--50-bottom" => "opacity:0.1;transform: scale(0.9)", "data-120-top" => "opacity:0.1;transform: scale(0.9)"}
-      %h2= t '.our_skills'
+      %h2= t '.our_command'
     .row{"data--50-bottom" => "opacity:0.1;transform: scale(0.9)", "data-120-top" => "opacity:0.1;transform: scale(0.9)"}
       %p
         %span.font_size-39> Lorem ipsum
@@ -61,6 +61,102 @@
         justo nulla sit amet est.
     .row{"data--50-bottom" => "opacity:0.1;transform: scale(0.9)", "data-120-top" => "opacity:0.1;transform: scale(0.9)"}
       %p Donec ipsum nisl, egestas nec
+%section#Portfolio.Portfolio_l-1
+  .Portfolio_l-2{"data-0" => "background-position:50% -1000px;", "data-100000" => "background-position:50% 50000px;"}
+  .content_area
+    .row
+      %h2= t '.project_work'
+    .portfolio_item_list
+      - @projects.each do |project|
+        .portfolio_item
+          = link_to project.name, project_path(project)
+          %a#manual-ajax.img_block{href: "ajax_content/test_content.html", rel: "modal:open"}
+            %span.bg_place_holder
+            %span.bg_place_holder_plus
+            - unless project.upload_files.blank?
+              = image_tag(project.upload_files.sample.img_name.url(:thumb), width: 167, height: 110)
+            - else
+              = image_tag('no_image.gif')
+%section#job
+  .content_area
+    %h2.row{"data--50-bottom" => "opacity:0.1;transform: scale(0.9)", "data-80-top" => "opacity:0.1;transform: scale(0.9)"} vacancy
+    %div
+      %p.row{"data--50-bottom" => "opacity:0.1;transform: scale(0.9)", "data-120-top" => "opacity:0.1;transform: scale(0.9)"}
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vitae tristique mauris, sit amet dapibus sapien. In sit
+        amet elit commodo sem tempor ullamcorper. Etiam quis massa semper, lacinia ligula a, molestie dui. Morbi eget massa dolor.
+        Duis vel arcu ac metus pulvinar ultrices a in risus. Vestibulum facilisis porttitor augue vitae dignissim. Integer quis
+        eleifend sapien. Nullam odio massa, varius eget turpis non, hendrerit placerat purus. Duis sit amet luctus lectus, eu suscipit elit.
+      %p.row{"data--50-bottom" => "opacity:0.1;transform: scale(0.9)", "data-120-top" => "opacity:0.1;transform: scale(0.9)"}
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vitae tristique mauris, sit amet dapibus sapien. In sit
+        amet elit commodo sem tempor ullamcorper. Etiam quis massa semper, lacinia ligula a, molestie dui. Morbi eget massa dolor.
+        Duis vel arcu ac metus pulvinar ultrices a in risus. Vestibulum facilisis porttitor augue vitae dignissim. Integer quis
+        eleifend sapien. Nullam odio massa, varius eget turpis non, hendrerit placerat purus. Duis sit amet luctus lectus, eu suscipit elit.
+      %ul.job_WN_list
+        %li.row{"data--50-bottom" => "opacity:0.1;transform: scale(0.9)", "data-120-top" => "opacity:0.1;transform: scale(0.9)"} Lorem ipsum dolor sit amet,
+        %li.row{"data--50-bottom" => "opacity:0.1;transform: scale(0.9)", "data-120-top" => "opacity:0.1;transform: scale(0.9)"} empor ullamcorper
+        %li.row{"data--50-bottom" => "opacity:0.1;transform: scale(0.9)", "data-120-top" => "opacity:0.1;transform: scale(0.9)"} varius eget turpis non
+        %li.row{"data--50-bottom" => "opacity:0.1;transform: scale(0.9)", "data-120-top" => "opacity:0.1;transform: scale(0.9)"} Lorem ipsum dolor sit amet,
+        %li.row{"data--50-bottom" => "opacity:0.1;transform: scale(0.9)", "data-120-top" => "opacity:0.1;transform: scale(0.9)"} empor ullamcorper
+        %li.row{"data--50-bottom" => "opacity:0.1;transform: scale(0.9)", "data-120-top" => "opacity:0.1;transform: scale(0.9)"} varius eget turpis non
+      %h3.row{"data--50-bottom" => "opacity:0.1;transform: scale(0.9)", "data-120-top" => "opacity:0.1;transform: scale(0.9)"} Now available such vacancies
+      %ul.vacancies_list_wrapp
+        %li
+          %strong.row{"data--50-bottom" => "opacity:0.1;transform: scale(0.9)", "data-120-top" => "opacity:0.1;transform: scale(0.9)"} amet elit commodo sem tempor ullamcorper
+          .knowledge_list_wrapp.row{"data-80-top" => "opacity:0.1;transform: scale(0.9)", "data-bottom" => "opacity:0.1;transform: scale(0.9)"}
+            %p - tempor ullamcorper. Etiam quis massa semper, lacinia ligula a, molestie dui. Morbi eget massa dolor.em tempor ullamcorper. Etiam quis massa semper, lacinia ligula a, molestie dui. Morbi eget massa dolor.em tempor ullamcorper. Etiam quis massa semper, lacinia ligula a, molestie dui. Morbi eget massa dolor.
+            %h5 Required knowledge:
+            %ul
+              %li
+                %img{alt: "", src: "images/icons/sourc/1380570484_html.png"}/
+                %p Lorem ipsum dolor sit amet,Lorem ipsum dolor sit amet,Lorem ipsum dolor sit amet,
+              %li
+                %img{alt: "", src: "images/icons/sourc/1380570401_css.png"}/
+                %p dipiscing elit. PellenLorem ipsum dolor sit amet,Lorem ipsum dolor sit amet,
+              %li
+                %img{alt: "", src: "images/icons/sourc/1380570433_php.png"}/
+                %p Lorem ipsum dolor sit amet,Lorem ipsum dolor sit amet,Lorem ipsum dolor sit amet,Lorem ipsum dolor sit amet,
+              %li
+                %img{alt: "", src: "images/icons/sourc/jquery.png"}/
+                %p Lorem ipsum dolor sit amet,Lorem ipsum dolor sit amet,Lorem ipsum dolor sit amet,Lorem ipsum dolor sit amet,
+              %li
+                %img{alt: "", src: "images/icons/sourc/js.png"}/
+                %p dipiscing elit. PellenLorem ipsum dolor sit amet,Lorem ipsum dolor sit amet,
+              %li
+                %img{alt: "", src: "images/icons/sourc/ruby.png"}/
+                %p urus, et gravida diam. Nunc lobLorem ipsum dolor sit amet,Lorem ipsum dolor sit amet,
+        %li
+          %strong.row{"data--50-bottom" => "opacity:0.1;transform: scale(0.9)", "data-120-top" => "opacity:0.1;transform: scale(0.9)"} amet elit commodo sem tempor ullamcorper
+          .knowledge_list_wrapp.row{"data-80-top" => "opacity:0.1;transform: scale(0.9)", "data-bottom" => "opacity:0.1;transform: scale(0.9)"}
+            %p - tempor ullamcorper. Etiam quis massa semper, lacinia ligula a, molestie dui. Morbi eget massa dolor.em tempor ullamcorper. Etiam quis massa semper, lacinia ligula a, molestie dui. Morbi eget massa dolor.em tempor ullamcorper. Etiam quis massa semper, lacinia ligula a, molestie dui. Morbi eget massa dolor.
+            %h5 Required knowledge:
+            %ul
+              %li
+                %img{alt: "", src: "images/icons/sourc/1380570484_html.png"}/
+                %p Lorem ipsum dolor sit amet,Lorem ipsum dolor sit amet,Lorem ipsum dolor sit amet,
+              %li
+                %img{alt: "", src: "images/icons/sourc/1380570401_css.png"}/
+                %p dipiscing elit. PellenLorem ipsum dolor sit amet,Lorem ipsum dolor sit amet,
+              %li
+                %img{alt: "", src: "images/icons/sourc/1380570433_php.png"}/
+                %p Lorem ipsum dolor sit amet,Lorem ipsum dolor sit amet,Lorem ipsum dolor sit amet,Lorem ipsum dolor sit amet,
+              %li
+                %img{alt: "", src: "images/icons/sourc/jquery.png"}/
+                %p Lorem ipsum dolor sit amet,Lorem ipsum dolor sit amet,Lorem ipsum dolor sit amet,Lorem ipsum dolor sit amet,
+              %li
+                %img{alt: "", src: "images/icons/sourc/js.png"}/
+                %p dipiscing elit. PellenLorem ipsum dolor sit amet,Lorem ipsum dolor sit amet,
+              %li
+                %img{alt: "", src: "images/icons/sourc/ruby.png"}/
+                %p urus, et gravida diam. Nunc lobLorem ipsum dolor sit amet,Lorem ipsum dolor sit amet,
+    %h2.row.job_interest{"data--50-bottom" => "opacity:0.1;transform: scale(0.9)", "data-80-top" => "opacity:0.1;transform: scale(0.9)"}
+      you
+      %br/
+      interested?
+    %a.send_resume{href: "#login-form", rel: "modal:open"} send us your resume!
+    .modal_job_resume
+      %form{action: ""}
+
+
 
 .col-lg-12
   .odd

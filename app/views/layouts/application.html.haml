@@ -13,18 +13,18 @@
     %section#nav
       /[if lt IE 9]
       .inner_wrapp
-        %a.top_nav_logo.clearfix{"data-rel" => "welcome", href: "#"}
-          %img{alt: "", height: "58", src: 'assets/sbs_c_small.png', width: "58"}
+        = link_to root_path, class: 'top_nav_logo clearfix', data: {rel: 'welcome'} do
+          = image_tag 'sbs_c_small.png', width: 58, height: 58
         %nav.clearfix
           %ul
             %li
-              %a{"data-rel" => "What_we_do", href: "#", title: "Next Section"} What we do
+              = link_to 'About us', '#', title: 'Next Section', data: {rel: 'What_we_do'}
             %li
-              %a{"data-rel" => "Portfolio", href: "#", title: "Next Section"} Portfolio
+              = link_to 'Portfolio', '#', title: 'Next Section', data: {rel: 'Portfolio'}
             %li
-              %a{"data-rel" => "job", href: "#", title: "Next Section"} vacancy
+              = link_to 'vacancy', '#', title: 'Next Section', data: {rel: 'job'}
             %li
-              %a{"data-rel" => "Contacts", href: "#", title: "Next Section"} Contacts
+              = link_to 'Contacts', '#', title: 'Next Section', data: {rel: 'Contacts'}
     -#%div
     -#  - if flash[:error]
     -#    %p.alert.alert-error

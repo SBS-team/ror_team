@@ -1,4 +1,4 @@
-#= require jquery
+#= require jquery_new
 #= require jquery-ui
 #= require jquery_ujs
 #= require jquery.localscroll-1.2.7-min

@@ -18,6 +18,7 @@ class PostsController < ApplicationController
         flash.now[:error] = "#{t('.your_search_for')} #{params[:search]} #{t('.returned_no_hits')}"
       else
         flash.now[:notice] = "#{t('.your_search_for')} #{params[:search]} results"
+        gon.search_text = params[:search]
       end
     end
     respond_to do |format|

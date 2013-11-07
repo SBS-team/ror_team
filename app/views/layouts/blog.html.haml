@@ -8,32 +8,36 @@
     = include_gon(namespace: 'RorTeam', camel_case: true)
     = csrf_meta_tags
   %body
+    %header
+      .logo
+        = image_tag 'blog/rails_mini.png', align: 'left', height: 50
+        %span SBS-Team blog
     %menu
-      = link_to(t('.company'), company_index_path)
-      = link_to(t('.work'), projects_path)
-      = link_to(t('.team'), team_index_path)
-      = link_to(t('.careers'), jobs_path)
-      = link_to(t('.contact'), contact_index_path)
-      = link_to(t('.blog'), posts_path)
+      %ul.menu_panel
+        %li
+          = link_to 'All', posts_path
+        %li
+          %a{:href => '#'} Archives
     .col-lg-12
-      - if flash[:error]
-        %p.alert.alert-error
-          = flash.now[:error]
-      - if flash[:notice]
-        %p.alert.alert-success
-          = flash.now[:notice]
-      - if flash[:alert]
-        %p.alert.alert-info
-          = flash.now[:alert]
-      = yield
-    %footer#footer
+
+    #wrap
+      #container
+        = render 'sidebar'
+        #content
+          - unless flash.blank?
+            .flash-message
+              - if flash[:error]
+                %p.message-error
+                  = flash.now[:error]
+              - if flash[:notice]
+                %p.message-success
+                  = flash.now[:notice]
+              - if flash[:alert]
+                %p.message-info
+                  = flash.now[:alert]
+          #post-content
+            = yield
+    %footer
       .contact-us
         %p
           © 2012-2013 RoR-Team
-      .soc_net
-        = link_to 'http://twitter.com' do
-          = image_tag 'twitter.png'
-        = link_to 'http://facebook.com' do
-          = image_tag 'facebook.png'
-        = link_to contact_index_path do
-          = image_tag 'envelope.png'

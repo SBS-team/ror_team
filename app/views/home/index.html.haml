@@ -105,7 +105,6 @@
                     %li
                       = image_tag tech.upload_file.img_name.url(:thumb), width: 50, alt: 'image', title: tech.name
                       %p= tech.description
-
     %h2.row.job_interest{"data--50-bottom" => "opacity:0.1;transform: scale(0.9)", "data-80-top" => "opacity:0.1;transform: scale(0.9)"}
       you
       %br
@@ -113,3 +112,43 @@
     %a.send_resume{href: "#login-form", rel: "modal:open"} send us your resume!
     .modal_job_resume
       %form{action: ""}
+%section#Contacts.Contacts_l-1
+  .Contacts_l-3
+  .content_area
+    %h2= t '.contact_us'
+    .contact_form
+      = form_for @message, url: home_index_path, html: {class: 'web-form', multipart: true} do |form|
+        - if @message.errors.any?
+          .ror-team-errors
+            %h6
+              = pluralize(@message.errors.count, 'error')
+              prohibited this message from being sent:
+            %ul
+              - @message.errors.full_messages.each do |msg|
+                %li= msg
+        %h4 We will respond as soon as we can
+        .clearfix
+          .left_side
+            = form.label :name do
+              Name
+              = form.text_field(:name, required: "")
+            = form.label :email do
+              Email
+              = form.text_field(:email, required: "")
+          .right_side
+            = form.label :text do
+              Message
+              = form.text_area(:text, required: "")
+        = submit_tag 'Submit'
+      .copyRight
+        %p
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eu sapien id sapien sollicitudin ultricies. Nunc vel ante
+          sollicitudin turpis auctor posuere. Quisque id dolor lorem. Cras at ante nulla. Vivamus convallis elementum nisi, sed tempor
+          quam luctus mollis. Duis vitae felis eget neque tristique pharetra. Sed laoreet neque sit amet lobortis suscipit. Proin mi
+          augue, tempus porta sapien nec,
+          lobortis malesuada massa. Nunc nec nunc mollis, pulvinar ligula et, interdum lacus. Nunc porttitor augue ac dolor tempor aliquet.
+          Integer tincidunt commodo libero, vitae tincidunt lectus feugiat eget. Sed congue sit amet augue id aliquet. Fusce egestas odio
+          vel sem fringilla consectetur. Ut non ante quis ante consectetur molestie. Vestibulum elit justo, volutpat non laoreet id,
+          pellentesque id massa. Vivamus et eleifend est.
+        %span
+          = "sbs-team #{Time.now.strftime('%Y')}"

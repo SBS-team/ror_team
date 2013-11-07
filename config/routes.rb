@@ -7,7 +7,7 @@ RorTeam::Application.routes.draw do
   resources :posts, path: 'blog', only: [:index] do
     resources :comments, only: [:new, :create]
   end
-  resources :home, only: [:index]
+  resources :home, only: [:index, :create]
   resources :team, only: [:index, :show]
   resources :company, only: [:index]
   resources :projects, only: [:index, :show]

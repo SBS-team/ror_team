@@ -8,25 +8,24 @@
     = include_gon(namespace: 'RorTeam', camel_case: true)
     = csrf_meta_tags
   %body
-    %div
+    %menu
       = link_to(t('.company'), company_index_path)
       = link_to(t('.work'), projects_path)
       = link_to(t('.team'), team_index_path)
       = link_to(t('.careers'), jobs_path)
       = link_to(t('.contact'), contact_index_path)
       = link_to(t('.blog'), posts_path)
-    .content.row
-      .col-lg-12
-        - if flash[:error]
-          %p.alert.alert-error
-            = flash.now[:error]
-        - if flash[:notice]
-          %p.alert.alert-success
-            = flash.now[:notice]
-        - if flash[:alert]
-          %p.alert.alert-info
-            = flash.now[:alert]
-        = yield
+    .col-lg-12
+      - if flash[:error]
+        %p.alert.alert-error
+          = flash.now[:error]
+      - if flash[:notice]
+        %p.alert.alert-success
+          = flash.now[:notice]
+      - if flash[:alert]
+        %p.alert.alert-info
+          = flash.now[:alert]
+      = yield
     %footer#footer
       .contact-us
         %p

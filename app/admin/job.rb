@@ -16,6 +16,9 @@ ActiveAdmin.register Job do
     column :title do |job|
       link_to job.title, admin_job_path(job)
     end
+    column :technologies do |technology|
+      technology.technologies.collect(&:name).join(', ')
+    end
     column :created_at
     column :updated_at
     default_actions
@@ -32,6 +35,9 @@ ActiveAdmin.register Job do
         row :title
         row 'Description' do |job|
           job.description.html_safe
+        end
+        row :technologies do |technology|
+          technology.technologies.collect(&:name).join(', ')
         end
         row :created_at
         row :updated_at
@@ -82,6 +88,7 @@ ActiveAdmin.register Job do
       params.require(:job).permit(:title, :description, technology_ids: [],
                                   upload_file_attributes: [:img_name, :remote_img_name_url, :id])
     end
+
   end
 
 end

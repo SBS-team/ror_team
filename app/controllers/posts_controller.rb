@@ -21,7 +21,7 @@ class PostsController < ApplicationController
       end
     end
     respond_to do |format|
-      format.html {render :index}
+      format.html {render :index, layout: 'blog'}
       format.rss {render :index, content_type: Mime::XML}
     end
   end
@@ -30,6 +30,9 @@ class PostsController < ApplicationController
     @post = Post.includes([:tags, :categories, :upload_file, :comments]).find_by_slug!(params[:id])
     @comments = @post.comments.order('id DESC').limit(3).reverse
     @comments_count = @post.comments.count
+    respond_to do |format|
+      format.html {render :show, layout: 'blog'}
+    end
   end
 
   def comments_show_all

@@ -1,4 +1,4 @@
-class JobsTechnologies < ActiveRecord::Base
+class JobsTechnology < ActiveRecord::Base
 
   belongs_to :job
   belongs_to :technology

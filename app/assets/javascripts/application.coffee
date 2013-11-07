@@ -13,7 +13,6 @@
 #= require underscore
 #= require jquery.validate
 #= require additional-methods
-#= require jquery.tagcanvas
 #= require jquery-cookie
 #= require jobs
 #= require live_chats

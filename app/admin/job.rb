@@ -85,7 +85,7 @@ ActiveAdmin.register Job do
 
     private
     def job_params
-      params.require(:job).permit(:title, :description,
+      params.require(:job).permit(:title, :description, technology_ids: [],
                                   upload_file_attributes: [:img_name, :remote_img_name_url, :id])
     end
 

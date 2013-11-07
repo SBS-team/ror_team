@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131106133518) do
+ActiveRecord::Schema.define(version: 20131107101821) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "resource_id",   null: false
@@ -214,6 +214,7 @@ ActiveRecord::Schema.define(version: 20131106133518) do
     t.integer  "technology_category_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "description"
   end
 
   create_table "technology_categories", force: true do |t|

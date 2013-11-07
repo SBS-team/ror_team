@@ -29,13 +29,13 @@
             %li
               = link_to 'Blog', posts_path, target: '_blank'
     - if flash[:error]
-      %p.alert.alert-error
+      .alert.alert-error
         = flash.now[:error]
     - if flash[:notice]
-      %p.alert.alert-success
+      .alert.alert-success
         = flash.now[:notice]
     - if flash[:alert]
-      %p.alert.alert-info
+      .alert.alert-info
         = flash.now[:alert]
     = yield
 

@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
 
-  before_action :category, only: [:index , :show]
+  before_action :category, only: [:index , :show, :archives]
   before_action :recent_and_popular_posts, only: :show
 
   def index
@@ -18,12 +18,28 @@ class PostsController < ApplicationController
         flash.now[:error] = "#{t('.your_search_for')} #{params[:search]} #{t('.returned_no_hits')}"
       else
         flash.now[:notice] = "#{t('.your_search_for')} #{params[:search]} results"
+        gon.search_text = params[:search]
       end
     end
     respond_to do |format|
       format.html {render :index, layout: 'blog'}
       format.rss {render :index, content_type: Mime::XML}
     end
+  end
+
+  def archives
+    first = DateTime.new(params[:year].to_i, Date::MONTHNAMES.index(params[:month].to_s.capitalize), 1)
+    last = first + 1.month
+
+    @posts = Post.includes([:tags, :categories, :upload_file]).where('created_at >= :first AND created_at < :last', first: first, last: last).page(params[:page]).per(5)
+
+    if @posts.blank?
+      flash.now[:error] = "No created posts at: #{first.strftime('%B %Y')}"
+    else
+      flash.now[:notice] = "Posts created at: #{first.strftime('%B %Y')}"
+    end
+
+    render :index, layout: 'blog'
   end
 
   def show

@@ -15,6 +15,7 @@ RorTeam::Application.routes.draw do
   resources :contact, only: [:index, :create]
 
   get 'blog/:created/:id' => 'posts#show', as: :special_post
+  get 'blog/archives/:month/:year' => 'posts#archives', as: :archives
   post '/blog/comments' => 'comments#create'
   get '/admin_chat/chat', as: :admin_start_chat
   post '/admin_chat/go_offline', as: :admin_go_offline

@@ -5,8 +5,8 @@
 $(document).ready ->
 
   $("#myCanvas").tagcanvas(
-    textColour: "#008DF0"
-    outlineColour: "#008DF0"
+    textColour: "#E80202"
+    outlineColour: "#E80202"
     weight: true
     outlineThickness: 1
     zoom: 1
@@ -15,4 +15,5 @@ $(document).ready ->
     textHeight: 14
   , "tagcloud")
 
-  $('.content').highlight 'you'
+  if RorTeam.searchText
+    $('#post-content').highlight(RorTeam.searchText.toString())

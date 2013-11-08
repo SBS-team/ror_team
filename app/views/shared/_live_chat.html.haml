@@ -1,11 +1,13 @@
-.live_chat#live_chat
+.live_chat#user_chat
   #chat_handle
     %span.head-chat
       live chat
     %span.controls-chat
-      %span{id: 'chat_hide', class: 'btn btn-default btn-xs', title: 'Hide chat'}
+      %button{id: 'chat_hide', title: 'Hide chat'}
+        hide
       - if session[:chat_id]
         %span{id: 'chat_close', class: 'btn btn-danger btn-xs', title: 'Close chat'}
+          close
   .chat-content
     .row
       .col-lg-10.col-offset-1.form-group

@@ -8,31 +8,21 @@
 #= require jquery.scrollTo-1.4.2-min
 #= require main
 #= require skrollr
-#= require bootstrap.min
+
 #= require pusher
 #= require underscore
+
 #= require jquery.validate
 #= require additional-methods
 #= require jquery-cookie
-#= require jobs
-#= require live_chats
-#= require comments
-#= require contact
-#= require search
+
+
 #= require lib/webs
 #= require lib/timer
 #= require chat/chat
+#= require chat/win_chat
 
 $(document).ready ->
-  $('.carousel').carousel()
 
-  $("#myCanvas").tagcanvas(
-    textColour: "#008DF0"
-    outlineColour: "#008DF0"
-    weight: true
-    outlineThickness: 1
-    zoom: 1
-    maxSpeed: -0.04
-    depth: 0.75
-    textHeight: 14
-  , "tagcloud")
+  user_chat = new WinChat()
+  user_chat.init($('.chat-button-fix'))

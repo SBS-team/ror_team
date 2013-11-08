@@ -38,7 +38,6 @@ en:
       contact_email: "Contact us by email"
       email: "email ror_team@gmail.com"
 
-
   home:
     index:
       our_command: "About us"
@@ -50,6 +49,9 @@ en:
       read_about_skills: "More about our skills and experience "
       project_work: "Portfolio"
       read_about_projects: "Read more about our projects"
+    create:
+      contact_sent_msg: "Message was successfully sent."
+      contact_error_msg: "Form invalid. Please check errors bellow"
 
   company:
     index:
@@ -73,7 +75,6 @@ en:
       about: "You can use all Bootstrap plugins purely through the markup API without writing a single line of JavaScript. This is Bootstrap's first class API and should be your first consideration when using a plugin.
               That said, in some situations it may be desirable to turn this functionality off. Therefore, we also provide the ability to disable the data attribute API by unbinding all events on the body namespaced with `'data-api'`. This looks like this:"
 
-
   projects:
     index:
       link_project: "Link to  project"
@@ -91,7 +92,6 @@ en:
       tech_info: "Technical information:"
       people: "people"
       in_work: "in work"
-
 
   contact:
     index:

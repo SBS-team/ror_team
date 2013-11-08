@@ -3,6 +3,7 @@
   %head
     = favicon_link_tag '/favicon.ico'
     %title RorTeam
+    = stylesheet_link_tag    'application', 'https://fonts.googleapis.com/css?family=Francois+One'
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application'
     = include_gon(namespace: 'RorTeam', camel_case: true)
@@ -27,16 +28,15 @@
               = link_to 'Contacts', '#', title: 'Next Section', data: {rel: 'Contacts'}
             %li
               = link_to 'Blog', posts_path, target: '_blank'
-    -#%div
-    -#  - if flash[:error]
-    -#    %p.alert.alert-error
-    -#      = flash.now[:error]
-    -#  - if flash[:notice]
-    -#    %p.alert.alert-success
-    -#      = flash.now[:notice]
-    -#  - if flash[:alert]
-    -#    %p.alert.alert-info
-    -#      = flash.now[:alert]
+    - if flash[:error]
+      .alert.alert-error
+        = flash.now[:error]
+    - if flash[:notice]
+      .alert.alert-success
+        = flash.now[:notice]
+    - if flash[:alert]
+      .alert.alert-info
+        = flash.now[:alert]
     = yield
 
 

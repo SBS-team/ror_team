@@ -1,4 +1,6 @@
 #sidebar
+  = link_to posts_path(:rss) do
+    = image_tag 'rss.png', width: 50
   %h3 Search
   %form.form-search{action: posts_path}
     %input.search-query.form-control{type: 'text', placeholder: t('.search'), name: 'search'}
@@ -26,11 +28,7 @@
             = link_to tag.name , posts_path(tag_name: tag.name), class: css_class
   %h3 Archives
   %ul
-    %li
-      %a{:href => "http://web-mastery.info/"} March 2007
-    %li
-      %a{:href => "http://web-mastery.info/"} February 2007
-    %li
-      %a{:href => "http://web-mastery.info/"} January 2007
-    %li
-      %a{:href => "http://web-mastery.info/"} December 2006
+    - 5.times do |i|
+      %li
+        - date = i.to_i.month.ago
+        = link_to date.strftime('%B %Y'), archives_path(date.strftime('%B').to_s.downcase, date.year.to_s.downcase)

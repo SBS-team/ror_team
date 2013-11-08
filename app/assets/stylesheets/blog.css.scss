@@ -108,6 +108,8 @@ menu {
   padding: 10px;
   margin: 0 240px 0 0;
   border-right: 1px solid #eee;
+  overflow: hidden;
+  word-wrap: break-word;
 
   h3 {
     margin: 0;
@@ -173,6 +175,13 @@ a:hover {
   color :  #636363;
   background : inherit;
   text-decoration : none;
+}
+
+.pagination-panel {
+  text-align: center;
+  padding: 20px 0;
+  font-size: 16px;
+  border-top: 1px solid #aaa;
 }
 
 footer {

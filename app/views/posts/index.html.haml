@@ -22,4 +22,6 @@
         = t '.tags'
         - post.tags.each do |tag|
           = link_to tag.name, posts_path(tag_name: tag.name), class: 'btn btn-default btn-small'
-  = paginate @posts
+- if @posts.total_pages > 1
+  .pagination-panel
+    = paginate @posts

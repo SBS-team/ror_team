@@ -14,7 +14,7 @@ class HomeController < ApplicationController
       NotificationsMailer.new_message(@message).deliver
       redirect_to(root_path, notice: t('.contact_sent_msg'))
     else
-      flash.now[:error] = @message.errors.full_messages.join(', ')  #
+      flash.now[:error] = @message.errors.full_messages.join(', ')
       render :index
     end
   end

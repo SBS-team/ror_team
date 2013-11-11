@@ -24,7 +24,6 @@
 #= require chat/chat
 
 $(document).ready ->
-  $('.carousel').carousel()
 
   $("#myCanvas").tagcanvas(
     textColour: "#008DF0"

@@ -61,7 +61,7 @@
     .portfolio_item_list
       - @projects.each do |project|
         .portfolio_item
-          = link_to project.name, project_load_path(project.id), class: 'manual-ajax'
+          = link_to project.url, project.url, target: '_blank'
           = link_to project_load_path(project.id), class: 'img_block manual-ajax', rel: 'modal:open' do
             %span.bg_place_holder
             %span.bg_place_holder_plus

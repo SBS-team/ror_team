@@ -60,16 +60,16 @@ jQuery(document).ready(function(){
 //    });
 
 // Open modal on AJAX callback
-    jQuery('#manual-ajax').click(function(event) {
+    jQuery('.manual-ajax').click(function(event) {
         event.preventDefault();
         jQuery.get(this.href, function(html) {
 //            add fixBody class for remove scroll
-                jQuery("body").addClass("fixBody");
+              jQuery("body").addClass("fixBody");
         });
     });
 //    function on modal close
     jQuery(document).on('modal:close', function(){
-//            add fixBody class for remove scroll
+//      add fixBody class for remove scroll
         jQuery("body").removeClass("fixBody");
     });
 });

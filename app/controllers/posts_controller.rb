@@ -28,15 +28,15 @@ class PostsController < ApplicationController
   end
 
   def archives
-    first = DateTime.new(params[:year].to_i, Date::MONTHNAMES.index(params[:month].to_s.capitalize), 1)
-    last = first + 1.month
+    from_date = DateTime.new(params[:year].to_i, Date::MONTHNAMES.index(params[:month].to_s.capitalize), 1)
+    till_date = from_date + 1.month
 
-    @posts = Post.includes([:tags, :categories, :upload_file]).where('created_at >= :first AND created_at < :last', first: first, last: last).page(params[:page]).per(5)
+    @posts = Post.includes([:tags, :categories, :upload_file]).where('created_at >= ? AND created_at < ?', from_date, till_date).page(params[:page]).per(5)
 
     if @posts.blank?
-      flash.now[:error] = "No created posts at: #{first.strftime('%B %Y')}"
+      flash.now[:error] = "No created posts at: #{from_date.strftime('%B %Y')}"
     else
-      flash.now[:notice] = "Posts created at: #{first.strftime('%B %Y')}"
+      flash.now[:notice] = "Posts created at: #{from_date.strftime('%B %Y')}"
     end
 
     render :index, layout: 'blog'

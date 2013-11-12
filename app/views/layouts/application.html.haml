@@ -12,6 +12,8 @@
     %a.chat-button-fix{href: '#'}
       %p Start
       %p chat
+    - unless session[:chat_id].blank?
+      = render partial: 'user_chat/layout'
     %section#nav
       /[if lt IE 9]
       .inner_wrapp
@@ -39,5 +41,4 @@
       .alert.alert-info
         = flash.now[:alert]
     = yield
-    .chat-content
-      = render partial: 'shared/live_chat'
+    =# render partial: 'shared/live_chat'

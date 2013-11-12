@@ -24,5 +24,4 @@
 
 $(document).ready ->
 
-  user_chat = new WinChat()
-  user_chat.init($('.chat-button-fix'))
+  user_chat = new WinChat($('.chat-button-fix'))

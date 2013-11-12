@@ -1,14 +1,14 @@
 class LiveChatsController < ApplicationController
 
-  def new_chat
-    @admins = AdminUser.online.select(:id, :first_name, :last_name).where(role: 'manager', busy: false).order('random()')
+  def new
+    @managers = AdminUser.online.select(:id, :first_name, :last_name).where(role: 'manager', busy: false).order('random()')
     @live_chat = LiveChat.new
     respond_to do |format|
       format.js
     end
   end
 
-  def create_chat
+  def create
     if session[:chat_id].blank?
       unless params[:message].blank?
         message = ChatMessage.new(body: params[:message], is_admin: false, live_chat_id: 1)
@@ -18,14 +18,14 @@ class LiveChatsController < ApplicationController
             session[:chat_id] = @live_chat.id
             message.live_chat = @live_chat
             if message.save
-              gon.current_admin_channel = @live_chat.admin_user.first_name+'-'+@live_chat.admin_user.last_name
-              channel = 'presence-' + @live_chat.admin_user.first_name+'-'+@live_chat.admin_user.last_name
+              gon.current_admin_channel = @live_chat.admin_user.first_name + '-' + @live_chat.admin_user.last_name
+              channel = 'presence-' + @live_chat.admin_user.first_name + '-' + @live_chat.admin_user.last_name
               Webs.pusher
               Webs.notify(:send_chat_message, channel, 'msg-event', {user_id: session[:user_id],
-                                                                      message: message.body,
-                                                                      name: @live_chat.guest_name,
-                                                                      is_admin: message.is_admin,
-                                                                      date: message.created_at.to_i})
+                                                                     message: message.body,
+                                                                     name: @live_chat.guest_name,
+                                                                     is_admin: message.is_admin,
+                                                                     date: message.created_at.to_i})
               @live_chat.admin_user.update_attribute(:busy, true)
             end
             respond_to do |format|

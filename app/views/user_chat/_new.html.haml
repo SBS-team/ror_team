@@ -1,0 +1,17 @@
+%fieldset
+  = form_for @live_chat ||= LiveChat.new, url: user_chat_create_path, method: 'post', remote: true do |f|
+    %div
+      %b Choose your manager:
+      - admins_for_select = @managers.map{|admin| [admin.first_name + ' ' + admin.last_name, admin.id]}
+      = f.select :admin_user_id, admins_for_select, {}
+    %div
+      %b Enter your name*:
+      = f.text_field :guest_name
+    %div
+      %b Write your message*:
+      = text_area_tag :message, nil, class: 'form-control', rows: 4
+    #recaptcha-home
+      #recaptcha-div
+        = recaptcha_tags display: {theme: 'white'}, ajax: true
+    %div
+      = f.submit 'Send message'

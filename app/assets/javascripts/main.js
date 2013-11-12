@@ -1,22 +1,15 @@
-
-
 jQuery(document).ready(function(){
-
-
 
     windov_height = document.documentElement.clientHeight;
     console.log(windov_height);
-
 
     jQuery('.welcome_l-1').css("minHeight", windov_height);
     jQuery('.welcome_l-2').css("minHeight", windov_height);
     jQuery('.welcome_l-3').css("minHeight", windov_height);
 
-
     jQuery('.Contacts_l-1').css("minHeight", windov_height);
     jQuery('.Contacts_l-2').css("minHeight", windov_height);
     jQuery('.Contacts_l-3').css("minHeight", windov_height);
-
 
     skrollr.init({
         forceHeight: false
@@ -67,16 +60,16 @@ jQuery(document).ready(function(){
 //    });
 
 // Open modal on AJAX callback
-    jQuery('#manual-ajax').click(function(event) {
+    jQuery('.manual-ajax').click(function(event) {
         event.preventDefault();
         jQuery.get(this.href, function(html) {
 //            add fixBody class for remove scroll
-                jQuery("body").addClass("fixBody");
+              jQuery("body").addClass("fixBody");
         });
     });
 //    function on modal close
     jQuery(document).on('modal:close', function(){
-//            add fixBody class for remove scroll
+//      add fixBody class for remove scroll
         jQuery("body").removeClass("fixBody");
     });
 });

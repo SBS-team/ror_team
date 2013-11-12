@@ -61,8 +61,8 @@
     .portfolio_item_list
       - @projects.each do |project|
         .portfolio_item
-          = link_to project.name, project_path(project)
-          %a#manual-ajax.img_block{href: "ajax_content/test_content.html", rel: "modal:open"}
+          = link_to project.url, project.url, target: '_blank', class: 'site_link'
+          = link_to project_load_path(project.id), class: 'img_block manual-ajax', rel: 'modal:open' do
             %span.bg_place_holder
             %span.bg_place_holder_plus
             - unless project.upload_files.blank?
@@ -109,9 +109,7 @@
       you
       %br
       interested?
-    %a.send_resume{href: "#login-form", rel: "modal:open"} send us your resume!
-    .modal_job_resume
-      %form{action: ""}
+    = link_to 'send us your resume!', jobs_path, class: 'send_resume'
 %section#Contacts.Contacts_l-1
   .Contacts_l-3
   .content_area
@@ -134,7 +132,7 @@
               = form.text_field(:name, required: "")
             = form.label :email do
               Email
-              = form.text_field(:email, required: "")
+              = form.email_field(:email, required: "")
           .right_side
             = form.label :text do
               Message

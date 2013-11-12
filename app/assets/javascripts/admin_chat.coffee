@@ -1,7 +1,6 @@
 #= require jquery
 #= require jquery_ujs
 #= require jquery.validate
-#= require bootstrap.min
 #= require pusher
 #= require underscore
 #= require lib/webs

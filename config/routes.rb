@@ -10,7 +10,7 @@ RorTeam::Application.routes.draw do
   resources :home, only: [:index, :create]
   resources :team, only: [:index, :show]
   resources :company, only: [:index]
-  resources :projects, only: [:index, :show]
+  resources :projects, only: [:index]
   resources :jobs, only: [:index, :show, :create]
   resources :contact, only: [:index, :create]
 
@@ -37,6 +37,8 @@ RorTeam::Application.routes.draw do
   post '/pusher/auth'
   post '/admin_chat/send_msg'
   post '/admin_chat/close'
+
+  get 'projects/:id' => 'projects#show', as: :project_load
 
   root to: 'home#index'
 

@@ -8,20 +8,15 @@
 #= require jquery.scrollTo-1.4.2-min
 #= require main
 #= require skrollr
-
 #= require pusher
 #= require underscore
-
 #= require jquery.validate
 #= require additional-methods
 #= require jquery-cookie
-
-
 #= require lib/webs
 #= require lib/timer
 #= require chat/chat
 #= require chat/win_chat
 
 $(document).ready ->
-
   user_chat = new WinChat($('.chat-button-fix'))

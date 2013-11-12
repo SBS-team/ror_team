@@ -127,6 +127,7 @@ ru:
       read_about_skills: "Подробнее о наших навыках"
       project_work: "Проэкты над которыми работали / Портфолио"
       read_about_projects: "Подробнее о наших проэктах"
+      contact_us: "Связаться с нами:"
     create:
       contact_sent_msg: "Ваше сообщение отправлено."
       contact_error_msg: "Ошибка. Заполните необходимые поля"

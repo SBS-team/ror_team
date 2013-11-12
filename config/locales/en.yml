@@ -49,6 +49,7 @@ en:
       read_about_skills: "More about our skills and experience "
       project_work: "Portfolio"
       read_about_projects: "Read more about our projects"
+      contact_us: "Contact us:"
     create:
       contact_sent_msg: "Message was successfully sent."
       contact_error_msg: "Form invalid. Please check errors bellow"

@@ -72,4 +72,18 @@ jQuery(document).ready(function(){
 //      add fixBody class for remove scroll
         jQuery("body").removeClass("fixBody");
     });
+
+    jQuery('.send_resume').click(function(event) {
+        event.preventDefault();
+        jQuery.get(this.href, function(html) {
+//            add fixBody class for remove scroll
+              jQuery("body").addClass("fixBody");
+        });
+    });
+
+    jQuery('.close_send_resume').on('click', function(e, data, status, xhr) {
+        e.preventDefault();
+        jQuery("body").removeClass("fixBody");
+    });
+
 });

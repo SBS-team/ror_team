@@ -13,6 +13,7 @@ RorTeam::Application.routes.draw do
   resources :projects, only: [:index]
   resources :jobs, only: [:index, :show, :create]
   resources :contact, only: [:index, :create]
+  resources :resume, only: [:new, :create, :show]
 
   get 'blog/:created/:id' => 'posts#show', as: :special_post
   get 'blog/archives/:month/:year' => 'posts#archives', as: :archives
@@ -33,6 +34,7 @@ RorTeam::Application.routes.draw do
   post '/admin_chat/close'
 
   get 'projects/:id' => 'projects#show', as: :project_load
+  #get 'send_resume' => 'resume#new', as: :send_resume
 
   root to: 'home#index'
 

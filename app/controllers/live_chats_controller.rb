@@ -10,29 +10,24 @@ class LiveChatsController < ApplicationController
 
   def create
     if session[:chat_id].blank?
-      unless params[:message].blank?
-        message = ChatMessage.new(body: params[:message], is_admin: false, live_chat_id: 1)
-        if message.valid?
-          @live_chat = LiveChat.new(live_chat_params)
-          if verify_recaptcha(model: @live_chat, message: 'You enter wrong captcha', attribute: :base) && @live_chat.save
-            session[:chat_id] = @live_chat.id
-            message.live_chat = @live_chat
-            if message.save
-              gon.current_admin_channel = @live_chat.admin_user.first_name + '-' + @live_chat.admin_user.last_name
-              channel = 'presence-' + @live_chat.admin_user.first_name + '-' + @live_chat.admin_user.last_name
-              Webs.pusher
-              Webs.notify(:send_chat_message, channel, 'msg-event', {user_id: session[:user_id],
-                                                                     message: message.body,
-                                                                     name: @live_chat.guest_name,
-                                                                     is_admin: message.is_admin,
-                                                                     date: message.created_at.to_i})
-              @live_chat.admin_user.update_attribute(:busy, true)
-            end
-            respond_to do |format|
-              format.js
-            end
-          end
+      @live_chat = LiveChat.new(params.permit(:guest_name, :admin_user_id))
+      if verify_recaptcha(model: @live_chat, message: 'You enter wrong captcha', attribute: :base) && @live_chat.save
+        session[:chat_id] = @live_chat.id
+        channel = 'presence-' + @live_chat.admin_user.first_name + '-' + @live_chat.admin_user.last_name
+        # Hello message
+        message = @live_chat.chat_messages.create(body: "Hi, #{@live_chat.guest_name} !!!", is_admin: true)
+        Webs.pusher
+        Webs.notify(:send_chat_message, channel, 'msg-event', {user_id: session[:user_id],
+                                                               message: message.body,
+                                                               name: @live_chat.guest_name,
+                                                               is_admin: message.is_admin,
+                                                               date: message.created_at.to_i})
+        @live_chat.admin_user.update_attribute(:busy, true)
+        respond_to do |format|
+          format.js
         end
+      else
+        render status: 404
       end
     end
   end
@@ -46,7 +41,7 @@ class LiveChatsController < ApplicationController
       if message.save
         chat = LiveChat.find(session[:chat_id])
         gon.current_admin_channel = chat.admin_user.first_name+'-'+chat.admin_user.last_name
-        channel = 'presence-' + chat.admin_user.first_name+'-'+chat.admin_user.last_name #chat.admin_user.email
+        channel = 'presence-' + chat.admin_user.first_name+'-'+chat.admin_user.last_name
         Webs.pusher
         Webs.notify(:send_chat_message, channel, 'msg-event', {user_id: session[:user_id],
                                                                message: message.body,
@@ -55,7 +50,7 @@ class LiveChatsController < ApplicationController
                                                                date: message.created_at.to_i})
       end
     end
-    render nothing: true
+    render nothing: true, status: 200
   end
 
   def chat_close
@@ -67,10 +62,7 @@ class LiveChatsController < ApplicationController
       Webs.notify(:notify_chat_closing, channel, 'user-close-chat')
     end
     session[:chat_id] = nil
-    @admins = AdminUser.online.select(:id, :first_name, :last_name).where(role: 'manager', busy: false).order('random()')
-    respond_to do |format|
-      format.js
-    end
+    render nothing: true, status: 200
   end
 
   protected

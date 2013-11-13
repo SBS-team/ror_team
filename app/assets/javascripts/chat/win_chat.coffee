@@ -1,58 +1,53 @@
+# This class use: jquery & jquery-ui
 (->
   class WinChat
     _win_chat: null
     _button: null
     _chat: null
 
-    constructor: (button) ->
+    constructor: (button = $('.chat-button-fix')) ->
+      # Button for showing chat window
       @_button = button
       self = @
-
-      @_button.click ->
-        button.hide 500, ->
-          self.load_chat()
+      @_button.click (event) ->
+        event.preventDefault()
+        self._button.hide 500, ->
+          self.show_dialog()
         false
 
       if $('#user_chat').length > 0
-        self._chat = new Chat('presence-' + RorTeam.currentAdminChannel)
+        self.connection(RorTeam.currentAdminChannel)
         self._win_chat = $('#user_chat')
         self.init()
         self.show_dialog()
 
-        $('#msg_submit').click (event) ->
-          event.preventDefault()
-          $('#new_live_chat').submit()
-          $("#message").val('')
-          $("#chat-history").scrollTop $("#chat").height()-$(".msg:last").height()
+    connection: (connection_string) ->
+      @_chat = new Chat('presence-' + connection_string)
 
     init: ->
       self = @
       @_win_chat.draggable
         handle: '#chat_handle'
+      #================================== Chat header button click action
       $('#user_chat_hide').click ->
         self.hide_dialog()
       $('#user_chat_close').click ->
-        $.post '/chat_close'
-        self._win_chat.remove()
-        self.hide_dialog()
+        self.close_dialog()
+      #================================== Send chat message button
+      $('#msg_submit').click (event) ->
+        event.preventDefault()
+        $('#new_live_chat').submit()
+        $("#message").val('')
+        $("#chat-history").scrollTop $("#chat").height()-$(".msg:last").height()
 
-    load_chat: ->
-      self = @
+    #************************************ Show chat function
+    show_dialog: ->
       if $('#user_chat').length == 0
-        chat_load = $.post 'chat/new'
-        chat_load.success ->
-          self._win_chat = $('#user_chat')
-          self.init()
-          self.show_dialog()
-          self.chat_create()
+        @load_chat()
       else
-        self.show_dialog()
+        @_win_chat.show()
 
-    chat_create: ->
-      self = @
-      $('#new_live_chat').submit ->
-        alert "Submit"
-
+    #************************************ Hide chat function
     hide_dialog: ->
       @_button.show(600)
       button = @_button
@@ -60,12 +55,40 @@
         to: button,
         600
       @_win_chat.hide()
-      false
 
-    show_dialog: ->
-      @_win_chat.show()
-      false
+    #************************************ Close chat function
+    close_dialog: ->
+      self = @
+      if $('#chat-history').length > 0
+        close_chat = $.post 'chat/close'
+        close_chat.success ->
+          self._win_chat.remove()
+          self._chat = null
+      else
+        self.hide_dialog()
+      @_button.show(600)
 
+    #************************************ Helper chat function
+    load_chat: ->
+      self = @
+      chat_load = $.post 'chat/new'
+      chat_load.success ->
+        self._win_chat = $('#user_chat')
+        self.init()
+        self.chat_on_create()
+        self._win_chat.show()
+
+    chat_on_create: ->
+      self = @
+      $('#user_chat_create').click (event) ->
+        event.preventDefault()
+        connection_string = $("#admin_user_id :selected").text().replace(' ', '-')
+        data = $('#new_live_chat').serialize()
+        create_chat = $.post 'chat/create', data
+        create_chat.success ->
+          self.connection(connection_string)
+          self.init()
+        false
 
   window.WinChat = WinChat
 )()

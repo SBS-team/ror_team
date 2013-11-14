@@ -20,6 +20,7 @@
         self._win_chat = $('#user_chat')
         self.init()
         self.show_dialog()
+        $('.comment').emoticonize()
 
     connection: (connection_string) ->
       @_chat = new Chat('presence-' + connection_string)
@@ -65,7 +66,8 @@
           self._win_chat.remove()
           self._chat = null
       else
-        self.hide_dialog()
+        self._win_chat.remove()
+        self._chat = null
       @_button.show(600)
 
     #************************************ Helper chat function

@@ -17,6 +17,7 @@
 #= require lib/timer
 #= require chat/chat
 #= require chat/win_chat
+#= require jquery.cssemoticons.min
 
 $(document).ready ->
   user_chat = new WinChat()

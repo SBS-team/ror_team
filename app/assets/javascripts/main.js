@@ -67,6 +67,36 @@ jQuery(document).ready(function(){
               jQuery("body").addClass("fixBody");
         });
     });
+
+    jQuery(document).on ('click', '#new_resume .check_errors', function() {
+      return jQuery("#new_resume").validate({
+        rules: {
+          "resume[email]": {
+            required: true,
+            email: true
+          },
+          "resume[name]": {
+            required: true,
+            maxlength: 30,
+            minlength: 4
+          },
+          "resume[phone]": {
+            required: true,
+            digits: true,
+            maxlength: 31
+          },
+          "resume[description]": {
+            required: true,
+            minlength: 2,
+            maxlength: 3000
+          },
+          "recaptcha_response_field": {
+            required: true
+          }
+        }
+      });
+    });
+
 //    function on modal close
     jQuery(document).on('modal:close', function(){
 //      add fixBody class for remove scroll

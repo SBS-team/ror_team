@@ -9,8 +9,11 @@
     = include_gon(namespace: 'RorTeam', camel_case: true)
     = csrf_meta_tags
   %body
-    - if session[:chat_id] && controller.controller_name != 'contact'
-      = render partial: 'shared/live_chat'
+    %a.chat-button-fix{href: '#'}
+      %p Start
+      %p chat
+    - unless session[:chat_id].blank?
+      = render partial: 'user_chat/layout'
     %section#nav
       /[if lt IE 9]
       .inner_wrapp
@@ -38,6 +41,4 @@
       .alert.alert-info
         = flash.now[:alert]
     = yield
-
-
-
+    =# render partial: 'shared/live_chat'

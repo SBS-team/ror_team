@@ -1,0 +1,2 @@
+$('body').append("<%= escape_javascript(render('user_chat/layout')) %>");
+$('#user_chat .user_chat-content').html("<%= escape_javascript(@managers.blank? ? render('user_chat/contact') : render('user_chat/new')) %>");

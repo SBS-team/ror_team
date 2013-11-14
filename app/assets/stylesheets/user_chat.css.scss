@@ -1,0 +1,43 @@
+.user_chat {
+  display: none;
+  position: fixed;
+  top: 200px;
+  left: 30%;
+  margin: 0;
+  padding: 0;
+  background-color: #ffffff;
+  border: 1px solid #000000;
+  border-radius: 10px 10px 0 0;
+  width: 400px;
+  overflow: hidden;
+  z-index: 1000;
+
+  .user_chat-header {
+    background-color: #000000;
+    color: #ffffff;
+    padding: 5px 10px;
+    cursor: move;
+    text-align: right;
+
+    button {
+      display: inline;
+      cursor: pointer;
+    }
+  }
+
+  .user_chat-content {
+    display: block;
+    padding: 10px;
+
+    #chat-history {
+      height: 200px;
+      overflow-y: scroll;
+    }
+  }
+
+}
+
+.ui-effects-transfer {
+  border: 1px dotted black;
+  z-index: 1000;
+}

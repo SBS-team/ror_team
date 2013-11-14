@@ -68,6 +68,7 @@ jQuery(document).ready(function(){
         });
     });
 
+//  Validation of resume form fields
     jQuery(document).on ('click', '#new_resume .check_errors', function() {
       return jQuery("#new_resume").validate({
         rules: {

@@ -34,7 +34,6 @@ RorTeam::Application.routes.draw do
   post '/admin_chat/close'
 
   get 'projects/:id' => 'projects#show', as: :project_load
-  #get 'send_resume' => 'resume#new', as: :send_resume
 
   root to: 'home#index'
 

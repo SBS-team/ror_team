@@ -24,15 +24,11 @@ RorTeam::Application.routes.draw do
   post '/admin/time_online' => 'time_onlines#set_time'
   post '/comment_load' => 'posts#comments_show_all'
 
-  #post '/create_chat' => 'live_chats#create_chat', as: :user_start_chat
-  post '/chat_send_msg' => 'live_chats#send_msg', as: :user_chat
-  #post '/new_chat' => 'live_chats#new_chat'
-  #post '/chat_close' => 'live_chats#chat_close'
-
-  #===========================================================================
+  #=============================================== User chat =================
   post 'chat/new' => 'live_chats#new'
   post 'chat/create' => 'live_chats#create', as: :user_chat_create
-  post 'chat/close' => 'live_chats#chat_close'
+  post 'chat/close' => 'live_chats#close'
+  post 'chat/send' => 'live_chats#msg_send', as: :user_chat
   #===========================================================================
 
 

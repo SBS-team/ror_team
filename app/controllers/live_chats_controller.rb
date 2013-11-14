@@ -32,7 +32,7 @@ class LiveChatsController < ApplicationController
     end
   end
 
-  def send_msg
+  def msg_send
     unless params[:message].blank?
       message = ChatMessage.new
       message.body = params[:message]
@@ -53,7 +53,7 @@ class LiveChatsController < ApplicationController
     render nothing: true, status: 200
   end
 
-  def chat_close
+  def close
     admin_user = AdminUser.joins(:live_chats).where('live_chats.id = :live_chat_id', live_chat_id: session[:chat_id].to_i).readonly(false).take
     if admin_user.busy
       admin_user.update_attribute(:busy, false)

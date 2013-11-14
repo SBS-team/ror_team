@@ -1,0 +1,9 @@
+.user_chat#user_chat
+  .user_chat-header#chat_handle
+    %button{id: 'user_chat_hide', title: 'Hide chat'}
+      hide
+    %button{id: 'user_chat_close', title: 'Close chat'}
+      close
+  .user_chat-content
+    - unless session[:chat_id].blank?
+      = render partial: 'user_chat/show'

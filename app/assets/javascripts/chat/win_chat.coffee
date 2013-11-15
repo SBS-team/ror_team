@@ -85,12 +85,25 @@
       $('#user_chat_create').click (event) ->
         event.preventDefault()
         connection_string = $("#admin_user_id :selected").text().replace(' ', '-')
-        data = $('#new_live_chat').serialize()
-        create_chat = $.post 'chat/create', data
-        create_chat.success ->
-          self.connection(connection_string)
-          self.init()
-        false
+        form_data = $('#new_live_chat').serialize()
+
+        $.post('chat/create', form_data, ->
+            self.connection(connection_string)
+            self.init()
+          ).fail((data) ->
+            data_new = $.parseJSON(data.responseText)
+            new_span = ''
+            index = 1
+
+            $.each data_new.errors, (key, value) ->
+              new_span += "<div>#{index++}) #{value}</div>"
+
+            if $('.user_chat-error').length > 0
+              $('.user_chat-error').remove()
+
+            $('#user_chat_content').prepend "<div class='user_chat-error'>#{new_span}</div>"
+            Recaptcha.reload()
+        )
 
   window.WinChat = WinChat
 )()

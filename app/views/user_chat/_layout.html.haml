@@ -4,6 +4,6 @@
       hide
     %button{id: 'user_chat_close', title: 'Close chat'}
       close
-  .user_chat-content
+  .user_chat-content#user_chat_content
     - unless session[:chat_id].blank?
       = render partial: 'user_chat/show'

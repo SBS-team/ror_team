@@ -10,7 +10,11 @@ class LiveChatsController < ApplicationController
 
   def create
     if session[:chat_id].blank?
+
       @live_chat = LiveChat.new(params.permit(:guest_name, :admin_user_id))
+
+      @live_chat.valid?
+
       if verify_recaptcha(model: @live_chat, message: 'You enter wrong captcha', attribute: :base) && @live_chat.save
         session[:chat_id] = @live_chat.id
         channel = 'presence-' + @live_chat.admin_user.first_name + '-' + @live_chat.admin_user.last_name
@@ -27,8 +31,11 @@ class LiveChatsController < ApplicationController
           format.js
         end
       else
-        render status: 404
+        render json: {errors: @live_chat.errors.full_messages}, status: 404
       end
+
+    else
+      render json: {errors: 'You can create only one chat !'}, status: 404
     end
   end
 

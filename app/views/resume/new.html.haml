@@ -29,5 +29,5 @@
     .form-group#recaptcha
       = recaptcha_tags display: {theme: 'white'}, ajax: true
     .submit-form
-      = f.submit 'Send_resume', class: 'check_errors', data: {disable_with: 'Please wait...'}
+      = f.submit 'Send_resume', id: 'modal_form_submit', class: 'check_errors', data: {disable_with: 'Please wait...'}
 = link_to 'cLose yoUr resUme!', root_path, class: 'close_send_resume', rel: 'modal:close'

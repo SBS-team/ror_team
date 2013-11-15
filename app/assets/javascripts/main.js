@@ -94,6 +94,18 @@ jQuery(document).ready(function(){
           "recaptcha_response_field": {
             required: true
           }
+        },
+        messages: {
+          "recaptcha_response_field": {
+            required: "Captcha is required"
+          }
+        },
+        errorPlacement: function(error, element) {
+          if (element.attr('name') === 'recaptcha_response_field') {
+            return error.insertAfter('#recaptcha_area');
+          } else {
+            return error.insertAfter(element);
+          }
         }
       });
     });
@@ -116,5 +128,27 @@ jQuery(document).ready(function(){
         e.preventDefault();
         jQuery("body").removeClass("fixBody");
     });
+
+
+//    var form_errors;
+//    var error_container;
+//
+//    jQuery(document).on('submit', '#new_resume', function(event) {
+//        form_errors = jQuery.parseJSON(data.responseText);
+//        error_container = '';
+//        alert("Handler for .submit() called.");
+//    });
+    var data_new;
+    var new_span;
+
+    jQuery(document).bind('ajax:success', 'form#new_resume', function(evt, data, status, xhr) {
+//        data_new = jQuery.parseJSON(data.responseText);
+//        new_span = '';
+//        jQuery.each(data_new.errors, function(key, value) {
+//          return new_span += "<div>" + (index++) + ") " + value + "</div>";
+//        });
+//        jQuery('form#new_resume').prepend("<div class='user_chat-error'>" + new_span + "</div>");
+        alert('hihi');
+    })
 
 });

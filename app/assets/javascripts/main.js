@@ -90,16 +90,16 @@ jQuery(document).ready(function(){
             required: true,
             minlength: 2,
             maxlength: 3000
-          },
-          "recaptcha_response_field": {
-            required: true
-          }
+          }//,
+//          "recaptcha_response_field": {
+//            required: true
+//          }
         },
-        messages: {
-          "recaptcha_response_field": {
-            required: "Captcha is required"
-          }
-        },
+//        messages: {
+//          "recaptcha_response_field": {
+//            required: "Captcha is required"
+//          }
+//        },
         errorPlacement: function(error, element) {
           if (element.attr('name') === 'recaptcha_response_field') {
             return error.insertAfter('#recaptcha_area');
@@ -141,14 +141,20 @@ jQuery(document).ready(function(){
     var data_new;
     var new_span;
 
-    jQuery(document).bind('ajax:success', 'form#new_resume', function(evt, data, status, xhr) {
-//        data_new = jQuery.parseJSON(data.responseText);
-//        new_span = '';
-//        jQuery.each(data_new.errors, function(key, value) {
-//          return new_span += "<div>" + (index++) + ") " + value + "</div>";
-//        });
-//        jQuery('form#new_resume').prepend("<div class='user_chat-error'>" + new_span + "</div>");
-        alert('hihi');
-    })
+//    jQuery(document).bind('ajax:success', 'form#new_resume', function(evt, data, status, xhr) {
+//
+//        data_new = jQuery.parseJSON(evt);
+//        alert(data);
+////        new_span = '';
+////        jQuery.each(data_new, function(key, value) {
+////          return new_span += "<div>" + (index++) + ") " + value + "</div>";
+////        });
+////        jQuery('form#new_resume').prepend("<div class='user_chat-notice'>" + new_span + "</div>");
+//
+//    });
+
+    jQuery(document).on('ajax:success', 'form#new_resume', function(data, status, xhr) {
+        jQuery('form#new_resume').text(status.notice);
+    });
 
 });

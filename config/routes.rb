@@ -31,13 +31,11 @@ RorTeam::Application.routes.draw do
   post 'chat/send' => 'live_chats#msg_send', as: :user_chat
   #===========================================================================
 
-
   post '/pusher/auth'
   post '/admin_chat/send_msg'
   post '/admin_chat/close'
 
   get 'projects/:id' => 'projects#show', as: :project_load
-  #get 'send_resume' => 'resume#new', as: :send_resume
 
   root to: 'home#index'
 

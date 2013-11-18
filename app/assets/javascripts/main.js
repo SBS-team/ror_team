@@ -124,7 +124,7 @@ jQuery(document).ready(function(){
         });
     });
 
-    jQuery('.close_send_resume').on('click', function(e, data, status, xhr) {
+    jQuery('.close_send_resume').on('click', function(e) {
         e.preventDefault();
         jQuery("body").removeClass("fixBody");
     });
@@ -154,7 +154,11 @@ jQuery(document).ready(function(){
 //    });
 
     jQuery(document).on('ajax:success', 'form#new_resume', function(data, status, xhr) {
-        jQuery('form#new_resume').text(status.notice);
+        jQuery('#send_new_resume').append("<div class='user_chat_notice'>" + status.notice + "</div>");
+        jQuery('form#new_resume').remove();
+        setTimeout(function(){
+          jQuery('.close_send_resume').click();
+        }, 5000);
     });
 
 });

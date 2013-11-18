@@ -1,3 +1,4 @@
+#= require date_extended
 (->
   class Chat
     constructor: (channel_name) ->
@@ -35,7 +36,7 @@
           else
             msg_class = "<div class='msg-user msg'>"
           msg_time = new Date(response.data.date * 1000)
-          $("#chat").append msg_class+"(" + msg_time.toLocaleTimeString() + ") | <b><U>" + response.data.name + "</U></b> <span class='comment'>: " + response.data.message + "</span></div>"
+          $("#chat").append msg_class+"(" + msg_time.toUTCFormat('%H:%M:%S') + ") | <b><U>" + response.data.name + "</U></b> <span class='comment'>: " + response.data.message + "</span></div>"
           $("#chat-history").scrollTop $("#chat").height()-$(".msg:last").height()
           $('.comment').emoticonize()
         else

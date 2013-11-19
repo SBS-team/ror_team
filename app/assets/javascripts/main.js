@@ -148,7 +148,7 @@ jQuery(document).ready(function(){
 //          return new_span += "<div>" + (index++) + ") " + value + "</div>";
 //        });
 //        jQuery('form#new_resume').prepend("<div class='user_chat-error'>" + new_span + "</div>");
-        alert('hihi');
+        //alert('hihi');
     })
 
 });

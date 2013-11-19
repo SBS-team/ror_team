@@ -129,29 +129,8 @@ jQuery(document).ready(function(){
         jQuery("body").removeClass("fixBody");
     });
 
-
-//    var form_errors;
-//    var error_container;
-//
-//    jQuery(document).on('submit', '#new_resume', function(event) {
-//        form_errors = jQuery.parseJSON(data.responseText);
-//        error_container = '';
-//        alert("Handler for .submit() called.");
-//    });
-
-//    jQuery(document).bind('ajax:success', 'form#new_resume', function(evt, data, status, xhr) {
-//
-//        data_new = jQuery.parseJSON(evt);
-//        alert(data);
-////        new_span = '';
-////        jQuery.each(data_new, function(key, value) {
-////          return new_span += "<div>" + (index++) + ") " + value + "</div>";
-////        });
-////        jQuery('form#new_resume').prepend("<div class='user_chat-notice'>" + new_span + "</div>");
-//
-//    });
-
     jQuery(document).on('ajax:success', 'form#new_resume', function(data, status, xhr) {
+        jQuery('.user_resume_errors').remove();
         jQuery('#send_new_resume').append("<div class='user_resume_notice'>" + status.notice + "</div>");
         jQuery('form#new_resume').remove();
         setTimeout(function(){
@@ -163,13 +142,14 @@ jQuery(document).ready(function(){
     var new_span;
 
     jQuery(document).on('ajax:error', 'form#new_resume', function(data, status, xhr) {
-        data_new = jQuery.parseJSON(data)
-        alert(status.error);
+        jQuery('.user_resume_errors').remove();
+        data_new = jQuery.parseJSON(status.responseText);
         new_span = '';
-        $.each(status.errors, function(key, value) {
-          return new_span += "<div>" + "- " + value + "</div>";
+        jQuery.each(data_new.errors, function(key, value) {
+          return new_span += "<li>" + value + "</li>";
         });
-        jQuery('#send_new_resume').prepend("<div class='user_resume_errors'>" + new_span + "</div>");
+        jQuery('#send_new_resume').prepend("<ul class='user_resume_errors'>" + new_span + "</ul>");
+        Recaptcha.reload();
     });
 
 });

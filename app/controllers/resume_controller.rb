@@ -18,9 +18,7 @@ class ResumeController < ApplicationController
           format.json {render json: {notice: 'Resume has been sent.'}}
         else
           @resume.upload_file = UploadFile.new
-          format.json {render json: {error: @resume.errors.full_messages.join(', ')}, status: :unprocessable_entity}
-          #flash.now[:error] = @resume.errors.full_messages.join(', ')
-          #render nothing: true
+          format.json {render json: {errors: @resume.errors.full_messages}, status: :unprocessable_entity}
         end
       end
     else

@@ -17,7 +17,7 @@ class PostsController < ApplicationController
       elsif !params[:search].nil? && @posts.empty?
         flash.now[:error] = "#{t('.your_search_for')} #{params[:search]} #{t('.returned_no_hits')}"
       else
-        flash.now[:notice] = "#{t('.your_search_for')} #{params[:search]} results"
+        flash.now[:notice] = "#{t('.your_search_for')} '#{params[:search]}' results"
         gon.search_text = params[:search]
       end
     end
@@ -28,18 +28,23 @@ class PostsController < ApplicationController
   end
 
   def archives
-    from_date = DateTime.new(params[:year].to_i, Date::MONTHNAMES.index(params[:month].to_s.capitalize), 1)
-    till_date = from_date + 1.month
-
-    @posts = Post.includes([:tags, :categories, :upload_file]).where('created_at >= ? AND created_at < ?', from_date, till_date).page(params[:page]).per(5)
-
-    if @posts.blank?
-      flash.now[:error] = "No created posts at: #{from_date.strftime('%B %Y')}"
+    if Date::MONTHNAMES.include? params[:month].to_s.capitalize
+      if params[:year].to_i <= DateTime.now.year.to_i
+        from_date = DateTime.new(params[:year].to_i, Date::MONTHNAMES.index(params[:month].to_s.capitalize), 1)
+        till_date = from_date + 1.month
+        @posts = Post.includes([:tags, :categories, :upload_file]).where('created_at >= ? AND created_at < ?', from_date, till_date).page(params[:page]).per(5)
+        if @posts.blank?
+          flash.now[:error] = "No created posts at: #{from_date.strftime('%B %Y')}"
+        else
+          flash.now[:notice] = "Posts created at: #{from_date.strftime('%B %Y')}"
+        end
+        render :index, layout: 'blog'
+      else
+        render 'public/404', layout: false, status: 404
+      end
     else
-      flash.now[:notice] = "Posts created at: #{from_date.strftime('%B %Y')}"
+       render 'public/404', layout: false, status: 404
     end
-
-    render :index, layout: 'blog'
   end
 
   def show

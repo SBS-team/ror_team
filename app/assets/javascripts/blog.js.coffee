@@ -23,3 +23,8 @@ $(document).ready ->
 
   if RorTeam.searchText
     $('#post-content').highlight(RorTeam.searchText.toString())
+
+  $('#archives_url').click ->
+    data = $('#archives_form').serializeArray()
+    window.location = "/blog/archives/#{data[0].value.toLowerCase()}/#{data[1].value}"
+    true

@@ -92,16 +92,14 @@
             self.init()
           ).fail((data) ->
             data_new = $.parseJSON(data.responseText)
-            new_span = ''
-            index = 1
+
+            errors = new AjaxNotice('#user_chat_content', 'ajax-error-content', 'ajax-error')
 
             $.each data_new.errors, (key, value) ->
-              new_span += "<div>#{index++}) #{value}</div>"
+              errors.add(errors._count + ') ' + value)
 
-            if $('.user_chat-error').length > 0
-              $('.user_chat-error').remove()
+            errors.show_first()
 
-            $('#user_chat_content').prepend "<div class='user_chat-error'>#{new_span}</div>"
             Recaptcha.reload()
         )
 

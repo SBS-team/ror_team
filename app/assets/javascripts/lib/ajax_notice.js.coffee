@@ -10,12 +10,12 @@
       @_parent = $(parent)
       @_base_div_class =  base_class
       @_notice_div_class =  notice_class
-      @_error_div = $('<div class="' + @_base_div_class + '"></div>')
+      @_error_div = $('<ol class="' + @_base_div_class + '"></ol>')
       @_count = 1
 
     add: (text) ->
       @_count++
-      @_error_div.append '<div class="' + @_notice_div_class + '">' + text + '</div>'
+      @_error_div.append '<li class="' + @_notice_div_class + '">' + text + '</li>'
 
     show_first: ->
       @errors_remove()

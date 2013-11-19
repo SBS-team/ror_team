@@ -96,7 +96,7 @@
             errors = new AjaxNotice('#user_chat_content', 'ajax-error-content', 'ajax-error')
 
             $.each data_new.errors, (key, value) ->
-              errors.add(errors._count + ') ' + value)
+              errors.add(value)
 
             errors.show_first()
 

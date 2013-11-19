@@ -13,6 +13,7 @@
 #= require jquery.validate
 #= require additional-methods
 #= require jquery-cookie
+#= require lib/ajax_notice
 #= require lib/webs
 #= require lib/timer
 #= require chat/chat

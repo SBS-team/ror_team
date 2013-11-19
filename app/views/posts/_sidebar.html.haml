@@ -4,6 +4,8 @@
   %h3 Search
   %form.form-search{action: posts_path}
     %input.search-query.form-control{type: 'text', placeholder: t('.search'), name: 'search'}
+    %button
+      Search
   %h3 Categories
   %ul
     - @categories.each do |category|
@@ -32,3 +34,9 @@
       %li
         - date = i.to_i.month.ago
         = link_to date.strftime('%B %Y'), archives_path(date.strftime('%B').to_s.downcase, date.year.to_s.downcase)
+  %div
+    %fieldset{id: 'archives_form'}
+      = select_tag :month, options_for_select(Date::MONTHNAMES[1..-1])
+      = select_tag :year, options_for_select(Array(2010..DateTime.now.year.to_i))
+    %button{id: 'archives_url'}
+      Show

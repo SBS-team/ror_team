@@ -14,11 +14,11 @@ class ResumeController < ApplicationController
     unless @resume.job_id.blank?
       @job = Job.find(@resume.job_id)
       respond_to do |format|
-        if @resume.save # verify_recaptcha(model: @resume, message: 'You enter wrong captcha', attribute: :base) &&
+        if (verify_recaptcha(model: @resume, message: 'You enter wrong captcha', attribute: :base) && @resume.save)
           format.json {render json: {notice: 'Resume has been sent.'}}
         else
           @resume.upload_file = UploadFile.new
-          format.json {render json: @resume.errors.full_messages.join(', '), status: :unprocessable_entity}
+          format.json {render json: {error: @resume.errors.full_messages.join(', ')}, status: :unprocessable_entity}
           #flash.now[:error] = @resume.errors.full_messages.join(', ')
           #render nothing: true
         end

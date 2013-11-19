@@ -63,8 +63,8 @@ jQuery(document).ready(function(){
     jQuery('.manual-ajax').click(function(event) {
         event.preventDefault();
         jQuery.get(this.href, function(html) {
-//            add fixBody class for remove scroll
-              jQuery("body").addClass("fixBody");
+//          add fixBody class for remove scroll
+            jQuery("body").addClass("fixBody");
         });
     });
 
@@ -90,16 +90,16 @@ jQuery(document).ready(function(){
             required: true,
             minlength: 2,
             maxlength: 3000
-          }//,
-//          "recaptcha_response_field": {
-//            required: true
-//          }
+          },
+          "recaptcha_response_field": {
+            required: true
+          }
         },
-//        messages: {
-//          "recaptcha_response_field": {
-//            required: "Captcha is required"
-//          }
-//        },
+        messages: {
+          "recaptcha_response_field": {
+            required: "Captcha is required"
+          }
+        },
         errorPlacement: function(error, element) {
           if (element.attr('name') === 'recaptcha_response_field') {
             return error.insertAfter('#recaptcha_area');
@@ -138,8 +138,6 @@ jQuery(document).ready(function(){
 //        error_container = '';
 //        alert("Handler for .submit() called.");
 //    });
-    var data_new;
-    var new_span;
 
 //    jQuery(document).bind('ajax:success', 'form#new_resume', function(evt, data, status, xhr) {
 //
@@ -154,11 +152,24 @@ jQuery(document).ready(function(){
 //    });
 
     jQuery(document).on('ajax:success', 'form#new_resume', function(data, status, xhr) {
-        jQuery('#send_new_resume').append("<div class='user_chat_notice'>" + status.notice + "</div>");
+        jQuery('#send_new_resume').append("<div class='user_resume_notice'>" + status.notice + "</div>");
         jQuery('form#new_resume').remove();
         setTimeout(function(){
           jQuery('.close_send_resume').click();
         }, 5000);
+    });
+
+    var data_new;
+    var new_span;
+
+    jQuery(document).on('ajax:error', 'form#new_resume', function(data, status, xhr) {
+        data_new = jQuery.parseJSON(data)
+        alert(status.error);
+        new_span = '';
+        $.each(status.errors, function(key, value) {
+          return new_span += "<div>" + "- " + value + "</div>";
+        });
+        jQuery('#send_new_resume').prepend("<div class='user_resume_errors'>" + new_span + "</div>");
     });
 
 });

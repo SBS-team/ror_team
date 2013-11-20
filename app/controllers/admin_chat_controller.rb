@@ -1,21 +1,5 @@
 class AdminChatController < ApplicationController
 
-  def chat
-    if !!current_admin_user
-      if current_admin_user.busy
-        @live_chat = LiveChat.where(admin_user_id: current_admin_user.id).order('updated_at DESC').includes(:admin_user).take
-        @messages = ChatMessage.where(live_chat_id: @live_chat.id)
-      else
-        current_admin_user.update_attribute(:last_activity, DateTime.now)
-      end
-      gon.current_admin_email = current_admin_user.email
-      gon.current_admin_channel = current_admin_user.first_name+"-"+current_admin_user.last_name
-      render 'admin_chat/chat', layout: false
-    else
-      render text: 'You must log in as manager'
-    end
-  end
-
   def send_msg
     unless params[:message].blank?
       message = ChatMessage.new
@@ -41,7 +25,7 @@ class AdminChatController < ApplicationController
     channel = 'presence-' + current_admin_user.first_name+'-'+current_admin_user.last_name
     Webs.pusher
     Webs.notify(:notify_chat_closing, channel, 'admin-close-chat')
-    redirect_to admin_start_chat_path
+    redirect_to admin_manager_chat_index_path
   end
 
   def go_offline

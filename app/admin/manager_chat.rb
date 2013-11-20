@@ -10,7 +10,7 @@ ActiveAdmin.register_page 'Manager Chat' do
       end
       gon.pusher_config = Webs.pusher_config
       gon.current_admin_email = current_admin_user.email
-      gon.current_admin_channel = current_admin_user.first_name+"-"+current_admin_user.last_name
+      gon.current_admin_channel = current_admin_user.first_name + '-' + current_admin_user.last_name
       #render 'admin/chat', layout: false
       @managers_online = AdminUser.online.where(role: 'manager')
     end

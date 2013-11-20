@@ -1,21 +1,10 @@
--#!!!
--#%html
--#  %head
--#    %title RorTeam Admin Chat
--#    = favicon_link_tag '/favicon.ico', id: 'admin_chat_tab_icon'
--#    = stylesheet_link_tag    'application', media: 'all'
--#    = stylesheet_link_tag    'live_chats'
--#    = javascript_include_tag 'admin_chat'
--#    = include_gon(namespace: 'RorTeam', camel_case: true)
--#    = csrf_meta_tags
--#  %body
 = include_gon(namespace: 'RorTeam', camel_case: true)
 - if @live_chat.blank? || @live_chat.id.blank?
   No active chat
 - else
   .row
     .col-lg-10.col-offset-1.form-group#admin-chat
-      = button_to_function 'Go offline', "managerGoOffline();", class: 'btn btn-danger pull-right'
+      = button_to_function 'Go offline', 'managerGoOffline();', class: 'btn btn-danger pull-right'
       %h1
         LiveChat with users
       %div

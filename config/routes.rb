@@ -27,12 +27,12 @@ RorTeam::Application.routes.draw do
   post 'chat/create' => 'live_chats#create', as: :user_chat_create
   post 'chat/close' => 'live_chats#close'
   post 'chat/send' => 'live_chats#msg_send', as: :user_chat
-  #===========================================================================
-
+  #=============================================== Admin chat ================
   post '/pusher/auth'
   post '/admin_chat/send_msg'
   post '/admin_chat/close'
   post '/admin_chat/go_offline', as: :admin_go_offline
+  #===========================================================================
 
   get 'projects/:id' => 'projects#show', as: :project_load
 

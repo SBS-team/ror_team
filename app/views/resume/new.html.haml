@@ -1,7 +1,7 @@
 #send_new_resume
   %h3
     = t '.send_resume'
-  = form_for @resume, url: resume_index_path, html: {class: 'web-form', multipart: true, remote: true} do |f|
+  = form_for @resume, url: resume_index_path, authenticity_token: true, html: {class: 'web-form', multipart: true, remote: true} do |f|
     - if @resume.errors.any?
       .ror-team-errors
         %h6

@@ -1,5 +1,7 @@
 ActiveAdmin.register_page 'Manager Chat' do
 
+  menu :if => proc{ current_admin_user.role == 'manager' }
+
   page_action :index do
     if !!current_admin_user
       if current_admin_user.busy

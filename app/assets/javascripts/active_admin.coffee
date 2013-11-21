@@ -4,6 +4,7 @@
 #= require jquery.validate
 #= require pusher
 #= require jquery-cookie
+#= require jquery.cssemoticons.min
 #= require lib/timer
 #= require time_online
 #= require underscore
@@ -36,6 +37,8 @@ $(document).ready ->
   $('#chat-history').mouseenter ->
     clearInterval(animationTimer)
     setTimeout(changeIcon(originalIcon), 300)
+
+  $('.comment').emoticonize()
 
   $('#message').keydown ->
     clearInterval(animationTimer)

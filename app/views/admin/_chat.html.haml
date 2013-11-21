@@ -21,14 +21,16 @@
                   %b
                     %U
                       = @live_chat.admin_user.first_name + ' ' +@live_chat.admin_user.last_name
-                  = ": #{msg.body}"
+                  %span.comment
+                    = ": #{msg.body}"
               - else
                 .msg.msg-user
                   = "(#{msg.created_at.getlocal.strftime('%T')}) |"
                   %b
                     %U
                       = @live_chat.guest_name
-                  = ": #{msg.body}"
+                  %span.comment
+                    = ": #{msg.body}"
       .chat-msg
         = form_tag(admin_chat_send_msg_path(live_chat_id: @live_chat.id), method: 'post', remote: true, id: 'new_live_chat') do
           Your message*:

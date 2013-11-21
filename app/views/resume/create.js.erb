@@ -1,0 +1,11 @@
+jQuery('form#new_resume').bind('ajax:success', function(e, data, status, xhr) {
+
+  alert('Hello Rails');
+  jQuery('.user_resume_errors').remove();
+  jQuery('#send_new_resume').append("<div class='user_resume_notice'>" + status.notice + "</div>");
+  jQuery('form#new_resume').remove();
+  setTimeout(function(){
+    jQuery('.close_send_resume').click();
+  }, 5000);
+
+});

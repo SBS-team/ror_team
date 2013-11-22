@@ -1,20 +1,20 @@
-file = "<input id=\"#resume_upload_file_attributes_filename\" type=\"file\" name=\"resume[upload_file_attributes][filename]\" >"
+file = "<input id=\"resume_upload_file_attributes_filename\" type=\"file\" name=\"resume[upload_file_attributes][filename]\" >"
 
 inputFileReset = ->
   patt1 = /\.[0-9a-z]+$/i
   filename = $("#resume_upload_file_attributes_filename").val().match(patt1)
   flag = false
   if filename == null
-    filename = "Your file not DOC or PDF types !<br>"
+    filename = "Your file is not DOC or PDF types !<br>"
     flag = false
   if filename.toString().toLowerCase() == ".doc" || filename.toString().toLowerCase() == ".pdf"
     flag = true
     filename = ""
   else
-    filename = "Your file not DOC or PDF types !<br>"
+    filename = "Your file is not DOC or PDF types !<br>"
     flag = false
   if $("#resume_upload_file_attributes_filename")[0].files[0].size > 5*1000*1000
-    filename += "You cannot upload a file greater than 5 Mb<br>size your file is a: #{Math.round($("#resume_upload_file_attributes_filename")[0].files[0].size / 1000000) } Mb"
+    filename += "You cannot upload file greater than 5 Mb<br>size of your file is: #{Math.round($("#resume_upload_file_attributes_filename")[0].files[0].size / 1000000) } Mb"
     flag = false
   if flag
     $("#filename_error").remove()

@@ -21,6 +21,7 @@
 #= require jquery.cssemoticons.min
 #= require jquery.remotipart
 #= require jquery.iframe-transport
+#= require jobs
 
 $(document).ready ->
   user_chat = new WinChat()

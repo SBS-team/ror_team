@@ -129,28 +129,18 @@ jQuery(document).ready(function(){
         jQuery("body").removeClass("fixBody");
     });
 
-//    jQuery(document).bind('ajax:success', 'form#new_resume', function(e, data, status, xhr) {
-//        alert('qwert');
-//        jQuery('.user_resume_errors').remove();
-//        jQuery('#send_new_resume').append("<div class='user_resume_notice'>" + status.notice + "</div>");
-//        jQuery('form#new_resume').remove();
-//        setTimeout(function(){
-//          jQuery('.close_send_resume').click();
-//        }, 5000);
-//    });
-//
-//    var data_new;
-//    var new_span;
-//
-//    jQuery(document).on('ajax:error', 'form#new_resume', function(data, status, xhr) {
-//        jQuery('.user_resume_errors').remove();
-//        data_new = jQuery.parseJSON(status.responseText);
-//        new_span = '';
-//        jQuery.each(data_new.errors, function(key, value) {
-//          return new_span += "<li>" + value + "</li>";
-//        });
-//        jQuery('#send_new_resume').prepend("<ul class='user_resume_errors'>" + new_span + "</ul>");
-//        Recaptcha.reload();
-//    });
+    var data_new;
+    var new_span;
+
+    jQuery(document).on('ajax:error', 'form#new_resume', function(data, status, xhr) {
+        jQuery('.user_resume_errors').remove();
+        data_new = jQuery.parseJSON(status.responseText);
+        new_span = '';
+        jQuery.each(data_new.errors, function(key, value) {
+          return new_span += "<li>" + value + "</li>";
+        });
+        jQuery('#send_new_resume').prepend("<ul class='user_resume_errors'>" + new_span + "</ul>");
+        Recaptcha.reload();
+    });
 
 });

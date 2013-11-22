@@ -6,10 +6,6 @@ ActiveAdmin.register LiveChat do
     live_chat.where(admin_user_id: current_admin_user.id)
   end
 
-  action_item if: proc{ current_admin_user.role == 'manager' } do
-    link_to 'Start chat', admin_start_chat_path, target: '_blank'
-  end
-
   index do
     selectable_column
     column :guest_name

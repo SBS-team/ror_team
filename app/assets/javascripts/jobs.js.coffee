@@ -1,4 +1,4 @@
-file = "<input id=\"resume_upload_file_attributes_filename\" type=\"file\" name=\"resume[upload_file_attributes][filename]\" >"
+file = "<input id=\"#resume_upload_file_attributes_filename\" type=\"file\" name=\"resume[upload_file_attributes][filename]\" >"
 
 inputFileReset = ->
   patt1 = /\.[0-9a-z]+$/i
@@ -30,35 +30,5 @@ inputFileReset = ->
     return false
 
 $(document).ready ->
-  $("#resume_upload_file_attributes_filename").bind "change", ->
+  $(document).bind 'change', '#resume_upload_file_attributes_filename', ->
     inputFileReset()
-  $('#new_resume .check_errors').click ->
-    $("#new_resume").validate
-      rules:
-        "resume[email]":
-          required: true,
-          email: true
-        "resume[name]":
-          required: true,
-          maxlength: 30,
-          minlength: 4
-        "resume[phone]":
-          required: true,
-          digits: true,
-          maxlength: 31 #http://ru.wikipedia.org/wiki/E.164  ::  15 digits, 1 plus, and <= 15 delimiters "()-"
-        "resume[description]":
-          required: true,
-          minlength: 2,
-          maxlength: 3000
-        "recaptcha_response_field":
-          required: true
-
-    messages:
-      "recaptcha_response_field":
-        required: "Captcha is required"
-
-    errorPlacement: (error, element) ->
-      if element.attr('name') == 'recaptcha_response_field'
-        error.insertAfter('#recaptcha_area')
-      else
-        error.insertAfter(element)

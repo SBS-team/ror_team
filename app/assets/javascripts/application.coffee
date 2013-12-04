@@ -2,20 +2,16 @@
 #= require jquery-ui
 #= require jquery_ujs
 #= require bootstrap.min
-#= require pusher
 #= require underscore
 #= require jquery.validate
 #= require additional-methods
 #= require jquery.tagcanvas
 #= require jquery-cookie
 #= require jobs
-#= require live_chats
 #= require comments
 #= require contact
 #= require search
-#= require lib/webs
 #= require lib/timer
-#= require chat/chat
 
 $(document).ready ->
   $('.carousel').carousel()

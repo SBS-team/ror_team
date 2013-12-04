@@ -10,7 +10,7 @@ ActiveAdmin.register AdminUser do
     selectable_column
     column 'Status' do |admin_user|
       if admin_user.last_activity
-        status_tag ((DateTime.now.to_i - admin_user.last_activity.to_i) <= (10*60) ? 'Online' : 'Offline'), ((DateTime.now.to_i - admin_user.last_activity.to_i) <= (10*60)  ? :ok : :error)
+        status_tag ((DateTime.now.to_i - admin_user.last_activity.to_i) <= (600) ? 'Online' : 'Offline'), ((DateTime.now.to_i - admin_user.last_activity.to_i) <= (600)  ? :ok : :error)
       else
         status_tag 'Offline', :error
       end
@@ -81,7 +81,7 @@ ActiveAdmin.register AdminUser do
       f.input :about, as: :text
       f.inputs for: [:upload_file, f.object.upload_file || UploadFile.new] do |file|
         file.input :img_name, as: :file,
-                   hint: file.object.img_name.nil? ? file.template.content_tag(:span, "no map yet") : file.template.image_tag(file.object.img_name.url(:thumb))
+                   hint: file.object.img_name.nil? ? file.template.content_tag(:span, 'no map yet') : file.template.image_tag(file.object.img_name.url(:thumb))
         file.input :remote_img_name_url, as: :url
       end
     end

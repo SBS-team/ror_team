@@ -14,6 +14,7 @@ ActiveAdmin.register Technology do
       end
     end
     column :name
+    column :description
     column :technology_category
     default_actions
   end
@@ -27,6 +28,7 @@ ActiveAdmin.register Technology do
           end
         end
         row :name
+        row :description
         row :technology_category
       end
     end
@@ -36,6 +38,7 @@ ActiveAdmin.register Technology do
     f.semantic_errors :base
     f.inputs 'Technology', multipart: true do
       f.input :name
+      f.input :description, as: :text
       f.input :technology_category
       f.inputs for: [:upload_file, f.object.upload_file || UploadFile.new] do |file|
         file.input :img_name, as: :file, hint: file.object.img_name.nil? ? f.template.content_tag(:span, 'no map yet') : file.template.image_tag(file.object.img_name.url(:thumb))
@@ -52,7 +55,8 @@ ActiveAdmin.register Technology do
 
     def create
       tech_cat = TechnologyCategory.find(params[:technology][:technology_category_id])
-       if @tech = tech_cat.technologies.create(safe_params)
+      @tech = tech_cat.technologies.create(safe_params)
+       if @tech
         redirect_to admin_technology_url(@tech), notice: 'Technology was successfully created.'
       else
         render :new
@@ -70,7 +74,7 @@ ActiveAdmin.register Technology do
 
     private
     def safe_params
-      params.require(:technology).permit(:name, :technology_category_id, upload_file_attributes: [:img_name, :id])
+      params.require(:technology).permit(:name, :description, :technology_category_id, upload_file_attributes: [:img_name, :id])
     end
   end
 

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131107101821) do
+ActiveRecord::Schema.define(version: 20131205080342) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "resource_id",   null: false
@@ -57,13 +57,6 @@ ActiveRecord::Schema.define(version: 20131107101821) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
-  end
-
-  create_table "chat_messages", force: true do |t|
-    t.text     "body"
-    t.integer  "live_chat_id"
-    t.boolean  "is_admin"
-    t.datetime "created_at"
   end
 
   create_table "ckeditor_assets", force: true do |t|
@@ -115,13 +108,6 @@ ActiveRecord::Schema.define(version: 20131107101821) do
   create_table "jobs_technologies", force: true do |t|
     t.integer  "job_id"
     t.integer  "technology_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-  end
-
-  create_table "live_chats", force: true do |t|
-    t.string   "guest_name"
-    t.integer  "admin_user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

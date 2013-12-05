@@ -30,7 +30,7 @@ en:
       team: "Team"
       careers: "Careers"
       contact: "Contact"
-      blog: "Blog"
+      blog: "News"
       live_chat: "Live Chat"
       use_to_contact: "Need to contact us?"
       follow_twitter: "Follow us on Twitter"
@@ -64,7 +64,7 @@ en:
 
   shared:
     post_jobs:
-      latest_posts: "Latest blog posts:"
+      latest_posts: "Latest news posts:"
       by: "by"
       vacancies: "Vacancies:"
       send_resume: "Send resume"

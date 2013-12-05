@@ -10,11 +10,6 @@
     = include_gon(namespace: 'RorTeam', camel_case: true)
     = csrf_meta_tags
   %body
-    %a.chat-button-fix{href: '#'}
-      %p Start
-      %p chat
-    - unless session[:chat_id].blank?
-      = render partial: 'user_chat/layout'
     %section#nav
       /[if lt IE 9]
       .inner_wrapp
@@ -42,3 +37,25 @@
       .alert.alert-info
         = flash.now[:alert]
     = yield
+    .site-heart
+      / Start SiteHeart code
+      :javascript
+        (function(){
+        // your widget ID
+        var widget_id = 658123;
+        _shcp =[{widget_id : widget_id}];
+        // set default language
+        var lang =(navigator.language || navigator.systemLanguage
+        || navigator.userLanguage ||"en")
+        .substr(0,2).toLowerCase();
+        // script url
+        var url ="widget.siteheart.com/widget/sh/"+ widget_id +"/"+ lang +"/widget.js";
+        var hcc = document.createElement("script");
+        hcc.type ="text/javascript";
+        hcc.async =true;
+        hcc.src =("https:"== document.location.protocol ?"https":"http")
+        +"://"+ url;
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hcc, s.nextSibling);
+        })();
+      / End SiteHeart code

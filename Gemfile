@@ -40,7 +40,6 @@ gem 'jbuilder', '~> 1.0.1'
 
 gem 'haml'
 gem 'rails_config'
-gem 'pusher', '~> 0.9.4'
 gem 'gon'
 
 group :development do
@@ -59,7 +58,7 @@ group :test do
   gem 'database_cleaner'
   gem 'faker'
   gem 'minitest-rails-capybara'
-  gem "selenium-webdriver", '~> 2.34.0'
+  gem 'selenium-webdriver', '~> 2.34.0'
   gem 'guard-rspec'
   gem 'launchy'
   gem 'simplecov', require: false, group: :test
@@ -93,7 +92,7 @@ gem 'capistrano-resque'
 gem 'unicorn'
 
 #Use for captcha
-gem "recaptcha", require: 'recaptcha/rails'
+gem 'recaptcha', require: 'recaptcha/rails'
 
 #Ajax file upload
 gem 'remotipart', '~> 1.2'

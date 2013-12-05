@@ -8,7 +8,10 @@ class ProjectsController < ApplicationController
   end
 
   def show
-    @project = Project.find(params[:id])
+    @project = Project.includes(:upload_files, technologies: :upload_file).find(params[:id])
+    respond_to do |format|
+      format.html {render :show, layout: false}
+    end
   end
 
 end

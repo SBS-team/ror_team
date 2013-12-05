@@ -48,4 +48,8 @@ class AdminUser < ActiveRecord::Base
   validates :password_confirmation, presence: true
   validates :email, uniqueness: true, presence: true
 
+  def online?
+    ((DateTime.now.to_i - self.last_activity.to_i) <= 600)
+  end
+
 end

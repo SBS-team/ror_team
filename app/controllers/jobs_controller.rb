@@ -1,7 +1,6 @@
 class JobsController < ApplicationController
 
   before_action :last_posts_and_jobs, only: [:index, :show]
-  before_action :resume_new, only: [:index, :show]
 
   def index
     @jobs = Job.includes(:upload_file).order('created_at DESC').page(params[:page]).per(3)
@@ -27,16 +26,6 @@ class JobsController < ApplicationController
       @resume.upload_file = UploadFile.new
       redirect_to jobs_path, alert: 'Sorry. No jobs found'
     end
-  end
-
-  private
-  def resume_params
-    params.require(:resume).permit(:job_id, :name, :email, :phone, :description, upload_file_attributes: [:filename, :id])
-  end
-
-  def resume_new
-    @resume = Resume.new
-    @resume.build_upload_file
   end
 
 end

@@ -22,7 +22,7 @@ class PostsController < ApplicationController
       end
     end
     respond_to do |format|
-      format.html {render :index, layout: 'blog'}
+      format.html {render :index, layout: 'news'}
       format.rss {render :index, content_type: Mime::XML}
     end
   end
@@ -38,7 +38,7 @@ class PostsController < ApplicationController
         else
           flash.now[:notice] = "Posts created at: #{from_date.strftime('%B %Y')}"
         end
-        render :index, layout: 'blog'
+        render :index, layout: 'news'
       else
         render 'public/404', layout: false, status: 404
       end
@@ -52,7 +52,7 @@ class PostsController < ApplicationController
     @comments = @post.comments.order('id DESC').limit(3).reverse
     @comments_count = @post.comments.count
     respond_to do |format|
-      format.html {render :show, layout: 'blog'}
+      format.html {render :show, layout: 'news'}
     end
   end
 

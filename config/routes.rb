@@ -4,7 +4,7 @@ RorTeam::Application.routes.draw do
   ActiveAdmin.routes(self)
   mount Ckeditor::Engine => '/ckeditor'
 
-  resources :posts, path: 'blog', only: [:index] do
+  resources :posts, path: 'news', only: [:index] do
     resources :comments, only: [:new, :create]
   end
   resources :home, only: [:index, :create]
@@ -15,9 +15,9 @@ RorTeam::Application.routes.draw do
   resources :contact, only: [:index, :create]
   resources :resume, only: [:new, :create, :show]
 
-  get 'blog/:created/:id' => 'posts#show', as: :special_post
-  get 'blog/archives/:month/:year' => 'posts#archives', as: :archives
-  post '/blog/comments' => 'comments#create'
+  get 'news/:created/:id' => 'posts#show', as: :special_post
+  get 'news/archives/:month/:year' => 'posts#archives', as: :archives
+  post '/news/comments' => 'comments#create'
 
   post '/admin/time_online' => 'time_onlines#set_time'
   post '/comment_load' => 'posts#comments_show_all'

@@ -26,5 +26,5 @@ $(document).ready ->
 
   $('#archives_url').click ->
     data = $('#archives_form').serializeArray()
-    window.location = "/blog/archives/#{data[0].value.toLowerCase()}/#{data[1].value}"
+    window.location = "/news/archives/#{data[0].value.toLowerCase()}/#{data[1].value}"
     true

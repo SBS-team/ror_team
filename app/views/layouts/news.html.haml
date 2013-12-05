@@ -2,16 +2,16 @@
 %html
   %head
     = favicon_link_tag '/favicon.ico'
-    %title Blog
-    = stylesheet_link_tag 'blog'
-    = javascript_include_tag 'blog'
+    %title News
+    = stylesheet_link_tag 'news'
+    = javascript_include_tag 'news'
     = include_gon(namespace: 'RorTeam', camel_case: true)
     = csrf_meta_tags
   %body
     %header
       .logo
-        = image_tag 'blog/rails_mini.png', align: 'left', height: 50
-        %span SBS-Team blog
+        = image_tag 'news/rails_mini.png', align: 'left', height: 50
+        %span SBS-Team news
     %menu
       %ul.menu_panel
         %li

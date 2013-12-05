@@ -10,7 +10,7 @@ ActiveAdmin.register AdminUser do
     selectable_column
     column 'Status' do |admin_user|
       if admin_user.last_activity
-        status_tag ((DateTime.now.to_i - admin_user.last_activity.to_i) <= (600) ? 'Online' : 'Offline'), ((DateTime.now.to_i - admin_user.last_activity.to_i) <= (600)  ? :ok : :error)
+        status_tag (admin_user.online? ? 'Online' : 'Offline'), (admin_user.online? ? :ok : :error)
       else
         status_tag 'Offline', :error
       end

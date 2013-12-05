@@ -1,11 +1,9 @@
-//= require user_chat
 //= require main_styles
 //= require jquery.cssemoticons
 //= require ajax_notice
 
 body {
   position: relative;
-
 }
 
 header nav ul {
@@ -95,23 +93,4 @@ header .logo a {
 
 iframe {
   float: left;
-}
-
-a.chat-button-fix {
-  cursor: pointer;
-  z-index: 999;
-  margin: 0;
-  padding: 10px;
-  background-color: #000000;
-  border-radius: 0 5px 5px 0;
-  position: fixed;
-  top: 80%;
-  left: 0px;
-  color: #ffffff;
-  text-align: center;
-  opacity: 0.6;
-}
-
-a.chat-button-fix:hover {
-  opacity: 1;
 }

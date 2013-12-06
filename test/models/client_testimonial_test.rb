@@ -22,7 +22,6 @@ class ClientTestimonialTest < ActiveSupport::TestCase
     it { must ensure_length_of(:comment_text).is_at_least(5).is_at_most(2048) }
 
     it { must validate_presence_of(:author_name)}
-    it { must validate_presence_of(:author_position)}
 
     it { must validate_presence_of(:project_id) }
     it { must validate_numericality_of(:project_id).only_integer }

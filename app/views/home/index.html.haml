@@ -115,7 +115,7 @@
   .content_area
     %h2= t '.contact_us'
     .contact_form
-      = form_for @message, url: home_index_path, html: {class: 'web-form', multipart: true} do |form|
+      = form_for @message, url: root_path, html: {class: 'web-form', multipart: true} do |form|
         - if @message.errors.any?
           .ror-team-errors
             %h6

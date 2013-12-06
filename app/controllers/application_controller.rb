@@ -3,7 +3,6 @@ class ApplicationController < ActionController::Base
   # For APIs, you may want to use :null_session instead.
   protect_from_forgery with: :exception
 
-  protected
   def last_posts_and_jobs
     @last_posts = Post.includes(:upload_file).order('updated_at desc').limit(4)
     @last_jobs = Job.includes(:upload_file).order('updated_at desc').limit(4)

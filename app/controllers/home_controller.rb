@@ -6,6 +6,7 @@ class HomeController < ApplicationController
     @message = Message.new
     @projects = Project.includes(:upload_files).order('random()').limit(8)
     @jobs = Job.includes(technologies: :upload_file).order('created_at DESC')
+
   end
 
   def create

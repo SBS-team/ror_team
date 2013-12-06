@@ -69,8 +69,17 @@
               = image_tag(project.upload_files.sample.img_name.url(:thumb), width: 167, height: 110)
             - else
               = image_tag('no_image.gif')
-    .client_testimonials
+    .client_testimonials_block
       %h2= "Client Testimonials"
+      .testimonials
+        - @testimonials.each do |testimonial|
+          .testimonial
+            .testimonial_title
+              = testimonial.author_position.capitalize unless testimonial.author_position.blank?
+              = testimonial.author_name.titleize
+              = "(#{testimonial.project.name})"
+            .testimonial_text
+              = testimonial.comment_text
 %section#job
   .content_area
     %h2.row{"data--50-bottom" => "opacity:0.1;transform: scale(0.9)", "data-80-top" => "opacity:0.1;transform: scale(0.9)"} Vacancy

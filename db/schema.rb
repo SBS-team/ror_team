@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131205080342) do
+ActiveRecord::Schema.define(version: 20131205144749) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "resource_id",   null: false
@@ -189,8 +192,22 @@ ActiveRecord::Schema.define(version: 20131205080342) do
     t.string "name", limit: 40
   end
 
+  create_table "team_members", force: true do |t|
+    t.string   "name"
+    t.string   "last_name"
+    t.string   "team_role_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "team_photos", force: true do |t|
     t.string   "title"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "team_roles", force: true do |t|
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

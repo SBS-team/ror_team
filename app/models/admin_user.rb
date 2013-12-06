@@ -29,7 +29,6 @@ class AdminUser < ActiveRecord::Base
 
   has_many :comments, as: :commentable, dependent: :destroy
   has_many :posts, dependent: :destroy
-  has_many :live_chats, dependent: :destroy
   has_one  :upload_file, as: :fileable, dependent: :destroy
   has_many :time_onlines
 

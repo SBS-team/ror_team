@@ -95,6 +95,12 @@ GIT
       sass (>= 3.2.0)
       sprockets-rails (~> 2.0.0)
 
+GIT
+  remote: https://github.com/SBS-team/rails_team_logo
+  revision: 4a0c88fed525916cd2b77aed352262c88b9b9885
+  specs:
+    rails_team_logo (1.0.0)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -462,6 +468,7 @@ DEPENDENCIES
   puma
   rails (~> 4.0.0)
   rails_config
+  rails_team_logo!
   ransack
   recaptcha
   remotipart (~> 1.2)

@@ -97,3 +97,4 @@ gem 'recaptcha', require: 'recaptcha/rails'
 #Ajax file upload
 gem 'remotipart', '~> 1.2'
 
+gem 'rails_team_logo', git: 'https://github.com/SBS-team/rails_team_logo'

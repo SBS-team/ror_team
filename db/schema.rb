@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131205080342) do
+ActiveRecord::Schema.define(version: 20131206082815) do
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "resource_id",   null: false
@@ -74,6 +74,15 @@ ActiveRecord::Schema.define(version: 20131205080342) do
 
   add_index "ckeditor_assets", ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable", using: :btree
   add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type", using: :btree
+
+  create_table "client_testimonials", force: true do |t|
+    t.text     "comment_text",    null: false
+    t.string   "author_name",     null: false
+    t.string   "author_position"
+    t.integer  "project_id",      null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "comments", force: true do |t|
     t.text     "description"

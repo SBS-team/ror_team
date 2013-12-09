@@ -22,6 +22,7 @@ namespace :deploy do
   end
   task :start do
     run "cd #{release_path}; bundle exec unicorn -c #{unicorn_conf} -E #{rails_env} -D"
+    #bundle exec unicorn -c /home/deployer/staging/rorteam/current/config/unicorn_pre.rb -D -E preproduction
   end
   task :stop do
     run "if [ -f #{unicorn_pid} ] && [ -e /proc/$(cat #{unicorn_pid}) ]; then kill -QUIT `cat #{unicorn_pid}`;

@@ -20,4 +20,15 @@
 #= require jobs
 
 $(document).ready ->
-  user_chat = new WinChat()
+
+  #==================== Team role filter =======================================
+  $(document).on 'click', '.filter-link', ->
+    $('.filter-link').removeClass('active-role')
+    $(this).addClass('active-role')
+    if $(this).attr('data-role') == 'all'
+      $(".team-item").show('fade',600)
+    else
+      $('.team-item').hide()
+      $(".team-item[data-team-role = '#{$(this).attr 'data-role'}']").each ->
+        $(this).show('fade',600)
+    false

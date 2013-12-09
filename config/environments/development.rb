@@ -41,4 +41,6 @@ RorTeam::Application.configure do
   config.action_mailer.perform_deliveries = true
   config.assets.debug = false
 
+  I18n.enforce_available_locales = false
+
 end

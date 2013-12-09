@@ -69,8 +69,7 @@
               = image_tag(project.upload_files.sample.img_name.url(:thumb), width: 167, height: 110)
             - else
               = image_tag('no_image.gif')
-%section#team.team-section{'style' => "background-image: url('#{asset_path('team_section_bkg.jpg')}');"}
-  = render partial: 'team_section'
+= render partial: 'team_section'
 %section#job
   .content_area
     %h2.row{"data--50-bottom" => "opacity:0.1;transform: scale(0.9)", "data-80-top" => "opacity:0.1;transform: scale(0.9)"} Vacancy

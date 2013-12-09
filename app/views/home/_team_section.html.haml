@@ -1,18 +1,19 @@
-.team-section-wrapper
-  %h2 Ruby Team
-  .team-section-left
-    .team-role-filter
-      %ul
-        %li
-          = link_to 'Full team', '#', class: 'filter-link active-role', 'data-role' => 'all'
-        - @team_roles.each do |role|
+%section#team.team-section{'style' => "background-image: url('#{get_section(@page_sections, 'team').image_url}');"}
+  .team-section-wrapper
+    %h2 Ruby Team
+    .team-section-left
+      .team-role-filter
+        %ul
           %li
-            = link_to role.name, '#', class: 'filter-link', 'data-role' => role.name.downcase
-  .team-section-content
-    - @team.each do |member|
-      .team-item{'data-team-role' => member.team_role.name.downcase}
-        = image_tag member.image_url(:thumb), width: 100, height: 100
-        .team-item-content
-          %span= member.name.capitalize
-          %span= member.last_name.capitalize
-          %div= member.team_role.name
+            = link_to 'Full team', '#', class: 'filter-link active-role', 'data-role' => 'all'
+          - @team_roles.each do |role|
+            %li
+              = link_to role.name, '#', class: 'filter-link', 'data-role' => role.name.downcase
+    .team-section-content
+      - @team.each do |member|
+        .team-item{'data-team-role' => member.team_role.name.downcase}
+          = image_tag member.image_url(:thumb), width: 100, height: 100
+          .team-item-content
+            %span= member.name.capitalize
+            %span= member.last_name.capitalize
+            %div= member.team_role.name

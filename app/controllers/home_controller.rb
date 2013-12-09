@@ -6,8 +6,9 @@ class HomeController < ApplicationController
     @message = Message.new
     @projects = Project.includes(:upload_files).order('random()').limit(8)
     @jobs = Job.includes(technologies: :upload_file).order('created_at DESC')
-    @team = TeamMember.includes(:team_role)
+    @team = TeamMember.includes(:team_role).order('random()')
     @team_roles = TeamRole.all
+    @page_sections = PageSection.all
   end
 
   def create

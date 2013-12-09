@@ -17,5 +17,6 @@ class UploadFile < ActiveRecord::Base
 
   mount_uploader :filename, FileUploader
   mount_uploader :img_name, ImageUploader
+  mount_uploader :bkg_image, BackgroundImageUploader
 
 end

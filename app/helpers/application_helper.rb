@@ -6,4 +6,8 @@ module ApplicationHelper
     end
   end
 
+  def get_section(all, name)
+    all.select{|x| x.name.eql?(name)}.first
+  end
+
 end

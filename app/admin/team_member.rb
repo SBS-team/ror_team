@@ -1,7 +1,5 @@
 ActiveAdmin.register TeamMember do
 
-  permit_params :name, :last_name, :team_role_id, upload_file_attributes: [:img_name, :id]
-
   menu parent: 'Team', priority: 0
 
   filter :name, as: :string
@@ -17,7 +15,7 @@ ActiveAdmin.register TeamMember do
   end
 
   show do |member|
-    panel 'AdminUser Details' do
+    panel 'Team Member Details' do
       attributes_table_for member do
         row :image do |member|
           image_tag(member.image_url(:thumb))
@@ -32,7 +30,7 @@ ActiveAdmin.register TeamMember do
   end
 
   form do |f|
-    f.inputs 'Admin Details' do
+    f.inputs 'Team Member Details' do
       f.input :name
       f.input :last_name
       f.input :team_role
@@ -44,6 +42,8 @@ ActiveAdmin.register TeamMember do
     end
     f.actions
   end
+
+  permit_params :name, :last_name, :team_role_id, upload_file_attributes: [:img_name, :id]
 
   controller do
     def scoped_collection

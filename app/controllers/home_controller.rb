@@ -8,6 +8,7 @@ class HomeController < ApplicationController
     @jobs = Job.includes(technologies: :upload_file).order('created_at DESC')
     @team = TeamMember.includes(:team_role)
     @team_roles = TeamRole.all
+    @advantages = Advantage.order('created_at DESC').limit(5)
   end
 
   def create

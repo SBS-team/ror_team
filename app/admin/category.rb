@@ -1,6 +1,6 @@
 ActiveAdmin.register Category do
 
-  menu parent: 'Blog'
+  menu parent: 'News'
 
   filter :name, as: :string
 

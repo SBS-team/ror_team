@@ -1,8 +1,8 @@
 xml.instruct! :xml, version: '1.0'
 xml.rss version: '2.0' do
   xml.channel do
-    xml.title 'RoR-Team blog'
-    xml.description 'A blog about software and chocolate'
+    xml.title 'RoR-Team news'
+    xml.description 'News about software and chocolate'
     xml.link posts_url
 
     for post in @posts

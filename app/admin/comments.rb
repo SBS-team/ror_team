@@ -1,6 +1,6 @@
 ActiveAdmin.register Comment do
 
-  menu parent: 'Blog'
+  menu parent: 'News'
 
   filter :description, as: :string
 

@@ -1,0 +1,61 @@
+.team-section {
+  z-index: 10;
+  position: relative;
+  padding: 60px 40px 0 40px;
+  background-color: #c3c3c3;
+  background-size: 100% auto;
+}
+.team-section-wrapper {
+  padding: 20px;
+
+  h2 {
+    margin-bottom: 20px;
+  }
+}
+
+.team-section-content {
+  margin: 0 0 0 270px;
+}
+
+.team-section-left {
+  float: left;
+  width: 250px;
+
+  .team-role-filter {
+    ul {
+      list-style: none;
+
+      li {
+        margin: 5px 0;
+
+        a {
+          cursor: pointer;
+          font-size: 110%;
+          color: #000000;
+        }
+
+        a.active-role {
+          font-size: 160%;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}
+
+.team-item {
+  display: inline-block;
+  height: 160px;
+  width: 120px;
+  margin: 0 0 0 20px;
+  text-align: center;
+
+  img {
+    border-radius: 100px;
+  }
+}
+
+.team-item-content {
+  min-height: 50px;
+  overflow: hidden;
+}

@@ -1,0 +1,41 @@
+.client_testimonials_block .testimonials {
+  width: 70%;
+  margin-left: 15%;
+}
+
+.client_testimonials_block .testimonials .testimonial {
+  width: 100%;
+  margin-bottom: 60px;
+  padding: 15px;
+  background-color: #F2F2F2;
+  box-shadow: 0 0 6px #B2B2B2;
+  position: relative;
+  vertical-align: top;
+  -webkit-border-radius:10px;
+  -moz-border-radius:10px;
+  border-radius:10px;
+}
+
+.client_testimonials_block .testimonials .testimonial::before {
+  content:"";
+  position:absolute;
+  bottom:-20px; /* value = - border-top-width - border-bottom-width */
+  left:50px; /* controls horizontal position */
+  border-width:20px 0 0 20px; /* vary these values to change the angle of the vertex */
+  border-style:solid;
+  border-color:/* #075698 */ #F2F2F2 transparent;
+  /* reduce the damage in FF3.0 */
+  display:block;
+  width:0;
+}
+
+.client_testimonials_block .testimonials .testimonial .testimonial_title {
+  color: cadetblue;
+  font-size: 22px;
+  margin-bottom: 15px;
+}
+
+.client_testimonials_block .testimonials .testimonial .testimonial_title span.project{
+  color: palevioletred;
+  font-size: 16px;
+}

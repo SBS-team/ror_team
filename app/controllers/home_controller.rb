@@ -6,6 +6,8 @@ class HomeController < ApplicationController
     @message = Message.new
     @projects = Project.includes(:upload_files).order('random()').limit(8)
     @jobs = Job.includes(technologies: :upload_file).order('created_at DESC')
+    @team = TeamMember.includes(:team_role)
+    @team_roles = TeamRole.all
   end
 
   def create
@@ -18,6 +20,5 @@ class HomeController < ApplicationController
       redirect_to :back
     end
   end
-
 
 end

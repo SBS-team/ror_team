@@ -9,6 +9,7 @@ class HomeController < ApplicationController
     @testimonials = ClientTestimonial.order('random()').limit(6)
     @team = TeamMember.includes(:team_role)
     @team_roles = TeamRole.all
+    @advantages = Advantage.order('created_at DESC').limit(5)
   end
 
   def create

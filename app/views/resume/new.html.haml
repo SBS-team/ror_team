@@ -12,22 +12,17 @@
             %li= msg
     .form-group
       - if @jobs
-        = f.select(:job_id, options_for_select(@jobs.map { |j| [j.title, j.id] }), {}, {class: 'form-control'})
+        = f.radio_button(:job_id, options_for_select(@jobs.map { |j| [j.title, j.id] }), {}, {class: 'form-control'})
       - else
-        = f.select(:job_id, options_for_select(@job.title => @job.id), {}, {class: 'form-control'})
+        = f.radio_button(:job_id, options_for_select(@job.title => @job.id), {}, {class: 'form-control'})
     .form-group
-      = f.text_field :name, id: 'name', class: 'form-control', type: 'text', minlength: '2', placeholder: 'Name' + '*'
+      = f.text_field :name, id: 'name', class: 'form-control', type: 'text', minlength: '2', placeholder: 'What is your name?' + '*'
     .form-group
-      = f.email_field :email, id: 'email', class: 'form-control', type: 'email', placeholder: 'Email' + '*'
+      = f.email_field :email, id: 'email', class: 'form-control', type: 'email', placeholder: 'What is your email?' + '*'
     .form-group
-      = f.telephone_field :phone, id: 'input-phone', class: 'form-control', type: 'text', placeholder: 'Phone'+ '*'
+      = f.telephone_field :phone, id: 'input-phone', class: 'form-control', type: 'text', placeholder: 'What is your GitHub or LinkedIn URL?'
     .form-group
       = f.text_area :description, class: 'form-control', rows: '5', placeholder:  'Message' + '*'
-    .form-group
-      = f.fields_for :upload_file do |builder|
-        = builder.file_field :filename
-    .form-group#recaptcha
-      = recaptcha_tags display: {theme: 'white'}, ajax: true
     .submit-form
       = f.submit 'Send_resume', id: 'modal_form_submit', class: 'check_errors', data: {disable_with: 'Please wait...'}
 = link_to 'cLose yoUr resUme!', root_path, class: 'close_send_resume', rel: 'modal:close'

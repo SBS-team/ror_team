@@ -62,7 +62,7 @@ ActiveAdmin.register Job do
 
   controller do
     def scoped_collection
-      Job.includes([:upload_file]).page(params[:page]).per(30)
+      Job.includes([:upload_file, :technologies]).page(params[:page]).per(30)
     end
 
     def create

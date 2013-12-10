@@ -19,8 +19,10 @@ ActiveAdmin.register UploadFile do
                 file.title
               elsif file.respond_to?(:first_name)
                 file.first_name + ' ' + file.last_name
-              else
+              elsif file.respond_to?(:name)
                 file.name
+              else
+                file.description
               end
       link_to title, [:admin, file]
     end
@@ -37,6 +39,9 @@ ActiveAdmin.register UploadFile do
   end
 
   controller do
+    def scoped_collection
+      UploadFile.includes([:fileable]).page(params[:page]).per(30)
+    end
 
     def create
       @upload_file = UploadFile.new(file_params)

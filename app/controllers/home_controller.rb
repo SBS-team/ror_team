@@ -5,7 +5,6 @@ class HomeController < ApplicationController
   def index
     @message = Message.new
     @projects = Project.includes(:upload_files).order('random()').limit(8)
-    @jobs = Job.includes(technologies: :upload_file).order('created_at DESC')
     @testimonials = ClientTestimonial.order('random()').limit(6)
     @team = TeamMember.includes(:team_role)
     @team_roles = TeamRole.all

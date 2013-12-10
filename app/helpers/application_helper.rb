@@ -6,8 +6,9 @@ module ApplicationHelper
     end
   end
 
-  def get_section(all, name)
-    all.select{|x| x.name.eql?(name)}.first
+  def get_section_bkg_image_url(all, name)
+    section = all.select{|x| x.name.eql?(name)}.first
+    section.blank? ? asset_path('team_section_bkg.jpg') : section.image_url
   end
 
 end

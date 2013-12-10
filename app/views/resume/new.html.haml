@@ -12,15 +12,16 @@
             %li= msg
     .form-group
       - if @jobs
-        = f.radio_button(:job_id, options_for_select(@jobs.map { |j| [j.title, j.id] }), {}, {class: 'form-control'})
-      - else
-        = f.radio_button(:job_id, options_for_select(@job.title => @job.id), {}, {class: 'form-control'})
+        - @jobs.each do |job|
+          %label
+            = f.radio_button :job_id, job.title
+            = job.title
     .form-group
       = f.text_field :name, id: 'name', class: 'form-control', type: 'text', minlength: '2', placeholder: 'What is your name?' + '*'
     .form-group
       = f.email_field :email, id: 'email', class: 'form-control', type: 'email', placeholder: 'What is your email?' + '*'
     .form-group
-      = f.telephone_field :phone, id: 'input-phone', class: 'form-control', type: 'text', placeholder: 'What is your GitHub or LinkedIn URL?'
+      = f.telephone_field :git_url, id: 'input-url', class: 'form-control', type: 'text', placeholder: 'What is your GitHub or LinkedIn URL?'
     .form-group
       = f.text_area :description, class: 'form-control', rows: '5', placeholder:  'Message' + '*'
     .submit-form

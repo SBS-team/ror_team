@@ -112,9 +112,9 @@ en:
     form:
       send_resume: "Send us your resume:"
       select_job: "Select a job"
-      your_name: "Your name"
-      your_email: "Your Email"
-      your_phone: "Your phone number"
+      your_name: "What is your name?"
+      your_email: "What is your email?"
+      your_url: "What is your GitHub or LinkedIn URL?"
       your_message: "Your message"
       send_resume: "Send resume"
 

@@ -9,6 +9,7 @@ class HomeController < ApplicationController
     @team = TeamMember.includes(:team_role).order('random()')
     @team_roles = TeamRole.all
     @page_sections = PageSection.all
+    @advantages = Advantage.order('created_at DESC').limit(5)
   end
 
   def create

@@ -1,0 +1,8 @@
+%section#why_sbs.why_sbs
+  %h2 Why choose SBS
+  - @advantages.each do |adv|
+    .advantage
+      .adv_img
+        = image_tag adv.image_url(:thumb)
+      .adv.descr
+        = adv.description

@@ -1,0 +1,41 @@
+%section#job
+  .content_area
+    %h2.row{"data--50-bottom" => "opacity:0.1;transform: scale(0.9)", "data-80-top" => "opacity:0.1;transform: scale(0.9)"} Vacancy
+    %div
+      %p.row{"data--50-bottom" => "opacity:0.1;transform: scale(0.9)", "data-120-top" => "opacity:0.1;transform: scale(0.9)"}
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vitae tristique mauris, sit amet dapibus sapien. In sit
+        amet elit commodo sem tempor ullamcorper. Etiam quis massa semper, lacinia ligula a, molestie dui. Morbi eget massa dolor.
+        Duis vel arcu ac metus pulvinar ultrices a in risus. Vestibulum facilisis porttitor augue vitae dignissim. Integer quis
+        eleifend sapien. Nullam odio massa, varius eget turpis non, hendrerit placerat purus. Duis sit amet luctus lectus, eu suscipit elit.
+      %p.row{"data--50-bottom" => "opacity:0.1;transform: scale(0.9)", "data-120-top" => "opacity:0.1;transform: scale(0.9)"}
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Morbi vitae tristique mauris, sit amet dapibus sapien. In sit
+        amet elit commodo sem tempor ullamcorper. Etiam quis massa semper, lacinia ligula a, molestie dui. Morbi eget massa dolor.
+        Duis vel arcu ac metus pulvinar ultrices a in risus. Vestibulum facilisis porttitor augue vitae dignissim. Integer quis
+        eleifend sapien. Nullam odio massa, varius eget turpis non, hendrerit placerat purus. Duis sit amet luctus lectus, eu suscipit elit.
+      %ul.job_WN_list
+        %li.row{"data--50-bottom" => "opacity:0.1;transform: scale(0.9)", "data-120-top" => "opacity:0.1;transform: scale(0.9)"} You can eat
+        %li.row{"data--50-bottom" => "opacity:0.1;transform: scale(0.9)", "data-120-top" => "opacity:0.1;transform: scale(0.9)"} you can sleep
+        %li.row{"data--50-bottom" => "opacity:0.1;transform: scale(0.9)", "data-120-top" => "opacity:0.1;transform: scale(0.9)"} we will pay some money
+        %li.row{"data--50-bottom" => "opacity:0.1;transform: scale(0.9)", "data-120-top" => "opacity:0.1;transform: scale(0.9)"} you dont have to pay for electricity
+        %li.row{"data--50-bottom" => "opacity:0.1;transform: scale(0.9)", "data-120-top" => "opacity:0.1;transform: scale(0.9)"} you can go home sometimes
+        %li.row{"data--50-bottom" => "opacity:0.1;transform: scale(0.9)", "data-120-top" => "opacity:0.1;transform: scale(0.9)"} we will give a monitor
+      %h3.row{"data--50-bottom" => "opacity:0.1;transform: scale(0.9)", "data-120-top" => "opacity:0.1;transform: scale(0.9)"} Now available such vacancies
+      - unless @jobs.blank?
+        %ul.vacancies_list_wrapp
+          - @jobs.each do |job|
+            %li
+              %strong.row{"data--50-bottom" => "opacity:0.1;transform: scale(0.9)", "data-120-top" => "opacity:0.1;transform: scale(0.9)"}
+                = job.title
+              .knowledge_list_wrapp.row{"data-80-top" => "opacity:0.1;transform: scale(0.9)", "data-bottom" => "opacity:0.1;transform: scale(0.9)"}
+                %p!= job.description
+                %h5 Required knowledge:
+                %ul
+                  - job.technologies.each do |tech|
+                    %li
+                      = image_tag tech.upload_file.img_name.url(:thumb), width: 50, alt: 'image', title: tech.name
+                      %p= tech.description
+    %h2.row.job_interest{"data--50-bottom" => "opacity:0.1;transform: scale(0.9)", "data-80-top" => "opacity:0.1;transform: scale(0.9)"}
+      you
+      %br
+      interested?
+    = link_to 'send us your resume!', new_resume_path, class: 'send_resume', rel: 'modal:open'

@@ -1,0 +1,16 @@
+%section#Portfolio.Portfolio_l-1
+  .Portfolio_l-2{"data-0" => "background-position:50% -1000px;", "data-100000" => "background-position:50% 50000px;"}
+  .content_area
+    .row
+      %h2= t 'home.index.project_work'
+    .portfolio_item_list
+      - @projects.each do |project|
+        .portfolio_item
+          = link_to project.url, project.url, target: '_blank', class: 'site_link'
+          = link_to project_load_path(project.id), class: 'img_block manual-ajax', rel: 'modal:open' do
+            %span.bg_place_holder
+            %span.bg_place_holder_plus
+            - unless project.upload_files.blank?
+              = image_tag(project.upload_files.sample.img_name.url(:thumb), width: 167, height: 110)
+            - else
+              = image_tag('no_image.gif')

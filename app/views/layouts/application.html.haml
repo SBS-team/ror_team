@@ -18,18 +18,18 @@
           %ul
             %li
               = link_to 'About us', '#', title: 'Next Section', data: {rel: 'What_we_do'}
-            %li
-              = link_to 'Why SBS', '#', title: 'Next Section', data: {rel: 'why_sbs'}
-            %li
-              = link_to 'Portfolio', '#', title: 'Next Section', data: {rel: 'Portfolio'}
-            %li
-              = link_to 'Team', '#', title: 'Next Section', data: {rel: 'team'}
-            %li
-              = link_to 'Vacancy', '#', title: 'Next Section', data: {rel: 'job'}
+            -#%li
+            -#  = link_to 'Why SBS', '#', title: 'Next Section', data: {rel: 'why_sbs'}
+            -#%li
+            -#  = link_to 'Portfolio', '#', title: 'Next Section', data: {rel: 'Portfolio'}
+            -#%li
+            -#  = link_to 'Team', '#', title: 'Next Section', data: {rel: 'team'}
+            -#%li
+            -#  = link_to 'Vacancy', '#', title: 'Next Section', data: {rel: 'job'}
             %li
               = link_to 'Contacts', '#', title: 'Next Section', data: {rel: 'Contacts'}
-            %li
-              = link_to 'News', posts_path, target: '_blank'
+            -#%li
+            -#  = link_to 'News', posts_path, target: '_blank'
     - if flash[:error]
       .alert.alert-error
         = flash.now[:error]

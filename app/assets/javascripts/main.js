@@ -12,7 +12,9 @@ jQuery(document).ready(function(){
     jQuery('.Contacts_l-3').css("minHeight", windov_height);
 
     jQuery('#team').css("minHeight", windov_height);
+
     jQuery('#Portfolio').css("minHeight", windov_height);
+    jQuery('#why_sbs').css("minHeight", windov_height);
 
     skrollr.init({
         forceHeight: false

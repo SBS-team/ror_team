@@ -30,15 +30,18 @@
               = link_to 'Contacts', '#', data: {rel: 'Contacts'}
             %li
               = link_to 'News', posts_path, target: '_blank'
-    - if flash[:error]
-      .alert.alert-error
-        = flash.now[:error]
-    - if flash[:notice]
-      .alert.alert-success
-        = flash.now[:notice]
-    - if flash[:alert]
-      .alert.alert-info
-        = flash.now[:alert]
+    - if flash[:error] || flash[:notice] || flash[:alert]
+      #flash_notice.modal.flash_message_box
+        %a{href: '#close', rel: 'modal:close'} Close window
+        - if flash[:error]
+          .error
+            = flash.now[:error]
+        - if flash[:notice]
+          .notice
+            = flash.now[:notice]
+        - if flash[:alert]
+          .info
+            = flash.now[:alert]
     = yield
     .site-heart
       / Start SiteHeart code

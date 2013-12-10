@@ -1,4 +1,4 @@
-require "minitest_helper"
+require 'minitest_helper'
 
 describe TimeOnline do
 

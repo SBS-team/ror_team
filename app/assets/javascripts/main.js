@@ -84,30 +84,10 @@ jQuery(document).ready(function(){
             maxlength: 30,
             minlength: 4
           },
-          "resume[phone]": {
-            required: true,
-            digits: true,
-            maxlength: 31
-          },
           "resume[description]": {
             required: true,
             minlength: 2,
             maxlength: 3000
-          },
-          "recaptcha_response_field": {
-            required: true
-          }
-        },
-        messages: {
-          "recaptcha_response_field": {
-            required: "Captcha is required"
-          }
-        },
-        errorPlacement: function(error, element) {
-          if (element.attr('name') === 'recaptcha_response_field') {
-            return error.insertAfter('#recaptcha_area');
-          } else {
-            return error.insertAfter(element);
           }
         }
       });

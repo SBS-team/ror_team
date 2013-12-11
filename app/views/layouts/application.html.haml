@@ -18,16 +18,16 @@
           %ul
             %li
               = link_to 'About us', '#', data: {rel: 'What_we_do'}
-            %li
-              = link_to 'Why SBS', '#', data: {rel: 'why_sbs'}
-            %li
-              = link_to 'Portfolio', '#', data: {rel: 'Portfolio'}
-            %li
-              = link_to 'Team', '#', data: {rel: 'team'}
+            -#%li
+            -#  = link_to 'Why SBS', '#', data: {rel: 'why_sbs'}
+            -#%li
+            -#  = link_to 'Portfolio', '#', data: {rel: 'Portfolio'}
+            -#%li
+            -#  = link_to 'Team', '#', data: {rel: 'team'}
             %li
               = link_to 'Contacts', '#', data: {rel: 'Contacts'}
-            %li
-              = link_to 'News', posts_path, target: '_blank'
+            -#%li
+            -#  = link_to 'News', posts_path, target: '_blank'
     - if flash[:error] || flash[:notice] || flash[:alert]
       #flash_notice.modal.flash_message_box
         %a{href: '#close', rel: 'modal:close'} Close window

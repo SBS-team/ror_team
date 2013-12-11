@@ -31,13 +31,5 @@ class Project < ActiveRecord::Base
   validates :team_size, presence: true, numericality: {only_integer: true, greater_than: 0}
   validates :upload_files, presence: true
 
-  after_destroy :clear_cache
-
-  private
-
-  def clear_cache
-    expire_fragment(self)
-  end
-
 end
 

@@ -5,11 +5,4 @@ class ClientTestimonial < ActiveRecord::Base
   validates :author_name, presence: true
   validates :project_id, presence: true, numericality: { only_integer: true }
 
-  after_destroy :clear_cache
-
-  private
-
-  def clear_cache
-    expire_fragment(self)
-  end
 end

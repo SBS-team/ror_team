@@ -9,77 +9,9 @@ body {
   position: relative;
 }
 
-header nav ul {
-  margin: 5px 5px 5px 5px;
-}
-
-header nav li.active {
-  background: #08c;
-}
-
-header nav li.active a {
-  color: #fff;
-}
-
-header .chat {
-  position: absolute;
-  right: 10px;
-  top: 20px;
-}
-
-header .logo {
-  padding: 20px 0 0 20px;
-}
-
-header .logo a {
-  font-size: 27px;
-  text-decoration: none;
-  color: #000;
-}
-
-.content {
-  padding: 0 0 0 0;
-}
-
-.content:after {
-  content: "";
-  display: block;
-  height: 60px;
-  clear: both;
-}
-
-#footer {
-  height: 50px;
-}
-
-#footer {
-  margin-top: -50px;
-  position: relative;
-  width: 100%;
-  color: #333333;
-  font-size: 12px;
-  border-top: 1px solid #cccccc;
-}
-
-#footer .contact-us {
-  float: left;
-}
-
-#footer .soc_net {
-  padding: 9px 0 0 0;
-  float: right;
-}
-
-#footer .soc_net a {
-  margin: 0 3px 0 3px;
-}
-
-#footer .soc_net a:hover {
-  text-decoration: none;
-}
-
-#footer p {
-  padding: 17px 0 0 10px;
+.flash_message_box {
+  height: auto;
+  padding: 5px;
 }
 
 .error {
@@ -90,8 +22,8 @@ header .logo a {
   color: green;
 }
 
-.navbar .live-chat {
-  margin: 5px 0 0 0;
+.info {
+  color: dodgerblue;
 }
 
 iframe {

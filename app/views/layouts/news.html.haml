@@ -3,7 +3,7 @@
   %head
     = favicon_link_tag '/favicon.ico'
     %title News
-    = stylesheet_link_tag 'news'
+    = stylesheet_link_tag 'news', media: 'all'
     = javascript_include_tag 'news'
     = include_gon(namespace: 'RorTeam', camel_case: true)
     = csrf_meta_tags

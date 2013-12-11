@@ -7,7 +7,6 @@ describe AdminUser do
   context 'AdminUser model connection' do
     it { must have_many(:posts).dependent(:destroy) }
     it { must have_many(:comments).dependent(:destroy) }
-    it { must have_many(:live_chats) }
     it { must have_many(:time_onlines) }
     it { must have_one(:upload_file) }
   end

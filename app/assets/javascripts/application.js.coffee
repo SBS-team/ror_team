@@ -21,6 +21,8 @@
 
 $(document).ready ->
 
+  $('#flash_notice').modal()
+
   #==================== Team role filter =======================================
   $(document).on 'click', '.filter-link', ->
     $('.filter-link').removeClass('active-role')

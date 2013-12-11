@@ -1,10 +1,9 @@
 ActiveAdmin.register TeamMember do
 
-  permit_params :name, :last_name, :team_role_id, upload_file_attributes: [:img_name, :id]
-
   menu parent: 'Team', priority: 0
 
   filter :name, as: :string
+  filter :last_name, as: :string
 
   index do
     selectable_column
@@ -30,6 +29,8 @@ ActiveAdmin.register TeamMember do
       end
     end
   end
+
+  permit_params :name, :last_name, :team_role_id, upload_file_attributes: [:img_name, :id]
 
   form do |f|
     f.inputs 'Admin Details' do

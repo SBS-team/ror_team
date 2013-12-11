@@ -27,6 +27,7 @@
               = form.text_area(:text, required: "")
         = submit_tag 'Submit'
       .copyRight
-        %p
+        = cache 'contact_description' do
+          %p
         %span
           = "sbs-team #{Time.now.strftime('%Y')}"

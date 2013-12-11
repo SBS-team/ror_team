@@ -84,6 +84,7 @@ RorTeam::Application.configure do
       port:                 Settings.mailer.port,
       domain:               Settings.mailer.domain,
       user_name:            Settings.mailer.user_name,
+      email_to:             Settings.mailer.email_to,
       password:             Settings.mailer.password,
       authentication:       Settings.mailer.authentication,
       enable_starttls_auto: Settings.mailer.enable_starttls_auto

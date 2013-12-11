@@ -5,6 +5,7 @@ class TeamMember < ActiveRecord::Base
 
   accepts_nested_attributes_for :team_role, :upload_file
 
+  after_destroy :clear_cache
 
   def image_url(thumb={})
     if upload_file.blank? || upload_file.img_name.nil?
@@ -12,6 +13,12 @@ class TeamMember < ActiveRecord::Base
     else
       upload_file.img_name.url(thumb)
     end
+  end
+
+  private
+
+  def clear_cache
+    expire_fragment(self)
   end
 
 end

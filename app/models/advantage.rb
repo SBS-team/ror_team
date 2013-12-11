@@ -6,6 +6,7 @@ class Advantage < ActiveRecord::Base
 
   validates :description, presence: true, length: {minimum: 3, maximum: 255}
 
+  after_destroy :clear_cache
 
   def image_url(thumb={})
     if upload_file.blank? || upload_file.img_name.nil?
@@ -13,6 +14,12 @@ class Advantage < ActiveRecord::Base
     else
       upload_file.img_name.url(thumb)
     end
+  end
+
+  private
+
+  def clear_cache
+    expire_fragment(self)
   end
 
 end

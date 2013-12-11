@@ -27,14 +27,15 @@
               = form.text_area(:text, required: "")
         = submit_tag 'Submit'
       .copyRight
-        %p
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eu sapien id sapien sollicitudin ultricies. Nunc vel ante
-          sollicitudin turpis auctor posuere. Quisque id dolor lorem. Cras at ante nulla. Vivamus convallis elementum nisi, sed tempor
-          quam luctus mollis. Duis vitae felis eget neque tristique pharetra. Sed laoreet neque sit amet lobortis suscipit. Proin mi
-          augue, tempus porta sapien nec,
-          lobortis malesuada massa. Nunc nec nunc mollis, pulvinar ligula et, interdum lacus. Nunc porttitor augue ac dolor tempor aliquet.
-          Integer tincidunt commodo libero, vitae tincidunt lectus feugiat eget. Sed congue sit amet augue id aliquet. Fusce egestas odio
-          vel sem fringilla consectetur. Ut non ante quis ante consectetur molestie. Vestibulum elit justo, volutpat non laoreet id,
-          pellentesque id massa. Vivamus et eleifend est.
+        = cache 'contact_description' do
+          %p
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer eu sapien id sapien sollicitudin ultricies. Nunc vel ante
+            sollicitudin turpis auctor posuere. Quisque id dolor lorem. Cras at ante nulla. Vivamus convallis elementum nisi, sed tempor
+            quam luctus mollis. Duis vitae felis eget neque tristique pharetra. Sed laoreet neque sit amet lobortis suscipit. Proin mi
+            augue, tempus porta sapien nec,
+            lobortis malesuada massa. Nunc nec nunc mollis, pulvinar ligula et, interdum lacus. Nunc porttitor augue ac dolor tempor aliquet.
+            Integer tincidunt commodo libero, vitae tincidunt lectus feugiat eget. Sed congue sit amet augue id aliquet. Fusce egestas odio
+            vel sem fringilla consectetur. Ut non ante quis ante consectetur molestie. Vestibulum elit justo, volutpat non laoreet id,
+            pellentesque id massa. Vivamus et eleifend est.
         %span
           = "sbs-team #{Time.now.strftime('%Y')}"

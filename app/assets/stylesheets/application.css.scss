@@ -1,0 +1,31 @@
+//= require main_styles
+//= require jquery.cssemoticons
+//= require ajax_notice
+//= require team_section
+//= require why_sbs
+//= require testimonials
+
+body {
+  position: relative;
+}
+
+.flash_message_box {
+  height: auto;
+  padding: 5px;
+}
+
+.error {
+  color: red;
+}
+
+.notice {
+  color: green;
+}
+
+.info {
+  color: dodgerblue;
+}
+
+iframe {
+  float: left;
+}

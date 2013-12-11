@@ -109,7 +109,7 @@ ru:
       team: "Команда"
       careers: "Careers"
       contact: "Контакты"
-      blog: "Блог"
+      blog: "Новости"
       use_to_contact: "Нужно связаться с нами?"
       media_soc: "Вы можете присоединиться к нашей медиа соц. сети:"
       mail_scype: "Или связаться с нами через email или skype:"
@@ -127,6 +127,10 @@ ru:
       read_about_skills: "Подробнее о наших навыках"
       project_work: "Проэкты над которыми работали / Портфолио"
       read_about_projects: "Подробнее о наших проэктах"
+      contact_us: "Связаться с нами:"
+    create:
+      contact_sent_msg: "Ваше сообщение отправлено."
+      contact_error_msg: "Ошибка. Заполните необходимые поля"
 
   company:
     index:

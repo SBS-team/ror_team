@@ -30,14 +30,13 @@ en:
       team: "Team"
       careers: "Careers"
       contact: "Contact"
-      blog: "Blog"
+      blog: "News"
       live_chat: "Live Chat"
       use_to_contact: "Need to contact us?"
       follow_twitter: "Follow us on Twitter"
       follow_facebook: "Follow us on Facebook"
       contact_email: "Contact us by email"
       email: "email ror_team@gmail.com"
-
 
   home:
     index:
@@ -50,6 +49,10 @@ en:
       read_about_skills: "More about our skills and experience "
       project_work: "Portfolio"
       read_about_projects: "Read more about our projects"
+      contact_us: "Contact us:"
+    create:
+      contact_sent_msg: "Message was successfully sent."
+      contact_error_msg: "Form invalid. Please check errors bellow"
 
   company:
     index:
@@ -61,7 +64,7 @@ en:
 
   shared:
     post_jobs:
-      latest_posts: "Latest blog posts:"
+      latest_posts: "Latest news posts:"
       by: "by"
       vacancies: "Vacancies:"
       send_resume: "Send resume"
@@ -72,7 +75,6 @@ en:
       team_photo: "Team photo"
       about: "You can use all Bootstrap plugins purely through the markup API without writing a single line of JavaScript. This is Bootstrap's first class API and should be your first consideration when using a plugin.
               That said, in some situations it may be desirable to turn this functionality off. Therefore, we also provide the ability to disable the data attribute API by unbinding all events on the body namespaced with `'data-api'`. This looks like this:"
-
 
   projects:
     index:
@@ -92,7 +94,6 @@ en:
       people: "people"
       in_work: "in work"
 
-
   contact:
     index:
       contact_us: "Contact us:"
@@ -111,9 +112,9 @@ en:
     form:
       send_resume: "Send us your resume:"
       select_job: "Select a job"
-      your_name: "Your name"
-      your_email: "Your Email"
-      your_phone: "Your phone number"
+      your_name: "What is your name?"
+      your_email: "What is your email?"
+      your_url: "What is your GitHub or LinkedIn URL?"
       your_message: "Your message"
       send_resume: "Send resume"
 

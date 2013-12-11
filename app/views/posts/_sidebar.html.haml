@@ -1,42 +1,42 @@
-.block.text-center.rss
+#sidebar
   = link_to posts_path(:rss) do
     = image_tag 'rss.png', width: 50
-.block.search.text-center
+  %h3 Search
   %form.form-search{action: posts_path}
     %input.search-query.form-control{type: 'text', placeholder: t('.search'), name: 'search'}
-.block.categories
-  - if @categories.blank?
-    %h3
-      = t '.any_category_not_exists_yet'
-  - else
-    %h3
-      = t '.categories'
-    %ul.nav.nav-pills
-      - @categories.each do |category|
-        - category_path = posts_path(category_name: category.name)
-        - unless category.posts.blank?
-          - if request.fullpath == category_path
-            %li.active
-              = link_to category.name, category_path
-          - else
-            %li
-              = link_to category.name, category_path
-.block.contact_us
-  = t '.ror_team_info'
-  = link_to t('.see_our_projects'), projects_path
-  %h4
-    = t '.help_you'
-  .text-center
-    = link_to t('.contact_us'), contact_index_path, class: 'btn btn-primary'
-.block.tags
+    %button
+      Search
+  %h3 Categories
+  %ul
+    - @categories.each do |category|
+      - category_path = posts_path(category_name: category.name)
+      - unless category.posts.blank?
+        - if request.fullpath == category_path
+          %li.active
+            = link_to category.name, category_path
+        - else
+          %li
+            = link_to category.name, category_path
   %h3
     - if @tags.blank?
       = t '.tags_are_not_added'
     - else
       = t '.tags'
   .cloud
-    %canvas{width: '365', height: '300', id: 'myCanvas'}
+    %canvas{width: '200', height: '300', id: 'myCanvas'}
       %div#tagcloud
         - unless @tags.nil?
           - tag_cloud(@tags, %w(cloud-tag1 cloud-tag2 cloud-tag3 cloud-tag4 cloud-tag5)) do |tag, css_class|
             = link_to tag.name , posts_path(tag_name: tag.name), class: css_class
+  %h3 Archives
+  %ul
+    - 5.times do |i|
+      %li
+        - date = i.to_i.month.ago
+        = link_to date.strftime('%B %Y'), archives_path(date.strftime('%B').to_s.downcase, date.year.to_s.downcase)
+  %div
+    %fieldset{id: 'archives_form'}
+      = select_tag :month, options_for_select(Date::MONTHNAMES[1..-1])
+      = select_tag :year, options_for_select(Array(2010..DateTime.now.year.to_i))
+    %button{id: 'archives_url'}
+      Show

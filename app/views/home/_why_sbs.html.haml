@@ -1,0 +1,21 @@
+%section#why_sbs.why_sbs
+  %h2 Why choose SBS
+  .all_advantages
+    - @advantages.each do |adv|
+      .advantage
+        .adv_img
+          = image_tag adv.image_url(:thumb)
+        .adv.descr
+          = adv.description
+  .client_testimonials_block
+    %h3 Client Testimonials
+    .testimonials
+      - @testimonials.each do |testimonial|
+        .testimonial
+          .testimonial_title
+            = testimonial.author_position.capitalize unless testimonial.author_position.blank?
+            = testimonial.author_name.titleize
+            %span.project
+              = "(#{testimonial.project.name})"
+          .testimonial_text
+            = testimonial.comment_text

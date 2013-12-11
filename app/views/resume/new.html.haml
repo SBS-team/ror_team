@@ -1,0 +1,29 @@
+#send_new_resume
+  %h3
+    = t '.send_resume'
+  = form_for @resume, url: resume_index_path, authenticity_token: true, html: {class: 'web-form', multipart: true}, remote: true do |f|
+    - if @resume.errors.any?
+      .ror-team-errors
+        %h6
+          = pluralize(@resume.errors.count, "error")
+          prohibited this resume from being sending
+        %ul
+          - @resume.errors.full_messages.each do |msg|
+            %li= msg
+    .form-group
+      - if @jobs
+        - @jobs.each do |job|
+          %label
+            = f.radio_button :job_id, job.title
+            = job.title
+    .form-group
+      = f.text_field :name, id: 'name', class: 'form-control', type: 'text', minlength: '2', placeholder: 'What is your name?' + '*'
+    .form-group
+      = f.email_field :email, id: 'email', class: 'form-control', type: 'email', placeholder: 'What is your email?' + '*'
+    .form-group
+      = f.telephone_field :git_url, id: 'input-url', class: 'form-control', type: 'text', placeholder: 'What is your GitHub or LinkedIn URL?'
+    .form-group
+      = f.text_area :description, class: 'form-control', rows: '5', placeholder:  'Message' + '*'
+    .submit-form
+      = f.submit 'Send_resume', id: 'modal_form_submit', class: 'check_errors', data: {disable_with: 'Please wait...'}
+= link_to 'cLose yoUr resUme!', root_path, class: 'close_send_resume', rel: 'modal:close'

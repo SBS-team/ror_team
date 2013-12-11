@@ -1,0 +1,43 @@
+!!!
+%html
+  %head
+    = favicon_link_tag '/favicon.ico'
+    %title News
+    = stylesheet_link_tag 'news', media: 'all'
+    = javascript_include_tag 'news'
+    = include_gon(namespace: 'RorTeam', camel_case: true)
+    = csrf_meta_tags
+  %body
+    %header
+      .logo
+        = image_tag 'news/rails_mini.png', align: 'left', height: 50
+        %span SBS-Team news
+    %menu
+      %ul.menu_panel
+        %li
+          = link_to 'All', posts_path
+        %li
+          %a{:href => '#'} Archives
+    .col-lg-12
+
+    #wrap
+      #container
+        = render 'sidebar'
+        #content
+          - unless flash.blank?
+            .flash-message
+              - if flash[:error]
+                %p.message-error
+                  = flash.now[:error]
+              - if flash[:notice]
+                %p.message-success
+                  = flash.now[:notice]
+              - if flash[:alert]
+                %p.message-info
+                  = flash.now[:alert]
+          #post-content
+            = yield
+    %footer
+      .contact-us
+        %p
+          © 2012-2013 RoR-Team

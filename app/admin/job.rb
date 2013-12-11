@@ -16,6 +16,9 @@ ActiveAdmin.register Job do
     column :title do |job|
       link_to job.title, admin_job_path(job)
     end
+    column :technologies do |technology|
+      technology.technologies.collect(&:name).join(', ')
+    end
     column :created_at
     column :updated_at
     default_actions
@@ -33,6 +36,9 @@ ActiveAdmin.register Job do
         row 'Description' do |job|
           job.description.html_safe
         end
+        row :technologies do |technology|
+          technology.technologies.collect(&:name).join(', ')
+        end
         row :created_at
         row :updated_at
       end
@@ -44,6 +50,7 @@ ActiveAdmin.register Job do
     f.inputs 'Job Details' do
       f.input :title
       f.input :description, as: :text, input_html: {class: 'ckeditor'}
+      f.input :technologies, as: :check_boxes
       f.inputs for: [:upload_file, f.object.upload_file || UploadFile.new] do |file|
         file.input :img_name, as: :file, hint: file.object.img_name.nil? ? file.template.content_tag(:span, 'no map yet') : file.template.image_tag(file.object.img_name.url(:thumb))
         file.input :remote_img_name_url, as: :url
@@ -78,9 +85,10 @@ ActiveAdmin.register Job do
 
     private
     def job_params
-      params.require(:job).permit(:title, :description,
+      params.require(:job).permit(:title, :description, technology_ids: [],
                                   upload_file_attributes: [:img_name, :remote_img_name_url, :id])
     end
+
   end
 
 end

@@ -1,7 +1,0 @@
-$('#contact_live_chat').replaceWith("<%= escape_javascript(render('contact/new_chat')) %>");
-
-if ($.cookie('nickname')) {
-    $("#live_chat_guest_name").val($.cookie('nickname'));
-}
-
-$('#live_chat').remove()

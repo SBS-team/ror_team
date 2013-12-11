@@ -1,45 +1,7 @@
-.col-lg-12
-  .odd
-    .row
-      .col-lg-6
-        %h2
-          = t '.our_command'
-        %p
-          = t '.our_description'
-      .row
-        .col-lg-6.text-right
-          %h2.bl_title
-            = t '.our_skills'
-          .skills.col-lg-12
-            - @technologies.each do |technology|
-              .skill
-                - unless technology.upload_file.blank? || technology.upload_file.img_name.blank?
-                  = image_tag technology.upload_file.img_name.url(:thumb), title: technology.name, alt: technology.name, width: 50
-                - else
-                  = image_tag 'no_image.gif', width: 50, alt: technology.name, title: technology.name
-          .more.text-right
-            = link_to(t('.read_about_skills'), company_index_path)
-  .even
-    .bl_title.col-lg-12
-      %h2
-        = t '.project_work'
-    .bl_content.col-lg-12
-      - @projects.each do |project|
-        .portfolio_item.col-lg-3.text-center
-          .pic
-            - unless project.upload_files.blank?
-              = image_tag(project.upload_files.sample.img_name.url(:thumb))
-            - else
-              = image_tag('no_image.gif')
-          .portf_title
-            = link_to project.name, project_path(project)
-    .col-lg-12.text-right
-      = link_to(t('.read_about_projects'), projects_path)
-.col-lg-12
-  .row
-    .odd
-      .row
-        = render partial: 'shared/post_jobs'
-
-
+= render partial: 'welcome_section'
+= render partial: 'what_we_do_section'
+-#= render partial: 'why_sbs'
+-#= render partial: 'portfolio_section'
+-#= render partial: 'team_section'
+= render partial: 'contact_section'
 

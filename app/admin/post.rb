@@ -1,6 +1,6 @@
 ActiveAdmin.register Post do
 
-  menu parent: 'Blog',  priority: 0
+  menu parent: 'News',  priority: 0
 
   filter :categories, as: :select, collection: Category.all
   filter :title, as: :string

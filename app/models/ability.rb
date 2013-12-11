@@ -7,7 +7,7 @@ class Ability
       when 'admin'
         can :manage, :all
         cannot :create, [Resume,ActsAsTaggableOn::Tag]
-        cannot :update, [Resume, LiveChat, ActsAsTaggableOn::Tag]
+        cannot :update, [Resume, ActsAsTaggableOn::Tag]
       when 'manager'
         can :read, :all
         cannot :read, [UploadFile, AdminUser]

@@ -3,8 +3,23 @@ class HomeController < ApplicationController
   before_action :last_posts_and_jobs , only: :index
 
   def index
-    @technologies = Technology.includes(:upload_file).order('random()').limit(8)
+    @message = Message.new
     @projects = Project.includes(:upload_files).order('random()').limit(8)
+    @testimonials = ClientTestimonial.order('random()').limit(6)
+    @team = TeamMember.includes(:team_role)
+    @team_roles = TeamRole.all
+    @advantages = Advantage.order('created_at DESC').limit(5)
+  end
+
+  def create
+    @message = Message.new(params[:message])
+    if @message.valid?
+      NotificationsMailer.new_message(@message).deliver
+      redirect_to(root_path, notice: t('.contact_sent_msg'))
+    else
+      flash.now[:error] = @message.errors.full_messages.join(', ')
+      redirect_to :back
+    end
   end
 
 end

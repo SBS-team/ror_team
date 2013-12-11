@@ -3,56 +3,63 @@
   %head
     = favicon_link_tag '/favicon.ico'
     %title RorTeam
+    = stylesheet_link_tag    'https://fonts.googleapis.com/css?family=Francois+One'
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application'
     = include_gon(namespace: 'RorTeam', camel_case: true)
     = csrf_meta_tags
   %body
-    - if session[:chat_id] && controller.controller_name != 'contact'
-      = render partial: 'shared/live_chat'
-    .container
-      .navbar.navbar-inverse.navbar-fixed-top
-        .container
-          = link_to(t('.ror_team'), root_path, class: 'navbar-brand')
-          %ul.nav.navbar-nav
-            = nav_link_to(t('.company'), company_index_path, 'company')
-            = nav_link_to(t('.work'), projects_path, 'projects')
-            = nav_link_to(t('.team'), team_index_path, 'team')
-            = nav_link_to(t('.careers'), jobs_path, 'jobs')
-            = nav_link_to(t('.contact'), contact_index_path, 'contact')
-            = nav_link_to(t('.blog'), posts_path, 'posts')
-          .pull-right.live-chat
-            - if session[:chat_id]
-              %span{class: 'btn btn-success', id: 'chat_show'}
-                = t('.live_chat')
-            - elsif controller.controller_name == 'contact'
-              %span{class: 'btn btn-danger', id: 'chat_contact'}
-                = t('.live_chat')
-            - else
-              %span{class: 'btn btn-danger', id: 'chat_start'}
-                = t('.live_chat')
-      .content.row
-        .col-lg-12
-          - if flash[:error]
-            %p.alert.alert-error
-              = flash.now[:error]
-          - if flash[:notice]
-            %p.alert.alert-success
-              = flash.now[:notice]
-          - if flash[:alert]
-            %p.alert.alert-info
-              = flash.now[:alert]
-          = yield
-      %footer#footer
-        .contact-us
-          %p
-            © 2012-2013 RoR-Team
-        .soc_net
-          = link_to 'http://twitter.com' do
-            = image_tag 'twitter.png'
-          = link_to 'http://facebook.com' do
-            = image_tag 'facebook.png'
-          = link_to contact_index_path do
-            = image_tag 'envelope.png'
-
-
+    %section#nav
+      /[if lt IE 9]
+      .inner_wrapp
+        = link_to root_path, class: 'top_nav_logo clearfix', data: {rel: 'welcome'} do
+          = image_tag 'sbs_c_small.png', width: 58, height: 58
+        %nav.clearfix
+          %ul
+            %li
+              = link_to 'About us', '#', data: {rel: 'What_we_do'}
+            -#%li
+            -#  = link_to 'Why SBS', '#', data: {rel: 'why_sbs'}
+            -#%li
+            -#  = link_to 'Portfolio', '#', data: {rel: 'Portfolio'}
+            -#%li
+            -#  = link_to 'Team', '#', data: {rel: 'team'}
+            %li
+              = link_to 'Contacts', '#', data: {rel: 'Contacts'}
+            -#%li
+            -#  = link_to 'News', posts_path, target: '_blank'
+    - if flash[:error] || flash[:notice] || flash[:alert]
+      #flash_notice.modal.flash_message_box
+        %a{href: '#close', rel: 'modal:close'} Close window
+        - if flash[:error]
+          .error
+            = flash.now[:error]
+        - if flash[:notice]
+          .notice
+            = flash.now[:notice]
+        - if flash[:alert]
+          .info
+            = flash.now[:alert]
+    = yield
+    .site-heart
+      / Start SiteHeart code
+      :javascript
+        (function(){
+        // your widget ID
+        var widget_id = 658123;
+        _shcp =[{widget_id : widget_id}];
+        // set default language
+        var lang =(navigator.language || navigator.systemLanguage
+        || navigator.userLanguage ||"en")
+        .substr(0,2).toLowerCase();
+        // script url
+        var url ="widget.siteheart.com/widget/sh/"+ widget_id +"/"+ lang +"/widget.js";
+        var hcc = document.createElement("script");
+        hcc.type ="text/javascript";
+        hcc.async =true;
+        hcc.src =("https:"== document.location.protocol ?"https":"http")
+        +"://"+ url;
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hcc, s.nextSibling);
+        })();
+      / End SiteHeart code

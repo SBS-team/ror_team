@@ -22,9 +22,11 @@ module RorTeam
     # config.i18n.default_locale = :ru
 
     config.autoload_paths += %W(#{config.root}/lib)
-    config.assets.precompile += %w(admin_chat.js live_chats.js active_admin.css active_admin.js ckeditor/init.js)
+    config.assets.precompile += %w(news.js news.css active_admin.css active_admin.js ckeditor/init.js)
     config.autoload_paths += %W(#{config.root}/app/models/ckeditor)
     config.assets.precompile += Ckeditor.assets
+    config.assets.paths << Rails.root.join('app', 'assets', 'fonts')
+    config.assets.precompile += %w( .svg .eot .woff .ttf )
 
   end
 end

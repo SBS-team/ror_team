@@ -11,7 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130902084220) do
+ActiveRecord::Schema.define(version: 20131210114602) do
+
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
 
   create_table "active_admin_comments", force: true do |t|
     t.string   "resource_id",   null: false
@@ -53,17 +56,16 @@ ActiveRecord::Schema.define(version: 20130902084220) do
   add_index "admin_users", ["email"], name: "index_admin_users_on_email", unique: true, using: :btree
   add_index "admin_users", ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true, using: :btree
 
-  create_table "categories", force: true do |t|
-    t.string   "name"
+  create_table "advantages", force: true do |t|
+    t.text     "description"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  create_table "chat_messages", force: true do |t|
-    t.text     "body"
-    t.integer  "live_chat_id"
-    t.boolean  "is_admin"
+  create_table "categories", force: true do |t|
+    t.string   "name"
     t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "ckeditor_assets", force: true do |t|
@@ -81,6 +83,15 @@ ActiveRecord::Schema.define(version: 20130902084220) do
 
   add_index "ckeditor_assets", ["assetable_type", "assetable_id"], name: "idx_ckeditor_assetable", using: :btree
   add_index "ckeditor_assets", ["assetable_type", "type", "assetable_id"], name: "idx_ckeditor_assetable_type", using: :btree
+
+  create_table "client_testimonials", force: true do |t|
+    t.text     "comment_text"
+    t.string   "author_name"
+    t.string   "author_position"
+    t.integer  "project_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "comments", force: true do |t|
     t.text     "description"
@@ -112,9 +123,9 @@ ActiveRecord::Schema.define(version: 20130902084220) do
     t.datetime "updated_at"
   end
 
-  create_table "live_chats", force: true do |t|
-    t.string   "guest_name"
-    t.integer  "admin_user_id"
+  create_table "jobs_technologies", force: true do |t|
+    t.integer  "job_id"
+    t.integer  "technology_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -168,9 +179,9 @@ ActiveRecord::Schema.define(version: 20130902084220) do
     t.integer  "job_id"
     t.string   "name"
     t.string   "email"
-    t.string   "phone"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "git_url"
   end
 
   create_table "services", force: true do |t|
@@ -196,8 +207,22 @@ ActiveRecord::Schema.define(version: 20130902084220) do
     t.string "name", limit: 40
   end
 
+  create_table "team_members", force: true do |t|
+    t.string   "name"
+    t.string   "last_name"
+    t.string   "team_role_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "team_photos", force: true do |t|
     t.string   "title"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "team_roles", force: true do |t|
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -207,6 +232,7 @@ ActiveRecord::Schema.define(version: 20130902084220) do
     t.integer  "technology_category_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.text     "description"
   end
 
   create_table "technology_categories", force: true do |t|

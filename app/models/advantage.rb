@@ -6,7 +6,6 @@ class Advantage < ActiveRecord::Base
 
   validates :description, presence: true, length: {minimum: 3, maximum: 255}
 
-
   def image_url(thumb={})
     if upload_file.blank? || upload_file.img_name.nil?
       'no_image.gif'

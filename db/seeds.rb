@@ -17,6 +17,9 @@ ClientTestimonial.destroy_all
 Project.destroy_all
 Service.destroy_all
 TeamPhoto.destroy_all
+TeamRole.destroy_all
+TeamMember.destroy_all
+Advantage.destroy_all
 AdminUser.not_admin.destroy_all
 
 tech = TechnologyCategory.create(:name => 'Technical Skills')
@@ -71,6 +74,8 @@ Job.create(:title => 'advisor', :upload_file => UploadFile.new(:img_name => File
 
 project1 = Project.create(:name => 'lol team', :team_size => 4, :upload_files => [UploadFile.new(:img_name => File.open(Rails.root.join('db/data_seed/project.jpg'))), UploadFile.new(:img_name => File.open(Rails.root.join('db/data_seed/project2.jpg')))], :since => 1.month.ago, :till => Time.now, :description => "The engineering tracks of these programs teach students how to construct, analyze and maintain software through lectures and laboratory sessions. Programs include topics in computer programming, operating systems and networks. In many programs, the capstone requirement is a senior design project that allows students to apply the principles they've learned to an original concept. Students may also take part in cooperative internships to gain experience as part of an engineering program.")
 project2 = Project.create(:name => 'ror team', :team_size => 3, :upload_files => [UploadFile.new(:img_name => File.open(Rails.root.join('db/data_seed/project3.gif')))], :since => 1.month.ago, :till => Time.now, :description => "The engineering tracks of these programs teach students how to construct, analyze and maintain software through lectures and laboratory sessions. Programs include topics in computer programming, operating systems and networks. In many programs, the capstone requirement is a senior design project that allows students to apply the principles they've learned to an original concept. Students may also take part in cooperative internships to gain experience as part of an engineering program.")
+project3 = Project.create(:name => 'test project', :team_size => 14, url: 'https://www.google.com.ua', :upload_files => [UploadFile.new(:img_name => File.open(Rails.root.join('db/data_seed/project.jpg'))), UploadFile.new(:img_name => File.open(Rails.root.join('db/data_seed/project2.jpg')))], :since => 1.month.ago, :till => Time.now, :description => "The engineering tracks of these programs teach students how to construct, analyze and maintain software through lectures and laboratory sessions. Programs include topics in computer programming, operating systems and networks. In many programs, the capstone requirement is a senior design project that allows students to apply the principles they've learned to an original concept. Students may also take part in cooperative internships to gain experience as part of an engineering program.")
+project4 = Project.create(:name => 'temp project', :team_size => 3, :upload_files => [UploadFile.new(:img_name => File.open(Rails.root.join('db/data_seed/project3.gif')))], :since => 1.month.ago, :till => Time.now, :description => "The engineering tracks of these programs teach students how to construct, analyze and maintain software through lectures and laboratory sessions. Programs include topics in computer programming, operating systems and networks. In many programs, the capstone requirement is a senior design project that allows students to apply the principles they've learned to an original concept. Students may also take part in cooperative internships to gain experience as part of an engineering program.")
 
 Service.create(:name => 'Mobile version of web site development', :upload_file => UploadFile.new(:img_name => File.open(Rails.root.join('db/data_seed/mobile.jpg'))))
 Service.create(:name => 'Web site development', :upload_file => UploadFile.new(:img_name => File.open(Rails.root.join('db/data_seed/site.jpg'))))
@@ -91,3 +96,19 @@ TeamPhoto.create(:title => 'Here we are!', :upload_files => [UploadFile.new(:img
 ClientTestimonial.create(:comment_text => "Very nice work!", :project_id => project1.id, :author_name => "John Smith")
 ClientTestimonial.create(:comment_text => "Awesome! You are my gods!", :project_id => project1.id, :author_name => "Darth Vader", :author_position => "Death Star capitan")
 ClientTestimonial.create(:comment_text => "I am happy now!", :project_id => project2.id, :author_name => "Foo Bar", :author_position => "senior developer")
+
+role1 = TeamRole.create(name: 'leader')
+role2 = TeamRole.create(name: 'developer')
+role3 = TeamRole.create(name: 'manager')
+role4 = TeamRole.create(name: 'some random guy')
+
+role2.team_members.create(name: 'Alex', last_name: 'Merk')
+role2.team_members.create(name: 'John', last_name: 'Doe')
+role1.team_members.create(name: 'Bob', last_name: 'Black')
+role3.team_members.create(name: 'Agent', last_name: 'Smith')
+role4.team_members.create(name: 'Lelik', last_name: 'Bolik')
+
+Advantage.create(:description => 'Mobile version of web site development', :upload_file => UploadFile.new(:img_name => File.open(Rails.root.join('db/data_seed/mobile.jpg'))))
+Advantage.create(:description => 'Web site development', :upload_file => UploadFile.new(:img_name => File.open(Rails.root.join('db/data_seed/site.jpg'))))
+Advantage.create(:description => 'Web and mobile version  development', :upload_file => UploadFile.new(:img_name => File.open(Rails.root.join('db/data_seed/web_mobile.png'))))
+Advantage.create(:description => 'Help with the existing project', :upload_file => UploadFile.new(:img_name => File.open(Rails.root.join('db/data_seed/help.jpg'))))

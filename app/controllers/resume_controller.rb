@@ -13,7 +13,7 @@ class ResumeController < ApplicationController
     @resume = Resume.new(resume_params)
     unless @resume.job_id.blank?
       @job = Job.find(@resume.job_id)
-      if (verify_recaptcha(model: @resume, message: 'You enter wrong captcha', attribute: :base) && @resume.save)
+      if @resume.save
         render :create, formats: :js
       else
         @resume.upload_file = UploadFile.new
@@ -27,7 +27,7 @@ class ResumeController < ApplicationController
 
   private
   def resume_params
-    params.require(:resume).permit(:job_id, :name, :email, :phone, :description, upload_file_attributes: [:filename, :id])
+    params.require(:resume).permit(:job_id, :name, :email, :description, upload_file_attributes: [:filename, :id])
   end
 
 end

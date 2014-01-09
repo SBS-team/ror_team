@@ -23,7 +23,6 @@ class Resume < ActiveRecord::Base
   validates :job_id, presence: true, numericality: {only_integer: true, greater_than: 0}
   validates :name, presence: true, length: {minimum: 4, maximum: 40}
   validates :email, presence: true, format: {with: /\A[^@]+@([^@\.]+\.)+[^@\.]+\z/}
-  validates :phone, presence: true, length: {maximum: 50}, format: {with: /\A[+]?\d+\Z/}
   validate :validate_data
   validate :file_size
 

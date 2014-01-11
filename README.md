@@ -85,7 +85,7 @@
         $ sudo apt-get install imagemagick
         $ sudo apt-get install libmagick9-dev
 
-В папке с клонированным проектом
+Перейдите в папку с клонированным проектом
 
         $ rails s
 

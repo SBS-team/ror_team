@@ -5,11 +5,11 @@
 #  id          :integer          not null, primary key
 #  description :text
 #  job_id      :integer
-#  created_at  :datetime
-#  updated_at  :datetime
 #  name        :string(255)
 #  email       :string(255)
-#  phone       :string(255)
+#  created_at  :datetime
+#  updated_at  :datetime
+#  git_url     :string(255)
 #
 
 class Resume < ActiveRecord::Base

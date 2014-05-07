@@ -1,3 +1,13 @@
+# == Schema Information
+#
+# Table name: advantages
+#
+#  id          :integer          not null, primary key
+#  description :text
+#  created_at  :datetime
+#  updated_at  :datetime
+#
+
 class Advantage < ActiveRecord::Base
 
   has_one :upload_file, as: :fileable, dependent: :destroy

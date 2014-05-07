@@ -2,10 +2,10 @@
 #
 # Table name: time_onlines
 #
-#  id       :integer          not null, primary key
-#  admin_id :integer
-#  day      :date
-#  time     :integer
+#  id            :integer          not null, primary key
+#  admin_user_id :integer
+#  day           :date
+#  time          :integer
 #
 
 class TimeOnline < ActiveRecord::Base

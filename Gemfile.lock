@@ -122,6 +122,9 @@ GEM
       thread_safe (~> 0.1)
       tzinfo (~> 0.3.37)
     addressable (2.3.5)
+    annotate (2.6.3)
+      activerecord (>= 2.3.0)
+      rake (>= 0.8.7)
     ansi (1.4.3)
     arbre (1.0.1)
       activesupport (>= 3.0.0)
@@ -422,6 +425,7 @@ PLATFORMS
 DEPENDENCIES
   activeadmin!
   acts-as-taggable-on!
+  annotate (>= 2.6.0)
   better_errors
   binding_of_caller
   cancan

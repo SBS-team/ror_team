@@ -7,6 +7,7 @@
 #  technology_category_id :integer
 #  created_at             :datetime
 #  updated_at             :datetime
+#  description            :text
 #
 
 class Technology < ActiveRecord::Base

@@ -9,6 +9,9 @@ gem 'pg'
 #Use pagination
 gem 'kaminari'
 
+#Annotate models
+gem 'annotate', '>=2.6.0'
+
 # Use for upload files
 gem 'carrierwave'
 gem 'rmagick', '~>2.13.2', require: 'RMagick'
@@ -16,7 +19,7 @@ gem 'rmagick', '~>2.13.2', require: 'RMagick'
 gem 'ckeditor', github: 'keitoaino/ckeditor'
 gem 'mini_magick'
 #sudo apt-get install libmagickwand-dev                                   # Setup this libs
-#sudo apt-get install graphicsmagick-libmagick-dev-compat                 # For install Rmagick
+#sudo apt-get install graphicsmagick-libmagick-dev-compat                 # to install Rmagick
 #sudo apt-get install imagemagick
 #sudo apt-get install libmagick9-dev
 

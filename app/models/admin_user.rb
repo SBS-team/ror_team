@@ -19,7 +19,9 @@
 #  last_name              :string(255)
 #  created_at             :datetime
 #  updated_at             :datetime
-#  status                 :string(255)
+#  unique_session_id      :string(20)
+#  last_activity          :datetime
+#  busy                   :boolean          default(FALSE)
 #
 
 class AdminUser < ActiveRecord::Base

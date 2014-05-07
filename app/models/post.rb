@@ -5,7 +5,7 @@
 #  id             :integer          not null, primary key
 #  title          :string(255)
 #  description    :text
-#  admin_id       :integer
+#  admin_user_id  :integer
 #  comments_count :integer          default(0)
 #  created_at     :datetime
 #  updated_at     :datetime

@@ -1,7 +1,9 @@
 = cache 'team-section' do
   %section#team.team-section{'style' => "background-image: url('#{asset_path('team_section_bkg.jpg')}');"}
     .team-section-wrapper
-      %h2 Ruby Team
+      .content_area
+        .row{"data--50-bottom" => "opacity:0.1;transform: scale(0.9)", "data-120-top" => "opacity:0.1;transform: scale(0.9)"}
+          %h2 Ruby Team
       .team-section-left
         .team-role-filter
           %ul

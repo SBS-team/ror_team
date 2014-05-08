@@ -65,6 +65,15 @@
   padding-bottom: 25px;
 }
 
+#team h2:hover {
+  opacity: 1 !important;
+  transition: all 500ms;
+  -webkit-webkit: all 500ms;
+  -moz-webkit: all 500ms;
+  -ms-webkit: all 500ms;
+  -o-webkit: all 500ms;
+}
+
 #team .send_resume {
   display: block;
   padding: 0 15px;

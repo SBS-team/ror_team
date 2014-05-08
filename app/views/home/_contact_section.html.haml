@@ -1,7 +1,8 @@
 %section#Contacts.Contacts_l-1
   .Contacts_l-3
   .content_area
-    %h2= t 'home.index.contact_us'
+    .row{"data--50-bottom" => "opacity:0.1;transform: scale(0.9)", "data-120-top" => "opacity:0.1;transform: scale(0.9)"}
+      %h2= t 'home.index.contact_us'
     .contact_form
       = form_for @message, url: home_index_path, html: {class: 'web-form', multipart: true} do |form|
         - if @message.errors.any?

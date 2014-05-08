@@ -1,18 +1,20 @@
 jQuery(document).ready(function(){
 
-    windov_height = document.documentElement.clientHeight;
-    console.log(windov_height);
+    var window_height = document.documentElement.clientHeight;
+    console.log(window_height);
 
-    jQuery('.welcome_l-1').css("minHeight", windov_height);
-    jQuery('.welcome_l-2').css("minHeight", windov_height);
-    jQuery('.welcome_l-3').css("minHeight", windov_height);
+    jQuery('.welcome_l-1').css("minHeight", window_height);
+    jQuery('.welcome_l-2').css("minHeight", window_height);
+    jQuery('.welcome_l-3').css("minHeight", window_height);
 
-    jQuery('.Contacts_l-1').css("minHeight", windov_height);
-    jQuery('.Contacts_l-2').css("minHeight", windov_height);
-    jQuery('.Contacts_l-3').css("minHeight", windov_height);
+    jQuery('.Contacts_l-1').css("minHeight", window_height);
+    jQuery('.Contacts_l-2').css("minHeight", window_height);
+    jQuery('.Contacts_l-3').css("minHeight", window_height);
 
-    jQuery('#team').css("minHeight", windov_height);
-    jQuery('#why_sbs').css("minHeight", windov_height);
+    jQuery('#team').css("minHeight", window_height);
+    jQuery('#why_sbs').css("minHeight", window_height);
+    jQuery('#Portfolio').css("minHeight", window_height);
+    jQuery('#What_we_do').css("minHeight", window_height);
 
     skrollr.init({
         forceHeight: false

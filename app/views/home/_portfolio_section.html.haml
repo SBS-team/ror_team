@@ -1,5 +1,5 @@
 %section#Portfolio.Portfolio_l-1
-  .Portfolio_l-2{"data-0" => "background-position:50% -1000px;", "data-100000" => "background-position:50% 50000px;"}
+  .Portfolio_l-2{"data-0" => "background-position:50% -1000px;", "data-100000" => "background-position:50% 40000px;"}
   .content_area
     .row{"data--50-bottom" => "opacity:0.1;transform: scale(0.9)", "data-120-top" => "opacity:0.1;transform: scale(0.9)"}
       %h2= t 'home.index.project_work'
@@ -7,7 +7,6 @@
       - @projects.each do |project|
         = cache project do
           .portfolio_item
-            = link_to project.url, project.url, target: '_blank', class: 'site_link'
             = link_to project_load_path(project.id), class: 'img_block manual-ajax', rel: 'modal:open' do
               %span.bg_place_holder
               %span.bg_place_holder_plus
@@ -15,3 +14,4 @@
                 = image_tag(project.upload_files.sample.img_name.url(:thumb), width: 167, height: 110)
               - else
                 = image_tag('no_image.gif')
+            = link_to project.url, project.url, target: '_blank', class: 'site_link'

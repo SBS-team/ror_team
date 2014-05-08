@@ -2,7 +2,7 @@
   z-index: 10;
   position: relative;
   padding: 60px 40px 0 40px;
-  background-color: #c3c3c3;
+  background-color: #f5f68b;
   background-size: 100% auto;
 }
 .team-section-wrapper {
@@ -67,11 +67,11 @@
 
 #team h2:hover {
   opacity: 1 !important;
-  transition: all 500ms;
-  -webkit-webkit: all 500ms;
-  -moz-webkit: all 500ms;
-  -ms-webkit: all 500ms;
-  -o-webkit: all 500ms;
+  transition: all 500ms ease-in;
+  -webkit-webkit: all 500ms ease-in;
+  -moz-webkit: all 500ms ease-in;
+  -ms-webkit: all 500ms ease-in;
+  -o-webkit: all 500ms ease-in;
 }
 
 #team .send_resume {

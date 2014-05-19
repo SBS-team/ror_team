@@ -13,6 +13,14 @@
   }
 }
 
+.team-photo-wrapper:after {
+  display: block;
+  clear: both;
+  height: 0;
+  visibility: hidden;
+  content: ".";
+}
+
 .team-section-content {
   margin: 0 0 0 270px;
 }
@@ -26,7 +34,7 @@
       list-style: none;
 
       li {
-        margin: 5px 0;
+        margin: 5px 0 15px 0;
 
         a {
           cursor: pointer;

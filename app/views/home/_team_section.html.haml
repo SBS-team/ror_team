@@ -4,23 +4,24 @@
       .content_area
         .row{"data--50-bottom" => "opacity:0.1;transform: scale(0.9)", "data-120-top" => "opacity:0.1;transform: scale(0.9)"}
           %h2 Ruby Team
-      .team-section-left
-        .team-role-filter
-          %ul
-            %li
-              = link_to 'Full team', '#', class: 'filter-link active-role', 'data-role' => 'all'
-            - @team_roles.each do |role|
+      .team-photo-wrapper
+        .team-section-left
+          .team-role-filter
+            %ul
               %li
-                = link_to role.name, '#', class: 'filter-link', 'data-role' => role.name.downcase
-      .team-section-content
-        - @team.each do |member|
-          = cache member do
-            .team-item{'data-team-role' => member.team_role.name.downcase}
-              = image_tag member.image_url(:thumb), width: 100, height: 100
-              .team-item-content
-                %span= member.name.capitalize
-                %span= member.last_name.capitalize
-                %div= member.team_role.name
+                = link_to 'Full team', '#', class: 'filter-link active-role', 'data-role' => 'all'
+              - @team_roles.each do |role|
+                %li
+                  = link_to role.name, '#', class: 'filter-link', 'data-role' => role.name.downcase
+        .team-section-content
+          - @team.each do |member|
+            = cache member do
+              .team-item{'data-team-role' => member.team_role.name.downcase}
+                = image_tag member.image_url(:thumb), width: 100, height: 100
+                .team-item-content
+                  %span= member.name.capitalize
+                  %span= member.last_name.capitalize
+                  %div= member.team_role.name
     %h2.row.job_interest{"data--50-bottom" => "opacity:0.1;transform: scale(0.9)", "data-80-top" => "opacity:0.1;transform: scale(0.9)"}
       Want to join
       %br
